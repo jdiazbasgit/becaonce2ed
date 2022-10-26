@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style> 
+        div {
+          width: 500px;
+          height: 20px;
+          background-color: red;
+          animation-name: example;
+          animation-duration: 15s;
+        }
+        
+        @keyframes example {
+          from {background-color: red; width: 0}
+          to {background-color: yellow; width: 100}
+        }
+        </style>
+</head>
+
+<body>
+
+    <div></div>
+
+<h1 id="wh1">H1</h1>
+<h2>H2</h2>
+<h3>H3</h3>
+<input type="text" x-webkit-speech="x-webkit-speech">
+<input type="time"/>
+<input type="datetime-local"/>
+<input type="color"/>
+<input pattern="[0-9]{13,16}"/>
+<script type="text/javascript">
+    var elem = document.getElementById("wh1").style.color = "red";
+
+    if (document.createElement("input").webkitSpeech === undefined) {
+    alert("La entrada de voz no esta soportada en tu navegador.");
+}
+
+</script>
+</body>
+</html>
