@@ -1,0 +1,84 @@
+
+<body>
+    <h1>texto h1</h1>
+    <h2>texto h2</h2>
+    <h3>texto h3</h3>
+    <h4>texto h4</h4>
+    <h5>texto h5</h5>
+    <h6>texto h6</h6>
+    <p>dfghdgfh gfd fdghdfgh d hfgh d hdfgh fgdh dfgh dfg hfgd hfgd hfgdh </p>
+
+    <p>hdgfh fdg dfgh dfgh dfg gfd gfdh fgdh dfgh fgh fdgh dfgh gfh dfgh</p>
+
+    <b>negrita</b><br><i>italica</i><br><strong>negrita</strong><br>
+
+
+    <form action="url destino" method="get">
+        Selecciona fecha:<input type="time"><br>
+        color: <input type="color"><br>
+        DNI: <input type="text" value="525658M" pattern="[0-9]{8}[A-Z]" placeholder="escribe tu dni" required ar><br>
+        edad: <input type="number" min="18" max="65">
+    </form>
+
+    codigo postal <input type="text" size="5" maxlength="5">
+
+
+    <form action="mipagina.es" method="get">
+        <table border="1" align="center" cellspacing="20" cellpadding="5">
+
+
+            <tr>
+                <th>dato</th>
+                <th>valor</th>
+            </tr>
+
+
+            <tr>
+                <td>USUARIO</td>
+                <td><input type="text" name="usuario"></input></td>
+            </tr>
+            <tr>
+                <td>CLAVE</td>
+                <td><input type="password" value="visible" name="clave"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"> <button type="submit">ENVIAR</button></td>
+
+            </tr>
+
+        </table>
+    </form>
+    <br><br>
+    <h1>
+        <ul>
+            <li>manzama</li>
+            <li>pera</li>
+            <li>naranja</li>
+            <li>melon</li>
+        </ul>
+
+        <ol>
+            <li>manzama</li>
+            <li>frutas:
+                <ol type="a" start="5">
+                    <li>manzama</li>
+                    <li>pera</li>
+                    <li>naranja</li>
+                    <li>melon</li>
+                </ol>
+            </li>
+            <li>naranja</li>
+            <li>melon</li>
+        </ol>
+    </h1>
+
+    <img 
+    src="https://unjamonaunbuenprecio.com/187-medium_default/jamon-5-jotas-de-sanchez-romero-carvajal.jpg" 
+    title="esto es un jamon">
+
+<a href="https://www.google.es/search?q=jamon" >buscar jamon</a>
+
+<br><br><br><br><br><br><br><br>
+</body>
+
+</html>
