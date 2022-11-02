@@ -1,94 +1,128 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
 </head>
 
 <body>
-    <h1>texto h1</h1>
-    <h2>texto h2</h2>
-    <h3>texto h3</h3>
-    <h4>texto h4</h4>
-    <h5>texto h5</h5>
-    <h6>texto h6</h6>
-    <p>dfghdgfh gfd fdghdfgh d hfgh d hdfgh fgdh dfgh dfg hfgd hfgd hfgdh </p>
 
-    <p>hdgfh fdg dfgh dfgh dfg gfd gfdh fgdh dfgh fgh fdgh dfgh gfh dfgh</p>
+    <h1>Soy un h1</h1>
+    <h2>Soy un h2</h2>
+    <h3>Soy un h3</h3>
+    <h4>Soy un h4</h4>
+    <h5>Soy un h5</h5>
+    <h6>Soy un h6</h6>
 
-    <b>negrita</b><br><i>italica</i><br><strong>negrita</strong><br>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officiis tempora facilis tenetur odit? Impedit numquam
+        aliquid nihil sapiente placeat odit doloremque rerum, corporis expedita, velit cupiditate a, nesciunt ex
+        doloribus.</p>
+
+    <table border="1" cellpadding="10">
+        <tr>
+            <td rowspan="2">Texto de prueba</td>
+            <td>Texto de prueba</td>
+            <td>Texto de prueba</td>
+        </tr>
+        <tr>
+            <td>Texto de prueba</td>
+            <td>Texto de prueba</td>
+        </tr>
+        <tr>
+            <td>Texto de prueba</td>
+            <td>Texto de prueba</td>
+            <td>Texto de prueba</td>
+        </tr>
+        <tr>
+            <td>Texto de prueba</td>
+            <td colspan="2">SuperTexto de prueba</td>
+        </tr>
+    </table>
+    <ol>
+        <li>Manzana</li>
+        <li>Pera</li>
+        <li>Naranja</li>
+        <li>Pomelo</li>
+        <li>Melocotón</li>
+    </ol>
+    <table>
+        <form action="#" method="get">
+            <tr>
+                <td>Nombre:</td>
+                <td><input type="text" name="nombre" placeholder="Escribe tu nombre"></td>
+            </tr>
 
 
-    <form action="url destino" method="get">
-        Selecciona fecha:<input type="time"><br>
-        color: <input type="color"><br>
-        DNI: <input type="text" value="525658M" pattern="[0-9]{8}[A-Z]" placeholder="escribe tu dni" required ar><br>
-        edad: <input type="number" min="18" max="65">
+            <tr>
+                <td>DNI:</td>
+                <td><input type="text" name="dni" placeholder="Escribe tu DNI"></td>
+            </tr>
+            <tr>
+                <td>Edad:</td>
+                <td><input type="number" name="edad" placeholder="Escribe tus años"></td>
+            </tr>
+            <tr>
+                <td>Fecha de nacimiento:</td>
+                <td><input type="date" name="edad" placeholder="Escribe tus años"></td>
+            </tr>
+
+
+            <tr>
+                <td>Deportes favoritos:</td>
+                <td>
+                    <ul>
+                        <li>
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="futbol">Fútbol</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="danza">Danza</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="baloncesto">Baloncesto</label>
+                        </li>
+                        <li>
+                            <label><input type="checkbox" name="ajedrez">Ajedrez</label>
+                        </li>
+
+                </td>
+                </ul>
+            </tr>
+            <tr>
+                <td>Selecciona nacionalidad:</td>
+                <td>
+                    <input type="radio" name="pais" value="espana">España <input type="radio" name="pais"
+                        value="italia">Italia <input type="radio" name="pais" value="francia">Francia <input
+                        type="radio" name="pais" value="alemania">Alemania
+                </td>
+            </tr>
+            <tr>
+                <td>Selecciona ciudad:</td>
+                <td>
+                    <select name="ciudad">
+                        <option value="null">Selecciona ciudad</option>
+                        <option value="madrid">Madrid</option>
+                        <option value="gijon">Gijón</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="alicante">Alicante</option>
+                        <option value="lugo">Lugo</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Escribe tu vida:</td>
+                <td><textarea name="textolibre" cols="30"
+                        rows="12">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente deserunt minima expedita fugiat praesentium natus corporis cupiditate corrupti nulla, quaerat velit reiciendis. Dolor fugiat enim quae sint, est ab suscipit?</textarea>
+                </td>
+            </tr>
+    </table>
     </form>
 
-    codigo postal <input type="text" size="5" maxlength="5">
-
-
-    <form action="mipagina.es" method="get">
-        <table border="1" align="center" cellspacing="20" cellpadding="5">
-
-
-            <tr>
-                <th>dato</th>
-                <th>valor</th>
-            </tr>
-
-
-            <tr>
-                <td>USUARIO</td>
-                <td><input type="text" name="usuario"></input></td>
-            </tr>
-            <tr>
-                <td>CLAVE</td>
-                <td><input type="password" value="visible" name="clave"></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"> <button type="submit">ENVIAR</button></td>
-
-            </tr>
-
-        </table>
-    </form>
-    <br><br>
-    <h1>
-        <ul>
-            <li>manzama</li>
-            <li>pera</li>
-            <li>naranja</li>
-            <li>melon</li>
-        </ul>
-
-        <ol>
-            <li>manzama</li>
-            <li>frutas:
-                <ol type="a" start="5">
-                    <li>manzama</li>
-                    <li>pera</li>
-                    <li>naranja</li>
-                    <li>melon</li>
-                </ol>
-            </li>
-            <li>naranja</li>
-            <li>melon</li>
-        </ol>
-    </h1>
-
-    <img 
-    src="https://unjamonaunbuenprecio.com/187-medium_default/jamon-5-jotas-de-sanchez-romero-carvajal.jpg" 
-    title="esto es un jamon">
-
-<a href="https://www.google.es/search?q=jamon" >buscar jamon</a>
-
-<br><br><br><br><br><br><br><br>
 </body>
 
 </html>
