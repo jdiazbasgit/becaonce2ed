@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios</title>
+
+    <style>
+        .ttd{
+            border:1px solid black; 
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>soy dlg</h1>
+    <h2>soy dlg</h2>
+    <h3>soy dlg</h3>
+    <h4>soy dlg</h4>
+    <h5>soy dlg</h5>
+    <h6>soy dlg</h6>
+
+
+    <table style="border:1px solid black; width: 300px; height: 300px;">
+        <tr>
+            <td class="ttd"></td>
+            <td class="ttd"></td>
+            <td rowspan="2" class="ttd"></td>
+        </tr>
+        <tr>
+            <td class="ttd"></td>
+            <td class="ttd"></td>
+        </tr>
+        <tr>
+            <td class="ttd"></td>
+            <td class="ttd"></td>
+            <td class="ttd"></td>
+        </tr>
+        <tr>
+            <td class="ttd"></td>
+            <td colspan="2" class="ttd"></td>
+        </tr>
+    </table>
+
+    <ol>
+        <li>Platano</li>
+        <li>Manzana</li>
+        <li>Pera</li>
+    </ol>
+
+
+    <form action="" method="get">
+        <label>
+            Nombre:
+        </label>
+        <input type="text" name="nombre" placeholder="ej. David"><br>
+        <label>
+            Dni:
+        </label>
+        <input type="text" name="dni"><br>
+
+        <label>
+            Edad:
+        </label>
+        <input type="number" name="edad"><br>
+
+        <label>
+            Fecha de nacimiento:
+        </label>
+        <input type="date" name="fechanacimiento"><br>
+        
+        <label>
+            Deportes:
+        </label><br>
+        <label>Futbol:</label>
+        <input type="checkbox" name="futbol" value="Futbol"><br>
+        <label>Baloncesto:</label>
+        <input type="checkbox" name="baloncesto" value="Baloncesto"><br>
+        <label>Natación:</label>
+        <input type="checkbox" name="natacion" value="natacion"><br>
+        <label>Trail running:</label>
+        <input type="checkbox" name="trail" value="Trail running"><br>
+        <label>Padel:</label>
+        <input type="checkbox" name="padel" value="Padel"><br>
+
+        <label>
+            Nacionalidad:
+        </label>
+        <select name="nacionalidad" id="nac">
+            <option value="España">España</option>
+            <option value="Francia">Francia</option>
+            <option value="Italia">Italia</option>
+            <option value="Holanda">Holanda</option>
+        </select><br>
+
+        <label>
+            Observación:
+        </label><br>
+        <textarea name="observacion" id="obs" cols="30" rows="10">fhgf</textarea><br>
+        
+        <button type="submit">Enviar</button>
+    </form>
+</body>
+</html>
