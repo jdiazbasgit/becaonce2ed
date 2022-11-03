@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@keyframes meneillo {
+    from {transform: translateY(10px);}
+    to {transform: translateY(-10px);}
+  }
+@keyframes desvanecer {
+    from {opacity: 1;transform: rotate(5deg);}
+    to {opacity: 0.4;transform: rotate(-500deg);}
+  }  
 
 
 body{
@@ -9,6 +17,8 @@ body{
 
 h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     background-color: red;
     border-radius: 10px;
     padding: 10px;
@@ -30,6 +40,8 @@ h6{
 }
 h2, h3, h4, h5, h6{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     border-radius: 10px;
     padding: 10px;
 }
@@ -37,10 +49,12 @@ p{
     font-style: italic;
 }
 .tabla1{
-    background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
+    background: linear-gradient(rgb(196, 245, 164), rgb(232, 207, 145));
     border-collapse: separate;
     border-radius: 20px;
-    font-family: fantasy;
+    font-family: Roboto;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     border: 5px, black;
     border-spacing: 10px;
 }
@@ -48,8 +62,21 @@ p{
     background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
     border-collapse: separate;
     border-radius: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Roboto;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
     border: 5px, black;
     padding: 30px;
     border-spacing: 10px;
+    box-shadow: 5px;
+    animation-name: meneillo;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.enviar{
+    animation-name: desvanecer;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
