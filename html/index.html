@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>soy yo</h1>
     <h2>soy yo</h2>
@@ -17,23 +19,23 @@
         temporibus, mollitia non modi fugit harum autem nam, officiis tempora? Explicabo veritatis dicta non hic!</p>
     <h2>hacer una tabla con 4 filas y 4 columnas</h2>
     <p> "unir 2 celdas horinzotales" "unir 2 celdas verticales"</p>
-    <table border="1"  rules="all" height="180" width="400" frame="box">
+    <table border="1" rules="all" height="180" width="400" frame="box">
         <tr>
             <td></td>
             <td colspan="2"></td>
-        
+
             <td></td>
         </tr>
         <tr>
             <td></td>
-         <td></td>
+            <td></td>
             <td rowspan="2"></td>
             <td></td>
         </tr>
         <tr>
             <td></td>
             <td></td>
-           
+
             <td></td>
         </tr>
     </table>
@@ -46,55 +48,59 @@
     </ol><br>
     <h4>formularios</h4>
 
-    <form action="formulario"></form>
-    <tr>
-        <th>nombre</th>
-        <td><input type="text" name="nombre" id=""></td>
-    </tr><br>
-    <tr>
-        <th>dni</th>
-        <td><input type="number" name="dni" id=""></td>
-    </tr><br>
-    <tr>
-        <th>edad</th>
-        <td><input type="number" name="edad" id=""></td>
-    </tr><br>
-    <tr>
-        <th>date</th>
-    </tr>
-    <td><input type="date" name="fecha" id=""></td>
-    </tr><br>
+    <form action="formulario">
+        <tr>
+            <th>nombre</th>
+            <td><input type="text" name="nombre"></td>
+        </tr><br>
+        <tr>
+            <th>dni</th>
+            <td><input type="texto" name="dni"></td>
+        </tr><br>
+        <tr>
+            <th>edad</th>
+            <td><input type="number" name="edad"></td>
+        </tr><br>
+        <tr>
+            <th>date</th>
+        </tr>
+        <td><input type="date" name="fecha"></td>
+        </tr><br>
 
-    <tr>
-        <ol>
-            baloncesto<input type="checkbox" name="" id=""><br>
-            natacion<input type="checkbox" name="" id=""><br>
-            esgrima<input type="checkbox" name="" id=""><br>
-            futbol<input type="checkbox" name="" id=""><br>
-            petanca<input type="checkbox" name="" id=""><br>
-    </tr>
-    </ol>
+        <tr>
+            <ol>
+                baloncesto<input type="checkbox" name="baloncesto"><br>
+                natacion<input type="checkbox" name="natacion"><br>
+                esgrima<input type="checkbox" name="esgrima"><br>
+                futbol<input type="checkbox" name="futbol"><br>
+                petanca<input type="checkbox" name="petanca"><br>
+            </ol></tr>
+        
 
-    naionalidad: <br>
-    Peruana <input type="radio" name="peruana" id=""> <br>
-    colombiana <input type="radio" name="colombiana" id=""> <br>
-    española <input type="radio" name="española" id=""> <br>
-    guatemalteca <input type="radio" name="guatemalteca" id=""> <br>
-    francesa <input type="radio" name="francesa" id=""> <br>
+        naionalidad: <br>
+        Peruana <input type="radio" name="origen" value="peruano"> <br>
+        colombiana <input type="radio" name="origen" value="colombiano"> <br>
+        española <input type="radio" name="origen" value="española"> <br>
+        guatemalteca <input type="radio" name="origen" value="guatemalteca"> <br>
+        francesa <input type="radio" name="origen" value="francesa"> <br>
 
-    <p>ciudades</p>
-    <select name="ciudades"><br>
-        <option value="41">Sevilla</option>
-        <option value="43">tarragona</option>
-        <option value="42">Soria</option>
-        <option value="28">Madrid</option>
-        <option value="08">Barcelona</option>
-        <button type="submit"></button>
-        <br>
-        <textarea name="" id="" cols="30"
-            rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, error! Dolore cupiditate quis quasi dolorem temporibus, mollitia non modi fugit harum autem nam, officiis tempora? Explicabo veritatis dicta non hic!</textarea>
-    </select>
-    </form> 
+        <p>ciudades</p>
+        <select name="ciudades"><br>
+            <option value="41">Sevilla</option>
+            <option value="43">tarragona</option>
+            <option value="42">Soria</option>
+            <option value="28">Madrid</option>
+            <option value="08">Barcelona</option>
+            <button type="submit"></button>
+            <br>
+            <textarea name="" cols="30"
+                rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, error! Dolore cupiditate quis quasi dolorem temporibus, mollitia non modi fugit harum autem nam, officiis tempora? Explicabo veritatis dicta non hic!</textarea>
+        </select>
+        <button type="submit">enviar
 
+        </button>
+    </form>
+   
 </body>
+
 </html>
