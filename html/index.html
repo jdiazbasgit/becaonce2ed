@@ -41,15 +41,23 @@
 
                 </tr>
 
-            </table><br>
-            <form>
-                <action="ejemplo.es" metod="get">
-                    </action>
+    </table><br><br><br>
+    <ol>
+    FRUTAS
+        <li>Naranja</li>
+        <li>Manzana</li>
+        <li>Kiwi</li>
+        <li>Pera</li>
+        <li>Mandarina</li>
+    </ol>
+    <form>
+         <action="ejemplo.es" metod="get">
+         </action>
                     Nombre:<input type="text" name="Nombre"><br>
-                    DNI:<input type="text" name="dni"><br>
+                    DNI:<input type="text" name="dni" pattern="[0-9]{8}[A-Z]{1}" size="9"><br>
                     Edad:<input type="number" name="edad"><br>
                     Fecha Nacimiento:<input type="date" name="Fecha"><br>
-            </form><br><br><br>
+    </form><br><br><br>
             SELECCIONA DEPORTES: <br>
             Natación <input name="deportes" type="checkbox"><br>
             Ciclismo <input name="deportes" type="checkbox"><br>
