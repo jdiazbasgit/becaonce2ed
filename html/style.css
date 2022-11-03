@@ -18,9 +18,9 @@ body{
     font-family: Roboto;
     overflow-x: hidden;
 }
-.cabezeras{
-    /*overflow: hidden;*/
-}  
+/*.cabezeras{
+    overflow: hidden;
+} */ 
   
 h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
