@@ -11,10 +11,24 @@
             border:1px solid black; 
             height:20px;
         }
+
+        .sub{
+            width: 150px;
+            border-bottom: 10px solid red;
+            animation-name: bord;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        @keyframes bord {
+            from {border-bottom: 10px solid red;}
+            to {border-bottom: 10px solid yellow;}
+        }
     </style>
 </head>
 <body>
-    <h1>soy dlg</h1>
+    <h1 class="sub">soy dlg</h1>
     <h2>soy dlg</h2>
     <h3>soy dlg</h3>
     <h4>soy dlg</h4>
