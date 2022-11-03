@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+body{
+    background: linear-gradient(45deg, pink, teal);
+    padding: 40px;
+    font-family: Roboto;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+}
+h2{
+    background-color: darkorange;
+}
+h3{
+    background-color: brown;
+}
+h4{
+    background-color: pink;
+}
+h5{
+    background-color: green;
+}
+h6{
+    background-color: yellow;
+}
+h2, h3, h4, h5, h6{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 10px;
+    padding: 10px;
+}
+p{
+    font-style: italic;
+}
+.tabla1{
+    background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
+    border-collapse: separate;
+    border-radius: 20px;
+    font-family: fantasy;
+    border: 5px, black;
+    border-spacing: 10px;
+}
+.tabla2{
+    background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
+    border-collapse: separate;
+    border-radius: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border: 5px, black;
+    padding: 30px;
+    border-spacing: 10px;
+}
