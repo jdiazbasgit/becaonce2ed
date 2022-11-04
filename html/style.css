@@ -7,6 +7,10 @@
     from {opacity: 1;transform: rotate(5deg);}
     to {opacity: 0.4;transform: rotate(-1500deg);}
   }  
+@keyframes desvanecerrev {
+    from {opacity: 1;transform: rotate(-1500deg);}
+    to {opacity: 0.4;transform: rotate(5deg);}
+  }  
 @keyframes cucu {
     from {margin-left: 100%;width: 300%;}
     to {margin-left: 0%;width: 100%;}
@@ -97,7 +101,7 @@ p{
     color: white;
     text-shadow: 2px 2px 4px #000000;
     border: 5px, black;
-    padding: 30px;
+    padding: 10px;
     border-spacing: 10px;
     box-shadow: 5px;
     animation-name: meneillo;
@@ -105,8 +109,27 @@ p{
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-.enviar{
+/*.enviar{
     animation-name: desvanecer;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}*/
+.celdagears{
+    text-align: right;
+}
+.gear1{
+    height: 80px; 
+    width: 80px;
+    animation-name: desvanecer;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.gear2{
+    height: 90px; 
+    width: 90px;
+    animation-name: desvanecerrev;
     animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
