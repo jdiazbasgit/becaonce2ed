@@ -107,7 +107,7 @@ p{
 }
 .enviar{
     animation-name: desvanecer;
-    animation-duration: 8s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
