@@ -22,9 +22,9 @@ body{
     font-family: Roboto;
     overflow-x: hidden;
 }
-/*.cabezeras{
+.cabezeras{
     overflow: hidden;
-} */ 
+} 
   
 h1{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -133,4 +133,22 @@ p{
     animation-duration: 4s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+ol{
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 1000px;
+    background-color: #f1f1f1;
+}
+li{
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+li:hover{
+    background-color: rgb(55, 154, 61);
+    color: white;
 }
