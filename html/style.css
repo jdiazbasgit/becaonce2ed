@@ -134,7 +134,7 @@ p{
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-ol{
+.lista{
     list-style-type: none;
     text-align: center;
     margin: 0;
@@ -142,13 +142,13 @@ ol{
     width: 1000px;
     background-color: #f1f1f1;
 }
-li{
+.lista{
     display: block;
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
 }
-li:hover{
+.lista:hover{
     background-color: rgb(55, 154, 61);
     color: white;
 }
