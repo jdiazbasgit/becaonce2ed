@@ -174,9 +174,8 @@ body{
     background-color: rgb(25, 135, 84);
     color: white;
 }
-.dropdown-item:active{
-    background-color: rgb(25, 135, 84);
-    color: white;
+.opcionescontinentes {
+    color: rgb(81, 81, 81);
 }
 .nav-link:active{
     background-color: rgb(25, 135, 84);

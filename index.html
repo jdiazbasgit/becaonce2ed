@@ -51,20 +51,35 @@
                 <div class="container-fluid justify-content-center">
                     <ul class="navbar-nav">
                         <li class="dropdown">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
+                            <button type="button" class="btn btn-success bg-success dropdown-toggle" data-bs-toggle="dropdown">
                                 Continente
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" value="europe" href="#">Europa</a></li>
-                                <li><a class="dropdown-item" value="asia" href="#">Asia</a></li>
-                                <li><a class="dropdown-item" value="africa" href="#">Africa</a></li>
-                                <li><a class="dropdown-item" value="americas" href="#">América</a></li>
-                                <li><a class="dropdown-item" value="oceania" href="#">Oceanía</a></li>
+                                <li class="badge bg-success">
+                                    <button type="button">
+                                        <select name="continente" class="opcionescontinentescasilla p-0">
+                                            <option class="opcionescontinentes" value="null">Selecciona Continente</option>
+                                            <option class="opcionescontinentes" value="asia">Asia</option>
+                                            <option class="opcionescontinentes" value="africa">Africa</option>
+                                            <option class="opcionescontinentes" value="americas">América</option>
+                                            <option class="opcionescontinentes" value="oceania">Oceanía</option>
+                                            <option class="opcionescontinentes" value="europe">Europa</option>
+                                        </select>
+                                    </button>
+                                </li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                País
+
+                        <li>
+                            <button type="button" class="btn btn-success">
+                                <select name="pais" class="opcionescontinentescasilla">
+                                    <option class="opcionespaises" value="null">Selecciona País</option>
+                                    <option class="opcionespaises" value="asia">Asia</option>
+                                    <option class="opcionespaises" value="africa">Africa</option>
+                                    <option class="opcionespaises" value="americas">América</option>
+                                    <option class="opcionespaises" value="oceania">Oceanía</option>
+                                    <option class="opcionespaises" value="europe">Europa</option>
+                                </select>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Link 1</a></li>
@@ -108,45 +123,45 @@
             <div id="accordion">
 
                 <div class="card">
-                  <div class="card-header">
-                    <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
-                      Collapsible Group Item #1
-                    </a>
-                  </div>
-                  <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum..
+                    <div class="card-header">
+                        <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+                            Collapsible Group Item #1
+                        </a>
                     </div>
-                  </div>
+                    <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum..
+                        </div>
+                    </div>
                 </div>
-              
+
                 <div class="card">
-                  <div class="card-header">
-                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-                      Collapsible Group Item #2
-                    </a>
-                  </div>
-                  <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum..
+                    <div class="card-header">
+                        <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+                            Collapsible Group Item #2
+                        </a>
                     </div>
-                  </div>
+                    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum..
+                        </div>
+                    </div>
                 </div>
-              
+
                 <div class="card">
-                  <div class="card-header">
-                    <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
-                      Collapsible Group Item #3
-                    </a>
-                  </div>
-                  <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
-                    <div class="card-body">
-                      Lorem ipsum..
+                    <div class="card-header">
+                        <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseThree">
+                            Collapsible Group Item #3
+                        </a>
                     </div>
-                  </div>
+                    <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
+                        <div class="card-body">
+                            Lorem ipsum..
+                        </div>
+                    </div>
                 </div>
-              
-              </div>
+
+            </div>
 
 
         </div>
