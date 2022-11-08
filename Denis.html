@@ -13,15 +13,32 @@
 
 <body>
   <header class="container mt-3">
-  <h1 class="text-center text-white bg-secondary p-5">PAISES DEL MUNDO</h1>
-  <img src="imagenes.jpg/chinchetas recortadas (1).jpg">
-</header>
+    <div class="row">
+      <div class="col-sm-2"><img src="imagenes/chinchetas recortadas (1).jpg" width="200px" height="150px"></div>
+      <div class="col-sm-10">
+        <h1 class="text-center text-white bg-secondary p-5">PAISES DEL MUNDO</h1>
+      </div>
+    </div>
+  </header>
   <nav class="text-center">
     <button type="button" class="btn btn-primary">Datos Generales</button>
     <button type="button" class="btn btn-primary">Datos Geográficos</button>
     <button type="button" class="btn btn-primary">Traducciones</button>
     <button type="button" class="btn btn-primary">Banderas</button>
   </nav>
+  <form action="" method="post">
+    Selecciona un continente<select name="continente" class="form-select form-select-sm">
+      <option value="0">Elige un continente</option>
+      <option value="Africa">África</option>
+      <option value="Americas">América</option>
+      <option value="Asia">Asia</option>
+      <option value="Europa">Europa</option>
+      <option value="Oceania">Oceania</option>
+    </select><br>
+    <select name="pais" class="form-select form-select-sm">
+      <option value="0">Elige un país</option>
+    </select>
+  </form>
 </body>
 
 </html>
