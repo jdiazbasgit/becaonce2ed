@@ -164,3 +164,7 @@ body {
         opacity: 0;
     }
 }
+.nav-item:hover {
+    background-color: rgb(25, 135, 84);
+    color: white;
+}
