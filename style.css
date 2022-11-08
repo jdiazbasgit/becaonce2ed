@@ -1,0 +1,166 @@
+.logo{
+    width: 100px;
+}
+
+/*
+.cabecera {
+    background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
+}
+body {
+    background: linear-gradient(rgb(211, 237, 241), rgb(96, 168, 146));
+}
+*/
+.titulo {
+    font-family: fantasy;
+    font-size: 84px;
+    margin: 0;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    border: 5px, black;
+    padding: 0px;
+    box-shadow: 5px;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 0px;
+    margin-right: 0px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+.saludo {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 14px;    color: white;
+    text-shadow: 2px 2px 2px #000000;
+    border: 5px, black;
+    padding: 0px;
+    box-shadow: 5px;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 100px;
+    margin-right: 0px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+}
+
+.hola1,
+.hola2,
+.hola3,
+.hola4,
+.hola5,
+.hola6,
+.hola7,
+.hola8,
+.hola9 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    border: 5px, black;
+    padding: 0px;
+    border-spacing: 10px;
+    box-shadow: 5px;
+    left: 0;
+    margin-bottom: 0;
+    margin-top: 40px;
+    margin-right: 30px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    text-transform: uppercase;
+    top: 0;
+}
+
+.hola1 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 0s;
+}
+
+.hola2 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 4s;
+}
+
+.hola3 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 8s;
+}
+
+.hola4 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 12s;
+}
+
+.hola5 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 16s;
+}
+
+.hola6 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 20s;
+}
+
+.hola7 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 24s;
+}
+
+.hola8 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 28s;
+}
+
+.hola9 {
+    animation-name: desvanecer;
+    animation-duration: 36s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-delay: 32s;
+}
+
+@keyframes desvanecer {
+    0% {
+        transform: translate3d(0, 40px, 0);
+        opacity: 0;
+    }
+
+    4%,
+    8% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    10% {
+        transform: translate3d(0, -40px, 0);
+        opacity: 0;
+    }
+}
