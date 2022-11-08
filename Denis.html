@@ -26,19 +26,26 @@
     <button type="button" class="btn btn-primary">Traducciones</button>
     <button type="button" class="btn btn-primary">Banderas</button>
   </nav>
-  <form action="" method="post">
-    Selecciona un continente<select name="continente" class="form-select form-select-sm">
-      <option value="0">Elige un continente</option>
-      <option value="Africa">África</option>
-      <option value="Americas">América</option>
-      <option value="Asia">Asia</option>
-      <option value="Europa">Europa</option>
-      <option value="Oceania">Oceania</option>
-    </select><br>
-    <select name="pais" class="form-select form-select-sm">
-      <option value="0">Elige un país</option>
-    </select>
-  </form>
+  <div class="container">
+    <form action="" method="post">
+      <div class="row">
+        <div class="col">
+          Continente:<select name="continente" class="form-select w-25">
+            <option value="0">Elige un continente</option>
+            <option value="Africa">África</option>
+            <option value="Americas">América</option>
+            <option value="Asia">Asia</option>
+            <option value="Europa">Europa</option>
+            <option value="Oceania">Oceania</option>
+        </div>
+        <div class="col">
+          </select>
+          <div class="col"></div>
+          País:<select name="pais" class="form-select w-25">
+            <option value="0">Elige un país</option>
+          </select>
+        </div>
+    </form>
 </body>
 
 </html>
