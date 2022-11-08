@@ -181,6 +181,10 @@ body{
     background-color: rgb(25, 135, 84);
     color: white;
 }
+select.opcionescontinentescasilla option:checked {
+    background-color: rgb(25, 135, 84);
+    color: white;
+}
   @media (min-width: 400px) {
     .titulo {
       font-size: 2rem;
