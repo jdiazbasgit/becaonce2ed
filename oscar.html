@@ -20,26 +20,47 @@
             </div>
         </div>
     </header>
-    <nav class="text-center">
-        <button type="button" class="btn btn-primary">Datos Generales</button>
-        <button type="button" class="btn btn-primary">Datos Geográficos</button>
-        <button type="button" class="btn btn-primary">Traducción</button>
-        <button type="button" class="btn btn-primary">Banderas</button>
-    </nav>
-    <form action="" method="post">
-        Continente:<select name="continente" class="form-select form-select-sm">
-            <option value="0">Elige un continente</option>
-            <option value="africa">Africa</option>
-            <option value="americas">America</option>
-            <option value="asia">Asia</option>
-            <option value="europa">Europa</option>
-            <option value="oceania">Oceania</option>
-        </select><br>
-        País:<select name="pais" class="form-select">
-            <option value="0">Elige un país</option>
-        </select>
-    </form>
-
+    <div>
+        <nav class="container mt-3  text-center">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#datosgenerales">Datos Generales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#datosgeograficos">Datos Geográficos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#traduccion">Traducción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#banderas">Banderas</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="tab-content">
+        <div id="datos generales" class="container tab-pane active"><br>
+            <form action="" method="post">
+                Continente:<select name="continente" class="form-select form-select-sm">
+                    <option value="0">Elige un continente</option>
+                    <option value="africa">Africa</option>
+                    <option value="americas">America</option>
+                    <option value="asia">Asia</option>
+                    <option value="europa">Europa</option>
+                    <option value="oceania">Oceania</option>
+                </select><br>
+                País:<select name="pais" class="form-select">
+                    <option value="0">Elige un país</option>
+                </select>
+            </form>
+        </div>
+        <div id="datos geograficos" class="container tab-pane fade"><br>
+        </div>
+        <div id="traduccion" class="container tab-pane fade"><br>
+        </div>
+        <div id="banderas" class="container tab-pane fade"><br>
+        </div>
+    </div>
 </body>
 
 </html>
