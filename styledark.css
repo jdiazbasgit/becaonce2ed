@@ -1,0 +1,8 @@
+body{
+    background: linear-gradient(135deg, rgb(63, 62, 62), rgb(85, 6, 6));
+    overflow-x: hidden;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 200vh;
+}
