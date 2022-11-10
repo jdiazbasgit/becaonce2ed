@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="row">
+                <div class="col-sm-2"><img src="imagenes/chinchetas recortadas (1).jpg" width="200px" height="150px"
+                        class="rounded-circle"></div>
+                <div class="col-sm-10">
+                    <h1 class="text-center text-white bg-secondary p-5">PAISES DEL MUNDO</h1>
+                </div>
+            </div>
+        </header>
+        <nav class="text-center">
+            <button type="button" class="btn btn-primary">Datos Generales</button>
+            <button type="button" class="btn btn-primary">Datos Geográficos</button>
+            <button type="button" class="btn btn-primary">Traducciones</button>
+            <button type="button" class="btn btn-primary">Banderas</button>
+        </nav>
+        <div>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        Continente:<select name="continente" class="form-select form-select-sm">
+                            <option value="0">Elige un continente</option>
+                            <option value="Africa">África</option>
+                            <option value="Americas">América</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Europe">Europa</option>
+                            <option value="Oceania">Oceania</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        País:<select name="pais" class="form-select form-select-sm">
+                            <option value="0">Elige un país</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="container text-center">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#capital">Capital</button>
+            <div id="capital" class="collapse">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil sapiente dignissimos sed temporibus
+                veniam,
+                aperiam cum quibusdam ipsum dicta doloremque consectetur rem molestias ullam odio dolorum eaque! Ipsam,
+                tempora!
+                Veniam!
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#poblacion2">Población</button>
+            <div id="poblacion2" class="collapse">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas inventore placeat, perferendis
+                asperiores
+                ducimus animi neque dolore magnam quod maxime magni sint! Officiis aliquid distinctio ullam odio dolor
+                consequuntur provident!
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#area1">Área</button>
+            <div id="area1" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam nobis vitae, non voluptatibus explicabo
+                incidunt
+                ipsa nemo eaque optio totam soluta fugiat libero facilis atque deserunt velit expedita suscipit at!
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#dominio1">Dominio</button>
+            <div id="dominio1" class="collapse">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi cum nisi doloremque quos natus, quis
+                voluptas
+                officia quas nihil maiores perspiciatis nemo consectetur nulla! Quibusdam sed cum veritatis nisi
+                suscipit.
+            </div>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
+                data-bs-target="#moneda1">moneda</button>
+            <div id="moneda1" class="collapse">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda labore magnam mollitia facere
+                quaerat odio
+                numquam eos reprehenderit libero veniam quia nesciunt vitae illum, blanditiis incidunt, ad accusantium
+                unde at.
+            </div>
+        </div>
+    </div><br>
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseOne">Frontera 1</a>
+            </div>
+            <div id="collapseOne" class="collapse hidden" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseTwo">Frontera 2</a>
+            </div>
+            <div id="collapseTwo" class="collapse hidden" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseThree">Frontera 3</a>
+            </div>
+            <div id="collapseThree" class="collapse hidden" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                    ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFour">Frontera 4</a>
+            </div>
+            <div id="collapseFour" class="collapse hidden" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseFive">Frontera
+                    5</a>
+            </div>
+            <div id="collapseFive" class="collapse hidden" data-bs-parent="#accordion">
+                <div class="card-body">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </div>
+            </div>
+        </div><br>
+        <div class="container text-center">
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo0">idioma1
+            </button>
+            <div id="demo0" class="collapse">
+                ESTOS SON LOS IDIOMAS
+            </div>
+        
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo1">idioma2
+            </button>
+            <div id="demo1" class="collapse">
+                ESTOS SON LOS IDIOMAS
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo2">idioma3
+            </button>
+            <div id="demo2" class="collapse">
+                ESTOS SON LOS IDIOMAS
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo3">idioma4
+            </button>
+            <div id="demo3" class="collapse">
+                ESTOS SON LOS IDIOMAS
+            </div>
+
+
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo4">idioma5
+            </button>
+            <div id="demo4" class="collapse">
+                ESTOS SON LOS IDIOMAS
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3">
+        <h2 class="text-center">BANDERAS Y ESCUDOS</h2>
+        <img src="https://proyectoviajero.com/wp-content/uploads/2021/03/Bandera-de-Espan%CC%83a.svg"
+            class="float-start" alt="españa" width="304" height="236">
+        <img src="https://cdn.mequieroir.com/wp-content/uploads/2020/09/escudo-espana.png" class="float-end"
+            alt="españa" width="304" height="236">
+    </div>
+</body>
+
+</html>
