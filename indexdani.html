@@ -13,72 +13,97 @@
 </head>
 
 <body>
-  <header>
-    <div class="container-fluid p-5 bg-success text-white text-center">
-      <h1>PAISES DEL MUNDO</h1>
+  <div class="container">
+    <header>
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="left" width="227" height="156">
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="right" width="227" height="156">
+      <div class="container-fluid p-5 bg-success text-white text-center ">
+
+        <h1>PAISES DEL MUNDO</h1>
+      </div>
+    </header>
+
+    <div class="container mt-3">
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Datos generales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Traducción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Banderas</a>
+        </li>
+      </ul>
     </div>
-  </header>
-
-  <div class="container mt-3">
-    <ul class="nav nav-pills nav-justified">
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="#">Datos generales</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="#">Datos geograficos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="#">Traducción</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="#">Banderas</a>
-      </li>
-    </ul>
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Seleccione continente</h2>
+        <label for="sel1" class="form-label"></label>
+        <select class="form-select bg-success" id="sel1" name="sellist1">
+          <option>Europa</option>
+          <option>America</option>
+          <option>Asia</option>
+          <option>Africa</option>
+          <option>Oceania</option>
+        </select>
+      </div>
+      <div class="col">
+        <h2>Seleccione país</h2>
+        <label for="sel1" class="form-label"></label>
+        <select class="form-select bg-success " id="sel1" name="sellist1">
+          <option>XXXXXXXXXX</option>
+        </select>
+      </div>
+    </div>
+    <div class="mx-auto w-50 mt-3 container-fluid">
+      <table class="w-100">
+        <tr>
+          <td>
+            <h3 class="mx-auto">Capital: xxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Población: 9999999999</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Área: 99999999999</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Moneda:</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <h3>nombre: Euro</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <h3>Símbolo: €</h3>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
-  <br><br>
-  <div class="divider"></div>
-  <div class="container mt-3">
-    <h2>Seleccione continente</h2>
-    <form action="/action_page.php">
-      <label for="sel1" class="form-label"></label>
-      <select class="form-select bg-success" id="sel1" name="sellist1">
-        <option>Europa</option>
-        <option>America</option>
-        <option>Asia</option>
-        <option>Africa</option>
-        <option>Oceania</option>
-      </select>
-
-  </div>
-  <br><br>
-  <input type="text" name="Capital" placeholder="Escriba su capital">
-      <br><br>
-
-      <input type="text" name="Población" placeholder="Ponga su poblacion">
-          <br><br>
-
-          <input type="text" name="área" placeholder="Ponga su área">
-          <br><br>
-              <div class="container mt-3">
-                <h2>Seleccione país</h2>
-                <form action="/action_page.php">
-                  <label for="sel1" class="form-label"></label>
-                  <select class="form-select bg-success" id="sel1" name="sellist1">
-                    <option>XXXXXXXXXX</option>
-                  </select>
-                  <br><br>
-                  <input type="text" name="Moneda" placeholder="Ponga su moneda">
-                  
-                      <br><br>
-
-                      <div class="container mt-3">
-                        <h2>Seleccione simbolo</h2>
-                        <form action="/action_page.php">
-                          <label for="sel1" class="form-label"></label>
-                          <select class="form-select bg-success" id="sel1" name="sellist1">
-                            <option>XXXXXXXXXX</option>
-                          </select>
-
-
 </body>
+
 </html>
