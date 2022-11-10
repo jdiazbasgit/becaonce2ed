@@ -14,85 +14,89 @@
 </head>
 
 <body>
-    <div class="container-fluid p-5 my-5">
-        <header class="mt-0 p-4 bg-success fixed-top container-fluid">
-            <div class="row">
-                <div class="col p-1">
+    <div class="container-fluid p-0">
+        <header>
+            <div class="row justify-content-center align-items-center bg-success rounded">
+                <div class="col p-3">
                     <a href="index.html">
-                        <img src="imagenes/hello_world_label.svg" class="rounded-pill logo">
+                        <img class="img-fluid logo" src="imagenes/hello_world_label.svg">
                     </a>
                 </div>
                 <div class="col p-1">
-                    <h1 class="titulo">PAISES DEL MUNDO</h1>
-                    <p class="saludo">La información a tu alcance...</p>
+                    <h1 class="titulo display-1">PAISES DEL MUNDO</h1>
+                    <h2><span class="presubtitulo p-0 mb-0">Un proyecto conflictivo de: </span><span
+                            class="subtitulo p-0 mb-0">JuanCarlos Rafael Daniel</span></h2>
                 </div>
-
-                <div class="col p-3">
-                    <div class="container-fluid p-1 mt-3">
-                        <div>
-                            <div class="saludos">
-                                <h2 class="hola1">Hello!</h2>
-                                <h2 class="hola2">Hola</h2>
-                                <h2 class="hola3">Salut</h2>
-                                <h2 class="hola4">Hallo</h2>
-                                <h2 class="hola5">Ciao</h2>
-                                <h2 class="hola6">привет</h2>
-                                <h2 class="hola7">Namaste</h2>
-                                <h2 class="hola8">السلام</h2>
-                                <h2 class="hola9">Aloha</h2>
-                            </div>
-                        </div>
+                <div class="col p-2">
+                    <div class="saludos">
+                        <h1 class="hola1">Hello!</h1>
+                        <h1 class="hola2">Hola</h1>
+                        <h1 class="hola3">Salut</h1>
+                        <h1 class="hola4">Hallo</h1>
+                        <h1 class="hola5">Ciao</h1>
+                        <h1 class="hola6">привет</h1>
+                        <h1 class="hola7">Namaste</h1>
+                        <h1 class="hola8">السلام</h1>
+                        <h1 class="hola9">Aloha</h1>
                     </div>
-
                 </div>
             </div>
-            <nav class="navbar navbar-expand-sm bg-light rounded mt-4">
-
-                <div class="container-fluid justify-content-center">
-                    <ul class="navbar-nav">
-                        <li class="dropdown">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                Continente
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" value="europe" href="#">Europa</a></li>
-                                <li><a class="dropdown-item" value="asia" href="#">Asia</a></li>
-                                <li><a class="dropdown-item" value="africa" href="#">Africa</a></li>
-                                <li><a class="dropdown-item" value="americas" href="#">América</a></li>
-                                <li><a class="dropdown-item" value="oceania" href="#">Oceanía</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
-                                País
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Link 1</a></li>
-                                <li><a class="dropdown-item" href="#">Link 2</a></li>
-                                <li><a class="dropdown-item" href="#">Link 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item btn btn-success btn-sm p-0 bg-light">
-                            <a class="nav-link" href="#">Datos generales</a>
-                        </li>
-                        <li class="nav-item btn btn-success btn-sm p-0 bg-light">
-                            <a class="nav-link" href="#">Datos geográficos</a>
-                        </li>
-                        <li class="nav-item btn btn-success btn-sm p-0 bg-light">
-                            <a class="nav-link" href="#">Traducción</a>
-                        </li>
-                        <li class="nav-item btn btn-success btn-sm p-0 bg-light">
-                            <a class="nav-link" href="#">Banderas</a>
-                        </li>
-                    </ul>
+            <nav class="container navbar-light bg-transparent">
+                <div class="row">
+                    <div class="col-auto me-auto">
+                        <div class="justify-content-center">
+                            <h2>
+                                <span class="badge bg-success">
+                                    <button type="button" class="btn btn-success disabled">
+                                        Continente: <button type="button" class="btn btn-success p-0">
+                                            <select name="continente" class="opcionescontinentescasilla p-0">
+                                                <option class="opcionescontinentes" value="null">Selecciona
+                                                    Continente</option>
+                                                <option class="opcionescontinentes" value="asia">Asia</option>
+                                                <option class="opcionescontinentes" value="africa">Africa
+                                                </option>
+                                                <option class="opcionescontinentes" value="americas">América
+                                                </option>
+                                                <option class="opcionescontinentes" value="oceania">Oceanía
+                                                </option>
+                                                <option class="opcionescontinentes" value="europe">Europa
+                                                </option>
+                                            </select>
+                                        </button>
+                                    </button>
+                                    <button type="button" class="btn btn-success disabled">
+                                        País: <button type="button" class="btn btn-success p-0">
+                                            <select name="pais" class="opcionescontinentescasilla p-0">
+                                                <option class="opcionespaises" value="null">Selecciona País</option>
+                                                <option class="opcionespaises" value="espana">España</option>
+                                                <option class="opcionespaises" value="francia">Francia</option>
+                                                <option class="opcionespaises" value="xxxx">xxxx</option>
+                                            </select>
+                                        </button>
+                                    </button>
+                                </span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge bg-success p-1">
+                            <div class="btn-group-lg">
+                                <button type="button" class="btn btn-success"><a class="text-decoration-none text-white"
+                                        href="datos.html">Datos</a></button>
+                                <button type="button" class="btn btn-success"><a class="text-decoration-none text-white"
+                                        href="geograficos.html">Geografía</a></button>
+                                <button type="button" class="btn btn-success"><a class="text-decoration-none text-white"
+                                        href="traduccion.html">Idioma</a></button>
+                                <button type="button" class="btn btn-success"><a class="text-decoration-none text-white"
+                                        href="banderas.html">Bandera</a></button>
+                            </div>
+                        </span>
+                    </div>
                 </div>
-
-
             </nav>
-        </header>
-        <div class="container-fluid p-1 my-5 mt-5"></div>
     </div>
-
+    </header>
+    </div>
     <!-- FIN DE LA CEBECERA!!!!!!!!!!!!!! -->
     <table class="table">
         <thead>
@@ -142,7 +146,19 @@
 
 
 
-
+    <!-- INICIO DEL FOOTER!!!!!!!!!!!!!! -->
+    <footer
+        class="container-fluid bg-secondary bg-gradient text-center text-white text-lg-start position-fixed bottom-0">
+        <div class="text-center p-3">
+            © 2022 Copyleft: <svg height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
+                <path fill-rule="evenodd"
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                </path>
+            </svg>
+            <a class="text-decoration-none text-white"
+                href="https://github.com/jdiazbasgit/becaonce2ed">github.com/jdiazbasgit/becaonce2ed</a></label>
+        </div>
+    </footer>
 
 </body>
 
