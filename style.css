@@ -1,25 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Kolker+Brush&display=swap');
+
 .logo{
     width: 100px;
+    min-width: 70px;
+    padding: 9px;
+    margin-left: 10px;
+}
+.logoinv{
+    width: 100px;
+    opacity: 0;
+    min-width: 80px;
+    padding: 5px;
 }
 
-/*
-.cabecera {
-    background: linear-gradient(rgb(164, 245, 197), rgb(73, 167, 221));
-}
-*/
 body{
     background: linear-gradient(45deg, rgb(255, 255, 255), rgb(187, 231, 198));
     overflow-x: hidden;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 200vh;
+}
+nav{
+top: 20px;
 }
 .titulo {
-    font-family: fantasy;
-    font-size: 84px;
-    margin: 0;
+    font-family: fantasy;    
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    border: 5px, black;
-    padding: 0px;
-    box-shadow: 5px;
+    white-space: nowrap;
+    /*font-size: 84px;   
     left: 0;
     margin-bottom: 0;
     margin-top: 0px;
@@ -27,24 +37,28 @@ body{
     position: absolute;
     right: 0;
     text-align: center;
-    top: 0;
+    top: 0;*/
 }
-.saludo {
-    font-family: 'Georgia', serif;
+.subtitulo {
+    font-family: "Kolker Brush", Arial, sans-serif;
     font-style: italic;
-    font-size: 14px;    color: white;
-    text-shadow: 2px 2px 2px #000000;
-    border: 5px, black;
+    color: white;
+    text-shadow: 2px 1px 2px #000000;
     padding: 0px;
-    box-shadow: 5px;
-    left: 0;
-    margin-bottom: 0;
-    margin-top: 100px;
-    margin-right: 0px;
-    position: absolute;
-    right: 0;
-    text-align: center;
-    top: 0;
+}
+.presubtitulo {
+    font-family: Times, 'Times New Roman', serif;
+    font-style: normal;
+    color: white;
+    text-shadow: 2px 1px 2px #000000;
+    padding: 0px;
+    font-size: 18px;
+}
+
+.saludos{
+    position: inherit;
+    margin-top: auto;  
+    margin-right: auto;
 }
 
 .hola1,
@@ -57,23 +71,21 @@ body{
 .hola8,
 .hola9 {
     font-family: 'Open Sans', sans-serif;
-    font-size: 40px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
-    border: 5px, black;
     padding: 0px;
-    border-spacing: 10px;
-    box-shadow: 5px;
-    left: 0;
-    margin-bottom: 0;
-    margin-top: 40px;
-    margin-right: 30px;
-    opacity: 0;
+    border-spacing: 0px;
     position: absolute;
-    right: 0;
-    text-align: right;
+    opacity: 0;
+    text-align: end;
+    right: 30px;
+    left: 0;
+    top: 50px;
+    /*font-size: 40px;
+    
+    margin-bottom: 0;    
     text-transform: uppercase;
-    top: 0;
+    top: 0;*/
 }
 
 .hola1 {
@@ -185,7 +197,7 @@ select.opcionescontinentescasilla option:checked {
     background-color: rgb(25, 135, 84);
     color: white;
 }
-  @media (min-width: 400px) {
+/*  @media (min-width: 400px) {
     .titulo {
       font-size: 2rem;
     }
@@ -204,4 +216,5 @@ select.opcionescontinentescasilla option:checked {
     .titulo {
       font-size: 6rem;
     }
-  }
+  }*/
+  
