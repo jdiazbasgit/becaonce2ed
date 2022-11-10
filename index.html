@@ -16,10 +16,15 @@
     <main>
     <div class="container-fluid border">
         <header>
-            <div class="row border">
-                <div class="col-sm-1 text-black border"><img src="images/world.png"  width="150px" ></div>
-                <div class="col-sm-11 p-3 text-black border" ><h1 style="padding-top: 20px; text-align: center;">PAISES DEL MUNDO</h1></div>
-            </div>
+            <nav class="navbar-brand bg-light">
+                <div class="d-block overflow-hidden">
+                    <div class="float-start" style="width: 150px; height: 120px">
+                        <img src="images/world.png"  style="width: 150px; height: 120px" >
+                    </div>
+                    <h1 class="text-center overflow-hidden" style="height: 120px !important; padding-top: 40px;">PAISES DEL MUNDO</h1>
+                </div>
+                
+            </nav>
             <nav class="mt-3">
                 <div class="container-fluid">
                   <ul class="nav nav-tabs nav-justified" id="ex1">
@@ -46,12 +51,12 @@
                     <div class="row">
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="continente">Continente:</label>
+                                <label for="continente" class="fs-5"><b>Continente:</b></label>
                             </div>
                             <div style="float: left;">
                                 <select class="form-select" name="continente" id="continente">
                                     <option value="0" selected>Selecciona el continentes</option>
-                                    <option value="" id="">Asia</option>
+                                    <option value="1" id="">Asia</option>
                                     <option value="" id="">America</option>
                                     <option value="" id="">Europa</option>
                                     <option value="" id="">Oceania</option>
@@ -62,7 +67,7 @@
                         </div>
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="pais">Pais:</label>
+                                <label for="pais" class="fs-5"><b>Pais:</b></label>
                             </div>
                             <div style="float: left;">
                                     <select class="form-select" name="pais" id="pais">
@@ -77,13 +82,15 @@
                             
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm bg-primary text-white">.col</div>
-                        <div class="col-sm text-black">.col</div>
-                        <div class="col-sm bg-primary text-white">.col</div>
-                        <div class="col-sm text-black">.col</div>
-
-                    </div>
+                    <div class="container mt-3">
+                        <ul class="list-group border-0">
+                          <li class="list-group-item">Capital:</li>
+                          <li class="list-group-item">Población:</li>
+                          <li class="list-group-item">Área:</li>
+                          <li class="list-group-item">Dominio:</li>
+                          <li class="list-group-item">Moneda:</li>
+                        </ul>
+                      </div>
 
 
 
@@ -122,7 +129,7 @@
                     <div class="row">
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="continente1">Continente:</label>
+                                <label for="continente1" class="fs-5"><b>Continente: </b></label>
                             </div>
                             <div style="float: left;">
                                 <select class="form-select" name="continente" id="continente1">
@@ -138,7 +145,7 @@
                         </div>
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="pais1">Pais:</label>
+                                <label for="pais1" class="fs-5"><b>Pais:</b></label>
                             </div>
                             <div style="float: left;">
                                     <select class="form-select" name="pais" id="pais1">
@@ -153,13 +160,16 @@
                             
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm bg-primary text-white">georgaficos prueba</div>
-                        <div class="col-sm text-black">.col</div>
-                        <div class="col-sm bg-primary text-white">.col</div>
-                        <div class="col-sm text-black">.col</div>
-
-                    </div>                    
+                    <div class="container px-4">
+                        <div class="row gx-5">
+                          <div class="col">
+                           <div class="p-3 border bg-light">Fronteras :</div>
+                          </div>
+                          <div class="col">
+                            <div class="p-3 border bg-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sed recusandae quaerat, facilis unde quas molestiae explicabo suscipit molestias quia a aliquam commodi itaque ut. Sapiente, explicabo. Ut, consectetur. At.</div>
+                          </div>
+                        </div>
+                      </div>                   
                 </div>
 
             </div>
@@ -171,7 +181,7 @@
                     <div class="row">
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="continente2">Continente:</label>
+                                <label for="continente2" class="fs-5"><b>Continente:</b></label>
                             </div>
                             <div style="float: left;">
                                 <select class="form-select" name="continente" id="continente2">
@@ -187,7 +197,7 @@
                         </div>
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="pais2">Pais:</label>
+                                <label for="pais2" class="fs-5"><b>Pais:</b></label>
                             </div>
                             <div style="float: left;">
                                     <select class="form-select" name="pais" id="pais2">
@@ -202,13 +212,37 @@
                             
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm bg-primary text-white">traducir prueba</div>
-                        <div class="col-sm text-black">.col</div>
-                        <div class="col-sm bg-primary text-white">.col</div>
-                        <div class="col-sm text-black">.col</div>
-
-                    </div>                    
+                    <div >
+       
+       
+                            <div>
+                                <h5>Idioma 1: </h5>
+                                <details>
+                                    <summary> Español</summary>
+                                    <p>Hola mundo!</p>
+                                </details>
+                            </div>
+        
+                                <div> 
+                                    <h5>Idioma 2: </h5>
+                                    <details>
+                                        <summary> Catalán</summary>
+                                        <p> Hola mon!</p>
+                                    </details>
+                                </div>
+                                <div> 
+                                    <h5>Idioma 3: </h5>
+                                    <details>
+                                        <summary> Euskera</summary>
+                                        <p> Kaixo Mundua</p>
+                                    </details>
+                                </div>
+                                    
+                            
+                    </div>   
+                        
+        
+                                              
                 </div>
 
             </div>
@@ -220,7 +254,7 @@
                     <div class="row">
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="continente3">Continente:</label>
+                                <label for="continente3" class="fs-5"><b>Continente:</b></label>
                             </div>
                             <div style="float: left;">
                                 <select class="form-select" name="continente" id="continente3">
@@ -236,7 +270,7 @@
                         </div>
                         <div class="col">
                             <div style="width:120px; float: left;">
-                                <label for="pais3">Pais:</label>
+                                <label for="pais3" class="fs-5"><b>Pais:</b></label>
                             </div>
                             <div style="float: left;">
                                     <select class="form-select" name="pais" id="pais3">
@@ -251,13 +285,17 @@
                             
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm bg-primary text-white">Bandera prueba</div>
-                        <div class="col-sm text-black">.col</div>
-                        <div class="col-sm bg-primary text-white">.col</div>
-                        <div class="col-sm text-black">.col</div>
-
-                    </div>                    
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>BANDERA</th>
+                            <th>ESCUDO</th>
+                        </tr>
+                        <tr>
+                            <td><img src="images/banderaeu.png" alt="" width="250px"></td>
+                            <td><img src="images/escudoeu.png" alt="" width="250px"></td>
+                        </tr>
+                    </table>
+                                    
                 </div>
 
             </div>
