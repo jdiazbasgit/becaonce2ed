@@ -21,9 +21,7 @@ body{
     background-attachment: fixed;
     height: 200vh;
 }
-nav{
-top: 20px;
-}
+
 .titulo {
     font-family: fantasy;    
     color: white;
@@ -177,12 +175,11 @@ top: 20px;
         opacity: 0;
     }
 }
-.nav-item {
+.nav-link {
     background-color: white;
     color: black;
-    border-color: rgb(248, 249, 250);
 }
-.nav-item:hover {
+.nav-link:hover {
     background-color: rgb(25, 135, 84);
     color: white;
 }
