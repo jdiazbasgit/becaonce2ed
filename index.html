@@ -12,35 +12,125 @@
 </head>
 
 <body>
-  <main>
-    <div class="container-fluid border">
-        <header>
-            <div class="row border">
-                <div class="col-sm-1 text-black border"><img src="images/world.png"  width="150px" ></div>
-                <div class="col-sm-11 p-3 text-black border mx-auto" ><h1 class="text-center bg-success text-warning">PAISES DEL MUNDO</h1></div>
-            </div>
-            <nav class="mt-3">
-                <div class="container-fluid">
-                  <ul class="nav nav-tabs nav-justified">
-                    <li class="nav-item">
-                      <a class="nav-link fw-bold active" id="generales" href="#">DATOS GENERALES</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link fw-bold" id="georgaficos" href="#">DATOS GEOGRÁFICOS</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link fw-bold"id="tarducir" href="#">TRADUCCIÓN</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link fw-bold" id="bandera" href="#">BANDERAS</a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-        </header>
-        <section>
+  <main class="container">
+    <div>
+      <header>
+        <div class="row border">
+          <div class="col-sm-1 text-black border"><img src="images/world.png" width="150px"></div>
+          <div class="col-sm-11 p-3 text-black border mx-auto">
+            <h1 class="text-center bg-danger text-primary">PAISES DEL MUNDO</h1>
+          </div>
+        </div>
+        <nav class="mt-3">
+          <div class=" ">
+            <ul class="nav nav-tabs nav-justified">
+              <li class="nav-item">
+                <a class="nav-link fw-bold active bg-warning" id="generales" href="#">DATOS GENERALES</a>
+                <select class="form-select" name="continente" id="continente">
+                  <option value="" id="">Ciudad</option>
+                  <option value="" id="">Población</option>
+                  <option value="" id="">Área</option>
+                  <option value="" id="">Dominio</option>
+                  <option value="" id="">Moneda</option>
+                </select>
+              </li>
 
-            <div class="tab-pane fade show" id="generales">
+              <li class="nav-item">
+                <a class="nav-link fw-bold bg-success" id="georgaficos" href="#">DATOS GEOGRÁFICOS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold bg-dark" id="tarducir" href="#">TRADUCCIÓN</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fw-bold bg-secondary" id="bandera" href="#">BANDERAS</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <section><br>
+
+        <div class="row">
+
+          <div class="col-6">
+            <h4><label>CONTINENTE:</label></h4>
+            <select class="form-select" name="continente" id="continente">
+              <option value="0" selected>Selecciona Continente</option>
+              <option value="" id="">Europa</option>
+              <option value="" id="">Asia</option>
+              <option value="" id="">África</option>
+              <option value="" id="">AmÉrica</option>
+              <option value="" id="">Oceanía</option>
+            </select>
+          </div>
+
+          <div class="col-6"> </select>
+            <h4><label>PAÍS:</label></h4>
+            <select class="form-select" name="pais" id="pais">
+              <option value="0" selected>Selecciona País</option>
+              <option value="">España</option>
+              <option value="">Japon</option>
+              <option value="">Maruecos</option>
+              <option value="">México</option>
+              <option value="">Australia</option>
+            </select>
+          </div>
+     
+        </div>
+        <div class="mx-auto">
+          <table class="table table-borderless w-100">
+            <tbody class="w-100">
+              <tr  class="text-center">
+                <td class="w-50">
+                  Ciudad: XXXXXXXXXX
+                </td>
+                <td></td>
+              </tr>
+              <tr class="text-center">
+                <td>
+                  Población: 99999999999
+                </td>
+                <td></td>
+              </tr>
+              <tr class="text-center">
+                <td>
+                  Área: 99999999999
+                </td>
+                <td></td>
+              </tr class="text-center">
+              <tr class="text-center">
+                <td>
+                  Dominio: XXXXXXXXXX
+                </td>
+                <td></td>
+              </tr>
+              <tr class="text-center">
+                <td>
+                  Moneda:
+                </td>
+              </tr>
+              <tr class="text-center">
+                <td></td>
+              </tr>
+              <tr class="text-center">
+                <td>
+                 
+                </td>
+                <td colspan="2" class="w-25"> Nombre:</td>
+              </tr>
+              <tr class="text-left">
+                <td>
+                 
+                </td>
+                <td colspan="2" class="w-25"> Símbolo: </td>
+              </tr class="text-left">
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+    </div>
+  </main>
 </body>
 
 </html>
