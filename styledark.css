@@ -1,8 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
 body{
-    background: linear-gradient(135deg, rgb(63, 62, 62), rgb(85, 6, 6));
-    overflow-x: hidden;
+    background: linear-gradient(135deg, rgb(58, 48, 48), rgb(39, 30, 30));
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    height: 200vh;
+    min-height: 100vh;
+}
+@keyframes meneillo {
+    from {transform: translateX(10px);}
+    to {transform: translateX(-10px);}
+  } 
+.iconoprincipal{
+    animation-name: meneillo;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    box-shadow: 0px 3px 6px #0c0000;
+    margin-top: -3px;
+    margin-left: -20px;
+}
+@keyframes respiracion {
+    from {box-shadow: 0px 3px 6px #ff0000;}
+    to {box-shadow: 0px 3px 16px #ff0000;}
+  }
+.iconoprincipal:hover{
+    animation-name: respiracion;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+.icononasa{
+    box-shadow: 0px 3px 6px #0c0000;
+    margin-top: -3px;
+}
+.icononasa:hover{
+    animation-name: respiracion;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+.navbar{
+    background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #000000;
+    white-space: nowrap;
+    box-shadow: 5px 0px 5px #0c0000;
+    margin: 20px;
+}
+.titulo {
+    font-family: 'Saira Stencil One', cursive;    
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    white-space: nowrap;
+    padding: -20px;
+    margin: -20px;
+}
+.botoncentral{
+    border: 0px;
+    padding: 20px;
+}
+@keyframes giro {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-500deg);}
+  } 
+.botoncentral:hover{
+    animation-name: giro;
+    animation-duration: 1.3s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+.textocabeceras{
+    font-family: 'Allerta Stencil', sans-serif;;    
+    text-shadow: 2px 2px 4px #000000;
+    white-space: nowrap;
+    background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #000000;
+    white-space: nowrap;
+    margin: 0px;
+    box-shadow: 5px 0px 5px #0c0000;
+}
+.textoselects{
+    font-family: 'Allerta Stencil', sans-serif;    
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 22px;
+    white-space: nowrap;
+    background: none;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #000000;
+    white-space: nowrap;
+    margin: 10px;
+    border: 0px;
+    padding: 10px;
+}
+.iconoselect{
+    box-shadow: 0px 3px 6px #0c0000;
+    margin-top: -3px;
+}
+.textodatos{
+    font-family: monospace;    
+    text-shadow: 2px 2px 4px #000000;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #000000;
+    margin: 0px;
+    padding: 50px;
+}
+@keyframes girito {
+    from {transform: rotate(10deg);}
+    to {transform: rotate(-170deg);}
+  }  
+@keyframes contragirito {
+    from {transform: rotate(-180deg);}
+    to {transform: rotate(0deg);}
+  }
+.celdagears{
+    text-align: right;
+}
+.gear1{
+    height: 40px; 
+    width: 40px;
+    filter: brightness(0);
+    animation-name: girito;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+.gear2{
+    height: 45px; 
+    width: 45px;
+    margin-left: -12px;
+    filter: brightness(0);
+    animation-name: contragirito;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+/*@keyframes tablaflotante {
+    from {transform: translateY(5px);}
+    to {transform: translateY(-5px);}
+}
+.tabla2{
+animation-name: tablaflotante;
+animation-duration: 4s;
+animation-iteration-count: infinite;
+animation-direction: alternate;
+animation-timing-function: ease-in-out;
+}*/
+.SuperGears{
+    padding: 0px;
+    border-spacing: 0px;
+    position: absolute;
+    transform: rotate(0deg);
+    right: 1800px;
+    left: -360px;
+    top: 100px;
+    bottom: 0px;
+    
+}
+.Supergear1{
+    height: 400px; 
+    width: 400px;
+    filter: brightness(0);
+    animation-name: girito;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+.Supergear2{
+    height: 450px; 
+    width: 450px;
+    margin-left: -12px;
+    filter: brightness(0);
+    animation-name: contragirito;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: linear;
+}
+.nav-link:hover{      
+    text-shadow: 2px 2px 4px #000000;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #a8a8a8;
+    margin: 0px;
+    padding: 7px;
+}
+.nav-link{      
+    text-shadow: 2px 2px 4px #000000;
+    color: whitesmoke;
+    text-shadow: 2px 2px 4px #000000;
+    margin: 0px;
+    padding: 8px;
+}
+.nav-link:active{      
+    text-shadow: 2px 2px 4px #000000;
+    color: rgb(124, 0, 0);
+    text-shadow: 2px 2px 4px #a8a8a8;
+    margin: 0px;
+    padding: 7px;
 }
