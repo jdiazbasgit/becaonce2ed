@@ -98,8 +98,7 @@
                         <div class="d-flex align-items-center">
                             <img src="imagenes/map-search.svg" width="45px" class="bg-light rounded-circle icononasa" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1"><select name="pais"
-                                        class="opcionescontinentescasilla p-0">
+                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0">
                                         <option class="opcionescontinentes" value="null">Selecciona
                                             País</option>
                                     </select></p>
@@ -114,16 +113,24 @@
             <div class="col">
                 <ul class="nav nav-tabs nav-justified mt-5 textocabeceras">
                     <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#datos"><h3>Datos</h3></a>
+                        <a class="nav-link active" data-bs-toggle="tab" href="#datos">
+                            <h3>Datos</h3>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#geografia"><h3>Geografía</h3></a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#geografia">
+                            <h3>Geografía</h3>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#idioma"><h3>Idioma</h3></a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#idioma">
+                            <h3>Idioma</h3>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#bandera"><h3>Bandera</h3></a>
+                        <a class="nav-link" data-bs-toggle="tab" href="#bandera">
+                            <h3>Bandera</h3>
+                        </a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -236,68 +243,104 @@
                         <div class="row ms-5">
                             <div class="col">
                                 <div>
-                                    <h4>Idioma 1: <span>Xidioma1</span></h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma1">Idioma1</button>
+                                        <div id="idioma1" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma2">Idioma2</button>
+                                        <div id="idioma2" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma3">Idioma3</button>
+                                        <div id="idioma3" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma4">Idioma4</button>
+                                        <div id="idioma4" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                             <div class="col">
                                 <div>
-                                    <h4>Idioma2: <span>Xidioma2</span></h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma5">Idioma5</button>
+                                        <div id="idioma5" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma6">Idioma6</button>
+                                        <div id="idioma6" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma7">Idioma7</button>
+                                        <div id="idioma7" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
+                                    <h4><button data-bs-toggle="collapse" data-bs-target="#idioma8">Idioma8</button>
+                                        <div id="idioma8" class="collapse">
+                                            <span>pais1, pais2, pais3</span>
+                                        </div>
+                                    </h4>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane container fade textodatos" id="bandera"> <div class="row p-2">
-                        <div class="col">
-                            <div>
-                                <h2>XnombredelPais</h2>
+                    <div class="tab-pane container fade textodatos" id="bandera">
+                        <div class="row p-2">
+                            <div class="col">
+                                <div>
+                                    <h2>XnombredelPais</h2>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="celdagears">
+                                    <img src="imagenes/gear.png" class="gear1">
+                                    <img src="imagenes/gearmini.png" class="gear2">
+                                </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="celdagears">
-                                <img src="imagenes/gear.png" class="gear1">
-                                <img src="imagenes/gearmini.png" class="gear2">
+                        <div class="row ms-5">
+                            <div class="col">
+                                <h4>Bandera: <span></span></h4>
+                                <div class="card" style="width:400px">
+                                    <img class="card-img-top"
+                                        src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg" alt="Card image"
+                                        style="width:100%">
+                                    <div class="card-body">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <h4>Escudo: <span></span></h4>
+                                    <div class="card" style="width:400px">
+                                        <img class="card-img-top"
+                                            src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg"
+                                            alt="Card image" style="width:100%">
+                                        <div class="card-body">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row ms-5">
-                        <div class="col">
-                            <h4>Bandera: <span></span></h4>                            
-                                <div class="card" style="width:400px">
-                                    <img class="card-img-top" src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    </div>
-                                  </div>                            
-                        </div>
-                        <div class="col">
-                            <div>
-                                <h4>Escudo: <span></span></h4>
-                                <div class="card" style="width:400px">
-                                    <img class="card-img-top" src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    </div>
-                                  </div> 
-                            </div>
-                        </div>
-                    </div></div>
                 </div>
 
             </div>
         </div>
     </div>
-
-
-    <div class="container-lg">
-        <div class="row">
-            <div class="col">
-                <div class="text-center pb-3">
-                    <button class="bg-transparent botoncentral" type="reset"><img src="imagenes/3d-cube-sphere.svg"
-                            width="100px"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="container-fluid bg-secondary bg-gradient text-center text-white text-lg-start bottom-0">
+    <footer class="container-fluid text-center bottom-0">
+        <!-- <div class="text-center p-2">
+            <button class="bg-transparent cubod" type="reset"><img src="imagenes/3d-cube-sphere.svg"
+                    width="140px"></button>
+        </div>  -->
+    <div class="container-fluid bg-secondary rounded bg-gradient text-center text-white text-lg-start bottom-0">
         <div class="text-center small p-0">
             © 2022 Copyleft: <svg height="24" viewBox="0 0 16 16" version="1.1" width="24" data-view-component="true">
                 <path fill-rule="evenodd"
@@ -307,6 +350,7 @@
             <a class="text-decoration-none text-white"
                 href="https://github.com/jdiazbasgit/becaonce2ed">github.com/jdiazbasgit/becaonce2ed</a></label>
         </div>
+    </div>
     </footer>
 </body>
 

@@ -6,7 +6,8 @@ body{
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 100vh;
+    min-height: 160vh;
+    position: relative;
 }
 @keyframes meneillo {
     from {transform: translateX(10px);}
@@ -206,4 +207,23 @@ animation-timing-function: ease-in-out;
     text-shadow: 2px 2px 4px #a8a8a8;
     margin: 0px;
     padding: 7px;
+}
+.cubod{
+    border: 0px;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+@keyframes giro {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-500deg);}
+  } 
+.cubod:hover{
+    animation-name: giro;
+    animation-duration: 1.3s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+footer{
+    position: absolute;
 }
