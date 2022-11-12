@@ -6,7 +6,7 @@ body{
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 160vh;
+    min-height: 170vh;
     position: relative;
 }
 @keyframes meneillo {
