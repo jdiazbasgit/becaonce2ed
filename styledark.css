@@ -6,22 +6,14 @@ body{
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    min-height: 170vh;
     position: relative;
 }
-@keyframes meneillo {
-    from {transform: translateX(10px);}
-    to {transform: translateX(-10px);}
-  } 
 .iconoprincipal{
-    animation-name: meneillo;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    animation-timing-function: ease-in-out;
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
     margin-left: -20px;
+    border: none;
+    user-select: none;
 }
 @keyframes respiracion {
     from {box-shadow: 0px 3px 6px #ff0000;}
@@ -37,6 +29,7 @@ body{
 .icononasa{
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
+    user-select: none;
 }
 .icononasa:hover{
     animation-name: respiracion;
@@ -54,7 +47,8 @@ body{
     margin: 20px;
 }
 .titulo {
-    font-family: 'Saira Stencil One', cursive;    
+    font-family: 'Saira Stencil One', cursive;   
+    user-select: none; 
     color: white;
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
@@ -77,7 +71,8 @@ body{
     animation-timing-function: ease-in-out;
 }
 .textocabeceras{
-    font-family: 'Allerta Stencil', sans-serif;;    
+    font-family: 'Allerta Stencil', sans-serif;
+    user-select: none;    
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
     background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
@@ -122,10 +117,12 @@ body{
   }
 .celdagears{
     text-align: right;
+    user-select: none;
 }
 .gear1{
     height: 40px; 
     width: 40px;
+    user-select: none;
     filter: brightness(0);
     animation-name: girito;
     animation-duration: 4s;
@@ -136,6 +133,7 @@ body{
 .gear2{
     height: 45px; 
     width: 45px;
+    user-select: none;
     margin-left: -12px;
     filter: brightness(0);
     animation-name: contragirito;
@@ -144,20 +142,10 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-/*@keyframes tablaflotante {
-    from {transform: translateY(5px);}
-    to {transform: translateY(-5px);}
-}
-.tabla2{
-animation-name: tablaflotante;
-animation-duration: 4s;
-animation-iteration-count: infinite;
-animation-direction: alternate;
-animation-timing-function: ease-in-out;
-}*/
 .SuperGears{
     padding: 0px;
     border-spacing: 0px;
+    user-select: none;
     position: absolute;
     transform: rotate(0deg);
     right: 1800px;
@@ -187,31 +175,72 @@ animation-timing-function: ease-in-out;
     animation-direction: normal;
     animation-timing-function: linear;
 }
-.nav-link:hover{      
-    text-shadow: 2px 2px 4px #000000;
+@media (max-width: 800px) {
+    .SuperGears {
+        visibility: hidden;
+    }
+}
+.nav-link:hover{
     color: whitesmoke;
     text-shadow: 2px 2px 4px #a8a8a8;
     margin: 0px;
     padding: 7px;
 }
-.nav-link{      
-    text-shadow: 2px 2px 4px #000000;
+.nav-link{
     color: whitesmoke;
     text-shadow: 2px 2px 4px #000000;
     margin: 0px;
     padding: 8px;
 }
-.nav-link:active{      
-    text-shadow: 2px 2px 4px #000000;
+.nav-link:active{
     color: rgb(124, 0, 0);
     text-shadow: 2px 2px 4px #a8a8a8;
     margin: 0px;
     padding: 7px;
 }
+@keyframes desliz {
+    0% {
+        transform: translateX(2px);
+    }
+
+    40%,
+    50% {
+        transform: translateX(-3px);
+    }
+
+    60% {
+        transform: translateX(1px);
+    }}
+.botonidiomas{      
+    margin: 0px;
+    padding: 6px;
+    user-select: none;
+}
+.botonidiomas:hover{
+    animation-name: respiracion;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+.botonidiomas:active{
+    text-shadow: 2px 2px 4px #a8a8a8;    
+    animation-name: desliz;
+    animation-duration: .3s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+}
+.tarjetabandera{    
+    box-shadow: 0px 3px 6px #0c0000;
+    width: 400px;
+    background-color: white;
+}
 .cubod{
     border: 0px;
     padding: 10px;
     margin-bottom: 0px;
+    user-select: none;
 }
 @keyframes giro {
     from {transform: rotate(0deg);}
@@ -223,6 +252,9 @@ animation-timing-function: ease-in-out;
     animation-iteration-count: 2;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
+}
+.megacol{
+    height: 900px;
 }
 footer{
     position: absolute;

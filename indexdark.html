@@ -19,9 +19,9 @@
 <body>
     <div class="container-lg">
         <nav class="navbar rounded p-2 mt-4 justify-content-between">
-            <a class="navbar-brand bg-light rounded-circle iconoprincipal" href="imagenes/Aliens.jpg"><img
-                    src="imagenes/alien.svg" width="30px">
-            </a>
+            <a type="button" class="navbar-brand bg-light rounded-circle iconoprincipal" data-bs-toggle="modal"
+                data-bs-target="#modalalien"><img src="imagenes/alien.svg" width="30px">
+        </a>
             <span class="titulo display-2">
                 AREA 51 FILES
             </span>
@@ -29,6 +29,22 @@
                     src="imagenes/ufo.svg" width="30px">
             </a>
         </nav>
+
+    </div>
+    <div class="modal fade" id="modalalien" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="imagenes/Aliens.jpg" class="img-fluid rounded ">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary icononasa" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="SuperGears">
         <img src="imagenes/gear.png" class="Supergear1">
@@ -38,8 +54,8 @@
         <div class="row">
             <div class="col">
                 <div class="text-center pb-3">
-                    <button class="bg-transparent botoncentral" type="reset"><img src="imagenes/3d-cube-sphere.svg"
-                            width="50px"></button>
+                    <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title data-bs-original-title="Nueva consulta">
+                        <img src="imagenes/3d-cube-sphere.svg" width="50px"></a>                        
                 </div>
             </div>
         </div>
@@ -110,11 +126,11 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col megacol">
                 <ul class="nav nav-tabs nav-justified mt-5 textocabeceras">
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="tab" href="#datos">
-                            <h3>Datos</h3>
+                            <h3>Datos Generales</h3>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -163,19 +179,19 @@
                         <div class="row ms-5">
                             <div class="col">
                                 <div>
-                                    <h4>Moneda: <span>XMoneda</span></h4>
+                                    <h4>Moneda: <span>Xmoneda</span></h4>
                                 </div>
                             </div>
                             <div class="col">
                                 <div>
-                                    <h4>Idioma: <span>Xidioma</span></h4>
+                                    <h4>Dominio: <span>Xdominio</span></h4>
                                 </div>
                             </div>
                         </div>
                         <div class="row ms-5">
                             <div class="col">
                                 <div>
-                                    <h4>Divisa: <span>Xdivisa</span></h4>
+                                    <h4>Símbolo Divisa: <span>Xdivisa</span></h4>
                                 </div>
                             </div>
                             <div class="col">
@@ -183,19 +199,7 @@
                                     <h4>Superficie: <span>Xsuperficie</span></h4>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row ms-5">
-                            <div class="col">
-                                <div>
-                                    <h4>Forma de Gobierno: <span>Xgobierno</span></h4>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div>
-                                    <h4>Religión: <span>Xreligion</span></h4>
-                                </div>
-                            </div>
-                        </div>
+                        </div>                    
 
                     </div>
                     <div class="tab-pane container fade textodatos" id="geografia">
@@ -219,9 +223,6 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div>
-                                    <h4>Fronteras Marítimas: <span>XfronteraMari</span></h4>
-                                </div>
                             </div>
                         </div>
 
@@ -243,25 +244,25 @@
                         <div class="row ms-5">
                             <div class="col">
                                 <div>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma1">Idioma1</button>
                                         <div id="idioma1" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma2">Idioma2</button>
                                         <div id="idioma2" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma3">Idioma3</button>
                                         <div id="idioma3" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma4">Idioma4</button>
                                         <div id="idioma4" class="collapse">
                                             <span>pais1, pais2, pais3</span>
@@ -271,25 +272,25 @@
                             </div>
                             <div class="col">
                                 <div>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma5">Idioma5</button>
                                         <div id="idioma5" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma6">Idioma6</button>
                                         <div id="idioma6" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma7">Idioma7</button>
                                         <div id="idioma7" class="collapse">
                                             <span>pais1, pais2, pais3</span>
                                         </div>
                                     </h4>
-                                    <h4><button class="rounded" data-bs-toggle="collapse"
+                                    <h4><button class="rounded botonidiomas" data-bs-toggle="collapse"
                                             data-bs-target="#idioma8">Idioma8</button>
                                         <div id="idioma8" class="collapse">
                                             <span>pais1, pais2, pais3</span>
@@ -315,25 +316,17 @@
                         </div>
                         <div class="row ms-5">
                             <div class="col">
-                                <h4>Bandera: <span></span></h4>
-                                <div class="card" style="width:400px">
-                                    <img class="card-img-top"
-                                        src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg" alt="Card image"
-                                        style="width:100%">
-                                    <div class="card-body">
-                                    </div>
+                                <h4>Bandera:</h4>
+                                <div>
+                                    <img class="img-fluid tarjetabandera rounded"
+                                        src="https://flagcdn.com/w320/es.png">
                                 </div>
                             </div>
                             <div class="col">
+                                <h4>Escudo:</h4>
                                 <div>
-                                    <h4>Escudo: <span></span></h4>
-                                    <div class="card" style="width:400px">
-                                        <img class="card-img-top"
-                                            src="https://okdiario.com/img/2019/10/25/bandera-de-espana.jpg"
-                                            alt="Card image" style="width:100%">
-                                        <div class="card-body">
-                                        </div>
-                                    </div>
+                                    <img class="img-fluid tarjetabandera rounded"
+                                        src="https://mainfacts.com/media/images/coats_of_arms/es.png">
                                 </div>
                             </div>
                         </div>
@@ -344,10 +337,10 @@
         </div>
     </div>
     <footer class="container-fluid text-center bottom-0">
-        <!-- <div class="text-center p-2">
-            <button class="bg-transparent cubod" type="reset"><img src="imagenes/3d-cube-sphere.svg"
-                    width="140px"></button>
-        </div>  -->
+               <div class="text-center pb-3">
+            <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title data-bs-original-title="Nueva consulta">
+                <img src="imagenes/3d-cube-sphere.svg" width="140px"></a>                        
+        </div>
         <div class="container-fluid bg-secondary rounded bg-gradient text-center text-white text-lg-start bottom-0">
             <div class="text-center small p-0">
                 © 2022 Copyleft: <svg height="24" viewBox="0 0 16 16" version="1.1" width="24"
@@ -361,6 +354,11 @@
             </div>
         </div>
     </footer>
+    <!-- <script>
+        $(document).ready(function(){
+          $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script> -->
 </body>
 
 </html>
