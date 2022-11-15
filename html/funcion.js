@@ -1,19 +1,13 @@
-function ejercicioFor(){
-    texto="edu palomino"
-    alert("longitud: "+texto.lenght-1)
-    //alert(texto.substring(0,6).toUpperCase());
+function ejercicioFor() {
 
-        for (let i=1;i<=11;i++){
-            if(1%2==0){
-                document.querySelector("#h1").innerHTML=
-                document.querySelector("#1").innerHTML+i;
-                texto.substring().toUpperCase();
+    texto = "edupalomino"
+    //alert("longitud: "+int(texto.length))
 
-            }else{
-                document.querySelector("#h1").innerHTML=
-                document.querySelector("#h1").innerHTML+i;
-                texto.substring(texto)
-            }
-            alert(texto);
+    for (let i = 0; i <= texto.length; i++) {
+        if (i % 2 == 0) {
+            document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toUpperCase();
+        } else {
+            document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toLowerCase();
         }
+    }
 }
