@@ -3,3 +3,4 @@ function minombre() {
     window.alert(richardmartinezgonzalez)
     alert(richardmartinezgonzalez)
 }
+console.log("Hola mundo")
