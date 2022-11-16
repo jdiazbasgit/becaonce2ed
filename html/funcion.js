@@ -4,11 +4,12 @@ function ejercicioFor() {
     //alert("longitud: "+int(texto.length))
 
     for (let i = 0; i <= texto.length; i++) {
+        let elementoAmodificar=document.querySelector("#h1")
         if (i % 2 == 0) {
-            document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toUpperCase();
+            elementoAmodificar.innerHTML=elementoAmodificar.innerHTML+texto.substr(i, 1).toUpperCase();
         } else {
-            document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toLowerCase();
-            
+            elementoAmodificar.innerHTML=elementoAmodificar.innerHTML+texto.substr(i, 1).toLowerCase();
+
         }
     }
 }
