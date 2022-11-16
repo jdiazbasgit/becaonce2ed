@@ -8,6 +8,7 @@ function ejercicioFor() {
             document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toUpperCase();
         } else {
             document.querySelector("#h1").innerHTML=document.querySelector("#h1").innerHTML+texto.substr(i, 1).toLowerCase();
+            
         }
     }
 }
