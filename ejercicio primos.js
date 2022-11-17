@@ -1,6 +1,12 @@
-var tabla = document.querySelector("#tabla");
-var primos = []
-function numerosPrimos(){
-    primos.push(1,100)
+function numeros_primos() {
+    numeros = []
+    soy_primo = True
+    for (i = 2; i <= 100; i++) {
+        for (j = i; j >= 1; j--) {
+            if (i % j == 0) {
+                
+            }
+        }
+    }
 }
 
