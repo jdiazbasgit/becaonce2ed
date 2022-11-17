@@ -1,15 +1,27 @@
-function numeroPrimos(){
-   for (i = 0; i < texto.length; i++) {
-      if (i % 2 === 0) {
-var tabla = document.querySelector("#tabla");
-var primos=[];
-var tr=Document.Create.Element("tr");
-var td=Document.Create.Element("td");
+function numeroPrimos() {
+   numeros = 0 < 100;
+   primos = 100;
+   for (i = 0; i <= 100; i++) {
+      if (i % 2 == 0) {
+    for( i=100; i>=1; i--) {   
+      if ( i % 1==) {}
+         primos.push(3)
+         if (esPrimo(x))
+            console.log(" numero " + x + " es primo");
+      }
 
-//recorremos los numerops del 1 al 100 en un for
-// si es primo lo añadimos al array
-primos.push(3);
-   // recorro en array de numeros y por cada uno de los numero primos creamos un tr, un td, 
-   //le damos contenido al td con el valor del numero primo 
-   //añadimos el td al tr
-   //añadimos el tr a la tabla
+   }
+   var tabla = document.querySelector("#tabla");
+   var primos = [];
+   var tr = Document.Create.Element("tr");
+   var td = Document.Create.Element("td");
+
+   document.querySelector("#Tabla").InnerHTML = document.querySelector("#tabla").innerHTML + primos.substring(i, i + 1)
+
+}
+
+}
+} 
+
+
+
