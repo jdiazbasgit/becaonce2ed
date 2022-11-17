@@ -24,7 +24,3 @@ function numeroPrimos() {
    }
 
 
-
-
-
-
