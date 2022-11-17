@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>x</title>
+
+    <script type="text/javascript">   
+        function ResultPrimo(numero) {
+            for (var i = 2; i < numero; i++) {
+                if (numero % i == 0) {
+                    return true;
+                }
+            }
+        }
+
+        function crearFilas(){
+            var numPrimos = [];
+            
+            for (x = 0; x < 100; x++) {
+                var t = document.getElementById('tabla').insertRow(x);
+                t.style.color = "black";
+                t.style.width="100px";
+
+                var a = t.insertCell(0);
+                var b = t.insertCell(1);
+                var c = t.insertCell(2);
+
+                if (!ResultPrimo(x)) {
+                    numPrimos.push(x);
+                    a.innerHTML=x;
+                    b.innerHTML="Es primo";
+                    c.innerHTML="";
+
+                    a.style.backgroundColor = "green";
+                    
+                } else {
+                    a.innerHTML=x;
+                    b.innerHTML="No es primo"; 
+                    c.innerHTML="";
+
+                    a.style.backgroundColor = "red";       
+                }
+
+               a.style.color = "white";
+               a.style.width = "50px";
+               a.style.textAlign = "center";
+            }            
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="crearFilas()" style="border:1px solid gray; width: 150px;">Añadir filas</button>
+    <table id="tabla" style="border:1px solid gray; width: 150px; text-align: left; color:rgb(0, 0, 0); font-weight: bold;">
+
+    </table>
+</body>
+
+</html>
+</body>
+
+</html>
