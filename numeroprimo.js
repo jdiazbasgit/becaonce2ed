@@ -15,6 +15,7 @@ function numerosPrimos() {
         }
     }
     console.log(primos)
+    
 }
 
 
