@@ -1,19 +1,19 @@
-primos =[1, 2, 3]
-function numeroPrimos() {
-   for (let i = 4; i < 100; i++) {
-      soyPrimo = true
+function calculadora() 
 
-      for (let j = i - 1; j > 1; j--) {
-         if (i % j == 0) {
-            soyPrimo = false;
-            break
-         }
-      }
-      if (soyPrimo) {
-         primos.push(i)
-      }
+var (n1 to n9)
 
-   }
-   console.log(primos)
-}
+numero = var
 
+switch (numero)
+   case:1
+  console.log("1")
+
+ break
+
+   case:2
+   console.log(2)
+
+  break
+
+   default:
+      console.log( ni 1 ni 2)
