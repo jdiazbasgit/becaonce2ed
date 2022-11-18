@@ -9,10 +9,10 @@
 
     <script type="text/javascript">   
         function ResultPrimo(numero) {
+            var stop;
             for (var i = 2; i < numero; i++) {
-                if (numero % i == 0) {
-                    return true;
-                }
+                numero % i == 0 ? stop=true:stop=false;
+                return stop; 
             }
         }
 
