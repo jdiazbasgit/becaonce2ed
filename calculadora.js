@@ -1,23 +1,35 @@
-calculadoraA = []
-
-function calculadoraA() {
-    var n1, n2, n3, n4, n5, n6, n7, n8, n9
-    switch (resultado) {
-        case n1:
-            resultado = (n1)
-            console.log (1)
+function operar (apretar) {
+    var input = document.querySelector("#boton");
+    switch (apretar) {
+        case 1:
+            input.value = input.value + "1";
             break;
-        case n2:
-            resultado = (id = "2")
-            console.log(2)
+        case 2:
+            input.value = input.value + "2";
+            break;
+        case 3:
+            input.value = input.value + "3";
+            break;
+        case 4:
+            input.value = input.value + "4";
+            break;
+        case 5:
+            input.value = input.value + "5";
+            break;
+        case 6:
+            input.value = input.value + "6";
+            break;
+        case 7:
+            input.value = input.value + "7";
+            break;
+        case 8:
+            input.value = input.value + "8";
+            break;
+        case 9:
+            input.value = input.value + "9";
             break;
 
-
-
-
-
-
-
+    
     }
 
 }
