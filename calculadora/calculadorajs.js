@@ -1,10 +1,8 @@
-function numerosdeCalculadora(pulsar)
+function numerosdeCalculadora(value)
 
 
-switch(pulsar){
-    case 1 :
-        document.querySelector("#1").innerHTML=document.querySelector("#1").innerHTML+pulsar
- 
+{
+        document.querySelector("#texto").value=document.querySelector("#texto").value+ value 
 
 }
 
