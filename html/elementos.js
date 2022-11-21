@@ -13,11 +13,6 @@ primos.push(3);
 }
 
 
-
-
-
-
-
 function crearFilas() {
   var tr = document.createElement("tr");
   var td = document.createElement("td");

@@ -24,6 +24,18 @@ function ejemploFor() {
 nombre="federico";
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   for (let i = 1; i <= 10; i++) {
     let elementoAModificar=document.querySelector("#h1");
     if (i % 2 == 0) {
