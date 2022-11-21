@@ -1,22 +1,30 @@
-primos = []
-function numerosprimos() {
-    var numero = 100;
+primos = [1, 2, 3]
+function numerosPrimos() {
 
-    //if (numero == 0 || numero == 1 || numero == 4) return false;
+    //if (100 == 0 || 100 == 1 || 100 == 4) return false;
 
-    for (let x = 2; x < numero; x++) {
-        if (numero % x == 0) return false;
 
-        else (numero % x 1 = 0 && x % numero == numero && numero % x == 1)
+    for (let i = 4; i < 100; i++) {
+        soyPrimo = true
 
-        for (let j = x; x; x > numero; x--)
-        {
-            if (numero % x == 0) return false;
+        for (let j = i-1; j > 1; j--) {
+            if (i % j == 0) {
 
-            else (numero % x 1 = 0 && x % numero == numero && numero % x == 1)
-            return true
+                soyPrimo = false;
+                break
+            }
 
         }
+
+        if (soyPrimo) {
+            primos.push(i)
+        }
     }
-    console.log(numerosprimos())
+    console.log(primos)
+
+defea
+
+
+
+
 }
