@@ -37,7 +37,10 @@ function operar(apretar) {
             console.log("9");
             input.value = input.value + "9"
             break;
-
+        case 0:
+            console.log("0");
+            input.value = input.value + "0"
+            break;
 
     }
 
