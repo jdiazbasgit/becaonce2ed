@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dark.js"></script>
     <link rel="stylesheet" href="styledark.css">
 </head>
 
@@ -84,10 +85,10 @@
                 <ul class="list-group list-group-light mb-0">
                     <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
                         <div class="d-flex align-items-center">
-                            <img src="imagenes/world.svg" width="45px" class="bg-light rounded-circle icononasa" />
+                            <img src="imagenes/world.svg" width="45px" class="bg-light rounded-circle icononasa"/>
                             <div class="ms-3">
                                 <p class="fw-bold mb-1">
-                                    <select name="continente" class="opcionescontinentescasilla p-0">
+                                    <select name="continente" class="opcionescontinentescasilla p-0" id="seleccionaContinente" onchange="elegirContinente(value)">
                                         <option class="opcionescontinentes" value="null">Selecciona
                                             Continente</option>
                                         <option class="opcionescontinentes" value="asia">Asia</option>
@@ -114,7 +115,7 @@
                         <div class="d-flex align-items-center">
                             <img src="imagenes/map-search.svg" width="45px" class="bg-light rounded-circle icononasa" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0">
+                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0" id="seleccionaPais">
                                         <option class="opcionescontinentes" value="null">Selecciona
                                             País</option>
                                     </select></p>
