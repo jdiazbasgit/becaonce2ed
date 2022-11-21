@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="imagenes/paises.js"></script>
 </head>
 <body style="background-color:#75969c;">
   <div class="container">
@@ -43,9 +44,9 @@
       <div class="row align-middle">
         <div class="col-sm-6">
           <h2>continente</h2>
-          <select class="form-select">
+          <select onchange="cargarPaises(this.value)" class="form-select">
             <option>seleccione continente</option>
-            <option>AMERICAS</option>
+            <option value="americas">AMERICAS</option>
             <option>AFRICA</option>
             <option>OCEANIAS</option>
             <option>EUROPA</option>
