@@ -12,8 +12,8 @@
 
 
 cargarPaises = (continente) => {
-    var strPaises = document.getElementById("pais");
-    
+    var IdPaises = document.getElementById("pais");
+
     fetch("https://restcountries.com/v3.1/region/" + continente)
       .then((response) => response.json())
       .then((paises) => {
@@ -25,7 +25,7 @@ cargarPaises = (continente) => {
 
           var option = document.createElement("option");
           option.text=pais.name.common;
-          strPaises.add(option);
+          IdPaises.add(option);
         });
 
         
@@ -65,10 +65,7 @@ var Continente = document.querySelector('#continent');
 
 Continente.addEventListener('change', (event) => {
     var cboPais= document.getElementById("pais");
-
-    for (var i=0;i<cboPais.length;i++){
-        cboPais.remove(i);
-    }
+    cboPais.innerHTML = "";
 
     if(!event.target.value==''){
         var option = document.createElement("option");
