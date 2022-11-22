@@ -46,13 +46,13 @@
       <div class="col-sm-6">
         <h2>continente</h2>
 
-        <select class="form-select">
-          <option>seleccione continente</option>
-          <option>AMERICAS</option>
-          <option>AFRICA</option>
-          <option>OCEANIAS</option>
-          <option>EUROPA</option>
-          <option>ASIA</option>
+        <select onchange="cargarPaises(this.value)"class="form-select" id="paises">
+          <option value="0">seleccione continente</option>
+          <option value="americas">AMERICA</option>
+          <option value="africas">AFRICA</option>
+          <option value="oceania">OCEANIA</option>
+          <option value="europe">EUROPA</option>
+          <option value="asia">ASIA</option>
         </select>
       </div>
       <div class="col-sm-6">
