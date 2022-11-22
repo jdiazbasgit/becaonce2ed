@@ -1,44 +1,32 @@
-/*cargarPaises=()=>{
-    fetch("https://restcountries.com/v3.1/region/europe/")
-    .then((response)=>response.json())
-    .then((datos)=>{
-        for(i=0;datos.length;i++){
-            console.log(datos[i].name.common)
-        
-        }
-    })
-};*/
+cargarPaises = continente => {
+    fetch("https://restcountries.com/v3.1/region/" + continente)
+        .then(response => response.json())
+        .then(paises => {
+            
+            var paisesSelect = document.querySelector("#paises");
+            paisesSelect.innerHTML=""
+            let seleccionaPais = document.createElement("option")
+            seleccionaPais.value = "0"
+            seleccionaPais.text = "Selecciona pais)";
+            paisesSelect.appendChild(seleccionaPais);
+            paises.forEach(pais => {
 
-cargarPaises=(continente)=>{
-    fetch("https://restcountries.com/v3.1/region/"+continente)
-    .then((response) => response.json())
-    .then((paises) => {
+                let option = document.createElement("option");
+                option.value = pais.name.common;
+                option.text = option.value;
+                paisesSelect.appendChild(option)
+                // console.log(pais.name.common)
+            });
 
-      paises.forEach(pais => {
-          //console.log("la capital de "+pais.name.common+" es "+pais.capital+" y tiene "+pais.population+" habitantes")
-          console.log (`la capital de ${pais.name.common} es ${pais.capital} y tiene ${pais.population} habitantes`)
-          // template string
-      });
-        
-    })
-    .catch(error=>{
-    });
+
+
+
+
+
+        })
 }
-function cargarPaises1() {
-    fetch("https://restcountries.com/v3.1/region/europe")
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (datos) {
-        for (i = 0; i < datos.length; i++) {
-          console.log(datos[i].name.common);
-        }
-      });
-  }
-  
-
-  vaciosElemento=(elemento)=>{
-    elemento.childNodes.forEach(hijo=>{
-    elemento.removeChild(hijo);
+vaciarElemento = (elemento) => {
+    elemento.childNodes.forEach(hijo => {
+        elemento.removeChild(hijo);
     })
-  }
+}
