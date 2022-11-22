@@ -71,8 +71,6 @@ Continente.addEventListener('change', (event) => {
     }
 
     if(!event.target.value==''){
-        alert(event.target.value);
-
         var option = document.createElement("option");
         option.text="Seleccione un país";
         cboPais.add(option);
