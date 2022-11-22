@@ -2,26 +2,20 @@ cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
         .then(paises => {
-            // for (i = 0; i < paises.lenght; i++) {
+            
+            var paisesSelect = document.querySelector("#paises");
+            paisesSelect.innerHTML=""
+            let seleccionaPais = document.createElement("option")
+            seleccionaPais.value = "0"
+            seleccionaPais.text = "Selecciona pais)";
+            paisesSelect.appendChild(seleccionaPais);
             paises.forEach(pais => {
-                console.log(pais.name.common)
-            });
 
-
-
-
-
-
-        })
-}
-cargarNaciones = paises => {
-    fetch("https://restcountries.com/v3.1/subregion/{region}" + paises)
-        .then(response => response.json())
-        .then(paises => {
-            paises.forEach(pais => {
+                let option = document.createElement("option");
                 option.value = pais.name.common;
-                document.querySelector("#pais").innerHTML = document.querySelector("#pais").innerHTML
-               // console.log(pais.name.common)
+                option.text = option.value;
+                paisesSelect.appendChild(option)
+                // console.log(pais.name.common)
             });
 
 
@@ -31,5 +25,8 @@ cargarNaciones = paises => {
 
         })
 }
-
-
+vaciarElemento = (elemento) => {
+    elemento.childNodes.forEach(hijo => {
+        elemento.removeChild(hijo);
+    })
+}
