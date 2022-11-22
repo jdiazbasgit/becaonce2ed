@@ -7,7 +7,7 @@ cargarPaises = (continente) => {
             var paisesSelect = document.querySelector("#paises");
             paisesSelect.innerHTML = ""
             let seleccionaPaises = document.createElement("option")
-            seleccionaPaises.valu = "0"
+            seleccionaPaises.value = "0"
             seleccionaPaises.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPaises);
             paises.forEach(pais => {
