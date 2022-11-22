@@ -115,7 +115,7 @@
                         <div class="d-flex align-items-center">
                             <img src="imagenes/map-search.svg" width="45px" class="bg-light rounded-circle icononasa" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0" id="seleccionaPais">
+                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0" id="seleccionaPais" onchange="elegirPais(value)">
                                         <option class="opcionescontinentes" value="null">Selecciona
                                             País</option>
                                     </select></p>
@@ -155,7 +155,7 @@
                         <div class="row p-2">
                             <div class="col">
                                 <div>
-                                    <h2>XnombredelPais</h2>
+                                    <h2 class="nombreDePaisClass" id="nombreDePais">XnombredelPais</h2>
                                 </div>
                             </div>
                             <div class="col">
@@ -207,7 +207,7 @@
                         <div class="row p-2">
                             <div class="col">
                                 <div>
-                                    <h2>XnombredelPais</h2>
+                                    <h2 class="nombreDePaisClass">XnombredelPais</h2>
                                 </div>
                             </div>
                             <div class="col">
