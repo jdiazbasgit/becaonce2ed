@@ -36,3 +36,9 @@ function cargarPaises1() {
       });
   }
   
+
+  vaciosElemento=(elemento)=>{
+    elemento.childNodes.forEach(hijo=>{
+    elemento.removeChild(hijo);
+    })
+  }
