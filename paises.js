@@ -25,4 +25,15 @@ varciarElementos = (elementos) => {
         paisesSelect.removeChild(hijo);
     })
 }
+  dameDatos = (url)=> fetch(url)
+   var tabla = document.querySelector("#nav");
+   let columna = document.createElement ("div")
+   let ul = document.createElement("ul")
+   columna.appendChild(ul)
+
+  dameDatosGenerales =()=>{}
+  dameDatosGeograficos =()=>{}
+  dameBanderas =()=>{} 
+  dameCodigodeMoneda =() =>{}
+  traducciones =() =>{}
 
