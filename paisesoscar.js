@@ -30,27 +30,23 @@ vaciarElemento = (elemento) => {
         elemento.removeChild(hijo);
     })
 }
-
-cargaPais = pais => {
-    fetch("https://restcountries.com/v2/name/" + nombre)
-        .then(response => response.json())
-        .then(datosgenerales => {
-            var datosGeneralesSelect = document.querySelector("#datosgenerales");
-            vaciarElemento = (elemento);
-            let datosGenerales = document.createElement("option")
-            datosGenerales.text = "datosgenerales"
-            datosGenerales.forEach(pais => {
-                let datosgenerales = ["Pais","Nombre","Capital","Población","Lengua"]
-
-              let option = document.createElement("option")
-                option.value = pais.name.capital.population.languages
-                option.text=option.value;
-                datosGenerales.appendChild(option)
-})
-
-
-        })
+dameDatos = (URL) => fetch( URL )
+dameNombreDePais= cca3 =>{
+    dameDatos("https://restcountries.com/v2/name/" + cca3).then (response =>
+    response.json)
+    .then (pais => pais.name.common)
 }
 
+function generales(){
+datosGenerales=document.querySelector("#datosgenerales");
+datosGenerales.innerHTML=""
 
+
+}
+
+function geograficos()
+
+function banderas()
+
+function traducciones()
 
