@@ -26,17 +26,19 @@
         <div>
             <nav class="text-center">
                 <button type="button" class="btn btn-info">Datos Generales</button>
-                <button type="button" class="btn btn-info">Datos Geográficos</button>
+                <button type="button" onclick="datosGeograficos('a')" class="btn btn-info">Datos Geográficos</button>
                 <button type="button" class="btn btn-info">Traducciones</button>
                 <button type="button" class="btn btn-info">Banderas</button>
             </nav>
         </div>
+
         <div class="tab-content mt-4">
             <div id="datosgenerales" class="container tab-pane active"><br>
                 <form action="" method="post">
                     <div class="row">
                         <div class="col">
-                            Continente:<select name="continente" class="form-select form-select-sm" onchange="cargarPaises(this.value)">
+                            Continente:<select id="continente" name="continente" class="form-select form-select-sm"
+                                onchange="cargarPaises(this.value)">
                                 <option value="0">Elige un continente</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">America</option>
@@ -53,29 +55,31 @@
                     </div>
                 </form>
             </div>
-            <table class="table table-stripped">
-                <tr>
-                  <th class="text-center">Capital</th>
-                  <th class="text-center">Población</th>
-                  <th class="text-center">Dominio</th>
-                  <th class="text-center">Área</th>
-                  <th class="text-center">Moneda</th>
-                </tr>
-                <tr>
-                  <td class="text-center">xxx</td>
-                  <td class="text-center">999</td>
-                  <td class="text-center">xxx</td>
-                  <td class="text-center">999</td>
-                  <td class="text-center">xxx</td>
-                </tr>
-          
-              </table>
+            <main>
+                <table class="table table-stripped">
+                    <tr>
+                        <th class="text-center">Capital</th>
+                        <th class="text-center">Población</th>
+                        <th class="text-center">Dominio</th>
+                        <th class="text-center">Área</th>
+                        <th class="text-center">Moneda</th>
+                    </tr>
+                    <tr>
+                        <td class="text-center">xxx</td>
+                        <td class="text-center">999</td>
+                        <td class="text-center">xxx</td>
+                        <td class="text-center">999</td>
+                        <td class="text-center">xxx</td>
+                    </tr>
+
+                </table>
+            </main>
             <div id="traduccion" class="container tab-pane fade mt-4"><br>
             </div>
             <div id="banderas" class="container tab-pane fade"><br>
             </div>
 
-            <div class="container text-center">
+            <div id="fronteras" class="container text-center">
                 <h3 class="frontera1">Frontera 1</h3>
                 <h3 class="frontera2">Frontera 2</h3>
                 <h3 class="frontera3">Frontera 3</h3>

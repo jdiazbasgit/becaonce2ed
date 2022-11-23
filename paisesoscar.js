@@ -1,7 +1,11 @@
+var urlrescountries = "https://restcountries.com/v3.1";
+
+
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
         .then(paises => {
+
 
             var paisesSelect = document.querySelector("#paises");
             paisesSelect.innerHTML = ""
@@ -15,7 +19,7 @@ cargarPaises = continente => {
                 option.value = pais.name.common;
                 option.text = option.value;
                 paisesSelect.appendChild(option)
-                // console.log(pais.name.common)
+
             });
 
 
@@ -30,23 +34,56 @@ vaciarElemento = (elemento) => {
         elemento.removeChild(hijo);
     })
 }
-dameDatos = (URL) => fetch( URL )
-dameNombreDePais= cca3 =>{
-    dameDatos("https://restcountries.com/v2/name/" + cca3).then (response =>
-    response.json)
-    .then (pais => pais.name.common)
+dameDatos = (url) => fetch(URL)
+
+//datosgenerales= (pais) =>{
+// datosGenerales = document.querySelector("#datosgenerales");
+//datosGenerales.innerHTML = ""
+
+
+//var main=document.querySelector("main");
+//main.innerHTML=""
+//let table=document.createElement("table")
+
+
+
+
+//      }
+
+
+
+
+pillarDatosGeograficos = () => {
+
+   
+    var div = document.querySelector("div")
+    let h31 = document.createElement("h3")
+    let h32 = document.createElement("h3")
+    let h33 = document.createElement("h3")
+    let h34 = document.createElement("h3")
+    let h35 = document.createElement("h3")
+    h31.innerHTML = "Frontera 1" + pais.codes.borders
+    h32.innerHTML = "Frontera 2" + pais.codes.borders
+    h33.innerHTML = "Frontera 3" + pais.codes.borders
+    h34.innerHTML = "Frontera 4" + pais.codes.borders
+    h35.innerHTML = "Frontera 5" + pais.codes.borders
+
 }
 
-function generales(){
-datosGenerales=document.querySelector("#datosgenerales");
-datosGenerales.innerHTML=""
 
+datosGeograficos = () => {
+    let datosGeograficos = document.querySelector("#fronteras")
+    datosGeograficos.innerHTML = ""
+    let selectPaises = document.createElement("option")
+    selectPaises.value="0"
+    dameDatos(urlrescountries + "/codes/borders/" + selectPaises.value)
+    .then(response =>response.json())
+    .then (pais=>{
+        pillarDatosGeograficos(pais[0])
+    })
 
 }
+traducciones = () => { }
+banderas = () => {
 
-function geograficos()
-
-function banderas()
-
-function traducciones()
-
+}
