@@ -89,6 +89,7 @@ Pais.addEventListener('change', (event) => {
       countriesList.forEach(countryData => {
         document.querySelector('#region').innerHTML=countryData.region;
         document.querySelector('#capital').innerHTML=countryData.capital;
+        document.querySelector('#population').innerHTML=countryData.population;
         document.querySelector('#area').innerHTML=countryData.area;
 
 
@@ -106,6 +107,7 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#arabe').innerHTML=countryData.translations.ara.official;
         document.querySelector('#francia').innerHTML=countryData.translations.fra.official;
         document.querySelector('#italia').innerHTML=countryData.translations.ita.official;
+        //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
       });
 
     }).catch(error => {
