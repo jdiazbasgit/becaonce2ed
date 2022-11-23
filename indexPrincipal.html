@@ -9,160 +9,93 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="principal.js"></script>
+
 </head>
 
 <body>
-  <main class="container">
-    <div>
-      <header>
-        <div class="row border">
-          <div class="col-sm-1 text-black border"><img src="images/world.png" width="150px"></div>
-          <div class="col-sm-11 p-3 text-black border mx-auto">
-            <h1 class="text-center bg-danger text-primary">PAISES DEL MUNDO</h1>
-          </div>
-        </div>
-        <nav class="mt-3">
-          <div class=" ">
-            <ul class="nav nav-tabs nav-justified">
-              <li class="nav-item">
-                <a class="nav-link fw-bold active bg-warning" id="generales" href="#">DATOS GENERALES</a>
-                <select class="form-select" name="continente" id="continente">
-                  <option value="" id="">Ciudad</option>
-                  <option value="" id="">Población</option>
-                  <option value="" id="">Área</option>
-                  <option value="" id="">Dominio</option>
-                  <option value="" id="">Moneda</option>
-                </select>
-              </li>
+  <div class="container">
+    <header>
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="left" width="227" height="156">
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="right" width="227" height="156">
+      <div class="container-fluid p-5 bg-success text-white text-center ">
 
-              <li class="nav-item">
-                <a class="nav-link fw-bold bg-success" id="georgaficos" href="#">DATOS GEOGRÁFICOS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold bg-dark" id="tarducir" href="#">TRADUCCIÓN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold bg-secondary" id="bandera" href="#">BANDERAS</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <section><br>
-
-        <div class="row">
-
-          <div class="col-6">
-            <h4><label>CONTINENTE:</label></h4>
-            <select class="form-select" name="continente" id="continente">
-              <option value="0" selected>Selecciona Continente</option>
-              <option value="" id="">Europa</option>
-              <option value="" id="">Asia</option>
-              <option value="" id="">África</option>
-              <option value="" id="">AmÉrica</option>
-              <option value="" id="">Oceanía</option>
-            </select>
-          </div>
-
-          <div class="col-6"> </select>
-            <h4><label>PAÍS:</label></h4>
-            <select class="form-select" name="pais" id="pais">
-              <option value="0" selected>Selecciona País</option>
-              <option value="">España</option>
-              <option value="">Japon</option>
-              <option value="">Maruecos</option>
-              <option value="">México</option>
-              <option value="">Australia</option>
-            </select>
-          </div>
-
-
-          <div class="row align-items-center" style="height:30px; background: aquamarine">
-            <div class="col-4">
-              <p>PÁGINA</p>
-            </div>
-            <div class="col-4">
-              <p>CON DATOS</p>
-            </div>
-            <div class="col-4 align-self-end">
-              <p>GENERALES</p>
-            </div>
-          </div>
-
-
-        </div>
-        <div class="mx-auto">
-          <table class="table table-bordered w-100">
-            <tbody class="w-100">
-              <tr class="text-center">
-                <td class="w-50">
-                  Ciudad: XXXXXXXXXX
-                </td>
-                <td></td>
-              </tr>
-              <tr class="text-center">
-                <td>
-                  Población: 99999999999
-                </td>
-                <td></td>
-              </tr>
-              <tr class="text-center">
-                <td>
-                  Área: 99999999999
-                </td>
-                <td></td>
-              </tr class="text-center">
-              <tr class="text-center">
-                <td>
-                  Dominio: XXXXXXXXXX
-                </td>
-                <td></td>
-              </tr>
-              <tr class="text-center">
-                <td>
-                  Moneda:
-                </td>
-
-                <td></td>
-              </tr>
-              <tr class="text-left">
-                <td>
-
-                </td>
-                <td> Nombre:</td>
-              </tr>
-              <tr class="text-left">
-                <td>
-
-                </td>
-                <td> Símbolo: </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </section>
-    </div>
-
-
-
-    <div class="mt-3">
-      <div class="row">
-        <div class="col">
-          <button data-bs-toggle="collapse" data-bs-target="#demo">Collapsible</button>
-
-          <div id="demo" class="collapse">
-            Lorem ipsum dolor text....
-          </div>
-
-        </div>
+        <h1>PAISES DEL MUNDO</h1>
       </div>
+    </header>
 
-
+    <div class="container mt-3">
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Datos generales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Traducción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Banderas</a>
+        </li>
+      </ul>
     </div>
-
-  </main>
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Seleccione continente</h2>
+        <label for="sel1" class="form-label"></label>
+        <select class="form-select bg-success" id="sel1" name="sellist1">
+          <option>Europa</option>
+          <option>America</option>
+          <option>Asia</option>
+          <option>Africa</option>
+          <option>Oceania</option>
+        </select>
+      </div>
+      <div class="col">
+        <h2>Seleccione país</h2>
+        <label for="sel1" class="form-label"></label>
+        <select class="form-select bg-success " id="sel1" name="sellist1">
+          <option>XXXXXXXXXX</option>
+        </select>
+      </div>
+    </div>
+    <div class="mx-auto w-50 mt-3 container-fluid">
+      <h2>Fronteras:</h2>
+      <table class="w-100">
+        <tr>
+          <td>
+            <h3 class="mx-auto">xxxxxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>xxxxxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>xxxxxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>xxxxxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td> <h3>xxxxxxxxxx</h3>
+          </td>
+         
+      </table>
+    </div>
+  </div>
+  
 </body>
 
 </html>
