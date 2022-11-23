@@ -1,5 +1,5 @@
 var urlrestcountries = "https://restcountries.com/v3.1/"
-
+const main= document.querySelector("main")
 
 cargarPaises = (continente) => {
     fetch(urlrestcountries + "region/" + continente)
@@ -35,7 +35,7 @@ dameDatosGeograficos = () => {
 }
 pintaDatosGenerales = (pais) => {
     console.log(pais)
-    var main = document.querySelector("main");
+    
     main.innerHTML = ""
     main.classList.add("row")
     main.classList.add("align-middle")
@@ -95,44 +95,20 @@ dameDatosGenerales = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 dameBanderas = () => {
+    let h2=document.createElement("h2")
+    main.appendChild(h2)
+    h2.innerHTML="Banderas"
 
 }
 dameCodigodeMoneda = () => { }
-traducciones = () => { }
+traducciones = () => { 
+    
+    let div= document.createElement("div")
+    div.classList.add("btn-group")
+    main.appendChild(div)
+    let button1=document.createElement("button")
+    div.appendChild(button1)
+
+}
 
