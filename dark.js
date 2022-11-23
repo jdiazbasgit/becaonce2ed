@@ -28,8 +28,65 @@ elegirPais = (pais) => {
         .then(response => response.json())
         .then(datos => {
             console.log(datos)
-            var crear = document.createElement("ul")
-            crear.className.add("nav nav-tabs nav-justified mt-5 textocabeceras")
+            var padre = document.getElementById("megacampo")
+            var iul = document.createElement("ul")
+            var iil = document.createElement("il")
+            var ia = document.createElement("a")
+            var ih3 = document.createElement("h3")
+            padre.append(iul)
+            iul.append(iil)
+            iil.append(ia)
+            ia.append(ih3)
+            iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+            iil.setAttribute("class", "nav-item")
+            ia.setAttribute("class", "nav-link active")
+            ia.setAttribute("data-bs-toggle", "tab")
+            ia.setAttribute("href", "#datos")
+            ih3.innerHTML = "Datos Generales"
+            
+            var iil = document.createElement("il")
+            var ia = document.createElement("a")
+            var ih3 = document.createElement("h3")
+            padre.append(iul)
+            iul.append(iil)
+            iil.append(ia)
+            ia.append(ih3)
+            iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+            iil.setAttribute("class", "nav-item")
+            ia.setAttribute("class", "nav-link")
+            ia.setAttribute("data-bs-toggle", "tab")
+            ia.setAttribute("href", "#geografia")
+            ih3.innerHTML = "Geografía"
+
+            var iil = document.createElement("il")
+            var ia = document.createElement("a")
+            var ih3 = document.createElement("h3")
+            padre.append(iul)
+            iul.append(iil)
+            iil.append(ia)
+            ia.append(ih3)
+            iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+            iil.setAttribute("class", "nav-item")
+            ia.setAttribute("class", "nav-link")
+            ia.setAttribute("data-bs-toggle", "tab")
+            ia.setAttribute("href", "#idioma")
+            ih3.innerHTML = "Idioma"
+
+            var iil = document.createElement("il")
+            var ia = document.createElement("a")
+            var ih3 = document.createElement("h3")
+            padre.append(iul)
+            iul.append(iil)
+            iil.append(ia)
+            ia.append(ih3)
+            iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+            iil.setAttribute("class", "nav-item")
+            ia.setAttribute("class", "nav-link")
+            ia.setAttribute("data-bs-toggle", "tab")
+            ia.setAttribute("href", "#bandera")
+            ih3.innerHTML = "Bandera"
+            
+
             /*document.getElementById("nombreDePais").innerHTML = pais
             document.getElementById("nombreCapital").innerHTML = datos[0].capital
             document.getElementById("nombreMoneda").innerHTML = datos[0].currencies.EUR.name
