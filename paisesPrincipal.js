@@ -27,14 +27,15 @@ varciarElementos = (elementos) => {
 }
 dameDatos = (url) => fetch(url)
 
-dameDatosGenerales = () => {
-}
 dameDatosGeograficos = () => {
+}
+dameDatosGenerales = () => {
     var main = document.querySelector("main");
     main.innerHTML=""
     main.classList.add("row")
     main.classList.add("align-middle")
     let div1 = document.createElement("div")
+    div1.classList.add("col-s")
     div1.classList.add("")
     let h21 = document.createElement("h2")
     h21.classList.add("text-danger")
