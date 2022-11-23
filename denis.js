@@ -1,5 +1,6 @@
 cargarPaises = continente => {
-    fetch("https://restcountries.com/v3.1/region/" + continente)
+    var urlRestCountries="https://restcountries.com/v3.1/region/"
+    fetch(urlRestCountries + continente)
         .then(response => response.json())
         .then(paises => {
 
@@ -37,16 +38,51 @@ dameNombreDePais= cca3 =>{
     .then (pais => pais.name.common)
 }
 
-function generales(){
-datosGenerales=document.querySelector("#datosgenerales");
-datosGenerales.innerHTML=""
+pintaDatosGenerales = (pais) =>{ 
+
+var main=document.querySelector("main")
+main.innerHTML=""
+let table=document.createElement("table")
+table.classList.add("table")
+table.classList.add("table-stripped")
+table.classList.add("text-center")
+let tr1=document.createElement("tr")
+let th1=document.createElement("th")
+let th2=document.createElement("th")
+let th3=document.createElement("th")
+let th4=document.createElement("th")
+let th5=document.createElement("th")
+let tr2=document.createElement("tr")
+let td1=document.createElement("td")
+let td2=document.createElement("td")
+let td3=document.createElement("td")
+let td4=document.createElement("td")
+let td5=document.createElement("td")
+th1.innerHTML="Capital" 
+th2.innerHTML="Población"
+th3.innerHTML="Área"
+th4.innerHTML="Dominio"
+th5.innerHTML="Moneda"
+td1.innerHTML=pais.capital
+td2.innerHTML=pais.population
+td3.innerHTML=pais.area
+td4.innerHTML=pais.tld
+td5.innerHTML=pais.currencies
+main.appendChild(table)
+table.appendChild(tr1)
+tr1.appendChild(th1)
+tr1.appendChild(th2)
+tr1.appendChild(th3)
+tr1.appendChild(th4)
+tr1.appendChild(th5)
+tr2.appendChild(td1)
+tr2.appendChild(td2)
+tr2.appendChild(td3)
+tr2.appendChild(td4)
+tr2.appendChild(td5)
+
 
 
 }
 
-function geograficos()
-
-function banderas()
-
-function traducciones()
 
