@@ -43,7 +43,21 @@ var bandera;//string
 var escudo;//string
 var traducciones;//Traduccion[]
 
+class Moneda {
+  constructor(name,symbol){
+    this.name=name
+    this.symbol=symbol
+  }
+}
 
+class Traduccion {
+ 
+  constructor(common,official,paises){
+    this.common=common
+    this.paises=paises
+    this.official=official
+  }
+}
 
 /*pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
