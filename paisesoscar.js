@@ -22,13 +22,13 @@ cargarPaises = continente => {
 
             });
 
-
-
-
-
-
         })
+    
+
+    
 }
+
+
 vaciarElemento = (elemento) => {
     elemento.childNodes.forEach(hijo => {
         elemento.removeChild(hijo);
@@ -55,7 +55,7 @@ dameDatos = (url) => fetch(URL)
 
 pillarDatosGeograficos = () => {
 
-   
+
     var div = document.querySelector("div")
     let h31 = document.createElement("h3")
     let h32 = document.createElement("h3")
@@ -75,12 +75,12 @@ datosGeograficos = () => {
     let datosGeograficos = document.querySelector("#fronteras")
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
-    selectPaises.value="0"
-    dameDatos(urlrescountries + "/codes/borders/" + selectPaises.value)
-    .then(response =>response.json())
-    .then (pais=>{
-        pillarDatosGeograficos(pais[0])
-    })
+    selectPaises.value = "0"
+    urlrescountries + "/codes/borders/" + selectPaises.value
+        .then(response => response.json())
+        .then(pais => {
+            pillarDatosGeograficos(pais[0])
+        })
 
 }
 traducciones = () => { }
