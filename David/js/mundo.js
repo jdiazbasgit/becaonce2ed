@@ -73,7 +73,7 @@ Continente.addEventListener('change', (event) => {
     cboPais.add(option);
     cargarPaises(event.target.value);
   }
-  
+
 });
 
 
@@ -126,8 +126,9 @@ Pais.addEventListener('change', (event) => {
       
       if (!monedas){
         document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
-            document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
+        document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
       }
+
     });
 
 }).catch(error => {
