@@ -10,3 +10,7 @@ function nombre() {
         }
     }
 }
+
+
+
+/*ejercio de nombre en camel/*
