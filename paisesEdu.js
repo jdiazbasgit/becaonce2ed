@@ -24,50 +24,49 @@ cargarPaises = (continente) => {
 vaciarElemento = (elemento) => {
     elemento.childNodes.forEach(hijo => {
         elemento.renove.renoveChild(hijo);
-
     })
+  }
+ /*bandera https://goo.gl/maps/uDWEUaXNcZTng1fP6
+ escudo https://mainfacts.com/media/images/coats_of_arms/pe.svg
+ */
+ https://restcountries.com/v3.1/name/peru
+cargarBanderas = () => {
+    let selectpaises = document.querySelector(#pais)
+    dameDatos(urlrescountries + /name/+ selectpaises.value)
+    .then((response) => response.json())
+    .then(paises => {
+    }}
+        pintarBanderas= () => {
+            dameDatos(urlrescountries + /alpha/+ flags)
+            .then((response) => response.json())
+            .then(paises => {
+            }
+        }
 
-}
-/*cargarDatosGenerales = () => { 
-    var main = document.querySelector("main");
-    main.innerHTML = ""
-    main.classList.add.apply("text-center")
-    let tr1 = document.createElement("tr");
-    let th1 = document.createElement("th");
-    th1.classList.add("text -danger")
-    main.appendChild("th1")
-    tr1.innerHTML = "Datos" 
-}
+            pintarEscudos= () => {
+                dameDatos(urlrescountries + /alpha/+ pais.flag.coatOfArmsº)
+                .then((response) => response.json())
+                .then(paises => {
+                }
 
-cargarDatosGeograficos = () => {
+            console.log (banderas)
+            var main = document.querySelector("main");
+            main.innerHTML =""
+            main.classList.add.apply("text-center")
+            let h21 = document.createElement("h2");
+            let th1 = document.createElement("th");
+            main.appendChild(main)
+            table.appendChild(table)
+            tr1.appendChild(tr)
+            th1.appendChild(th1)
 
-vaciarElemento = (elemento) => {
-    elemento.childNodes.forEach(hijo => {
-        elemento.renove.renoveChild(hijo);
-
-    })
-
-}
-
-cargarTraducciones = () => {
-    
  vaciarElemento = (elemento) => {
     elemento.childNodes.forEach(hijo => {
         elemento.renove.renoveChild(hijo);
-
+   
     })
-
-}   
-
-cargarBanderas = () => { 
-
- vaciarElemento = (elemento) => {
-    elemento.childNodes.forEach(hijo => {
-        elemento.renove.renoveChild(hijo);
-
-    })
-
-}   
+ } 
+}
     
 
 
