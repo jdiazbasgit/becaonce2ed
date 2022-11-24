@@ -34,6 +34,7 @@ elegirPais = (pais) => {
     fetch(urlrestcountries + "name/" + pais)
         .then(response => response.json())
         .then(datos => {
+            console.log(datos)
 
             var infoData = ["datos", "geografia", "idioma", "bandera", "historia"]
             var infoText = ["Datos Generales", "Geografía", "Idioma", "Bandera", "Historia"]
@@ -63,19 +64,17 @@ elegirPais = (pais) => {
             infoData.forEach((tab) => generarTabs(tab));
 
             
-            /*console.log(infotabs[0,0])
-            var activartab = document.getElementsByClassName(datos)
-            activartab.setAttribute("class", "nav-link " + infotabs[0,0] + "active")*/
+            
 
             var idiv0 = document.createElement("div")
             padre.append(idiv0)
             idiv0.setAttribute("class", "tab-content")
-            var idiv1 = document.createElement("div")
-            idiv0.append(idiv1)
-            idiv1.setAttribute("class", "tab-pane container active textodatos")
-            idiv1.setAttribute("id", "datos")
+            var idivCampoDatos = document.createElement("div")
+            idiv0.append(idivCampoDatos)
+            idivCampoDatos.setAttribute("class", "tab-pane container active textodatos")
+            idivCampoDatos.setAttribute("id", "datos")
             var idiv2 = document.createElement("div")
-            idiv1.append(idiv2)
+            idivCampoDatos.append(idiv2)
             idiv2.setAttribute("class", "row p-2")
             var idiv3 = document.createElement("div")
             idiv2.append(idiv3)
@@ -100,6 +99,36 @@ elegirPais = (pais) => {
             idiv31.append(img1)
             img1.setAttribute("src", "imagenes/gearmini.png")
             img1.setAttribute("class", "gear2")
+
+            var infoDatosGenerales = ["Capital", "Población", "Moneda", "Dominio", "Símbolo Divisa","Superficie"]
+            var contadorEntradasDatosGenerales = 0
+
+            function generarDatosGenerales(lineaDato) {
+                let idiv0 = document.createElement("div")
+                let idiv1 = document.createElement("div")
+                let idiv2 = document.createElement("div")
+                let idiv3 = document.createElement("div")
+                let ih40 = document.createElement("h4")
+                let i = contadorEntradasDatosGenerales
+                idivCampoDatos.append(idiv0)
+                idiv0.append(idiv1)
+                idiv1.append(idiv2)
+                idiv2.append(idiv3)
+                idiv3.append(ih40)
+                idiv0.setAttribute("class", "row ms-5")
+                idiv1.setAttribute("class", "col")             
+                /*ia.setAttribute("class", "nav-link " + tab)                
+                ia.setAttribute("data-bs-toggle", "tab")
+                ia.setAttribute("href", tab)
+                ih3.innerHTML = infoText[i]*/
+                contadorEntradasDatosGenerales++
+            }
+            
+            infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato));
+            
+           /*
+
+
             var idiv20 = document.createElement("div")
             idiv1.append(idiv20)
             idiv20.setAttribute("class", "row ms-5")
@@ -140,7 +169,9 @@ elegirPais = (pais) => {
             idiv231.append(idiv232)
             var ih4 = document.createElement("h4")
             idiv232.append(ih4)
-            ih4.innerHTML = "Moneda: "//+datos[0].capital
+            var moneda = Object.keys(datos[0].currencies)
+            console.log(moneda)
+            ih4.innerHTML = "Moneda: " +datos[0].currencies[moneda].name
 
 
 
