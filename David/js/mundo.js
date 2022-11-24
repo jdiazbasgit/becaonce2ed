@@ -72,9 +72,8 @@ Continente.addEventListener('change', (event) => {
     option.text = "Seleccione un país";
     cboPais.add(option);
     cargarPaises(event.target.value);
-  } else {
-    alert("Por favor, seleccione un continente");
   }
+  
 });
 
 
@@ -87,29 +86,54 @@ Pais.addEventListener('change', (event) => {
     .then((countriesList) => {
 
       countriesList.forEach(countryData => {
-        document.querySelector('#region').innerHTML=countryData.region;
-        document.querySelector('#capital').innerHTML=countryData.capital;
-        document.querySelector('#area').innerHTML=countryData.area;
-
-
-
-
-
-        document.querySelector('#nombre').innerHTML=countryData.currencies[0];
-        document.querySelector('#simbolo').innerHTML=countryData.currencies[0];
-
-
-
+        document.querySelector('#region').innerHTML = countryData.region;
+        document.querySelector('#capital').innerHTML = countryData.capital;
+        document.querySelector('#area').innerHTML = countryData.area + ' Km<sup>2</sup>';
 
         document.querySelector("#flag-container img").src = countryData.flags.png;
         document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
-        document.querySelector('#arabe').innerHTML=countryData.translations.ara.official;
-        document.querySelector('#francia').innerHTML=countryData.translations.fra.official;
-        document.querySelector('#italia').innerHTML=countryData.translations.ita.official;
-      });
 
-    }).catch(error => {
-      alert(error);
+        var insAccordion="";
+        var i=0;
+
+        var translations = Object.keys(countryData['translations']);
+
+        translations.forEach(function(idioma) {
+          var sofficial=countryData.translations[idioma].official;
+          var scommon=countryData.translations[idioma].common;
+        
+          insAccordion+='<div class="accordion accordion-flush">';
+          insAccordion+='<div class="accordion-item">';
+          insAccordion+='<h2 class="accordion-header id="flush-heading'+i+'">';
+          insAccordion+='<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'+i+'">';
+          insAccordion+=scommon;
+          insAccordion+='</button>';
+          insAccordion+='</h2>';
+          insAccordion+='<div id="flush-collapse'+i+'" class="accordion-collapse collapse"';
+          insAccordion+='aria-labelledby="flush-heading'+i+'" data-bs-parent="#accordionFlushExample">';
+          insAccordion+='<div class="accordion-body">';
+          insAccordion+=sofficial;
+          insAccordion+='</div>';
+          insAccordion+='</div>';
+          insAccordion+='</div>';
+          insAccordion+='</div>';
+          i++;
+        });
+  
+        document.querySelector('#traducir').innerHTML = insAccordion;
+
+      var monedas = Object.keys(countryData['currencies']);
+      
+      if (!monedas){
+        document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
+            document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
+      }
     });
+
+}).catch(error => {
+  alert(error);
+});
+
+
 });
 
