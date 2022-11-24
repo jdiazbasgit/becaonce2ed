@@ -30,7 +30,22 @@ dameNombreDePais= cca3 =>{
     .then (pais => pais.name.common)
 }
 
-pintaDatosGenerales = (pais) => {
+
+var urlrestcountries = "https://restcountries.com/v3.1/";
+const main = document.querySelector("main");
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
+
+
+/*pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
   let table = document.createElement("table");
@@ -80,4 +95,4 @@ dameDatosGenerales = () => {
     .then(pais => {
       pìntaDatosGenerales(pais[0])
     })
-}
+}*/
