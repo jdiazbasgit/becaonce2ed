@@ -1,5 +1,15 @@
 var urlrestcountries = "https://restcountries.com/v3.1/"
-const main= document.querySelector("main")
+const main = document.querySelector("main")
+ var capital = 
+   poblacion =
+   area =
+ moneda = {nombre,simbolo}
+ domino =
+ frontera =[]
+ bandera =
+ escudo =
+ taduccion = idioma= {oficial,common }
+
 
 cargarPaises = (continente) => {
     fetch(urlrestcountries + "region/" + continente)
@@ -96,9 +106,22 @@ dameDatosGenerales = () => {
 
 
 dameBanderas = () => {
-    let h2=document.createElement("h2")
-    main.appendChild(h2)
-    h2.innerHTML="Banderas"
+    let table=document.createElement("table")
+    main.appendChild(table)
+   table.classList.add("table")
+   table.classList.add("table-bordered")
+   let thead =document.createElement("thead")
+   table.appendChild("thead")
+   let tr2 = document.createElement("tr")
+   thead.appendChild("tr")
+   let th1 = document.createElement("th")
+   th1.innerHTML="Bandera:"
+   tr2.appendChild(th1)
+   let th2 = document.createElement("th")
+   th2.innerHTML="Escudo:"
+   tr2.appendChild(th2)
+   
+
 
 }
 dameCodigodeMoneda = () => { }
