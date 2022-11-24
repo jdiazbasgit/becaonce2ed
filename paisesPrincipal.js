@@ -12,6 +12,8 @@ var traducciones;//Traduccion[]
 
 class Moneda {
     constructor(name,symbol){
+      this.name=name
+      this.symbol=symbol
 
     }
 }
