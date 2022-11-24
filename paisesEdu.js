@@ -25,30 +25,31 @@ vaciarElemento = (elemento) => {
     elemento.childNodes.forEach(hijo => {
         elemento.renove.renoveChild(hijo);
     })
-  }
- /*bandera https://goo.gl/maps/uDWEUaXNcZTng1fP6
- escudo https://mainfacts.com/media/images/coats_of_arms/pe.svg
- */
- https://restcountries.com/v3.1/name/peru
- 
+}
+/*bandera https://goo.gl/maps/uDWEUaXNcZTng1fP6
+escudo https://mainfacts.com/media/images/coats_of_arms/pe.svg
+*/
+https://restcountries.com/v3.1/name/peru
+
 cargarBanderas = () => {
     let selectpaises = document.querySelector(#pais)
-    dameDatos(urlrescountries + /name/+ selectpaises.value)
-    .then((response) => response.json())
-    .then(paises => {
-    }}
-        pintarBanderas= () => {
-            dameDatos(urlrescountries + /alpha/+ flags)
-            .then((response) => response.json())
-            .then(paises => {
-            }
+    dameDatos(urlrescountries + /name/ + selectpaises.value)
+        .then((response) => response.json())
+        .then(paises => {
+        } 
+}
+pintarBanderas = () => {
+    dameDatos(urlrescountries + /alpha/ + flags)
+        .then((response) => response.json())
+        .then(paises => {
+        }
         }
 
-            pintarEscudos= () => {
-                dameDatos(urlrescountries + /alpha/+ pais.flag.coatOfArmsº)
-                .then((response) => response.json())
-                .then(paises => {
-                }
+pintarEscudos = () => {
+    dameDatos(urlrescountries + /alpha/ + pais.flag.coatOfArmsº)
+        .then((response) => response.json())
+        .then(paises => {
+        }
 /*
             console.log (banderas)
             var main = document.querySelector("main");

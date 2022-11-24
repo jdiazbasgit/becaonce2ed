@@ -11,6 +11,4 @@ function nombre() {
     }
 }
 
-
-
-/*ejercio de nombre en camel/*
+//ejercicio nombre en camello
