@@ -32,5 +32,12 @@ opcionesContinente = continente => {
 
 
 
-
-
+const main = document.querySelector("main")
+var capital;
+var moneda;
+var simbolo;
+var poblacion;
+var dominio;
+var superficie;
+var moneda;
+var bandera;
