@@ -24,11 +24,11 @@ vaciarElemento = (elemento) => {
   });
 };
 dameDatos = (URL) => fetch(URL);
-/*dameNombreDePais= cca3 =>{
+dameNombreDePais= cca3 =>{
     dameDatos("https://restcountries.com/v2/name/" + cca3).then (response =>
     response.json)
     .then (pais => pais.name.common)
-}*/
+}
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
