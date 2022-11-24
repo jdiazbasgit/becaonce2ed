@@ -97,13 +97,15 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#francia').innerHTML=countryData.translations.fra.official;
         document.querySelector('#italia').innerHTML=countryData.translations.ita.official;
         //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
-        // Poner if y else 
+      
         
         var monedas = Object.keys(countryData['currencies']);
-        if (!monedas){
+       // if (!monedas){
           document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
           document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
-        }
+        // si tiene mas tipos de monedas en un pais
+        // document.querySelector('#nombre1').innerHTML=countryData.currencies[monedas].name;
+        //  document.querySelector('#simbolo1').innerHTML=countryData.currencies[monedas].symbol;
 
       });
 
