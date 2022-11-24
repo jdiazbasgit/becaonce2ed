@@ -35,40 +35,38 @@ elegirPais = (pais) => {
         .then(response => response.json())
         .then(datos => {
 
-            var infotabs = [
-                { nombrelink: "datos", nombrepestana: "Datos Generales" },
-                { nombrelink: "geografia", nombrepestana: "Geografía" },
-                { nombrelink: "idioma", nombrepestana: "Idioma" },
-                { nombrelink: "bandera", nombrepestana: "Bandera" },
-                { nombrelink: "historia", nombrepestana: "Historia" }
-            ]
+            var infoData = ["datos", "geografia", "idioma", "bandera", "historia"]
+            var infoText = ["Datos Generales", "Geografía", "Idioma", "Bandera", "Historia"]
 
             var padre = document.getElementById("megacampo")
             var iul = document.createElement("ul")
             padre.append(iul)
             iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+            var contadorTabs = 0
 
-            infotabs.forEach((nombrelink) => generarTabs(nombrelink));
-
-            function generarTabs(pestana) {                
+            function generarTabs(tab) {
                 let iil = document.createElement("il")
                 let ia = document.createElement("a")
                 let ih3 = document.createElement("h3")
-                
+                let i = contadorTabs
                 iul.append(iil)
                 iil.append(ia)
                 ia.append(ih3)
-                
-                iil.setAttribute("class", "nav-item")
-                ia.setAttribute("class", "nav-link " + pestana.nombrelink)
+                iil.setAttribute("class", "nav-item")                
+                ia.setAttribute("class", "nav-link " + tab)                
                 ia.setAttribute("data-bs-toggle", "tab")
-                ia.setAttribute("href", pestana.nombrelink)
-                ih3.innerHTML = pestana.nombrepestana
+                ia.setAttribute("href", tab)
+                ih3.innerHTML = infoText[i]
+                contadorTabs++
             }
+            
+            infoData.forEach((tab) => generarTabs(tab));
+
+            
             /*console.log(infotabs[0,0])
             var activartab = document.getElementsByClassName(datos)
             activartab.setAttribute("class", "nav-link " + infotabs[0,0] + "active")*/
-            
+
             var idiv0 = document.createElement("div")
             padre.append(idiv0)
             idiv0.setAttribute("class", "tab-content")
@@ -115,7 +113,7 @@ elegirPais = (pais) => {
             idiv22.append(idiv23)
             var ih4 = document.createElement("h4")
             idiv23.append(ih4)
-            ih4.innerHTML = "Capital: "+datos[0].capital
+            ih4.innerHTML = "Capital: " + datos[0].capital
 
             var idiv220 = document.createElement("div")
             idiv20.append(idiv220)
@@ -127,7 +125,7 @@ elegirPais = (pais) => {
             idiv221.append(idiv222)
             var ih4 = document.createElement("h4")
             idiv222.append(ih4)
-            ih4.innerHTML = "Población: "+datos[0].population
+            ih4.innerHTML = "Población: " + datos[0].population
 
             var idiv200 = document.createElement("div")
             idiv1.append(idiv200)
@@ -148,7 +146,7 @@ elegirPais = (pais) => {
 
 
 
-            
+
 
 
 
