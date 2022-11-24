@@ -1,6 +1,6 @@
 
 
-fetch("https://restcountries.com/v3.1/name/spain")
+fetch("https://restcountries.com/v3.1/name/palestine")
 .then(response=>response.json())
 .then(pais=>{
     let traducciones=Object.entries(pais[0].translations);
@@ -10,4 +10,9 @@ fetch("https://restcountries.com/v3.1/name/spain")
         console.log(element[0]+" - "+objeto[1][1])
         
     });
+
+    let monedas=Object.entries(pais[0].currencies);
+    monedas.forEach(moneda=>{
+        console.log(moneda[1].name)
+    })
 })
