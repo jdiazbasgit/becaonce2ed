@@ -17,13 +17,16 @@ class Moneda {
 }
 
 class Traduccion {
+   
     constructor(common,official,paises){
-
+      this.common=common
+      this.paises=paises
+      this.official=official
     }
 }
 
 var euro= new Moneda("euro","€")
-var arabe= new Traduccion("إسباني   ","مملكة إسبانيا",[])
+var arabe= new Traduccion("إسباني   ","مملكة إسبانيا",new Array())
 arabe.paises.push("Argelia")
 console.log(euro.symbol)
 
