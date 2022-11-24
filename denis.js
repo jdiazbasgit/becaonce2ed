@@ -50,14 +50,7 @@ class Moneda {
   }
 }
 
-class Traduccion {
- 
-  constructor(common,official,paises){
-    this.common=common
-    this.paises=paises
-    this.official=official
-  }
-}
+
 
 /*pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
