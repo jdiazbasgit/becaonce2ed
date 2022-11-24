@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="principal.js"></script>
 
 </head>
 
@@ -28,10 +29,10 @@
     <div class="container mt-3">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos generales</a>
+          <a class="nav-link active bg-success" href="#">Datos Generales</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
+          <a class="nav-link active bg-success" href="#">Datos Geograficos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active bg-success" href="#">Traducción</a>
@@ -41,74 +42,78 @@
         </li>
       </ul>
     </div>
+
     <div class="row mt-5">
       <div class="col">
-        <h2>Seleccione continente</h2>
+        <h2>Seleccione Continente</h2>
         <label for="sel1" class="form-label"></label>
         <select class="form-select bg-success" id="sel1" name="sellist1">
-          <option>Europa</option>
-          <option>America</option>
-          <option>Asia</option>
-          <option>Africa</option>
-          <option>Oceania</option>
+          <option value="0">Elige un Continente</option>
+          <option value="africa">África</option>
+          <option value="americas">América</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europa</option>
+          <option value="oceania">Oceania</option>
         </select>
       </div>
+
       <div class="col">
-        <h2>Seleccione país</h2>
+        <h2>Seleccione País</h2>
         <label for="sel1" class="form-label"></label>
         <select class="form-select bg-success " id="sel1" name="sellist1">
-          <option>XXXXXXXXXX</option>
+          <option value="0">Elige un País</option>
         </select>
-      </div>
+      </div> 
     </div>
+    
     <div class="mx-auto w-50 mt-3 container-fluid">
       <h2>Fronteras:</h2>
       <table class="w-100">
         <tr>
-            <td>
-              <h3 class="mx-auto">Capital: xxxxxxx</h3>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <h3>Población: 9999999999</h3>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <h3>Área: 99999999999</h3>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <h3>Moneda:</h3>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-            </td>
-            <td>
-              <h3>nombre: Euro</h3>
-            </td>
-          </tr>
-          <tr>
-            <td>
-            </td>
-            <td>
-              <h3>Símbolo: €</h3>
-            </td>
-          </tr>
-        </table>
-      </div>
+          <td>
+            <h3 class="mx-auto">Capital: xxxxxxx</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Población: 9999999999</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Área: 99999999999</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3>Moneda:</h3>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <h3>nombre: Euro</h3>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            <h3>Símbolo: €</h3>
+          </td>
+        </tr>
+      </table>
     </div>
-    <div class="row mx-auto w-50 mt-3 container-fluid">
-      <table>
-        <td>
-          <tr>
-  
-            
-          </tr>
+  </div>
+  <div class="row mx-auto w-50 mt-3 container-fluid">
+    <table>
+      <td>
+        <tr>
+
+
+        </tr>
