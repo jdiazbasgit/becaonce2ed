@@ -1,6 +1,31 @@
 var urlrescountries = "https://restcountries.com/v3.1";
 
 
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
+class Moneda {
+    constructor(name,symbol){
+
+    }
+}
+
+class Traduccion {
+   
+    constructor(common,official,paises){
+      this.common=common
+      this.paises=paises
+      this.official=official
+    }
+}
+
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
