@@ -98,7 +98,7 @@ Pais.addEventListener('change', (event) => {
 
         var translations = Object.keys(countryData['translations']);
 
-        translations.forEach(function(idioma) {
+        translations.forEach(idioma => {
           var sofficial=countryData.translations[idioma].official;
           var scommon=countryData.translations[idioma].common;
         
