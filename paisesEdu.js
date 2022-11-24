@@ -30,6 +30,7 @@ vaciarElemento = (elemento) => {
  escudo https://mainfacts.com/media/images/coats_of_arms/pe.svg
  */
  https://restcountries.com/v3.1/name/peru
+ 
 cargarBanderas = () => {
     let selectpaises = document.querySelector(#pais)
     dameDatos(urlrescountries + /name/+ selectpaises.value)
@@ -48,7 +49,7 @@ cargarBanderas = () => {
                 .then((response) => response.json())
                 .then(paises => {
                 }
-
+/*
             console.log (banderas)
             var main = document.querySelector("main");
             main.innerHTML =""
