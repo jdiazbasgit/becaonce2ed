@@ -104,6 +104,7 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
+
     dameDatos(urlrescountries + "/name/borders/") + selectPaises.value
         .then(response => response.json())
         .then(pais => {
