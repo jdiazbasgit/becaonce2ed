@@ -29,14 +29,7 @@ dameNombreDePais= cca3 =>{
     response.json)
     .then (pais => pais.name.common)
 }
-dameDatosGenerales = () => {
-  let selectPaises = document.querySelector("#paises");
-  dameDatos(urlRestCountries + "/name/" + selectPaises.value)
-    .then((response) => response.json())
-    .then(pais => {
-      pìntaDatosGenerales(pais[0])
-    })
-}
+
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
@@ -79,3 +72,12 @@ pintaDatosGenerales = (pais) => {
   tr2.appendChild(td4);
   tr2.appendChild(td5);
 };
+
+dameDatosGenerales = () => {
+  let selectPaises = document.querySelector("#paises");
+  dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      pìntaDatosGenerales(pais[0])
+    })
+}
