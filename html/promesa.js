@@ -9,12 +9,16 @@ sinPromesa = () => {
   else console.log("hola cariño como estas");
 };
 
-conPromesa = () => {
-    dejoElMovil().then((result) => {
+async function conPromesa () {
+    /*dejoElMovil().then((result) => {
     console.log(result);
     if (movilroto) console.log("no puedo llamar, el movil esta roto");
     else console.log("hola cariño como estas");
-  });
+  });*/
+  const result=await dejoElMovil();
+  console.log(result);
+  if (movilroto) console.log("no puedo llamar, el movil esta roto");
+  else console.log("hola cariño como estas");
 };
 
 dejoElMovil = () => {
