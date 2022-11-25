@@ -101,27 +101,8 @@ elegirPais = (pais) => {
             img1.setAttribute("class", "gear2")
 
             let infoDatosGenerales = ["Capital: ", "Población: ", "Moneda: ", "Dominio: ", "Símbolo Divisa: ", "Superficie: "]
+            let respuestasDatosGenerales = [datos[0].capital, datos[0].population, obtenerMonedas(), datos[0].tld, obtenerSimbolos(), datos[0].area]
 
-            let moneda = Object.keys(datos[0].currencies)
-            let monedas = []
-            moneda.forEach(moneda => {
-                monedas.push(" " + datos[0].currencies[moneda].name)
-            })
-            let simbolo = Object.keys(datos[0].currencies)
-            let simbolos = []
-            simbolo.forEach(simbolo => {
-                simbolos.push(" " + datos[0].currencies[simbolo].symbol)
-            })
-
-            let respuestasDatosGenerales = [
-                datos[0].capital,
-                datos[0].population,
-                monedas,
-                datos[0].tld,
-                simbolos,
-                datos[0].area
-            ]
-            
             let contadorEntradasDatosGenerales = 0
             let j = 0
 
@@ -150,8 +131,28 @@ elegirPais = (pais) => {
                 contadorEntradasDatosGenerales++
             }
 
-            infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato));
+            infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato))
 
+            function obtenerMonedas() {
+                let moneda = Object.keys(datos[0].currencies)
+                let monedas = []
+                moneda.forEach(moneda => {
+                    monedas.push(" " + datos[0].currencies[moneda].name)
+                })
+                return monedas
+            }
+
+            function obtenerSimbolos() {
+                let simbolo = Object.keys(datos[0].currencies)
+                let simbolos = []
+                simbolo.forEach(simbolo => {
+                    simbolos.push(" " + datos[0].currencies[simbolo].symbol)
+                })
+                return simbolos
+            }
+        }
+        )
+}
             /* 
              var idiv20 = document.createElement("div")
              idiv1.append(idiv20)
@@ -268,9 +269,7 @@ elegirPais = (pais) => {
              document.getElementById("nombreCapital").innerHTML = datos[0].capital
              document.getElementById("nombreMoneda").innerHTML = datos[0].currencies.EUR.name
              document.getElementById("nombrePoblacion").innerHTML = datos[0].population*/
-        }
-        )
-}
+
 
 
 
@@ -293,7 +292,16 @@ elegirPais = (pais) => {
 selectorpaises.childNodes.forEach(hijo =>{
 selectorpaises.remove(hijo)
 })*/
-
+/*let moneda = Object.keys(datos[0].currencies)
+            let monedas = []
+            moneda.forEach(moneda => {
+                monedas.push(" " + datos[0].currencies[moneda].name)
+            })
+            let simbolo = Object.keys(datos[0].currencies)
+            let simbolos = []
+            simbolo.forEach(simbolo => {
+                simbolos.push(" " + datos[0].currencies[simbolo].symbol)
+            })*/
 /*<option class="opcionescontinentes" value="null">SeleccionaPaís</option>
         
     });
