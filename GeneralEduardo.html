@@ -28,7 +28,7 @@
                 <button type="button" class="btn btn-info">Datos Generales</button>
                 <button type="button" class="btn btn-info">Datos Geográficos</button>
                 <button type="button" class="btn btn-info">Traducciones</button>
-                <button type="button" class="btn btn-info" onclick=cargarBanderas() (this.value)>Banderas</button>
+                <button type="button" class="btn btn-info" onclick=cargaBanderaEscudo()>Banderas</button>
             </nav>
         </header>
 
@@ -39,7 +39,7 @@
                         <div class="row">
                             <div class="col">
                                 Continente:<select id="continentes" name="continente" class="form-select "
-                                    onchange="cargarPaises (this.value)">
+                                    onchange="cargaInicialPaises (this.value)">
                                     <option value="0">Elige un continente</option>
                                     <option value="africa">África</option>
                                     <option value="americas">América</option>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col">
                                 País:<select id="paises" name="pais" class="form-select form-select-sm"
-                                    onchange="cargaPais (this.value)">
+                                    onchange="cargaInicialPais (this.value)">
                                     <option value="0">Elige un país</option>
                                 </select>
                             </div>
@@ -76,7 +76,7 @@
                         <td class="text-center">xxx</td>
                 </table>
                 <div>
-                    <div class="container mt-3">
+                    <div class="container mt-3"onchange="cargaBanderaEscudo (this.value)">
                         <h2 class="text-center">BANDERAS Y ESCUDOS</h2>
                         <img src="https://proyectoviajero.com/wp-content/uploads/2021/03/Bandera-de-Espan%CC%83a.svg"
                             class="float-start" alt="españa" width="304" height="236">
