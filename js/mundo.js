@@ -80,7 +80,7 @@ Continente.addEventListener('change', (event) => {
 
 
 var Pais = document.querySelector('#pais');
-
+//Registra un evento a un objeto en especifico
 Pais.addEventListener('change', (event) => {
   fetch("https://restcountries.com/v3.1/name/" + Pais.value)
     .then((response) => response.json())
@@ -91,23 +91,22 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#capital').innerHTML=countryData.capital;
         document.querySelector('#population').innerHTML=countryData.population;
         document.querySelector('#area').innerHTML=countryData.area;
-
-
-
-
-
-        document.querySelector('#nombre').innerHTML=countryData.currencies[0];
-        document.querySelector('#simbolo').innerHTML=countryData.currencies[0];
-
-
-
-
-        document.querySelector("#flag-container img").src = countryData.flags.png;
+         document.querySelector("#flag-container img").src = countryData.flags.png;
         document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
         document.querySelector('#arabe').innerHTML=countryData.translations.ara.official;
         document.querySelector('#francia').innerHTML=countryData.translations.fra.official;
         document.querySelector('#italia').innerHTML=countryData.translations.ita.official;
         //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
+      
+        
+        var monedas = Object.keys(countryData['currencies']);
+       // if (!monedas){
+          document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
+          document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
+        // si tiene mas tipos de monedas en un pais
+        // document.querySelector('#nombre1').innerHTML=countryData.currencies[monedas].name;
+        //  document.querySelector('#simbolo1').innerHTML=countryData.currencies[monedas].symbol;
+
       });
 
     }).catch(error => {
