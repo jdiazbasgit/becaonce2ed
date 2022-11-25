@@ -1,3 +1,24 @@
+cargaInicial= pais =>{
+
+    fetch("https://restcountries.com/v3.1/name")
+    .then(response => response.json())
+    .then(paises =>{})
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 var urlrescountries = "https://restcountries.com/v3.1";
 
 
@@ -13,7 +34,8 @@ var traducciones;//Traduccion[]
 
 class Moneda {
     constructor(name,symbol){
-
+this.name=name
+this.symbol=symbol
     }
 }
 
@@ -59,7 +81,13 @@ vaciarElemento = (elemento) => {
         elemento.removeChild(hijo);
     })
 }
-dameDatos = (url) => fetch(URL)
+
+dameDatos = (URL) => fetch(URL);
+dameNombreDePais = cca3=>{
+dameDatos(urlrescountries + [cca3]).then (response => response.json)
+.then(pais=>pais.borders)
+
+}
 
 //datosgenerales= (pais) =>{
 // datosGenerales = document.querySelector("#datosgenerales");
@@ -87,11 +115,11 @@ pillarDatosGeograficos = () => {
     let h33 = document.createElement("h3")
     let h34 = document.createElement("h3")
     let h35 = document.createElement("h3")
-    h31.innerHTML = "Frontera 1" + pais.codes.borders
-    h32.innerHTML = "Frontera 2" + pais.codes.borders
-    h33.innerHTML = "Frontera 3" + pais.codes.borders
-    h34.innerHTML = "Frontera 4" + pais.codes.borders
-    h35.innerHTML = "Frontera 5" + pais.codes.borders
+    h31.innerHTML = "Frontera 1" + pais.frontera   
+    h32.innerHTML = "Frontera 2" + pais.frontera
+    h33.innerHTML = "Frontera 3" + pais.frontera
+    h34.innerHTML = "Frontera 4" + pais.frontera
+    h35.innerHTML = "Frontera 5" + pais.frontera
 
 }
 
@@ -101,7 +129,7 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
-    urlrescountries + "/codes/borders/" + selectPaises.value
+    dameDatos (urlrescountries + "/alpha/" + selectPaises.value)
         .then(response => response.json())
         .then(pais => {
             pillarDatosGeograficos(pais[0])
