@@ -80,7 +80,7 @@ Continente.addEventListener('change', (event) => {
 
 
 var Pais = document.querySelector('#pais');
-
+//Registra un evento a un objeto en especifico
 Pais.addEventListener('change', (event) => {
   fetch("https://restcountries.com/v3.1/name/" + Pais.value)
     .then((response) => response.json())
