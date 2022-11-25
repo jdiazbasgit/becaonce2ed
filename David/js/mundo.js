@@ -73,7 +73,6 @@ Continente.addEventListener('change', (event) => {
     cboPais.add(option);
     cargarPaises(event.target.value);
   }
-
 });
 
 
@@ -98,7 +97,7 @@ Pais.addEventListener('change', (event) => {
 
         var translations = Object.keys(countryData['translations']);
 
-        translations.forEach(function(idioma) {
+        translations.forEach(idioma => {
           var sofficial=countryData.translations[idioma].official;
           var scommon=countryData.translations[idioma].common;
         
@@ -123,12 +122,21 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#traducir').innerHTML = insAccordion;
 
       var monedas = Object.keys(countryData['currencies']);
-      
-      if (!monedas){
+
+      if (monedas.length>1){
+        var sname="";
+        var ssymbol="";
+        monedas.forEach(tipo => {
+          sname+=countryData.currencies[tipo].name+', ';
+          ssymbol+=countryData.currencies[tipo].symbol+', ';
+        });
+
+        document.querySelector('#nombre').innerHTML=sname.slice(0, -2);
+        document.querySelector('#simbolo').innerHTML=ssymbol.slice(0, -2);
+      }else if(monedas.length==1){
         document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
         document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
       }
-
     });
 
 }).catch(error => {
