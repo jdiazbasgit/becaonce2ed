@@ -33,18 +33,23 @@ var escudo;//string
 var traducciones;//Traduccion[]
 
 class Moneda {
+<<<<<<< HEAD
     constructor(name,symbol){
 this.name=name
 this.symbol=symbol
+=======
+    constructor(name, symbol) {
+
+>>>>>>> 11f89d1c0f74c830c844ed355646ffdeb33b924d
     }
 }
 
 class Traduccion {
-   
-    constructor(common,official,paises){
-      this.common=common
-      this.paises=paises
-      this.official=official
+
+    constructor(common, official, paises) {
+        this.common = common
+        this.paises = paises
+        this.official = official
     }
 }
 
@@ -70,9 +75,9 @@ cargarPaises = continente => {
             });
 
         })
-    
 
-    
+
+
 }
 
 
@@ -108,20 +113,24 @@ dameDatos(urlrescountries + [cca3]).then (response => response.json)
 
 pillarDatosGeograficos = () => {
 
-
-    var div = document.querySelector("div")
+    var main = document.querySelector("main")
+    var div = document.createElement("div")
     let h31 = document.createElement("h3")
     let h32 = document.createElement("h3")
     let h33 = document.createElement("h3")
     let h34 = document.createElement("h3")
     let h35 = document.createElement("h3")
+
     h31.innerHTML = "Frontera 1" + pais.frontera   
     h32.innerHTML = "Frontera 2" + pais.frontera
     h33.innerHTML = "Frontera 3" + pais.frontera
     h34.innerHTML = "Frontera 4" + pais.frontera
     h35.innerHTML = "Frontera 5" + pais.frontera
 
+
 }
+
+
 
 
 datosGeograficos = () => {
@@ -129,7 +138,12 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
-    dameDatos (urlrescountries + "/alpha/" + selectPaises.value)
+
+   
+
+
+    dameDatos(urlrescountries + "/name/borders/") + selectPaises.value
+
         .then(response => response.json())
         .then(pais => {
             pillarDatosGeograficos(pais[0])
@@ -137,6 +151,4 @@ datosGeograficos = () => {
 
 }
 traducciones = () => { }
-banderas = () => {
-
-}
+banderas = () => { }
