@@ -12,17 +12,17 @@ var escudo;//string
 var traducciones;//Traduccion[]
 
 class Moneda {
-    constructor(name,symbol){
+    constructor(name, symbol) {
 
     }
 }
 
 class Traduccion {
-   
-    constructor(common,official,paises){
-      this.common=common
-      this.paises=paises
-      this.official=official
+
+    constructor(common, official, paises) {
+        this.common = common
+        this.paises = paises
+        this.official = official
     }
 }
 
@@ -48,9 +48,9 @@ cargarPaises = continente => {
             });
 
         })
-    
 
-    
+
+
 }
 
 
@@ -80,13 +80,14 @@ dameDatos = (url) => fetch(URL)
 
 pillarDatosGeograficos = () => {
 
-
-    var div = document.querySelector("div")
+    var main = document.querySelector("main")
+    var div = document.createElement("div")
     let h31 = document.createElement("h3")
     let h32 = document.createElement("h3")
     let h33 = document.createElement("h3")
     let h34 = document.createElement("h3")
     let h35 = document.createElement("h3")
+
     h31.innerHTML = "Frontera 1" + pais.codes.borders
     h32.innerHTML = "Frontera 2" + pais.codes.borders
     h33.innerHTML = "Frontera 3" + pais.codes.borders
@@ -96,12 +97,15 @@ pillarDatosGeograficos = () => {
 }
 
 
+
+
 datosGeograficos = () => {
     let datosGeograficos = document.querySelector("#fronteras")
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
-    urlrescountries + "/codes/borders/" + selectPaises.value
+
+    dameDatos(urlrescountries + "/name/borders/") + selectPaises.value
         .then(response => response.json())
         .then(pais => {
             pillarDatosGeograficos(pais[0])
@@ -109,6 +113,4 @@ datosGeograficos = () => {
 
 }
 traducciones = () => { }
-banderas = () => {
-
-}
+banderas = () => { }
