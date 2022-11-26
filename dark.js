@@ -99,9 +99,9 @@ elegirPais = (pais) => {
             img0.setAttribute("class", "gear1")
             img1.setAttribute("src", "imagenes/gearmini.png")
             img1.setAttribute("class", "gear2")
-
+            
             let infoDatosGenerales = ["Capital: ", "Población: ", "Moneda: ", "Dominio: ", "Símbolo Divisa: ", "Superficie: "]
-            let respuestasDatosGenerales = [datos[0].capital, datos[0].population, obtenerMonedas(), datos[0].tld, obtenerSimbolos(), datos[0].area]
+            let respuestasDatosGenerales = [datos[0].capital, datos[0].population, obtenerCurrencies(), datos[0].tld, obtenerCurrencies(), datos[0].area]
 
             let contadorEntradasDatosGenerales = 0
             let j = 0
@@ -142,13 +142,13 @@ elegirPais = (pais) => {
                 return monedas
             }
 
-            function obtenerSimbolos() {
-                let simbolo = Object.keys(datos[0].currencies)
-                let simbolos = []
-                simbolo.forEach(simbolo => {
-                    simbolos.push(" " + datos[0].currencies[simbolo].symbol)
+            function obtenerCurrencies(currencie) {
+                let curencieData = Object.keys(datos[0].currencies)
+                let curencieDataArray = []
+                curencieData.forEach(curencieData => {
+                    curencieDataArray.push(" " + datos[0].currencies[curencieData].currencie)
                 })
-                return simbolos
+                return curencieDataArray
             }
         }
         )
