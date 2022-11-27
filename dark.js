@@ -15,7 +15,9 @@ elegirContinente = (continente) => {
         let iconoContinente = document.getElementById("iconoContinente");
         iconoContinente.classList.remove("guisiguente")
         iconoContinente.classList.add("guisiguenteparpadeo")
-
+        let iconoPais = document.getElementById("iconoPais");
+        iconoPais.classList.remove("guisiguenteparpadeo")
+        iconoPais.classList.add("guisiguiente")
     }
     else {
         let iconoContinente = document.getElementById("iconoContinente");
