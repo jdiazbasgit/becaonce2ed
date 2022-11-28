@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleado</title>
+    <!--<script type="text/javascript" src="js/empleado.js"></script>-->
+    <script type="text/javascript" src="js/callback.js" defer></script>
 </head>
+
 <body>
-    
+    <input type="number" id="numero1">
+    <select name="signo" id="signo">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="-">/</option>
+        <option value="-">*</option>
+    </select>
+    <input type="number" id="numero2">
+    <button onclick="resultado(document.querySelector('#signo').value)">Resultado</button>
+
+    <p sytle="font-size:50px;" id="out"></p>
 </body>
+
 </html>
