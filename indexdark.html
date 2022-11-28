@@ -22,7 +22,7 @@
         <nav class="navbar rounded p-2 mt-4 justify-content-between">
             <a type="button" class="navbar-brand bg-light rounded-circle iconoprincipal" data-bs-toggle="modal"
                 data-bs-target="#modalalien"><img src="imagenes/alien.svg" width="30px">
-        </a>
+            </a>
             <span class="titulo display-2">
                 AREA 51 FILES
             </span>
@@ -35,7 +35,7 @@
     <div class="modal fade" id="modalalien" tabindex="-1">
         <div class="modal-dialog modal-xl">
             <div class="modal-content bg-dark">
-                <div class="modal-header">                    
+                <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -55,18 +55,29 @@
         <div class="row">
             <div class="col">
                 <div class="text-center pb-3">
-                    <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title data-bs-original-title="Nueva consulta">
-                        <img src="imagenes/3d-cube-sphere.svg" width="50px"></a>                        
+                    <a class="btn bg-transparent botoncentral" data-bs-toggle="collapse"
+                        data-bs-target="#ajustes">
+                        <img src="imagenes/settings.svg" width="50px"></a>
+                        <div id="ajustes" class="collapse">
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                            <label><input type="checkbox" name="tenis">Tenis</label>
+                            <input type="button" value="Guardar" data-bs-toggle="collapse"
+                            data-bs-target="#ajustes">
+                        </div>
                 </div>
             </div>
         </div>
+        
         <div class="row">
             <div class="col">
                 <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Planeta</h3>
                 <ul class="list-group list-group-light mb-0">
                     <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
                         <div class="d-flex align-items-center">
-                            <img src="imagenes/planet.svg" width="45px" class="bg-light rounded-circle icononasa" />
+                            <img src="imagenes/planet.svg" width="45px" class="bg-light rounded-circle guisiguente" />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1">
                                     <select name="#" class="p-0" disabled>
@@ -79,27 +90,29 @@
                 </ul>
             </div>
         </div>
-        <div class="row mb-2">
+        <div class="row mb-2" id="filaContinenteScroll">
             <div class="col">
                 <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Continente</h3>
                 <ul class="list-group list-group-light mb-0">
                     <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
                         <div class="d-flex align-items-center">
-                            <img src="imagenes/world.svg" width="45px" class="bg-light rounded-circle guisiguenteparpadeo" id="iconoContinente"/>
+                            <img src="imagenes/world.svg" width="45px"
+                                class="bg-light rounded-circle guisiguenteparpadeo" id="iconoContinente" />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1">
-                                    <select name="continente" class="opcionescontinentescasilla p-0" id="seleccionaContinente" onchange="elegirContinente(value)">
+                                    <select name="continente" class="opcionescontinentescasilla p-0"
+                                        id="seleccionaContinente" onchange="elegirContinente(value)">
                                         <option class="opcionescontinentes" value="null">Selecciona
-                                            Continente</option>
-                                        <option class="opcionescontinentes" value="asia">Asia</option>
+                                            Continente</option>                                        
                                         <option class="opcionescontinentes" value="africa">Africa
                                         </option>
                                         <option class="opcionescontinentes" value="americas">América
                                         </option>
-                                        <option class="opcionescontinentes" value="oceania">Oceanía
-                                        </option>
+                                        <option class="opcionescontinentes" value="asia">Asia</option>
                                         <option class="opcionescontinentes" value="europe">Europa
                                         </option>
+                                        <option class="opcionescontinentes" value="oceania">Oceanía
+                                        </option>                                        
                                     </select>
                                 </p>
 
@@ -113,9 +126,11 @@
                 <ul class="list-group list-group-light mb-0">
                     <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
                         <div class="d-flex align-items-center">
-                            <img src="imagenes/map-search.svg" width="45px" class="bg-light rounded-circle guisiguente" id="iconoPais"/>
+                            <img src="imagenes/map-search.svg" width="45px" class="bg-light rounded-circle guisiguente"
+                                id="iconoPais" />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0" id="seleccionaPais" onchange="elegirPais(value)">
+                                <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0"
+                                        id="seleccionaPais" onchange="elegirPais(value)">
                                         <option class="opcionescontinentes" value="null">Selecciona
                                             País</option>
                                     </select></p>
@@ -128,14 +143,15 @@
 
         <div class="row">
             <div class="col megacol" id="megacampo">
-                
+
             </div>
         </div>
     </div>
     <footer class="container-fluid text-center bottom-0">
-               <div class="text-center pb-3">
-            <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title data-bs-original-title="Nueva consulta">
-                <img src="imagenes/3d-cube-sphere.svg" width="140px"></a>                        
+        <div class="text-center pb-3">
+            <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title
+                data-bs-original-title="Nueva consulta">
+                <img src="imagenes/3d-cube-sphere.svg" width="140px"></a>
         </div>
         <div class="container-fluid bg-secondary rounded bg-gradient text-center text-white text-lg-start bottom-0">
             <div class="text-center small p-0">

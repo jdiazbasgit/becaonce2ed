@@ -9,9 +9,10 @@ elegirContinente = (continente) => {
     placeholder.value = null;
     selectorpaises.appendChild(placeholder);
 
-    if (continente == "null") {
-        let padre = document.getElementById("megacampo")
-        padre.innerHTML = ""
+    let padre = document.getElementById("megacampo")
+    padre.innerHTML = ""
+
+    if (continente == "null") {        
         let iconoContinente = document.getElementById("iconoContinente");
         iconoContinente.classList.remove("guisiguente")
         iconoContinente.classList.add("guisiguenteparpadeo")
@@ -70,6 +71,8 @@ elegirPais = (pais) => {
         let iconoPais = document.getElementById("iconoPais");
         iconoPais.classList.remove("guisiguenteparpadeo")
         iconoPais.classList.add("guisiguiente")
+        var scroll = document.querySelector("#filaContinenteScroll");
+        scroll.scrollIntoView({ behavior: 'smooth' });
 
         fetch(urlrestcountries + "name/" + pais)
             .then(response => response.json())
@@ -82,6 +85,9 @@ elegirPais = (pais) => {
                 var iul = document.createElement("ul")
                 padre.append(iul)
                 iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
+                var idiv0 = document.createElement("div")
+                padre.append(idiv0)
+                idiv0.setAttribute("class", "tab-content")
                 let contadorTabs = 0
 
                 function generarTabs(tab) {
@@ -98,47 +104,51 @@ elegirPais = (pais) => {
                         ia.classList.add("active")
                     }
                     ia.setAttribute("data-bs-toggle", "tab")
-                    ia.setAttribute("href", tab)
+                    ia.setAttribute("href", "#"+tab)
                     ih3.innerHTML = infoText[i]
+                    
+                    let idivCampoDatos = document.createElement("div")
+                    let idiv2 = document.createElement("div")
+                    let idiv3 = document.createElement("div")
+                    let idiv4 = document.createElement("div")
+                    let ih2 = document.createElement("h2")
+                    let idiv30 = document.createElement("div")
+                    let idiv31 = document.createElement("div")
+                    let img0 = document.createElement("img")
+                    let img1 = document.createElement("img")
+                    
+                    idiv0.append(idivCampoDatos)
+                    idivCampoDatos.append(idiv2)
+                    idiv2.append(idiv3)
+                    idiv3.append(idiv4)
+                    idiv2.append(idiv30)
+                    idiv4.append(ih2)
+                    idiv30.append(idiv31)
+                    idiv31.append(img0)
+                    idiv31.append(img1)
+                    
+                    idivCampoDatos.setAttribute("class", "tab-pane container active textodatos")
+                    if (i !== 0) {
+                        idivCampoDatos.classList.remove("active")
+                        idivCampoDatos.classList.add("fade")
+                    }
+                    idivCampoDatos.setAttribute("id", tab)
+                    idiv2.setAttribute("class", "row p-2")
+                    idiv3.setAttribute("class", "col")
+                    ih2.setAttribute("class", "nombreDePaisClass")
+                    ih2.innerHTML = pais
+                    idiv30.setAttribute("class", "col")
+                    idiv31.setAttribute("class", "celdagears")
+                    img0.setAttribute("src", "imagenes/gear.png")
+                    img0.setAttribute("class", "gear1")
+                    img1.setAttribute("src", "imagenes/gearmini.png")
+                    img1.setAttribute("class", "gear2")
+
                     contadorTabs++
                 }
 
                 infoData.forEach((tab) => generarTabs(tab));
-
-
-                var idiv0 = document.createElement("div")
-                var idivCampoDatos = document.createElement("div")
-                var idiv2 = document.createElement("div")
-                var idiv3 = document.createElement("div")
-                var idiv4 = document.createElement("div")
-                var ih2 = document.createElement("h2")
-                var idiv30 = document.createElement("div")
-                var idiv31 = document.createElement("div")
-                var img0 = document.createElement("img")
-                var img1 = document.createElement("img")
-                padre.append(idiv0)
-                idiv0.append(idivCampoDatos)
-                idivCampoDatos.append(idiv2)
-                idiv2.append(idiv3)
-                idiv3.append(idiv4)
-                idiv2.append(idiv30)
-                idiv4.append(ih2)
-                idiv30.append(idiv31)
-                idiv31.append(img0)
-                idiv31.append(img1)
-                idiv0.setAttribute("class", "tab-content")
-                idivCampoDatos.setAttribute("class", "tab-pane container active textodatos")
-                idivCampoDatos.setAttribute("id", "datos")
-                idiv2.setAttribute("class", "row p-2")
-                idiv3.setAttribute("class", "col")
-                ih2.setAttribute("class", "nombreDePaisClass")
-                ih2.innerHTML = pais
-                idiv30.setAttribute("class", "col")
-                idiv31.setAttribute("class", "celdagears")
-                img0.setAttribute("src", "imagenes/gear.png")
-                img0.setAttribute("class", "gear1")
-                img1.setAttribute("src", "imagenes/gearmini.png")
-                img1.setAttribute("class", "gear2")
+               
 
                 let infoDatosGenerales = ["Capital: ", "Población: ", "Moneda: ", "Dominio: ", "Símbolo Divisa: ", "Superficie: "]
                 let respuestasDatosGenerales = [datos[0].capital, datos[0].population, obtenerMonedas(), datos[0].tld, obtenerSimbolo(), datos[0].area + " km²"]
@@ -153,15 +163,16 @@ elegirPais = (pais) => {
                     }
                     if (i % 2 == 0) {
                         let idiv0F = document.createElement("div")
-                        idivCampoDatos.append(idiv0F)
-                        idiv0F.setAttribute("id", "fila" + j)
+                        let idivCampoDatosDatos = document.getElementById("datos")
+                        idivCampoDatosDatos.append(idiv0F)
+                        idiv0F.setAttribute("id", "filaDato" + j)
                         idiv0F.setAttribute("class", "row ms-5")
                     }
                     let idiv1 = document.createElement("div")
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
                     let ih40 = document.createElement("h4")
-                    let idiv0F = document.getElementById("fila" + j)
+                    let idiv0F = document.getElementById("filaDato" + j)
                     idiv0F.append(idiv1)
                     idiv1.append(idiv2)
                     idiv2.append(idiv3)
@@ -170,8 +181,6 @@ elegirPais = (pais) => {
                     ih40.innerHTML = infoDatosGenerales[i] + respuestasDatosGenerales[i]
                     contadorEntradasDatosGenerales++
                 }
-
-                infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato))
 
                 function obtenerMonedas() {
                     let moneda = Object.keys(datos[0].currencies)
@@ -189,6 +198,50 @@ elegirPais = (pais) => {
                     })
                     return simbolos
                 }
+
+                infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato))
+
+                
+
+
+                let infoBanderas = ["Bandera:", "Escudo:"]
+                let respuestasBanderas = [datos[0].flags.png, datos[0].coatOfArms.png]
+
+                let contadorEntradasBanderas = 0
+                let b = 0
+
+                function generarBanderas(lineaDato) {
+                    let i = contadorEntradasBanderas
+                    if (i % 2 == 0) {
+                        b++
+                    }
+                    if (i % 2 == 0) {
+                        let idiv0F = document.createElement("div")
+                        let idivCampoDatosDatos = document.getElementById("bandera")
+                        idivCampoDatosDatos.append(idiv0F)
+                        idiv0F.setAttribute("id", "filaBandera" + b)
+                        idiv0F.setAttribute("class", "row ms-5")
+                    }
+                    let idiv1 = document.createElement("div")
+                    let ih40 = document.createElement("h4")
+                    let idiv2 = document.createElement("div")
+                    let iimg0 = document.createElement("img")
+                    let idiv0F = document.getElementById("filaBandera" + b)
+                    idiv0F.append(idiv1)
+                    idiv1.append(ih40)
+                    idiv1.append(idiv2)
+                    idiv2.append(iimg0)
+                    idiv1.setAttribute("class", "col")
+                    ih40.innerHTML = infoBanderas[i]
+                    iimg0.setAttribute("class", "img-fluid tarjetabandera rounded")
+                    iimg0.setAttribute("src", respuestasBanderas[i])
+                    
+                    contadorEntradasBanderas++
+                }
+
+                infoBanderas.forEach((lineaDato) => generarBanderas(lineaDato))
+
+
 
                 // function obtenerCurrencies(moneda) {
                 //     let curencieData = Object.keys(datos[0].currencies)
