@@ -1,0 +1,26 @@
+{
+  "Nombre": "Javier",
+  "Dni": "50094297J",
+  "FechaDeNacimiento": "08/12/1975",
+  "FechaAlta": "31/08/2003",
+  "FechaBaja": "",
+  "Empresa": {
+    "Cif": "B33654554",
+    "Descripcion": "Arelance"
+  },
+  "DatosLaborales": {
+    "Salario": "1500",
+    "Cargo": {
+      "Descripcion": "Profesor"
+    }
+  },
+  "DatosPersonales": {
+    "Hijo": {
+      "Chico": "0",
+      "Chica": "2"
+    },
+    "EstadoCivil": {
+      "Descripcion": "Soltero"
+    }
+  }
+}
