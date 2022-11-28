@@ -245,6 +245,45 @@ elegirPais = (pais) => {
 
                 infoBanderas.forEach((lineaDato) => generarBanderas(lineaDato))
 
+                
+                let infoGeografia = ["Paises fronterizos:", "Latitud, Longitud:"]
+                let respuestasGeografia = [datos[0].flags.png, datos[0].latlng]
+
+                let contadorEntradasGeografia = 0
+                let g = 0
+
+                function generarGeografia(lineaDato) {
+                    let i = contadorEntradasGeografia
+                    if (i % 2 == 0) {
+                        g++
+                    }
+                    if (i % 2 == 0) {
+                        let idiv0F = document.createElement("div")
+                        let idivCampoDatosDatos = document.getElementById("geografia")
+                        idivCampoDatosDatos.append(idiv0F)
+                        idiv0F.setAttribute("id", "filaGeografia" + g)
+                        idiv0F.setAttribute("class", "row ms-5")
+                    }
+                    let idiv1 = document.createElement("div")
+                    let idiv2 = document.createElement("div")
+                    let idiv3 = document.createElement("div")
+                    let ih40 = document.createElement("h4")
+                    let ispan0 = document.createElement("h3")//¿cómo lo meto en el h4?                    
+                    let idiv0F = document.getElementById("filaGeografia" + g)
+                    idiv0F.append(idiv1)
+                    idiv1.append(idiv2)
+                    idiv2.append(idiv3)
+                    idiv3.append(ih40)
+                    idiv3.append(ispan0)
+                    idiv1.setAttribute("class", "col")
+                    ispan0.setAttribute("class", "textorespuestas")
+                    ih40.innerHTML = infoGeografia[i]
+                    ispan0.innerHTML = respuestasGeografia[i]                    
+                    contadorEntradasGeografia++
+                }
+
+                infoGeografia.forEach((lineaDato) => generarGeografia(lineaDato))
+                
 
 
                 // function obtenerCurrencies(moneda) {

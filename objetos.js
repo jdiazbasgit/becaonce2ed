@@ -16,9 +16,7 @@
       
     
     "DatosPersonales": 
-      "Hijo": 
-        "Chico": "",
-        "Chica": ""
+      "Hijo":
       
       "EstadoCivil": 
         "Descripcion": ""
