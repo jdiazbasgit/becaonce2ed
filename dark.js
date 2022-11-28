@@ -203,6 +203,21 @@ elegirPais = (pais) => {
                     return simbolos
                 }
 
+                //lo de antes funciona obtenerMonedas() y obtenerSimbolo()
+                //pero no consigo agruparlo en una funcion???:     
+
+                // function obtenerCurrencies(currencie) {
+                //     let curencieData = Object.keys(datos[0].currencies)
+                //     let curencieDataArray = []
+                //     curencieData.forEach(currencie => {
+                //         curencieDataArray.push(" " + datos[0].currencies[curencieData].currencie)
+                //     })
+                //     return curencieDataArray
+                // }
+                
+                //obtenerCurrencies(name)
+                //obtenerCurrencies(symbol)
+
                 infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato))
 
                 
@@ -247,7 +262,7 @@ elegirPais = (pais) => {
 
                 
                 let infoGeografia = ["Paises fronterizos:", "Latitud, Longitud:"]
-                let respuestasGeografia = [datos[0].flags.png, datos[0].latlng]
+                let respuestasGeografia = [datos[0].borders, datos[0].latlng]
 
                 let contadorEntradasGeografia = 0
                 let g = 0
@@ -286,14 +301,7 @@ elegirPais = (pais) => {
                 
 
 
-                // function obtenerCurrencies(moneda) {
-                //     let curencieData = Object.keys(datos[0].currencies)
-                //     let curencieDataArray = []
-                //     curencieData.forEach(moneda => {
-                //         curencieDataArray.push(" " + datos[0].currencies[curencieData].moneda)
-                //     })
-                //     return curencieDataArray
-                // }
+                
             }
             )
     }
