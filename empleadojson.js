@@ -1,59 +1,68 @@
 //creamos las clases
 
+class EstadoCivil {
+    constructor(descripcion) {
+        this.descripcion = descripcion;
+    }
+}
+class Hijo {
+    constructor(chicos, chicas) {
+        this.chicos = chicos;
+        this.chicas = chicas;
+
+    }
+}
+
+class Empresa {
+    constructor(cif, nombre) {
+        this.cif = cif;
+        this.nombre = nombre;
+
+    }
+}
+
+class DatosLaborales {
+    constructor(salario, cargo) {
+        this.salario = salario;
+        this.cargo = cargo;
+
+    }
+}
+
+class Cargo {
+    constructor(descripcion) {
+        this.descripcion = descripcion;
+
+    }
+}
+
+class DatosPersonales {
+    constructor(Hijo, EstadoCivil) {
+        this.Hijo = Hijo;
+        this.EstadoCivil = EstadoCivil
+    }
+
+}
+
 class Empleado {
-    constructor(nombre, apellidos, dni, fechadenacimiento, fechadealta, fechadebaja) {
+    constructor(nombre,apellidos, dni, fechadenacimiento, fechadealta, fechadebaja, DatosPersonales, DatosLaborales, Empresa) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.fechadenacimiento = fechadenacimiento;
         this.fechadealta = fechadealta;
         this.fechadebaja = fechadebaja;
-
-    }
-}
-class EstadoCivil {
-    constructor(soltero, casado, parejadehecho, viudo, viuda){
-this.soltero=soltero;
-this.casado=casado;
-this.parejadehecho=parejadehecho;
-this.viudo=viudo;
-this.viuda=viuda;
-}
-}
-class Hijo {
-    constructor(hijos, hijas) {
-        this.hijos = hijos;
-        this.hijas = hijas;
-
+        this.DatosPersonales = DatosPersonales;
+        this.DatosLaborales = DatosLaborales;
+        this.Empresa = Empresa;
     }
 }
 
-class Empresa {
-    constructor(cif, descripcion) {
-        this.cif=cif;
-        this.descripcion=descripcion;
+estadoCivil = new EstadoCivil("descripcion");
+hijo = new Hijo("chicos", "chicas");
+empresa = new Empresa("cif", "nombre");
+datosLaborales = new DatosLaborales(salario,"cargo");
+cargo = new Cargo("descripcion");
+datosPersonales = new DatosPersonales("estadocivil", "Hijo");
+empleado = new Empleado("nombre","apellidos","dni","DatosPersonales","DatosLaborales","Empresa")new date(dd-mm-yy,"fechadenacimiento","fechadealta","fechadebaja");
 
-    }
-}
-class DatosLaborales {
-    constructor(salario, cargo) {
-        this.salario=salario;
-        this.cargo=cargo;
-
-    }
-
-}
-class Cargo {
-    constructor(directivo, mandointermedio, operario) {
-        this.directivo=directivo;
-        this.mandointermedio=mandointermedio;
-        this.
-
-    }
-}
-class DatosPersonales {
-    constructor(nombre, apellidos, dni, fechadenacimiento, estadocivil, hijo) {
-
-    }
-
-}
