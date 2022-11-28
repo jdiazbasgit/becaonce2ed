@@ -172,13 +172,17 @@ elegirPais = (pais) => {
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
                     let ih40 = document.createElement("h4")
+                    let ispan0 = document.createElement("h3")//¿cómo lo meto en el h4?
                     let idiv0F = document.getElementById("filaDato" + j)
                     idiv0F.append(idiv1)
                     idiv1.append(idiv2)
                     idiv2.append(idiv3)
                     idiv3.append(ih40)
+                    idiv3.append(ispan0)
                     idiv1.setAttribute("class", "col")
-                    ih40.innerHTML = infoDatosGenerales[i] + respuestasDatosGenerales[i]
+                    ispan0.setAttribute("class", "textorespuestas")
+                    ih40.innerHTML = infoDatosGenerales[i]
+                    ispan0.innerHTML = respuestasDatosGenerales[i]
                     contadorEntradasDatosGenerales++
                 }
 
