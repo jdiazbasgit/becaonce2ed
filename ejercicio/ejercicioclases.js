@@ -1,58 +1,62 @@
+class Cargo {
+    constructor(descripcion) {
+        this.descripcion = descripcion;
 
-class Dni {
-    constructor(numero, letra) {
-        this.numero = numero
-        this.letra = letra
-    }
-}
-class EstadoCivil {
-    constructor(soltero, casado, separado, viudo) {
-        this.soltero = soltero
-        this.separado = separado
-        this.casado = casado
-        this.viudo = viudo
 
-    }
-}
-
-class Hijos {
-    constructor(chicos, chicas) {
-        this.chicos = chicos
-        this.chicas = chicas
     }
 }
 
 class Empresa {
     constructor(nombre, cif,) {
-        this.nombre = nombre
-        this.cif = cif
+        this.nombre = nombre;
+        this.cif = cif;
 
     }
 }
 
-class Cargo {
-    constructor(puesto, sueldo) {
-        this.puesto = puesto
-        this.sueldo = sueldo
+class EstadoCivil {
+    constructor(descripcion) {
+        this.descripcion = descripcion;
     }
-
 }
-class Datospersonale {
-    constructor(nombre, apellido, fechadenaciemto, dni, hijos) {
-        this.nombre = nombre
-        this.apellido = apellido
-        this.fechadenaciemto = fechadenaciemto
-        this.dni = dni
-        this.hijos = hijos
+
+class Hijos {
+    constructor(chicos, chicas) {
+        this.chicos = chicos;
+        this.chicas = chicas;
+    }
+}
+
+
+
+class Datospersonales {
+    constructor(estadocivil, hijos) {
+        this.estadocivil = estadocivil;
+        this.hijos = hijos;
     }
 }
 
 class DatosLaborables {
-    constructor(empresa, cargo, altaempresa, bajaempresa) {
-        this.empresa = empresa
-        this.cargo = cargo
-        this.altaempresa = altaempresa
-        this.bajaempresa = bajaempresa
+    constructor(sueldo, cargo) {
+        this.sueldo = sueldo;
+        this.cargo = cargo;
 
     }
 }
+
+class Empleado {
+    constructor(nombre, apellido, dni, fechadenacimiento, fechadealta, fechadebaja, datosPersonales, datosLaborables, empresa) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fechadenacimiento = fechadenacimiento;
+        this.fechadealta = fechadealta;
+        this.fechadebaja = fechadebaja;
+        this.datosPersonales = datosPersonales;
+        this.datosLaborables = datosLaborables;
+        this.empresa = empresa;
+
+
+    }
+}
+
