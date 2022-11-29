@@ -1,5 +1,5 @@
 class Empleado {
-    constructor(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja, datosPersonales, datosLabolares ) {
+    constructor(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja, datosPersonales, datosLabolares, empresa ) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -8,6 +8,7 @@ class Empleado {
         this.fechaBaja = fechaBaja;
         this.datosPersonales= datosPersonales;
         this.datosLabolares=datosLabolares;
+        this.empresa=empresa;
     }
 
 }
@@ -18,16 +19,14 @@ class DatosPersonales {
     }
 }
 
-class Hijo extends DatosPersonales {
-    constructor(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja, hijo) {
-        super(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja);
-        this.hijo = hijo;
+class Hijo {
+    constructor(hijos) {
+        this.hijos = hijos;
     }
 }
 
-class EstadoCivil extends DatosPersonales {
-    constructor(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja, descripcion) {
-        super(nombre, apellido, dni, fechaNac, fechaAlta, fechaBaja);
+class EstadoCivil {
+    constructor(descripcion){
         this.descripcion = descripcion;
     }
 }
