@@ -110,13 +110,17 @@ body{
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
 }
+.contenedorgris{
+    background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));    
+    background: #ff0000;
+}
 .textodatos{
-    font-family: 'Allerta Stencil', sans-serif;    
-    text-shadow: 2px 2px 4px #000000;
+    font-family: 'Allerta Stencil', sans-serif;
     color: whitesmoke;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 1px 1px 2px #350e0e;
+
     margin: 0px;
-    padding: 50px;
+    padding: 15px;
 }
 .textorespuestas{
     font-family: monospace, sans-serif;
@@ -124,8 +128,8 @@ body{
     color: white;
     text-shadow: 2px 2px 4px #000000;
     margin: 0px;
-    margin-left: 80px;
     padding: 5px;
+    font-size: xx-large;
 }
 @keyframes girito {
     from {transform: rotate(10deg);}

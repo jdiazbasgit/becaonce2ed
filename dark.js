@@ -87,7 +87,7 @@ elegirPais = (pais) => {
                 iul.setAttribute("class", "nav nav-tabs nav-justified mt-5 textocabeceras")
                 var idiv0 = document.createElement("div")
                 padre.append(idiv0)
-                idiv0.setAttribute("class", "tab-content")
+                idiv0.setAttribute("class", "tab-content contenedorgris rounded")
                 let contadorTabs = 0
 
                 function generarTabs(tab) {
@@ -171,18 +171,19 @@ elegirPais = (pais) => {
                     let idiv1 = document.createElement("div")
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
-                    let ih40 = document.createElement("h4")
-                    let ispan0 = document.createElement("h3")//¿cómo lo meto en el h4?
+                    let ih40 = document.createElement("h4")                    
                     let idiv0F = document.getElementById("filaDato" + j)
                     idiv0F.append(idiv1)
                     idiv1.append(idiv2)
                     idiv2.append(idiv3)
-                    idiv3.append(ih40)
-                    idiv3.append(ispan0)
+                    idiv3.append(ih40)                    
                     idiv1.setAttribute("class", "col")
-                    ispan0.setAttribute("class", "textorespuestas")
-                    ih40.innerHTML = infoDatosGenerales[i]
-                    ispan0.innerHTML = respuestasDatosGenerales[i]
+                    ih40.setAttribute("class", "textodatos")
+                    ih40.textContent = infoDatosGenerales[i]
+                    let ispan0 = document.createElement("span")
+                    ih40.append(ispan0)
+                    ispan0.setAttribute("class", "textorespuestas rounded")
+                    ispan0.textContent = respuestasDatosGenerales[i]
                     contadorEntradasDatosGenerales++
                 }
 
