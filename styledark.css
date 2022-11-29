@@ -111,22 +111,21 @@ body{
     margin-top: -3px;
 }
 .contenedorgris{
-    background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));    
-    background: #ff0000;
+    background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
+    box-shadow: 5px 0px 5px #0c0000;
+    padding-bottom: 14px;
 }
 .textodatos{
     font-family: 'Allerta Stencil', sans-serif;
     color: whitesmoke;
     text-shadow: 1px 1px 2px #350e0e;
-
-    margin: 0px;
+    margin-bottom: 15px;
     padding: 15px;
 }
 .textorespuestas{
     font-family: monospace, sans-serif;
     text-shadow: 2px 2px 4px #000000;
     color: white;
-    text-shadow: 2px 2px 4px #000000;
     margin: 0px;
     padding: 5px;
     font-size: xx-large;
