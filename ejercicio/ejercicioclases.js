@@ -60,3 +60,9 @@ class Empleado {
     }
 }
 
+cargo = new Cargo ("Analista Datos");
+empresa = new Empresa ("Fundacion la ONCE","87654321D")
+estadocivil = new EstadoCivil ("Soltero");
+hijos = new Hijos (3,2);
+datosPersonales = new Datospersonales (estadocivil,hijos);
+datosLaborables = new DatosLaborables (3000,cargo)
