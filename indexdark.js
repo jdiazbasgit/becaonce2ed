@@ -27,9 +27,7 @@ opcionesContinente = continente => {
 
 }
 
-//buscar datosGenerales..
-
-
+//buscar datosGenerales.
 
 
 const main = document.querySelector("main")
