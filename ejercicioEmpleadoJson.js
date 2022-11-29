@@ -1,26 +1,3 @@
-// creamos class para json
-
-class Empleado {
-    constructor(nombre, apellidos, dni, fechaNacimiento, sexo, fechaAlta, fechaBaja) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.dni = dni;
-        this.fechaNacimiento = fechaNacimiento;
-        this.sexo = sexo;
-        this.fechaAlta = fechaAlta;
-        this.fechaBaja = fechaBaja;
-    }
-}
-class Domicilio {
-    constructor(calle, numero, piso, portal, distrito, codigoPostal){ 
-      this.calle = calle
-      this.numero = numero
-      this.piso = piso
-      this.portal = portal
-     his.distrito = distrito
-     his.codigoPostal = codigoPostal
-}
-}
 class Empresa {
     constructor(cif, nombreEmpresa) {
         this.cif = cif;
@@ -29,60 +6,38 @@ class Empresa {
 }
 
 class DatoLaborales {
-    constructor(salario) {
+    constructor(salario, cargo) {
         this.salario = salario;
-
-    }
-}
-
-class cargo {
-    constructor(cargos) {
-        this.cargos = cargos;
-
+        this.cargo = cargo;
     }
 }
 
 class DatosPersonales {
-    constructor(hijo) {
+    constructor(hijo, estadoCivil) {
         this.hijo = hijo;
+        this.estadoCivil = estadoCivil;
     }
 }
 
 class Hijo {
-    constructor(hijos, hijas) {
-        this.chicos = chicos;
-        this.chicasa = chicas;
+    constructor(Hijos, Hijas) {
+        this.Hijos = Hijos;
+        this.Hijas = Hijas;
     }
 }
-
-class EstadoCivil {
-    constructor(descripcion) {
-        this.estadoCivil = this.estadoCivil;
-
+class Empleado {
+    constructor(nombre, apellidos, dni, fechaNacimiento, sexo, fechaAlta, fechaBaja) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.fechaNacimiento = fechaNacimiento;
+        this.fechaAlta = fechaAlta;
+        this.fechaBaja = fechaBaja;
     }
 }
-// creo los New datos de las clases como segundo paso
-//nombre, dni, fechaNacimiento, fechaAlta, fechaBaja.....
-// Empleado "name":"eduardo"
-empleado = new empleado("nombre", "apellidos","dni", "fechaNacimiento", "sexo", "fecnaAlta", "fechadeBaja")
-
-//domicilio calle, numero, piso, portal, distrito, codigoPostal
-domicilio = domicilio("nombre: calle, numero, piso, portal, distrito, codigoPostal")
-
-//Empresa
-cif = new cif("B45147632")
-descrpicion = new descripcion("Arelance")
-
-//Datos Laborales
-salario = new salario()
-cargos = new cargos("Alumno")
-
-//Datos Personales
-chicos = new chicos("0")
-chicas = new chicas("2")
-
-// Estado Civil
-estadoCivil = new  estadoCivil("Soltero", "Casado", "Viudo", "Divorciado")
+Eduardo = new Empleado("Eduardo Antonio", "Rodriguez Macassi ", "M2345679l", new Date("08/12/1960"),  new Date("31/06/2006"), null, new DatosPersonales(new Hijo(3, 2), new EstadoCivil("divorciado")), new DatoLaborales(new salario(3000, new Cargo("Analista deProgramacion")), new Empreesa("B3245678", "ONCE")));
+console.log(`El empleado ${this.nombre} con documento${this.Eduardo.dni} nacido el${this.Eduardo.fechaNacimiento} con fecha de alta ${this.Eduardo.fechaAlta} fecha de baja ${this.Eduardo.fechaBaja} con hijos ${Eduardo.DatosPersonales} que trabaja en ${Eduardo.DatosPersonales}  de nombre  de empresa ${Eduardo.cif.nombreEmpresa}`)
+console.log(Eduardo)
 
 
 
