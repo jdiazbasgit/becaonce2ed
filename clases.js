@@ -56,4 +56,4 @@ class Empleado{
 pepe=new Empleado("Denis", "Ilban","Y0314053W", new Date("2001/02/20"),new Date("2019/05/28"),null,new DatosPersonales(new Hijo(3,2),new EstadoCivil("Divorciado")),new DatosLaborales(3000, new Cargo("Analista-programador")),new Empresa("B7583758","ONCE"))
 console.log(pepe)
 
-console.log(`El nuevo trabajador se llama ${pepe.nombre}. Tiene ${pepe.datosPersonales} hijos y sus apellidos son ${pepe.apellidos}`)
+console.log(`El nuevo trabajador se llama ${pepe.nombre}. Tiene ${pepe.datosPersonales.Hijo.chicos+pepe.datosPersonales.Hijo.chicas} hijos y sus apellidos son ${pepe.apellidos}`)
