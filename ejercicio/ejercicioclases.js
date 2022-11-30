@@ -66,7 +66,7 @@ estadocivil = new EstadoCivil ("Soltero");
 hijos = new Hijos (3,2);
 datosPersonales = new Datospersonales (estadocivil,hijos);
 datosLaborables = new DatosLaborables (3000,cargo)
-empleado = new Empleado ("Luis Carlos","Pariño Ocampo","432118765T",new Date ("1990/10/10").toLocaleString(), new Date("2022/10/10").toLocaleString(),null,datosPersonales,datosLaborables,empresa)
+empleado = new Empleado ("Luis Carlos","Patiño Ocampo","432118765T",new Date ("1990/10/10").toLocaleString(), new Date("2022/10/10").toLocaleString(),null,datosPersonales,datosLaborables,empresa)
 console.log(empleado)
 console.log(cargo)
 console.log(empresa)
