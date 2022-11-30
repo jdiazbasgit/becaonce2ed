@@ -12,7 +12,7 @@ elegirContinente = (continente) => {
     let padre = document.getElementById("megacampo")
     padre.innerHTML = ""
 
-    if (continente == "null") {        
+    if (continente == "null") {
         let iconoContinente = document.getElementById("iconoContinente");
         iconoContinente.classList.remove("guisiguente")
         iconoContinente.classList.add("guisiguenteparpadeo")
@@ -104,9 +104,9 @@ elegirPais = (pais) => {
                         ia.classList.add("active")
                     }
                     ia.setAttribute("data-bs-toggle", "tab")
-                    ia.setAttribute("href", "#"+tab)
+                    ia.setAttribute("href", "#" + tab)
                     ih3.innerHTML = infoText[i]
-                    
+
                     let idivCampoDatos = document.createElement("div")
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
@@ -116,7 +116,7 @@ elegirPais = (pais) => {
                     let idiv31 = document.createElement("div")
                     let img0 = document.createElement("img")
                     let img1 = document.createElement("img")
-                    
+
                     idiv0.append(idivCampoDatos)
                     idivCampoDatos.append(idiv2)
                     idiv2.append(idiv3)
@@ -126,7 +126,7 @@ elegirPais = (pais) => {
                     idiv30.append(idiv31)
                     idiv31.append(img0)
                     idiv31.append(img1)
-                    
+
                     idivCampoDatos.setAttribute("class", "tab-pane container active textodatos")
                     if (i !== 0) {
                         idivCampoDatos.classList.remove("active")
@@ -148,7 +148,7 @@ elegirPais = (pais) => {
                 }
 
                 infoData.forEach((tab) => generarTabs(tab));
-               
+
 
                 let infoDatosGenerales = ["Capital: ", "Población: ", "Moneda: ", "Dominio: ", "Símbolo Divisa: ", "Superficie: "]
                 let respuestasDatosGenerales = [datos[0].capital, datos[0].population, obtenerMonedas(), datos[0].tld, obtenerSimbolo(), datos[0].area + " km²"]
@@ -171,12 +171,12 @@ elegirPais = (pais) => {
                     let idiv1 = document.createElement("div")
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
-                    let ih40 = document.createElement("h4")                    
+                    let ih40 = document.createElement("h4")
                     let idiv0F = document.getElementById("filaDato" + j)
                     idiv0F.append(idiv1)
                     idiv1.append(idiv2)
                     idiv2.append(idiv3)
-                    idiv3.append(ih40)                    
+                    idiv3.append(ih40)
                     idiv1.setAttribute("class", "col")
                     ih40.setAttribute("class", "textodatos")
                     ih40.textContent = infoDatosGenerales[i]
@@ -215,13 +215,13 @@ elegirPais = (pais) => {
                 //     })
                 //     return curencieDataArray
                 // }
-                
+
                 //obtenerCurrencies(name)
                 //obtenerCurrencies(symbol)
 
                 infoDatosGenerales.forEach((lineaDato) => generarDatosGenerales(lineaDato))
 
-                
+
 
 
                 let infoBanderas = ["Bandera:", "Escudo:"]
@@ -252,18 +252,29 @@ elegirPais = (pais) => {
                     idiv1.append(idiv2)
                     idiv2.append(iimg0)
                     idiv1.setAttribute("class", "col")
+                    ih40.setAttribute("class", "textodatos")
                     ih40.innerHTML = infoBanderas[i]
                     iimg0.setAttribute("class", "img-fluid tarjetabandera rounded")
                     iimg0.setAttribute("src", respuestasBanderas[i])
-                    
+
                     contadorEntradasBanderas++
                 }
 
                 infoBanderas.forEach((lineaDato) => generarBanderas(lineaDato))
 
-                
-                let infoGeografia = ["Paises fronterizos:", "Latitud, Longitud:"]
-                let respuestasGeografia = [datos[0].borders, datos[0].latlng]
+                let paisesFronterizos = []
+
+                datos[0].borders.forEach((frontera) => generarGeoNombresFronteras(frontera))
+                function generarGeoNombresFronteras(frontera) {
+                    fetch(urlrestcountries + "alpha/" + frontera)
+                        .then(response => response.json())
+                        .then(paisFronterizo => {
+                            paisesFronterizos.push(paisFronterizo[0].name.common)
+                        })
+                }
+                console.log(paisesFronterizos)
+                let infoGeografia = ["Paises fronterizos: ", "Latitud, Longitud: "]
+                let respuestasGeografia = [paisesFronterizos, datos[0].latlng]
 
                 let contadorEntradasGeografia = 0
                 let g = 0
@@ -284,25 +295,27 @@ elegirPais = (pais) => {
                     let idiv2 = document.createElement("div")
                     let idiv3 = document.createElement("div")
                     let ih40 = document.createElement("h4")
-                    let ispan0 = document.createElement("h3")//¿cómo lo meto en el h4?                    
+
                     let idiv0F = document.getElementById("filaGeografia" + g)
                     idiv0F.append(idiv1)
                     idiv1.append(idiv2)
                     idiv2.append(idiv3)
                     idiv3.append(ih40)
-                    idiv3.append(ispan0)
                     idiv1.setAttribute("class", "col")
+                    ih40.setAttribute("class", "textodatos")
+                    ih40.textContent = infoGeografia[i]
+                    let ispan0 = document.createElement("span")
+                    ih40.append(ispan0)
                     ispan0.setAttribute("class", "textorespuestas")
-                    ih40.innerHTML = infoGeografia[i]
-                    ispan0.innerHTML = respuestasGeografia[i]                    
+                    ispan0.textContent = respuestasGeografia[i]
                     contadorEntradasGeografia++
                 }
 
                 infoGeografia.forEach((lineaDato) => generarGeografia(lineaDato))
-                
 
 
-                
+
+
             }
             )
     }

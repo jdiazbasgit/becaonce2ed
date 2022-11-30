@@ -52,22 +52,39 @@ var estadoCivil = new EstadoCivil("Viudo")
 var hijo = new Hijo(1, 3)
 var datosPersonales = new DatosPersonales(hijo, estadoCivil)
 var datosLaborales = new DatosLaborales(cargo, 1800)
-var fechaAlta = new Date(1911,06,25)
-var fechaBaja = new Date(1941,09,14)
 
 var tomasTurbado = new Empleado(
     "Tomas",
     "Turbado Reinoso",
     "00000014Z",
-    fechaAlta.toDateString,
-    fechaBaja.toDateString,
+    new Date(1911, 06, 24).toLocaleDateString(),
+    new Date(1931, 09, 26).toLocaleDateString(),
     null,
     datosPersonales,
     datosLaborales,
     empresa
 )
 
-console.log(tomasTurbado)
+console.log(JSON.stringify(tomasTurbado))
 
-console.log("Hace muchos años, en el día " + tomasTurbado.fechaNacimiento + " nació un pequeño varón, que sin dilación creció entre arbustos fuertes y robustos. Hasta que el " + tomasTurbado.fechaAlta + " comenzó su andadura, como empleado de Dios en el " + tomasTurbado.empresa.nombre + " donde nuestro querido " + tomasTurbado.nombre + " y de apellidos " + tomasTurbado.apellidos + " conoció el amor entre flores, pues era " + tomasTurbado.datosLaborales.cargo.descripcion + " del lugar. Prueba de su amor nacieron " + tomasTurbado.datosPersonales.hijo.chicas + " hijas y " + tomasTurbado.datosPersonales.hijo.chicos + " zagal arrabalero que marchó a recorrer el mundo entero. El tiempo le hizo " + tomasTurbado.datosPersonales.estadoCivil.descripcion + " y hasta hoy trabaja sin descanso por " + tomasTurbado.datosLaborales.salario + " al mes, porque la fe no da de comer...")
+console.log("Hace muchos años, en el día " + tomasTurbado.fechaNacimiento +
+    " nació un pequeño varón, que sin dilación creció entre arbustos fuertes y robustos. Hasta que el "
+    + tomasTurbado.fechaAlta + " comenzó su andadura, como empleado de Dios en el " +
+    tomasTurbado.empresa.nombre + " donde nuestro querido " + tomasTurbado.nombre +
+    " y de apellidos " + tomasTurbado.apellidos + " conoció el amor entre flores, pues era "
+    + tomasTurbado.datosLaborales.cargo.descripcion + " del lugar. Prueba de su amor nacieron "
+    + tomasTurbado.datosPersonales.hijo.chicas + " hijas y " +
+    tomasTurbado.datosPersonales.hijo.chicos + " zagal arrabalero que marchó a recorrer el mundo entero. El tiempo le hizo "
+    + tomasTurbado.datosPersonales.estadoCivil.descripcion + " y hasta hoy trabaja sin descanso por "
+    + tomasTurbado.datosLaborales.salario + "€ al mes, porque la fe no da de comer...")
+
+    /*   JSON.stringify(obj) // me devuelve un json
+    JSON.parse(json) // me devuelve un obj     */
+    
+datos = JSON.stringify(tomasTurbado)
+bodyM = document.getElementById("body")
+parra = document.createElement("p")
+bodyM.append(parra)    
+parra.textContent = datos
+    
 
