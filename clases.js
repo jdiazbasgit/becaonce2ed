@@ -57,3 +57,7 @@ pepe=new Empleado("Denis", "Ilban","Y0314053W", new Date("2001/02/20").toLocaleD
 console.log(pepe)
 
 console.log(`El nuevo trabajador se llama ${pepe.nombre} ${pepe.apellidos}.Su DNI es ${pepe.dni} Tiene ${pepe.datosPersonales.hijo.chicos} hijos y ${pepe.datosPersonales.hijo.chicas} hijas. Su estado civil es ${pepe.datosPersonales.estadoCivil.descripcion} Ha nacido el ${pepe.fechaNacimiento} y le hemos contratado el ${pepe.fechaAlta} en la categoría de ${pepe.datosLaborales.cargo.descripcion} con un salario de ${pepe.datosLaborales.salario} en la empresa ${pepe.empresa.nombre} con CIF ${pepe.empresa.cif}`)
+
+document.querySelector("div")
+document.createElement("table")
+document.createElement()
