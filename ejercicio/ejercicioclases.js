@@ -67,10 +67,12 @@ hijos = new Hijos (3,2);
 datosPersonales = new Datospersonales (estadocivil,hijos);
 datosLaborables = new DatosLaborables (3000,cargo)
 empleado = new Empleado ("Luis Carlos","Patiño Ocampo","432118765T",new Date ("1990/10/10").toLocaleString(), new Date("2022/10/10").toLocaleString(),null,datosPersonales,datosLaborables,empresa)
-console.log(empleado)
+/*console.log(empleado)
 console.log(cargo)
 console.log(empresa)
 console.log(estadocivil)
 console.log(hijos)
 console.log(datosLaborables)
-console.log(datosPersonales)
+console.log(datosPersonales)*/
+console.log(JSON.stringify(empleado))
+console.log(`elnombre es: ${empleado.nombre} con apellido: ${empleado.apellido} y con numero de panchiespañol: ${empleado.dni} y nacio por puto milagro el dia:${empleado.fechadeNacimiento} y ${empleado.fechadeAlta} y no al despedido por que no quieren y cobran algo${empleado.fechadeBaja} con ${empleado.datosPersonales.estadocivil}` )
