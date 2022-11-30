@@ -26,6 +26,56 @@ vaciarElemento  =  ( elemento )  =>  {
         elemento _ renovar _ renoveChild ( hijo ) ;
     } )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*bandera https://goo.gl/maps/uDWEUaXNcZTng1fP6
 escudo https://mainfacts.com/media/images/coats_of_arms/pe.svg
 */
