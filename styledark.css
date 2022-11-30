@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
-
 body{
     background: linear-gradient(135deg, rgb(58, 48, 48), rgb(39, 30, 30));
     margin: 0;
@@ -15,10 +12,6 @@ body{
     border: none;
     user-select: none;
 }
-@keyframes respiracion {
-    from {box-shadow: 0px 3px 6px #ff0000;}
-    to {box-shadow: 0px 3px 16px #ff0000;}
-  }
 .iconoprincipal:hover{
     animation-name: respiracion;
     animation-duration: 0.3s;
@@ -70,10 +63,6 @@ body{
     border: 0px;
     padding: 20px;
 }
-@keyframes giro {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(-500deg);}
-  } 
 .botoncentral:hover{
     animation-name: giro;
     animation-duration: 1.3s;
@@ -130,14 +119,6 @@ body{
     padding: 5px;
     font-size: xx-large;
 }
-@keyframes girito {
-    from {transform: rotate(10deg);}
-    to {transform: rotate(-170deg);}
-  }  
-@keyframes contragirito {
-    from {transform: rotate(-180deg);}
-    to {transform: rotate(0deg);}
-  }
 .celdagears{
     text-align: right;
     user-select: none;
@@ -198,11 +179,6 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-@media (max-width: 800px) {
-    .SuperGears {
-        visibility: hidden;
-    }
-}
 .nav-link:hover{
     color: whitesmoke;
     text-shadow: 2px 2px 4px #a8a8a8;
@@ -221,19 +197,6 @@ body{
     margin: 0px;
     padding: 7px;
 }
-@keyframes desliz {
-    0% {
-        transform: translateX(2px);
-    }
-
-    40%,
-    50% {
-        transform: translateX(-3px);
-    }
-
-    60% {
-        transform: translateX(1px);
-    }}
 .botonidiomas{      
     margin: 0px;
     padding: 6px;
@@ -266,10 +229,6 @@ body{
     margin-bottom: 0px;
     user-select: none;
 }
-@keyframes giro {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(-500deg);}
-  } 
 .cubod:hover{
     animation-name: giro;
     animation-duration: 1.3s;
