@@ -31,3 +31,5 @@ console.log("El animal de raza "+lassie.raza+" y especie "+lassie.especie+"emite
 tobi=new PerroPeludo("guau, guau","caniche","canina","rizado");
 tobi.verPerro()
 
+
+
