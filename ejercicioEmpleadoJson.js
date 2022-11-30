@@ -50,10 +50,8 @@ class Empleado {
         this.empresa = empresa
     }
 }
-eduardo = new Empleado("Eduardo Antonio", "Rodriguez Macassi ", "M2345679l", new Date("1960/12/19").toLocaleDateString(), null, null, new DatosPersonales(new Hijo(3, 2), new EstadoCivil("divorciado")), new DatoLaborales(3000),  new Empresa("B3245678", "ONCE"));
-console.log(`El empleado ${eduardo.nombre + eduardo.apellidos} con documento ${eduardo.dni} nacido el ${eduardo.fechaNacimiento} con fecha de alta ${eduardo.fechaAlta} fecha de baja ${eduardo.fechaBaja} con hijos ${eduardo.datosPersonales.hijo.chicos + eduardo.datosPersonales.hijo.chicas} estado civil ${eduardo.estadoCivil.descripcion}  que trabaja en la  empresa ${eduardo.empresa.nombreEmpresa} como ${eduardo.datoLaborales.cargo.descripcion}`);
+eduardo = new Empleado("Eduardo Antonio", "Rodriguez Macassi ", "M2345679l", new Date("1966/12/19").toLocaleDateString(), new Date("2022/10/20").toLocaleDateString(), null, new DatosPersonales(new Hijo(3, 2), new EstadoCivil("divorciado")), new DatoLaborales(3000, new Cargo("Analista de Sistemas")), new Empresa("B3245678", "ONCE"));
+console.log(`El empleado ${eduardo.nombre + eduardo.apellidos} con documento ${eduardo.dni} nacido el ${eduardo.fechaNacimiento} con fecha de alta ${eduardo.fechaAlta} fecha de baja ${eduardo.fechaBaja} con hijos ${eduardo.datosPersonales.hijo.chicos + eduardo.datosPersonales.hijo.chicas} estado civil ${eduardo.datosPersonales.estadoCivil}  que trabaja en la empresa ${eduardo.empresa.nombreEmpresa} como ${eduardo.datoLaborales.cargo.descripcion}`);
 console.log(eduardo)
 
-
-
-
+console.log(JSON.stringify(eduardo))
