@@ -45,13 +45,13 @@ class DatosLaborables {
 }
 
 class Empleado {
-    constructor(nombre, apellido, dni, fechadenacimiento, fechadealta, fechadebaja, datosPersonales, datosLaborables, empresa) {
+    constructor(nombre, apellido, dni, fechadeNacimiento, fechadeAlta, fechadeBaja, datosPersonales, datosLaborables, empresa) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.fechadenacimiento = fechadenacimiento;
-        this.fechadealta = fechadealta;
-        this.fechadebaja = fechadebaja;
+        this.fechadeNacimiento = fechadeNacimiento;
+        this.fechadeAlta = fechadeAlta;
+        this.fechadeBaja = fechadeBaja;
         this.datosPersonales = datosPersonales;
         this.datosLaborables = datosLaborables;
         this.empresa = empresa;
@@ -66,7 +66,7 @@ estadocivil = new EstadoCivil ("Soltero");
 hijos = new Hijos (3,2);
 datosPersonales = new Datospersonales (estadocivil,hijos);
 datosLaborables = new DatosLaborables (3000,cargo)
-empleado = new Empleado ("Luis Carlos","Pariño Ocampo","432118765T",new Date ("1990/10/10").toLocaleString(), new Date("2022/10/10").toLocaleString(),"null",datosPersonales,datosLaborables,empresa)
+empleado = new Empleado ("Luis Carlos","Pariño Ocampo","432118765T",new Date ("1990/10/10").toLocaleString(), new Date("2022/10/10").toLocaleString(),null,datosPersonales,datosLaborables,empresa)
 console.log(empleado)
 console.log(cargo)
 console.log(empresa)
