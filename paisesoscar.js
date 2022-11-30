@@ -33,14 +33,10 @@ var escudo;//string
 var traducciones;//Traduccion[]
 
 class Moneda {
-<<<<<<< HEAD
     constructor(name,symbol){
 this.name=name
 this.symbol=symbol
-=======
-    constructor(name, symbol) {
 
->>>>>>> 11f89d1c0f74c830c844ed355646ffdeb33b924d
     }
 }
 
