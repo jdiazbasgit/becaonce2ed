@@ -14,15 +14,6 @@
 var urlPais = "https://restcountries.com/v3.1/name/"
 var urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
-var capital;//STRING
-var poblacion;//number
-var area;//number
-var moneda;// Moneda[]
-var dominio;//string
-var fronteras;// string[]
-var bandera;//string
-var escudo;//string
-var traducciones;//Traduccion[]
 cargarPaises = (continente) => {
   fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
@@ -42,11 +33,6 @@ cargarPaises = (continente) => {
       });
     });
 };
-vaciarElemento = (elemento) => {
-  elemento.childNodes.forEach((hijo) => {
-    elemento.removeChild(hijo);
-  });
-};
 dameDatos = (URL) => fetch(URL);
 dameNombreDePais= cca3 =>{
     dameDatos(urlRestCountries + cca3).then (response =>
@@ -56,13 +42,6 @@ dameNombreDePais= cca3 =>{
 
 
 
-class Moneda {
-  constructor(name,symbol){
-    this.name=name
-    this.symbol=symbol
-  }
-}
-
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
@@ -71,8 +50,13 @@ dameDatosGenerales = () => {
       pintaDatosGenerales(pais[0])
     })
 }
-
-
+class Moneda {
+  constructor(name,symbol){
+    this.name=name
+    this.symbol=symbol
+  }
+}
+moneda=new Moneda("name","symbol")
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
@@ -99,7 +83,7 @@ pintaDatosGenerales = (pais) => {
   td2.innerHTML = pais.population;
   td3.innerHTML = pais.area;
   td4.innerHTML = pais.tld;
-  td5.innerHTML = pais.moneda;
+  td5.innerHTML = moneda.name;
   main.appendChild(table);
   table.appendChild(tr1,);
   table.appendChild(tr2)
