@@ -66,5 +66,5 @@ console.log(`El señor ${juan.nombre} ${juan.apellidos} con documento ${juan.dni
 console.log(juan)
 
 oscar = new Empleado("Oscar", "Perea Alvarez", "52125125P",null,null,null, new DatosPersonales(new Hijo(3, 2), new EstadoCivil("divorciado")), new DatosLaborales(3000, new Cargo("Analista Programador")), new Empresa("B123456789", "Fundación Once"))
-console.log(`El señor ${oscar.nombre} ${oscar.apellidos} con documento ${oscar.dni} tiene ${oscar.datosPersonales.hijo.chicos} hijos y ${oscar.datosPersonales.hijo.chicas} hijas y estado civil de ${oscar.datosPersonales.estadoCivil.descripcion} ocupa el cargo de ${oscar.datosLaborales.cargo.descripcion} y tiene un sueldo de ${oscar.datosLaborales.salario} trabaja en la empresa ${oscar.empresa.nombre} con un CIF ${oscar.empresa.cif}`)
+console.log(`El señor ${oscar.nombre} ${oscar.apellidos} con documento ${oscar.dni} tiene ${oscar.datosPersonales.hijo.chicos} hijos y ${oscar.datosPersonales.hijo.chicas} hijas y estado civil de ${oscar.datosPersonales.estadoCivil.descripcion} ocupa el cargo de ${oscar.datosLaborales.cargo.descripcion} y tiene un sueldo de ${oscar.datosLaborales.salario} € trabaja en la empresa ${oscar.empresa.nombre} con un CIF ${oscar.empresa.cif}`)
 console.log(oscar)
