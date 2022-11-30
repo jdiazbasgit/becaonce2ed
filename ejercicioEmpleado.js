@@ -50,17 +50,14 @@ class Empresa {
         this.descripcion = descripcion;
     }
 }
-
-var edu = new Empleado("Edu","PC", "5544777B","19/07/1992","02/02/2020", null,new DatosPersonales(new Hijo(1,0), new EstadoCivil("soltero")),new DatosLaboral("3000","Analista Programador"), new Empresa("111444111","Arelance"));
-//DatosPersonales = new DatosPersonales("3", "Soltero");
-//Cargo = new Cargo("Becario")
-//Empresa = new Empresa("11111", "BBVA IT");
-//DatosLaboral = new DatosLaboral("1.582", Cargo());
-
-edu.nombre="david";
+//datosPersonales = new DatosPersonales("3", "Soltero");
+//cargo = new Cargo("Becario")
+//empresa = new Empresa("11111", "BBVA IT");
+//datosLaboral = new DatosLaboral("1.582", Cargo());
 
 
-alert(edu.nombre);
-
-
-//alert(Empleado.)
+var edu = new Empleado("Edu","PC", "5544777B", new Date("1992/07/19").toLocaleDateString(),new Date("2020/02/02").toLocaleDateString(), null,new DatosPersonales(new Hijo(0,0), new EstadoCivil("soltero")),new DatosLaboral(3000,new Cargo("Analista Programador")), new Empresa("111444111","Arelance"));
+console.log(edu);
+console.log(`EL mejor empleado de la empresa ${edu.empresa.descripcion} se llama ${edu.nombre} y su apellido es ${edu.apellido} su fecha de nacimiento es ${edu.fechaNac} y sigue trabajando como ${edu.datosLabolares.cargo.descripcion} y tiene el sueldo increible ${edu.datosLabolares.salario} €, por ahora no tiene hijos, total hijos ${edu.datosPersonales.hijo.chico}`);
+console.log(`Su fecha alta es ${edu.fechaAlta} y todavia no se sabe cual es su baja , por eso se define el ${edu.fechaBaja}`)
+console.log(`No tengo mas info, si quereis saberlo mas... llamad al 112 `)
