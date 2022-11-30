@@ -45,15 +45,15 @@ class DatosLaborables {
 }
 
 class Empleado {
-    constructor(nombre, apellido, dni, fechadenacimiento, fechaalta, fechabaja, datospersonales, datoslaborales, empresa,) {
+    constructor(nombre, apellido, dni, fechadeNacimiento, fechaAlta, fechaBaja, datosPersonales, datosLaborales, empresa,) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.fechadenacimiento = fechadenacimiento;
-        this.fechaalta = fechaalta;
-        this.fechabaja = fechabaja;
-        this.datospersonales = datospersonales;
-        this.datoslaborales = datoslaborales;
+        this.fechadeNacimiento = fechadeNacimiento;
+        this.fechaAlta = fechaAlta;
+        this.fechaBaja = fechaBaja;
+        this.datosPersonales = datosPersonales;
+        this.datosLaborales = datosLaborales;
         this.empresa = empresa;
     
     }
@@ -61,9 +61,16 @@ class Empleado {
 
 estadocivil = new EstadoCivil("casado")
 cargo = new Cargo("analista programador")
-empresa = new Empresa("12457896B","Fundacion Once")
-hijo = new Hijos("3","2")
-datospersonales = new Datospersonale(hijo, estadocivil)
-datoslaborales = new DatosLaborables(cargo, "3000")
-empleado = new Empleado("luis", "villagran", "99999999A", new Date(1992/02/17).toLocaleString(), new Date(2022/11/30).toLocaleString(), "null", datospersonales, datoslaborales, empresa)
-console.log
+empresa = new Empresa("Fundacion Once","12345678B")
+hijo = new Hijos(3,2)
+datosPersonales = new Datospersonale(hijo, estadocivil)
+datosLaborales = new DatosLaborables(3000, cargo)
+empleado = new Empleado("luis", "villagran", "99999999A", new Date("1992/02/17").toLocaleString(), new Date("2022/11/30").toLocaleString(), null, datosPersonales, datosLaborales, empresa)
+console.log(empleado)
+console.log(cargo)
+console.log(empresa)
+console.log(estadocivil)
+console.log(hijo)
+console.log(datosPersonales)
+console.log(datosLaborales)
+console.log(JSON.stringify(empleado))
