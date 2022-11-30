@@ -77,16 +77,16 @@ cargarPaises = continente => {
 }
 
 
-vaciarElemento = (elemento) => {
-    elemento.childNodes.forEach(hijo => {
-        elemento.removeChild(hijo);
-    })
-}
+//vaciarElemento = (elemento) => {
+  //  elemento.childNodes.forEach(hijo => {
+    //    elemento.removeChild(hijo);
+   // })
+//}
 
 dameDatos = (URL) => fetch(URL);
 dameNombreDePais = cca3=>{
 dameDatos(urlrescountries + [cca3]).then (response => response.json)
-.then(pais=>pais.borders)
+.then(pais=>alpha.pais.borders)
 
 }
 
@@ -137,10 +137,9 @@ datosGeograficos = () => {
 
    
 
+dameDatos(`${urlrescountries}/alpha/pais/borders/` + selectPaises.value)
 
-    dameDatos(urlrescountries + "/name/borders/") + selectPaises.value
-
-        .then(response => response.json())
+        .then((response) => response.json())
         .then(pais => {
             pillarDatosGeograficos(pais[0])
         })
