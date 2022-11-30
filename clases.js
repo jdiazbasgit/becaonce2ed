@@ -129,11 +129,8 @@ tr2.appendChild(td7)
 tr2.appendChild(td8)
 tr2.appendChild(td9)
 tr2.appendChild(td10)
-
-
-
 }
-
+console.log(JSON.stringify(pepeºººººººººººº))
 
 
 
