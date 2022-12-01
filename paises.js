@@ -55,73 +55,6 @@ function cargarDatos(pais) {
     })
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 cargarPaises = (continente) => {
   fetch("https://restcountries.com/v3.1/region/" + continente)
     .then((response) => response.json())
@@ -151,8 +84,12 @@ class Moneda {
     this.symbol = symbol;
   }
 }
-
 dameDatos = (url) => fetch(url)
+  .then(response => {
+    if (response.status == 200)
+      return response.json()
+  })
+
 
 ponerDatosGenerales = (pais) => {
   var main = document.querySelector("main");
@@ -216,7 +153,6 @@ ponerDatosGenerales = (pais) => {
   div2.appendChild(tr7)
   div2.appendChild(tr77)
   td7.innerHTML = "ㅤㅤㅤsimbolo: "
-
 }
 dameDatosGenerales = () => {
   let paisesSelect = document.querySelector("#paises")
