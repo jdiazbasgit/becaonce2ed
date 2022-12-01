@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+var urlrescountries = "https://restcountries.com/v3.1";
+
+=======
 
 //cargaInicial= pais =>{
 
@@ -40,6 +44,7 @@ class Traduccion {
 
 
 
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
@@ -63,12 +68,40 @@ cargarPaises = continente => {
             });
 
         })
+}
 
+<<<<<<< HEAD
+cargaInicial = pais => {
+
+    fetch("https://restcountries.com/v3.1/name")
+        .then(response => response.json())
+        .then(paises => { })
+
+=======
+>>>>>>> 46209532564bcd235523c87aa93f917943b176d1
 }
 cargaFronteras = paises => {
 fetch ("https://restcountries.com/v3.1/name/borders" + paises)
 .then(response => response.json())
 
+<<<<<<< HEAD
+
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
+
+dameDatos = (URL) => fetch(URL);
+dameNombreDePais = cca3 => {
+    dameDatos(urlrescountries + [cca3]).then(response => response.json)
+        .then(pais => pais.borders)
+=======
 }
 
 //vaciarElemento = (elemento) => {
@@ -83,27 +116,34 @@ fetch ("https://restcountries.com/v3.1/name/borders" + paises)
 dameNombreDePais = cca3=>{
 dameDatos(urlrescountries + [cca3]).then (response => response.json)
 .then(pais=>pais.borders)
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 
+    vaciarElemento = (elemento) => {
+        elemento.childNodes.forEach(hijo => {
+            elemento.removeChild(hijo);
+        })
+    }
+}
+class Moneda {
+    constructor(name, symbol) {
+        this.name = name;
+        this.symbol = symbo;
+    }
 }
 
-//datosgenerales= (pais) =>{
-// datosGenerales = document.querySelector("#datosgenerales");
-//datosGenerales.innerHTML = ""
+class Traduccion {
 
-
-//var main=document.querySelector("main");
-//main.innerHTML=""
-//let table=document.createElement("table")
-
-
-
-
-//      }
+    constructor(common, official, paises) {
+        this.common = common;
+        this.paises = paises;
+        this.official = official;
+    }
+}
 
 
 
 
-pillarDatosGeograficos = () => {
+pintarDatosGeograficos = () => {
 
     var main = document.querySelector("main")
     var div = document.createElement("div")
@@ -113,7 +153,7 @@ pillarDatosGeograficos = () => {
     let h34 = document.createElement("h3")
     let h35 = document.createElement("h3")
 
-    h31.innerHTML = "Frontera 1" + pais.frontera   
+    h31.innerHTML = "Frontera 1" + pais.frontera
     h32.innerHTML = "Frontera 2" + pais.frontera
     h33.innerHTML = "Frontera 3" + pais.frontera
     h34.innerHTML = "Frontera 4" + pais.frontera
@@ -130,6 +170,8 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
+<<<<<<< HEAD
+=======
 
    
 
@@ -140,7 +182,11 @@ dameDatos(`${urlrescountries} /pais/borders/` + selectPaises.value)
             pillarDatosGeograficos(pais[0])
         })
 
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 }
+
+//
+
 traducciones = () => { }
 banderas = () => { }
 

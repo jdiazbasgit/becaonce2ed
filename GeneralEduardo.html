@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="ejercicioPaises.js"></script>
+     <script src="ejercicioPaises.js"></script> 
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <nav class="text-center">
-                <button type="button" class="btn btn-info">Datos Generales</button>
+                <button type="button" class="btn btn-info" onclick=datosGeograficos() class="btn btn-info">Datos Generales</button>
                 <button type="button" class="btn btn-info">Datos Geográficos</button>
                 <button type="button" class="btn btn-info">Traducciones</button>
                 <button type="button" class="btn btn-info" onclick=cargaBanderaEscudo()>Banderas</button>
@@ -38,8 +38,7 @@
                     <div>
                         <div class="row">
                             <div class="col">
-                                Continente:<select id="continentes" name="continente" class="form-select "
-                                    onchange="cargaInicialPaises (this.value)">
+                                Continente:<select id="continentes" name="continente" class="form-select"onchange="cargaInicialPais (this.value)">
                                     <option value="0">Elige un continente</option>
                                     <option value="africa">África</option>
                                     <option value="americas">América</option>
@@ -49,8 +48,7 @@
                                 </select>
                             </div>
                             <div class="col">
-                                País:<select id="paises" name="pais" class="form-select form-select-sm"
-                                    onchange="cargaInicialPais (this.value)">
+                                País:<select id="paises" name="pais" class="form-select form-select-sm"onchange="cargaInicialPais (this.value)">
                                     <option value="0">Elige un país</option>
                                 </select>
                             </div>
