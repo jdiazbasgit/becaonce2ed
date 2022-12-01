@@ -1,57 +1,4 @@
-cargaInicial= pais =>{
-
-    fetch("https://restcountries.com/v3.1/name")
-    .then(response => response.json())
-    .then(paises =>{})
-
-
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
 var urlrescountries = "https://restcountries.com/v3.1";
-
-
-var capital;//STRING
-var poblacion;//number
-var area;//number
-var moneda;// Moneda[]
-var domino;//string
-var fronteras;// string[]
-var bandera;//string
-var escudo;//string
-var traducciones;//Traduccion[]
-
-class Moneda {
-<<<<<<< HEAD
-    constructor(name,symbol){
-this.name=name
-this.symbol=symbol
-=======
-    constructor(name, symbol) {
-
->>>>>>> 11f89d1c0f74c830c844ed355646ffdeb33b924d
-    }
-}
-
-class Traduccion {
-
-    constructor(common, official, paises) {
-        this.common = common
-        this.paises = paises
-        this.official = official
-    }
-}
 
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
@@ -75,43 +22,59 @@ cargarPaises = continente => {
             });
 
         })
+}
 
+cargaInicial = pais => {
 
+    fetch("https://restcountries.com/v3.1/name")
+        .then(response => response.json())
+        .then(paises => { })
 
 }
 
 
-vaciarElemento = (elemento) => {
-    elemento.childNodes.forEach(hijo => {
-        elemento.removeChild(hijo);
-    })
-}
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
 
 dameDatos = (URL) => fetch(URL);
-dameNombreDePais = cca3=>{
-dameDatos(urlrescountries + [cca3]).then (response => response.json)
-.then(pais=>pais.borders)
+dameNombreDePais = cca3 => {
+    dameDatos(urlrescountries + [cca3]).then(response => response.json)
+        .then(pais => pais.borders)
 
+    vaciarElemento = (elemento) => {
+        elemento.childNodes.forEach(hijo => {
+            elemento.removeChild(hijo);
+        })
+    }
+}
+class Moneda {
+    constructor(name, symbol) {
+        this.name = name;
+        this.symbol = symbo;
+    }
 }
 
-//datosgenerales= (pais) =>{
-// datosGenerales = document.querySelector("#datosgenerales");
-//datosGenerales.innerHTML = ""
+class Traduccion {
 
-
-//var main=document.querySelector("main");
-//main.innerHTML=""
-//let table=document.createElement("table")
-
-
-
-
-//      }
+    constructor(common, official, paises) {
+        this.common = common;
+        this.paises = paises;
+        this.official = official;
+    }
+}
 
 
 
 
-pillarDatosGeograficos = () => {
+pintarDatosGeograficos = () => {
 
     var main = document.querySelector("main")
     var div = document.createElement("div")
@@ -121,7 +84,7 @@ pillarDatosGeograficos = () => {
     let h34 = document.createElement("h3")
     let h35 = document.createElement("h3")
 
-    h31.innerHTML = "Frontera 1" + pais.frontera   
+    h31.innerHTML = "Frontera 1" + pais.frontera
     h32.innerHTML = "Frontera 2" + pais.frontera
     h33.innerHTML = "Frontera 3" + pais.frontera
     h34.innerHTML = "Frontera 4" + pais.frontera
@@ -138,17 +101,9 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
-
-   
-
-
-    dameDatos(urlrescountries + "/name/borders/") + selectPaises.value
-
-        .then(response => response.json())
-        .then(pais => {
-            pillarDatosGeograficos(pais[0])
-        })
-
 }
+
+//
+
 traducciones = () => { }
 banderas = () => { }

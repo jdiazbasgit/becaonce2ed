@@ -3,14 +3,6 @@
 
 
 
-
-
-
-
-
-
-
-
 var urlPais = "https://restcountries.com/v3.1/name/"
 var urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
