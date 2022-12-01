@@ -1,5 +1,50 @@
+<<<<<<< HEAD
 var urlrescountries = "https://restcountries.com/v3.1";
 
+=======
+
+//cargaInicial= pais =>{
+
+    //fetch("https://restcountries.com/v3.1/name")
+    //.then(response => response.json())
+    //.then(paises =>{})
+   
+//}
+var urlrescountries = "https://restcountries.com/v3.1";
+
+
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
+class Moneda {
+    constructor(name,symbol){
+this.name=name
+this.symbol=symbol
+
+    }
+}
+
+class Traduccion {
+
+    constructor(common, official, paises) {
+        this.common = common
+        this.paises = paises
+        this.official = official
+    }
+}
+
+
+
+
+
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
@@ -12,6 +57,7 @@ cargarPaises = continente => {
             seleccionaPais.value = "0"
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
+            
             paises.forEach(pais => {
 
                 let option = document.createElement("option");
@@ -31,7 +77,11 @@ cargaInicial = pais => {
         .then(paises => { })
 
 }
+cargaFronteras = paises => {
+fetch ("https://restcountries.com/v3.1/name/borders" + paises)
+.then(response => response.json())
 
+<<<<<<< HEAD
 
 var capital;//STRING
 var poblacion;//number
@@ -48,6 +98,22 @@ dameDatos = (URL) => fetch(URL);
 dameNombreDePais = cca3 => {
     dameDatos(urlrescountries + [cca3]).then(response => response.json)
         .then(pais => pais.borders)
+=======
+}
+
+//vaciarElemento = (elemento) => {
+  //  elemento.childNodes.forEach(hijo => {
+    //    elemento.removeChild(hijo);
+   // })
+//}
+
+//dameDatos = (url) => fetch(url);
+
+
+dameNombreDePais = cca3=>{
+dameDatos(urlrescountries + [cca3]).then (response => response.json)
+.then(pais=>pais.borders)
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 
     vaciarElemento = (elemento) => {
         elemento.childNodes.forEach(hijo => {
@@ -101,9 +167,25 @@ datosGeograficos = () => {
     datosGeograficos.innerHTML = ""
     let selectPaises = document.createElement("option")
     selectPaises.value = "0"
+<<<<<<< HEAD
+=======
+
+   
+
+dameDatos(`${urlrescountries} /pais/borders/` + selectPaises.value)
+
+        .then((response) => response.json())
+        .then(pais => {
+            pillarDatosGeograficos(pais[0])
+        })
+
+>>>>>>> e43eb772d3031d14d357f482336023b54a688902
 }
 
 //
 
 traducciones = () => { }
 banderas = () => { }
+
+ //var capital = pais[0].capital
+ //console.log(capital)

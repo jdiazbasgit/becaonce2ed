@@ -6,8 +6,53 @@ cargaInicialPais = (pais) => {
         })           
 }
 
+var urlrescountries = "https://restcountries.com/v3.1";
 
 
+var capital;//STRING
+var poblacion;//number
+var area;//number
+var moneda;// Moneda[]
+var domino;//string
+var fronteras;// string[]
+var bandera;//string
+var escudo;//string
+var traducciones;//Traduccion[]
+
+cargarPaises = continente => {
+    fetch("https://restcountries.com/v3.1/region/" + continente)
+        .then(response => response.json())
+        .then(paises => {
+
+
+            var paisesSelect = document.querySelector("#paises");
+            paisesSelect.innerHTML = ""
+            let seleccionaPais = document.createElement("option")
+            seleccionaPais.value = "0"
+            seleccionaPais.text = "Selecciona pais";
+            paisesSelect.appendChild(seleccionaPais);
+            
+            paises.forEach(pais => {
+
+                let option = document.createElement("option");
+                option.value = pais.name.common;
+                option.text = option.value;
+                paisesSelect.appendChild(option)
+
+            });
+
+        })
+
+
+
+}
+
+dameDatos = (URL) => fetch(URL);
+dameNombreDePais = cca3=>{
+dameDatos(urlrescountries + [cca3]).then (response => response.json)
+.then(pais=>alpha.pais.borders)
+
+}
 
 
 
