@@ -15,25 +15,24 @@ class Moneda {
     this.name = name
     this.symbol = symbol
 
-  }
+    }
 }
 
 class Traduccion {
-
-  constructor(common, official, paises) {
-    this.common = common
-    this.paises = paises
-    this.official = official
-  }
+   
+    constructor(common,official,paises){
+      this.common=common
+      this.paises=paises
+      this.official=official
+    }
 }
 
-var moneda = new Moneda((urlrestcountries+"peru".translation)[0](currencies.name))
-console.log(moneda)
-var arabe = new Traduccion("إسباني   ", "مملكة إسبانيا", new Array())
+var euro= new Moneda("euro","€")
+var arabe= new Traduccion("إسباني   ","مملكة إسبانيا",new Array())
 arabe.paises.push("Argelia")
 console.log(euro.symbol)
 
-var javitoEuro = new Moneda("javitoEuro", "J€")
+var javitoEuro=  new Moneda("javitoEuro","J€")
 
 cargarPaises = (continente) => {
   fetch(urlrestcountries + "region/" + continente)
@@ -51,7 +50,7 @@ cargarPaises = (continente) => {
         option.value = pais.name.common;
         option.text = option.value;
         paisesSelect.appendChild(option);
-        // varciarElementos.appendChild(option)
+        // varciarElementos.appendChild(option)mv
       });
     });
 };
@@ -63,7 +62,7 @@ varciarElementos = (elementos) => {
 };
 dameDatos = (url) => fetch(url);
 
-dameDatosGeograficos = () => { };
+dameDatosGeograficos = () => {};
 pintaDatosGenerales = (pais) => {
   console.log(pais);
 
@@ -137,7 +136,7 @@ dameBanderas = () => {
   th2.innerHTML = "Escudo:";
   tr2.appendChild(th2);
 };
-dameCodigodeMoneda = () => { };
+dameCodigodeMoneda = () => {};
 traducciones = () => {
   let div = document.createElement("div");
   div.classList.add("btn-group");
