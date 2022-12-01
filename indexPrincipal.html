@@ -23,27 +23,37 @@
       <div class="container-fluid p-5 bg-success text-white text-center ">
         <h1>PAISES DEL MUNDO</h1>
       </div>
+
+
+      <nav>
+        <div class="container mt-3">
+          <ul class="nav nav-pills nav-justified">
+            <li class="nav-item">
+              <a class="nav-link active bg-success" href="#">Datos Generales</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active bg-success" href="#">Datos Geograficos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active bg-success" href="#">Traducción</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active bg-success" href="#">Banderas</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-    <div class="container mt-3">
-      <ul class="nav nav-pills nav-justified">
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos Generales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos Geograficos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Traducción</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Banderas</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
+
+    <div class="row align-middle">
+
+      <div class="col-sm-6">
+        <h2>continente</h2>
+        <select name="continente" onchange="cargarPaises(this.value)" class="form-select">
+
+          
+
     <div class="row mt-5">
       <div class="col">
         <h2>Seleccione Continente</h2>
@@ -64,11 +74,12 @@
         <select class="form-select bg-success " id="sel1" name="sellist1">
           <option value="0">Elige un País</option>
         </select>
-      </div> 
+      </div>
     </div>
-    
-    
-    
+      
+
+
+
     <div class="mx-auto w-50 mt-3 container-fluid">
       <h2>Fronteras:</h2>
       <table class="w-100">
@@ -118,4 +129,3 @@
       <td>
         <tr>
         </tr>
-
