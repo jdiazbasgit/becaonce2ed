@@ -9,7 +9,7 @@ sinPromesa = () => {
   else console.log("hola cariño como estas");
 };
 
-async function conPromesa () {
+async function conPromesa () => {
     /*dejoElMovil().then((result) => {
     console.log(result);
     if (movilroto) console.log("no puedo llamar, el movil esta roto");

@@ -13,30 +13,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="paises.js" defer></script>
   </head>
-  <header>
-    <nav></nav>
-  </header>
-  <main>
-    <div class="row">
-      <div class="form-group col">
-        <label for="continentes">Continentes: </label>
-        <select id="continentes" onchange="cargarPaises(this.value)" class="form-control" >
-          <option value="0">Selecciona Continente....</option>
-          <option value="europe">Europa</option>
-          <option value="africa">África</option>
-          <option value="americas">América</option>
-          <option value="asia">Asia</option>
-          <option value="oceania">Oceanía</option>
-        </select>
-      </div>
-      <div class="form-group col">
-        <label for="paises">Paises: </label
-        ><select id="paises" class="form-control" onchange="cargarDatos(this.value)">
-          <option value="0">Selecciona Pais...</option>
-        </select>
-      </div>
+  <body>
+    <div class="container">
+      <header>
+        <nav></nav>
+      </header>
+      <main>
+        <div class="row">
+          <div class="form-group col w-25">
+            <label for="continentes">Continentes: </label>
+            <select
+              id="continentes"
+              onchange="cargarPaises(this.value)"
+              class="form-control"
+            >
+              <option value="0">Selecciona Continente....</option>
+              <option value="europe">Europa</option>
+              <option value="africa">África</option>
+              <option value="americas">América</option>
+              <option value="asia">Asia</option>
+              <option value="oceania">Oceanía</option>
+            </select>
+          </div>
+          <div class="form-group col w-25">
+            <label for="paises">Paises: </label
+            ><select
+              id="paises"
+              class="form-control"
+              onchange="cargarDatos(this.value)"
+            >
+              <option value="0">Selecciona Pais...</option>
+            </select>
+          </div>
+        </div>
+        <h1 id="error" class="text-danger text-center"></h1>
+      </main>
     </div>
-      <h1 id="error" class="text-danger text-center"></h1>
-
-  </main>
+  </body>
 </html>
