@@ -1,24 +1,11 @@
-cargaInicial= pais =>{
 
-    fetch("https://restcountries.com/v3.1/name")
-    .then(response => response.json())
-    .then(paises =>{})
+//cargaInicial= pais =>{
 
-
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
+    //fetch("https://restcountries.com/v3.1/name")
+    //.then(response => response.json())
+    //.then(paises =>{})
+   
+//}
 var urlrescountries = "https://restcountries.com/v3.1";
 
 
@@ -49,6 +36,10 @@ class Traduccion {
     }
 }
 
+
+
+
+
 cargarPaises = continente => {
     fetch("https://restcountries.com/v3.1/region/" + continente)
         .then(response => response.json())
@@ -61,6 +52,7 @@ cargarPaises = continente => {
             seleccionaPais.value = "0"
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
+            
             paises.forEach(pais => {
 
                 let option = document.createElement("option");
@@ -75,7 +67,11 @@ cargarPaises = continente => {
 
 
 }
+cargaFronteras = paises => {
+fetch ("https://restcountries.com/v3.1/name/borders" + paises)
+.then(response => response.json())
 
+}
 
 //vaciarElemento = (elemento) => {
   //  elemento.childNodes.forEach(hijo => {
@@ -83,10 +79,12 @@ cargarPaises = continente => {
    // })
 //}
 
-dameDatos = (URL) => fetch(URL);
+//dameDatos = (url) => fetch(url);
+
+
 dameNombreDePais = cca3=>{
 dameDatos(urlrescountries + [cca3]).then (response => response.json)
-.then(pais=>alpha.pais.borders)
+.then(pais=>pais.borders)
 
 }
 
@@ -137,7 +135,7 @@ datosGeograficos = () => {
 
    
 
-dameDatos(`${urlrescountries}/alpha/pais/borders/` + selectPaises.value)
+dameDatos(`${urlrescountries} /pais/borders/` + selectPaises.value)
 
         .then((response) => response.json())
         .then(pais => {
@@ -147,3 +145,6 @@ dameDatos(`${urlrescountries}/alpha/pais/borders/` + selectPaises.value)
 }
 traducciones = () => { }
 banderas = () => { }
+
+ //var capital = pais[0].capital
+ //console.log(capital)
