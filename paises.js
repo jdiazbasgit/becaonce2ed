@@ -38,8 +38,8 @@ function cargarDatos(pais) {
             fronterasNombres.push(miPais.name.common)
           })
       })
-      monedas.forEach(moneda => {
-        monedasDatos.push(Object.entries(moneda)[0])
+      monedas.forEach(monedas => {
+        monedasDatos.push(Object.entries(monedas)[0])
       })
       Object.entries(traducciones)
         .forEach(traduccion => {
@@ -54,7 +54,6 @@ function cargarDatos(pais) {
         })
     })
 }
-
 cargarPaises = (continente) => {
   fetch("https://restcountries.com/v3.1/region/" + continente)
     .then((response) => response.json())
@@ -176,4 +175,3 @@ dameDatosMoneda = () => {
 dameDatosGeograficos = () => { }
 dameBanderas = () => { }
 dameTraducciones = () => { }
-
