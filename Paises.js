@@ -1,9 +1,9 @@
 cargaInicialPais = (pais) => {
-    fetch ("https://restcountries.com/v3.1/" .name.alpha.leng + continente)
+    fetch("https://restcountries.com/v3.1/".name.alpha.leng + continente)
         .then((response) => response.json())
         .then(paises => {
 
-        })           
+        })
 }
 
 var urlrescountries = "https://restcountries.com/v3.1";
@@ -31,7 +31,7 @@ cargarPaises = continente => {
             seleccionaPais.value = "0"
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
-            
+
             paises.forEach(pais => {
 
                 let option = document.createElement("option");
@@ -48,9 +48,9 @@ cargarPaises = continente => {
 }
 
 dameDatos = (URL) => fetch(URL);
-dameNombreDePais = cca3=>{
-dameDatos(urlrescountries + [cca3]).then (response => response.json)
-.then(pais=>alpha.pais.borders)
+dameNombreDePais = cca3 => {
+    dameDatos(urlrescountries + [cca3]).then(response => response.json)
+        .then(pais => alpha.pais.borders)
 
 }
 

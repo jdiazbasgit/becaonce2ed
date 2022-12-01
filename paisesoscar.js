@@ -64,8 +64,6 @@ cargarPaises = continente => {
 
         })
 
-
-
 }
 cargaFronteras = paises => {
 fetch ("https://restcountries.com/v3.1/name/borders" + paises)
