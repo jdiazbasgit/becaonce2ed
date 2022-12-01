@@ -45,7 +45,7 @@
       <div class="col">
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success" id="sel1" name="sellist1" onchange="cargarPaises(this.value)">
+        <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
           <option value="europe" onclick="cargarPaises(europe)">Europa</option>
           <option value="americas" onclick="cargarPaises(americas)">America</option>
           <option value="asia" onclick="cargarPaises(asia)">Asia</option>
@@ -55,11 +55,10 @@
       </div>
       <div class="col">
         <h2>Seleccione país</h2>
-        <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success " id="paises" name="sellist1">
+        <label for="sel2" class="form-label"></label>
+        <select class="form-select bg-success " name="sel2" onchange=cargarDatos(this.value)>
           <option></option>
         </select>
       </div>
       <main></main>
     </div>
-    

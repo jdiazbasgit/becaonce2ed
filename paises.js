@@ -1,3 +1,127 @@
+var capital
+var poblacion
+var area
+var dominios = []
+var fronteras = []
+var bandera
+var escudo
+var monedas = []
+var monedasDatos = []
+var traducciones = []
+var fronterasNombres = []
+var traduccionesDatos = []
+
+class Traduccion {
+  constructor(traduccionDelNombre, paisesDelIdioma) {
+    this.traduccionDelNombre = traduccionDelNombre;
+    this.paisesDelIdioma = paisesDelIdioma;
+  }
+}
+
+function cargarDatos(pais) {
+  dameDatos("https://restcountries.com/v3.1/name/" + pais)
+    .then(paises => {
+      let miPais = paises[0]
+      capital = miPais.capital
+      poblacion = miPais.population
+      area = miPais.area
+      dominios = miPais.tld
+      bandera = miPais.flags.svg
+      escudo = miPais.coatOfArms.svg
+      monedas = miPais.currencies
+      traducciones = miPais.translations
+      fronteras = miPais.borders
+      fronteras.forEach(frontera => {
+        dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
+          .then(paises => {
+            let miPais = paises[0]
+            fronterasNombres.push(miPais.name.common)
+          })
+      })
+      monedas.forEach(moneda => {
+        monedasDatos.push(Object.entries(moneda)[0])
+      })
+      Object.entries(traducciones)
+        .forEach(traduccion => {
+          miTraduccion = new Traduccion(traduccion[1].common, [])
+          dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
+            .then(paises => {
+              paises.forEach(pais => {
+                miTraduccion.paisesDelIdioma.push(pais.name.common)
+                traduccionesDatos.push(miTraduccion)
+              })
+            })
+        })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 cargarPaises = (continente) => {
   fetch("https://restcountries.com/v3.1/region/" + continente)
     .then((response) => response.json())
@@ -21,7 +145,7 @@ vaciarElementos = (elementos) => {
     paisesSelect.removeChild(hijo);
   })
 }
-class Moneda{
+class Moneda {
   constructor(name, symbol) {
     this.name = name;
     this.symbol = symbol;
@@ -84,7 +208,7 @@ ponerDatosGenerales = (pais) => {
   div2.appendChild(td6)
   div2.appendChild(tr6)
   div2.appendChild(tr66)
-  td6.innerHTML = "ㅤㅤㅤnombre: " + pais.currencies.moneda
+  td6.innerHTML = "ㅤㅤㅤnombre: " + pais.moneda.name
   let td7 = document.createElement("td")
   let tr7 = document.createElement("tr")
   let tr77 = document.createElement("tr")
@@ -102,19 +226,18 @@ dameDatosGenerales = () => {
       ponerDatosGenerales(pais[0])
     })
 }
+dameDatosMoneda = () => {
+  let paisesSelect = document.querySelector("#paises")
+  dameDatos("https://restcountries.com/v3.1/" + "name/" + paisesSelect.value)
+    .then(response => response.json())
+    .then(pais => {
+      ponerDatosGenerales(pais[0])
+    })
+}
 //https://restcountries.com/v3.1/alpha
 
 //dameDatosGenerales = () => {}
 dameDatosGeograficos = () => { }
 dameBanderas = () => { }
-dameCodigodeMoneda = () => { }
-traducciones = () => { }
+dameTraducciones = () => { }
 
-
-var capital
-var poblacion
-var area
-var dominio
-var fronteras
-var bandera
-var escudo
