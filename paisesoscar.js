@@ -70,12 +70,15 @@ cargarPaises = continente => {
         })
 }
 
+<<<<<<< HEAD
 cargaInicial = pais => {
 
     fetch("https://restcountries.com/v3.1/name")
         .then(response => response.json())
         .then(paises => { })
 
+=======
+>>>>>>> 46209532564bcd235523c87aa93f917943b176d1
 }
 cargaFronteras = paises => {
 fetch ("https://restcountries.com/v3.1/name/borders" + paises)

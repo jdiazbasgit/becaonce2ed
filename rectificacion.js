@@ -9,7 +9,16 @@ var escudo
 var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
-var traduccionesNombres = []
+var traduccionesDatos = []
+
+
+class Traduccion {
+    constructor(traduccionDelNombre, paisesDelIdioma) {
+        this.traduccionDelNombre = traduccionDelNombre;
+        this.paisesDelIdioma = paisesDelIdioma:
+    }
+}
+
 
 function cargarDatos(pais) {
     dameDatos("https://restcountries.com/v3.1/name/" + pais)
@@ -35,8 +44,42 @@ function cargarDatos(pais) {
                 monedasDatos.push(Object.entries(monedas)[0])
             })
             Object.entries(traducciones)
-            .forEach(traduccion =>{
-                
-            })
+                .forEach(traduccion => {
+                    miTraduccion = new Traduccion(traduccion[1].common, [])
+                    dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
+                        .then(paises => {
+                            paises.forEach(pais => {
+                                miTraduccion.paisesDelIdioma.push(pais.name.common)
+                                traduccionesDatos.push(miTraduccion)
+                            })
+                        })
+
+                })
         })
+        //while(capital==undefined && poblacion ==)
+}
+cargarPaises = continente => {
+    fetch("https://restcountries.com/v3.1/region/" + continente)
+        .then(response => response.json())
+        .then(paises => {
+
+
+            var paisesSelect = document.querySelector("#paises");
+            paisesSelect.innerHTML = ""
+            let seleccionaPais = document.createElement("option")
+            seleccionaPais.value = "0"
+            seleccionaPais.text = "Selecciona pais";
+            paisesSelect.appendChild(seleccionaPais);
+            
+            paises.forEach(pais => {
+
+                let option = document.createElement("option");
+                option.value = pais.name.common;
+                option.text = option.value;
+                paisesSelect.appendChild(option)
+
+            });
+
+        })
+
 }
