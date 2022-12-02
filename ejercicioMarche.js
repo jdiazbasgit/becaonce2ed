@@ -6,8 +6,11 @@ function sumar() {
     var table = document.querySelector("table")
     var tr = document.createElement("tr")
     var td1 = document.createElement("td")
+    td1.numero1=numero1
     var td2 = document.createElement("td")
+    td2.numero2=numero2
     var td3 = document.createElement("td")
+    td3.reultado=reultado
 
     table.appendChild(tr)
     tr.appendChild(td1)
