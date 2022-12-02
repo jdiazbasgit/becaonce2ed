@@ -15,19 +15,15 @@
     <title>Document</title>
 </head>
 
-<body onload="cargaSelectContinentes() ;">
+<body onload="opcionescontinentes() ;">
     <div class="container-fluid justify-content-center">
         <header>
             <div class="container-fluid p-5 bg-primary text-white text-center">
-                <h1 class="text center"> MUNDO</h1>
+                <h1 class="text center">PAISES DEL MUNDO</h1>
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-                    <a class="navbar-brand" href="#">
-
-                    </a>
+                <nav class=" navbar-expand-lg navbar-light bg-light justify-content-center">
                     <a class="navbar-brand" href="#"></a>
-
-
+                    <a class="navbar-brand" href="#"></a>
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
                             <a class="nav-link" onclick="cargaDatosGenerales();" href="#">DATOS GENERALES</a>
@@ -46,10 +42,21 @@
             </div>
         </header>
         <div class="selector">continentes: <select id="continentes" onchange="cargaPaisesDeCotinente(this.value);">
-                <option value="0">Selecciona continente...</option>
+                <option value="0">seleccion continentes</option>
+                <option class="opcionescontinentes" value="asia">Asia</option>
+                <option class="opcionescontinentes" value="africa">África
+                </option>
+                <option class="opcionescontinentes" value="americas">América
+                </option>
+                <option class="opcionescontinentes" value="oceania">Oceanía
+                </option>
+                <option class="opcionescontinentes" value="europe">Europa
+                </option>
+                
             </select>
             paises:<select id="paises" onchange="verPais(this.value);">
-                <option value="0">Selecciona pais...</option>
+                <option value="0">seleccion paises</option>
+                
             </select>
         </div>
         <div class="alineado">
