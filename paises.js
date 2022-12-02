@@ -31,20 +31,32 @@ function cargarDatos(pais) {
       monedas = miPais.currencies
       traducciones = miPais.translations
       fronteras = miPais.borders
-      fronteras.forEach(frontera => {
+      
+      fronterasNombres.forEach(frontera => {
         dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
           .then(paises => {
             let miPais = paises[0]
             fronterasNombres.push(miPais.name.common)
           })
       })
-      monedas.forEach(monedas => {
-        monedasDatos.push(Object.entries(monedas)[0])
-      })
+
+
+    /*  Object.entries(monedas)
+        .forEach(monedasDatos => {
+          monedasDatos = new Monedas(monedas[0].symbol [0])
+          dameDatos("https://restcountries.com/v3.1/" + monedas[0])
+            .then(monedas => {
+              monedas.forEach(monedas => {
+                monedasDatos.monedasDelPais.push(monedas.name.symbol)
+                datosDeMonedas.push(monedasDatos)
+
+              })
+            })
+        })*/
       Object.entries(traducciones)
-        .forEach(traduccion => {
-          miTraduccion = new Traduccion(traduccion[1].common, [])
-          dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
+        .forEach(traducciones => {
+          miTraduccion = new Traduccion(traducciones[1].common[0])
+          dameDatos("https://restcountries.com/v3.1/lang/" + traducciones[0])
             .then(paises => {
               paises.forEach(pais => {
                 miTraduccion.paisesDelIdioma.push(pais.name.common)
@@ -77,7 +89,7 @@ vaciarElementos = (elementos) => {
     paisesSelect.removeChild(hijo);
   })
 }
-class Moneda {
+class Monedas {
   constructor(name, symbol) {
     this.name = name;
     this.symbol = symbol;
