@@ -41,7 +41,7 @@ function cargarDatos(pais) {
           })
       })
       monedas.forEach(monedas => {
-        monedasDatos.push(Object.entries(monedas)[0])
+        monedasDatos.push(Object.entries(currencies)[0])
       })
       Object.entries(traducciones)
         .forEach(traduccion => {
@@ -94,7 +94,7 @@ dameDatosGenerales = () => {
     })
 }
 
-moneda=new Moneda(n[1].name,n[1].symbol)
+moneda=new Moneda("name","symbol")
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
@@ -118,10 +118,10 @@ pintaDatosGenerales = (pais) => {
   th4.innerHTML = "Dominio";
   th5.innerHTML = "Moneda";
   td1.innerHTML = pais.capital;
-  td2.innerHTML = pais.population;
+  td2.innerHTML = pais.population
   td3.innerHTML = pais.area;
   td4.innerHTML = pais.tld;
-  td5.innerHTML = moneda.symbol;
+  td5.innerHTML = moneda.name;
   main.appendChild(table);
   table.appendChild(tr1,);
   table.appendChild(tr2)
