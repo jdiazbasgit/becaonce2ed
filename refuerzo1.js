@@ -47,7 +47,7 @@ button1.type = "button"
 button1.onclick = "alert"
 //button1.onclick="alert('he pulsado el boton')"
 
-button1.addEventListener("click",(event)=>{
+button1.addEventListener("click",(event) => {
     alert('he pulsado el  boton')
 })
 button1.innerHTML="ENVIAR"
@@ -84,17 +84,11 @@ input3.appendChild(form2)
 button3.appendChild(form2)
 //////*/
 
-function suma() {
-var num1 = parseInt(document.getElementById('num1').value);
-var num2 = parseInt(document.getElementById('num2').value);
-var resultado;
-Result= Number1+Number2,
-alert("+resultado");
 
 
-console.log(suma +resultado);
 
-}
+
+
 
 
 
