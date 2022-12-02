@@ -6,7 +6,7 @@ var dominios = []// las llaves delante de uba varible tiene es significado de ar
 var fronteras = [] // array esto tambien quiere decir qeu comenzamos a contar desde el 0 
 var bandera //string
 var escudo // string
-var monedas = [] // array
+var monedas 
 var monedasDatos = [] // array
 var traducciones = [] // array
 var fronterasNombres = [] // array
@@ -17,7 +17,17 @@ class Traduccion { // aqui emos creado una clase(class)
     this.traduccionDelNombre = traduccionDelNombre; // entre corchetes dabas vidas a eso elementos 
     this.paisesDelIdioma = paisesDelIdioma;
   }
-}
+}class Moneda {
+  constructor(name, symbol) {
+    this.name = name;
+    this.symbol = symbol;
+  }
+} 
+Object.entries(currencies)
+      .forEach(monedas=>{
+        monedas = new Moneda() 
+
+      })
 
 function cargarDatos(pais) { // el inicio de una function la cual le damos un nombre y entre parentecis le damos un parametro(pais) si es necesario y si no los dejanos vacios()
   dameDatos("https://restcountries.com/v3.1/name/" + pais)//abrimos corchetes,creamos otra function donde le damos un parametro,url, y le pasamos el parametro de cargaPais function anterior 
@@ -39,9 +49,10 @@ function cargarDatos(pais) { // el inicio de una function la cual le damos un no
             fronterasNombres.push(miPais.name.common)
           })
       })
-      monedas.forEach(moneda => {
+     
+     /* monedas.forEach(moneda => {
         monedasDatos.push(Object.entries(moneda)[0])
-      })
+      })*/
       Object.entries(traducciones)
         .forEach(traduccion => {
           miTraduccion = new Traduccion(traduccion[1].common, [])
@@ -79,12 +90,7 @@ vaciarElementos = (elementos) => {
     paisesSelect.removeChild(hijo);
   })
 }
-class Moneda {
-  constructor(name, symbol) {
-    this.name = name;
-    this.symbol = symbol;
-  }
-}
+
 dameDatos = (url) => fetch(url)
   .then(response => {
     if (response.status == 200)
