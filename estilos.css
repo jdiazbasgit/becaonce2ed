@@ -34,3 +34,8 @@ li {
     background-color: rgb(219, 217, 217);
     width: 150px;
 }
+#siguelo{
+    position: absolute;
+      left: 100px;
+      top: 50px;
+  }

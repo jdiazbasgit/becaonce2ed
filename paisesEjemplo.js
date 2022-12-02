@@ -97,7 +97,13 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#francia').innerHTML = countryData.translations.fra.official;
         document.querySelector('#italia').innerHTML = countryData.translations.ita.official;
         //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
-
+        document.querySelector('#frontera').innerHTML = countryData.borders;
+        var fronteras = Object.keys(countryData['borders']);
+        fronteras.forEach(tipo => {
+          var fronteras= "";
+          fronteras += countryData.borders[tipo] + ' | ';
+          document.querySelector("#fronteras").innerHTML=countryData.borders;
+        });
 
         var monedas = Object.keys(countryData['currencies']);
         //document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
@@ -125,3 +131,15 @@ Pais.addEventListener('change', (event) => {
     });
 });
 
+
+function sigueme() {
+  var x = window.event.x + document.body.scrollLeft;
+  var y = window.event.y + document.body.scrollTop;
+
+  document.getElementById("siguelo").style.left = x + "px";
+  document.getElementById("siguelo").style.top = y + "px";
+}
+
+document.onmousemove=function(){
+    sigueme();
+};
