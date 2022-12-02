@@ -13,18 +13,13 @@ opcionesContinente = continente => {
             seleccionaPais.text = "seleccionarPais"
             paisesSelect.appendChild(seleccionaPais);
             pais.forEach(pais => {
-
                 let option = document.createElement("option");
                 option.value = pais.name.common;
                 option.text = option.value;
                 paisesSelect.appendChild(option)
             });
 
-
         })
-
-
-
 }
 
 //buscar datosGenerales.
@@ -39,3 +34,4 @@ var dominio;
 var superficie;
 var moneda;
 var bandera;
+var escudo;
