@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="paises.js"></script>
 </head>
 
 <body>
@@ -45,39 +45,39 @@
       <div class="col">
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success" id="sel1" name="sellist1">
-          <option>Europa</option>
-          <option>America</option>
-          <option>Asia</option>
-          <option>Africa</option>
-          <option>Oceania</option>
+        <select class="form-select bg-success" id="sel1" name="sellist1" onchange="cargarPaises(this.value)">
+          <option value="europe" onclick="cargarPaises(europe)">Europa</option>
+          <option value="americas" onclick="cargarPaises(americas)">America</option>
+          <option value="asia" onclick="cargarPaises(asia)">Asia</option>
+          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
+          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
         </select>
       </div>
       <div class="col">
         <h2>Seleccione país</h2>
         <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success " id="sel1" name="sellist1">
-          <option>XXXXXXXXXX</option>
+        <select class="form-select bg-success " id="paises" name="sellist1" onchange="cargarPaises(paisesSelect)">
+          <option></option>
         </select>
       </div>
     </div>
-    <div class="mx-auto w-50 mt-3 container-fluid">
+    <div class="mx-auto w-50 mt-3 container-fluid" id="datos">
       <table class="w-100">
         <tr>
-          <td>
-            <h3 class="mx-auto">Capital: xxxxxxx</h3>
+          <td colspan="2">
+            <h3 class="mx-auto" id="capital" onchange="dameDatos()">Capital:</h3>
           </td>
           <td></td>
         </tr>
         <tr>
           <td>
-            <h3>Población: 9999999999</h3>
+            <h3 id="poblacion" onchange="dameDatos()">Población: </h3>
           </td>
           <td></td>
         </tr>
         <tr>
           <td>
-            <h3>Área: 99999999999</h3>
+            <h3 id="area" onchange="dameDatos()">Área: </h3>
           </td>
           <td></td>
         </tr>
@@ -91,52 +91,20 @@
           <td>
           </td>
           <td>
-            <h3>nombre: Euro</h3>
+            <h3 id="nombreMoneda" onchange="dameDatos()">nombre: Euro</h3>
           </td>
         </tr>
         <tr>
           <td>
           </td>
           <td>
-            <h3>Símbolo: €</h3>
+            <h3 id="simbolo" onchange="dameDatos()">Símbolo: €</h3>
           </td>
         </tr>
       </table>
     </div>
   </div>
-  <div class="row mx-auto w-50 mt-3 container-fluid">
-    <table>
-      <td>
-        <tr>
-
-          
-        </tr>
-        
-
-
-
-
-
-
-
-
-
-
-      </td>
-
-
-
-    </table>
-
-
-
-
-
-
-
-
-
-  </div>
+ 
 </body>
 
 </html>

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="paises.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
     <div class="container mt-3">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos generales</a>
+          <button class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos generales</button>
         </li>
         <li class="nav-item">
           <a class="nav-link active bg-success" href="#">Datos geograficos</a>
@@ -45,39 +45,20 @@
       <div class="col">
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success" id="sel1" name="sellist1">
-          <option>Europa</option>
-          <option>America</option>
-          <option>Asia</option>
-          <option>Africa</option>
-          <option>Oceania</option>
+        <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
+          <option value="europe" onclick="cargarPaises(europe)">Europa</option>
+          <option value="americas" onclick="cargarPaises(americas)">America</option>
+          <option value="asia" onclick="cargarPaises(asia)">Asia</option>
+          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
+          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
         </select>
       </div>
       <div class="col">
         <h2>Seleccione país</h2>
-        <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success " id="sel1" name="sellist1">
-          <option>XXXXXXXXXX</option>
+        <label for="sel2" class="form-label"></label>
+        <select class="form-select bg-success " name="sel2" id="paises" onchange=cargarDatos(this.value)>
+          <option></option>
         </select>
       </div>
+      <main></main>
     </div>
-    <div class="mx-auto w-50 mt-3 container-fluid">
-      <table class="w-100">
-        <tr>
-          <td>
-            <img src="https://flagcdn.com/es.svg" width="300" height="175">
-          </td>
-          <td><img src="https://mainfacts.com/media/images/coats_of_arms/es.svg" width="300" height="175"></td>
-        </tr>
-
-
-      </table>
-    </div>
-  </div>
-  <div class="row mx-auto w-50 mt-3 container-fluid">
-
-
-  </div>
-</body>
-
-</html>
