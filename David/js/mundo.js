@@ -92,56 +92,56 @@ Pais.addEventListener('change', (event) => {
         document.querySelector("#flag-container img").src = countryData.flags.png;
         document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
 
-        var insAccordion="";
-        var i=0;
+        var insAccordion = "";
+        var i = 0;
 
         var translations = Object.keys(countryData['translations']);
 
         translations.forEach(idioma => {
-          var sofficial=countryData.translations[idioma].official;
-          var scommon=countryData.translations[idioma].common;
-        
-          insAccordion+='<div class="accordion accordion-flush">';
-          insAccordion+='<div class="accordion-item">';
-          insAccordion+='<h2 class="accordion-header id="flush-heading'+i+'">';
-          insAccordion+='<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'+i+'">';
-          insAccordion+=scommon;
-          insAccordion+='</button>';
-          insAccordion+='</h2>';
-          insAccordion+='<div id="flush-collapse'+i+'" class="accordion-collapse collapse"';
-          insAccordion+='aria-labelledby="flush-heading'+i+'" data-bs-parent="#accordionFlushExample">';
-          insAccordion+='<div class="accordion-body">';
-          insAccordion+=sofficial;
-          insAccordion+='</div>';
-          insAccordion+='</div>';
-          insAccordion+='</div>';
-          insAccordion+='</div>';
+          var sofficial = countryData.translations[idioma].official;
+          var scommon = countryData.translations[idioma].common;
+
+          insAccordion += '<div class="accordion accordion-flush">';
+          insAccordion += '<div class="accordion-item">';
+          insAccordion += '<h2 class="accordion-header id="flush-heading' + i + '">';
+          insAccordion += '<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse' + i + '">';
+          insAccordion += scommon;
+          insAccordion += '</button>';
+          insAccordion += '</h2>';
+          insAccordion += '<div id="flush-collapse' + i + '" class="accordion-collapse collapse"';
+          insAccordion += 'aria-labelledby="flush-heading' + i + '" data-bs-parent="#accordionFlushExample">';
+          insAccordion += '<div class="accordion-body">';
+          insAccordion += sofficial;
+          insAccordion += '</div>';
+          insAccordion += '</div>';
+          insAccordion += '</div>';
+          insAccordion += '</div>';
           i++;
         });
-  
+
         document.querySelector('#traducir').innerHTML = insAccordion;
 
-      var monedas = Object.keys(countryData['currencies']);
+        var monedas = Object.keys(countryData['currencies']);
 
-      if (monedas.length>1){
-        var sname="";
-        var ssymbol="";
-        monedas.forEach(tipo => {
-          sname+=countryData.currencies[tipo].name+', ';
-          ssymbol+=countryData.currencies[tipo].symbol+', ';
-        });
+        if (monedas.length > 1) {
+          var sname = "";
+          var ssymbol = "";
+          monedas.forEach(tipo => {
+            sname += countryData.currencies[tipo].name + ', ';
+            ssymbol += countryData.currencies[tipo].symbol + ', ';
+          });
 
-        document.querySelector('#nombre').innerHTML=sname.slice(0, -2);
-        document.querySelector('#simbolo').innerHTML=ssymbol.slice(0, -2);
-      }else if(monedas.length==1){
-        document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
-        document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
-      }
+          document.querySelector('#nombre').innerHTML = sname.slice(0, -2);
+          document.querySelector('#simbolo').innerHTML = ssymbol.slice(0, -2);
+        } else if (monedas.length == 1) {
+          document.querySelector('#nombre').innerHTML = countryData.currencies[monedas].name;
+          document.querySelector('#simbolo').innerHTML = countryData.currencies[monedas].symbol;
+        }
+      });
+
+    }).catch(error => {
+      alert(error);
     });
-
-}).catch(error => {
-  alert(error);
-});
 
 
 });
