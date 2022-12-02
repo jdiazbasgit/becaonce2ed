@@ -14,7 +14,7 @@ elegirContinente = (continente) => {
                 console.log("La capital de " + pais.name.common + " es " + pais.capital)
                 //var selectorpaises = document.getElementById("seleccionaPais")
                 var nombredepais = pais.name.common;
-                var nuevaoption.value = nombredepais;
+                var nuevaoption;value = nombredepais;
                 selectorpaises.appendChild(nuevaoption);
             }
             )/*.catch(error=>{
@@ -47,8 +47,6 @@ fetch("https://restcountries.com/v3.1/name/" + pais)
             nuevaoption.textContent = nombreDePais;
             nuevaoption.value = nombredepais;
             selectorpaises.appendChild(nuevaoption);
-).catch(error => {
+{.catch(error =>)}
     //este catch como forma de tipificar un fallo
-})
-    })
 

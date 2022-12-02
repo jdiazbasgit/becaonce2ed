@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="paises.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="left" width="227" height="156">
+      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+        align="right" width="227" height="156">
+      <div class="container-fluid p-5 bg-success text-white text-center ">
+
+        <h1>PAISES DEL MUNDO</h1>
+      </div>
+    </header>
+
+    <div class="container mt-3">
+      <ul class="nav nav-pills nav-justified">
+        <li class="nav-item">
+          <button class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos generales</button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Traducción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-success" href="#">Banderas</a>
+        </li>
+      </ul>
+    </div>
+    <div class="row mt-5">
+      <div class="col">
+        <h2>Seleccione continente</h2>
+        <label for="sel1" class="form-label"></label>
+        <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
+          <option value="europe" onclick="cargarPaises(europe)">Europa</option>
+          <option value="americas" onclick="cargarPaises(americas)">America</option>
+          <option value="asia" onclick="cargarPaises(asia)">Asia</option>
+          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
+          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
+        </select>
+      </div>
+      <div class="col">
+        <h2>Seleccione país</h2>
+        <label for="sel2" class="form-label"></label>
+        <select class="form-select bg-success " name="sel2" onchange=cargarDatos(this.value)>
+          <option></option>
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Link 1</a></li>
+              <li><a class="dropdown-item" href="#">Link 2</a></li>
+              <li><a class="dropdown-item" href="#">Link 3</a></li>
+            </ul>
+          </div>
+        </div>
+        </select>
+      </div>
+      <main></main>
+    </div>
+</head>
+<body>
+    
+</body>
+</html>
