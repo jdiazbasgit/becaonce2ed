@@ -48,9 +48,9 @@ function cargarDatos(pais) {
                         fronterasNombres.push(miPais.name.common)
                     })
             })
-            monedas.forEach(moneda => {
-                monedasDatos.push(Object.entries(monedas)[0])
-            })
+            // monedas.forEach(monedas => {
+            // monedasDatos.push(Object.entries(monedas)[0])
+            //  })
             Object.entries(traducciones)
                 .forEach(traduccion => {
                     miTraduccion = new Traduccion(traduccion[1].common, [])
@@ -64,7 +64,7 @@ function cargarDatos(pais) {
 
                 })
         })
-   
+
 }
 
 
@@ -101,40 +101,39 @@ cargarPaises = continente => {
 
 dameDatosGenerales = () => {
     let selectPaises = document.querySelector("#paises");
-    dameDatos( urlRestCountries + "/name/" + selectPaises.value)
-      .then((response) => response.json)
-      .then(pais => {
-        pintaDatosGenerales(pais)
-      })
-  }
+    dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+        .then((response) => response.json)
+        .then(pais => {
+            pintaDatosGenerales(pais)
+        })
+}
 
-  
+
 pillarDatosGeograficos = () => {
 
     var main = document.querySelector("main");
     var div = document.createElement("div")
-    let h31 = document.createElement("h3")
-    let h32 = document.createElement("h3")
-    let h33 = document.createElement("h3")
-    let h34 = document.createElement("h3")
-    let h35 = document.createElement("h3")
-
-    h31.innerHTML = "Frontera 1" + pais.frontera   
-    h32.innerHTML = "Frontera 2" + pais.frontera
-    h33.innerHTML = "Frontera 3" + pais.frontera
-    h34.innerHTML = "Frontera 4" + pais.frontera
-    h35.innerHTML = "Frontera 5" + pais.frontera
-
-
-}
-
-
-
-
-datosGeograficos = () => {
-    let datosGeograficos = document.querySelector("#fronteras")
-    datosGeograficos.innerHTML = ""
-    let selectPaises = document.createElement("option")
-    selectPaises.value = "0"
+    div.id = "#fronteras"
+    div.setAttribute("class", "container text-center")
+    var h31 = document.createElement("h3")
+    var h32 = document.createElement("h3")
+    var h33 = document.createElement("h3")
+    var h34 = document.createElement("h3")
+    var h35 = document.createElement("h3")
+    h31.innerHTML = "Frontera 1"
+    h32.innerHTML = "Frontera 2"
+    h33.innerHTML = "Frontera 3"
+    h34.innerHTML = "Frontera 4"
+    h35.innerHTML = "Frontera 5"
+    main.appendChild(div)
+    div.appendChild(h31)
+    div.appendChild(h32)
+    div.appendChild(h33)
+    div.appendChild(h34)
+    div.appendChild(h35)
 
 }
+datosGeograficos =()
+
+
+
