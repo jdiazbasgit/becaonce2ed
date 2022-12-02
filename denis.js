@@ -1,11 +1,62 @@
-
-
-
-
-
+var capital
+var poblacion
+var area
+var dominios = []
+var fronteras = []
+var bandera
+var escudo
+var monedas
+var monedasDatos = []
+var traducciones = []
+var fronterasNombres = []
+var traduccionesDatos = []
 var urlPais = "https://restcountries.com/v3.1/name/"
 var urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
+class Moneda {
+  constructor(name,symbol){
+    this.name=name
+    this.symbol=symbol
+  }
+}
+
+function cargarDatos(pais) {
+  dameDatos("https://restcountries.com/v3.1/name/" + pais)
+    .then(paises => {
+      let miPais = paises[0]
+      capital = miPais.capital
+      poblacion = miPais.population
+      area = miPais.area
+      dominios = miPais.tld
+      bandera = miPais.flags.svg
+      escudo = miPais.coatOfArms.svg
+      monedas = miPais.currencies
+      traducciones = miPais.translations
+      fronteras = miPais.borders
+      fronteras.forEach(frontera => {
+        dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
+          .then(paises => {
+            let miPais = paises[0]
+            fronterasNombres.push(miPais.name.common)
+          })
+      })
+      monedas.forEach(monedas => {
+        monedasDatos.push(Object.entries(monedas)[0])
+      })
+      Object.entries(traducciones)
+        .forEach(traduccion => {
+          miTraduccion = new Traduccion(traduccion[1].common, [])
+          dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
+            .then(paises => {
+              paises.forEach(pais => {
+                miTraduccion.paisesDelIdioma.push(pais.name.common)
+                traduccionesDatos.push(miTraduccion)
+              })
+            })
+        })
+    })
+}
+
 cargarPaises = (continente) => {
   fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
@@ -42,12 +93,7 @@ dameDatosGenerales = () => {
       pintaDatosGenerales(pais[0])
     })
 }
-class Moneda {
-  constructor(name,symbol){
-    this.name=name
-    this.symbol=symbol
-  }
-}
+
 moneda=new Moneda("name","symbol")
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
