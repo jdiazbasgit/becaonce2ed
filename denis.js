@@ -72,7 +72,7 @@ cargarPaises = (continente) => {
         option.value = pais.name.common;
         option.text = option.value;
         paisesSelect.appendChild(option);
-        // console.log(pais.name.common)
+       
       });
     });
 };
@@ -94,7 +94,7 @@ dameDatosGenerales = () => {
     })
 }
 
-moneda=new Moneda("name","symbol")
+moneda=new Moneda(n[1].name,n[1].symbol)
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
@@ -121,7 +121,7 @@ pintaDatosGenerales = (pais) => {
   td2.innerHTML = pais.population;
   td3.innerHTML = pais.area;
   td4.innerHTML = pais.tld;
-  td5.innerHTML = moneda.name;
+  td5.innerHTML = moneda.symbol;
   main.appendChild(table);
   table.appendChild(tr1,);
   table.appendChild(tr2)
