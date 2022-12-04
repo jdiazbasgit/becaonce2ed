@@ -7,6 +7,8 @@ function sumar() {
     var tr = document.createElement("tr")
     var td1 = document.createElement("td")
     td1.numero1=numero1
+    var br1 = document.createElement("br")
+    var br2 = document.createElement("br")
     var td2 = document.createElement("td")
     td2.numero2=numero2
     var td3 = document.createElement("td")

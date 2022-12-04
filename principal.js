@@ -1,15 +1,17 @@
-var capital
-var poblacion
-var area
-var dominios = []
-var fronteras = []
-var bandera
-var escudo
-var monedas = []
-var monedasDatos = []
-var traducciones = []
-var fronterasNombres = []
-var traduccionesDatos = []
+//1ª vas crear las varaibles las cuales le vamos a dar su caracteristica si es un ,string,array,number y bulean
+
+var capital //string
+var poblacion //number
+var area // number
+var dominios = [] //los corchetes delante de una varible indican un array y ademas un array empieza por [0]
+var fronteras = [] //array
+var bandera //string
+var escudo //string
+var monedas = [] //array
+var monedasDatos = [] //array
+var traducciones = [] //array
+var fronterasNombres = [] //array
+var traduccionesDatos = [] //array
 
 class Traduccion {
   constructor(traduccionDelNombre, paisesDelIdioma) {
@@ -17,18 +19,18 @@ class Traduccion {
     this.paisesDelIdioma = paisesDelIdioma;
   }
 }
-
+//Se crea la Función a la que le damos un nombre y un parametro(pais), pero, si no es necesario queda vacío
 function cargarDatos(pais) {
-  dameDatos("https://restcountries.com/v3.1/name/" + pais)
-    .then(paises => {
-      let miPais = paises[0]
-      capital = miPais.capital
-      poblacion = miPais.population
-      area = miPais.area
-      dominios = miPais.tld
-      bandera = miPais.flags.svg
-      escudo = miPais.coatOfArms.svg
-      monedas = miPais.currencies
+  dameDatos("https://restcountries.com/v3.1/name/" + pais) //Un parámetro url + el parametro de la Función cargaDatos(pais)
+    .then(paises => { //.then es el inicio de la promesa para que pueda devolver los parametros 
+      let miPais = paises[0] //let=vive la varible en el ambito de esta funcion y esa variable let con un nombre le damos los parametros devueltos de la promesa, comienza por [0]
+      capital = miPais.capital //cogemos var capital y le damos el valor de let(miPais), el .(punto=introduccion) y damos el parametro que queremos que nos saque, en este caso "capital"
+      poblacion = miPais.population //var poblacion le damos el valor let mas population, que es igual a la poblacion del pais queremos saber ese dato 
+      area = miPais.area //var area le damos el valor de let mas l toquen que queremos, que ne este caso es area(area= miPais.area)
+      dominios = miPais.tld //dominios es un array, nos damos cuenta porque le pones una ese(s) y esto indica que tenemos varios elementos
+      bandera = miPais.flags.svg //en este caso, cuando hacemos la busqueda, vemos que tiene mas de un elemento y hay que expecicar cual queremos y lo hacemos con el "." y el nombre del elemento(bandera= miPais.flags.svg)
+      escudo = miPais.coatOfArms.svg //aqui tambien tendríamos que expecificar igual que en el anterior
+      monedas = miPais.currencies //var moneda le damos el valor(moneda=miPais.currencies)
       traducciones = miPais.translations
       fronteras = miPais.borders
       fronteras.forEach(frontera => {
@@ -88,6 +90,7 @@ dameDatos = (url) => fetch(url)
     if (response.status == 200)
       return response.json()
   })
+
 
 ponerDatosGenerales = (pais) => {
   var main = document.querySelector("main");
@@ -174,4 +177,3 @@ dameDatosMoneda = () => {
 dameDatosGeograficos = () => { }
 dameBanderas = () => { }
 dameTraducciones = () => { }
-

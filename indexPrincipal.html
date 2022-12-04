@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -20,52 +20,110 @@
         align="left" width="227" height="156">
       <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
         align="right" width="227" height="156">
-      <div class="container-fluid p-5 bg-success text-white text-center">
+      <div class="container-fluid p-5 bg-success text-white text-center ">
 
         <h1>PAISES DEL MUNDO</h1>
       </div>
     </header>
 
-    <div class="container mt-3">
+    <div class="container mt-5">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <button class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos generales</button>
+          <button class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">DATOS GENERALES</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
+          <a class="nav-link active bg-success" href="#">DATOS GEOGRÁFICOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Traducción</a>
+          <a class="nav-link active bg-success" href="#">TRADUCCIÓN</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Banderas</a>
+          <a class="nav-link active bg-success" href="#">BANDERAS</a>
         </li>
       </ul>
     </div>
 
     <div class="row mt-5">
       <div class="col">
-        <h2>Seleccione continente</h2>
+        <h2>Continentes</h2>
         <label for="sel1" class="form-label"></label>
         <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
+          <option value="0">Seleccione Continente</option>
           <option value="europe" onclick="cargarPaises(europe)">Europa</option>
-          <option value="americas" onclick="cargarPaises(americas)">America</option>
+          <option value="americas" onclick="cargarPaises(americas)">América</option>
           <option value="asia" onclick="cargarPaises(asia)">Asia</option>
-          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
-          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
+          <option value="africa" onclick="cargarPaises(africa)">África</option>
+          <option value="oceania" onclick="cargarPaises(oceania)">Oceanía</option>
         </select>
       </div>
 
       <div class="col">
-        <h2>Seleccione país</h2>
+        <h2>Paises</h2>
         <label for="sel2" class="form-label"></label>
-        <select class="form-select bg-success " name="sel2" id="paises" onchange=cargarDatos(this.value)>
-          <option></option>
+        <select class="form-select bg-success " name="sel2" id="paises" name="sellist1"
+          onchange="cargarDatos(this.value)">
+          <option value="0">Seleccione País</option>
         </select>
       </div>
-     
-    </div>
-    </div>
 
-    </body>
-    </html>
+    </div>
+  </div>
+
+  <div class="mx-auto w-50 mt-3 container-fluid" id="datos">
+    <table class="w-100">
+      <tr>
+        <td colspan="2">
+          <h3 class="mx-auto" id="capital" onchange="dameDatos()">Capital:</h3>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <h3 id="poblacion" onchange="dameDatos()">Población: </h3>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <h3 id="area" onchange="dameDatos()">Área: </h3>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Moneda:</h3>
+        </td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>
+        </td>
+        <td>
+          <h3 id="nombreMoneda" onchange="dameDatos()">nombre: Euro</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        </td>
+        <td>
+          <h3 id="simbolo" onchange="dameDatos()">Símbolo: €</h3>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="mx-auto w-50 mt-5 container-fluid">
+    <table class="w-100">
+      <tr>
+        <td>
+          <img src="https://flagcdn.com/es.svg" width="300" height="175">
+        </td>
+        <td><img src="https://mainfacts.com/media/images/coats_of_arms/es.svg" width="300" height="175"></td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+
+</html>
