@@ -21,20 +21,20 @@ class Moneda {
 }
 
 function cargarDatos(pais) {
-  dameDatos (urlPais + pais)
+  dameDatos(urlPais + pais)
     .then(response => {
       return response.json()
     })
     .then(paises => {
       let miPais = paises[0]
-      capital=[]
-      miPais.capital.forEach(capi=>{
+      capital = []
+      miPais.capital.forEach(capi => {
         capital.push(capi)
       })
       poblacion = miPais.population
       area = miPais.area
-      dominios=[]
-      miPais.tld.forEach(domi=>{
+      dominios = []
+      miPais.tld.forEach(domi => {
         dominios.push(domi)
       })
       bandera = miPais.flags.svg
@@ -50,8 +50,8 @@ function cargarDatos(pais) {
       document.querySelector("#b2").disabled = false
       document.querySelector("#b3").disabled = false
       document.querySelector("#b4").disabled = false*/
-      document.querySelectorAll("button").forEach(b=>{
-        b.disabled=false
+      document.querySelectorAll("button").forEach(b => {
+        b.disabled = false
       })
       document.querySelector("#divspecial").classList.remove("fade")
       /*fronteras.forEach(frontera => {
@@ -93,7 +93,11 @@ cargarPaises = (continente) => {
       seleccionaPais.value = "0";
       seleccionaPais.text = "Selecciona pais";
       paisesSelect.appendChild(seleccionaPais);
-      paises.sort().forEach((pais) => {
+      paises.sort((a, b) => {
+        if (a.name.common > b.name.common)
+          return 1
+        else return -1
+      }).forEach((pais) => {
         let option = document.createElement("option");
         option.value = pais.name.common;
         option.text = option.value;
@@ -154,17 +158,17 @@ pintaDatosGenerales = (pais) => {
     ul.appendChild(li)
   })
   td5.appendChild(ul)
-  ulcapital=document.createElement("ul")
-  capital.forEach(capi=>{
-    li=document.createElement("li")
-    li.innerHTML=capi
+  ulcapital = document.createElement("ul")
+  capital.forEach(capi => {
+    li = document.createElement("li")
+    li.innerHTML = capi
     ulcapital.appendChild(li)
   })
   td1.appendChild(ulcapital)
-  ultld=document.createElement("ul")
-  dominios.forEach(domi=>{
-    li=document.createElement("li")
-    li.innerHTML=domi
+  ultld = document.createElement("ul")
+  dominios.forEach(domi => {
+    li = document.createElement("li")
+    li.innerHTML = domi
     ultld.appendChild(li)
   })
   td4.appendChild(ultld)
