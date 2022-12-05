@@ -106,8 +106,7 @@ cargarPaises = continente => {
                 if (a.name.common>b)
                 return1
                 else return -1
-            })
-            paises.forEach(pais => {
+            }).forEach(pais => {
 
                 let option = document.createElement("option");
                 option.value = pais.name.common;
