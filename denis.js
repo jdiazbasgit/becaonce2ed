@@ -1,4 +1,4 @@
-var capital
+var capital = []
 var poblacion
 var area
 var dominios = []
@@ -21,14 +21,20 @@ class Moneda {
 }
 
 function cargarDatos(pais) {
-  dameDatos("https://restcountries.com/v3.1/name/" + pais)
-    .then(response => response.json())
+  dameDatos (urlPais + pais)
+    .then(response => {
+      return response.json()
+    })
     .then(paises => {
       let miPais = paises[0]
-      capital = miPais.capital
+      miPais.capital.forEach(capi=>{
+        capital.push(capi)
+      })
       poblacion = miPais.population
       area = miPais.area
-      dominios = miPais.tld
+      miPais.tld.forEach(domi=>{
+        dominios.push(domi)
+      })
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
