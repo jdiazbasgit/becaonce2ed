@@ -1,4 +1,4 @@
-var capital
+var capital =[]
 var poblacion
 var area
 var dominios = []
@@ -13,105 +13,106 @@ var traduccionesDatos = []
 var urlPais = "https://restcountries.com/v3.1/name/"
 var urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
-class Moneda {
-    constructor(name, symbol) {
-        this.name = name
-        this.symbol = symbol
-    }
-}
+
 function cargarDatos(pais) {
-    dameDatos("https://restcountries.com/v3.1/name/" + pais)
-        .then(response => response.json())
-        .then(paises => {
-            let miPais = paises[0]
-            capital = miPais.capital
-            poblacion = miPais.population
-            area = miPais.area
-            dominios = miPais.tld
-            bandera = miPais.flags.svg
-            escudo = miPais.coatOfArms.svg
-            monedas = miPais.currencies
-            traducciones = miPais.translations
-            fronteras = miPais.borders
-            monedasDatos = []
-            Object.entries(monedas).forEach(moneda => {
-                monedasDatos.push(moneda[1])
-            })
-            /*document.querySelector("#b1").disabled = false
-            document.querySelector("#b2").disabled = false
-            document.querySelector("#b3").disabled = false
-            document.querySelector("#b4").disabled = false*/
-            /*document.querySelectorAll("button").forEach(b=>{
-              b.disabled=false
-            })*/
-            document.querySelector("#divspecial").classList.remove("fade")
-            /*fronteras.forEach(frontera => {
-                dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
-                  .then(response => response.json())
-                  .then(paises => {
-                    let miPais = paises[0]
-                    fronterasNombres.push(miPais.name.common)
-                    document.querySelector("#b1").disabled = false
-                  })
-              })
-        
-              Object.entries(traducciones)
-                .forEach(traduccion => {
-                  miTraduccion = traduccion[0]
-                  dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
-                    .then(response => {
-                      if (response.status == 200) {
-                        return response.json()
-                      } else
-                        return []
-                    })
-                    .then(paises => {
-                      paises.forEach(pais => {
-                        traduccionesDatos.push(traduccion[1])
-                      })
-                    })
-                })*/
+    dameDatos(urlPais+ pais)
+    .then(response => response.json())
+    .then(paises => {
+        let miPais = paises[0]
+        miPais.capital.forEach(capi => {
+            capital.push(capi)
         })
+        poblacion = miPais.population
+        area = miPais.area
+        miPais.tld.forEach(domi =>{
+       dominios.push(donmi)
+    })
+        bandera = miPais.flags.svg
+        escudo = miPais.coatOfArms.svg
+        monedas = miPais.currencies
+        traducciones = miPais.translations
+        fronteras = miPais.borders
+        monedasDatos = []
+        Object.entries(monedas).forEach(moneda => {
+            monedasDatos.push(moneda[1])
+        })
+        /*document.querySelector("#b1").disabled = false
+        document.querySelector("#b2").disabled = false
+        document.querySelector("#b3").disabled = false
+        document.querySelector("#b4").disabled = false*/
+        /*document.querySelectorAll("button").forEach(b=>{
+            b.disabled=false
+        })*/
+        document.querySelector("#divspecial").classList.remove("fade")
+        /*fronteras.forEach(frontera => {
+            dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
+            .then(response => response.json())
+            .then(paises => {
+                let miPais = paises[0]
+                fronterasNombres.push(miPais.name.common)
+                document.querySelector("#b1").disabled = false
+            })
+        })
+        
+        Object.entries(traducciones)
+        .forEach(traduccion => {
+            miTraduccion = traduccion[0]
+            dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
+            .then(response => {
+                if (response.status == 200) {
+                    return response.json()
+                } else
+                return []
+            })
+            .then(paises => {
+                paises.forEach(pais => {
+                    traduccionesDatos.push(traduccion[1])
+                })
+            })
+        })*/
+    })
 }
 cargarPaises = (continente) => {
     fetch(urlRestCountries + "region/" + continente)
-        .then((response) => response.json())
-        .then((paises) => {
-            var paisesSelect = document.querySelector("#paises");
-            paisesSelect.innerHTML = "";
-            let seleccionaPais = document.createElement("option");
-            seleccionaPais.value = "0";
-            seleccionaPais.text = "Selecciona pais";
-            paisesSelect.appendChild(seleccionaPais);
-            paises.forEach((pais) => {
-                let option = document.createElement("option");
-                option.value = pais.name.common;
-                option.text = option.value;
-                paisesSelect.appendChild(option);
-
-            });
+    .then((response) => response.json())
+    .then((paises) => {
+        var paisesSelect = document.querySelector("#paises");
+        paisesSelect.innerHTML = "";
+        let seleccionaPais = document.createElement("option");
+        seleccionaPais.value = "0";
+        seleccionaPais.text = "Selecciona pais";
+        paisesSelect.appendChild(seleccionaPais);
+        paises.forEach((pais) => {
+            let option = document.createElement("option");
+            option.value = pais.name.common;
+            option.text = option.value;
+            paisesSelect.appendChild(option);
+            
         });
+    });
 };
 dameDatos = (URL) => fetch(URL);
 dameNombreDePais = cca3 => {
     dameDatos(urlRestCountries + cca3).then(response =>
         response.json)
         .then(pais => pais.name.common)
-}
-
-
-
-dameDatosGenerales = () => {
-    let selectPaises = document.querySelector("#paises");
-    dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+    }
+     
+    dameDatosGenerales = () => {
+        let selectPaises = document.querySelector("#paises");
+        dameDatos(urlRestCountries + "/name/" + selectPaises.value)
         .then((response) => response.json())
         .then(pais => {
             pintaDatosGenerales(pais[0])
         })
-}
-
-moneda = new Moneda("name", "symbol")
-pintaDatosGenerales = (pais) => {
+    }
+    class Moneda {
+        constructor(name, symbol) {
+            this.name = name
+            this.symbol = symbol
+        }}
+    moneda = new Moneda("name", "symbol")
+    pintaDatosGenerales = (pais) => {
     var main = document.querySelector("main");
     main.innerHTML = "";
     let table = document.createElement("table");
