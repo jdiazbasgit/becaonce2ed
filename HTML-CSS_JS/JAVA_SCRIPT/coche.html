@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Animation - moving a car</title>
+    <style>
+        #car {
+            position: absolute;
+            width: 100px;
+            bottom: 97px;
+            left: 2px;
+        }
+
+        body {
+            overflow: hidden;
+            /* Hide scrollbars */
+        }
+
+        button {
+            border: 2px;
+            border-color: blueviolet;
+            color: antiquewhite;
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <img src="car.png" id="car" />
+    <button onclick="coche()">¿Empezamos?</button>
+    <script>
+        var easeInOut = (t) => {
+            return t * t;
+        }
+        let x = -200;
+        let incrementBy = .01;
+        let idanimation = null;
+
+        function animate() {
+            var w = window.innerWidth + 200;
+
+            incrementBy += 0.5;
+            x = easeInOut(incrementBy);
+            document.querySelector("#car").style.left = x + "px";
+
+            if (x >= w) {
+                /*x = -200;
+                incrementBy = .01;*/
+                 window.cancelAnimationFrame(idanimation);
+            }
+
+            idanimation =window.requestAnimationFrame(animate);
+        }
+        coche = () => {
+            x = -200;
+            incrementBy = .01;
+            animate();
+        }
+
+    </script>
+</body>
+
+</html>
