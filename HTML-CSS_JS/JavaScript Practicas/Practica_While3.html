@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While 3</title>
+</head>
+<body>
+<h1>acumulador y contabilizar</h1>
+    <Script>
+        let x = 1;
+        let cont1 = 0;
+        let cont2= 0;
+        let acumulador = 0;
+        let sueldo;
+        while(x <= 5){
+            sueldo = parseInt(prompt('Ingrese el sueldo de una persona: '));
+            if (sueldo < 100 || sueldo > 500){alert(null);}
+            if (sueldo <= 300){ cont1++ ;}// cont1 = cont1 + 1
+             else if (sueldo > 300) {cont2++ ;} // cont2 = cont2 + 1
+            acumulador = acumulador + sueldo;
+            x++; //x = x + 1
+        }
+        document.write('Cobran menos de 300$ ' + cont1);
+        document.write('<br>');
+        document.write('Cobran mas de 300$ ' + cont2);
+        document.write('<br>');
+        document.write('Total: ' + acumulador);
+
+    </Script>
+    
+</body>
+</html>

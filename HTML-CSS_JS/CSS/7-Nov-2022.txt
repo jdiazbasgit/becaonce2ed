@@ -1,0 +1,24 @@
+7-Nov-2022
+
+Proyecto basico hasta..
+grupo4
+paises
+json?¿?¿
+pantallas
+restcountries
+colapse
+capturas guardar
+viernes plazo plantilla
+
+Bootstrap 
+Java Script
+CSS basico
+---------------------------------------------
+
+Bootstrap -- Editar dentro selector -- información
+Epic Bootstrap
+
+---------------------------------------------------
+
+DOM
+

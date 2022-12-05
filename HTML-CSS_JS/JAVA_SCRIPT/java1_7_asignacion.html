@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.7 Asignación</title>
+</head>
+<body>
+    <h1>Asignación</h1>
+    <script>
+        let x = 2 + 2 * 4;
+        let a = 1;
+        let b = 2;
+        let c = 5;
+        let d = c + 5;
+        let e = 10 + (b = a + 9); // el b a sido suplantado por a + 9 es decir 10. Ya no es su valor 2
+        document.write(x);
+        document.write('<br>');
+        document.write(x + 2);
+        document.write('<br>');
+        document.write(d);
+        document.write('<br>');
+        document.write(b);
+        document.write('<br>');
+        document.write(e);
+        // modificación en el lugar
+        // ejemplo
+        // let n = 2;
+        // n = n + 5;
+        // n = n * 2;
+        document.write('<br>');
+        document.write("REAL SIMPLIFICADO");
+        document.write('<br>');
+        let num = 10;
+        num += 10;
+        num *= 5;
+        let num2 = 3;
+        num2 *= 2 + 109;
+        document.write(num);
+        document.write('<br>')
+        document.write(num2)
+
+    </script>
+</body>
+</html>

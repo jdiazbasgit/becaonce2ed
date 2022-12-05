@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While y For 5</title>
+</head>
+<body>
+<h1>While do</h1>
+    <Script>
+        let valor;
+        do {
+            valor = parseInt(prompt('Ingrese un valor entre 1 y 999(Introducir "0" termina bucle): ', ''));
+            document.write('El valor ' + valor + ' tiene ');
+            if (valor < 10) {
+                document.write('Tiene 1 digitos');
+            } else {
+                if (valor < 100) {
+                    document.write('Tiene 2 digitos');
+                } else {
+                    document.write('Tiene 3 digitos');
+                }
+            }
+            document.write('<br>');
+        } while (valor != 0 ){document.write('FIN');}
+    </Script>
+    
+</body>
+</html>

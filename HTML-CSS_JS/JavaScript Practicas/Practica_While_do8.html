@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While y For 5</title>
+</head>
+<body>
+<h1>While do</h1>
+    <Script>
+        let valor;
+        let suma = 0;
+
+        do {
+            valor = parseInt(prompt('Ingrese un valor entre 1 y 9998(Introducir "9999" termina bucle): ', ''));
+            if (valor != 9999){
+            suma = suma + valor;}
+        } while (valor != 9999 );
+        document.write('<br>');
+        document.write('total ' + suma);
+        document.write('<br>');
+
+        if (suma == 0){document.write('' + suma + '  ----> Valor cero');
+        } else if (suma >= 0){document.write('' + suma + '  ----> Valor mayor a cero');
+         } else {document.write('' + suma + '  ----> Valor menor a cero');}
+
+    </Script>
+    
+</body>
+</html>

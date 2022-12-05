@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While 1</title>
+</head>
+<body>
+<h1>Contador</h1>
+    <Script>
+        let x = 1;
+        cont1 = 0;
+        cont2 = 0;
+        nota = 0;
+        while (x <= 10){
+            nota = parseFloat(prompt('Añadir nota del alumno', ''));
+            if(nota>10){alert(null);}
+            if(nota>=7){cont1++ ;}
+             else{cont2++ ;}
+            x++;
+        }
+        document.write('Promocionados: ' + cont1 );
+        document.write('<br>');
+        document.write('Suspensos: ' + cont2);
+        document.write('<br>');
+
+
+
+    
+
+    </Script>
+    
+</body>
+</html>

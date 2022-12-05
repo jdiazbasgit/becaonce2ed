@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anidadas 4</title>
+    <style>
+        body{
+            background-color: aquamarine;
+            color: crimson;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        h1{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test de estudio</h1>
+    <Script>
+        let nombre = prompt('Ingrese nombbre de candidato', '');
+        document.write(nombre);
+        document.write('<br>');
+        document.write('<br>');
+        let preguntas = parseInt(prompt('Total preguntas', ''));
+        let correctas = parseInt(prompt('Total preguntas acertadas', ''));
+        let porcentaje = correctas / preguntas * 100;
+        if (porcentaje == 100){document.write('Perfecto');
+         } else if (porcentaje >= 70 ){document.write('Notable');
+           } else if (porcentaje >= 50){document.write('Regular');
+            } else{document.write('No pasas la prueba');}
+
+    </Script>
+    
+</body>
+</html>
