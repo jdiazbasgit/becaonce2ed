@@ -1,8 +1,8 @@
 
 
 var urlRestCountries = "https://restcountries.com/v3.1/";
-var urlPais= "https://restcountries.com/v3.1/name/"
-var capital=[]
+var urlPais = "https://restcountries.com/v3.1/name/"
+var capital = []
 var poblacion
 var area
 var monedas = []
@@ -32,15 +32,15 @@ dameDatos = (url) => fetch(url)
 
 function cargarDatos(pais) {
     dameDatos(urlPais + pais)
-    .then(response => response.json())
-    .then(paises => {
+        .then(response => response.json())
+        .then(paises => {
             var miPais = paises[0]
-            miPais.capital.forEach(capi=>{
+            miPais.capital.forEach(capi => {
                 capital.push(capi)
             })
             poblacion = miPais.population
             area = miPais.area
-            miPais.tld.forEach(domi=>{
+            miPais.tld.forEach(domi => {
                 dominios.push(domi)
             })
             bandera = miPais.flags.svg
@@ -48,27 +48,27 @@ function cargarDatos(pais) {
             monedas = miPais.currencies
             traducciones = miPais.translations
             fronteras = miPais.borders
-           
+
             fronteras.forEach(frontera => {
                 dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
                     .then(paises => {
                         let miPais = paises[0]
                         fronterasNombres.push(miPais.name.common)
-                       
+
                     })
-                
+
             })
-            
+
             // monedas.forEach(monedas => {
             // monedasDatos.push(Object.entries(monedas)[0])
             //  })
-/*document.querySelector ("#b1").disabled=false
-document.querySelector ("#b2").disabled=false
-document.querySelector ("#b3").disabled=false
-document.querySelector ("#b4").disabled=false
-document.querySelectorAll("button").forEach(b=>{
-    b.disabled=false
-})*/
+            /*document.querySelector ("#b1").disabled=false
+            document.querySelector ("#b2").disabled=false
+            document.querySelector ("#b3").disabled=false
+            document.querySelector ("#b4").disabled=false
+            document.querySelectorAll("button").forEach(b=>{
+                b.disabled=false
+            })*/
             Object.entries(traducciones)
                 .forEach(traduccion => {
                     traduccion = new Traduccion(traduccion[1].common, [])
@@ -78,15 +78,15 @@ document.querySelectorAll("button").forEach(b=>{
                                 traduccion.paisesDelIdioma.push(pais.name.common)
                                 traduccionesDatos.push(traduccion)
                             })
-                           
+
                         })
 
 
                 })
-                 
-                
+
+
         })
-       // document.querySelector("#divspecial").classList.remove("fade")
+    // document.querySelector("#divspecial").classList.remove("fade")
 }
 
 
@@ -102,8 +102,11 @@ cargarPaises = continente => {
             seleccionaPais.value = "0"
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
-
-            paises.sort().forEach(pais => {
+            paises.sort((a,b)=>{
+                if (a.name.common>b)
+                return1
+                else return -1
+            }).forEach(pais => {
 
                 let option = document.createElement("option");
                 option.value = pais.name.common;
@@ -133,17 +136,17 @@ pillarDatosGeograficos = () => {
     var div = document.createElement("div")
     div.id = "#fronteras"
     div.setAttribute("class", "container text-center")
-    var ul1=document.createElement("ul")
-    ul1.innerHTML=""
-    var li1=document.createElement("li")
-    var h31=document.createElement("h3")
-   
+    var ul1 = document.createElement("ul")
+    ul1.innerHTML = ""
+    var li1 = document.createElement("li")
+    var h31 = document.createElement("h3")
+
     main.appendChild(div)
-   div.appendChild(ul1)
-   ul1.appendChild(li1)
-   li1.appendChild(h31)
-   li1.innerHTML=fronteras
-    
+    div.appendChild(ul1)
+    ul1.appendChild(li1)
+    li1.appendChild(h31)
+    li1.innerHTML = fronteras
+
 
 
 }
