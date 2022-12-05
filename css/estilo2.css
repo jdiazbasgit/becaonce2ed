@@ -2,7 +2,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-    color: rgb(173, 84, 84);
     position: fixed;
     overflow: hidden;
     background-position: center center;
@@ -10,9 +9,14 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     /* Hide scrollbars */
-    
+
 
 }
+
+div, header {
+    opacity: 100;
+}
+
 
 #car {
     position: absolute;
@@ -20,7 +24,7 @@ body {
     bottom: 97px;
     left: 2px;
     z-index: 200;
-    display:none;
+    display: none;
 }
 
 ul {
@@ -30,8 +34,8 @@ ul {
 
 li {
     padding-left: 10px;
-    border-bottom: 6px solid #eee;
-    border-left: 6px solid white;
+    border-bottom: 6px solid rgb(150, 148, 148);
+    border-left: 6px solid rgb(134, 133, 133);
 }
 
 .pl-3 {
@@ -75,6 +79,3 @@ li {
     }
 
   */
-  
-    
-    
