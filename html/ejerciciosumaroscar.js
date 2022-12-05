@@ -4,9 +4,6 @@ function sumar() {
     let resultado = parseInt(numero1.value) + parseInt(numero2.value);
 
 
-
-
-
     var table = document.querySelector("table")
     var tr = document.createElement("tr")
     var td1 = document.createElement("td")
