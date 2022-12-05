@@ -108,6 +108,8 @@ Pais.addEventListener('change', (event) => {
           });
          
           document.querySelector("#fronteras").innerHTML = front;
+        }else if(fronteras.length!=1){
+          document.querySelector("#fronteras").innerHTML="No hay fronteras";
         }
 
         var monedas = Object.keys(countryData['currencies']);
