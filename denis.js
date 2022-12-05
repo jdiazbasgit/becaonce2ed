@@ -93,7 +93,7 @@ cargarPaises = (continente) => {
       seleccionaPais.value = "0";
       seleccionaPais.text = "Selecciona pais";
       paisesSelect.appendChild(seleccionaPais);
-      paises.sort()forEach((pais) => {
+      paises.sort().forEach((pais) => {
         let option = document.createElement("option");
         option.value = pais.name.common;
         option.text = option.value;
