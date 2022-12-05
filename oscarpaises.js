@@ -28,10 +28,12 @@ dameDatos = (url) => fetch(url)
             return response.json()
     })
 
+
+
 function cargarDatos(pais) {
     dameDatos("https://restcountries.com/v3.1/name/" + pais)
         .then(paises => {
-            let miPais = paises[0]
+            var miPais = paises[0]
             capital = miPais.capital
             poblacion = miPais.population
             area = miPais.area
@@ -53,12 +55,12 @@ function cargarDatos(pais) {
             //  })
             Object.entries(traducciones)
                 .forEach(traduccion => {
-                    miTraduccion = new Traduccion(traduccion[1].common, [])
+                    traduccion = new Traduccion(traduccion[1].common, [])
                     dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
                         .then(paises => {
                             paises.forEach(pais => {
-                                miTraduccion.paisesDelIdioma.push(pais.name.common)
-                                traduccionesDatos.push(miTraduccion)
+                                traduccion.paisesDelIdioma.push(pais.name.common)
+                                traduccionesDatos.push(traduccion)
                             })
                         })
 
@@ -66,11 +68,6 @@ function cargarDatos(pais) {
         })
 
 }
-
-
-
-
-
 
 
 cargarPaises = continente => {
@@ -109,6 +106,7 @@ dameDatosGenerales = () => {
 }
 
 
+
 pillarDatosGeograficos = () => {
 
     var main = document.querySelector("main");
@@ -133,7 +131,15 @@ pillarDatosGeograficos = () => {
     div.appendChild(h35)
 
 }
-datosGeograficos =()
+
+datosGeograficos = (frontera) => {
+    let selectPaises = document.querySelector("#paises");
+    dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+
+        .then(pais => {
+            pillarDatosGeograficos(pais)
+        })
+}
 
 
 
