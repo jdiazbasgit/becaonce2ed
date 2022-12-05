@@ -11,12 +11,18 @@ var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
 
-
 class Traduccion {
     constructor(traduccionDelNombre, paisesDelIdioma) {
         this.traduccionDelNombre = traduccionDelNombre;
         this.paisesDelIdioma = paisesDelIdioma;
     }
+}
+ 
+dameDatos = (url) => fetch(url);
+dameNombreDePais= cca3 =>{
+    dameDatos(urlRestCountries + cca3).then (response =>
+    response.json)
+    .then (pais => pais.name.common)
 }
 
 function cargarDatos(pais) {
@@ -34,7 +40,7 @@ function cargarDatos(pais) {
             fronteras = miPais.borders
             fronteras.forEach(frontera => {
                 dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
-                    .then(paises => {
+                .then(paises => {
                         let miPais = paises[0]
                         fronterasNombres.push(miPais.name.common)
                     })
@@ -76,13 +82,6 @@ cargarPaises = continente => {
             });
 
         })
-}
-dameDatos = (url) => fetch(url);
-dameNombreDePais= cca3 =>{
-    dameDatos(urlRestCountries + cca3).then (response =>
-    response.json)
-    .then (pais => pais.name.common)
-}
  
 
 
@@ -136,9 +135,6 @@ dameDatosGenerales = () => {
     tr2.appendChild(td4);
     tr2.appendChild(td5);
   }
-
-
-
 
 
 vaciarElemento = (elemento) => {
