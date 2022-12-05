@@ -27,11 +27,13 @@ function cargarDatos(pais) {
     })
     .then(paises => {
       let miPais = paises[0]
+      capital=[]
       miPais.capital.forEach(capi=>{
         capital.push(capi)
       })
       poblacion = miPais.population
       area = miPais.area
+      dominios=[]
       miPais.tld.forEach(domi=>{
         dominios.push(domi)
       })
@@ -48,9 +50,9 @@ function cargarDatos(pais) {
       document.querySelector("#b2").disabled = false
       document.querySelector("#b3").disabled = false
       document.querySelector("#b4").disabled = false*/
-      /*document.querySelectorAll("button").forEach(b=>{
+      document.querySelectorAll("button").forEach(b=>{
         b.disabled=false
-      })*/
+      })
       document.querySelector("#divspecial").classList.remove("fade")
       /*fronteras.forEach(frontera => {
           dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
@@ -91,7 +93,7 @@ cargarPaises = (continente) => {
       seleccionaPais.value = "0";
       seleccionaPais.text = "Selecciona pais";
       paisesSelect.appendChild(seleccionaPais);
-      paises.forEach((pais) => {
+      paises.sort().forEach((pais) => {
         let option = document.createElement("option");
         option.value = pais.name.common;
         option.text = option.value;
@@ -141,10 +143,8 @@ pintaDatosGenerales = (pais) => {
   th3.innerHTML = "Área";
   th4.innerHTML = "Dominio";
   th5.innerHTML = "Moneda";
-  td1.innerHTML = pais.capital;
   td2.innerHTML = pais.population
   td3.innerHTML = pais.area;
-  td4.innerHTML = pais.tld;
   td5.innerHTML = ""
   let ul = document.createElement("ul")
   ul.innerHTML = ""
@@ -154,6 +154,20 @@ pintaDatosGenerales = (pais) => {
     ul.appendChild(li)
   })
   td5.appendChild(ul)
+  ulcapital=document.createElement("ul")
+  capital.forEach(capi=>{
+    li=document.createElement("li")
+    li.innerHTML=capi
+    ulcapital.appendChild(li)
+  })
+  td1.appendChild(ulcapital)
+  ultld=document.createElement("ul")
+  dominios.forEach(domi=>{
+    li=document.createElement("li")
+    li.innerHTML=domi
+    ultld.appendChild(li)
+  })
+  td4.appendChild(ultld)
   main.appendChild(table);
   table.appendChild(tr1,);
   table.appendChild(tr2)
