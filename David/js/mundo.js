@@ -61,6 +61,13 @@ btn.addEventListener('click', (event) => {
 });*/
 
 
+
+
+
+
+
+
+
 var Continente = document.querySelector('#continent');
 
 Continente.addEventListener('change', (event) => {
@@ -123,26 +130,31 @@ Pais.addEventListener('change', (event) => {
 
         var monedas = Object.keys(countryData['currencies']);
 
+
+
         if (monedas.length > 1) {
           var sname = "";
           var ssymbol = "";
           monedas.forEach(tipo => {
-            sname += countryData.currencies[tipo].name + ', ';
-            ssymbol += countryData.currencies[tipo].symbol + ', ';
+            /*sname += countryData.currencies[tipo].name + ', ';
+            ssymbol += countryData.currencies[tipo].symbol + ', ';*/
+            sname += '<li class="border-0">'+countryData.currencies[tipo].name+'</li>';
+            ssymbol += '<li class="border-0">'+countryData.currencies[tipo].symbol+'</li>';
           });
 
-          document.querySelector('#nombre').innerHTML = sname.slice(0, -2);
-          document.querySelector('#simbolo').innerHTML = ssymbol.slice(0, -2);
+          /*document.querySelector('#nombre').innerHTML = sname.slice(0, -2);
+          document.querySelector('#simbolo').innerHTML = ssymbol.slice(0, -2);*/
+          document.querySelector('#nombre').innerHTML = sname;
+          document.querySelector('#simbolo').innerHTML = ssymbol;
+          
         } else if (monedas.length == 1) {
-          document.querySelector('#nombre').innerHTML = countryData.currencies[monedas].name;
-          document.querySelector('#simbolo').innerHTML = countryData.currencies[monedas].symbol;
+          document.querySelector('#nombre').innerHTML = '<li class="border-0">'+countryData.currencies[monedas].name+'</li>';
+          document.querySelector('#simbolo').innerHTML = '<li class="border-0">'+countryData.currencies[monedas].symbol+'</li>';
         }
       });
 
     }).catch(error => {
-      alert(error);
+      alert("Hello world!");
     });
-
-
 });
 

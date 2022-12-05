@@ -11,10 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <link rel="stylesheet" href="css/estilo.css">
-    <script type="text/javascript" src="js/mundo.js" defer></script>
+    <script type="text/javascript" src="js/restcountries.js" defer></script>
 </head>
 
 <body>
+    <div class="spinner-border text-danger" id="spinner">
+        <span class="visually-hidden">Loading...</span>
+    </div>
     <main>
         <div class="container-fluid">
             <header>
@@ -102,10 +105,17 @@
                                 </div>
                                 <div class="d-block float-end">
                                     <div class="d-block">
-                                        <p><strong>Nombre: </strong><span id="nombre"></span></p>
+                                        <p><strong>Nombre:</strong></p>
+                                            <ul id="nombre">
+
+                                            </ul>
                                     </div>
                                     <div class="d-block">
-                                        <p><strong>Símbolo: </strong><span id="simbolo"></span></p>
+                                        <p><strong>Símbolo:</strong>
+                                            <ul id="simbolo">
+
+                                            </ul>
+                                        </p>
                                     </div>
                                 </div>
                             </div>

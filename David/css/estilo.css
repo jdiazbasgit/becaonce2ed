@@ -28,3 +28,11 @@ li{
     background-color:rgb(219, 217, 217);
     width: 150px;
 }
+
+.spinner-border{
+    display: none;
+    position: absolute;
+    left:50%;
+    top:50%;
+    z-index: 200;
+}
