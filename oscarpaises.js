@@ -103,7 +103,7 @@ cargarPaises = continente => {
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
             paises.sort((a,b)=>{
-                if (a.name.common>b)
+                if (a.name.common>b.name.common)
                 return1
                 else return -1
             }).forEach(pais => {
