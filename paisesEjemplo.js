@@ -96,18 +96,21 @@ Pais.addEventListener('change', (event) => {
         document.querySelector('#arabe').innerHTML = countryData.translations.ara.official;
         document.querySelector('#francia').innerHTML = countryData.translations.fra.official;
         document.querySelector('#italia').innerHTML = countryData.translations.ita.official;
-        //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
-        document.querySelector('#frontera').innerHTML = countryData.borders;
-        var fronteras = Object.keys(countryData['borders']);
-        fronteras.forEach(tipo => {
-          var fronteras= "";
-          fronteras += countryData.borders[tipo] + ' | ';
-          document.querySelector("#fronteras").innerHTML=countryData.borders;
-        });
+        //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;  
+        document.querySelector('#fronteras').innerHTML = countryData.borders;
+
+        var fronteras = Object.keys(countryData.borders);
+
+        if(fronteras.length > 1) {
+          var front = "";
+          fronteras.forEach(nombre => {
+            front += countryData.borders[nombre] + ' | ';
+          });
+         
+          document.querySelector("#fronteras").innerHTML = front;
+        }
 
         var monedas = Object.keys(countryData['currencies']);
-        //document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
-        //document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
         if (monedas.length > 1) {
           var sname = "";
           var ssymbol = "";
@@ -132,14 +135,3 @@ Pais.addEventListener('change', (event) => {
 });
 
 
-function sigueme() {
-  var x = window.event.x + document.body.scrollLeft;
-  var y = window.event.y + document.body.scrollTop;
-
-  document.getElementById("siguelo").style.left = x + "px";
-  document.getElementById("siguelo").style.top = y + "px";
-}
-
-document.onmousemove=function(){
-    sigueme();
-};
