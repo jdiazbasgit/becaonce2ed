@@ -1,15 +1,22 @@
-var capital
+var capital = []
 var poblacion
 var area
 var dominios = []
 var fronteras = []
 var bandera
 var escudo
-var monedas = []
+var monedas
 var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
+
+class Monedas {
+  constructor(name, symbol) {
+    this.name = name;
+    this.symbol = symbol;
+  }
+}
 
 class Traduccion {
   constructor(traduccionDelNombre, paisesDelIdioma) {
@@ -20,19 +27,29 @@ class Traduccion {
 
 function cargarDatos(pais) {
   dameDatos("https://restcountries.com/v3.1/name/" + pais)
+    
     .then(paises => {
       let miPais = paises[0]
-      capital = miPais.capital
+      miPais.capital.forEach(capi=>{
+        capital.push(capi)
+      })
       poblacion = miPais.population
       area = miPais.area
-      dominios = miPais.tld
+       miPais.tld.forEach(domi=> {
+
+       })
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
       traducciones = miPais.translations
       fronteras = miPais.borders
-      
-      fronterasNombres.forEach(frontera => {
+      monedasDatos = []
+      Object.entries(monedas).forEach(moneda => {
+        monedasDatos.push(moneda[1])
+      })
+      document.querySelector("#divSpecial").classList.remove("fade")
+
+      fronteras.forEach(frontera => {
         dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
           .then(paises => {
             let miPais = paises[0]
@@ -41,9 +58,9 @@ function cargarDatos(pais) {
       })
 
 
-    /*  Object.entries(monedas)
+      Object.entries(monedas)
         .forEach(monedasDatos => {
-          monedasDatos = new Monedas(monedas[0].symbol [0])
+          monedasDatos = new Monedas(monedas[0].symbol[0])
           dameDatos("https://restcountries.com/v3.1/" + monedas[0])
             .then(monedas => {
               monedas.forEach(monedas => {
@@ -52,7 +69,7 @@ function cargarDatos(pais) {
 
               })
             })
-        })*/
+        })
       Object.entries(traducciones)
         .forEach(traducciones => {
           miTraduccion = new Traduccion(traducciones[1].common[0])
@@ -89,12 +106,7 @@ vaciarElementos = (elementos) => {
     paisesSelect.removeChild(hijo);
   })
 }
-class Monedas {
-  constructor(name, symbol) {
-    this.name = name;
-    this.symbol = symbol;
-  }
-}
+
 dameDatos = (url) => fetch(url)
   .then(response => {
     if (response.status == 200)

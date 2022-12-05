@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="paises.js"></script>
+  <script src="paises.js" defer></script>
 </head>
 
 <body>
@@ -25,10 +25,10 @@
       </div>
     </header>
 
-    <div class="container mt-3">
+    <div class="container mt-3 fade" id="divSpecial">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <button class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos generales</button>
+          <button disabled class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos generales</button>
         </li>
         <li class="nav-item">
           <a class="nav-link active bg-success" href="#">Datos geograficos</a>
@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-5" >
       <div class="col">
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
