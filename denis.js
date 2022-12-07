@@ -12,8 +12,25 @@ var fronterasNombres = []
 var traduccionesDatos = []
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
-const urlRestCountries = "https://restcountries.com/v3.1/";
-const main = document.querySelector("main");
+const urlRestCountries = "https://restcountries.com/v3.1/"
+var main = document.querySelector("main");
+inicializar = () => {
+  capital = []
+  poblacion
+  area
+  dominios = []
+  fronteras = []
+  bandera
+  escudo
+  monedas
+  monedasDatos = []
+  traducciones = []
+  fronterasNombres = []
+  traduccionesDatos = []
+
+  main.innerHTML = ""
+}
+
 class Moneda {
   constructor(name, symbol) {
     this.name = name
@@ -22,6 +39,7 @@ class Moneda {
 }
 
 function cargarDatos(pais) {
+  fronterasNombres = []
   dameDatos(urlPais + pais)
     .then(response => {
       return response.json()
@@ -89,6 +107,7 @@ dameBanderas = () => {
   main.appendChild(div)
 }
 cargarPaises = (continente) => {
+  inicializar()
   fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
     .then((paises) => {
@@ -118,7 +137,21 @@ dameNombreDePais = cca3 => {
     .then(pais => pais.name.common)
 }
 
+pintaDatosGeograficos = () => {
+  main.innerHTML = ""
+  let divFronteras = document.createElement("div")
+  divFronteras.innerHTML = ""
+  divFronteras.classList.add("container")
+  divFronteras.classList.add("text-center")
+  main.appendChild(divFronteras)
+  fronterasNombres.forEach(frontera => {
+    let h3 = document.createElement("h3")
+    h3.innerHTML = frontera.toUpperCase()
+    divFronteras.appendChild(h3)
 
+  })
+
+}
 
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
