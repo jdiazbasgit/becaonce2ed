@@ -5,41 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
+    <script>src="refuerzo2tablaoscar.js"</script>
 </head>
 
 <body>
+    <div class="container mt-3 text-center">
     <form>
 
-        <table border="1" style="width:50%">
+        <table border="1" class="table table-striped">
 
             <tr>
                 
                 <td>USUARIO</td>
-                <td input type="text" style="width:50%"></td>
+                <td><input id="usuario" type="text" aling="center" name="usuario" required ></td>
 
             </tr>
             <label class="form-label">
             <tr>
                 <td>CLAVE</td>
-                <td input type="password"></td>
+                <td><input id="clave" type="password" value="" name="clave" required></td>
 
             </tr>
             <tr>
                 <td>REPETIR CLAVE</td>
-                <td input type="password"></td>
+                <td><input id="repetirclave" type="password"value="" name="repetirclave" required></td>
             </tr>
         </label>
             <tr>
                 <td>EMAIL</td>
-                <td input type="email"></td>
+                <td><input id="email" type="email" name="email" required></td>
             </tr>
             <tr>
                 <td>REPETIR EMAIL</td>
-                <td input type="email"></td>
+                <td><input id="repetiremail" type="email" name="repetiremail" required></td>
             </tr>
             <tr>
-                <td input type="button" value="0" colspan="2" text="center">REGISTRAR</td>
+                <td colspan="2"><button onclick="registrar()" id="enviar" class="btn btn-secondary center-block" type="submit">ENVIAR</button></td>
 
             </tr>
 
@@ -47,6 +51,7 @@
         </table>
 
     </form>
+    </div>
 </body>
 
 </html>
