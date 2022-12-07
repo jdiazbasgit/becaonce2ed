@@ -81,7 +81,7 @@ Pais.addEventListener('change', () => {
       document.querySelector('#region').innerHTML = countryData.region;
       document.querySelector('#capital').innerHTML = countryData.capital;
       document.querySelector('#area').innerHTML = countryData.area + ' Km<sup>2</sup>';
-
+      document.querySelector('#population').innerHTML=countryData.population;
       document.querySelector("#flag-container img").src = countryData.flags.png;
       document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
 
