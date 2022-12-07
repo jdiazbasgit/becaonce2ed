@@ -135,7 +135,8 @@ pillarDatosGeograficos = () => {
     var main = document.querySelector("main");
     var div = document.createElement("div")
     div.id = "#fronteras"
-    div.setAttribute("class", "container text-center")
+    div.classList.add("container")
+    div.classList.add("text-center")
     var ul1 = document.createElement("ul")
     ul1.innerHTML = ""
     var li1 = document.createElement("li")
