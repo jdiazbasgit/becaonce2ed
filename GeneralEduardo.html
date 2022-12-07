@@ -24,7 +24,7 @@
             </div>
         </header>
         <div class="fade" id="divspecial">
-            <nav class="text-center" id="nav" >
+            <nav class="text-center" id="nav">
                 <button disabled onclick="dameDatosGenerales()" id="b1" class="btn btn-info">Datos Generales</button>
                 <button disabled type="button" id="b2" class="btn btn-info">Datos Geográficos</button>
                 <button disabled type="button" id="b3" class="btn btn-info">Traducciones</button>
@@ -36,7 +36,8 @@
                 <form action="" method="post">
                     <div class="row">
                         <div class="col">
-                            Continente:<select name="continente" class="form-select form-select-sm" onchange="cargarPaises(this.value)">
+                            Continente:<select name="continente" class="form-select form-select-sm"
+                                onchange="cargarPaises(this.value)">
                                 <option value="0">Elige un continente</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">America</option>
@@ -46,82 +47,79 @@
                             </select>
                         </div>
                         <div class="col">
-                            País:<select onchange=cargarDatos(this.value) id="paises" name="pais" class="form-select form-select-sm">
+                            País:<select onchange=cargarDatos(this.value) id="paises" name="pais"
+                                class="form-select form-select-sm">
                                 <option value="0">Elige un país</option>
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
-                <div>
-                    <div class="container mt-3" onchange="cargaBanderaEscudo (this.value)">
-                        <h2 class="text-center">BANDERAS Y ESCUDOS</h2>
-                        <img src="https://proyectoviajero.com/wp-content/uploads/2021/03/Bandera-de-Espan%CC%83a.svg"
-                            class="float-start" alt="españa" width="304" height="236">
-                        <img src="https://cdn.mequieroir.com/wp-content/uploads/2020/09/escudo-espana.png"
-                            class="float-end" alt="españa" width="304" height="236">
-
-                        <meta charset="utf-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1">
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-                            rel="stylesheet">
-                        <script src="https://goo.gl/maps/uDWEUaXNcZTng1fP6"></script>
-
-                        <title>Bootstrap Example</title>
-                        <meta charset="utf-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1">
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-                            rel="stylesheet">
-                        <script src="https://mainfacts.com/media/images/coats_of_arms/pe.svg"></script>
-                    </div><br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br> <br>
-                    <div class="conteiner mt-3">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                            data-bs-target="#demo0">idioma1
-                        </button>
-                        <div id="demo0" class="collapse">
-                            ESTOS SON LOS IDIOMAS
-                        </div><br>
-                        <br>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                            data-bs-target="#demo1">秘鲁共和国
-                        </button>
-                        <div id="demo1" class="collapse">
-                            CHINA, KOREA
-                        </div><br>
-                        <br>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                            data-bs-target="#demo2">idioma3
-                        </button>
-                        <div id="demo2" class="collapse">
-                            ESTOS SON LOS IDIOMAS
-                        </div><br>
-                        <br>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                            data-bs-target="#demo3">idioma4
-                        </button>
-                        <div id="demo3" class="collapse">
-                            ESTOS SON LOS IDIOMAS
-                        </div><br>
-                        <br>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                            data-bs-target="#demo4">idioma5
-                        </button>
-                        <div id="demo4" class="collapse">
-                            ESTOS SON LOS IDIOMAS
-                        </div><br>
-                        <br>
-                    </div>
-                </div>
+            <div id="traduccion" class="container tab-pane fade mt-4"><br>
             </div>
+            <div id="banderas" class="container tab-pane fade"><br>
+            </div>
+            <main>
+                <div id="fronteras" class="container text-center">
+                    <h3 class="frontera1">Frontera 1</h3>
+                    <h3 class="frontera2">Frontera 2</h3>
+                    <h3 class="frontera3">Frontera 3</h3>
+                    <h3 class="frontera4">Frontera 4</h3>
+                    <h3 class="frontera5">Frontera 5</h3>
+                </div>
+            </main>
         </div>
+    </div>
+    <div>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        
+        <script src="https://goo.gl/maps/uDWEUaXNcZTng1fP6"></script>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://mainfacts.com/media/images/coats_of_arms/pe.svg"></script>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="conteiner mt-3">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo0">idioma1
+        </button>
+        <div id="demo0" class="collapse">
+            ESTOS SON LOS IDIOMAS
+        </div>
+        <br>
+        <br>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo1">秘鲁共和国
+        </button>
+        <div id="demo1" class="collapse">
+            CHINA, KOREA
+        </div><br>
+        <br>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo2">idioma3
+        </button>
+        <div id="demo2" class="collapse">
+            ESTOS SON LOS IDIOMAS
+        </div><br>
+        <br>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo3">idioma4
+        </button>
+        <div id="demo3" class="collapse">
+            ESTOS SON LOS IDIOMAS
+        </div><br>
+        <br>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo4">idioma5
+        </button>
+        <div id="demo4" class="collapse">
+            ESTOS SON LOS IDIOMAS
+        </div><br>
+        <br>
+    </div>
+    </div>
     </div>
 
 </body>
