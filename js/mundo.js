@@ -8,7 +8,25 @@
     });
   cargarPaises1();
 };*/
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+async function getRegion(continente) {
+  const response = await fetch(restcountries.Region + continente);
+  document.getElementById("spinner").style.display = "block";
+  await sleep(2000);
+  document.getElementById("spinner").style.display = "none";
+  return await response.json()
+}
+
+async function getName(pais) {
+  const response = await fetch(restcountries.Name + pais);
+  document.getElementById("spinner").style.display = "block";
+  await sleep(2000);
+  document.getElementById("spinner").style.display = "none";
+  return await response.json();
+}
 
 
 cargarPaises = (continente) => {

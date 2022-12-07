@@ -35,6 +35,14 @@ li {
     width: 150px;
 }
 
+.spinner-border{
+    display: none;
+    position: absolute;
+    left:50%;
+    top:50%;
+    z-index: 200;
+}
+
 /*
 .mundo{
     background: url(https://lh4.googleusercontent.com/-fODt2VWyGek/UM5KhnIfjwI/AAAAAAAAIP4/pp8HVcv6SZY/s727/mapa%2520del%2520mundo%2520-%2520REDEANDO.png) repeat-x 0 0;
