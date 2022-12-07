@@ -1,3 +1,4 @@
+
 function registrar() {
     var usuario, clave, repetirclave, email, repetiremail;
     usuario = document.getElementById("usuario").value
