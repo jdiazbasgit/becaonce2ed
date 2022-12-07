@@ -6,18 +6,15 @@ function registrar() {
     email = document.getElementById("email").value
     repetiremail = document.getElementById("repetiremail").value
 
-    if (clave != repetirclave) {
+    if (clave.value != repetirclave.value) {
         alert("la contraseña no es igual")
         return false
-
     }
-  
-       if (email != repetiremail){
-        alert ("el email no coincide")
+    if (email.value != repetiremail.value) {
+        alert("el email no coincide")
         return false
     }
-    else {
-        return true
-    }
+    if (clave.value == repetirclave.value && email.value != repetiremail.value)
+        alert("usuario registrado")
 }
-console.log(registrar())
+
