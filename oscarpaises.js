@@ -1,8 +1,8 @@
 
 
 var urlRestCountries = "https://restcountries.com/v3.1/";
-
-var capital
+var urlPais = "https://restcountries.com/v3.1/name/"
+var capital = []
 var poblacion
 var area
 var monedas = []
@@ -31,28 +31,44 @@ dameDatos = (url) => fetch(url)
 
 
 function cargarDatos(pais) {
-    dameDatos("https://restcountries.com/v3.1/name/" + pais)
+    dameDatos(urlPais + pais)
+        .then(response => response.json())
         .then(paises => {
             var miPais = paises[0]
-            capital = miPais.capital
+            miPais.capital.forEach(capi => {
+                capital.push(capi)
+            })
             poblacion = miPais.population
             area = miPais.area
-            dominios = miPais.tld
+            miPais.tld.forEach(domi => {
+                dominios.push(domi)
+            })
             bandera = miPais.flags.svg
             escudo = miPais.coatOfArms.svgmonedas
             monedas = miPais.currencies
             traducciones = miPais.translations
             fronteras = miPais.borders
+
             fronteras.forEach(frontera => {
                 dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
                     .then(paises => {
                         let miPais = paises[0]
                         fronterasNombres.push(miPais.name.common)
+
                     })
+
             })
+
             // monedas.forEach(monedas => {
             // monedasDatos.push(Object.entries(monedas)[0])
             //  })
+            /*document.querySelector ("#b1").disabled=false
+            document.querySelector ("#b2").disabled=false
+            document.querySelector ("#b3").disabled=false
+            document.querySelector ("#b4").disabled=false
+            document.querySelectorAll("button").forEach(b=>{
+                b.disabled=false
+            })*/
             Object.entries(traducciones)
                 .forEach(traduccion => {
                     traduccion = new Traduccion(traduccion[1].common, [])
@@ -62,11 +78,15 @@ function cargarDatos(pais) {
                                 traduccion.paisesDelIdioma.push(pais.name.common)
                                 traduccionesDatos.push(traduccion)
                             })
+
                         })
 
-                })
-        })
 
+                })
+
+
+        })
+    // document.querySelector("#divspecial").classList.remove("fade")
 }
 
 
@@ -82,8 +102,11 @@ cargarPaises = continente => {
             seleccionaPais.value = "0"
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
-
-            paises.forEach(pais => {
+            paises.sort((a,b)=>{
+                if (a.name.common > b.name.common)
+                return 1
+                else return -1
+            }).forEach((pais) => {
 
                 let option = document.createElement("option");
                 option.value = pais.name.common;
@@ -99,9 +122,9 @@ cargarPaises = continente => {
 dameDatosGenerales = () => {
     let selectPaises = document.querySelector("#paises");
     dameDatos(urlRestCountries + "/name/" + selectPaises.value)
-        .then((response) => response.json)
+        .then((response) => response.json())
         .then(pais => {
-            pintaDatosGenerales(pais)
+            pintaDatosGenerales(pais[0])
         })
 }
 
@@ -113,28 +136,23 @@ pillarDatosGeograficos = () => {
     var div = document.createElement("div")
     div.id = "#fronteras"
     div.setAttribute("class", "container text-center")
+    var ul1 = document.createElement("ul")
+    ul1.innerHTML = ""
+    var li1 = document.createElement("li")
     var h31 = document.createElement("h3")
-    var h32 = document.createElement("h3")
-    var h33 = document.createElement("h3")
-    var h34 = document.createElement("h3")
-    var h35 = document.createElement("h3")
-    h31.innerHTML = "Frontera 1"
-    h32.innerHTML = "Frontera 2"
-    h33.innerHTML = "Frontera 3"
-    h34.innerHTML = "Frontera 4"
-    h35.innerHTML = "Frontera 5"
+
     main.appendChild(div)
-    div.appendChild(h31)
-    div.appendChild(h32)
-    div.appendChild(h33)
-    div.appendChild(h34)
-    div.appendChild(h35)
+    div.appendChild(ul1)
+    ul1.appendChild(li1)
+    li1.appendChild(h31)
+    li1.innerHTML = fronteras
+
+
 
 }
-
 datosGeograficos = (frontera) => {
     let selectPaises = document.querySelector("#paises");
-    dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+    dameDatos(urlRestCountries + "/alpha/" + selectPaises.value)
 
         .then(pais => {
             pillarDatosGeograficos(pais)

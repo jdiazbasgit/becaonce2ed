@@ -10,8 +10,9 @@ var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
-var urlPais = "https://restcountries.com/v3.1/name/"
-var urlRestCountries = "https://restcountries.com/v3.1/";
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+const urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
 class Moneda {
   constructor(name, symbol) {
@@ -21,18 +22,20 @@ class Moneda {
 }
 
 function cargarDatos(pais) {
-  dameDatos (urlPais + pais)
+  dameDatos(urlPais + pais)
     .then(response => {
       return response.json()
     })
     .then(paises => {
       let miPais = paises[0]
-      miPais.capital.forEach(capi=>{
+      capital = []
+      miPais.capital.forEach(capi => {
         capital.push(capi)
       })
       poblacion = miPais.population
       area = miPais.area
-      miPais.tld.forEach(domi=>{
+      dominios = []
+      miPais.tld.forEach(domi => {
         dominios.push(domi)
       })
       bandera = miPais.flags.svg
@@ -44,43 +47,47 @@ function cargarDatos(pais) {
       Object.entries(monedas).forEach(moneda => {
         monedasDatos.push(moneda[1])
       })
-      /*document.querySelector("#b1").disabled = false
-      document.querySelector("#b2").disabled = false
-      document.querySelector("#b3").disabled = false
-      document.querySelector("#b4").disabled = false*/
-      /*document.querySelectorAll("button").forEach(b=>{
-        b.disabled=false
-      })*/
-      document.querySelector("#divspecial").classList.remove("fade")
-      /*fronteras.forEach(frontera => {
-          dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
-            .then(response => response.json())
-            .then(paises => {
-              let miPais = paises[0]
-              fronterasNombres.push(miPais.name.common)
-              document.querySelector("#b1").disabled = false
-            })
-        })
-  
-        Object.entries(traducciones)
-          .forEach(traduccion => {
-            miTraduccion = traduccion[0]
-            dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
-              .then(response => {
-                if (response.status == 200) {
-                  return response.json()
-                } else
-                  return []
-              })
-              .then(paises => {
-                paises.forEach(pais => {
-                  traduccionesDatos.push(traduccion[1])
-                })
-              })
-          })*/
-    })
-}
+      document.querySelectorAll("button").forEach(b => {
+        b.disabled = false
+      })
+      let i = 0
 
+      for (let frontera of fronteras) {
+
+        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
+          i++
+          fronterasNombres.push(paises[0].name.common)
+          if (i == fronteras.length) {
+            document.querySelector("#divspecial").classList.remove("fade")
+            console.log(fronteras)
+          }
+        })
+      }
+
+
+    })
+
+}
+dameBanderas = () => {
+  main.innerHTML = ""
+  let div = document.createElement("div")
+  let h2 = document.createElement("h2")
+  let img1 = document.createElement("img")
+  let img2 = document.createElement("img")
+  div.classList.add("container")
+  div.classList.add("mt-3")
+  h2.classList.add("text-center")
+  img1.src = bandera
+  img1.width = 304
+  img1.height = 236
+  img2.src = escudo
+  img2.width = img1.width
+  img2.height = img1.height
+  div.appendChild(h2)
+  div.appendChild(img1)
+  div.appendChild(img2)
+  main.appendChild(div)
+}
 cargarPaises = (continente) => {
   fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
@@ -91,7 +98,11 @@ cargarPaises = (continente) => {
       seleccionaPais.value = "0";
       seleccionaPais.text = "Selecciona pais";
       paisesSelect.appendChild(seleccionaPais);
-      paises.forEach((pais) => {
+      paises.sort((a, b) => {
+        if (a.name.common > b.name.common)
+          return 1
+        else return -1
+      }).forEach((pais) => {
         let option = document.createElement("option");
         option.value = pais.name.common;
         option.text = option.value;
@@ -141,10 +152,8 @@ pintaDatosGenerales = (pais) => {
   th3.innerHTML = "Área";
   th4.innerHTML = "Dominio";
   th5.innerHTML = "Moneda";
-  td1.innerHTML = pais.capital;
   td2.innerHTML = pais.population
   td3.innerHTML = pais.area;
-  td4.innerHTML = pais.tld;
   td5.innerHTML = ""
   let ul = document.createElement("ul")
   ul.innerHTML = ""
@@ -154,6 +163,20 @@ pintaDatosGenerales = (pais) => {
     ul.appendChild(li)
   })
   td5.appendChild(ul)
+  ulcapital = document.createElement("ul")
+  capital.forEach(capi => {
+    li = document.createElement("li")
+    li.innerHTML = capi
+    ulcapital.appendChild(li)
+  })
+  td1.appendChild(ulcapital)
+  ultld = document.createElement("ul")
+  dominios.forEach(domi => {
+    li = document.createElement("li")
+    li.innerHTML = domi
+    ultld.appendChild(li)
+  })
+  td4.appendChild(ultld)
   main.appendChild(table);
   table.appendChild(tr1,);
   table.appendChild(tr2)
