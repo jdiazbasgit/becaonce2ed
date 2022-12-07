@@ -10,22 +10,39 @@ var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
-var urlPais = "https://restcountries.com/v3.1/name/"
-var urlRestCountries = "https://restcountries.com/v3.1/";
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
 
-function cargarDatos(pais) {
+function dameDatos(url) {
+Fecht (url).then (async function (response)){
+    if (await
+        )
+
+}
+}
+ async function cargarDatos(pais) {
     dameDatos(urlPais+ pais)
-    .then(response => response.json())
     .then(paises => {
+        return response.json()
+    })
+        then.(paises => {
         let miPais = paises[0]
-        miPais.capital.forEach(capi => {
+        capital=[]
+        miPais.capital.forEach(capi => { 
             capital.push(capi)
-        })
+
+    paises = await damedatos(urlPais + pais)
+    let mipais =paises[0
+    capital[]
+    miPais.capital.forEach(capi =>{
+    capital.push(capi)
+    })
+
         poblacion = miPais.population
         area = miPais.area
         miPais.tld.forEach(domi =>{
-       dominios.push(donmi)
+       dominios.push(domi)
     })
         bandera = miPais.flags.svg
         escudo = miPais.coatOfArms.svg
@@ -36,42 +53,8 @@ function cargarDatos(pais) {
         Object.entries(monedas).forEach(moneda => {
             monedasDatos.push(moneda[1])
         })
-        /*document.querySelector("#b1").disabled = false
-        document.querySelector("#b2").disabled = false
-        document.querySelector("#b3").disabled = false
-        document.querySelector("#b4").disabled = false*/
-        /*document.querySelectorAll("button").forEach(b=>{
-            b.disabled=false
-        })*/
-        document.querySelector("#divspecial").classList.remove("fade")
-        /*fronteras.forEach(frontera => {
-            dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
-            .then(response => response.json())
-            .then(paises => {
-                let miPais = paises[0]
-                fronterasNombres.push(miPais.name.common)
-                document.querySelector("#b1").disabled = false
-            })
-        })
-        
-        Object.entries(traducciones)
-        .forEach(traduccion => {
-            miTraduccion = traduccion[0]
-            dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
-            .then(response => {
-                if (response.status == 200) {
-                    return response.json()
-                } else
-                return []
-            })
-            .then(paises => {
-                paises.forEach(pais => {
-                    traduccionesDatos.push(traduccion[1])
-                })
-            })
-        })*/
-    })
-}
+        document.querySelector("#divspecial").classList.remove("fade") 
+
 cargarPaises = (continente) => {
     fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
@@ -82,15 +65,18 @@ cargarPaises = (continente) => {
         seleccionaPais.value = "0";
         seleccionaPais.text = "Selecciona pais";
         paisesSelect.appendChild(seleccionaPais);
-        paises.forEach((pais) => {
+        paises.sort((a,b) => {
+            if (a>b)
+            return 1
+            else return -1
+        }).forEach((pais) => {
             let option = document.createElement("option");
             option.value = pais.name.common;
             option.text = option.value;
             paisesSelect.appendChild(option);
-            
+        });    
         });
-    });
-};
+    };
 dameDatos = (URL) => fetch(URL);
 dameNombreDePais = cca3 => {
     dameDatos(urlRestCountries + cca3).then(response =>
@@ -166,9 +152,25 @@ class Traduccion {
         this.traduccionDelNombre = traduccionDelNombre;
         this.paisesDelIdioma = paisesDelIdioma;
     }
+    frontera.forEach(forontera => {
+
+    })
 }
 
 cargaBandera = () => {
+    main.innerHTML=""
+    let div1=document.createElement("div")
+    let h2=document.createElement("h2")
+    let img1=document.createElement("img1")
+    let img2=document.createElement("img2")
+    div.classList.add("container")
+    div.classList.add("mt-3")
+    h2.classList.add("text-center")
+img1.src=bandera
+
+
+
+    
     let selectPaises = document.querySelector("#paises");
     dameDatos(urlRestCountries + "/name/" + miPais.flags.svg)
         .then((response) => response.json())
@@ -176,7 +178,12 @@ cargaBandera = () => {
             pintaDatosGenerales(pais[0])
         })
 }
-
+pintaBandera = (pais) => {
+    var main = document.querySelector("main");
+    main.innerHTML = "";
+    let table = document.createElement("table");
+    table.setAttribute("class", "table table-stripped text-center")
+}
 cargaEscudo = () => {
     let selectPaises = document.querySelector("#paises");
     dameDatos(urlRestCountries + "/name/" + miPais.coatOfArms.svg)
@@ -186,6 +193,11 @@ cargaEscudo = () => {
         })
 }
 
+pintaEscudo = (pais) => {
+    var main = document.querySelector("main");
+    main.innerHTML = "";
+    let table = document.createElement("table");
+    table.setAttribute("class", "table table-stripped text-center")
 
 cargaTraduccionesDatos = () => {
     let selectPaises = document.querySelector("#paises");
@@ -196,6 +208,12 @@ cargaTraduccionesDatos = () => {
         })
 }
 
+pintaEscudo = (pais) => {
+    var main = document.querySelector("main");
+    main.innerHTML = "";
+    let table = document.createElement("table");
+    table.setAttribute("class", "table table-stripped text-center")
+}
 
 
 
