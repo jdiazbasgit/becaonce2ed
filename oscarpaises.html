@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="oscarpaises.js" defer></script>
+    <script src="denis.js" defer></script>
 </head>
 
 <body>
@@ -23,22 +23,20 @@
                 </div>
             </div>
         </header>
-        <div>
-            <nav class="text-center">
-                <button type="button" id="b1" class="btn btn-info">Datos Generales</button>
-                <button type="button" id="b2" onclick="datosGeograficos()" class="btn btn-info">Datos Geográficos</button>
-                <button type="button" id="b3"class="btn btn-info">Traducciones</button>
-                <button type="button" id="b4" class="btn btn-info">Banderas</button>
+        <div class="fade" id="divspecial">
+            <nav class="text-center" id="nav" >
+                <button disabled onclick="dameDatosGenerales()" id="b1" class="btn btn-info">Datos Generales</button>
+                <button disabled onclick="pintaDatosGeograficos()" type="button" id="b2" class="btn btn-info">Datos Geográficos</button>
+                <button disabled type="button" id="b3" class="btn btn-info">Traducciones</button>
+                <button disabled  onclick="dameBanderas()" type="button" id="b4" class="btn btn-info">Banderas</button>
             </nav>
         </div>
-
         <div class="tab-content mt-4">
             <div id="datosgenerales" class="container tab-pane active"><br>
                 <form action="" method="post">
                     <div class="row">
                         <div class="col">
-                            Continente:<select id="continente" name="continente" class="form-select form-select-sm"
-                                onchange="cargarPaises(this.value)">
+                            Continente:<select name="continente" class="form-select form-select-sm" onchange="cargarPaises(this.value)">
                                 <option value="0">Elige un continente</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">America</option>
@@ -48,31 +46,18 @@
                             </select>
                         </div>
                         <div class="col">
-                            País:<select onchange=cargaDatos(this.value) id="paises" name="pais" class="form-select form-select-sm">
+                            País:<select onchange=cargarDatos(this.value) id="paises" name="pais" class="form-select form-select-sm">
                                 <option value="0">Elige un país</option>
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
-           
-            
-
-            <div id="traduccion" class="container tab-pane fade mt-4"><br>
-            </div>
-            <div id="banderas" class="container tab-pane fade"><br>
-            </div>
             <main>
-              <div class="container text-center">
-                    <h3 class="frontera1">Frontera 1</h3>
-                    <h3 class="frontera2">Frontera 2</h3>
-                    <h3 class="frontera3">Frontera 3</h3>
-                    <h3 class="frontera4">Frontera 4</h3>
-                    <h3 class="frontera5">Frontera 5</h3>
-                </div>
+            
+          
+            
             </main>
-        </div>
-    </div>
 </body>
 
 </html>
