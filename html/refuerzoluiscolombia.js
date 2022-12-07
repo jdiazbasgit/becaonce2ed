@@ -2,8 +2,8 @@ var main= document.querySelector("main")
 var form1=document.createElement("form")
 form1.action="#"
 form1.method="post"
-var table=document.createElement("table")
-table.border="1"
+var table1=document.createElement("table")
+table1.border="1"
 var tr1=document.createElement("tr")
 var td1= document.createElement("td")
 var label1= document.createElement("label")
@@ -18,8 +18,8 @@ td1.appendChild(label1)
 tr1.appendChild(td1)
 tr1.appendChild(td2)
 
-form1.appendChild(table)
 main.appendChild(form1)
+form1.appendChild(table1)
 var tr2= document.createElement("tr")
 var td3=document.createElement("td")
 var label2=document.createElement("label")
@@ -52,21 +52,22 @@ td5.appendChild(button1)
 td5.appendChild(button2)
 tr3.appendChild(td5)
 
-table.appendChild(tr1)
-table.appendChild(tr2)
-table.appendChild(tr3)
+table1.appendChild(tr1)
+table1.appendChild(tr2)
+table1.appendChild(tr3)
 
- var form2= document.createElement(form)
+ var form2= document.createElement("form")
  form2.action="http://localhost:8080/prueba/Ejemplo" 
  form2.method="get"
  form2.innerHTML="texto:"
-  var label3 = document.createElement(label)
-  var input3 = document.createElement(input)
+  var label3 = document.createElement("label")
+  var input3 = document.createElement("input")
   input3.type="text"
   input3.name="texto"
-  var button3=document.createElement(button)
+  var button3=document.createElement("button")
   button3.type="submit"
+  button3.innerHTML="enviar"
   main.appendChild(form2)
 form2.appendChild(label3)
 label3.appendChild(input3)
-input3.appendChild(button)
+input3.appendChild(button3)
