@@ -10,8 +10,9 @@ var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
-var urlPais = "https://restcountries.com/v3.1/name/"
-var urlRestCountries = "https://restcountries.com/v3.1/";
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+const urlRestCountries = "https://restcountries.com/v3.1/";
 const main = document.querySelector("main");
 class Moneda {
   constructor(name, symbol) {
@@ -46,43 +47,47 @@ function cargarDatos(pais) {
       Object.entries(monedas).forEach(moneda => {
         monedasDatos.push(moneda[1])
       })
-      /*document.querySelector("#b1").disabled = false
-      document.querySelector("#b2").disabled = false
-      document.querySelector("#b3").disabled = false
-      document.querySelector("#b4").disabled = false*/
       document.querySelectorAll("button").forEach(b => {
         b.disabled = false
       })
-      document.querySelector("#divspecial").classList.remove("fade")
-      /*fronteras.forEach(frontera => {
-          dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
-            .then(response => response.json())
-            .then(paises => {
-              let miPais = paises[0]
-              fronterasNombres.push(miPais.name.common)
-              document.querySelector("#b1").disabled = false
-            })
-        })
-  
-        Object.entries(traducciones)
-          .forEach(traduccion => {
-            miTraduccion = traduccion[0]
-            dameDatos("https://restcountries.com/v3.1/lang/" + traduccion[0])
-              .then(response => {
-                if (response.status == 200) {
-                  return response.json()
-                } else
-                  return []
-              })
-              .then(paises => {
-                paises.forEach(pais => {
-                  traduccionesDatos.push(traduccion[1])
-                })
-              })
-          })*/
-    })
-}
+      let i = 0
 
+      for (let frontera of fronteras) {
+
+        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
+          i++
+          fronterasNombres.push(paises[0].name.common)
+          if (i == fronteras.length) {
+            document.querySelector("#divspecial").classList.remove("fade")
+            console.log(fronteras)
+          }
+        })
+      }
+
+
+    })
+
+}
+dameBanderas = () => {
+  main.innerHTML = ""
+  let div = document.createElement("div")
+  let h2 = document.createElement("h2")
+  let img1 = document.createElement("img")
+  let img2 = document.createElement("img")
+  div.classList.add("container")
+  div.classList.add("mt-3")
+  h2.classList.add("text-center")
+  img1.src = bandera
+  img1.width = 304
+  img1.height = 236
+  img2.src = escudo
+  img2.width = img1.width
+  img2.height = img1.height
+  div.appendChild(h2)
+  div.appendChild(img1)
+  div.appendChild(img2)
+  main.appendChild(div)
+}
 cargarPaises = (continente) => {
   fetch(urlRestCountries + "region/" + continente)
     .then((response) => response.json())
