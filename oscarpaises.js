@@ -103,10 +103,10 @@ cargarPaises = continente => {
             seleccionaPais.text = "Selecciona pais";
             paisesSelect.appendChild(seleccionaPais);
             paises.sort((a,b)=>{
-                if (a.name.common>b)
-                return1
+                if (a.name.common > b.name.common)
+                return 1
                 else return -1
-            }).forEach(pais => {
+            }).forEach((pais) => {
 
                 let option = document.createElement("option");
                 option.value = pais.name.common;
