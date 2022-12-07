@@ -11,10 +11,8 @@ function registrar() {
         return false
 
     }
-   else {
-    return true
-   }
-    if (email != repetiremail){
+  
+       if (email != repetiremail){
         alert ("el email no coincide")
         return false
     }
