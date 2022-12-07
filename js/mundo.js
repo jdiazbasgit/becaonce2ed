@@ -87,25 +87,46 @@ Pais.addEventListener('change', (event) => {
     .then((countriesList) => {
 
       countriesList.forEach(countryData => {
-        document.querySelector('#region').innerHTML=countryData.region;
-        document.querySelector('#capital').innerHTML=countryData.capital;
-        document.querySelector('#population').innerHTML=countryData.population;
-        document.querySelector('#area').innerHTML=countryData.area;
-         document.querySelector("#flag-container img").src = countryData.flags.png;
+        document.querySelector('#region').innerHTML = countryData.region;
+        document.querySelector('#capital').innerHTML = countryData.capital;
+        document.querySelector('#population').innerHTML = countryData.population;
+        document.querySelector('#area').innerHTML = countryData.area;
+        document.querySelector("#flag-container img").src = countryData.flags.png;
         document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
-        document.querySelector('#arabe').innerHTML=countryData.translations.ara.official;
-        document.querySelector('#francia').innerHTML=countryData.translations.fra.official;
-        document.querySelector('#italia').innerHTML=countryData.translations.ita.official;
+        document.querySelector('#arabe').innerHTML = countryData.translations.ara.official;
+        document.querySelector('#francia').innerHTML = countryData.translations.fra.official;
+        document.querySelector('#italia').innerHTML = countryData.translations.ita.official;
         //document.querySelector('#portugal').innerHTML=countryData.translations.por.official;
-      
-        
+        document.querySelector('#fronteras').innerHTML = countryData.borders;
+
+        var fronteras = Object.keys(countryData.borders);
+
+        if (fronteras.length > 1) {
+          var front = "";
+          fronteras.forEach(nombre => {
+            front += countryData.borders[nombre] + ' | ';
+          });
+
+          document.querySelector("#fronteras").innerHTML = front;
+        } else if (fronteras.length != 1) {
+          document.querySelector("#fronteras").innerHTML = "No hay fronteras";
+        }
+
         var monedas = Object.keys(countryData['currencies']);
-       // if (!monedas){
-          document.querySelector('#nombre').innerHTML=countryData.currencies[monedas].name;
-          document.querySelector('#simbolo').innerHTML=countryData.currencies[monedas].symbol;
-        // si tiene mas tipos de monedas en un pais
-        // document.querySelector('#nombre1').innerHTML=countryData.currencies[monedas].name;
-        //  document.querySelector('#simbolo1').innerHTML=countryData.currencies[monedas].symbol;
+        if (monedas.length > 1) {
+          var sname = "";
+          var ssymbol = "";
+          monedas.forEach(tipo => {
+            sname += countryData.currencies[tipo].name + ' | ';
+            ssymbol += countryData.currencies[tipo].symbol + ' | ';
+          });
+
+          document.querySelector('#nombre').innerHTML = sname.slice(0, -2);
+          document.querySelector('#simbolo').innerHTML = ssymbol.slice(0, -2);
+        } else if (monedas.length == 1) {
+          document.querySelector('#nombre').innerHTML = countryData.currencies[monedas].name;
+          document.querySelector('#simbolo').innerHTML = countryData.currencies[monedas].symbol;
+        }
 
       });
 
