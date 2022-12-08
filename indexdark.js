@@ -38,7 +38,11 @@ var escudo;
 //datos generales
 var main = document.querySelector("main")
 var div1 = document.createElement("div")
+<<<<<<< HEAD
 div1.class = ("row")
+=======
+div1.class=("row") 
+>>>>>>> 3f438d7c441af303657cc5044f172e1e866199df
 var div2 = document.createElement("div")
 div2.class = "col megacol"
 var ul1 = document.createElement("ul")
@@ -47,7 +51,11 @@ var li1 = document.createElement("li")
 li1.class = "nav item"
 var a1 = document.createElement("a")
 a1.class = "nav-link active"
+<<<<<<< HEAD
 a1.class("data-bs-toggle")
+=======
+a1.("data-bs-toggle") = "tab"
+>>>>>>> 3f438d7c441af303657cc5044f172e1e866199df
 a1.href = "#datos"
 var h3a = documento.createElement("h3")
 h3a.innerHTML = "Datos Generales"
