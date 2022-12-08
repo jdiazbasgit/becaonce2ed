@@ -1,41 +1,41 @@
-var capital;
-var poblacion;
-var area;
-var dominios = [];
-var fronteras = [];
-var bandera;
-var escudo;
-var monedas;
-var monedasDatos = [];
-var traducciones = [];
-var fronterasNombres = [];
-var traduccionesDatos = [];
+
 
 opcionesContinente = continente => {
 
-   var paisesSelect = document.querySelector("#paises");
-   paisesSelect.innerHTML = ""
+    var paisesSelect = document.querySelector("#paises");
+    paisesSelect.innerHTML = ""
 
-   fetch("https://restcountries.com/v3.1/region/" + continente)
-      .then((response) => response.json())
-      .then(pais => {
-         let seleccionaPais = document.createElement("option")
-         seleccionaPais.value = "0"
-         seleccionaPais.text = "seleccionarPais"
-         paisesSelect.appendChild(seleccionaPais);
-         pais.forEach(pais => {
+    fetch("https://restcountries.com/v3.1/region/" + continente)
+        .then((response) => response.json())
+        .then(pais => {
+            let seleccionaPaises = document.createElement("option")
+            seleccionaPais.value = "0"
+            seleccionaPais.text = "seleccionaPais"
+            paisesSelect.appendChild(seleccionaPaises);
+            pais.forEach(pais => {
+                let option = document.createElement("option");
+                option.value = pais.name.common;
+                option.text = option.value;
+                paisesSelect.appendChild(option)
+            });
 
-            let option = document.createElement("option");
-            option.value = pais.name.common;
-            option.text = option.value;
-            paisesSelect.appendChild(option)
-         });
-
-      })
-
-
-
+        })
 }
+
+//buscar datosGenerales.
+
+
+
+var capital;
+var moneda;
+var simbolo;
+var poblacion;
+var dominio;
+var superficie;
+var moneda;
+var bandera;
+var escudo;
+//datos generales
 var main = document.querySelector("main")
 var div1 = document.createElement("div")
 div1.class = ("row")
@@ -47,7 +47,7 @@ var li1 = document.createElement("li")
 li1.class = "nav item"
 var a1 = document.createElement("a")
 a1.class = "nav-link active"
-a1.class = ("data-bs-toggle")
+a1.class("data-bs-toggle")
 a1.href = "#datos"
 var h3a = documento.createElement("h3")
 h3a.innerHTML = "Datos Generales"
@@ -118,26 +118,100 @@ div3a.appendChild("div3")
 
 //imagenes cerca de continente y paises//
 
-var div4 = document.createElement("div")
+var div4 = document.createElement("var")
 div4.setAttribute("class") = "col"
 var div4a = documento.createElement("div")
 div4.setAttribute("class") = "celdagers"
 var img1 = document.createElement("img")
-img1.src = document.createElement("imagenes/gear.png")
-img1.class = setAttribute("gear1")
-var img2 = document.createElement("img")
-img2.src = setAttribute("imagenes/gearmini.png")
-img2.class = setAttribute("gear2")
+div4.appendChild("img1")
 
-div4.appendChild("div4a")
-div4a.appendChild("img1")
-div4a.appendChild("img2")
 
-var div5 = document.createElement("div")
-div5.class = "row ms-5"
-var div5a = document.createElement("div")
-div5a.class ="col"
-var h4 = document.createElement("h4")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
