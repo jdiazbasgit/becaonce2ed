@@ -62,9 +62,12 @@ function cargarDatos(pais) {
      traduccionesEntries= Object.entries(miPais.translations)
      traduccionesEntries.forEach(t=>{
       traducciones.push(t[0])
-      traduccionesDatos.push(t[1])
+      traduccionesDatos.push(t[1]) 
      })
-    
+  /* for (  i=0 ; i <traducciones.length;i++ ){
+    pais23 = i
+ console.log(pais23)
+   }*/
 
       fronteras = miPais.borders
       monedasDatos = []
@@ -108,6 +111,36 @@ dameBanderas = () => {
   div.appendChild(img2)
   main.appendChild(div)
 }
+dameDatosTraducciones=()=>{
+   for (  i=0 ; i <traducciones.length;i++ ){
+    traducciones[i]
+    console.log(tr)
+   }
+}
+verPais = async (valorPais) => {
+  let url = `https://restcountries.com/v3.1/name/${valorPais}`;
+  pais = await cargaDatos(url);
+ 
+
+}
+verPaisTraducciones = async (valorPais, elemento) => {
+
+  let url = `https://restcountries.com/v3.1/lang/${valorPais}`;
+  paisesPorIdioma = await cargaDatos(url);
+  try {
+      let paisesPori= ""
+      paisesPorIdioma.forEach(pais => {
+          paisesPori = paisesPori + pais.name.common + "   "
+
+      });
+      elemento.setAttribute("title", paisesPori);
+  } catch (error) {
+
+  }
+
+
+
+}
 dameTraducciones = () =>{
   main.innerHTML=""
   let divTraducciones=document.createElement("div")
@@ -123,6 +156,7 @@ dameTraducciones = () =>{
     buttonTradcciones.innerHTML=traduccion.common
     divTraducciones.appendChild(buttonTradcciones)
   })
+
 }
 cargarPaises = (continente) => {
   inicializar()
