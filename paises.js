@@ -37,6 +37,52 @@ opcionesContinente = continente => {
 
 }
 
+
+function cargarDatos(pais) {
+  fronterasNombres = []
+  dameDatos(urlPais + pais)
+    .then(response => {
+      return response.json()
+    })
+    .then(paises => {
+      let miPais = paises[0]
+      capital = []
+      miPais.capital.forEach(capi => {
+        capital.push(capi)
+      })
+      poblacion = miPais.population
+      area = miPais.area
+      dominios = []
+      miPais.tld.forEach(domi => {
+        dominios.push(domi)
+      })
+      bandera = miPais.flags.svg
+      escudo = miPais.coatOfArms.svg
+      monedas = miPais.currencies
+      traducciones = miPais.translations
+      fronteras = miPais.borders
+      monedasDatos = []
+      Object.entries(monedas).forEach(moneda => {
+        monedasDatos.push(moneda[1])
+      })
+      document.querySelectorAll("button").forEach(b => {
+        b.disabled = false
+      })
+      let i = 0
+
+      for (let frontera of fronteras) {
+
+        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
+          i++
+          fronterasNombres.push(paises[0].name.common)
+          if (i == fronteras.length) {
+            document.querySelector("#divspecial").classList.remove("fade")
+            console.log(fronteras)
+          }
+        })
+      }
+    })
+}
 var main = document.querySelector("main")
 var div1 = document.createElement("div")
 div1.class = ("row")
