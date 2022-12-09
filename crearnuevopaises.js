@@ -116,7 +116,6 @@ dameTraducciones = () =>{
   button1.classList.add("btn")
   button1.classList.add("btn-primary")
   button1.data-bs-toggle("collapse")
-
 }
 cargarPaises = (continente) => {
   inicializar()
@@ -237,4 +236,4 @@ pintaDatosGenerales = (pais) => {
   tr2.appendChild(td3);
   tr2.appendChild(td4);
   tr2.appendChild(td5);
-}
+};
