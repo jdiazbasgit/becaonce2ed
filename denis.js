@@ -103,6 +103,20 @@ dameBanderas = () => {
   div.appendChild(img2)
   main.appendChild(div)
 }
+dameTraducciones = () =>{
+  main.innerHTML=""
+  let divTraducciones=document.createElement("div")
+  divTraducciones.innerHTML=""
+  let ol=document.createElement("ol")
+  let il=document.createElement("il")
+  main.appendChild(divTraducciones)
+  divTraducciones.appendChild(ol)
+  ol.appendChild(ul)
+  let button1=document.createElement("button")
+  button1.classList.add("btn")
+  button1.classList.add("btn-primary")
+  button1.data-bs-toggle("collapse")
+}
 cargarPaises = (continente) => {
   inicializar()
   fetch(urlRestCountries + "region/" + continente)
@@ -141,13 +155,15 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("container")
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
+  let olFronteras=document.createElement("ol")
+  divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
+    let liFronteras=document.createElement("li")
+    let h3Fronteras = document.createElement("h3")
+    h3Fronteras.innerHTML = frontera.toUpperCase()
+    olFronteras.appendChild(liFronteras)
+    liFronteras.appendChild(h3Fronteras)
   })
-
 }
 
 dameDatosGenerales = () => {
