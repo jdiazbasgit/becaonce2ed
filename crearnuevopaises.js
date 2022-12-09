@@ -116,6 +116,7 @@ dameTraducciones = () =>{
   button1.classList.add("btn")
   button1.classList.add("btn-primary")
   button1.data-bs-toggle("collapse")
+
 }
 cargarPaises = (continente) => {
   inicializar()
