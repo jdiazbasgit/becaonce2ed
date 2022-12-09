@@ -59,7 +59,13 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-      traducciones = miPais.translations
+     traduccionesEntries= Object.entries(miPais.translations)
+     traduccionesEntries.forEach(t=>{
+      traducciones.push(t[0])
+      traduccionesDatos.push(t[1])
+     })
+    
+
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -77,7 +83,6 @@ function cargarDatos(pais) {
           fronterasNombres.push(paises[0].name.common)
           if (i == fronteras.length) {
             document.querySelector("#divspecial").classList.remove("fade")
-            console.log(fronteras)
           }
         })
       }
@@ -106,16 +111,18 @@ dameBanderas = () => {
 dameTraducciones = () =>{
   main.innerHTML=""
   let divTraducciones=document.createElement("div")
+  divTraducciones.id="divTrad"
   divTraducciones.innerHTML=""
-  let ol=document.createElement("ol")
-  let il=document.createElement("il")
   main.appendChild(divTraducciones)
-  divTraducciones.appendChild(ol)
-  ol.appendChild(ul)
-  let button1=document.createElement("button")
-  button1.classList.add("btn")
-  button1.classList.add("btn-primary")
-  button1.data-bs-toggle("collapse")
+  traduccionesDatos.forEach(traduccion=>{
+    let buttonTradcciones=document.createElement("button")
+    buttonTradcciones.classList.add("btn")
+    buttonTradcciones.classList.add("btn-primary")
+    buttonTradcciones.setAttribute("data-bs-toggle","collapse")
+    buttonTradcciones.setAttribute("data-bs-target","#divTRad")
+    buttonTradcciones.innerHTML=traduccion.common
+    divTraducciones.appendChild(buttonTradcciones)
+  })
 }
 cargarPaises = (continente) => {
   inicializar()
