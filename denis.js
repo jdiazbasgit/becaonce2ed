@@ -81,10 +81,7 @@ function cargarDatos(pais) {
           }
         })
       }
-
-
     })
-
 }
 dameBanderas = () => {
   main.innerHTML = ""
