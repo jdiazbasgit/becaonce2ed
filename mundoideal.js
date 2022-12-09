@@ -177,11 +177,11 @@ pintaDatosGenerales = (pais) => {
   let td3 = document.createElement("td");
   let td4 = document.createElement("td");
   let td5 = document.createElement("td");
-  th1.innerHTML = "Capital "
-  th2.innerHTML = "Población";
-  th3.innerHTML = "Área";
-  th4.innerHTML = "Dominio";
-  th5.innerHTML = "Moneda";
+  th1.innerHTML = "CAPITAL "
+  th2.innerHTML = "POBLACION";
+  th3.innerHTML = "ÁREA";
+  th4.innerHTML = "DOMINIO";
+  th5.innerHTML = "MONEDA";
   td2.innerHTML = pais.population
   td3.innerHTML = pais.area;
   td5.innerHTML = ""
