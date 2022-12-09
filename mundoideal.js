@@ -139,10 +139,10 @@ pintaDatosGeograficos = () => {
   let divFronteras = document.createElement("div")
   divFronteras.innerHTML = ""
   divFronteras.classList.add("container")
-  divFronteras.classList.add("text-center")
+  divFronteras.classList.add("text")
   main.appendChild(divFronteras)
   fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
+    let h3 = document.createElement("h6")
     h3.innerHTML = frontera.toUpperCase()
     divFronteras.appendChild(h3)
 
