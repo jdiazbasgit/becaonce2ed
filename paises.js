@@ -1,42 +1,44 @@
-var capital;
-var poblacion;
-var area;
-var dominios = [];
-var fronteras = [];
-var bandera;
-var escudo;
-var monedas;
-var monedasDatos = [];
-var traducciones = [];
-var fronterasNombres = [];
-var traduccionesDatos = [];
+var capital = []
+var poblacion
+var area
+var dominios = []
+var fronteras = []
+var bandera
+var escudo
+var monedas
+var monedasDatos = []
+var traducciones = []
+var fronterasNombres = []
+var traduccionesDatos = []
 
-opcionesContinente = continente => {
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+const urlRestCountries = "https://restcountries.com/v3.1/"
+var main = document.querySelector("main");
 
-  var paisesSelect = document.querySelector("#paises");
-  paisesSelect.innerHTML = ""
+inicializar = () => {
+  capital = []
+  poblacion
+  area
+  dominios = []
+  fronteras = []
+  bandera
+  escudo
+  monedas
+  monedasDatos = []
+  traducciones = []
+  fronterasNombres = []
+  traduccionesDatos = []
 
-  fetch("https://restcountries.com/v3.1/region/" + continente)
-    .then((response) => response.json())
-    .then(pais => {
-      let seleccionaPais = document.createElement("option")
-      seleccionaPais.value = "0"
-      seleccionaPais.text = "seleccionarPais"
-      paisesSelect.appendChild(seleccionaPais);
-      pais.forEach(pais => {
-
-        let option = document.createElement("option");
-        option.value = pais.name.common;
-        option.text = option.value;
-        paisesSelect.appendChild(option)
-      });
-
-    })
-
-
-
+  main.innerHTML = ""
 }
 
+class Moneda {
+  constructor(name, symbol) {
+    this.name = name
+    this.symbol = symbol
+  }
+}
 
 function cargarDatos(pais) {
   fronterasNombres = []
@@ -83,26 +85,89 @@ function cargarDatos(pais) {
       }
     })
 }
-var main = document.querySelector("main")
-var div1 = document.createElement("div")
-div1.class = ("row")
-var div2 = document.createElement("div")
-div2.class = "col megacol"
-var ul1 = document.createElement("ul")
-ul1.class = "nav nav-tabs nav-justified mt-5 textocabeceras"
-var li1 = document.createElement("li")
-li1.class = "nav item"
-var a1 = document.createElement("a")
-a1.class = "nav-link active"
-a1.class = "data-bs-toggle"
-a1.href = "#datos"
-var h3a = document.createElement("h3")
-h3a.innerHTML = "Datos Generales"
 
-div1.appendChild(div2)
+
+
+
+dameBanderas = () => {
+  main.innerHTML = ""
+  let div = document.createElement("div")
+  let h2 = document.createElement("h2")
+  let img1 = document.createElement("img")
+  let img2 = document.createElement("img")
+  div.classList.add("container")
+  div.classList.add("mt-3")
+  h2.classList.add("text-center")
+  img1.src = bandera
+  img1.width = 304
+  img1.height = 236
+  img2.src = escudo
+  img2.width = img1.width
+  img2.height = img1.height
+  div.appendChild(h2)
+  div.appendChild(img1)
+  div.appendChild(img2)
+  main.appendChild(div)
+}
+//json
+
+
+opcionesContinente = continente => {
+
+  var paisesSelect = document.querySelector("#paises");
+  paisesSelect.innerHTML = ""
+
+  fetch("https://restcountries.com/v3.1/region/" + continente)
+    .then((response) => response.json())
+    .then(pais => {
+      let seleccionaPais = document.createElement("option")
+      seleccionaPais.value = "0"
+      seleccionaPais.text = "seleccionarPais"
+      paisesSelect.appendChild(seleccionaPais);
+      pais.forEach(pais => {
+
+        let option = document.createElement("option");
+        option.value = pais.name.common;
+        option.text = option.value;
+        paisesSelect.appendChild(option)
+      });
+
+    })
+
+}
+
+dameDatosGenerales = () => {
+  let selectPaises = document.querySelector("#paises");
+  dameDatos(urlRestCountries + "/name/" + selectPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      pintaDatosGenerales(pais[0])
+    })
+}
+
+
+moneda = new Moneda("name", "symbol")
+pintaDatosGenerales = (pais) => {
+  var main = document.querySelector("main")
+  var div1 = document.createElement("div")
+  div1.class = ("row")
+  var div2 = document.createElement("div")
+  div2.class = "col megacol"
+  var ul1 = document.createElement("ul")
+  ul1.class = "nav nav-tabs nav-justified mt-5 textocabeceras"
+  var li1 = document.createElement("li")
+  li1.class = "nav item"
+  var a1 = document.createElement("a")
+  a1.class = "nav-link active"
+  a1.class = "data-bs-toggle"
+  a1.href = "#datos"
+  var h3a = document.createElement("h3")
+  h3a.innerHTML = "Datos Generales"
+}
+/*div1.appendChild(div2)
 div2.appendChild(ul1)
 ul1.appendChild(a1)
-a1.appendChild(h3a)
+a1.appendChild(h3a)*/
 //datos geografia//
 
 var li2 = document.createElement("li")
@@ -467,7 +532,7 @@ div17b.class = "col"
 var div17c = document.createElement("div")
 var h2c = document.createElement("h2")
 h2c.innerHTML = "XnombreDelPais"
- div17.appendChild(div17a)
+div17.appendChild(div17a)
 div17a.appendChild(div17b)
 div17b.appendChild(div17c)
 div17c.appendChild(h2c)
@@ -505,16 +570,16 @@ img9.src = "https://flagcdn.com/w320/es.png"
 div19.appendChild(div19a)
 div19a.appendChild(div19b)
 div19b.appendChild(img9)
- 
+
 // ESCUDO imagen
 
-var  div20 = document.createElement("div")
+var div20 = document.createElement("div")
 div20.class = "col"
 var h4m = document.createElement("h4")
-h4m.innerHTML ="Escudo"
+h4m.innerHTML = "Escudo"
 var div20a = document.createElement("div")
 var img10 = document.createElement("img")
-img10.class ="img-fluid tarjetabandera rounded"
+img10.class = "img-fluid tarjetabandera rounded"
 img10.src = "https://mainfacts.com/media/images/coats_of_arms/es.png"
 
 div20.appendChild(h4m)
