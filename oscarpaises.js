@@ -31,6 +31,12 @@ inicializar = () => {
   main.innerHTML = ""
 }
 
+class Idioma {
+  constructor(name, translations) {
+    this.name = name;
+    this.translations;
+  }
+}
 class Moneda {
   constructor(name, symbol) {
     this.name = name
@@ -59,7 +65,14 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-      traducciones = miPais.translations
+
+      traduccionesEntries = Object.entries(miPais.translations)
+      traduccionesEntries.forEach(t=>{
+        traducciones.push = traduccionesEntries[0]
+        traduccionesDatos.push = traduccionesEntries[1]
+      })
+      
+
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -152,10 +165,20 @@ pintaDatosGeograficos = () => {
   })
 
 }
-dameTraducciones =()=>{
-  main.innerHTML=""
-  let divTraducciones=document.createElement("div")
-  divTraducciones.innerHTML
+idioma = new Idioma("name", "translations")
+dameTraducciones = () => {
+  main.innerHTML = ""
+  let divTraducciones = document.createElement("div")
+  divTraducciones.innerHTML = ""
+  let olTraducciones = documen.createElement("ol")
+  main.appendChild(divTraducciones)
+  olTraducciones.appendChild(liTraducciones)
+  divTraducciones.appendChild(olTraducciones)
+  traduccionesDatos.forEach(traduccion => {
+    let liTraducciones = document.createElement("li")
+    li.innerHTML = traducciones.toUpperCase()
+    olTraducciones.appendChild(liTraducciones)
+  })
 
 
 
