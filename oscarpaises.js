@@ -152,7 +152,14 @@ pintaDatosGeograficos = () => {
   })
 
 }
+dameTraducciones =()=>{
+  main.innerHTML=""
+  let divTraducciones=document.createElement("div")
+  divTraducciones.innerHTML
 
+
+
+}
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
