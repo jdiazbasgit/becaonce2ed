@@ -59,7 +59,13 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-      traducciones = miPais.translations
+     traduccionesEntries= Object.entries(miPais.translations)
+     traduccionesEntries.forEach(t=>{
+      traducciones.push(t[0])
+      traduccionesDatos.push(t[1])
+     })
+    
+
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -77,7 +83,6 @@ function cargarDatos(pais) {
           fronterasNombres.push(paises[0].name.common)
           if (i == fronteras.length) {
             document.querySelector("#divspecial").classList.remove("fade")
-            console.log(fronteras)
           }
         })
       }
@@ -102,6 +107,22 @@ dameBanderas = () => {
   div.appendChild(img1)
   div.appendChild(img2)
   main.appendChild(div)
+}
+dameTraducciones = () =>{
+  main.innerHTML=""
+  let divTraducciones=document.createElement("div")
+  divTraducciones.id="divTrad"
+  divTraducciones.innerHTML=""
+  main.appendChild(divTraducciones)
+  traduccionesDatos.forEach(traduccion=>{
+    let buttonTradcciones=document.createElement("button")
+    buttonTradcciones.classList.add("btn")
+    buttonTradcciones.classList.add("btn-primary")
+    buttonTradcciones.setAttribute("data-bs-toggle","collapse")
+    buttonTradcciones.setAttribute("data-bs-target","#divTRad")
+    buttonTradcciones.innerHTML=traduccion.common
+    divTraducciones.appendChild(buttonTradcciones)
+  })
 }
 cargarPaises = (continente) => {
   inicializar()
@@ -141,13 +162,15 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("container")
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
+  let olFronteras=document.createElement("ol")
+  divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
+    let liFronteras=document.createElement("li")
+    let h3Fronteras = document.createElement("h3")
+    h3Fronteras.innerHTML = frontera.toUpperCase()
+    olFronteras.appendChild(liFronteras)
+    liFronteras.appendChild(h3Fronteras)
   })
-
 }
 
 dameDatosGenerales = () => {
