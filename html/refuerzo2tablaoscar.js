@@ -1,11 +1,11 @@
 
 function registrar() {
     var usuario, clave, repetirclave, email, repetiremail;
-    usuario = document.getElementById("usuario").value
-    clave = document.getElementById("clave").value
-    repetirclave = document.getElementById("repetirclave").value
-    email = document.getElementById("email").value
-    repetiremail = document.getElementById("repetiremail").value
+    usuario = document.getElementById("usuario")
+    clave = document.getElementById("clave")
+    repetirclave = document.getElementById("repetirclave")
+    email = document.getElementById("email")
+    repetiremail = document.getElementById("repetiremail")
 
     if (clave.value != repetirclave.value) {
         alert("la contraseña no es igual")
