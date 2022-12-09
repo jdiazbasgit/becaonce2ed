@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Usuario</title>
-    <script src="ejercicio2RegistrarUsuario.html" defer></script>
+    <script src="ejercicio2RegistrarUsuario.js" defer></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
             <table border="1" align="center" cellspacing="20" cellpadding="5">
                 <tr>
                     <td><label>USUARIO</label></td>
-                    <td><input type="text" name="usuario"></input></td>
+                    <td><input type="text" name="usuario" required></input></td>
                 </tr>
                 <tr>
                     <td><label>CLAVE</label></td>
@@ -36,7 +36,7 @@
                     <td><input type="email" id="email2"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center"><button type="butto"
+                    <td colspan="2" align="center"><button type="button"
                             style="background-color:rgb(55, 60, 192); color:white"
                             onclick="registrarUsuario()">REGISTRAR</button>
                     </td>
