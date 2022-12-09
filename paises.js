@@ -25,22 +25,22 @@ opcionesContinente = continente => {
 
 
 }
-var main = document.querySelector("main")
+ar main = document.querySelector("main")
 var div1 = document.createElement("div")
-div1.classlist("class") = "row"
+div1.classList = "row"
 var div2 = document.createElement("div")
-div2.class ="col megacol"
-var ul1 = document.createElement ("ul")
+div2.class = "col megacol"
+var ul1 = document.createElement("ul")
 ul1.class = "nav nav-tabs nav-justified mt-5 textocabeceras"
 var li1 = document.createElement("li")
 li1.class = "nav item"
 var a1 = document.createElement("a")
 a1.class = "nav-link active"
-a1.setAttribute("data-bs-toggle") = "tab"
+a1.setAttribute = ("data-bs-toggle")
 a1.href = "#datos"
-var h3a = documento.createElement("h3")
+var h3a = document.createElement("h3")
 h3a.innerHTML = "Datos Generales"
-a1.appendChild("h3a")
+a1.appendChild("h3")
 li1.appendChild("a1")
 ul1.appendChild("il1")
 div2.appendChild("ul1")
@@ -49,41 +49,41 @@ main.appendChild("div1")
 
 //datos geografia//
 
-var  li2 = document.createElement(li)
+var li2 = document.createElement(li)
 li2.class = "nav-item"
 var a2 = document.createElement(a)
-a2.class ="nav-link"
-a2.setAttribute("data-bs-toggle") ="tab"
+a2.class = "nav-link"
+a2.setAttribute("data-bs-toggle") = "tab"
 a2.href = "#geografia"
-var h3b =document.createElement("h3")
-h3b.innerHTML= "Geografia"
+var h3b = document.createElement("h3")
+h3b.innerHTML = "Geografia"
 li2.appendChild("a2")
 a2.appendChild("h3b")
 
 //idioma//
 
-var  li3 = document.createElement(li)
+var li3 = document.createElement(li)
 li3.class = "nav-item"
 var a3 = document.createElement(a)
-a3.class ="nav-link"
-a3.setAttribute("data-bs-toggle") ="tab"
+a3.class = "nav-link"
+a3.setAttribute("data-bs-toggle") = "tab"
 a3.href = "#idioma"
-var h3c =document.createElement("h3")
-h3c.innerHTML= "#Idioma"
+var h3c = document.createElement("h3")
+h3c.innerHTML = "#Idioma"
 li3.appendChild("a3")
 a3.appendChild("h3c")
 
 // bandera //
 
 
-var  li4 = document.createElement(li)
+var li4 = document.createElement(li)
 li4.class = "nav-item"
 var a4 = document.createElement(a)
-a4.class ="nav-link"
-a4.setAttribute("data-bs-toggle") ="tab"
+a4.class = "nav-link"
+a4.setAttribute("data-bs-toggle") = "tab"
 a4.href = "#Bandera"
-var h3d =document.createElement("h3")
-h3d.innerHTML= "bandera"
+var h3d = document.createElement("h3")
+h3d.innerHTML = "bandera"
 li4.appendChild("a4")
 a4.appendChild("h3d")
 
@@ -107,14 +107,14 @@ div3d.appendChild(h2)
 
 ///imagenes gear
 
-var div4= document.createElement(div)
+var div4 = document.createElement(div)
 div4.class = ("col")
 var div4a = document.createElement(div)
 div4a.class = ("celdagears")
 var img1 = document.createElement(img)
 img1.src = ("imagenes/gear.png")
-img1.class= ("gear1")
-var  img2 = document.createElement(img)
+img1.class = ("gear1")
+var img2 = document.createElement(img)
 img2.src = ("imagenes/gearmini.png")
 img2.class = ("gear2")
 div4.appendChild(div4a)
