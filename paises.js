@@ -1,36 +1,33 @@
-var capital = []
-var poblacion
-var area
-var dominios = []
-var fronteras = []
-var bandera
-var escudo
-var monedas
-var monedasDatos = []
-var traducciones = []
-var fronterasNombres = []
-var traduccionesDatos = []
-
-const urlPais = "https://restcountries.com/v3.1/name/"
-const urlAlpha = "https://restcountries.com/v3.1/alpha/"
-const urlRestCountries = "https://restcountries.com/v3.1/"
-var main = document.querySelector("main");
-
 inicializar = () => {
-  capital = []
-  poblacion
-  area
-  dominios = []
-  fronteras = []
-  bandera
-  escudo
-  monedas
-  monedasDatos = []
-  traducciones = []
-  fronterasNombres = []
-  traduccionesDatos = []
+  var capital = []
+  var poblacion
+  var area
+  var dominios = []
+  var fronteras = []
+  var bandera
+  var escudo
+  var monedas
+  var monedasDatos = []
+  var traducciones = []
+  var fronterasNombres = []
+  var traduccionesDatos = []
 
-  main.innerHTML = ""
+  const urlPais = "https://restcountries.com/v3.1/name/"
+  const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+  const urlRestCountries = "https://restcountries.com/v3.1/"
+
+
+  var main = document.querySelector("main");
+  var li2 = document.createElement("li")
+  li2.class = "nav-item"
+  var a2 = document.createElement("a")
+  a2.class = "nav-link"
+  a2.class = "data-bs-toggle"
+  a2.href = "#geografia"
+  var h3b = document.createElement("h3")
+  h3b.innerHTML = "Geografia"
+  li2.appendChild(a2)
+  a2.appendChild(h3b)
 }
 
 
