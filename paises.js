@@ -16,7 +16,7 @@ const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
 var main = document.querySelector("main");
 
-inicializar = () => {
+/*inicializar = () => {
   capital = []
   poblacion
   area
@@ -40,7 +40,7 @@ class Moneda {
   }
 }
 
-function cargarDatos(pais) {
+/*function cargarDatos(pais) {
   fronterasNombres = []
   dameDatos(urlPais + pais)
     .then(response => {
@@ -84,12 +84,12 @@ function cargarDatos(pais) {
         })
       }
     })
-}
+}*/
 
 
 
 
-dameBanderas = () => {
+/*dameBanderas = () => {
   main.innerHTML = ""
   let div = document.createElement("div")
   let h2 = document.createElement("h2")
@@ -108,7 +108,7 @@ dameBanderas = () => {
   div.appendChild(img1)
   div.appendChild(img2)
   main.appendChild(div)
-}
+}*/
 //json
 
 
@@ -136,7 +136,7 @@ opcionesContinente = continente => {
 
 }
 
-dameDatosGenerales = () => {
+/*dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
     .then((response) => response.json())
@@ -146,7 +146,7 @@ dameDatosGenerales = () => {
 }
 
 
-moneda = new Moneda("name", "symbol")
+/*var moneda = new Moneda("name", "symbol")
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main")
   var div1 = document.createElement("div")
