@@ -8,26 +8,18 @@ inicializar = () => {
   var escudo
   var monedas
   var monedasDatos = []
+
+
   var traducciones = []
   var fronterasNombres = []
   var traduccionesDatos = []
+  main.innerHTML = ""
 
   const urlPais = "https://restcountries.com/v3.1/name/"
   const urlAlpha = "https://restcountries.com/v3.1/alpha/"
   const urlRestCountries = "https://restcountries.com/v3.1/"
 
-
-  var main = document.querySelector("main");
-  var li2 = document.createElement("li")
-  li2.class = "nav-item"
-  var a2 = document.createElement("a")
-  a2.class = "nav-link"
-  a2.class = "data-bs-toggle"
-  a2.href = "#geografia"
-  var h3b = document.createElement("h3")
-  h3b.innerHTML = "Geografia"
-  li2.appendChild(a2)
-  a2.appendChild(h3b)
+  
 }
 
 
@@ -63,17 +55,22 @@ opcionesContinente = continente => {
 
 
 
-var main = document.querySelector("main")
-var li2 = document.createElement("li")
-li2.class = "nav-item"
-var a2 = document.createElement("a")
-a2.class = "nav-link"
-a2.class = "data-bs-toggle"
-a2.href = "#geografia"
-var h3b = document.createElement("h3")
-h3b.innerHTML = "Geografia"
-li2.appendChild(a2)
-a2.appendChild(h3b)
+
+
+  var main = document.querySelector("main")
+  var li2 = document.createElement("li")
+  li2.class = "nav-item"
+  var a2 = document.createElement("a")
+  a2.class = "nav-link"
+  a2.class = "data-bs-toggle"
+  a2.href = "#geografia"
+  var h3b = document.createElement("h3")
+  h3b.innerHTML = "Geografia"
+  li2.appendChild(a2)
+  a2.appendChild(h3b)
+
+console.log((dameDatosGenerales)[dameDatosGenerales.length -1])
+  
 
 //idioma//
 
@@ -295,7 +292,7 @@ img6.class = "gear2"
 div14.appendChild(div14a)
 div14a.appendChild(img5)
 div14a.appendChild(img6)
-
+  
 //PAISES-IDIOMA
 
 var div15 = document.createElement("div")
@@ -478,4 +475,4 @@ img10.src = "https://mainfacts.com/media/images/coats_of_arms/es.png"
 
 div20.appendChild(h4m)
 h4m.appendChild(div20a)
-div20a.appendChild(img10) 
+div20a.appendChild(img10)

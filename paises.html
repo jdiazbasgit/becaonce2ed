@@ -118,7 +118,7 @@
                             <div class="ms-3">
                                 <p class="fw-bold mb-1"><select name="pais" class="opcionescontinentescasilla p-0"
                                         id="paises">
-                                        <option class="opcionescontinentes" value="null">Selecciona
+                                        <option class="opcionescontinentes" value="null" onchange="opcionesPais">Selecciona
                                             País</option>
                                     </select></p>
                             </div>
@@ -129,6 +129,7 @@
         </div>
         <!--barra de navegacion datos generales, geografria, idioma, bandera..
     -->
+        <main id="paises">
         <div class="row">
             <div class="col megacol">
                 <ul class="nav nav-tabs nav-justified mt-5 textocabeceras">
@@ -339,6 +340,7 @@
             </div>
         </div>
     </div>
+    </main>
     <footer class="container-fluid text-center bottom-0">
         <div class="text-center pb-3">
             <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title
