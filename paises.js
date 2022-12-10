@@ -16,7 +16,7 @@ const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
 var main = document.querySelector("main");
 
-/*inicializar = () => {
+inicializar = () => {
   capital = []
   poblacion
   area
@@ -33,83 +33,10 @@ var main = document.querySelector("main");
   main.innerHTML = ""
 }
 
-class Moneda {
-  constructor(name, symbol) {
-    this.name = name
-    this.symbol = symbol
-  }
-}
-
-/*function cargarDatos(pais) {
-  fronterasNombres = []
-  dameDatos(urlPais + pais)
-    .then(response => {
-      return response.json()
-    })
-    .then(paises => {
-      let miPais = paises[0]
-      capital = []
-      miPais.capital.forEach(capi => {
-        capital.push(capi)
-      })
-      poblacion = miPais.population
-      area = miPais.area
-      dominios = []
-      miPais.tld.forEach(domi => {
-        dominios.push(domi)
-      })
-      bandera = miPais.flags.svg
-      escudo = miPais.coatOfArms.svg
-      monedas = miPais.currencies
-      traducciones = miPais.translations
-      fronteras = miPais.borders
-      monedasDatos = []
-      Object.entries(monedas).forEach(moneda => {
-        monedasDatos.push(moneda[1])
-      })
-      document.querySelectorAll("button").forEach(b => {
-        b.disabled = false
-      })
-      let i = 0
-
-      for (let frontera of fronteras) {
-
-        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
-          i++
-          fronterasNombres.push(paises[0].name.common)
-          if (i == fronteras.length) {
-            document.querySelector("#divspecial").classList.remove("fade")
-            console.log(fronteras)
-          }
-        })
-      }
-    })
-}*/
 
 
 
 
-/*dameBanderas = () => {
-  main.innerHTML = ""
-  let div = document.createElement("div")
-  let h2 = document.createElement("h2")
-  let img1 = document.createElement("img")
-  let img2 = document.createElement("img")
-  div.classList.add("container")
-  div.classList.add("mt-3")
-  h2.classList.add("text-center")
-  img1.src = bandera
-  img1.width = 304
-  img1.height = 236
-  img2.src = escudo
-  img2.width = img1.width
-  img2.height = img1.height
-  div.appendChild(h2)
-  div.appendChild(img1)
-  div.appendChild(img2)
-  main.appendChild(div)
-}*/
-//json
 
 
 opcionesContinente = continente => {
@@ -136,40 +63,10 @@ opcionesContinente = continente => {
 
 }
 
-/*dameDatosGenerales = () => {
-  let selectPaises = document.querySelector("#paises");
-  dameDatos(urlRestCountries + "/name/" + selectPaises.value)
-    .then((response) => response.json())
-    .then(pais => {
-      pintaDatosGenerales(pais[0])
-    })
-}
 
 
-/*var moneda = new Moneda("name", "symbol")
-pintaDatosGenerales = (pais) => {
-  var main = document.querySelector("main")
-  var div1 = document.createElement("div")
-  div1.class = ("row")
-  var div2 = document.createElement("div")
-  div2.class = "col megacol"
-  var ul1 = document.createElement("ul")
-  ul1.class = "nav nav-tabs nav-justified mt-5 textocabeceras"
-  var li1 = document.createElement("li")
-  li1.class = "nav item"
-  var a1 = document.createElement("a")
-  a1.class = "nav-link active"
-  a1.class = "data-bs-toggle"
-  a1.href = "#datos"
-  var h3a = document.createElement("h3")
-  h3a.innerHTML = "Datos Generales"
-}
-/*div1.appendChild(div2)
-div2.appendChild(ul1)
-ul1.appendChild(a1)
-a1.appendChild(h3a)*/
-//datos geografia//
 
+var main = document.querySelector("main")
 var li2 = document.createElement("li")
 li2.class = "nav-item"
 var a2 = document.createElement("a")
@@ -584,4 +481,4 @@ img10.src = "https://mainfacts.com/media/images/coats_of_arms/es.png"
 
 div20.appendChild(h4m)
 h4m.appendChild(div20a)
-div20a.appendChild(img10)
+div20a.appendChild(img10) 
