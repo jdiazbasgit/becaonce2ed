@@ -1,28 +1,38 @@
+
+var capital = []
+var poblacion
+var area
+var dominios = []
+var fronteras = []
+var bandera
+var escudo
+var monedas
+var monedasDatos = []
+var traducciones = []
+var fronterasNombres = []
+var traduccionesDatos = []
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+const urlRestCountries = "https://restcountries.com/v3.1/"
+
+var main = document.querySelector("main");
+
 inicializar = () => {
-  var capital = []
-  var poblacion
-  var area
-  var dominios = []
-  var fronteras = []
-  var bandera
-  var escudo
-  var monedas
-  var monedasDatos = []
+  capital = []
+  poblacion
+  area
+  dominios = []
+  fronteras = []
+  bandera
+  escudo
+  monedas
+  monedasDatos = []
+  traducciones = []
+  fronterasNombres = []
+  traduccionesDatos = []
 
 
-  var traducciones = []
-  var fronterasNombres = []
-  var traduccionesDatos = []
-  main.innerHTML = ""
-
-  const urlPais = "https://restcountries.com/v3.1/name/"
-  const urlAlpha = "https://restcountries.com/v3.1/alpha/"
-  const urlRestCountries = "https://restcountries.com/v3.1/"
-
-  
 }
-
-
 
 
 
@@ -54,8 +64,13 @@ opcionesContinente = continente => {
 
 
 
-
-
+dameDatosGenerales = () => {
+  let seleccionaPaises = document.querySelector("#paises")
+  dameDatos(urlRestCountries + "/name/" + seleccionaPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      pintaDatosGenerales(pais[0])
+    })
 
   var main = document.querySelector("main")
   var li2 = document.createElement("li")
@@ -69,23 +84,32 @@ opcionesContinente = continente => {
   li2.appendChild(a2)
   a2.appendChild(h3b)
 
-console.log((dameDatosGenerales)[dameDatosGenerales.length -1])
-  
+  console.log((dameDatosGenerales)[dameDatosGenerales.length - 1])
+}
 
 //idioma//
+dameDatosGenerales = () => {
+  let seleccionaPaises = document.querySelector("#paises")
+  dameDatos(urlRestCountries + "/name/" + seleccionaPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      dameDatosGenerales(pais[01])
+    })
 
-var li3 = document.createElement("li")
-li3.class = "nav-item"
-var a3 = document.createElement("a")
-a3.class = "nav-link"
-a3.class = "data-bs-toggle"
-a3.href = "#idioma"
-var h3c = document.createElement("h3")
-h3c.innerHTML = "Geografia"
+  var main = document.querySelector("main")
+  var li3 = document.createElement("li")
+  li3.class = "nav-item"
+  var a3 = document.createElement("a")
+  a3.class = "nav-link"
+  a3.class = "data-bs-toggle"
+  a3.href = "#idioma"
+  var h3c = document.createElement("h3")
+  h3c.innerHTML = "#pais"
 
-li3.appendChild(a3)
-a3.appendChild(h3c)
-
+  li3.appendChild(a3)
+  a3.appendChild(h3c)
+  console.log((dameDatosGenerales)[dameDatosGenerales.length [-1]])
+}
 // bandera //
 
 
@@ -292,7 +316,7 @@ img6.class = "gear2"
 div14.appendChild(div14a)
 div14a.appendChild(img5)
 div14a.appendChild(img6)
-  
+
 //PAISES-IDIOMA
 
 var div15 = document.createElement("div")
