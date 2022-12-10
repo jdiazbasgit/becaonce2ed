@@ -112,7 +112,20 @@ dameDatosGenerales = () => {
 }
 // bandera //
 
+/*cargaPais= async(peru) =>{
+let url = 'https://rescoutries.com/v3.1/name/${peru}';
+pais = await cargarDatos(url);
+let bandera = gestionarElemento("#bandera");
+let escudo = gestionarElemento("#escudo");
+let paisesSeleccionado = gestionarElemento("#pais")
+let paisesSeleccionado2 = gestionarElemento("#paisSelect");
+paisesSeleccionado.innerHTML = "Pais:" + pais[0].translations.spa.commonm;
+paisesSeleccionado2.innerHTML =  pais[0].translations.spa.commonm;
+bandera.src = pais[0] .flags.png;
+escudo.src = pais[0] .coatOfArms.png;
 
+}
+*/
 var li4 = document.createElement("li")
 li4.class = "nav-item"
 var a4 = document.createElement("a")
