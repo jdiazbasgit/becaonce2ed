@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="nuevoProyectoPaises.js" defer></script>
+
 </head>
 
 <body>
@@ -26,18 +27,17 @@
         <div class="fade" id="divspecial">
             <nav class="text-center" id="nav">
                 <button disabled onclick="dameDatosGenerales()" id="b1" class="btn btn-info">Datos Generales</button>
-                <button disabled type="button" id="b2" class="btn btn-info">Datos Geográficos</button>
-                <button disabled type="button" id="b3" class="btn btn-info">Traducciones</button>
-                <button disabled onclick=dameBanderas() type="button" id="b4" class="btn btn-info">Banderas</button>
-            </nav>
-        </div>
+                <button disabled onclick="pintaDatosGeograficos()" type="button" id="b2" class="btn btn-info">Datos Geográficos</button>
+                <button disabled onclick="dameTraducciones()" type="button" id="b3"class="btn btn-info">Traducciones</button> 
+                <button disabled onclick="dameBanderas()" type="button" id="b4" class="btn btn-info">Banderas</button> </nav> </div>
+              </nav>
+               </div>
         <div class="tab-content mt-4">
             <div id="datosgenerales" class="container tab-pane active"><br>
                 <form action="" method="post">
                     <div class="row">
                         <div class="col">
-                            Continente:<select name="continente" class="form-select form-select-sm"
-                                onchange="cargarPaises(this.value)">
+                            Continente :<select name="continente" class="form-select form-select-sm" onchange="cargarPaises(this.value)">
                                 <option value="0">Elige un continente</option>
                                 <option value="africa">Africa</option>
                                 <option value="americas">America</option>
@@ -47,83 +47,18 @@
                             </select>
                         </div>
                         <div class="col">
-                            País:<select onchange=cargarDatos(this.value) id="paises" name="pais"
-                                class="form-select form-select-sm">
+                            País:<select onchange=cargarDatos(this.value) id="paises" name="pais" class="form-select form-select-sm">
                                 <option value="0">Elige un país</option>
                             </select>
                         </div>
                     </div>
                 </form>
             </div>
-            <div id="traduccion" class="container tab-pane fade mt-4"><br>
-            </div>
-            <div id="banderas" class="container tab-pane fade"><br>
-            </div>
             <main>
-                <div id="fronteras" class="container text-center">
-                    <h3 class="frontera1">Frontera 1</h3>
-                    <h3 class="frontera2">Frontera 2</h3>
-                    <h3 class="frontera3">Frontera 3</h3>
-                    <h3 class="frontera4">Frontera 4</h3>
-                    <h3 class="frontera5">Frontera 5</h3>
-                </div>
+            
+          
+            
             </main>
-        </div>
-    </div>
-    <div>
-    <table border="1" id="table">
-        <tr></tr>
-        <td>
-            <div class="conteiner">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                    data-bs-target="#demo0">idioma1
-                </button>
-                <div id="demo0" class="collapse">
-                    ESTOS SON LOS IDIOMAS
-                </div>
-        </td>
-        <tr></tr>
-        <tr></tr>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo1">idioma chino
-            秘鲁共和国
-        </button>
-        <div id="demo1" class="collapse">
-            CHINA, KOREA
-        </div>
-        <tr></tr>
-        <tr></tr>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo2">idioma3
-        </button>
-        <div id="demo2" class="collapse">
-            ESTOS SON LOS IDIOMAS
-        </div>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo3">idioma4
-        </button>
-        <div id="demo3" class="collapse">
-            ESTOS SON LOS IDIOMAS
-        </div>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo4">idioma5
-        </button>
-        <div id="demo4" class="collapse">
-            ESTOS SON LOS IDIOMAS
-        </div>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo4">idioma6
-            <div id="demo5" class="collapse">
-                ESTOS SON LOS IDIOMAS
-            </div>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#demo4">idioma7
-                <div id="demo6" class="collapse">
-                    ESTOS SON LOS IDIOMAS
-                </div>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="collapse"
-                    data-bs-target="#demo4">idioma8
-                    <div id="demo7" class="collapse">
-                        ESTOS SON LOS IDIOMAS
-                    </div>
-
-                    <tr></tr>
-                    <tr></tr>
-    </table>
 </body>
 
 </html>
