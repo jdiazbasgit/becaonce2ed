@@ -87,15 +87,6 @@ function cargarDatos(pais) {
 
 
 
-
-
-
-
-
-
-
-
-
 dameBanderas = () => {
   main.innerHTML = ""
   let div = document.createElement("div")
