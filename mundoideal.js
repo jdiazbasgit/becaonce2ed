@@ -76,13 +76,26 @@ function cargarDatos(pais) {
           i++
           fronterasNombres.push(paises[0].name.common)
           if (i == fronteras.length) {
-            document.querySelector("#divspecial").classList.remove("fade")
+            document.querySelector("#divspecial")
             console.log(fronteras)
           }
         })
       }
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 dameBanderas = () => {
   main.innerHTML = ""
   let div = document.createElement("div")
@@ -159,7 +172,7 @@ dameDatosGenerales = () => {
     })
 }
 
-moneda = new Moneda("name", "symbol")
+Moneda = new Moneda("name", "symbol")
 pintaDatosGenerales = (pais) => {
   var main = document.querySelector("main");
   main.innerHTML = "";
