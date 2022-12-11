@@ -90,7 +90,7 @@ dameBanderas = () => {
   let img1 = document.createElement("img")
   let img2 = document.createElement("img")
   div.classList.add("container")
-  div.classList.add("mt-3")
+  div.classList.add("mt-5" )
   h2.classList.add("text-center")
   img1.src = bandera
   img1.width = 304
@@ -112,7 +112,7 @@ cargarPaises = (continente) => {
       paisesSelect.innerHTML = "";
       let seleccionaPais = document.createElement("option");
       seleccionaPais.value = "0";
-      seleccionaPais.text = "Selecciona pais";
+      seleccionaPais.text = "SeleccionaPais";
       paisesSelect.appendChild(seleccionaPais);
       paises.sort((a, b) => {
         if (a.name.common > b.name.common)
