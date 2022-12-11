@@ -13,7 +13,7 @@ var traduccionesDatos = []
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
-var main = document.querySelector("main");
+var main = document.querySelector("main")
 inicializar = () => {
   capital = []
   poblacion
@@ -59,15 +59,11 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-     traduccionesEntries= Object.entries(miPais.translations)
-     traduccionesEntries.forEach(t=>{
-      traducciones.push(t[0])
-      traduccionesDatos.push(t[1]) 
-     })
-  /* for (  i=0 ; i <traducciones.length;i++ ){
-    pais23 = i
- console.log(pais23)
-   }*/
+      traduccionesEntries = Object.entries(miPais.translations)
+      traduccionesEntries.forEach(t => {
+        traducciones.push(t[0])
+        traduccionesDatos.push(t[1])
+      })
 
       fronteras = miPais.borders
       monedasDatos = []
@@ -111,6 +107,7 @@ dameBanderas = () => {
   div.appendChild(img2)
   main.appendChild(div)
 }
+
 dameDatosTraducciones=()=>{
    for (  i=0 ; i <traducciones.length;i++ ){
     traducciones[i]
@@ -136,28 +133,22 @@ verPaisTraducciones = async (valorPais, elemento) => {
       elemento.setAttribute("title", paisesPori);
   } catch (error) {
 
-  }
-
-
-
-}
-dameTraducciones = () =>{
-  main.innerHTML=""
-  let divTraducciones=document.createElement("div")
-  divTraducciones.id="divTrad"
-  divTraducciones.innerHTML=""
+  }}
+dameTraducciones = () => {
+  main.innerHTML = ""
+  let divTraducciones = document.createElement("div")
+  divTraducciones.id = "divTrad"
+  divTraducciones.innerHTML = ""
   main.appendChild(divTraducciones)
-  traduccionesDatos.forEach(traduccion=>{
-    let buttonTradcciones=document.createElement("button")
+  traduccionesDatos.forEach(traduccion => {
+    let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
     buttonTradcciones.classList.add("btn-primary")
-    buttonTradcciones.setAttribute("data-bs-toggle","collapse")
-    buttonTradcciones.setAttribute("data-bs-target","#divTRad")
-    buttonTradcciones.innerHTML=traduccion.common
+    buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
+    buttonTradcciones.setAttribute("data-bs-target", "#divTRad")
+    buttonTradcciones.innerHTML = traduccion.common
     divTraducciones.appendChild(buttonTradcciones)
-  })
-
-}
+  })}
 cargarPaises = (continente) => {
   inicializar()
   fetch(urlRestCountries + "region/" + continente)
@@ -185,7 +176,7 @@ cargarPaises = (continente) => {
 dameDatos = (URL) => fetch(URL);
 dameNombreDePais = cca3 => {
   dameDatos(urlRestCountries + cca3).then(response =>
-    response.json)
+      response.json)
     .then(pais => pais.name.common)
 }
 
@@ -196,10 +187,10 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("container")
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
-  let olFronteras=document.createElement("ol")
+  let olFronteras = document.createElement("ol")
   divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
-    let liFronteras=document.createElement("li")
+    let liFronteras = document.createElement("li")
     let h3Fronteras = document.createElement("h3")
     h3Fronteras.innerHTML = frontera.toUpperCase()
     olFronteras.appendChild(liFronteras)
@@ -265,7 +256,7 @@ pintaDatosGenerales = (pais) => {
   })
   td4.appendChild(ultld)
   main.appendChild(table);
-  table.appendChild(tr1,);
+  table.appendChild(tr1, );
   table.appendChild(tr2)
   tr1.appendChild(th1);
   tr1.appendChild(th2);
