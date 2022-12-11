@@ -65,14 +65,21 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-
       traduccionesEntries = Object.entries(miPais.translations)
-      traduccionesEntries.forEach(t=>{
-        traducciones.push = traduccionesEntries[0]
-        traduccionesDatos.push = traduccionesEntries[1]
+      traduccionesEntries.forEach(t => {
+        traducciones.push(t[0])
+        traduccionesDatos.push(t[1])
       })
-      
-
+      /* for (  i=0 ; i <traducciones.length;i++ ){
+        pais23 = i
+     console.log(pais23)
+       }*/
+      function ordenar(fronterasNombres){
+      for (i = 0; i < traducciones.length; i++) {
+        if (traducciones[i] > traducciones[i + 1]) {
+         return traducciones
+        }
+      }}
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -90,14 +97,10 @@ function cargarDatos(pais) {
           fronterasNombres.push(paises[0].name.common)
           if (i == fronteras.length) {
             document.querySelector("#divspecial").classList.remove("fade")
-            console.log(fronteras)
           }
         })
       }
-
-
     })
-
 }
 dameBanderas = () => {
   main.innerHTML = ""
@@ -118,6 +121,53 @@ dameBanderas = () => {
   div.appendChild(img1)
   div.appendChild(img2)
   main.appendChild(div)
+}
+dameDatosTraducciones = () => {
+  for (i = 0; i < traducciones.length; i++) {
+    traducciones[i]
+    console.log(tr)
+  }
+}
+verPais = async (valorPais) => {
+  let url = `https://restcountries.com/v3.1/name/${valorPais}`;
+  pais = await cargaDatos(url);
+
+
+}
+verPaisTraducciones = async (valorPais, elemento) => {
+
+  let url = `https://restcountries.com/v3.1/lang/${valorPais}`;
+  paisesPorIdioma = await cargaDatos(url);
+  try {
+    let paisesPori = ""
+    paisesPorIdioma.forEach(pais => {
+      paisesPori = paisesPori + pais.name.common + "   "
+
+    });
+    elemento.setAttribute("title", paisesPori);
+  } catch (error) {
+
+  }
+
+
+
+}
+dameTraducciones = () => {
+  main.innerHTML = ""
+  let divTraducciones = document.createElement("div")
+  divTraducciones.id = "divTrad"
+  divTraducciones.innerHTML = ""
+  main.appendChild(divTraducciones)
+  traduccionesDatos.forEach(traduccion => {
+    let buttonTradcciones = document.createElement("button")
+    buttonTradcciones.classList.add("btn")
+    buttonTradcciones.classList.add("btn-primary")
+    buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
+    buttonTradcciones.setAttribute("data-bs-target", "#divTRad")
+    buttonTradcciones.innerHTML = traduccion.common
+    divTraducciones.appendChild(buttonTradcciones)
+  })
+
 }
 cargarPaises = (continente) => {
   inicializar()
@@ -157,32 +207,17 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("container")
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
+  let olFronteras = document.createElement("ol")
+  divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
+    let liFronteras = document.createElement("li")
+    let h3Fronteras = document.createElement("h3")
+    h3Fronteras.innerHTML = frontera.toUpperCase()
+    olFronteras.appendChild(liFronteras)
+    liFronteras.appendChild(h3Fronteras)
   })
-
 }
-idioma = new Idioma("name", "translations")
-dameTraducciones = () => {
-  main.innerHTML = ""
-  let divTraducciones = document.createElement("div")
-  divTraducciones.innerHTML = ""
-  let olTraducciones = documen.createElement("ol")
-  main.appendChild(divTraducciones)
-  olTraducciones.appendChild(liTraducciones)
-  divTraducciones.appendChild(olTraducciones)
-  traduccionesDatos.forEach(traduccion => {
-    let liTraducciones = document.createElement("li")
-    li.innerHTML = traducciones.toUpperCase()
-    olTraducciones.appendChild(liTraducciones)
-  })
 
-
-
-}
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
