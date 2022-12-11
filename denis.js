@@ -145,7 +145,7 @@ verPaisTraducciones = async (valorPais, elemento) => {
     elemento.setAttribute("title", paisesPori);
   } catch (error) {}
 };
-dameTraducciones = () => {
+dameTraducciones = () => { 
   main.innerHTML = "";
   let divTraducciones = document.createElement("div");
   divTraducciones.id = "divTrad";
