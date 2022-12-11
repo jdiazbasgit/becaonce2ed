@@ -1,3 +1,4 @@
+
 var capital = []
 var poblacion
 var area
@@ -10,10 +11,10 @@ var monedasDatos = []
 var traducciones = []
 var fronterasNombres = []
 var traduccionesDatos = []
-
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
+
 var main = document.querySelector("main");
 
 inicializar = () => {
@@ -30,11 +31,11 @@ inicializar = () => {
   fronterasNombres = []
   traduccionesDatos = []
 
-  main.innerHTML = ""
+
 }
 
 
-//json
+
 
 
 opcionesContinente = continente => {
@@ -60,46 +61,17 @@ opcionesContinente = continente => {
     })
 
 }
-dameDatos = (URL) => fetch(URL);
-dameNombreDePais = cca3 => {
-  dameDatos(urlRestCountries + cca3).then(response =>
-    response.json)
-    .then(pais => pais.name.common)
-}
-pintaDatosGeograficos = () => {
-  main.innerHTML = ""
-  let divFronteras = document.createElement("div")
-  divFronteras.innerHTML = ""
-  divFronteras.classList.add("container")
-  divFronteras.classList.add("text-center")
-  main.appendChild(divFronteras)
-  fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
-  })
-
-}
 
 
 
+dameDatosGenerales = () => {
+  let seleccionaPaises = document.querySelector("#paises")
+  dameDatos(urlRestCountries + "/name/" + seleccionaPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      pintaDatosGenerales(pais[0])
+    })
 
-
-
-//datos geografia//
-
-pintaDatosGeograficos = () => {
-  main.innerHTML = ""
-  divFronteras.classList.add("container")
-  divFronteras.classList.add("text-center")
-  main.appendChild(divFronteras)
-  fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
-  })
   var main = document.querySelector("main")
   var li2 = document.createElement("li")
   li2.class = "nav-item"
@@ -111,24 +83,49 @@ pintaDatosGeograficos = () => {
   h3b.innerHTML = "Geografia"
   li2.appendChild(a2)
   a2.appendChild(h3b)
+
+  console.log((dameDatosGenerales)[dameDatosGenerales.length - 1])
 }
+
 //idioma//
+dameDatosGenerales = () => {
+  let seleccionaPaises = document.querySelector("#paises")
+  dameDatos(urlRestCountries + "/name/" + seleccionaPaises.value)
+    .then((response) => response.json())
+    .then(pais => {
+      dameDatosGenerales(pais[01])
+    })
 
-var li3 = document.createElement("li")
-li3.class = "nav-item"
-var a3 = document.createElement("a")
-a3.class = "nav-link"
-a3.class = "data-bs-toggle"
-a3.href = "#idioma"
-var h3c = document.createElement("h3")
-h3c.innerHTML = "Geografia"
+  var main = document.querySelector("main")
+  var li3 = document.createElement("li")
+  li3.class = "nav-item"
+  var a3 = document.createElement("a")
+  a3.class = "nav-link"
+  a3.class = "data-bs-toggle"
+  a3.href = "#idioma"
+  var h3c = document.createElement("h3")
+  h3c.innerHTML = "#pais"
 
-li3.appendChild(a3)
-a3.appendChild(h3c)
-
+  li3.appendChild(a3)
+  a3.appendChild(h3c)
+  console.log((dameDatosGenerales)[dameDatosGenerales.length [-1]])
+}
 // bandera //
 
+/*cargaPais= async(peru) =>{
+let url = 'https://rescoutries.com/v3.1/name/${peru}';
+pais = await cargarDatos(url);
+let bandera = gestionarElemento("#bandera");
+let escudo = gestionarElemento("#escudo");
+let paisesSeleccionado = gestionarElemento("#pais")
+let paisesSeleccionado2 = gestionarElemento("#paisSelect");
+paisesSeleccionado.innerHTML = "Pais:" + pais[0].translations.spa.commonm;
+paisesSeleccionado2.innerHTML =  pais[0].translations.spa.commonm;
+bandera.src = pais[0] .flags.png;
+escudo.src = pais[0] .coatOfArms.png;
 
+}
+*/
 var li4 = document.createElement("li")
 li4.class = "nav-item"
 var a4 = document.createElement("a")

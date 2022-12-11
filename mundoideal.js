@@ -28,7 +28,7 @@ inicializar = () => {
   fronterasNombres = []
   traduccionesDatos = []
 
-  main.innerHTML = ""
+  
 }
 
 class Moneda {
