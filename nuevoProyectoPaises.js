@@ -30,7 +30,6 @@ inicializar = () => {
 
   main.innerHTML = ""
 }
-
 class Moneda {
   constructor(name, symbol) {
     this.name = name
@@ -59,12 +58,12 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-      traducciones = miPais.translations
-      fronteras = miPais.borders
-      monedasDatos = []
-      Object.entries(monedas).forEach(moneda => {
-        monedasDatos.push(moneda[1])
+      traduccionesEntries = Object.entries(miPais.traslations)
+      traduccionesEntries.forEach(t=>{ 
+      traducciones.push(t[0])
+      traduccionesDatos.push(t[1])
       })
+      
       document.querySelectorAll("button").forEach(b => {
         b.disabled = false
       })
@@ -81,10 +80,7 @@ function cargarDatos(pais) {
           }
         })
       }
-
-
     })
-
 }
 dameBanderas = () => {
   main.innerHTML = ""
@@ -161,33 +157,105 @@ dameDatosGenerales = () => {
       pintaDatosGenerales(pais[0])
     })
 }
-//PAISES-IDIOMA
- 
 
-dameIdiomas = () => {
-  main.innerHTML = ""
-  var button = document.createElement("button")
-  let table = document.createElement("table")
-  let button0 = document.createElement("button")
-  let button01= document.createElement(" button")
-  let  button02= document.createElement("button")
-  let  button03= document.createElement("button")
-  let button04 = document.createElement("button")
-  let button05 = document.createElement("button")
-  let button06= document.createElement("button")
-  let button07= document.createElement("button")
-  let button08 = document.createElement("button")
-  div.classList.add("container")
-  div.classList.add("mt-3")
-  div.classList.add("text-center")
-  main.appendChild(table)
-  table.appendChild(button)
-  demo01.appendChild(demo0)
-  .appendChild(img2)
-  .appendChild(div)
+moneda = new Moneda("name", "symbol")
+pintaDatosGenerales = (pais) => {
+  var main = document.querySelector("main");
+  main.innerHTML = "";
+  let table = document.createElement("table");
+  table.setAttribute("class", "table table-stripped text-center")
+  let tr1 = document.createElement("tr");
+  let th1 = document.createElement("th");
+  let th2 = document.createElement("th");
+  let th3 = document.createElement("th");
+  let th4 = document.createElement("th");
+  let th5 = document.createElement("th");
+  let tr2 = document.createElement("tr");
+  let td1 = document.createElement("td");
+  let td2 = document.createElement("td");
+  let td3 = document.createElement("td");
+  let td4 = document.createElement("td");
+  let td5 = document.createElement("td");
+  th1.innerHTML = "Capital "
+  th2.innerHTML = "Población";
+  th3.innerHTML = "Área";
+  th4.innerHTML = "Dominio";
+  th5.innerHTML = "Moneda";
+  td2.innerHTML = pais.population
+  td3.innerHTML = pais.area;
+  td5.innerHTML = ""
+  let ul = document.createElement("ul")
+  ul.innerHTML = ""
+  monedasDatos.forEach(moneda => {
+    li = document.createElement("li")
+    li.innerHTML = ` ${moneda.name} - ${moneda.symbol}`
+    ul.appendChild(li)
+  })
+  td5.appendChild(ul)
+  ulcapital = document.createElement("ul")
+  capital.forEach(capi => {
+    li = document.createElement("li")
+    li.innerHTML = capi
+    ulcapital.appendChild(li)
+  })
+  td1.appendChild(ulcapital)
+  ultld = document.createElement("ul")
+  dominios.forEach(domi => {
+    li = document.createElement("li")
+    li.innerHTML = domi
+    ultld.appendChild(li)
+  })
+  td4.appendChild(ultld)
+  main.appendChild(table);
+  table.appendChild(tr1,);
+  table.appendChild(tr2)
+  tr1.appendChild(th1);
+  tr1.appendChild(th2);
+  tr1.appendChild(th3);
+  tr1.appendChild(th4);
+  tr1.appendChild(th5);
+  tr2.appendChild(td1);
+  tr2.appendChild(td2);
+  tr2.appendChild(td3);
+  tr2.appendChild(td4);
+  tr2.appendChild(td5);
+};
+
+
+//
+  /*  main.innerHTML = ""
+
+    dameTraducciones = () => {
+        main.innerHTML = "";
+        
+        var main = document.querySelector("main");
+        var button = document.createElement("button");
+        let table = document.createElement("table");
+        table.setAttribute("class", "btn btn-secondary");
+        let button0 = document.createElement("button");
+        let button01 = document.createElement("button");
+        let button02 = document.createElement("button");
+        let button03 = document.createElement("button");
+        let button04 = document.createElement("button");
+        let button05 = document.createElement("button");
+        let button06 = document.createElement("button");
+        let button07 = document.createElement("button");
+        let button08 = document.createElement("button");
+        div.classList.add("container");
+        div.classList.add("mt-3");
+        div.classList.add("text-center");
+        main.appendChild(table);
+        table.appendChild(button0);
+        demo0.appendChild(demo01);
+        demo01.appendChild(demo02);
+        demo02.appendChild(demo03);
+        demo03.appendChild(demo04);
+        demo02.appendChild(demo03);
+        demo02.appendChild(demo03);
+        demo02.appendChild(demo03);
+    }
 }
-
-
+*/
 
 
 
