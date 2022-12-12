@@ -1,7 +1,4 @@
-
 var urlrescountries = "https://restcountries.com/v3.1";
-
-
 var capital;//STRING
 var poblacion;//number
 var area;//number
