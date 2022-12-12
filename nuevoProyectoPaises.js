@@ -141,9 +141,15 @@ dameTraducciones = () => {
     buttonTradcciones.setAttribute("data-bs-toggle","collapse")
     buttonTradcciones.setAttribute("data-bs-target","#divTRad")
     buttonTradcciones.innerHTML = traduccion.common
-    divTraducciones.appendChild(buttonTradcciones)
+    divTraducciones.appendChild(buttonTraducciones)
+
+    var collapseElementList = Array.prototype.slice.call(document.querySelectorAll('collapse'))
+    var collapseList = collapseElementList.map(function (collapseEl) {
+  return new bootstrap.Collapse(collapseEl)
+})
   })
-}
+    };
+   
 
 cargarPaises = (continente) => {
   inicializar()
