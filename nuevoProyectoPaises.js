@@ -58,7 +58,7 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-      traduccionesEntries = Object.entries(miPais.traslations)
+      traduccionesEntries = Object.entries(miPais.translations)
       traduccionesEntries.forEach(t=>{ 
       traducciones.push(t[0])
       traduccionesDatos.push(t[1])
@@ -103,7 +103,7 @@ dameBanderas = () => {
 }
 
 dameDatosTraducciones=()=>{
-   for (  i=0 ; i <traducciones.length;i++ ){
+   for ( i=0 ; i <traducciones.length;i++ ){
     traducciones[i]
     console.log(tr)
    }
@@ -111,7 +111,7 @@ dameDatosTraducciones=()=>{
 verPais = async (valorPais) => {
   let url = `https://restcountries.com/v3.1/name/${valorPais}`;
   pais = await cargaDatos(url);
- 
+
 
 }
 verPaisTraducciones = async (valorPais, elemento) => {
@@ -138,11 +138,13 @@ dameTraducciones = () => {
     let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
     buttonTradcciones.classList.add("btn-primary")
-    buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
-    buttonTradcciones.setAttribute("data-bs-target", "#divTRad")
+    buttonTradcciones.setAttribute("data-bs-toggle","collapse")
+    buttonTradcciones.setAttribute("data-bs-target","#divTRad")
     buttonTradcciones.innerHTML = traduccion.common
     divTraducciones.appendChild(buttonTradcciones)
-  })}
+  })
+}
+
 cargarPaises = (continente) => {
   inicializar()
   fetch(urlRestCountries + "region/" + continente)
