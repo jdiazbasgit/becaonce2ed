@@ -122,7 +122,16 @@ dameBanderas = () => {
 dameDatosPaisesIdioma = () => {
   for (acronimo of acronimos) {
     fetch(urlRestCountries + "lang/" + acronimo[0])
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status == 200)
+
+          return response.json()
+        else
+          return 
+      }
+
+      )
+
       .then((acronimoStudio) => {
         for (paisesHablados of acronimoStudio) {
           console.log(paisesHablados.name.common);
@@ -143,20 +152,23 @@ verPaisTraducciones = async (valorPais, elemento) => {
       paisesPori = paisesPori + pais.name.common + "   ";
     });
     elemento.setAttribute("title", paisesPori);
-  } catch (error) {}
+  } catch (error) { }
 };
-dameTraducciones = () => { 
+dameTraducciones = () => {
   main.innerHTML = "";
+  let i = 0
   let divTraducciones = document.createElement("div");
-  divTraducciones.id = "divTrad";
-  divTraducciones.innerHTML = "";
   main.appendChild(divTraducciones);
   traduccionesDatos.forEach((traduccion) => {
+    i++
     let buttonTradcciones = document.createElement("button");
+    let divTrad = document.createElement("div")
+    divTrad.id = "divTrad" + i
+    divTrad.innerHTML = paisesHablados
     buttonTradcciones.classList.add("btn");
     buttonTradcciones.classList.add("btn-primary");
     buttonTradcciones.setAttribute("data-bs-toggle", "collapse");
-    buttonTradcciones.setAttribute("data-bs-target", "#divTRad");
+    buttonTradcciones.setAttribute("data-bs-target", "#divTrad" + i);
     buttonTradcciones.innerHTML = traduccion.common;
     divTraducciones.appendChild(buttonTradcciones);
   });
