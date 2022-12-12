@@ -17,12 +17,12 @@ const urlRestCountries = "https://restcountries.com/v3.1/";
 var main = document.querySelector("main");
 inicializar = () => {
   capital = [];
-  poblacion;
-  area;
+  poblacion = 0;
+  area = 0;
   dominios = [];
   fronteras = [];
-  bandera;
-  escudo;
+  bandera = "";
+  escudo = "";
   monedas;
   monedasDatos = [];
   traducciones = [];
@@ -60,6 +60,9 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg;
       escudo = miPais.coatOfArms.svg;
       monedas = miPais.currencies;
+      Object.entries(monedas).forEach((moneda) => {
+        monedasDatos.push(moneda[1]);
+      });
       traduccionesPais = miPais.translations;
       Object.entries(traduccionesPais).forEach((traduccion) => {
         acronimos.push(traduccion);
@@ -78,14 +81,10 @@ function cargarDatos(pais) {
 
       fronteras = miPais.borders;
       monedasDatos = [];
-      Object.entries(monedas).forEach((moneda) => {
-        monedasDatos.push(moneda[1]);
-      });
-      document.querySelectorAll("button").forEach((b) => {
-        b.disabled = false;
-      });
+     
+      
       let i = 0;
-
+      if(fronteras!=undefined)
       for (let frontera of fronteras) {
         dameDatos(urlAlpha + frontera)
           .then((response) => response.json())
@@ -97,6 +96,9 @@ function cargarDatos(pais) {
             }
           });
       }
+    });
+    document.querySelectorAll("button").forEach((b) => {
+      b.disabled = false;
     });
 }
 dameBanderas = () => {
