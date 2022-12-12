@@ -70,16 +70,14 @@ function cargarDatos(pais) {
         traducciones.push(t[0])
         traduccionesDatos.push(t[1])
       })
-      /* for (  i=0 ; i <traducciones.length;i++ ){
-        pais23 = i
-     console.log(pais23)
-       }*/
-      function ordenar(fronterasNombres){
-      for (i = 0; i < traducciones.length; i++) {
-        if (traducciones[i] > traducciones[i + 1]) {
-         return traducciones
+
+      function ordenar(fronterasNombres) {
+        for (i = 0; i < traducciones.length; i++) {
+          if (traducciones[i] > traducciones[i + 1]) {
+            return traducciones
+          }
         }
-      }}
+      }
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -89,17 +87,21 @@ function cargarDatos(pais) {
         b.disabled = false
       })
       let i = 0
-
+      if (fronteras!= undefined)
       for (let frontera of fronteras) {
 
         dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
           i++
           fronterasNombres.push(paises[0].name.common)
-          if (i == fronteras.length) {
-            document.querySelector("#divspecial").classList.remove("fade")
-          }
+         
         })
       }
+      else {
+      let h1=document.createElement("h1")
+      h1.innerHTML=("no tiene fronteras")
+      
+    }
+      document.querySelector("#divspecial").classList.remove("fade")
     })
 }
 dameBanderas = () => {
@@ -208,6 +210,7 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
   let olFronteras = document.createElement("ol")
+  olFronteras.style="list-style-type:none"
   divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
     let liFronteras = document.createElement("li")
@@ -259,12 +262,14 @@ pintaDatosGenerales = (pais) => {
     li = document.createElement("li")
     li.innerHTML = ` ${moneda.name} - ${moneda.symbol}`
     ul.appendChild(li)
+    li.style="list-style-type:none"
   })
   td5.appendChild(ul)
   ulcapital = document.createElement("ul")
   capital.forEach(capi => {
     li = document.createElement("li")
     li.innerHTML = capi
+    li.style="list-style-type:none"
     ulcapital.appendChild(li)
   })
   td1.appendChild(ulcapital)
@@ -272,6 +277,7 @@ pintaDatosGenerales = (pais) => {
   dominios.forEach(domi => {
     li = document.createElement("li")
     li.innerHTML = domi
+    li.style="list-style-type:none"
     ultld.appendChild(li)
   })
   td4.appendChild(ultld)
