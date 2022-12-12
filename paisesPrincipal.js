@@ -1,14 +1,35 @@
-var urlrestcountries = "https://restcountries.com/v3.1/";
-const main = document.querySelector("main");
-var capital;//STRING
-var poblacion;//number
-var area;//number
-var moneda;// Moneda[]
-var domino;//string
-var fronteras;// string[]
-var bandera;//string
-var escudo;//string
-var traducciones;//Traduccion[]
+var capital = []
+var poblacion
+var area
+var dominios = []
+var fronteras = []
+var bandera
+var escudo
+var monedas
+var monedasDatos = []
+var traducciones = []
+var fronterasNombres = []
+var traduccionesDatos = []
+const urlPais = "https://restcountries.com/v3.1/name/"
+const urlAlpha = "https://restcountries.com/v3.1/alpha/"
+const urlRestCountries = "https://restcountries.com/v3.1/"
+var main = document.querySelector("main");
+inicializar = () => {
+  capital = []
+  poblacion
+  area
+  dominios = []
+  fronteras = []
+  bandera
+  escudo
+  monedas
+  monedasDatos = []
+  traducciones = []
+  fronterasNombres = []
+  traduccionesDatos = []
+
+  main.innerHTML = ""
+}
 
 class Moneda {
   constructor(name, symbol) {

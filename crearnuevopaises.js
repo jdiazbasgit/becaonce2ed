@@ -111,7 +111,7 @@ dameTraducciones = () =>{
   let il=document.createElement("il")
   main.appendChild(divTraducciones)
   divTraducciones.appendChild(ol)
-  ol.appendChild(ul)
+  ol.appendChild(il)
   let button1=document.createElement("button")
   button1.classList.add("btn")
   button1.classList.add("btn-primary")
