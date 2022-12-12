@@ -237,3 +237,4 @@ pintaDatosGenerales = (pais) => {
   tr2.appendChild(td4);
   tr2.appendChild(td5);
 };
+;
