@@ -1,33 +1,38 @@
 spinner = (visible) => {if (visible == true) { document.getElementById("spinner").style.display = "block"; } else { document.getElementById("spinner").style.display = "none"; }}
 sleep = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
 
-const url = "https://restcountries.com/v3.1/";
-
-const restcountries = {
-    Region: url + "region/",
-    Name: url + "name/",
-    Alpha: url + "alpha/",
-    Lang: url + "lang/"
-}
+const rsURL = {
+    url: "https://restcountries.com/v3.1/",
+    Region: "region/",
+    Name: "name/",
+    Alpha: "alpha/",
+    Lang: "lang/",
+    getRCURL(pagina, search) {
+        var dirURL;
+        switch (pagina) {
+            case "Region":dirURL=this.url + this.Region + search;break;
+            case "Name":dirURL=this.url + this.Name + search;break;
+            case "Alpha":dirURL=this.url + this.Alpha + search;break;
+            case "Lang":dirURL=this.url + this.Lang + search;break;
+        }
+      return dirURL;
+    }
+};
 
 const getRegion = async (continente) => {
-    const response = await fetch(restcountries.Region + continente);
-    spinner(true);
-    await sleep(500);
-    spinner(false);
+    const response = await fetch(rsURL.getRCURL("Region",continente));
+    spinner(true);await sleep(500);spinner(false);
     return await response.json();
 }
 
 const getName = async (pais) => {
-    const response = await fetch(restcountries.Name + pais);
-    spinner(true);
-    await sleep(500);
-    spinner(false);
+    const response = await fetch(rsURL.getRCURL("Name", pais));
+    spinner(true);await sleep(500);spinner(false);
     return await response.json();
 }
 
 const getAlpha = async(pais) => {
-    const response = await fetch(restcountries.Alpha + pais);
+    const response = await fetch(rsURL.getRCURL("Alpha", pais));
     return await response.json();
 }
 
@@ -61,7 +66,7 @@ Continente.addEventListener('change', (event) => {
     }
 });
 
-let Pais = document.querySelector('#pais');
+const Pais = document.querySelector('#pais');
 
 Pais.addEventListener("click", () => {
     document.getElementById("tabs").style.display = "none";
@@ -80,7 +85,7 @@ Pais.addEventListener('change', () => {
             document.querySelector("#flag-container img").src = countryData.flags.png;
             document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
 
-            var nativeName = Object.keys(countryData.name['nativeName']);
+            const nativeName = Object.keys(countryData.name['nativeName']);
             let nofficial = ""
             let ncommon = ""
             nativeName.forEach(nNative => {
@@ -106,7 +111,7 @@ Pais.addEventListener('change', () => {
             infgen += `<li class="border-0 pl-2"><strong>Capital:</strong> ${countryData.capital}</li>`;
             infgen += `<li class="border-0 pl-2"><strong>Area:</strong> ${countryData.area} Km<sup>2</sup></li>`;
 
-            let idioma = Object.keys(countryData['languages']);
+            const idioma = Object.keys(countryData['languages']);
             let idiomas = "";
 
             idioma.forEach(idiom => {
@@ -143,7 +148,8 @@ Pais.addEventListener('change', () => {
                 abpais.push({pais: vab});
             }
 
-            let langitems = Object.keys(countryData['languages']);
+            const langitems = Object.keys(countryData['languages']);
+            
             for (var l = 0; l < langitems.length; l++) {
                 let lang = langitems[l];
                 languagesArr.push({language: lang});
@@ -167,8 +173,7 @@ Pais.addEventListener('change', () => {
             };
 
             for (let ix = 0; ix < abpais.length; ix++) {
-                getJSON(restcountries.Lang + abpais[ix].pais, (err, langs) => {
-
+                getJSON(rsURL.getRCURL("Lang", abpais[ix].pais), (err, langs) => {
                     if (err != null) {
                         console.log(err);
                     } else {
@@ -217,7 +222,7 @@ Pais.addEventListener('change', () => {
             /* Traduccion */
 
             /* Monedas */
-            var monedas = Object.keys(countryData['currencies']);
+            const monedas = Object.keys(countryData['currencies']);
             var infgencur = "";
             if (monedas.length > 1) {
                 var sname = '';
@@ -241,7 +246,7 @@ Pais.addEventListener('change', () => {
             /* Fronteras y geografica */
 
             if (typeof (countryData['borders']) !== "undefined") {
-                let fronteras = Object.keys(countryData['borders']);
+                const fronteras = Object.keys(countryData['borders']);
                 infgencur += '<li class="border-0 text-center font-size:15px;"><strong>Fronteras</strong>';
                 var geoTerrVec = "";
                 var geoLonFron = "";
