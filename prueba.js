@@ -121,6 +121,8 @@ verPaisTraducciones = async (valorPais, elemento) => {
   }
 }
 traduccionesCollapse = () => {
+  // for (i = 0; i < traduccionCollapse.common.lenght; i++) {
+  //traduccionesCollapse[i].consoleLog(traducciones)
   for (acronimo of acronimos) {
     fetch(urlRestCountries + "lang/" + acronimo)
       .then((response) => {
