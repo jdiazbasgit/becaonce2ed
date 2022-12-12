@@ -1,16 +1,7 @@
-function spinner(visible) {
-    if (visible == true)  
-        document.getElementById("spinner").style.display = "block"; 
-     else  document.getElementById("spinner").style.display = "none"; 
-    }
+spinner = (visible) => {if (visible == true) { document.getElementById("spinner").style.display = "block"; } else { document.getElementById("spinner").style.display = "none"; }}
+sleep = (ms) => {return new Promise(resolve => setTimeout(resolve, ms));}
 
-
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-let url = "https://restcountries.com/v3.1/";
+const url = "https://restcountries.com/v3.1/";
 
 const restcountries = {
     Region: url + "region/",
@@ -19,7 +10,7 @@ const restcountries = {
     Lang: url + "lang/"
 }
 
-async function getRegion(continente) {
+const getRegion = async (continente) => {
     const response = await fetch(restcountries.Region + continente);
     spinner(true);
     await sleep(500);
@@ -27,7 +18,7 @@ async function getRegion(continente) {
     return await response.json();
 }
 
-async function getName(pais) {
+const getName = async (pais) => {
     const response = await fetch(restcountries.Name + pais);
     spinner(true);
     await sleep(500);
@@ -35,14 +26,14 @@ async function getName(pais) {
     return await response.json();
 }
 
-async function getAlpha(pais) {
+const getAlpha = async(pais) => {
     const response = await fetch(restcountries.Alpha + pais);
     return await response.json();
 }
 
-let Continente = document.querySelector('#continent');
+const Continente = document.querySelector('#continent');
 
-Continente.addEventListener("click", function () {
+Continente.addEventListener("click", () => {
     document.getElementById("tabs").style.display = "none";
     document.getElementById("tabs-cont").style.display = "none";
 });
@@ -56,7 +47,7 @@ Continente.addEventListener('change', (event) => {
         option.text = "Seleccione un país";
         cboPais.add(option);
 
-        getRegion(event.target.value).then(function (paises) {
+        getRegion(event.target.value).then((paises) => {
             paises.forEach(pais => {
                 var option = document.createElement("option");
                 option.value = pais.name.common;
@@ -72,16 +63,16 @@ Continente.addEventListener('change', (event) => {
 
 let Pais = document.querySelector('#pais');
 
-Pais.addEventListener("click", function () {
+Pais.addEventListener("click", () => {
     document.getElementById("tabs").style.display = "none";
     document.getElementById("tabs-cont").style.display = "none";
 });
 
 Pais.addEventListener('change', () => {
     let abreviaturaspais = [];
-    document.querySelector('#tradlist').innerHTML = "";
+    document.querySelector('#tradlist').innerHTML ="";
 
-    getName(Pais.value).then(function (countriesList) {
+    getName(Pais.value).then((countriesList)=>{
         document.getElementById("tabs").style.display = "block";
         document.getElementById("tabs-cont").style.display = "block";
         countriesList.forEach(countryData => {
@@ -142,28 +133,28 @@ Pais.addEventListener('change', () => {
 
             /* Traduccion */
 
-            abreviaturaspais = Object.keys(countryData['translations']); /* Sacar todos los traductores en la web de name */
+            abreviaturaspais = Object.keys(countryData['translations']); /* Sacar todos los traductores de la web de name */
 
             let abpais = [];
             let languagesArr = [];
 
             for (let a = 0; a < abreviaturaspais.length; a++) {
                 var vab = abreviaturaspais[a];
-                abpais.push({ pais: vab });
+                abpais.push({pais: vab});
             }
 
             let langitems = Object.keys(countryData['languages']);
             for (var l = 0; l < langitems.length; l++) {
                 let lang = langitems[l];
-                languagesArr.push({ language: lang });
+                languagesArr.push({language: lang});
             }
 
-            var getJSON = function (surl, callback) {
+            var getJSON = (surl, callback) => {
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', surl, true);
                 xhr.responseType = 'json';
 
-                xhr.onload = function () {
+                xhr.onload = () => {
                     var status = xhr.status;
                     if (status == 200) {
                         callback(null, xhr.response);
@@ -176,26 +167,26 @@ Pais.addEventListener('change', () => {
             };
 
             for (let ix = 0; ix < abpais.length; ix++) {
-                getJSON(restcountries.Lang + abpais[ix].pais, function (err, langs) {
+                getJSON(restcountries.Lang + abpais[ix].pais, (err, langs) => {
 
                     if (err != null) {
                         console.log(err);
                     } else {
                         //console.log(langs);
-                        var addli = "";
+                        var addli ="";
 
                         for (let slg = 0; slg < languagesArr.length; slg++) {
                             var lang = languagesArr[slg].language;
-                            var LItems = "";
-                            var LName = "";
+                            var LItems="";
+                            var LName ="";
                             for (let m = 0; m < langs.length; m++) {
                                 LName = langs[m].languages[abpais[ix].pais];
-                                if (langs[m]?.translations[lang]?.common) { LItems += langs[m].translations[lang].common + ' '; }
+                                if (langs[m]?.translations[lang]?.common){LItems += langs[m].translations[lang].common + ' ';}
                             }
 
-                            if (slg == (languagesArr.length - 1)) {
+                            if (slg == (languagesArr.length-1)){
                                 //console.log(LItems);
-                                addli = `<li class="p-0 border-0"><strong>${lang.toUpperCase()}</strong> : ${LItems}</li>`;
+                                addli =`<li class="p-0 border-0"><strong>${lang.toUpperCase()}</strong> : ${LItems}</li>`;
                                 var insAccordion = "";
                                 insAccordion += '<div class="accordion accordion-flush">';
                                 insAccordion += '<div class="accordion-item">';
@@ -215,9 +206,9 @@ Pais.addEventListener('change', () => {
 
                                 document.querySelector('#tradlist').innerHTML = document.querySelector('#tradlist').innerHTML + insAccordion;
                             } else {
-                                addli += `<li class="p-0 border-0"><strong>${lang.toUpperCase()}</strong> : ${LItems}</li>`;
+                                addli+=`<li class="p-0 border-0"><strong>${lang.toUpperCase()}</strong> : ${LItems}</li>`;
                             }
-
+                           
                         }
                     }
                 });
@@ -257,7 +248,7 @@ Pais.addEventListener('change', () => {
                 for (var f = 0; f < fronteras.length; f++) {
                     let Abrev = countryData['borders'][f];
 
-                    getAlpha(countryData['borders'][f]).then(function (bordersList) {
+                    getAlpha(countryData['borders'][f]).then((bordersList)=>{
                         bordersList.forEach(bordersData => {
                             let borders = bordersData.name.common;
                             infgencur += `<li class="border-0 text-center bg-dark text-white border-bottom">${borders} (${Abrev})</li>`;
@@ -279,7 +270,4 @@ Pais.addEventListener('change', () => {
     }).catch(error => {
         alert(error);
     });
-
-
-
 });
