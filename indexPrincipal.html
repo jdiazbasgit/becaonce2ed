@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="paisesPrincipal.js" defer></script>
+  <script src="paises.js" defer></script>
   
 </head>
 
@@ -29,13 +29,13 @@
               <a class="nav-link active" href="#" onclick="dameDatosGenerales()">DATOS GENERALES</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#" onclick="await console.log ( dameNombrePaisporCodigo('and'))">DATOS GEOGRAFICOS</a>
+              <a class="nav-link active" href="#" onclick="pintaDatosGeograficos()">DATOS GEOGRAFICOS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">TRADUCCION</a>
+              <a class="nav-link active" href="#" onclick="dameTraducciones()">TRADUCCION</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">BANDERA</a>
+              <a class="nav-link active" href="#" onclick="dameBanderas()">BANDERA</a>
             </li>
           </ul>
         </div>
@@ -57,7 +57,7 @@
       </div>
       <div class="col-sm-6">
         <h2>paises</h2>
-        <select id="paises" class="form-select">
+        <select id="paises" class="form-select" onchange="cargaDatos(this.value)">
          <!-- <option value="0">seleccione pais</option>-->
 
         </select>
