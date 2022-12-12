@@ -23,7 +23,7 @@
         </div>
     </header>
 
-    <div class="container mt-3 fade" id="divSpecial">
+    <div class="container mt-3" id="divSpecial">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
           <button disabled class="nav-link active bg-success" href="#" onclick="dameDatosGenerales()">Datos
@@ -46,11 +46,12 @@
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
         <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
-          <option value="europe" onclick="cargarPaises(europe)">Europa</option>
-          <option value="americas" onclick="cargarPaises(americas)">America</option>
-          <option value="asia" onclick="cargarPaises(asia)">Asia</option>
-          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
-          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
+          <option value="0">Seleccionar Pais.....</option>
+          <option value="europe">Europa</option>
+          <option value="americas">America</option>
+          <option value="asia" >Asia</option>
+          <option value="africa">Africa</option>
+          <option value="oceania">Oceania</option>
         </select>
       </div>
       <div class="col">
