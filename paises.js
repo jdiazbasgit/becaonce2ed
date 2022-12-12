@@ -138,26 +138,38 @@ traduccionesCollapse = () => {
         }
       })
   }
-
-  //}
 }
 dameTraducciones = () => {
   main.innerHTML = ""
   let i = 0
   traduccionesDatos.forEach(traduccion => {
-    i++
+
     let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
     buttonTradcciones.classList.add("btn-success")
     buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
     buttonTradcciones.setAttribute("data-bs-target", "#divTRad" + i);
     let divTraducciones = document.createElement("div")
-    divTraducciones.id = "divTrad" + i
+    divTraducciones.id = "divTRad" + i
+    divTraducciones.classList.add("collapse")
     buttonTradcciones.innerHTML = traduccion.common
-    divTraducciones.appendChild(buttonTradcciones)
-    divTraducciones.innerHTML = traduccion
+    dameDatos(urlLang + traducciones[i])
+      .then(response => {
+        if (response.status == 200)
+        return response.json()
+        else return []
+      })
+      .then(paises => {
+        for (pais of paises) {
+          divTraducciones.innerHTML = divTraducciones.innerHTML + pais.name.common + " - "
+        }
+        if (paises.length == 0)
+        divTraducciones.innerHTML = "Lengua muerta"
+      })
+  
     main.appendChild(buttonTradcciones)
     main.appendChild(divTraducciones)
+    i++
   })
 
 }
