@@ -13,7 +13,7 @@ var traduccionesDatos = []
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
-const urlTranslation = "https://restcountries.com/v3.1/translation/Peruánská"
+const urllang = "https://restcountries.com/v3.1/lang/spa"
 var main = document.querySelector("main");
 inicializar = () => {
   capital = []
@@ -29,7 +29,7 @@ inicializar = () => {
   fronterasNombres = []
   traduccionesDatos = []
 
-  
+
 }
 
 class Moneda {
@@ -40,25 +40,25 @@ class Moneda {
 }
 cargarTraducciones = (paises) => {
   inicializar()
-  fetch(urlRestCountries + "translation/Peruánská" + paises)
+  fetch(urlRestCountries + "lang/spa" + paises)
     .then((response) => response.json())
     .then((traducciones) => {
-var traducciones = document.querySelector("#b3");
-traducciones.innerHTML = "";
-let seleccionaTraducciones = document.createElement("button");
-seleccionaTraducciones.text = "traduceAlIdioma"
-traducciones.appendChild(traduceAlIdioma);
-traducciones.sort((a,b) =>{
-  if (a.translation.Peruánská > b.translation.Peruánská)
-  return 1
-  else return -1
-}) .forEach((traducciones) => {
-let button = document.createElement("button")
- button.value = traducciones.translation.Peruánská;
-button.text = button.value;
-traducciones.appendChild(button);
+      var traducciones = document.querySelector("#b3");
+      traducciones.innerHTML = "";
+      let seleccionaTraducciones = document.createElement("button");
+      seleccionaTraducciones.text = "traduceAlIdioma"
+      traducciones.appendChild(traduceAlIdioma);
+      traducciones.sort((a, b) => {
+        if (a.lang.spa > b.lang.spa)
+          return 1
+        else return -1
+      }).forEach((traducciones) => {
+        let button = document.createElement("button")
+        button.value = traducciones.lang.spa;
+        button.text = button.value;
+        traducciones.appendChild(button);
 
-});
+      });
 
 
     });
@@ -94,19 +94,22 @@ function cargarDatos(pais) {
       document.querySelectorAll("button").forEach(b => {
         b.disabled = false
       })
-      let i = 0
+      
+      if (fronteras != undefined) {
+        for (let frontera of fronteras) {
 
-      for (let frontera of fronteras) {
+          dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
+          
+            fronterasNombres.push(paises[0].name.common)
+            if (i == fronteras.length) {
+              document.querySelector("#divspecial")
+              console.log(fronteras)
 
-        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
-          i++
-          fronterasNombres.push(paises[0].name.common)
-          if (i == fronteras.length) {
-            document.querySelector("#divspecial")
-            console.log(fronteras)
-          }
-        })
+            }
+          })
+        }
       }
+      else main.innerHTML="no tiene fronteras"
     })
 }
 
@@ -120,7 +123,7 @@ dameBanderas = () => {
   let img1 = document.createElement("img")
   let img2 = document.createElement("img")
   div.classList.add("container")
-  div.classList.add("mt-5" )
+  div.classList.add("mt-5")
   h2.classList.add("text-center")
   img1.src = bandera
   img1.width = 304
@@ -175,7 +178,7 @@ pintaDatosGeograficos = () => {
     let h3 = document.createElement("h6")
     h3.innerHTML = frontera.toUpperCase()
     divFronteras.appendChild(h3)
-
+    
   })
 
 }
@@ -217,17 +220,21 @@ pintaDatosGenerales = (pais) => {
   td5.innerHTML = ""
   let ul = document.createElement("ul")
   ul.innerHTML = ""
+  ul.style = "list-style-type:none"
   monedasDatos.forEach(moneda => {
     li = document.createElement("li")
     li.innerHTML = ` ${moneda.name} - ${moneda.symbol}`
+    li.style = "list-style-type:none"
     ul.appendChild(li)
   })
   td5.appendChild(ul)
-  ulcapital = document.createElement("ul")
+  let ulcapital = document.createElement("ul")
   capital.forEach(capi => {
     li = document.createElement("li")
     li.innerHTML = capi
+    li.style = "list-style-type:none"
     ulcapital.appendChild(li)
+    ul.style = "list-style-type:none"
   })
   td1.appendChild(ulcapital)
   ultld = document.createElement("ul")
