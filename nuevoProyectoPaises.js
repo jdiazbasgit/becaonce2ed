@@ -58,23 +58,10 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
-<<<<<<< HEAD
       traduccionesEntries = Object.entries(miPais.traslations)
       traduccionesEntries.forEach(t=>{ 
       traducciones.push(t[0])
       traduccionesDatos.push(t[1])
-=======
-      traduccionesEntries = Object.entries(miPais.translations)
-      traduccionesEntries.forEach(t => {
-        traducciones.push(t[0])
-        traduccionesDatos.push(t[1])
-      })
-
-      fronteras = miPais.borders
-      monedasDatos = []
-      Object.entries(monedas).forEach(moneda => {
-        monedasDatos.push(moneda[1])
->>>>>>> ee94af529176bc182406a0c1271e220e48f1a8e7
       })
       
       document.querySelectorAll("button").forEach(b => {
@@ -263,11 +250,7 @@ pintaDatosGenerales = (pais) => {
   })
   td4.appendChild(ultld)
   main.appendChild(table);
-<<<<<<< HEAD
   table.appendChild(tr1,);
-=======
-  table.appendChild(tr1, );
->>>>>>> ee94af529176bc182406a0c1271e220e48f1a8e7
   table.appendChild(tr2)
   tr1.appendChild(th1);
   tr1.appendChild(th2);
@@ -279,44 +262,7 @@ pintaDatosGenerales = (pais) => {
   tr2.appendChild(td3);
   tr2.appendChild(td4);
   tr2.appendChild(td5);
-};
-<<<<<<< HEAD
-
-
-//
-  /*  main.innerHTML = ""
-
-    dameTraducciones = () => {
-        main.innerHTML = "";
-        
-        var main = document.querySelector("main");
-        var button = document.createElement("button");
-        let table = document.createElement("table");
-        table.setAttribute("class", "btn btn-secondary");
-        let button0 = document.createElement("button");
-        let button01 = document.createElement("button");
-        let button02 = document.createElement("button");
-        let button03 = document.createElement("button");
-        let button04 = document.createElement("button");
-        let button05 = document.createElement("button");
-        let button06 = document.createElement("button");
-        let button07 = document.createElement("button");
-        let button08 = document.createElement("button");
-        div.classList.add("container");
-        div.classList.add("mt-3");
-        div.classList.add("text-center");
-        main.appendChild(table);
-        table.appendChild(button0);
-        demo0.appendChild(demo01);
-        demo01.appendChild(demo02);
-        demo02.appendChild(demo03);
-        demo03.appendChild(demo04);
-        demo02.appendChild(demo03);
-        demo02.appendChild(demo03);
-        demo02.appendChild(demo03);
-    }
 }
-*/
 
 
 
@@ -384,17 +330,3 @@ pintaDatosGenerales = (pais) => {
 
 
 
-
-
-
-
-
-
-
-dameDatos = (url) => fetch(url)
-    .then(response => {
-        if (response.status == 200)
-            return response.json()
-    })
-=======
->>>>>>> ee94af529176bc182406a0c1271e220e48f1a8e7
