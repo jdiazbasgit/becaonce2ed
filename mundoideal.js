@@ -13,6 +13,7 @@ var traduccionesDatos = []
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
+const urlLang = "https://restcountries.com/v3.1/translation/Peruánská"
 var main = document.querySelector("main");
 inicializar = () => {
   capital = []
@@ -37,6 +38,31 @@ class Moneda {
     this.symbol = symbol
   }
 }
+cargarTraducciones = (paises) => {
+  inicializar()
+  fetch(urlRestCountries + "translation/Peruánská" + paises)
+    .then((response) => response.json())
+    .then((traducciones) => {
+var traducciones = document.querySelector("#b3");
+traducciones.innerHTML = "";
+let seleccionaTraducciones = document.createElement("button");
+seleccionaTraducciones.text = "traduceAlIdioma"
+traducciones.appendChild(traduceAlIdioma);
+traducciones.sort((a,b) =>{
+  if (a.translation.Peruánská > b.translation.Peruánská)
+  return 1
+  else return -1
+}) .forEach((traducciones) => {
+let button = document.createElement("button")
+ button.value = traducciones.translation.Peruánská;
+button.text = button.value;
+traducciones.appendChild(button);
+
+});
+
+
+    });
+};
 
 function cargarDatos(pais) {
   fronterasNombres = []
