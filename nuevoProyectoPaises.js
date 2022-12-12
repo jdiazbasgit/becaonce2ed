@@ -30,7 +30,6 @@ inicializar = () => {
 
   main.innerHTML = ""
 }
-
 class Moneda {
   constructor(name, symbol) {
     this.name = name
@@ -60,16 +59,11 @@ function cargarDatos(pais) {
       escudo = miPais.coatOfArms.svg
       monedas = miPais.currencies
       traduccionesEntries = Object.entries(miPais.translations)
-      traduccionesEntries.forEach(t => {
-        traducciones.push(t[0])
-        traduccionesDatos.push(t[1])
+      traduccionesEntries.forEach(t=>{ 
+      traducciones.push(t[0])
+      traduccionesDatos.push(t[1])
       })
-
-      fronteras = miPais.borders
-      monedasDatos = []
-      Object.entries(monedas).forEach(moneda => {
-        monedasDatos.push(moneda[1])
-      })
+      
       document.querySelectorAll("button").forEach(b => {
         b.disabled = false
       })
@@ -109,7 +103,7 @@ dameBanderas = () => {
 }
 
 dameDatosTraducciones=()=>{
-   for (  i=0 ; i <traducciones.length;i++ ){
+   for ( i=0 ; i <traducciones.length;i++ ){
     traducciones[i]
     console.log(tr)
    }
@@ -117,7 +111,7 @@ dameDatosTraducciones=()=>{
 verPais = async (valorPais) => {
   let url = `https://restcountries.com/v3.1/name/${valorPais}`;
   pais = await cargaDatos(url);
- 
+
 
 }
 verPaisTraducciones = async (valorPais, elemento) => {
@@ -144,11 +138,19 @@ dameTraducciones = () => {
     let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
     buttonTradcciones.classList.add("btn-primary")
-    buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
-    buttonTradcciones.setAttribute("data-bs-target", "#divTRad")
+    buttonTradcciones.setAttribute("data-bs-toggle","collapse")
+    buttonTradcciones.setAttribute("data-bs-target","#divTRad")
     buttonTradcciones.innerHTML = traduccion.common
-    divTraducciones.appendChild(buttonTradcciones)
-  })}
+    divTraducciones.appendChild(buttonTraducciones)
+
+    var collapseElementList = Array.prototype.slice.call(document.querySelectorAll('collapse'))
+    var collapseList = collapseElementList.map(function (collapseEl) {
+  return new bootstrap.Collapse(collapseEl)
+})
+  })
+    };
+   
+
 cargarPaises = (continente) => {
   inicializar()
   fetch(urlRestCountries + "region/" + continente)
@@ -256,7 +258,7 @@ pintaDatosGenerales = (pais) => {
   })
   td4.appendChild(ultld)
   main.appendChild(table);
-  table.appendChild(tr1, );
+  table.appendChild(tr1,);
   table.appendChild(tr2)
   tr1.appendChild(th1);
   tr1.appendChild(th2);
@@ -268,4 +270,72 @@ pintaDatosGenerales = (pais) => {
   tr2.appendChild(td3);
   tr2.appendChild(td4);
   tr2.appendChild(td5);
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
