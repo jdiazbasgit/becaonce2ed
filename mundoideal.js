@@ -13,7 +13,7 @@ var traduccionesDatos = []
 const urlPais = "https://restcountries.com/v3.1/name/"
 const urlAlpha = "https://restcountries.com/v3.1/alpha/"
 const urlRestCountries = "https://restcountries.com/v3.1/"
-const urlLang = "https://restcountries.com/v3.1/translation/Peruánská"
+const urlTranslation = "https://restcountries.com/v3.1/translation/Peruánská"
 var main = document.querySelector("main");
 inicializar = () => {
   capital = []
