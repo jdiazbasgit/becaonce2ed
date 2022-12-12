@@ -17,12 +17,12 @@ const urlRestCountries = "https://restcountries.com/v3.1/";
 var main = document.querySelector("main");
 inicializar = () => {
   capital = [];
-  poblacion;
-  area;
+  poblacion = 0;
+  area = 0;
   dominios = [];
   fronteras = [];
-  bandera;
-  escudo;
+  bandera = "";
+  escudo = "";
   monedas;
   monedasDatos = [];
   traducciones = [];
@@ -60,6 +60,9 @@ function cargarDatos(pais) {
       bandera = miPais.flags.svg;
       escudo = miPais.coatOfArms.svg;
       monedas = miPais.currencies;
+      Object.entries(monedas).forEach((moneda) => {
+        monedasDatos.push(moneda[1]);
+      });
       traduccionesPais = miPais.translations;
       Object.entries(traduccionesPais).forEach((traduccion) => {
         acronimos.push(traduccion);
@@ -78,14 +81,10 @@ function cargarDatos(pais) {
 
       fronteras = miPais.borders;
       monedasDatos = [];
-      Object.entries(monedas).forEach((moneda) => {
-        monedasDatos.push(moneda[1]);
-      });
-      document.querySelectorAll("button").forEach((b) => {
-        b.disabled = false;
-      });
+     
+      
       let i = 0;
-
+      if(fronteras!=undefined)
       for (let frontera of fronteras) {
         dameDatos(urlAlpha + frontera)
           .then((response) => response.json())
@@ -97,6 +96,9 @@ function cargarDatos(pais) {
             }
           });
       }
+    });
+    document.querySelectorAll("button").forEach((b) => {
+      b.disabled = false;
     });
 }
 dameBanderas = () => {
@@ -122,7 +124,16 @@ dameBanderas = () => {
 dameDatosPaisesIdioma = () => {
   for (acronimo of acronimos) {
     fetch(urlRestCountries + "lang/" + acronimo[0])
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status == 200)
+
+          return response.json()
+        else
+          return 
+      }
+
+      )
+
       .then((acronimoStudio) => {
         for (paisesHablados of acronimoStudio) {
           console.log(paisesHablados.name.common);
@@ -143,20 +154,23 @@ verPaisTraducciones = async (valorPais, elemento) => {
       paisesPori = paisesPori + pais.name.common + "   ";
     });
     elemento.setAttribute("title", paisesPori);
-  } catch (error) {}
+  } catch (error) { }
 };
-dameTraducciones = () => { 
+dameTraducciones = () => {
   main.innerHTML = "";
+  let i = 0
   let divTraducciones = document.createElement("div");
-  divTraducciones.id = "divTrad";
-  divTraducciones.innerHTML = "";
   main.appendChild(divTraducciones);
   traduccionesDatos.forEach((traduccion) => {
+    i++
     let buttonTradcciones = document.createElement("button");
+    let divTrad = document.createElement("div")
+    divTrad.id = "divTrad" + i
+    divTrad.innerHTML = paisesHablados
     buttonTradcciones.classList.add("btn");
     buttonTradcciones.classList.add("btn-primary");
     buttonTradcciones.setAttribute("data-bs-toggle", "collapse");
-    buttonTradcciones.setAttribute("data-bs-target", "#divTRad");
+    buttonTradcciones.setAttribute("data-bs-target", "#divTrad" + i);
     buttonTradcciones.innerHTML = traduccion.common;
     divTraducciones.appendChild(buttonTradcciones);
   });
