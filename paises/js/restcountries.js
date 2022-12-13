@@ -240,7 +240,7 @@ Pais.addEventListener('change', () => {
                 infgencur = (`<li class="border-0"><strong>Monedas:</strong> ${countryData.currencies[monedas].name}</li>`);
                 infgencur += (`<li class="border-0"><strong>Simbolo:</strong> ${countryData.currencies[monedas].symbol}</li>`);
             }
-            /* ## Monedas */
+            /* ## Monedas  */
 
             /* Fronteras y geografica */
             if (typeof (countryData['borders']) !== "undefined") {
