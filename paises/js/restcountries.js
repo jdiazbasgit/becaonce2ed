@@ -238,7 +238,7 @@ Pais.addEventListener('change', () => {
 
             } else if (monedas.length == 1) {
                 infgencur = (`<li class="border-0"><strong>Monedas:</strong> ${countryData.currencies[monedas].name}</li>`);
-                infgencur += (`<li class="border-0"><strong>Simbolo:</strong> ${countryData.currencies[monedas].symbol}</li>`);
+                infgencur += (`<li class="border-0"><strong>Simbolo:</strong> ${countryData.currencies[monedas].symbol}</li>`); 
             }
             /* ## Monedas  */
 
