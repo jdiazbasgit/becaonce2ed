@@ -267,7 +267,7 @@ Pais.addEventListener('change', () => {
                     });
                 }
             }
-            /* ## Fronteras y geografica */
+            /* ## Fronteras y geografica */ 
         });
 
     }).catch(error => {
