@@ -26,11 +26,11 @@ inicializar = () => {
   traducciones = []
   fronterasNombres = []
   traduccionesDatos = []
-  acronimo = []
   main.innerHTML = ""
 
 }
 
+ 
 class Moneda {
   constructor(name, symbol) {
     this.name = name
@@ -186,12 +186,12 @@ let buttonTradcciones = document.createElement("button")
 buttonTradcciones.classList.add("btn")
 buttonTradcciones.classList.add("btn-outline-light")
 buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
-buttonTradcciones.setAttribute("data-bs-target", "#divTRad" + i);
+buttonTradcciones.setAttribute("data-bs-target", "#divTrad" + i);
 
 let divTraducciones = document.createElement("div")
-    divTraducciones.id = "divTRad" + i
+    divTraducciones.id = "divTrad" + i
     divTraducciones.classList.add("collapse")
-    buttonTradcciones.innerHTML = traduccion.common
+    buttonTraducciones.innerHTML = traducciones.common
     dameDatos(urlLang + traducciones[i])
       .then(response => {
         if (response.status == 200)
@@ -206,7 +206,7 @@ let divTraducciones = document.createElement("div")
         divTraducciones.innerHTML = "Lengua muerta"
       })
   
-    main.appendChild(buttonTradcciones)
+    main.appendChild(buttonTraducciones)
     main.appendChild(divTraducciones)
     i++
   })
