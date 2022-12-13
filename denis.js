@@ -69,16 +69,7 @@ function cargarDatos(pais) {
         traduccionesDatos.push(traduccion[1]);
       });
       dameDatosPaisesIdioma()
-      /*traduccionesEntries = Object.entries(miPais.translations);
-      traduccionesEntries.forEach((t) => {
-        traducciones.push(t[0]);
-        traduccionesDatos.push(t[1]);
-      });*/
-      /*for (  i=0 ; i <traducciones.length;i++ ){
-    pais23 = i
- console.log(pais23)
-   }*/
-
+    
       fronteras = miPais.borders;
       monedasDatos = [];
      
