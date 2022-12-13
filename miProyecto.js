@@ -31,14 +31,18 @@ inicializar = () => {
 
   main.innerHTML = ""
 }
-
+class Idioma {
+  constructor(name, translations) {
+    this.name = name;
+    this.translations;
+  }
+}
 class Moneda {
   constructor(name, symbol) {
     this.name = name
     this.symbol = symbol
   }
 }
-
 function cargarDatos(pais) {
   fronterasNombres = []
   dameDatos(urlPais + pais)
@@ -65,6 +69,13 @@ function cargarDatos(pais) {
         traducciones.push(t[0])
         traduccionesDatos.push(t[1])
       })
+      function ordenar(fronterasNombres) {
+        for (i = 0; i < traducciones.length; i++) {
+          if (traducciones[i] > traducciones[i + 1]) {
+            return traducciones
+          }
+        }
+      }
       fronteras = miPais.borders
       monedasDatos = []
       Object.entries(monedas).forEach(moneda => {
@@ -74,17 +85,19 @@ function cargarDatos(pais) {
         b.disabled = false
       })
       let i = 0
+      if (fronteras != undefined) //porque es una isla y no tiene fronteras
+        for (let frontera of fronteras) {
 
-      for (let frontera of fronteras) {
-
-        dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
-          i++
-          fronterasNombres.push(paises[0].name.common)
-          if (i == fronteras.length) {
-            document.querySelector("#divspecial").classList.remove("fade")
-          }
-        })
+          dameDatos(urlAlpha + frontera).then(response => response.json()).then(paises => {
+            i++
+            fronterasNombres.push(paises[0].name.common)
+          })
+        }
+      else {
+        let h1 = document.createElement("h1")
+        h1.innerHTML = ("no tiene fronteras")
       }
+      document.querySelector("#divspecial").classList.remove("fade")
     })
 }
 dameBanderas = () => {
@@ -107,25 +120,49 @@ dameBanderas = () => {
   div.appendChild(img2)
   main.appendChild(div)
 }
-//Sacar las traducciones
+dameDatosTraducciones = () => {
+  for (i = 0; i < traducciones.length; i++) {
+    traducciones[i]
+    console.log(tr)
+  }
+}
+verPais = async (valorPais) => {
+  let url = `https://restcountries.com/v3.1/name/${valorPais}`;
+  pais = await cargaDatos(url);
 
+}
+verPaisTraducciones = async (valorPais, elemento) => {
+
+  let url = `https://restcountries.com/v3.1/lang/${valorPais}`;
+  paisesPorIdioma = await cargaDatos(url);
+  try {
+    let paisesPori = ""
+    paisesPorIdioma.forEach(pais => {
+      paisesPori = paisesPori + pais.name.common + "   "
+
+    });
+    elemento.setAttribute("title", paisesPori);
+  } catch (error) {
+  }
+
+}
 dameTraducciones = () => {
   main.innerHTML = ""
   let divTraducciones = document.createElement("div")
   divTraducciones.id = "divTrad"
   divTraducciones.innerHTML = ""
   main.appendChild(divTraducciones)
-  fronterasNombres.forEach(idioma => {
+  traduccionesDatos.forEach(traduccion => {
     let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
-    buttonTradcciones.classList.add("btn-primaty")
+    buttonTradcciones.classList.add("btn-primary")
     buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
     buttonTradcciones.setAttribute("data-bs-target", "#divTRad")
     buttonTradcciones.innerHTML = traduccion.common
     divTraducciones.appendChild(buttonTradcciones)
   })
-}
 
+}
 cargarPaises = (continente) => {
   inicializar()
   fetch(urlRestCountries + "region/" + continente)
@@ -137,9 +174,6 @@ cargarPaises = (continente) => {
       seleccionaPais.value = "0";
       seleccionaPais.text = "Selecciona pais";
       paisesSelect.appendChild(seleccionaPais);
-
-      //Ordenar alfabeticamente los países
-
       paises.sort((a, b) => {
         if (a.name.common > b.name.common)
           return 1
@@ -167,15 +201,18 @@ pintaDatosGeograficos = () => {
   divFronteras.classList.add("container")
   divFronteras.classList.add("text-center")
   main.appendChild(divFronteras)
+  let olFronteras = document.createElement("ol")
+  olFronteras.style = "list-style-type:none"
+  divFronteras.appendChild(olFronteras)
   fronterasNombres.forEach(frontera => {
-    let h3 = document.createElement("h3")
-    h3.innerHTML = frontera.toUpperCase()
-    divFronteras.appendChild(h3)
-
+    let liFronteras = document.createElement("li")
+    let h3Fronteras = document.createElement("h3")
+    h3Fronteras.innerHTML = frontera.toUpperCase()
+    olFronteras.appendChild(liFronteras)
+    liFronteras.appendChild(h3Fronteras)
   })
 
 }
-
 dameDatosGenerales = () => {
   let selectPaises = document.querySelector("#paises");
   dameDatos(urlRestCountries + "/name/" + selectPaises.value)
@@ -217,12 +254,14 @@ pintaDatosGenerales = (pais) => {
     li = document.createElement("li")
     li.innerHTML = ` ${moneda.name} - ${moneda.symbol}`
     ul.appendChild(li)
+    li.style = "list-style-type:none"
   })
   td5.appendChild(ul)
   ulcapital = document.createElement("ul")
   capital.forEach(capi => {
     li = document.createElement("li")
     li.innerHTML = capi
+    li.style = "list-style-type:none"
     ulcapital.appendChild(li)
   })
   td1.appendChild(ulcapital)
@@ -230,6 +269,7 @@ pintaDatosGenerales = (pais) => {
   dominios.forEach(domi => {
     li = document.createElement("li")
     li.innerHTML = domi
+    li.style = "list-style-type:none"
     ultld.appendChild(li)
   })
   td4.appendChild(ultld)

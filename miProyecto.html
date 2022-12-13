@@ -14,52 +14,56 @@
 
 <body style="background-color:#2af301;">
     <div class="container">
-  
-      <header>
-        <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
-          align="left" width="227" height="156">
-        <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
-          align="right" width="227" height="156">
-        <div class="container-fluid p-5 bg-primary text-white text-center ">
-  
-          <h1>PAISES DEL MUNDO</h1>
-        </div>
-        
+
+        <header>
+            <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+                align="left" width="227" height="156">
+            <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
+                align="right" width="227" height="156">
+            <div class="container-fluid p-5 bg-primary text-white text-center ">
+
+                <h1>PAISES DEL MUNDO</h1>
+            </div>
+
         </header>
         <div class="fade" id="divspecial">
-            <nav class="text-center" id="nav" >
+            <nav class="text-center" id="nav">
                 <button disabled onclick="dameDatosGenerales()" id="b1" class="btn btn-info">Datos Generales</button>
-                <button disabled onclick="pintaDatosGeograficos()" type="button" id="b2" class="btn btn-info">Datos Geográficos</button>
-                <button disabled type="button" id="b3" class="btn btn-info">Traducciones</button>
-                <button disabled  onclick="dameBanderas()" type="button" id="b4" class="btn btn-info">Banderas</button>
+                <button disabled onclick="pintaDatosGeograficos()" type="button" id="b2" class="btn btn-info">Datos
+                    Geográficos</button>
+                <button disabled onclick="dameTraducciones()" type="button" id="b3"
+                    class="btn btn-info">Traducciones</button>
+                <button disabled onclick="dameBanderas()" type="button" id="b4" class="btn btn-info">Banderas</button>
             </nav>
         </div>
         <div class="tab-content mt-4">
             <div id="datosgenerales" class="container tab-pane active"><br>
                 <main>
-                    
+
                 </main>
-                    <div class="row">
-                        <div class="col">
-                        <h2 class="text-primary">Continente:</h2><select name="continente" class="form-select form-select-sm" onchange="cargarPaises(this.value)">
-                                <option value="0">Elige un continente</option>
-                                <option value="africa">África</option>
-                                <option value="americas">América</option>
-                                <option value="asia">Asia</option>
-                                <option value="europe">Europa</option>
-                                <option value="oceania">Oceanía</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <h2 class="text-primary">País:</h2><select onchange=cargarDatos(this.value) id="paises" name="pais" class="form-select form-select-sm">
-                                <option value="0">Elige un país</option>
-                            </select>
-                        </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="text-primary">Continente:</h2><select name="continente"
+                            class="form-select form-select-sm" onchange="cargarPaises(this.value)">
+                            <option value="0">Elige un continente</option>
+                            <option value="africa">África</option>
+                            <option value="americas">América</option>
+                            <option value="asia">Asia</option>
+                            <option value="europe">Europa</option>
+                            <option value="oceania">Oceanía</option>
+                        </select>
                     </div>
+                    <div class="col">
+                        <h2 class="text-primary">País:</h2><select onchange=cargarDatos(this.value) id="paises"
+                            name="pais" class="form-select form-select-sm">
+                            <option value="0">Elige un país</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <main>
-            
-            
+
+
             </main>
 </body>
 
