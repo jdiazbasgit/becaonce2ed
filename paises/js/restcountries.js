@@ -7,9 +7,9 @@ const rsURL = {
     Name: "name/",
     Alpha: "alpha/",
     Lang: "lang/",
-    getRCURL(pagina, search) {
+    getRCURL(page, search) {
         var dirURL;
-        switch (pagina) {
+        switch (page) {
             case "Region":dirURL=this.url + this.Region + search;break;
             case "Name":dirURL=this.url + this.Name + search;break;
             case "Alpha":dirURL=this.url + this.Alpha + search;break;
@@ -82,8 +82,9 @@ Pais.addEventListener('change', () => {
         document.getElementById("tabs-cont").style.display = "block";
         countriesList.forEach(countryData => {
 
-            document.querySelector("#flag-container img").src = countryData.flags.png;
-            document.querySelector("#shield-container img").src = countryData.coatOfArms.png;
+            document.querySelector("#flag-container").innerHTML = (countryData.flags.png?`<img class="border" src="${countryData.flags.png}" width="250px">`:null);
+
+            document.querySelector("#shield-container").innerHTML = (countryData.coatOfArms.png?`<img src="${countryData.coatOfArms.png}" width="150px">`:null);
 
             const nativeName = Object.keys(countryData.name['nativeName']);
             let nofficial = ""
@@ -161,7 +162,7 @@ Pais.addEventListener('change', () => {
                 xhr.responseType = 'json';
 
                 xhr.onload = () => {
-                    var status = xhr.status;
+                    const status = xhr.status;
                     if (status == 200) {
                         callback(null, xhr.response);
                     } else {
@@ -241,10 +242,7 @@ Pais.addEventListener('change', () => {
             }
             /* ## Monedas */
 
-
-
             /* Fronteras y geografica */
-
             if (typeof (countryData['borders']) !== "undefined") {
                 const fronteras = Object.keys(countryData['borders']);
                 infgencur += '<li class="border-0 text-center font-size:15px;"><strong>Fronteras</strong>';
