@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "ms-mssql.mssql"
+        "ms-mssql.mssql",
+        "blackboxapp.blackbox"
     ]
 }
