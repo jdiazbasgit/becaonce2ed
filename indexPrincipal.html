@@ -13,7 +13,7 @@
 
 </head>
 
-<body style="background-color:#75969c;">
+<body style="background-color:#bcc7c9;">
   <div class="container">
     <header>
       <div class="row">
@@ -26,18 +26,18 @@
     <div class="container mt-3" id="divSpecial">
       <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
-          <button disabled class="nav-link active bg-success" href="#" onclick="pintaDatosGenerales()">Datos
+          <button disabled class="nav-link active bg-dark" href="#" onclick="pintaDatosGenerales()">Datos
             generales</button>
         </li>
         <li class="nav-item">
-          <button disabled class="nav-link active bg-success" href="#" onclick="pintaDatosGeograficos()">Datos
+          <button disabled class="nav-link active bg-dark" href="#" onclick="pintaDatosGeograficos()">Datos
             geograficos</button>
         </li>
         <li class="nav-item">
-          <button disabled class="nav-link active bg-success" href="#" onclick="dameTraducciones()">Traducción</button>
+          <button disabled class="nav-link active bg-dark" href="#" onclick="dameTraducciones()">Traducción</button>
         </li>
         <li class="nav-item">
-          <button disabled class="nav-link active bg-success" href="#" onclick="dameBanderas()">Banderas</button>
+          <button disabled class="nav-link active bg-dark" href="#" onclick="dameBanderas()">Banderas</button>
         </li>
       </ul>
     </div>
@@ -45,7 +45,7 @@
       <div class="col">
         <h2>Seleccione continente</h2>
         <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success" name="sel1" onchange="cargarPaises(this.value)">
+        <select class="form-select bg-light" name="sel1" onchange="cargarPaises(this.value)">
           <option value="0">Seleccionar Pais.....</option>
           <option value="europe">Europa</option>
           <option value="americas">America</option>
@@ -57,7 +57,7 @@
       <div class="col">
         <h2>Seleccione país</h2>
         <label for="sel2" class="form-label"></label>
-        <select class="form-select bg-success " name="sel2" id="paises" onchange=cargarDatos(this.value)>
+        <select class="form-select bg-light " name="sel2" id="paises" onchange=cargarDatos(this.value)>
           <option></option>
         </select>
       </div>

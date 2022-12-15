@@ -146,7 +146,7 @@ dameTraducciones = () => {
 
     let buttonTradcciones = document.createElement("button")
     buttonTradcciones.classList.add("btn")
-    buttonTradcciones.classList.add("btn-success")
+    buttonTradcciones.classList.add("btn-secondary")
     buttonTradcciones.setAttribute("data-bs-toggle", "collapse")
     buttonTradcciones.setAttribute("data-bs-target", "#divTRad" + i);
     let divTraducciones = document.createElement("div")
