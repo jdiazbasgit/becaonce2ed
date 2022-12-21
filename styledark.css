@@ -1,48 +1,68 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap');
+
+body {
     background: linear-gradient(135deg, rgb(58, 48, 48), rgb(39, 30, 30));
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
     position: relative;
 }
-.iconoprincipal{
+
+.iconoprincipal {
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
     margin-left: -20px;
     border: none;
     user-select: none;
 }
-.iconoprincipal:hover{
+
+@keyframes respiracion {
+    from {
+        box-shadow: 0px 3px 6px #ff0000;
+    }
+
+    to {
+        box-shadow: 0px 3px 16px #ff0000;
+    }
+}
+
+.iconoprincipal:hover {
     animation-name: respiracion;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.icononasa{
+
+.icononasa {
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
     user-select: none;
 }
-.icononasa:hover{
+
+.icononasa:hover {
     animation-name: respiracion;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.guisiguente{
+
+.guisiguente {
     box-shadow: 0px 3px 6px #0c0000;
     user-select: none;
 }
-.guisiguenteparpadeo{
+
+.guisiguenteparpadeo {
     animation-name: respiracion;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.navbar{
+
+.navbar {
     background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
     color: whitesmoke;
     text-shadow: 2px 2px 4px #000000;
@@ -50,29 +70,43 @@ body{
     box-shadow: 5px 0px 5px #0c0000;
     margin: 20px;
 }
+
 .titulo {
-    font-family: 'Saira Stencil One', cursive;   
-    user-select: none; 
+    font-family: 'Saira Stencil One', cursive;
+    user-select: none;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
     padding: -20px;
     margin: -20px;
 }
-.botoncentral{
+
+.botoncentral {
     border: 0px;
     padding: 20px;
 }
-.botoncentral:hover{
+
+@keyframes giro {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-500deg);
+    }
+}
+
+.botoncentral:hover {
     animation-name: giro;
     animation-duration: 1.3s;
     animation-iteration-count: 2;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.textocabeceras{
+
+.textocabeceras {
     font-family: 'Allerta Stencil', sans-serif;
-    user-select: none;    
+    user-select: none;
     text-shadow: 2px 2px 4px #000000;
     white-space: nowrap;
     background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
@@ -82,8 +116,9 @@ body{
     margin: 0px;
     box-shadow: 5px 0px 5px #0c0000;
 }
-.textoselects{
-    font-family: 'Allerta Stencil', sans-serif;    
+
+.textoselects {
+    font-family: 'Allerta Stencil', sans-serif;
     text-shadow: 2px 2px 4px #000000;
     font-size: 22px;
     white-space: nowrap;
@@ -95,36 +130,64 @@ body{
     border: 0px;
     padding: 10px;
 }
-.iconoselect{
+
+.iconoselect {
     box-shadow: 0px 3px 6px #0c0000;
     margin-top: -3px;
 }
-.contenedorgris{
+
+.contenedorgris {
     background: linear-gradient(90deg, rgba(180, 180, 180, 0), rgb(49, 49, 49));
     box-shadow: 5px 0px 5px #0c0000;
     padding-bottom: 14px;
 }
-.textodatos{
+
+.textodatos {
     font-family: 'Allerta Stencil', sans-serif;
     color: whitesmoke;
     text-shadow: 1px 1px 2px #350e0e;
     margin-bottom: 15px;
     padding: 15px;
 }
-.textorespuestas{
+
+.textorespuestas {
     font-family: monospace, sans-serif;
     text-shadow: 2px 2px 4px #000000;
     color: white;
     margin: 0px;
     padding: 5px;
     font-size: xx-large;
+    float: right;
+    text-align: right;
 }
-.celdagears{
+
+@keyframes girito {
+    from {
+        transform: rotate(10deg);
+    }
+
+    to {
+        transform: rotate(-170deg);
+    }
+}
+
+@keyframes contragirito {
+    from {
+        transform: rotate(-180deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.celdagears {
     text-align: right;
     user-select: none;
 }
-.gear1{
-    height: 40px; 
+
+.gear1 {
+    height: 40px;
     width: 40px;
     user-select: none;
     filter: brightness(0);
@@ -134,11 +197,12 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-.gear2{
-    height: 45px; 
+
+.gear2 {
+    height: 45px;
     width: 45px;
     user-select: none;
-    margin-left: -12px;
+    margin-left: -4px;
     filter: brightness(0);
     animation-name: contragirito;
     animation-duration: 4s;
@@ -146,7 +210,8 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-.SuperGears{
+
+.SuperGears {
     padding: 0px;
     border-spacing: 0px;
     user-select: none;
@@ -156,11 +221,13 @@ body{
     left: -360px;
     top: 100px;
     bottom: 0px;
-    
+
 }
-.Supergear1{
-    height: 400px; 
+
+.Supergear1 {
+    height: 400px;
     width: 400px;
+    margin-left: 30px;
     filter: brightness(0);
     animation-name: girito;
     animation-duration: 4s;
@@ -168,10 +235,11 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-.Supergear2{
-    height: 450px; 
+
+.Supergear2 {
+    height: 450px;
     width: 450px;
-    margin-left: -12px;
+    margin-left: 0px;
     filter: brightness(0);
     animation-name: contragirito;
     animation-duration: 4s;
@@ -179,66 +247,398 @@ body{
     animation-direction: normal;
     animation-timing-function: linear;
 }
-.nav-link:hover{
+
+@media (max-width: 800px) {
+    .SuperGears {
+        visibility: hidden;
+    }
+}
+
+.nav-link:hover {
     color: whitesmoke;
     text-shadow: 2px 2px 4px #a8a8a8;
     margin: 0px;
     padding: 7px;
 }
-.nav-link{
+
+.nav-link {
     color: whitesmoke;
     text-shadow: 1px 1px 2px #000000;
     margin: 0px;
     padding: 8px;
 }
-.nav-link:active{
+
+.nav-link:active {
     color: rgb(124, 0, 0);
     text-shadow: 2px 2px 4px #a8a8a8;
     margin: 0px;
     padding: 7px;
 }
-.botonidiomas{      
-    margin: 0px;
-    padding: 6px;
-    user-select: none;
+
+@keyframes desliz {
+    0% {
+        transform: translateX(2px);
+    }
+
+    40%,
+    50% {
+        transform: translateX(-3px);
+    }
+
+    60% {
+        transform: translateX(1px);
+    }
 }
-.botonidiomas:hover{
-    animation-name: respiracion;
+
+.botonidiomastexto {
+    margin: 5px;
+    padding: 8px;
+}
+
+.botonidiomasfondo {
+    background: linear-gradient(90deg, rgba(194, 193, 193, 0), rgb(99, 99, 99));
+}
+
+.botonidiomas {
+    float: right;
+    text-align: right;
+    color: #cccccc;
+    border: none
+}
+
+@keyframes respiracionblanca {
+    from {
+        text-shadow: 0px 1px 0px #a8a8a8;
+    }
+
+    to {
+        text-shadow: 0px 1px 4px #a8a8a8;
+    }
+}
+
+.botonidiomasdesplegado {
+    box-shadow: 0px 1px 6px #b8b8b8;
+    padding: 5px;
+    text-shadow: 0px 0px 0px #a8a8a8;
+}
+
+.botonidiomapaisesh {
+    color: #dfdfdf;
+    font-style: italic;
+    text-shadow: 1px 1px 2px #000000;
+}
+
+.botonidiomasfondo:hover {
+    animation-name: respiracionblanca;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.botonidiomas:active{
-    text-shadow: 2px 2px 4px #a8a8a8;    
+
+.botonidiomasfondo:active {
+    text-shadow: 2px 2px 4px #a8a8a8;
     animation-name: desliz;
     animation-duration: .3s;
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-timing-function: ease-in;
 }
-.tarjetabandera{    
+
+.tarjetabandera {
     box-shadow: 0px 3px 6px #0c0000;
     width: 400px;
-    max-height: 300px;
+    height: 250px;
     background-color: white;
 }
-.cubod{
+
+.cubod {
     border: 0px;
     padding: 10px;
     margin-bottom: 0px;
     user-select: none;
 }
-.cubod:hover{
+
+@keyframes giro {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-500deg);
+    }
+}
+
+.cubod:hover {
     animation-name: giro;
     animation-duration: 1.3s;
     animation-iteration-count: 2;
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-.megacol{
-    height: 900px;
+
+.megacol {
+    min-height: 700px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
-footer{
+
+footer {
+    padding: 0;
+    margin-top: auto;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.aparecer {
+    opacity: 0;
+    animation-name: aparecer;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.megabody {
+    z-index: 1;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.intropuertas {
     position: absolute;
+    margin: auto;
+    z-index: 2;
+    height: 100vh;
+    width: 100vw;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.bodyoverflowHide {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+@keyframes desenfoqueAenfoque {
+    from {
+        filter: blur(5px);
+    }
+
+    to {
+        filter: blur(0px);
+    }
+
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+.quitarblur {
+    filter: blur(5px);
+    animation-name: desenfoqueAenfoque;
+    animation-delay: 4s;
+    animation-duration: 2s;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes puertaIzquierda {
+    0% {
+        right: 0%;
+    }
+
+    10% {
+        right: 1%;
+    }
+
+    41% {
+        right: 1%;
+    }
+
+    100% {
+        right: 55%;
+    }
+}
+
+.animPuertaIzq {
+    animation-name: puertaIzquierda;
+    animation-duration: 6s;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes puertaDerecha {
+    0% {
+        left: 0%;
+    }
+
+    10% {
+        left: 1%;
+    }
+
+    41% {
+        left: 1%;
+    }
+
+    100% {
+        left: 55%;
+    }
+}
+
+.animPuertaDerc {
+    animation-name: puertaDerecha;
+    animation-duration: 6s;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes puertaTop {
+    0% {
+        margin-block: 0em;
+    }
+
+    10% {
+        margin-block: -2em;
+    }
+
+    21% {
+        margin-block: -2em;
+    }
+
+    40% {
+        margin-block: -15em;
+    }
+
+    100% {
+        margin-block: -15em;
+    }
+}
+
+.animPuertaTop {
+    animation-name: puertaTop;
+    animation-duration: 6s;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes puertaBottom {
+    0% {
+        margin-block: 0em;
+    }
+
+    10% {
+        margin-block: 1em;
+    }
+
+    21% {
+        margin-block: 1em;
+    }
+
+    40% {
+        margin-block: 10em;
+    }
+
+    100% {
+        margin-block: 10em;
+    }
+}
+
+.animPuertaBottom {
+    animation-name: puertaBottom;
+    animation-duration: 6s;
+    animation-direction: normal;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.videointro {
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: calc(100%);
+    width: calc(100%);
+    display: block;
+    object-fit: cover;
+}
+
+.videocargandoclass {
+    display: flex;
+    margin: auto;
+    max-width: 50vw;
+    user-select: none;
+}
+
+.campoajustes {
+    max-width: 50vw;
+    background: linear-gradient(90deg, rgba(194, 193, 193, 0.37), rgba(255, 255, 255, 0.726));
+    margin: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 5px;
+}
+
+.labeldistancia {
+    margin-left: 3px;
+    margin-right: 5px;
+}
+
+.nopunto {
+    list-style-type: none;
+}
+
+.modal-backdrop {
+    position: static;
+}
+
+.oculto {
+    display: none;
+    user-select: none;
+}
+.cabeceraquiz {
+    margin-top: 10px;
+    display: flex;
+    margin: auto;
+    width: 600px;
+    user-select: none;
+}
+.botonesQuiz{
+    margin: auto;
+    max-width: 30vw;
+    user-select: none;
+    margin-top: 5rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: x-large;
+    background: rgb(235, 235, 235);
+    color: #000;
+}
+.fondoquiz{
+    border-radius: 20%;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 1rem;
+}
+.exito{
+    background: linear-gradient(0deg, rgba(20, 235, 0, 0), rgba(110, 255, 78, 0.862));
+}
+.fracaso{
+    background: linear-gradient(0deg, rgba(20, 235, 0, 0), rgba(204, 3, 3, 0.726));
 }

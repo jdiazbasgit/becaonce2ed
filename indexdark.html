@@ -1,135 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Grupo1">
     <meta name="description" content="Proyecto para pruebas JavaScript">
     <meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap, ONCE">
     <title>Paises | BlackEdition</title>
+    <link rel="icon" type="image/x-icon" href="imagenes/alien.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="dark.js"></script>
+    <script src="listadoISO6393.js"></script>
+    <script src="dark.js" defer></script> <!-- defer para el scroll inicial -->
     <link rel="stylesheet" href="styledark.css">
 </head>
 
-<body>
-    <div class="container-lg">
-        <nav class="navbar rounded p-2 mt-4 justify-content-between">
-            <a type="button" class="navbar-brand bg-light rounded-circle iconoprincipal" data-bs-toggle="modal"
-                data-bs-target="#modalalien"><img src="imagenes/alien.svg" width="30px">
-            </a>
-            <span class="titulo display-2">
-                AREA 51 FILES
-            
-            </a>
-        </nav>
-
+<body class="bodyoverflowHide">
+    <div id="introdiv" onclick="entrar()">
+        <img class="intropuertas" src="imagenes/left.png" id="animHangarIzq">
+        <img class="intropuertas" src="imagenes/right.png" id="animHangarDer">
+        <img class="intropuertas" src="imagenes/top.png" id="animHangarTop">
+        <video src="imagenes/humoButtom_VP9.webm" class="videointro" muted id="videoHB"></video>
+        <img class="intropuertas" src="imagenes/bottom.png" id="animHangarBot">
+        <video src="imagenes/humoDer_VP9.webm" muted class="videointro" id="videoHD"></video>
+        <video src="imagenes/humoIzq_VP9.webm" muted class="videointro" id="videoHI"></video>
     </div>
-    <div class="modal fade" id="modalalien" tabindex="-1">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                
-                    <button type="button" class="btn btn-secondary icononasa" data-bs-dismiss="modal">Cerrar</button>
+    <div id="megabody" class="megabody blur">
+        <div class="container-lg">
+
+            <nav class="navbar rounded p-2 mt-4 justify-content-between">
+                <a type="button" class="navbar-brand bg-light rounded-circle iconoprincipal" data-bs-toggle="modal"
+                    data-bs-target="#modalalien"><img src="imagenes/alien.svg" width="30px">
+                </a>
+                <span class="titulo display-2">
+                    AREA 51 FILES
+                </span>
+                <a class="navbar-brand bg-light rounded-circle icononasa" onclick="generarWebQuiz()"><img src="imagenes/ufo.svg" width="30px">
+                </a>
+            </nav>
+
+        </div>
+        <div class="modal fade" id="modalalien" tabindex="-1">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="imagenes/Aliens.jpg" class="img-fluid rounded ">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary icononasa"
+                            data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="SuperGears">
-        <img src="imagenes/gear.png" class="Supergear1">
-        <img src="imagenes/gearmini.png" class="Supergear2">
-    </div>
-    <div class="container-lg">
-        <div class="row">
-            <div class="col">
-                
-            </div>
+        <div class="SuperGears">
+            <img src="imagenes/gear.png" class="Supergear1">
+            <img src="imagenes/gearmini.png" class="Supergear2">
         </div>
-        
-        <div class="row">
-            <div class="col">
-                <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Planeta</h3>
-                <ul class="list-group list-group-light mb-0">
-                    <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
-                       
-                                <p class="fw-bold mb-1">
-                                    <select name="#" class="p-0" disabled>
-                                        <option class="#" value="null">Planeta Tierra</option>
-                                    </select>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row mb-2" id="filaContinenteScroll">
-            <div class="col">
-                <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Continente</h3>
-                    <li class="list-group-item d-flex justify-content-center align-items-center textoselects">
-                        <div class="d-flex align-items-center">
-                            <img src="imagenes/world.svg" width="45px"
-                                class="bg-light rounded-circle guisiguenteparpadeo" id="iconoContinente" />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">
-                                    <select name="continente" class="opcionescontinentescasilla p-0"
-                                        id="seleccionaContinente" onchange="elegirContinente(value)">
-                                        <option class="opcionescontinentes" value="null">Selecciona
-                                            Continente</option>                                        
-                                        <option class="opcionescontinentes" value="africa">Africa
-                                        </option>
-                                        <option class="opcionescontinentes" value="americas">América
-                                        </option>
-                                        <option class="opcionescontinentes" value="asia">Asia</option>
-                                        <option class="opcionescontinentes" value="europe">Europa
-                                        </option>
-                                        <option class="opcionescontinentes" value="oceania">Oceanía
-                                        </option>                                        
-                                    </select>
-                                </p>
+        <div class="container-lg">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center pb-3">
+                        <a class="btn bg-transparent botoncentral" data-bs-toggle="collapse" data-bs-target="#ajustes">
+                            <img src="imagenes/settings.svg" width="50px"></a>
+                        <div id="ajustes" class="collapse">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Ajustes</h3>
+                                    <div class="justify-content-center align-items-center campoajustes rounded">
+                                        <div class="align-items-center">
+                                            <h5>Idioma: </h5>
+                                            <div>
+                                                <input type="radio" id="ajustesIdiomaSpa" name="optradioI" value="spa"
+                                                    checked><label for="ajustesIdiomaSpa" class="labeldistancia"><img
+                                                        src="imagenes/spain.png" width="20px">Español</label>
+                                                <input type="radio" class="" id="ajustesIdiomaEng" name="optradioI"
+                                                    value="eng"><label for="ajustesIdiomaEng"
+                                                    class="labeldistancia"><img src="imagenes/uk.png"
+                                                        width="20px">English</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="justify-content-center align-items-center campoajustes rounded">
+                                        <div class="align-items-center">
+                                            <h5>Pestaña activa por defecto: </h5>
+                                            <div class="btn-group" data-toggle="buttons">			
+                                                <label class="btn btn-secondary labels" id="ajustesLabelPestNinguna" onclick="selectorPestanas(id)">
+                                                    <input type="radio" name="optradioPesta" value="null" id="ajustesInputPestNinguna">
+                                                    <span>Ninguna</span>
+                                                </label>
+                                    
+                                                <label class="btn btn-secondary labels" id="ajustesLabelPestDatos" onclick="selectorPestanas(id)">
+                                                    <input type="radio" name="optradioPesta" value="0" id="ajustesInputPestDatos" checked>
+                                                    <span>Datos Generales</span>
+                                                </label>
+                                    
+                                                <label class="btn btn-secondary labels" id="ajustesLabelPestGeografia" onclick="selectorPestanas(id)">
+                                                    <input type="radio" name="optradioPesta" value="1" id="ajustesInputPestGeo">
+                                                    <span>Geografía</span>
+                                                </label>
+                                    
+                                                <label class="btn btn-secondary labels" id="ajustesLabelPestTraducciones" onclick="selectorPestanas(id)">
+                                                    <input type="radio" name="optradioPesta" value="2" id="ajustesInputPestTra">
+                                                    <span>Traducciones</span>
+                                                </label>
+                                    
+                                                <label class="btn btn-secondary labels" id="ajustesLabelPestBandera" onclick="selectorPestanas(id)">
+                                                    <input type="radio" name="optradioPesta" value="3" id="ajustesInputPestBan">
+                                                    <span>Bandera</span>
+                                                </label>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="justify-content-center align-items-center campoajustes rounded">
+                                        <div class="align-items-center">
+                                            <h5>Extras: </h5>
+                                            <ul class="nopunto">
+                                                <li>
+                                                    <input type="checkbox" id="ajustesSaltarIntro"><label
+                                                        for="ajustesSaltarIntro" class="labeldistancia">Saltar Animación
+                                                        Intro<img src="imagenes/door-enter.svg" width="15px"><img
+                                                            src="imagenes/door-exit.svg" width="15px"></label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="ajustesOcultarPlaneta"><label
+                                                        for="ajustesOcultarPlaneta" class="labeldistancia">Ocultar
+                                                        Selección de Planeta<img src="imagenes/planet.svg"
+                                                            width="15px"></label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="ajustesTraduNativa"><label
+                                                        for="ajustesTraduNativa" class="labeldistancia">Paises de
+                                                        Traducción en Idioma Nativo<img src="imagenes/vocabulary.svg"
+                                                            width="15px"></label>
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" id="ajustesForzarDelay"><label
+                                                        for="ajustesForzarDelay" class="labeldistancia">Forzar retraso para disfrutar la Animación<img src="imagenes/clock-pause.svg"
+                                                            width="15px"></label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input class="btn btn-dark" type="button" value="Guardar" data-bs-toggle="collapse"
+                                                data-bs-target="#ajustes" onclick="guardarAjustes()">
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col">
-                <h3 class="bg-transparent p-2 rounded text-center textocabeceras">País</h3>
-                <ul class="list-group list-group-light mb-0">
-                    
-                                    </select></p>
-                            </div>
+                    </div>
+                </div>
+                <div id="campoSelects">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Planeta</h3>
+                            <ul class="list-group list-group-light mb-0">
+                                <li
+                                    class="list-group-item d-flex justify-content-center align-items-center textoselects">
+                                    <div class="d-flex align-items-center">
+                                        <img src="imagenes/planet.svg" width="45px"
+                                            class="bg-light rounded-circle guisiguente" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">
+                                                <select name="#" class="p-0" disabled>
+                                                    <option class="#" value="null">Planeta Tierra</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                    </div>
+                    <div class="row mb-2" id="filaContinenteScroll">
+                        <div class="col">
+                            <h3 class="bg-transparent p-2 rounded text-center textocabeceras">Continente</h3>
+                            <ul class="list-group list-group-light mb-0">
+                                <li
+                                    class="list-group-item d-flex justify-content-center align-items-center textoselects">
+                                    <div class="d-flex align-items-center">
+                                        <img src="imagenes/world.svg" width="45px"
+                                            class="bg-light rounded-circle guisiguenteparpadeo" id="iconoContinente" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">
+                                                <select name="continente" class="opcionescontinentescasilla p-0"
+                                                    id="seleccionaContinente" onchange="elegirContinente(value)">
+                                                    <option class="opcionescontinentes" value="null">Selecciona
+                                                        Continente</option>
+                                                    <option class="opcionescontinentes" value="africa">Africa
+                                                    </option>
+                                                    <option class="opcionescontinentes" value="americas">América
+                                                    </option>
+                                                    <option class="opcionescontinentes" value="asia">Asia</option>
+                                                    <option class="opcionescontinentes" value="europe">Europa
+                                                    </option>
+                                                    <option class="opcionescontinentes" value="oceania">Oceanía
+                                                    </option>
+                                                </select>
+                                            </p>
 
-        <div class="row">
-            <div class="col megacol" id="megacampo">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <h3 class="bg-transparent p-2 rounded text-center textocabeceras">País</h3>
+                            <ul class="list-group list-group-light mb-0">
+                                <li
+                                    class="list-group-item d-flex justify-content-center align-items-center textoselects">
+                                    <div class="d-flex align-items-center">
+                                        <img src="imagenes/map-search.svg" width="45px"
+                                            class="bg-light rounded-circle guisiguente" id="iconoPais" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">
+                                                <select name="pais" class="opcionescontinentescasilla p-0"
+                                                    id="seleccionaPais" onchange="elegirPais(value)">
+                                                    <option class="opcionescontinentes" value="null">Selecciona
+                                                        País</option>
+                                                </select>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col megacol" id="megacampo">
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <footer class="container-fluid text-center bottom-0">
-        <div class="text-center pb-3">
+            <!-- <footer class="container-fluid text-center">
+        <div class="text-center">
+            <a class="btn bg-transparent botoncentral" data-bs-toggle="tooltip" title
+                data-bs-original-title="Nueva consulta">
                 <img src="imagenes/3d-cube-sphere.svg" width="140px"></a>
         </div>
-        <div class="container-fluid bg-secondary rounded bg-gradient text-center text-white text-lg-start bottom-0">
-           
+        <div class="container-fluid bg-secondary rounded bg-gradient text-center text-white">
+            <div class="text-center small">
+                © 2022 Copyleft: <svg height="24" viewBox="0 0 16 16" version="1.1" width="24"
+                    data-view-component="true">
+                    <path fill-rule="evenodd"
+                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                    </path>
                 </svg>
                 <a class="text-decoration-none text-white"
                     href="https://github.com/jdiazbasgit/becaonce2ed">github.com/jdiazbasgit/becaonce2ed</a></label>
             </div>
         </div>
-    </footer>
-    <!-- <script>
-        $(document).ready(function(){
-          $('[data-bs-toggle="tooltip"]').tooltip();
-        });
-    </script> -->
+    </footer> -->
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('[data-bs-toggle="tooltip"]').tooltip();
+            });
+        </script>
 </body>
 
 </html>
