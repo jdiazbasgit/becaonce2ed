@@ -1,6 +1,6 @@
 package concierto;
 
-//cambio para git
+//soy rgm
 
 public class Instrumento implements InstrumentoInterface {
 
