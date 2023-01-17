@@ -1,7 +1,6 @@
 package concierto;
 
-//cambio para git
-
+//soy lcpo
 public class Instrumento implements InstrumentoInterface {
 
 	private String sonido;
