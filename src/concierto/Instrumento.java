@@ -1,7 +1,6 @@
 package concierto;
 
-//cambio para git
-
+//soy jccb
 public class Instrumento implements InstrumentoInterface {
 
 	private String sonido;
