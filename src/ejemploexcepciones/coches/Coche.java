@@ -19,7 +19,7 @@ public class Coche {
 			throw new SinBateriaException("la bateria esta agotada");
 		if(!isRueda())
 			throw new RuedaPinchadaException("la rueda esta pinchada");
-		System.out.println("el coche esta en marcha");
+		System.out.println("El motor esta en marcha y nos vamos de viaje");
 	}
 	
 	public void vamonosDeViaje()  {
@@ -27,12 +27,12 @@ public class Coche {
 		while(isBateria()!=true || isGasolina()!=true || isRueda()!=true){
 			try {
 				arrancar();
-				System.out.println("El motor esta en marcha y nos vamos de viaje");
+				
 			} catch (SinGasolinaException e) {
 				System.out.println(e.getMessage());
 				System.out.println("lleno el deposito de gasolina");
 				setGasolina(true);
-				
+				e.printStackTrace();
 				
 			} catch (SinBateriaException e) {
 				System.out.println(e.getMessage());
