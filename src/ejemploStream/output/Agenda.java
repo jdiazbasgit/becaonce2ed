@@ -2,6 +2,7 @@ package ejemploStream.output;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Agenda implements Serializable{
 	
 	private String nombre;
