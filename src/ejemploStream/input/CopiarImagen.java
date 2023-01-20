@@ -10,11 +10,11 @@ public class CopiarImagen {
 		FileInputStream fileInputStream= null;
 		FileOutputStream fileOutputStream= null;
 		try {
-			fileInputStream= new FileInputStream("anillo.jpg");
+			fileInputStream= new FileInputStream("Aliens.jpg");
 			byte[] b= new byte[fileInputStream.available()];
 			fileInputStream.read(b);
 			
-			fileOutputStream= new FileOutputStream("segundo aNUILLI.JPG");
+			fileOutputStream= new FileOutputStream("CopiaAliens.JPG");
 			fileOutputStream.write(b);
 			fileOutputStream.flush();
 		} catch (IOException e) {

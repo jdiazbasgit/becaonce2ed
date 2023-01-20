@@ -10,16 +10,20 @@ public class LeerTexto {
 
 	public static void main(String[] args) {
 		FileInputStream fileInputStream= null;
-		
 		try {
-			fileInputStream= new FileInputStream("index.html");
-			InputStreamReader inputStreamReader= new InputStreamReader(fileInputStream);
-			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
+			fileInputStream = new FileInputStream("mitexto.txt");
+			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			while(bufferedReader.ready()) {
-				System.out.println(bufferedReader.readLine());
+				String asciiTotexto = Character.toString((char)bufferedReader.read());
+				//System.out.println(bufferedReader.readLine());
+				//System.out.println(bufferedReader.read());
+				System.out.print(asciiTotexto);
+				
+				//System.out.println("siguiente linea");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		finally {
@@ -30,7 +34,5 @@ public class LeerTexto {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
 }
