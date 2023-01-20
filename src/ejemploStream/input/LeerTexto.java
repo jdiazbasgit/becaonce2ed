@@ -9,9 +9,10 @@ import java.io.InputStreamReader;
 public class LeerTexto {
 
 	public static void main(String[] args) {
-		FileInputStream fileInputStream= null;
-		try {
-			fileInputStream = new FileInputStream("mitexto.txt");
+		
+		try (FileInputStream fileInputStream = new FileInputStream("mitexto.txt");)
+		{
+			
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 			while(bufferedReader.ready()) {
@@ -26,13 +27,6 @@ public class LeerTexto {
 			
 			e.printStackTrace();
 		}
-		finally {
-			try {
-				fileInputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		
 	}
 }

@@ -9,27 +9,16 @@ public class EscribirTexto {
 
 
 	public static void main(String[] args) {
-		FileOutputStream fileOutputStream = null;
-		try {
-			fileOutputStream = new FileOutputStream("mitexto.txt",true);
-			PrintWriter printWriter = new PrintWriter(fileOutputStream);
+		
+		try  (
+				FileOutputStream fileOutputStream = new FileOutputStream("mitexto.txt",true);
+				PrintWriter printWriter = new PrintWriter(fileOutputStream);)		
+		{			
 			printWriter.println("escribiendoooooooo");
 			printWriter.flush();
-			printWriter.close();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
-		finally {
-			try {
-				fileOutputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-
-
 	}
-
 }

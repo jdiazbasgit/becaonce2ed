@@ -4,18 +4,23 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Scanner;
 
 public class EscribirObjeto {
 
 
 	public static void main(String[] args) {
-		FileOutputStream fileOutputStream = null;
+				
+		try (
+				FileOutputStream fileOutputStream = new FileOutputStream("misgentes.agenda");
+				)
 		
-		try {
-			fileOutputStream = new FileOutputStream("misgentes.agenda");
+		{
+			
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 			Agenda agendaDePrueba = new Agenda();
-			agendaDePrueba.setNombre("mariano");
+			System.out.println("Escribe el nombre");
+			agendaDePrueba.setNombre(leerTeclado());
 			agendaDePrueba.setTlf("6757654765");
 			agendaDePrueba.setDireccion("calle loca");
 			objectOutputStream.writeObject(agendaDePrueba);
@@ -25,15 +30,10 @@ public class EscribirObjeto {
 			
 			e.printStackTrace();
 		}
-		finally {
-			try {
-				fileOutputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
+	}
+	public static String leerTeclado() {
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine();
 	}
 
 }

@@ -11,9 +11,13 @@ public class LeerObjeto {
 
 
 	public static void main(String[] args) {
-		FileInputStream fileInputStream = null;
-		try {
-			fileInputStream = new FileInputStream("misgentes.agenda");
+		
+		try (
+				FileInputStream fileInputStream = new FileInputStream("misgentes.agenda");
+				)
+		
+		{
+			
 			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 			Agenda misgentes = (Agenda) objectInputStream.readObject();
 			System.out.println(misgentes.getNombre()+ " - " +misgentes.getDireccion());
@@ -21,16 +25,7 @@ public class LeerObjeto {
 			catch (IOException | ClassNotFoundException e) {
 				// TODO: handle exception
 			}
-		finally {
-			try {
-				fileInputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		
-
 	}
 
 }

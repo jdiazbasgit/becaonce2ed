@@ -7,29 +7,20 @@ import java.io.IOException;
 public class CopiarImagen {
 
 	public static void main(String[] args) {
-		FileInputStream fileInputStream= null;
-		FileOutputStream fileOutputStream= null;
-		try {
-			fileInputStream= new FileInputStream("Aliens.jpg");
+		
+		try (FileInputStream fileInputStream= new FileInputStream("Aliens.jpg");
+				FileOutputStream fileOutputStream= new FileOutputStream("CopiaAliens.JPG");){
+			
 			byte[] b= new byte[fileInputStream.available()];
 			fileInputStream.read(b);
 			
-			fileOutputStream= new FileOutputStream("CopiaAliens.JPG");
 			fileOutputStream.write(b);
 			fileOutputStream.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally {
-			try {
-				fileInputStream.close();
-				fileOutputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 				
 
 	}
