@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Web de Pruebas</title>
+    
+    <meta charset='UTF-8'/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="css/estilos.css" type="text/css" />
+</head>
+
+<body>
+    <header class="text-white bg-dark text-center p-4 fuente-bonita">
+        <h1 class="display-1">Aplicación nada accesible</h1>
+        <h4>Versión 1.5</h4>
+        <!-- <h4 class="animate__animated animate__flash animate__infinite">Versión 1.5</h4> -->
+    </header>
+
+
+    <main class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card shadow-lg m-3" style="width: 28rem;" aria-label="Tarjeta de formulario">
+                    <img src="https://picsum.photos/600/300" class="card-img-top" alt="" />
+                    <div class="card-body" >
+                        <h5 class="card-title">Formulario</h5>
+                        <form action="#" method="get" class="mx-5">
+                            <div class="mb-3">
+                                <label class="form-label">Correo</label>
+                                <input tabindex="1" type="text" id="correo" name="usuario" class="form-control" placeholder="usuario@dominio.es" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Pass</label>
+                                <input tabindex="2" type="password" id="password" name="pass" class="form-control" placeholder="No compartas tu contraseña con nadie" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="idioma">Idioma</label>
+                                <select tabindex="3" name="idioma" id="idioma" class="form-select">
+                                    <option value="1">Español</option>
+                                    <option value="2">Inglés</option>
+                                </select>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                
+                                <label class="form-check-label">
+                                    <input type="checkbox" role="switch" id="recordar" class="form-check-input" tabindex="4"/>
+                                    Recordarme en este navegador</label>
+                            </div>
+                            <div class="mb-3 text-end">
+                                <button tabindex="5" type="submit" class="btn btn-dark">
+                                    <i class="bi bi-send"></i>
+                                    Enviar
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-lg m-3">
+                    <div class="card-body">
+                        <h2 class="card-title">Lista de usuarios</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <img src="https://thispersondoesnotexist.com/image" class="img-fluid rounded-circle avatar float-start me-3" alt="" /> 
+                                <div class="float-end">
+                                    <a href="#" title="" class="btn btn-danger" tabindex="0" aria-label="agregar a Favoritos"><i class="bi bi-star"></i></a>
+                                    <a href="#" title="" class="btn btn-warning" tabindex="0" aria-label="Eliminar"><i class="bi bi-trash"></i></a>
+                                    <a href="#" title="" class="btn btn-success" tabindex="0" aria-label="Escuchar"><i class="bi bi-ear"></i></a>
+                                    <a href="#" title="" class="btn btn-info" tabindex="0" aria-label="Detalles"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                                <h5>Max Power</span>
+                                <h6>CEO</h6>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="https://thisartworkdoesnotexist.com" class="img-fluid rounded-circle avatar float-start me-3" alt="" /> 
+                                <div class="float-end">
+                                    <a href="#" class="btn btn-danger" tabindex="0" aria-label="agregar a Favoritos"><i class="bi bi-star"></i></a>
+                                    <a href="#" class="btn btn-warning" tabindex="0" aria-label="Eliminar"><i class="bi bi-trash"></i></a>
+                                    <a href="#" class="btn btn-success" tabindex="0" aria-label="Escuchar"><i class="bi bi-ear"></i></a>
+                                    <a href="#" class="btn btn-info" tabindex="0" aria-label="Detalles"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                                <h5>Enrico Palazzo</span>
+                                <h6>Director Musical Ejecutivo</h6>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="https://thiscatdoesnotexist.com" class="img-fluid rounded-circle avatar float-start me-3" alt="" /> 
+                                <div class="float-end">
+                                    <a href="#" tabindex="0" class="btn btn-danger" aria-label="agregar a Favoritos"><i class="bi bi-star"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-warning" aria-label="Eliminar"><i class="bi bi-trash"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-success" aria-label="Escuchar"><i class="bi bi-ear"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-info" aria-label="Detalles"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                                <h5>Mr. Minino</span>
+                                <h6>Jefe de personal gatuno</h6>
+                            </li>
+                            <li class="list-group-item">
+                                <img src="https://thishorsedoesnotexist.com" class="img-fluid rounded-circle avatar float-start me-3" alt="" /> 
+                                <div class="float-end">
+                                    <a href="#" tabindex="0" class="btn btn-danger" aria-label="agregar a Favoritos"><i class="bi bi-star"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-warning" aria-label="Eliminar"><i class="bi bi-trash"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-success" aria-label="Escuchar"><i class="bi bi-ear"></i></a>
+                                    <a href="#" tabindex="0" class="btn btn-info" aria-label="Detalles"><i class="bi bi-info-circle"></i></a>
+                                </div>
+                                <h5>Horseman</span>
+                                <h6>Productor de caballos renderizados por una IA</h6>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="card-footer fuente-bonita">
+                        <div class="text-center">
+                            <button tabindex="0" class="btn btn-primary" role=""><i class="bi bi-folder2-open"></i> Listado completo</button>
+                            <button tabindex="0" class="btn btn-primary" role=""><i class="bi bi-save"></i> Descargar listado</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Separador -->
+    <div class="my-5 espacio-en-blanco"></div>
+
+    <footer class="bottom text-light bg-dark text-end p-3 fuente-muy-chica">
+        <div>
+            Pié de pagina más bonito que to las cosas 2022
+        </div>
+        <div class="text-start">
+            <a class="btn btn-outline-light" tabindex="0" href="https://github.com/borilio/curso-accesibilidad-tarea" aria-label="enlace a GitHub">
+                <i class="bi bi-github"></i>
+            </a>
+        </div>
+    </footer>
+
+
+    <!-- Librerías javascript -->
+    <script src="js/codigo.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
