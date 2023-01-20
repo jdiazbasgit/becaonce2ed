@@ -12,8 +12,8 @@ public class CopiarImagen {
 				FileOutputStream fileOutputStream = new FileOutputStream("segundo aNUILLI.JPG");) {
 
 			byte[] b = new byte[fileInputStream.available()];
-			fileInputStream.read(b);
 
+			fileInputStream.read(b);
 			fileOutputStream.write(b);
 			fileOutputStream.flush();
 		} catch (IOException e) {

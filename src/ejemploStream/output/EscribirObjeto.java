@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class EscribirObjeto {
 
 	public static void main(String[] args) {
-		FileOutputStream fileOutputStream= null;
+	
 		
-		try {
-			fileOutputStream= new FileOutputStream("pepe.agenda");
-			ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
+		try (FileOutputStream fileOutputStream= new FileOutputStream("pepe.agenda");
+				ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);){
+			
 			Agenda pepe= new Agenda();
 			System.err.println("escribe nombre:");
 			pepe.setNombre(leerTeclado());
@@ -26,14 +26,7 @@ public class EscribirObjeto {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		finally {
-			try {
-				fileOutputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+	
 
 	}
 	
