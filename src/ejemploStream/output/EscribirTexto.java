@@ -5,20 +5,22 @@ import java.io.PrintWriter;
 
 public class EscribirTexto {
 
-	
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws IOException {
 		
-		try(FileOutputStream fileOutputStream=new FileOutputStream("pepe.txt", true); ) {
+		try (FileOutputStream fileOutputStream= new FileOutputStream("pepe.txt", true);
+				PrintWriter printWriter= new PrintWriter(fileOutputStream);) {
 			
-			PrintWriter printWriter= new PrintWriter(fileOutputStream);
+
 			printWriter.println("hola soy una linea de texto");
 			printWriter.close();
 			printWriter.flush();
+
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		}
-	
+
 
 	}
 

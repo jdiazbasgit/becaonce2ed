@@ -10,11 +10,13 @@ public class LeerTexto {
 
 	public static void main(String[] args) {
 		
+
 		
 		try(FileInputStream fileInputStream= new FileInputStream("index.html"); ) {
 
 			InputStreamReader inputStreamReader= new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader= new BufferedReader(inputStreamReader);
+
 			while(bufferedReader.ready()) {
 				System.out.println(bufferedReader.readLine());
 			}

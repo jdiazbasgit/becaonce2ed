@@ -7,11 +7,11 @@ import java.io.ObjectOutputStream;
 public class EscribirObjeto {
 
 	public static void main(String[] args) {
- 
-		
-		try (FileOutputStream fileOutputStream=new FileOutputStream("pepe.agenda");) {
-		
-			ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
+
+		try (FileOutputStream fileOutputStream= new FileOutputStream("pepe.agenda");
+				ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);){
+			
+
 			Agenda pepe= new Agenda();
 			pepe.setNombre("pepe garcia");
 			pepe.setDireccion("calle del pez,4");
@@ -22,7 +22,7 @@ public class EscribirObjeto {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 
 	}
 
