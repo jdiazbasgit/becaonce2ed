@@ -8,10 +8,9 @@ import java.io.ObjectOutputStream;
 public class EscribirObjeto {
 
 	public static void main(String[] args) {
-		FileOutputStream fileOutputStream= null;
-		
-		try {
-			fileOutputStream= new FileOutputStream("pepe.agenda");
+
+		try (FileOutputStream fileOutputStream= new FileOutputStream("pepe.agenda");)
+		{
 			ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
 			Agenda pepe= new Agenda();
 			pepe.setNombre("pepe garcia");
@@ -23,14 +22,6 @@ public class EscribirObjeto {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			try {
-				fileOutputStream.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 
 	}
