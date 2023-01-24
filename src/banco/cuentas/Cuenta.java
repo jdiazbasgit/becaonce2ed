@@ -1,11 +1,11 @@
 package banco.cuentas;
 
-
 /**
  * @author UsuarioM
  * @version 1.0
  * @created 23-ene.-2023 14:03:50
  */
+
 public class Cuenta {
 
 	private String alias;
@@ -15,9 +15,17 @@ public class Cuenta {
 
 	}
 
+	public Cuenta(String alias, int numeroCuenta){
+		
+		setAlias(alias);
+		setNumeroCuenta(numeroCuenta);
+
+	}
+
 	public void finalize() throws Throwable {
 
 	}
+
 	public String getAlias(){
 		return alias;
 	}
@@ -39,6 +47,7 @@ public class Cuenta {
 	 * @param numeroCuenta
 	 */
 	public void setNumeroCuenta(int numeroCuenta){
-		this.numeroCuenta=numeroCuenta;
+		this.numeroCuenta = numeroCuenta;
 	}
-}//end Cuenta
+
+}

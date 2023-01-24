@@ -6,9 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.Buffer;
 import java.util.Calendar;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 import banco.cuentas.Cuenta;
@@ -19,6 +17,7 @@ import banco.movimientos.Movimiento;
  * @version 1.0
  * @created 23-ene.-2023 14:03:59
  */
+
 public class Banco {
 
 	private Cuenta[] cuentas;
@@ -31,6 +30,7 @@ public class Banco {
 
 		System.out.println("Autor: LuisFer");
 		System.out.println();
+
 		while (true) {
 			System.out.println("MENU DEL BANCO");
 			System.out.println("1.- Crear cuenta");
@@ -48,24 +48,25 @@ public class Banco {
 				System.err.println("Debes escribir un numero");
 			}
 			switch (opcion) {
-			case 1:// crear cuenta
+			case 1: // crear cuenta
 				crearCuenta();
 				break;
-			case 2:// Listado cuentas
+			case 2: // Listado cuentas
 				listarCuentas();
 				break;
-			case 3:// Ingresar dinero
+			case 3: // Ingresar dinero
 				ingresarDinero();
 				break;
-			case 4:// Sacar dinero
+			case 4: // Sacar dinero
 				break;
-			case 5:// Consultar saldo
+			case 5: // Consultar saldo
 				break;
-			case 6:// Consultar movimientos
+			case 6: // Consultar movimientos
 				break;
-			case 7:// Seleccionar cuenta
+			case 7: // Seleccionar cuenta
 				break;
-			case 8:// Salir
+			case 8: // Salir
+				System.out.println("Fin...");
 				System.exit(0);
 				break;
 			default:
@@ -79,6 +80,7 @@ public class Banco {
 
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
+		
 		try {
 			int ultimaCuenta = calcularNumeroDeCuenta();
 			ultimaCuenta++;
@@ -93,14 +95,14 @@ public class Banco {
 	private static void listarCuentas() {
 
 		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
+		
 		try {
 			while(bufferedReader.ready()) {
 				String linea= bufferedReader.readLine();
 				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-				System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
+				System.out.println(" - Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -108,32 +110,79 @@ public class Banco {
 
 	private static void ingresarDinero() {
 
-		int cuentaElegida = seleccionarCuenta();
-		System.out.println("Cuenta elegida es: "+cuentaElegida);
-
+		Cuenta cuentaElegida = seleccionarCuenta();
+		System.out.println("Cuenta elegida es: "+cuentaElegida.getAlias()+ ", con num "+cuentaElegida.getNumeroCuenta());
+		int importe = escribirImporte();
+		System.out.println("Importe obtenido es: "+importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida,importe);
+		movimiento.ingresar();
+				
 	}
 
-	private static int seleccionarCuenta() {
+	private static Cuenta seleccionarCuenta() {
 
 		int ultimaCuenta = 0;
+		
 		try {
 			ultimaCuenta = calcularNumeroDeCuenta();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		int cuentaElegida = 0;
+		
+		int numCuentaElegida = 0;
 
-		while (cuentaElegida>0 && cuentaElegida<=ultimaCuenta) {
+		while (numCuentaElegida==0 || numCuentaElegida>ultimaCuenta) {
 			System.out.println(" Las siguientes cuentas son:");
 			listarCuentas();
-			System.out.println(" Seleccionar: ");
+			System.out.println(" Seleccionar una cuenta: ");
+			
 			try {
-				cuentaElegida = Integer.parseInt(leerTecladoTexto());
+				numCuentaElegida = Integer.parseInt(leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
+			
 		}
+		
+		Cuenta cuentaElegida = obtenerCuentas(numCuentaElegida);
 		return cuentaElegida;
+		
+	}
+
+	private static Cuenta obtenerCuentas(int numCuentaElegida) {
+
+		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
+		int cuentaLeido=0;
+		String aliasLeido=null;
+		
+		try {
+			while(bufferedReader.ready() && numCuentaElegida!=cuentaLeido) {
+				String linea= bufferedReader.readLine();
+				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
+				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
+				aliasLeido = stringTokenizer.nextToken();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Cuenta cuentaObtenida = new Cuenta(aliasLeido,cuentaLeido);
+		return cuentaObtenida;
+
+	}
+
+	private static int escribirImporte() {
+
+		int importe = 0;
+		System.out.println(" Escribir importe para ingresar: ");
+		
+		try {
+			importe = Integer.parseInt(leerTecladoTexto());
+		} catch (NumberFormatException e) {
+			System.err.println("Debes escribir un numero");
+		}
+		
+		return importe;
 		
 	}
 
@@ -144,6 +193,7 @@ public class Banco {
 			return 0;
 		} else {
 			int salida = 0;
+			
 			try {
 				while (bufferedReader.ready()) {
 					String texto = bufferedReader.readLine();
@@ -154,6 +204,7 @@ public class Banco {
 			} catch (IOException e) {
 				throw e;
 			}
+			
 		}
 
 	}
@@ -166,10 +217,6 @@ public class Banco {
 		return 0;
 	}
 
-	public Cuenta[] getCuentas() {
-		return cuentas;
-	}
-
 	/**
 	 * 
 	 * @param cuenta
@@ -179,6 +226,7 @@ public class Banco {
 	}
 
 	public static void grabaArchivo(String archivo, String textoAGrabar) {
+		
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, true);
 				PrintWriter printWriter = new PrintWriter(fileOutputStream);) {
 			printWriter.println(textoAGrabar);
@@ -191,7 +239,7 @@ public class Banco {
 
 	public static BufferedReader leerArchivo(String archivo) {
 
-		try  {
+		try {
 			FileInputStream fileInputStream = new FileInputStream(archivo);
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -215,6 +263,7 @@ public class Banco {
 	}
 
 	public static String leerTecladoTexto() {
+		
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			return bufferedReader.readLine();
@@ -222,13 +271,20 @@ public class Banco {
 			e.printStackTrace();
 			return "0";
 		}
+		
 	}
 
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
 	}
 
+	public Cuenta[] getCuentas() {
+		return cuentas;
+	}
+
+
 	public void setCuentas(Cuenta[] cuentas) {
 		this.cuentas = cuentas;
 	}
-}// end Banco
+
+}
