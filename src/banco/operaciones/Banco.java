@@ -72,6 +72,20 @@ public class Banco {
 				}
 				break;
 			case 3:// Ingresar dinero
+				System.out.println("Ingresa tu dinero:");
+				String dinero= leerTecladoTexto();
+				int ultimosaldo=calcularSaldo();
+				ultimosaldo++;
+				grabaArchivo("banco.cuentas", ultimosaldo+";");
+				
+				
+				try {
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+				
 				break;
 			case 4:// Sacar dinero
 				break;
@@ -89,6 +103,11 @@ public class Banco {
 			}
 		}
 
+	}
+
+	private static int calcularSaldo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	private static int calcularNumeroDeCuenta() throws IOException {
@@ -176,6 +195,8 @@ public class Banco {
 			return "0";
 		}
 	}
+	
+	
 
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
