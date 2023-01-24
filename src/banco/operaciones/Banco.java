@@ -73,6 +73,13 @@ public class Banco {
 				}
 				break;
 			case 3:// Ingresar dinero
+				
+				
+				
+				
+				
+				
+				
 				break;
 			case 4:// Sacar dinero
 				break;
