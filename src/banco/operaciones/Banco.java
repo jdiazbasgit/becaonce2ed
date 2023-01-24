@@ -30,7 +30,7 @@ public class Banco {
 	public static void main(String[] args) {
 
 		while (true) {
-			System.out.println("MENU DEL BANCO de David");
+			System.out.println("MENU DEL BANCO ");
 			System.out.println("1.- Crear cuenta");
 			System.out.println("2.- Listado Cuentas");
 			System.out.println("3.- Ingresar dinero");
@@ -66,6 +66,7 @@ public class Banco {
 						String linea= bufferedReader.readLine();
 						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 						System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
+					
 					}
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -73,6 +74,11 @@ public class Banco {
 				}
 				break;
 			case 3:// Ingresar dinero
+			System.out.println("elegi cuenta");
+			String ingresar  = null ;
+			
+			
+			
 				break;
 			case 4:// Sacar dinero
 				break;
