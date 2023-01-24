@@ -30,7 +30,7 @@ public class Banco {
 	public static void main(String[] args) {
 
 		while (true) {
-			System.out.println("MENU DEL BANCO de David");
+			System.out.println("MENU DEL BANCO de Daniel");
 			System.out.println("1.- Crear cuenta");
 			System.out.println("2.- Listado Cuentas");
 			System.out.println("3.- Ingresar dinero");
@@ -59,7 +59,7 @@ public class Banco {
 					e.printStackTrace();
 				}
 				break;
-			case 2:// Listadfo cuentas
+			case 2:// Listado cuentas
 				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader.ready()) {
@@ -73,6 +73,13 @@ public class Banco {
 				}
 				break;
 			case 3:// Ingresar dinero
+				System.out.println("Escribe el numero de cuenta a ingresar el dinero");
+				
+				System.out.println("Escribe la cantidad de dinero a ingresar");
+				String dinero = leerTecladoTexto();
+				int ultimoSaldo = calcularSaldo();
+				ultimoSaldo++;
+				grabaArchivo("banco.cuentas", ultimoSaldo+""+dinero);
 				break;
 			case 4:// Sacar dinero
 				break;
@@ -90,6 +97,11 @@ public class Banco {
 			}
 		}
 
+	}
+
+	private static int calcularSaldo() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	private static int calcularNumeroDeCuenta() throws IOException {
