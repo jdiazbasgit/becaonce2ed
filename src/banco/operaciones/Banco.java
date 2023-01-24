@@ -15,7 +15,7 @@ import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
 
 /**
- * @author UsuarioM dav
+ * @author David
  * @version 1.0
  * @created 23-ene.-2023 14:03:59
  */
@@ -27,10 +27,12 @@ public class Banco {
 
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws IOException {
+		String alias = leerTecladoTexto();
+		int ultimaCuenta = 0;
+		
 		while (true) {
-			System.out.println("MENU DEL BANCO de David");
+			System.out.println("MENU DEL BANCO");
 			System.out.println("1.- Crear cuenta");
 			System.out.println("2.- Listado Cuentas");
 			System.out.println("3.- Ingresar dinero");
@@ -46,12 +48,11 @@ public class Banco {
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
-			switch (opcion) {
+			switch (opcion) {				
 			case 1:// crear cuenta
 				System.out.println("Escribe el alias de la cuenta:");
-				String alias = leerTecladoTexto();
 				try {
-					int ultimaCuenta = calcularNumeroDeCuenta();
+					ultimaCuenta = calcularNumeroDeCuenta();
 					ultimaCuenta++;
 					grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
 				} catch (IOException e) {
@@ -59,7 +60,7 @@ public class Banco {
 					e.printStackTrace();
 				}
 				break;
-			case 2:// Listadfo cuentas
+			case 2:// Listado cuentas
 				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader.ready()) {
@@ -72,15 +73,30 @@ public class Banco {
 					e.printStackTrace();
 				}
 				break;
+				
 			case 3:// Ingresar dinero
+				int importe = 0;
+				try {
+					System.out.println("Por favor, tecla el importe:");
+					importe = Integer.parseInt(leerTecladoTexto());	
+					
+					grabaArchivo(ultimaCuenta+"banco.movimiento", Integer.toString(importe));
+				} catch (NumberFormatException e) {
+					System.err.println("Debes escribir un numero");
+				}
+				
 				break;
 			case 4:// Sacar dinero
+				
 				break;
 			case 5:// Consultar saldo
+				
 				break;
 			case 6:// Consultar movimientos
+				
 				break;
 			case 7:// Seleccionar cuenta
+				
 				break;
 			case 8:// Salir
 				System.exit(0);
