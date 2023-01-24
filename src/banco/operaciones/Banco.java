@@ -80,12 +80,16 @@ public class Banco {
 				
 				break;
 			case 4:// Sacar dinero
-				
+				System.out.println("¿Cuantos dineros quieres sacar el dinero? :");
+				break;
 			case 5:// Consultar saldo
+				System.out.println("Consultar tu saldo:");
 				break;
 			case 6:// Consultar movimientos
+				System.out.println("Consultar tus movimientos");
 				break;
 			case 7:// Seleccionar cuenta
+				System.out.println("Selecciona la cuenta:");
 				break;
 			case 8:// Salir
 				System.exit(0);
