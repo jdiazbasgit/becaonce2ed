@@ -1,4 +1,4 @@
-package ejemploStream.output;
+package ejemploStream.output ;                                                                                                                                                                                                                                                                                               
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +21,7 @@ public class EscribirObjeto {
 			objectOutputStream.flush();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block                                                                                                                                                                                                              
 			e.printStackTrace();
 		}
 	
