@@ -29,8 +29,9 @@ public class Banco {
 
 	public static void main(String[] args) {
 
+		System.out.println("Autor: LuisFer");
+		System.out.println();
 		while (true) {
-			System.out.println("Desde LuisFer");
 			System.out.println("MENU DEL BANCO");
 			System.out.println("1.- Crear cuenta");
 			System.out.println("2.- Listado Cuentas");
@@ -48,31 +49,13 @@ public class Banco {
 			}
 			switch (opcion) {
 			case 1:// crear cuenta
-				System.out.println("Escribe el alias de la cuenta:");
-				String alias = leerTecladoTexto();
-				try {
-					int ultimaCuenta = calcularNumeroDeCuenta();
-					ultimaCuenta++;
-					grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				crearCuenta();
 				break;
-			case 2:// Listadfo cuentas
-				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
-				try {
-					while(bufferedReader.ready()) {
-						String linea= bufferedReader.readLine();
-						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-						System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
-					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			case 2:// Listado cuentas
+				listarCuentas();
 				break;
 			case 3:// Ingresar dinero
+				ingresarDinero();
 				break;
 			case 4:// Sacar dinero
 				break;
@@ -92,8 +75,70 @@ public class Banco {
 
 	}
 
+	private static void crearCuenta() {
+
+		System.out.println("Escribe el alias de la cuenta:");
+		String alias = leerTecladoTexto();
+		try {
+			int ultimaCuenta = calcularNumeroDeCuenta();
+			ultimaCuenta++;
+			grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private static void listarCuentas() {
+
+		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
+		try {
+			while(bufferedReader.ready()) {
+				String linea= bufferedReader.readLine();
+				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
+				System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private static void ingresarDinero() {
+
+		int cuentaElegida = seleccionarCuenta();
+		System.out.println("Cuenta elegida es: "+cuentaElegida);
+
+	}
+
+	private static int seleccionarCuenta() {
+
+		int ultimaCuenta = 0;
+		try {
+			ultimaCuenta = calcularNumeroDeCuenta();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		int cuentaElegida = 0;
+
+		while (cuentaElegida>0 && cuentaElegida<=ultimaCuenta) {
+			System.out.println(" Las siguientes cuentas son:");
+			listarCuentas();
+			System.out.println(" Seleccionar: ");
+			try {
+				cuentaElegida = Integer.parseInt(leerTecladoTexto());
+			} catch (NumberFormatException e) {
+				System.err.println("Debes escribir un numero");
+			}
+		}
+		return cuentaElegida;
+		
+	}
+
 	private static int calcularNumeroDeCuenta() throws IOException {
-		// TODO Auto-generated method stub
+
 		BufferedReader bufferedReader = leerArchivo("banco.cuentas");
 		if (bufferedReader == null) {
 			return 0;
@@ -110,6 +155,7 @@ public class Banco {
 				throw e;
 			}
 		}
+
 	}
 
 	/**
