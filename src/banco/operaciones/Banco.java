@@ -15,7 +15,7 @@ import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
 
 /**
- * @author UsuarioM
+ * @author UsuarioM dav
  * @version 1.0
  * @created 23-ene.-2023 14:03:59
  */
