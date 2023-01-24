@@ -32,7 +32,7 @@ public class EscribirObjeto {
 	}
 	public static String leerTeclado() {
 		Scanner scanner = new Scanner(System.in);
+		scanner.close();
 		return scanner.nextLine();
 	}
-
 }
