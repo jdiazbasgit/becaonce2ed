@@ -78,17 +78,9 @@ public class Banco {
 				ultimosaldo++;
 				grabaArchivo("banco.cuentas", ultimosaldo+";");
 				
-				
-				try {
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				
-				
 				break;
 			case 4:// Sacar dinero
-				break;
+				
 			case 5:// Consultar saldo
 				break;
 			case 6:// Consultar movimientos
