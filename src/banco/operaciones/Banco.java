@@ -39,6 +39,7 @@ public class Banco {
 			System.out.println("6.- Consultar movimientos");
 			System.out.println("7.- Seleccionar cuenta");
 			System.out.println("8.- Salir");
+			
 			int opcion = 0;
 			try {
 				opcion = Integer.parseInt(leerTecladoTexto());
