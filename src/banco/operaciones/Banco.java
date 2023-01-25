@@ -27,6 +27,7 @@ public class Banco {
 
 	}
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 
 		while (true) {
@@ -55,11 +56,10 @@ public class Banco {
 					ultimaCuenta++;
 					grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
-			case 2:// Listadfo cuentas
+			case 2:// Listado cuentas
 				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader.ready()) {
@@ -68,16 +68,29 @@ public class Banco {
 						System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
+					
+				//}catch (nullPointerException) {
+				//System.err.println("no hay cuenta");
 				}
 				break;
 			case 3:// Ingresar dinero
+				BufferedReader br= leerArchivo("banco.cuentas");
+				System.out.println("saldo:  ");
+				String alias2 = leerTecladoTexto();
 				
+				try {
+					int ultimaCuenta = calcularNumeroDeCuenta();
+					ultimaCuenta++;
+					grabaArchivo("banco.cuentas", ultimaCuenta+";"+"alias");
+				} catch (IOException e) {
+					e.printStackTrace();
 				
-				
-				
-				
+				}
+				Scanner scanner = new Scanner(System.in);
+				System.out.println("alias");
+				String moviemientojava = scanner.nextLine();
+				System.out.println( " + alias" + scanner);
 				
 				
 				break;
@@ -98,9 +111,8 @@ public class Banco {
 		}
 
 	}
-
 	private static int calcularNumeroDeCuenta() throws IOException {
-		// TODO Auto-generated method stub
+		
 		BufferedReader bufferedReader = leerArchivo("banco.cuentas");
 		if (bufferedReader == null) {
 			return 0;
