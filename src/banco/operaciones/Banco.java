@@ -1,10 +1,12 @@
 package banco.operaciones;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.nio.Buffer;
 import java.util.Calendar;
@@ -29,7 +31,10 @@ public class Banco {
 
 	public static void main(String[] args) {
 
-		while (true) {
+		boolean menuActivo = true;
+		while (menuActivo) {
+			generarSaltosDeLinea(15);			
+			System.out.println("--------------------------------");
 			System.out.println("MENU DEL BANCO");
 			System.out.println(cuentaActual());
 			System.out.println("1.- Crear cuenta");
@@ -40,6 +45,8 @@ public class Banco {
 			System.out.println("6.- Consultar saldo");
 			System.out.println("7.- Consultar movimientos");
 			System.out.println("8.- Salir");
+			System.out.println("9.- Eliminar datos de prueba");
+			System.out.println("--------------------------------");
 			int opcion = 0;
 			try {
 				opcion = Integer.parseInt(leerTecladoTexto());
@@ -48,18 +55,26 @@ public class Banco {
 			}
 			switch (opcion) {
 			case 1:// crear cuenta
-				System.out.println("Escribe el alias de la cuenta: ");
+				generarSaltosDeLinea(15);
+				System.out.println("Escribe un nombre para la nueva cuenta: ");
 				String alias = leerTecladoTexto();
 				try {
 					int ultimaCuenta = calcularNumeroDeCuenta();
 					ultimaCuenta++;
 					grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
+					String nombreFicheroMovimientosAsociado = ultimaCuenta+".movimientos";					
+					grabaArchivo(nombreFicheroMovimientosAsociado, fechaActual()+";"+"0");					
+					generarSaltosDeLinea(15);
+					System.err.println("Se ha creado la cuenta  \""+alias+"\" con número "+ultimaCuenta);					
+					generarSaltosDeLinea(2);
+					pulsaEnter();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
 			case 2:// Listado cuentas
+				generarSaltosDeLinea(15);
 				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader.ready()) {
@@ -67,12 +82,14 @@ public class Banco {
 						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 						System.err.println("Cuenta: "+stringTokenizer.nextToken()+" - alias: "+stringTokenizer.nextToken());
 					}
+					pulsaEnter();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}				
 				break;
 			case 3:// Seleccionar Cuenta
+				generarSaltosDeLinea(15);
 				BufferedReader bufferedReader2= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader2.ready()) {
@@ -80,26 +97,99 @@ public class Banco {
 						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 						System.err.println("Cuenta: "+stringTokenizer.nextToken()+" - alias: "+stringTokenizer.nextToken());
 					}
-					System.out.println("Selecciona la cuenta: ");
+					System.out.println("Selecciona la cuenta para operar: ");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String cuentaElegida = leerTecladoTexto();
-				grabaArchivoSobreescribiendo("banco.sesion", cuentaElegida);
-				
-				
+				grabaArchivoSobreescribiendo("banco.sesion", cuentaElegida);							
 				break;
-			case 4:// Sacar dinero
+			case 4:// Ingresar dinero
+				generarSaltosDeLinea(15);
+				BufferedReader bufferedReader3= leerArchivo("banco.sesion");
+				try {
+					while(bufferedReader3.ready()) {
+						String linea= bufferedReader3.readLine();
+						String nombreDelArchivo = linea+".movimientos";						
+						System.out.println("Escribe el importe a ingresar:");
+						String ingreso = leerTecladoTexto();
+						grabaArchivo(nombreDelArchivo, fechaActual()+";"+ingreso);
+					}					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
 				break;
-			case 5:// Consultar saldo
+			case 5:// Sacar dinero
 				break;
-			case 6:// Consultar movimientos
+			case 6:// Consultar saldo
+				generarSaltosDeLinea(15);
+				BufferedReader bufferedReader4= leerArchivo("banco.sesion");
+				try {
+					System.out.print("Saldo disponible: ");
+					int sumatorioTotal = 0; 
+					while(bufferedReader4.ready()) {
+						String linea= bufferedReader4.readLine();
+						String nombreDelArchivo = linea+".movimientos";
+						BufferedReader bufferedReader7= leerArchivo(nombreDelArchivo);
+						try {
+							while(bufferedReader7.ready()) {
+								String linea2= bufferedReader7.readLine();
+								StringTokenizer stringTokenizer= new StringTokenizer(linea2,";");
+								String descartado = stringTokenizer.nextToken();
+								String sumatorioStr = stringTokenizer.nextToken();
+								int sumatorioInt = Integer.parseInt(sumatorioStr);								
+								sumatorioTotal += sumatorioInt;
+							}
+							System.err.println(sumatorioTotal);
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+					}
+					pulsaEnter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
-			case 7:// Seleccionar cuenta
+			case 7:// Consultar movimientos
+				generarSaltosDeLinea(15);
+				BufferedReader bufferedReader6= leerArchivo("banco.sesion");
+				try {
+					System.out.println("  Fecha              Importe");
+					System.out.println("------------------------------");
+					while(bufferedReader6.ready()) {
+						String linea= bufferedReader6.readLine();
+						String nombreDelArchivo = linea+".movimientos";
+						BufferedReader bufferedReader7= leerArchivo(nombreDelArchivo);
+						try {
+							while(bufferedReader7.ready()) {
+								String linea2= bufferedReader7.readLine();
+								StringTokenizer stringTokenizer= new StringTokenizer(linea2,";");								
+								System.err.println(stringTokenizer.nextToken()+"                "+stringTokenizer.nextToken());
+							}
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}	
+					}
+					pulsaEnter();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 8:// Salir
+				grabaArchivoVaciarDatos("banco.sesion");
 				System.exit(0);
+				break;
+			case 9:// Borrar datos de los ficheros
+				grabaArchivoVaciarDatos("banco.sesion");
+				grabaArchivoVaciarDatos("banco.cuentas");
 				break;
 			default:
 				System.err.println("debes escribir una opcion valida");
@@ -107,6 +197,29 @@ public class Banco {
 		}
 
 	}
+
+	private static String fechaActual() {
+		Calendar calendario = Calendar.getInstance();
+		String fecha = Integer.toString(calendario.get(Calendar.DATE))+"-"+Integer.toString(calendario.get(Calendar.MONTH)+1)+"-"+Integer.toString(calendario.get(Calendar.YEAR));
+		return fecha;
+	}
+
+	private static void pulsaEnter() {
+		try {
+			System.out.println("");
+			System.out.println("Pulsa Enter...");
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	private static void generarSaltosDeLinea(int espacio) {
+		for (int i=0; i<espacio; i++) {
+			System.out.println("");
+		}		
+	}
+
 
 	private static String cuentaActual() {
 		
@@ -121,11 +234,10 @@ public class Banco {
 			return "**Ninguna Cuenta Seleccionada**";
 		}
 		
-		return null;
+		return "Ninguna Cuenta Seleccionada";
 	}
 
 	private static int calcularNumeroDeCuenta() throws IOException {
-		// TODO Auto-generated method stub
 		BufferedReader bufferedReader = leerArchivo("banco.cuentas");
 		if (bufferedReader == null) {
 			return 0;
@@ -156,13 +268,18 @@ public class Banco {
 		return cuentas;
 	}
 
-	/**
-	 * 
-	 * @param cuenta
-	 */
-	public static void grabarCuenta(Cuenta cuenta) {
 
-	}
+	/*public static void grabarCuenta(Cuenta cuenta) {
+		String archivoCuenta = Integer.toString(cuenta.getNumeroCuenta())+cuenta.getAlias();
+		try (FileOutputStream fileOutputStream = new FileOutputStream(archivoCuenta, true);
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);) {
+			printWriter.println(cuenta);
+			printWriter.println(Integer.toString(cuenta.getNumeroCuenta())+cuenta.getAlias());
+			printWriter.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}*/
 
 	public static void grabaArchivo(String archivo, String textoAGrabar) {
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, true);
@@ -178,6 +295,15 @@ public class Banco {
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, false);
 				PrintWriter printWriter = new PrintWriter(fileOutputStream);) {
 			printWriter.println(textoAGrabar);
+			printWriter.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	public static void grabaArchivoVaciarDatos(String archivo) {
+		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, false);
+				PrintWriter printWriter = new PrintWriter(fileOutputStream);) {
 			printWriter.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,6 +345,7 @@ public class Banco {
 			return "0";
 		}
 	}
+
 
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
