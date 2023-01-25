@@ -32,6 +32,7 @@ public class Banco {
 		System.out.println();
 
 		while (true) {
+			System.out.println();
 			System.out.println("MENU DEL BANCO");
 			System.out.println("1.- Crear cuenta");
 			System.out.println("2.- Listado Cuentas");
@@ -48,24 +49,29 @@ public class Banco {
 				System.err.println("Debes escribir un numero");
 			}
 			switch (opcion) {
-			case 1: // crear cuenta
+			case 1:
 				crearCuenta();
 				break;
-			case 2: // Listado cuentas
+			case 2:
 				listarCuentas();
 				break;
-			case 3: // Ingresar dinero
+			case 3:
 				ingresarDinero();
 				break;
-			case 4: // Sacar dinero
+			case 4:
+				sacarDinero();
 				break;
-			case 5: // Consultar saldo
+			case 5:
+				consultarSaldo();
 				break;
-			case 6: // Consultar movimientos
+			case 6:
+				consultarMovimiento();
 				break;
-			case 7: // Seleccionar cuenta
+			case 7:
+				Cuenta cuentaSeleccionada = seleccionarCuenta();
+				System.out.println("Cuenta seleccionada es: "+cuentaSeleccionada.getNumeroCuenta()+ ", es de: "+cuentaSeleccionada.getAlias());
 				break;
-			case 8: // Salir
+			case 8:
 				System.out.println("Fin...");
 				System.exit(0);
 				break;
@@ -95,12 +101,21 @@ public class Banco {
 	private static void listarCuentas() {
 
 		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
+		int cuentaLeido=0;
+		String aliasLeido=null;
+		Movimiento movimiento=null;
+		Cuenta cuentaObjeto=null;
 		
 		try {
 			while(bufferedReader.ready()) {
 				String linea= bufferedReader.readLine();
 				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-				System.out.println(" - Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
+				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
+				aliasLeido = stringTokenizer.nextToken();
+				System.out.print(" - Cuenta: "+cuentaLeido+" - alias: "+aliasLeido);
+				cuentaObjeto = new Cuenta(aliasLeido,cuentaLeido);
+				movimiento = new Movimiento(cuentaObjeto);
+				System.out.println(" - saldo total: "+movimiento.calcularTotal());
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -111,12 +126,34 @@ public class Banco {
 	private static void ingresarDinero() {
 
 		Cuenta cuentaElegida = seleccionarCuenta();
-		System.out.println("Cuenta elegida es: "+cuentaElegida.getAlias()+ ", con num "+cuentaElegida.getNumeroCuenta());
 		int importe = escribirImporte();
 		System.out.println("Importe obtenido es: "+importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida,importe);
 		movimiento.ingresar();
 				
+	}
+
+	private static void sacarDinero() {
+		Cuenta cuentaElegida = seleccionarCuenta();
+		int importe = -escribirImporte();
+		System.out.println("Importe obtenido es: "+importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida,importe);
+		movimiento.sacar();
+		
+	}
+
+	private static void consultarSaldo() {
+		Cuenta cuentaElegida = seleccionarCuenta();
+		Movimiento movimiento = new Movimiento(cuentaElegida);
+		System.out.println("Saldo consultado es: "+movimiento.calcularTotal());
+		
+	}
+
+	private static void consultarMovimiento() {
+		Cuenta cuentaElegida = seleccionarCuenta();
+		Movimiento movimiento = new Movimiento(cuentaElegida);
+		movimiento.consultar();
+		
 	}
 
 	private static Cuenta seleccionarCuenta() {
@@ -145,6 +182,7 @@ public class Banco {
 		}
 		
 		Cuenta cuentaElegida = obtenerCuentas(numCuentaElegida);
+		System.out.println("Cuenta elegida es: "+cuentaElegida.getNumeroCuenta()+ ", es de: "+cuentaElegida.getAlias());
 		return cuentaElegida;
 		
 	}
@@ -174,7 +212,7 @@ public class Banco {
 	private static int escribirImporte() {
 
 		int importe = 0;
-		System.out.println(" Escribir importe para ingresar: ");
+		System.out.println(" Escribir importe: ");
 		
 		try {
 			importe = Integer.parseInt(leerTecladoTexto());
