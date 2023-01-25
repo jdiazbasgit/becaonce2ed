@@ -58,7 +58,7 @@ public class Banco {
 					e.printStackTrace();
 				}
 				break;
-			case 2:// Listadfo cuentas
+			case 2:// Listado cuentas
 				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
 				try {
 					while(bufferedReader.ready()) {
