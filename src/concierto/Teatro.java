@@ -30,8 +30,8 @@ public class Teatro {
 		 * length()+" letras");
 		 */
 		
-		GregorianCalendar fecha= new GregorianCalendar(2023,0,1);
-		System.out.println(fecha.get(Calendar.WEEK_OF_YEAR));
+		/*GregorianCalendar fecha= new GregorianCalendar(2023,0,1);
+		System.out.println(fecha.get(Calendar.WEEK_OF_YEAR));*/
 		
 
 	}
