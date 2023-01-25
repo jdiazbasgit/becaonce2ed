@@ -1,14 +1,11 @@
 package banco.operaciones;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.nio.Buffer;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -17,7 +14,7 @@ import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
 
 /**
- * @author UsuarioM
+ * @author RGM
  * @version 1.0
  * @created 23-ene.-2023 14:03:59
  */
@@ -80,13 +77,19 @@ public class Banco {
 					while(bufferedReader.ready()) {
 						String linea= bufferedReader.readLine();
 						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-						System.err.println("Cuenta: "+stringTokenizer.nextToken()+" - alias: "+stringTokenizer.nextToken());
+						String numeroCuenta = stringTokenizer.nextToken();
+						String aliasCuenta = stringTokenizer.nextToken();
+						System.err.println("Cuenta: "+numeroCuenta+" - alias: "+aliasCuenta+ " -  Saldo disponible: " +consultarSaldo(numeroCuenta));
 					}
 					pulsaEnter();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}				
+				catch (NullPointerException e) {
+					System.out.println("No hay cuentas activas");
+					pulsaEnter();
+				}
 				break;
 			case 3:// Seleccionar Cuenta
 				generarSaltosDeLinea(15);
@@ -97,6 +100,7 @@ public class Banco {
 						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 						System.err.println("Cuenta: "+stringTokenizer.nextToken()+" - alias: "+stringTokenizer.nextToken());
 					}
+					generarSaltosDeLinea(1);
 					System.out.println("Selecciona la cuenta para operar: ");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -122,38 +126,30 @@ public class Banco {
 				}				
 				break;
 			case 5:// Sacar dinero
-				break;
-			case 6:// Consultar saldo
 				generarSaltosDeLinea(15);
-				BufferedReader bufferedReader4= leerArchivo("banco.sesion");
+				BufferedReader bufferedReader31= leerArchivo("banco.sesion");
 				try {
-					System.out.print("Saldo disponible: ");
-					int sumatorioTotal = 0; 
-					while(bufferedReader4.ready()) {
-						String linea= bufferedReader4.readLine();
-						String nombreDelArchivo = linea+".movimientos";
-						BufferedReader bufferedReader7= leerArchivo(nombreDelArchivo);
-						try {
-							while(bufferedReader7.ready()) {
-								String linea2= bufferedReader7.readLine();
-								StringTokenizer stringTokenizer= new StringTokenizer(linea2,";");
-								String descartado = stringTokenizer.nextToken();
-								String sumatorioStr = stringTokenizer.nextToken();
-								int sumatorioInt = Integer.parseInt(sumatorioStr);								
-								sumatorioTotal += sumatorioInt;
-							}
-							System.err.println(sumatorioTotal);
-							
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}	
-					}
-					pulsaEnter();
+					while(bufferedReader31.ready()) {
+						String linea= bufferedReader31.readLine();
+						String nombreDelArchivo = linea+".movimientos";						
+						System.out.println("Escribe el importe a retirar:");
+						String ingreso = leerTecladoTexto();
+						if (consultarSaldo()>Integer.parseInt(ingreso))							
+						grabaArchivo(nombreDelArchivo, fechaActual()+";"+"-"+ingreso);
+						else {
+							System.err.println("No cuela colega!");
+							pulsaEnter();
+						}
+					}					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}				
+				break;
+			case 6:// Consultar saldo
+				generarSaltosDeLinea(15);
+				consultarSaldo();
+				pulsaEnter();
 				break;
 			case 7:// Consultar movimientos
 				generarSaltosDeLinea(15);
@@ -220,7 +216,75 @@ public class Banco {
 		}		
 	}
 
+	private static int consultarSaldo() {
+		System.out.print("Saldo disponible: ");
+		int sumatorioTotal = 0; 
+		BufferedReader bufferedReader4= leerArchivo("banco.sesion");
+		try {
+			while(bufferedReader4.ready()) {
+				String linea= bufferedReader4.readLine();
+				String nombreDelArchivo = linea+".movimientos";
+				BufferedReader bufferedReader7= leerArchivo(nombreDelArchivo);
+				try {
+					while(bufferedReader7.ready()) {
+						String linea2= bufferedReader7.readLine();
+						StringTokenizer stringTokenizer= new StringTokenizer(linea2,";");
+						stringTokenizer.nextToken();
+						String sumatorioStr = stringTokenizer.nextToken();
+						int sumatorioInt = Integer.parseInt(sumatorioStr);								
+						sumatorioTotal += sumatorioInt;
+					}
+					System.err.println(sumatorioTotal);
+					
+				}
+			 catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+				}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sumatorioTotal;
+	}
 
+	private static int consultarSaldo(String numeroCuenta) {
+		//System.out.print("Saldo disponible: ");
+		int sumatorioTotal = 0; 
+		//BufferedReader bufferedReader4= leerArchivo("banco.sesion");
+		try {
+			//while(bufferedReader4.ready()) {
+				//String linea= bufferedReader4.readLine();
+				String nombreDelArchivo = numeroCuenta+".movimientos";
+				BufferedReader bufferedReader7= leerArchivo(nombreDelArchivo);
+				try {
+					while(bufferedReader7.ready()) {
+						String linea2= bufferedReader7.readLine();
+						StringTokenizer stringTokenizer= new StringTokenizer(linea2,";");
+						stringTokenizer.nextToken();
+						String sumatorioStr = stringTokenizer.nextToken();
+						int sumatorioInt = Integer.parseInt(sumatorioStr);								
+						sumatorioTotal += sumatorioInt;
+					}
+					//System.err.println(sumatorioTotal);
+					
+				}
+			 catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+				//}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sumatorioTotal;
+	}
+	
 	private static String cuentaActual() {
 		
 		BufferedReader bufferedReader= leerArchivo("banco.sesion");
