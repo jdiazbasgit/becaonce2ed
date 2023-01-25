@@ -1,10 +1,10 @@
 package concierto;
 
-
+import java.util.List;
 
 public class HombreOrquesta extends Musico {
 
-	public HombreOrquesta(Instrumento[] instrumentos){
+	public HombreOrquesta(List<Instrumento> instrumentos){
 		super(instrumentos);
 
 	}
@@ -14,9 +14,8 @@ public class HombreOrquesta extends Musico {
 	}
 	
 	public void tocar(){
-		for (int i = 0; i < getInstrumentos().length; i++) {
-			System.out.println( getInstrumentos()[i].sonar());
-			
+		for (Instrumento instrumento : getInstrumentos()) {
+			System.out.println(instrumento.sonar());
 		}
 		
 	}

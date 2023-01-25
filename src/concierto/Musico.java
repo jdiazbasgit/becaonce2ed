@@ -4,7 +4,7 @@ import java.util.List;
 public abstract class Musico implements MusicoInterface {
 
 	private Instrumento instrumento;
-	private Instrumento[] instrumentos;
+	private List<Instrumento> instrumentos;
 	
 	public Musico(Instrumento instrumento) {
 		this.instrumento = instrumento;
@@ -16,7 +16,7 @@ public abstract class Musico implements MusicoInterface {
 		return instrumento;
 	}
 	
-	public Musico(Instrumento[] instrumentos) {
+	public Musico(List<Instrumento> instrumentos) {
 		this.instrumentos=instrumentos;
 	}
 
@@ -24,11 +24,11 @@ public abstract class Musico implements MusicoInterface {
 		this.instrumento = instrumento;
 	}
 
-	public Instrumento[] getInstrumentos() {
+	public List<Instrumento> getInstrumentos() {
 		return instrumentos;
 	}
 
-	public void setInstrumentos(Instrumento[] instrumentos) {
+	public void setInstrumentos(List<Instrumento> instrumentos) {
 		this.instrumentos = instrumentos;
 	}
 
