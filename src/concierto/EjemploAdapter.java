@@ -1,9 +1,9 @@
 package concierto;
 
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.WindowSetener;
 
-public class EjemploAdapter implements WindowListener{
+public class EjemploAdapter implements WindowSetener{
 
 	@Override
 	public void windowOpened(WindowEvent e) {

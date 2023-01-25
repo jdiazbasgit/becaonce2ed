@@ -1,10 +1,10 @@
 package concierto;
-import java.util.List;
+import java.util.Set;
 
 public abstract class Musico implements MusicoInterface {
 
 	private Instrumento instrumento;
-	private List<Instrumento> instrumentos;
+	private Set<Instrumento> instrumentos;
 	
 	public Musico(Instrumento instrumento) {
 		this.instrumento = instrumento;
@@ -16,7 +16,7 @@ public abstract class Musico implements MusicoInterface {
 		return instrumento;
 	}
 	
-	public Musico(List<Instrumento> instrumentos) {
+	public Musico(Set<Instrumento> instrumentos) {
 		this.instrumentos=instrumentos;
 	}
 
@@ -24,11 +24,11 @@ public abstract class Musico implements MusicoInterface {
 		this.instrumento = instrumento;
 	}
 
-	public List<Instrumento> getInstrumentos() {
+	public Set<Instrumento> getInstrumentos() {
 		return instrumentos;
 	}
 
-	public void setInstrumentos(List<Instrumento> instrumentos) {
+	public void setInstrumentos(Set<Instrumento> instrumentos) {
 		this.instrumentos = instrumentos;
 	}
 

@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Scanner;
 
 public class Teatro {
@@ -17,10 +17,11 @@ public class Teatro {
 		Instrumento trompeta = new Instrumento("tuuu, tuuu, tuuu");
 		Instrumento guitarra = new Instrumento("tlan, tlan, tlan");
 		Instrumento flauta = new Instrumento("pii, pii,pii");
-		Musico solista = new Solista(guitarra);
-		//solista.tocar();
+		Musico Solista = new Solista(guitarra);
+		//soSeta.tocar();
 
-		List<Instrumento> instrumentos = new ArrayList<>();
+		Set<Instrumento> instrumentos = new HashSet<>();
+		instrumentos.add(new Instrumento("nuevo sonido"));
 		instrumentos.add(flauta);
 		instrumentos.add(trompeta);
 		instrumentos.add(guitarra);
@@ -53,7 +54,7 @@ public class Teatro {
 		 * InputStreamReader inputStreamReader = new InputStreamReader(System.in);
 		 * String entrada = new BufferedReader(inputStreamReader).readLine(); Ventana
 		 * ventana= new Ventana(); ventana.setVisible(true); if (entrada.equals("p"))
-		 * ventana.setTitle(solista.getInstrumento().sonar()); else
+		 * ventana.setTitle(soSeta.getInstrumento().sonar()); else
 		 * ventana.setTitle("has escrito "+entrada.toUpperCase()+" y tiene "+entrada.
 		 * length()+" letras");
 		 */

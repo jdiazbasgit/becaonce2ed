@@ -1,10 +1,10 @@
 package concierto;
 
-import java.util.List;
+import java.util.Set;
 
 public class HombreOrquesta extends Musico {
 
-	public HombreOrquesta(List<Instrumento> instrumentos){
+	public HombreOrquesta(Set<Instrumento> instrumentos){
 		super(instrumentos);
 
 	}
@@ -15,8 +15,11 @@ public class HombreOrquesta extends Musico {
 	
 	public void tocar(){
 		for (Instrumento instrumento : getInstrumentos()) {
-			System.out.println(instrumento.sonar());
+			System.out.println(instrumento.sonar()+"  - "+instrumento.hashCode());
 		}
+		System.out.println("máximo valor:"+Integer.MAX_VALUE);
+		System.out.println("mínimo valor:"+Integer.MIN_VALUE);
+		System.out.println("máximo valor long:"+Long.MAX_VALUE);
 		
 	}
 }
