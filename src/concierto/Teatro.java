@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.Scanner;
 
 public class Teatro {
@@ -15,12 +16,13 @@ public class Teatro {
 	public static void main(String[] args) throws IOException {
 		Instrumento tambor = new Instrumento("pom,pom,pom");
 		Instrumento trompeta = new Instrumento("tuuu, tuuu, tuuu");
-		Instrumento guitarra = new Instrumento("tlan, tlan, tlan");
-		Instrumento flauta = new Instrumento("pii, pii,pii");
+		Instrumento guitarra = new Instrumento("pom,pom,pom");
+		Instrumento flauta = new Instrumento("pom,pom,pom");
 		Musico Solista = new Solista(guitarra);
 		//soSeta.tocar();
 
 		Set<Instrumento> instrumentos = new HashSet<>();
+		//Set<Instrumento> instrumentos = new TreeSet<>();
 		instrumentos.add(new Instrumento("nuevo sonido"));
 		instrumentos.add(flauta);
 		instrumentos.add(trompeta);
