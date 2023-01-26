@@ -1,12 +1,15 @@
 package banco.cuentas;
 
+import java.io.Serializable;
+
 /**
  * @author UsuarioM
  * @version 1.0
  * @created 23-ene.-2023 14:03:50
  */
 
-public class Cuenta implements Comparable<Cuenta>{
+@SuppressWarnings("serial")
+public class Cuenta implements Comparable<Cuenta>,Serializable{
 
 	private String alias;
 	private int numeroCuenta;

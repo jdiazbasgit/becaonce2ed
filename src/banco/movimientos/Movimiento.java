@@ -74,6 +74,7 @@ public class Movimiento {
 				String linea= bufferedReader.readLine();
 				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
+				stringTokenizer.nextToken();
 				importeLeido = Integer.parseInt(stringTokenizer.nextToken());
 //				System.err.println("Cuenta: "+cuentaLeido+", fechaLeido: "+fechaLeido+", importeLeido: "+importeLeido);
 				if (cuentaLeido == this.cuenta.getNumeroCuenta()) {

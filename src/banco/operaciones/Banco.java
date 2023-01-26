@@ -5,11 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.HashMap;
 
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
@@ -22,8 +25,8 @@ import banco.movimientos.Movimiento;
 
 public class Banco {
 
-	private Map<Cuenta, List<Movimiento>> cuentas;
-	
+	private static Map<Cuenta, List<Movimiento>> cuentas;
+
 	public Banco() {
 
 	}
@@ -32,7 +35,15 @@ public class Banco {
 
 		System.out.println("Autor: LuisFer");
 		System.out.println();
-
+		try {
+			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		while (true) {
 			System.out.println();
 			System.out.println("MENU DEL BANCO");
@@ -71,7 +82,8 @@ public class Banco {
 				break;
 			case 7:
 				Cuenta cuentaSeleccionada = seleccionarCuenta();
-				System.out.println("Cuenta seleccionada es: "+cuentaSeleccionada.getNumeroCuenta()+ ", es de: "+cuentaSeleccionada.getAlias());
+				System.out.println("Cuenta seleccionada es: " + cuentaSeleccionada.getNumeroCuenta() + ", es de: "
+						+ cuentaSeleccionada.getAlias());
 				break;
 			case 8:
 				System.out.println("Fin...");
@@ -88,165 +100,147 @@ public class Banco {
 
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
-		
+
 		try {
 			int ultimaCuenta = calcularNumeroDeCuenta();
 			ultimaCuenta++;
-			grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
+			Cuenta cuenta = new Cuenta();
+			cuenta.setNumeroCuenta(ultimaCuenta);
+			cuenta.setAlias(alias);
+			grabarCuenta(cuenta);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private static void listarCuentas() {
-
-		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
-		int cuentaLeido=0;
-		String aliasLeido=null;
-		Movimiento movimiento=null;
-		Cuenta cuentaObjeto=null;
-		
 		try {
-			while(bufferedReader.ready()) {
-				String linea= bufferedReader.readLine();
-				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
-				aliasLeido = stringTokenizer.nextToken();
-				System.out.print(" - Cuenta: "+cuentaLeido+" - alias: "+aliasLeido);
-				cuentaObjeto = new Cuenta(aliasLeido,cuentaLeido);
-				movimiento = new Movimiento(cuentaObjeto);
-				System.out.println(" - saldo total: "+movimiento.calcularTotal());
+			Map<Cuenta, List<Movimiento>>cuentas = (HashMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
+			for (Cuenta cuenta : cuentas.keySet()) {
+				System.err.println("numero de cuenta:"+cuenta.getNumeroCuenta()+" - alias:"+cuenta.getAlias());
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
+			System.out.println("no existen cuentas");
 			e.printStackTrace();
-		}
-
+		} 
 	}
 
 	private static void ingresarDinero() {
 
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = escribirImporte();
-		System.out.println("Importe obtenido es: "+importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida,importe);
+		System.out.println("Importe obtenido es: " + importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
 		movimiento.ingresar();
-				
+
 	}
 
 	private static void sacarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = -escribirImporte();
-		System.out.println("Importe obtenido es: "+importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida,importe);
+		System.out.println("Importe obtenido es: " + importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
 		movimiento.sacar();
-		
+
 	}
 
 	private static void consultarSaldo() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		Movimiento movimiento = new Movimiento(cuentaElegida);
-		System.out.println("Saldo consultado es: "+movimiento.calcularTotal());
-		
+		System.out.println("Saldo consultado es: " + movimiento.calcularTotal());
+
 	}
 
 	private static void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		Movimiento movimiento = new Movimiento(cuentaElegida);
 		movimiento.consultar();
-		
+
 	}
 
 	private static Cuenta seleccionarCuenta() {
 
 		int ultimaCuenta = 0;
-		
+
 		try {
 			ultimaCuenta = calcularNumeroDeCuenta();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
+
 		int numCuentaElegida = 0;
 
-		while (numCuentaElegida==0 || numCuentaElegida>ultimaCuenta) {
+		while (numCuentaElegida == 0 || numCuentaElegida > ultimaCuenta) {
 			System.out.println(" Las siguientes cuentas son:");
 			listarCuentas();
 			System.out.println(" Seleccionar una cuenta: ");
-			
+
 			try {
 				numCuentaElegida = Integer.parseInt(leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
-			
+
 		}
-		
+
 		Cuenta cuentaElegida = obtenerCuentas(numCuentaElegida);
-		System.out.println("Cuenta elegida es: "+cuentaElegida.getNumeroCuenta()+ ", es de: "+cuentaElegida.getAlias());
+		System.out.println(
+				"Cuenta elegida es: " + cuentaElegida.getNumeroCuenta() + ", es de: " + cuentaElegida.getAlias());
 		return cuentaElegida;
-		
+
 	}
 
 	private static Cuenta obtenerCuentas(int numCuentaElegida) {
 
-		BufferedReader bufferedReader= leerArchivo("banco.cuentas");
-		int cuentaLeido=0;
-		String aliasLeido=null;
-		
-		try {
-			while(bufferedReader.ready() && numCuentaElegida!=cuentaLeido) {
-				String linea= bufferedReader.readLine();
-				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
-				aliasLeido = stringTokenizer.nextToken();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		Cuenta cuentaObtenida = new Cuenta(aliasLeido,cuentaLeido);
-		return cuentaObtenida;
-
+		/*
+		 * BufferedReader bufferedReader = leerArchivo("banco.cuentas"); int cuentaLeido
+		 * = 0; String aliasLeido = null;
+		 * 
+		 * try { while (bufferedReader.ready() && numCuentaElegida != cuentaLeido) {
+		 * String linea = bufferedReader.readLine(); StringTokenizer stringTokenizer =
+		 * new StringTokenizer(linea, ";"); cuentaLeido =
+		 * Integer.parseInt(stringTokenizer.nextToken()); aliasLeido =
+		 * stringTokenizer.nextToken(); } } catch (IOException e) { e.printStackTrace();
+		 * }
+		 * 
+		 * Cuenta cuentaObtenida = new Cuenta(aliasLeido, cuentaLeido); return
+		 * cuentaObtenida;
+		 */
+		return null;
 	}
 
 	private static int escribirImporte() {
 
 		int importe = 0;
 		System.out.println(" Escribir importe: ");
-		
+
 		try {
 			importe = Integer.parseInt(leerTecladoTexto());
 		} catch (NumberFormatException e) {
 			System.err.println("Debes escribir un numero");
 		}
-		
+
 		return importe;
-		
+
 	}
 
+	@SuppressWarnings("unchecked")
 	private static int calcularNumeroDeCuenta() throws IOException {
-
-		BufferedReader bufferedReader = leerArchivo("banco.cuentas");
-		if (bufferedReader == null) {
+		Map<Cuenta, List<Movimiento>> cuentas = null;
+		try {
+			cuentas = (Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
+		} catch (Exception e1) {
 			return 0;
-		} else {
-			int salida = 0;
-			
-			try {
-				while (bufferedReader.ready()) {
-					String texto = bufferedReader.readLine();
-					StringTokenizer stringTokenizer = new StringTokenizer(texto, ";");
-					salida = Integer.parseInt(stringTokenizer.nextToken());
-				}
-				return salida;
-			} catch (IOException e) {
-				throw e;
-			}
-			
 		}
+		int salida = 0;
+		for (Cuenta cuenta : cuentas.keySet()) {
+			if (cuenta.getNumeroCuenta() > salida)
+				salida = cuenta.getNumeroCuenta();
 
+		}
+		return salida;
 	}
 
 	/**
@@ -263,30 +257,31 @@ public class Banco {
 	 */
 	public static void grabarCuenta(Cuenta cuenta) {
 
+		if (getCuentas() == null)
+			setCuentas(new HashMap<>());
+		getCuentas().put(cuenta, new ArrayList<Movimiento>());
+
+		grabaArchivo("banco.cuentas", getCuentas());
+
 	}
 
-	public static void grabaArchivo(String archivo, String textoAGrabar) {
-		
+	public static void grabaArchivo(String archivo, Object objetoAGrabar) {
+
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, true);
-				PrintWriter printWriter = new PrintWriter(fileOutputStream);) {
-			printWriter.println(textoAGrabar);
-			printWriter.flush();
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+			objectOutputStream.writeObject(objetoAGrabar);
+			objectOutputStream.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public static BufferedReader leerArchivo(String archivo) {
+	public static Object leerArchivo(String archivo) throws ClassNotFoundException, IOException {
 
-		try {
-			FileInputStream fileInputStream = new FileInputStream(archivo);
-			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-			return bufferedReader;
-		} catch (Exception e) {
-			return null;
-		}
+		FileInputStream fileInputStream = new FileInputStream(archivo);
+		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+		return objectInputStream.readObject();
 
 	}
 
@@ -303,7 +298,7 @@ public class Banco {
 	}
 
 	public static String leerTecladoTexto() {
-		
+
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			return bufferedReader.readLine();
@@ -311,21 +306,19 @@ public class Banco {
 			e.printStackTrace();
 			return "0";
 		}
-		
+
 	}
 
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
 	}
 
-	public Map<Cuenta, List<Movimiento>> getCuentas() {
+	public static Map<Cuenta, List<Movimiento>> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
-		this.cuentas = cuentas;
+	public static void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
+		Banco.cuentas = cuentas;
 	}
-
-	
 
 }
