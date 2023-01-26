@@ -6,7 +6,7 @@ package banco.cuentas;
  * @created 23-ene.-2023 14:03:50
  */
 
-public class Cuenta {
+public class Cuenta implements Comparable<Cuenta>{
 
 	private String alias;
 	private int numeroCuenta;
@@ -48,6 +48,11 @@ public class Cuenta {
 	 */
 	public void setNumeroCuenta(int numeroCuenta){
 		this.numeroCuenta = numeroCuenta;
+	}
+
+	@Override
+	public int compareTo(Cuenta otra) {
+		return this.getAlias().compareTo(otra.getAlias());
 	}
 
 }

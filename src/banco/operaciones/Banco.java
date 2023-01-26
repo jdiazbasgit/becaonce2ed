@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 import banco.cuentas.Cuenta;
@@ -20,8 +22,8 @@ import banco.movimientos.Movimiento;
 
 public class Banco {
 
-	private Cuenta[] cuentas;
-
+	private Map<Cuenta, List<Movimiento>> cuentas;
+	
 	public Banco() {
 
 	}
@@ -316,13 +318,14 @@ public class Banco {
 		return false;
 	}
 
-	public Cuenta[] getCuentas() {
+	public Map<Cuenta, List<Movimiento>> getCuentas() {
 		return cuentas;
 	}
 
-
-	public void setCuentas(Cuenta[] cuentas) {
+	public void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
 		this.cuentas = cuentas;
 	}
+
+	
 
 }

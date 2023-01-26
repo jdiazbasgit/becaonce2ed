@@ -66,7 +66,6 @@ public class Movimiento {
 
 		BufferedReader bufferedReader= leerArchivo("banco.movimientos");
 		int cuentaLeido=0;
-		String fechaLeido=null;
 		int importeLeido=0;
 		int importeTotal=0;
 
@@ -75,7 +74,6 @@ public class Movimiento {
 				String linea= bufferedReader.readLine();
 				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
 				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
-				fechaLeido = stringTokenizer.nextToken();
 				importeLeido = Integer.parseInt(stringTokenizer.nextToken());
 //				System.err.println("Cuenta: "+cuentaLeido+", fechaLeido: "+fechaLeido+", importeLeido: "+importeLeido);
 				if (cuentaLeido == this.cuenta.getNumeroCuenta()) {
