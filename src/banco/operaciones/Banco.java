@@ -267,7 +267,7 @@ public class Banco {
 
 	public static void grabaArchivo(String archivo, Object objetoAGrabar) {
 
-		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo, true);
+		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo);
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
 			objectOutputStream.writeObject(objetoAGrabar);
 			objectOutputStream.flush();
