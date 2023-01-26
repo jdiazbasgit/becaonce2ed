@@ -9,10 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
@@ -37,13 +37,9 @@ public class Banco {
 		System.out.println();
 		try {
 			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		} catch (Exception e) {
+			
+		} 
 		while (true) {
 			System.out.println();
 			System.out.println("MENU DEL BANCO");
@@ -117,13 +113,12 @@ public class Banco {
 	@SuppressWarnings("unchecked")
 	private static void listarCuentas() {
 		try {
-			Map<Cuenta, List<Movimiento>>cuentas = (HashMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
+			Map<Cuenta, List<Movimiento>>cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
 			for (Cuenta cuenta : cuentas.keySet()) {
 				System.err.println("numero de cuenta:"+cuenta.getNumeroCuenta()+" - alias:"+cuenta.getAlias());
 			}
 		} catch (Exception e) {
 			System.out.println("no existen cuentas");
-			e.printStackTrace();
 		} 
 	}
 
@@ -133,8 +128,8 @@ public class Banco {
 		int importe = escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		movimiento.ingresar();
-
+		getCuentas().get(cuentaElegida).add(movimiento);
+		grabarCuenta(cuentaElegida);
 	}
 
 	private static void sacarDinero() {
@@ -155,41 +150,26 @@ public class Banco {
 
 	private static void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
-		Movimiento movimiento = new Movimiento(cuentaElegida);
-		movimiento.consultar();
+		for (Movimiento movimiento : getCuentas().get(cuentaElegida)) {
+			System.out.println(movimiento.getFecha()+" - "+movimiento.getImporte());
+		}
 
 	}
 
 	private static Cuenta seleccionarCuenta() {
-
-		int ultimaCuenta = 0;
-
-		try {
-			ultimaCuenta = calcularNumeroDeCuenta();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-
-		int numCuentaElegida = 0;
-
-		while (numCuentaElegida == 0 || numCuentaElegida > ultimaCuenta) {
-			System.out.println(" Las siguientes cuentas son:");
-			listarCuentas();
-			System.out.println(" Seleccionar una cuenta: ");
-
-			try {
-				numCuentaElegida = Integer.parseInt(leerTecladoTexto());
-			} catch (NumberFormatException e) {
-				System.err.println("Debes escribir un numero");
+		listarCuentas();
+		System.out.println("indica numero de cuenta:");
+		int numeroCuenta=Integer.parseInt(leerTecladoTexto());
+		Cuenta cuentaElegida=null;
+		for (Cuenta cuenta : getCuentas().keySet()) {
+			if(cuenta.getNumeroCuenta()==numeroCuenta)
+			{
+				cuentaElegida=cuenta;
+				break;
 			}
-
+			
 		}
-
-		Cuenta cuentaElegida = obtenerCuentas(numCuentaElegida);
-		System.out.println(
-				"Cuenta elegida es: " + cuentaElegida.getNumeroCuenta() + ", es de: " + cuentaElegida.getAlias());
 		return cuentaElegida;
-
 	}
 
 	private static Cuenta obtenerCuentas(int numCuentaElegida) {
@@ -258,7 +238,7 @@ public class Banco {
 	public static void grabarCuenta(Cuenta cuenta) {
 
 		if (getCuentas() == null)
-			setCuentas(new HashMap<>());
+			setCuentas(new TreeMap<>());
 		getCuentas().put(cuenta, new ArrayList<Movimiento>());
 
 		grabaArchivo("banco.cuentas", getCuentas());
