@@ -68,6 +68,8 @@ public class Banco implements Runnable{
 				break;
 			case 4:
 				sacarDinero();
+			
+				
 				break;
 			case 5:
 				consultarSaldo();
@@ -131,11 +133,15 @@ public class Banco implements Runnable{
 	}
 
 	private static void sacarDinero() {
+		/*System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = -escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		movimiento.sacar();
+		getCuentas().get(cuentaElegida).add(movimiento);
+		grabaArchivo("banco.cuenta",getCuentas());
+		movimiento.sacar();*/
+		
 
 	}
 
@@ -293,8 +299,17 @@ public class Banco implements Runnable{
 
 	}
 
-	public static boolean operar(Cuenta cuenta, int importe) {
-		return false;
+	public static void operar(Cuenta cuenta, int importe) {
+		  {
+				Cuenta cuentaElegida = seleccionarCuenta();
+				 importe = escribirImporte();
+				System.out.println("Importe obtenido es: " + importe);
+				Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+				getCuentas().get(cuentaElegida).add(movimiento);
+				grabaArchivo("banco.cuentas", getCuentas());
+			}
+		if ( importe<=importe )
+		return;
 	}
 
 	public static Map<Cuenta, List<Movimiento>> getCuentas() {
