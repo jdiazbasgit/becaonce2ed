@@ -1,11 +1,13 @@
 package banco.movimientos;
 
+import java.io.Serializable;
+
 /**
  * @author UsuarioM
  * @version 1.0
  * @created 23-ene.-2023 14:03:55
  */
-public class Movimiento {
+public class Movimiento implements Serializable {
 
 	private String fecha;
 	private int importe;

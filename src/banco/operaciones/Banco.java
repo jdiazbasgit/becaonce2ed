@@ -27,17 +27,17 @@ import banco.movimientos.Movimiento;
  */
 public class Banco {
 
-	private static Map<Cuenta, List<Movimiento>> cuentasMap;
+	private static TreeMap<Cuenta, List<Movimiento>> cuentasMap;
 
 	public Banco() {
 
 	}
 
-	public static synchronized void main(String[] args) {
+	public static void main(String[] args) {
 
-		// solicitarAcceso();
+		//solicitarAcceso();
 		try {
-			setCuentasMap((Map<Cuenta, List<Movimiento>>) leerArchivo("bovedaDeDatos.banco"));
+			setCuentasMap((TreeMap<Cuenta, List<Movimiento>>) leerArchivo("bovedaDeDatos.banco"));
 		} catch (Exception e) {
 
 		}
@@ -75,7 +75,7 @@ public class Banco {
 				String alias = leerTecladoTexto();
 				try {
 					int ultimaCuenta = calcularNumeroDeCuenta();
-					ultimaCuenta++;
+					++ultimaCuenta;
 					Cuenta cuentaCreada = new Cuenta();
 					cuentaCreada.setNumeroCuenta(ultimaCuenta);
 					cuentaCreada.setAlias(alias);
@@ -98,7 +98,7 @@ public class Banco {
 					// Saldo disponible: " +consultarSaldo(numeroCuenta));
 				generarSaltosDeLinea(50);
 				try {
-					Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo(
+					TreeMap<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo(
 							"boveda.banco");
 					for (Cuenta cuenta : cuentas.keySet()) {
 						System.out.print("Nombre de la cuenta: ");
@@ -145,7 +145,7 @@ public class Banco {
 				movimiento.setImporte(Integer.parseInt(ingreso));
 				movimiento.setFecha(fechaActual());
 				movimiento.setConcepto("InDev");
-				Map<Cuenta, List<Movimiento>> cuentas = null;
+				TreeMap<Cuenta, List<Movimiento>> cuentas = null;
 				try {
 					cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
 				} catch (ClassNotFoundException e) {
@@ -156,7 +156,8 @@ public class Banco {
 					e.printStackTrace();
 				}				
 				cuentas.get(cuentaSesion).add(movimiento);
-				grabarCuenta(cuentaSesion);
+				setCuentasMap(cuentas);
+				grabarArchivo("boveda.banco", getCuentasMap());
 				generarSaltosDeLinea(50);
 				break;
 			case 5:// Sacar dinero
@@ -188,8 +189,8 @@ public class Banco {
 			case 7:// Consultar movimientos
 				generarSaltosDeLinea(50);
 				System.out.println("  Fecha              Importe			Concepto");
-				System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
-				Map<Cuenta, List<Movimiento>> cuentas1 = null;
+				System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
+				TreeMap<Cuenta, List<Movimiento>> cuentas1 = null;
 				try {
 					cuentas1 = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
 				} catch (ClassNotFoundException e) {
@@ -201,7 +202,7 @@ public class Banco {
 				}
 				List<Movimiento> movimientos = cuentas1.get(cuentaSesion);		        
 		        for (Movimiento movimientoLinea : movimientos) {
-		            System.out.println(movimientoLinea.getFecha()+movimientoLinea.getImporte());
+		            System.out.println(movimientoLinea.getFecha()+"               "+movimientoLinea.getImporte()+"               ");
 		        }
 		        pulsaEnter();
 				generarSaltosDeLinea(50);							
@@ -278,7 +279,7 @@ public class Banco {
 
 	private static void generarSaltosDeLinea(int espacio) {
 		for (int i = 0; i < espacio; i++) {
-			System.out.println("");
+			//System.out.println("");
 		}
 	}
 
@@ -367,9 +368,9 @@ public class Banco {
 
 	@SuppressWarnings("unchecked")
 	private static int calcularNumeroDeCuenta() throws IOException {
-		Map<Cuenta, List<Movimiento>> cuentas = null;
+		TreeMap<Cuenta, List<Movimiento>> cuentas = null;
 		try {
-			cuentas = (Map<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+			cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
 			System.out.println("hay cuentas");
 		} catch (Exception e1) {
 			System.out.println("Aún no hay cuentas");
@@ -509,11 +510,11 @@ public class Banco {
 		return false;
 	}
 
-	public static Map<Cuenta, List<Movimiento>> getCuentasMap() {
+	public static TreeMap<Cuenta, List<Movimiento>> getCuentasMap() {
 		return cuentasMap;
 	}
 
-	public static void setCuentasMap(Map<Cuenta, List<Movimiento>> cuentasMap) {
+	public static void setCuentasMap(TreeMap<Cuenta, List<Movimiento>> cuentasMap) {
 		Banco.cuentasMap = cuentasMap;
 	}
 
