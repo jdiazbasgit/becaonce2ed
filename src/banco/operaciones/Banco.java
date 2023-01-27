@@ -15,33 +15,22 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
-
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
 
-/**
- * @author UsuarioM
- * @version 1.0
- * @created 23-ene.-2023 14:03:59
- */
-
-public class Banco implements Runnable{
-
+public class Banco implements Runnable {
 	private static Map<Cuenta, List<Movimiento>> cuentas;
 
 	public Banco() {
-
 	}
 
 	public static void main(String[] args) {
-
-		System.out.println("Autor: LuisFer");
+		
 		System.out.println();
 		try {
 			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
-			
-		} 
+		}
 		while (true) {
 			System.out.println();
 			System.out.println("MENU DEL BANCO");
@@ -91,14 +80,11 @@ public class Banco implements Runnable{
 				System.err.println("debes escribir una opcion valida");
 			}
 		}
-
 	}
 
 	private static void crearCuenta() {
-
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
-
 		try {
 			int ultimaCuenta = calcularNumeroDeCuenta();
 			ultimaCuenta++;
@@ -109,19 +95,17 @@ public class Banco implements Runnable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	@SuppressWarnings("unchecked")
 	private static void listarCuentas() {
 		try {
-			Map<Cuenta, List<Movimiento>>cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
+			Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
 			for (Cuenta cuenta : cuentas.keySet()) {
-				System.err.println("numero de cuenta:"+cuenta.getNumeroCuenta()+" - alias:"+cuenta.getAlias());
+				System.err.println("numero de cuenta:" + cuenta.getNumeroCuenta() + " - alias:" + cuenta.getAlias());
 			}
 		} catch (Exception e) {
 			System.out.println("no existen cuentas");
-		} 
+		}
 	}
 
 	private static void ingresarDinero() {
@@ -135,52 +119,47 @@ public class Banco implements Runnable{
 
 	private static void sacarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
-		int importe = -escribirImporte();
-		System.out.println("Importe obtenido es: " + importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		movimiento.sacar();
-
+		int importe = escribirImporte();
+		if (importe > cuentaElegida.getSaldo()) {
+			System.out.println("Saldo insuficiente");
+		} else {
+			System.out.println("Importe obtenido es: " + importe);
+			Movimiento movimiento = new Movimiento(cuentaElegida, -importe);
+			movimiento.sacar();
+		}
 	}
 
 	private static void consultarSaldo() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		Movimiento movimiento = new Movimiento(cuentaElegida);
 		System.out.println("Saldo consultado es: " + movimiento.calcularTotal());
-
 	}
 
 	private static void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		for (Movimiento movimiento : getCuentas().get(cuentaElegida)) {
-			
-			Calendar a= movimiento.getFecha();
-			//System.out.println(a);
-			System.out.println(a.get(Calendar.DAY_OF_MONTH)+"/"
-					+a.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())+"/"
-					+a.get(Calendar.YEAR)+" - "
-					+movimiento.getImporte());
+			Calendar a = movimiento.getFecha();
+			System.out.println(a.get(Calendar.DAY_OF_MONTH) + "/"
+					+ a.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + "/" + a.get(Calendar.YEAR)
+					+ " - " + movimiento.getImporte());
 		}
-
 	}
 
 	private static Cuenta seleccionarCuenta() {
 		listarCuentas();
 		System.out.println("indica numero de cuenta:");
-		int numeroCuenta=Integer.parseInt(leerTecladoTexto());
-		Cuenta cuentaElegida=null;
+		int numeroCuenta = Integer.parseInt(leerTecladoTexto());
+		Cuenta cuentaElegida = null;
 		for (Cuenta cuenta : getCuentas().keySet()) {
-			if(cuenta.getNumeroCuenta()==numeroCuenta)
-			{
-				cuentaElegida=cuenta;
+			if (cuenta.getNumeroCuenta() == numeroCuenta) {
+				cuentaElegida = cuenta;
 				break;
 			}
-			
 		}
 		return cuentaElegida;
 	}
 
 	private static Cuenta obtenerCuentas(int numCuentaElegida) {
-
 		/*
 		 * BufferedReader bufferedReader = leerArchivo("banco.cuentas"); int cuentaLeido
 		 * = 0; String aliasLeido = null;
@@ -199,18 +178,14 @@ public class Banco implements Runnable{
 	}
 
 	private static int escribirImporte() {
-
 		int importe = 0;
 		System.out.println(" Escribir importe: ");
-
 		try {
 			importe = Integer.parseInt(leerTecladoTexto());
 		} catch (NumberFormatException e) {
 			System.err.println("Debes escribir un numero");
 		}
-
 		return importe;
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -225,35 +200,22 @@ public class Banco implements Runnable{
 		for (Cuenta cuenta : cuentas.keySet()) {
 			if (cuenta.getNumeroCuenta() > salida)
 				salida = cuenta.getNumeroCuenta();
-
 		}
 		return salida;
 	}
 
-	/**
-	 * 
-	 * @param cuenta
-	 */
 	public static int consultarSaldo(Cuenta cuenta) {
 		return 0;
 	}
 
-	/**
-	 * 
-	 * @param cuenta
-	 */
 	public static void grabarCuenta(Cuenta cuenta) {
-
 		if (getCuentas() == null)
 			setCuentas(new TreeMap<>());
 		getCuentas().put(cuenta, new ArrayList<Movimiento>());
-
 		grabaArchivo("banco.cuentas", getCuentas());
-
 	}
 
 	public static void grabaArchivo(String archivo, Object objetoAGrabar) {
-
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo);
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
 			objectOutputStream.writeObject(objetoAGrabar);
@@ -261,23 +223,15 @@ public class Banco implements Runnable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	public static Object leerArchivo(String archivo) throws ClassNotFoundException, IOException {
-
 		FileInputStream fileInputStream = new FileInputStream(archivo);
 		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
 		return objectInputStream.readObject();
-
 	}
 
-	/**
-	 * 
-	 * @param cuenta,importe,fecha
-	 */
 	public static void grabarMovimiento(Cuenta cuenta, int importe, Calendar fecha) {
-
 	}
 
 	public static Movimiento[] listadoMovimientos(Cuenta cuenta) {
@@ -285,7 +239,6 @@ public class Banco implements Runnable{
 	}
 
 	public static String leerTecladoTexto() {
-
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			return bufferedReader.readLine();
@@ -293,7 +246,6 @@ public class Banco implements Runnable{
 			e.printStackTrace();
 			return "0";
 		}
-
 	}
 
 	public static boolean operar(Cuenta cuenta, int importe) {
@@ -308,10 +260,6 @@ public class Banco implements Runnable{
 		Banco.cuentas = cuentas;
 	}
 
-	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
-
 }
