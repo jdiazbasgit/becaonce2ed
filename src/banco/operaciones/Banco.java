@@ -285,11 +285,13 @@ public class Banco {
 		
 		return "No has seleccionado todavía";
 	}
+	     
+	
 	/**
 	 */
 	private static int consultarSaldo() {
 		System.out.print("Saldo disponible: ");
-		int sumatorioTotal = 0;
+ 		int sumatorioTotal = 0;
 		BufferedReader bufferedReader4 = leerArchivo("banco.lista");
 		try {
 			while (bufferedReader4.ready()) {
