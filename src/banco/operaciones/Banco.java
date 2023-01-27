@@ -131,7 +131,7 @@ public class Banco implements Runnable{
 		getCuentas().get(cuentaElegida).add(movimiento);
 		grabaArchivo("banco.cuentas", getCuentas());
 	}
-
+ 
 	private static void sacarDinero() {
 		/*System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
@@ -299,6 +299,7 @@ public class Banco implements Runnable{
 
 	}
 
+<<<<<<< HEAD
 	public static void operar(Cuenta cuenta, int importe) {
 		  {
 				Cuenta cuentaElegida = seleccionarCuenta();
@@ -310,6 +311,20 @@ public class Banco implements Runnable{
 			}
 		if ( importe<=importe )
 		return;
+=======
+	public static boolean operar(Cuenta cuenta, int importe) {
+		return false;
+		
+		Cuenta cuentaElegida = seleccionarCuenta();
+		int importe = escribirImporte();
+		System.out.println("Importe obtenido es: " + importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+		
+		
+		
+		
+		
+>>>>>>> branch 'feature/bancoMap/jccb' of https://github.com/jdiazbasgit/becaonce2ed.git
 	}
 
 	public static Map<Cuenta, List<Movimiento>> getCuentas() {
