@@ -9,8 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -34,9 +32,7 @@ public class Banco implements Runnable{
 	}
 
 	public static void main(String[] args) {
-
-		System.out.println("Autor: LuisFer");
-		System.out.println();
+		System.out.println("SOY EL FUCKING RUEDAS");
 		try {
 			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
@@ -65,6 +61,7 @@ public class Banco implements Runnable{
 				break;
 			case 2:
 				listarCuentas();
+				
 				break;
 			case 3:
 				ingresarDinero();
