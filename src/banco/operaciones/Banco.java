@@ -135,11 +135,12 @@ public class Banco implements Runnable{
 
 	private static void sacarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
-		int importe = -escribirImporte();
+		int importe = escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		movimiento.sacar();
 
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+		getCuentas().get(cuentaElegida).add(movimiento);
+		grabaArchivo("banco.cuentas", getCuentas());
 	}
 
 	private static void consultarSaldo() {
