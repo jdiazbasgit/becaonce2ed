@@ -9,8 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -133,14 +131,22 @@ public class Banco implements Runnable{
 		grabaArchivo("banco.cuentas", getCuentas());
 	}
 
-	private static void sacarDinero() {
+	private static boolean sacarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = -escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		movimiento.sacar();
-		getCuentas().get(cuentaElegida).add(movimiento);
-		grabaArchivo("banco.cuentas", getCuentas());
+		
+		if (importe > 0) {
+			Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+			movimiento.sacar();
+					
+			}else if  (importe < 0) {
+				
+				System.err.println("no hay SALDO");
+				return false;
+			}
+		return false;
+		
 		
 
 	}
