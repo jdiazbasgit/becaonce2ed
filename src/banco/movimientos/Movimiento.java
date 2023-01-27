@@ -1,7 +1,5 @@
 package banco.movimientos;
 
-import banco.cuentas.Cuenta;
-
 /**
  * @author UsuarioM
  * @version 1.0
@@ -9,51 +7,37 @@ import banco.cuentas.Cuenta;
  */
 public class Movimiento {
 
-	private Cuenta cuenta;
-	private java.util.Calendar fecha;
+	private String fecha;
 	private int importe;
-	public Cuenta m_Cuenta;
-
+	private String concepto;
+	
 	public Movimiento(){
-
 	}
-
-	public void finalize() throws Throwable {
-
-	}
-	public Cuenta getCuenta(){
-		return cuenta;
-	}
-
-	public java.util.Calendar getFecha(){
+	
+	
+	
+	public String getFecha() {
 		return fecha;
 	}
 
-	public int getImporte(){
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getImporte() {
 		return importe;
 	}
 
-	/**
-	 * 
-	 * @param cuenta
-	 */
-	public void setCuenta(Cuenta cuenta){
-		this.cuenta=cuenta;
+	public void setImporte(int importe) {
+		this.importe = importe;
 	}
 
-	/**
-	 * 
-	 * @param fecha
-	 */
-	public void setFecha(java.util.Calendar fecha){
-		this.fecha =fecha;
+	public String getConcepto() {
+		return concepto;
 	}
 
-	/**
-	 * 
-	 * @param importe
-	 */
-	public void setImporte(int importe){
-		this.importe =importe;
+	public void setConcepto(String concepto) {
+		this.concepto = concepto;
 	}
+
 }//end Movimiento
