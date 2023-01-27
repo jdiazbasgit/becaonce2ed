@@ -9,8 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -132,7 +130,7 @@ public class Banco implements Runnable{
 		getCuentas().get(cuentaElegida).add(movimiento);
 		grabaArchivo("banco.cuentas", getCuentas());
 	}
-
+ 
 	private static void sacarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = -escribirImporte();
@@ -298,6 +296,16 @@ public class Banco implements Runnable{
 
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
+		
+		Cuenta cuentaElegida = seleccionarCuenta();
+		int importe = escribirImporte();
+		System.out.println("Importe obtenido es: " + importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+		
+		
+		
+		
+		
 	}
 
 	public static Map<Cuenta, List<Movimiento>> getCuentas() {
