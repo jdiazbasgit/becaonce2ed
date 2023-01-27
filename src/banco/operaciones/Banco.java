@@ -22,7 +22,7 @@ public class Banco {
 
 	private Cuenta[] cuentas;
 
-	public Banco() {
+ 	public Banco() {
 
 	}
 
