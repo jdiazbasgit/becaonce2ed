@@ -279,7 +279,7 @@ public class Banco {
 				return cuentaActiva;
 			}
 		} catch (Exception e) {
-			//System.out.println("Aún no hay cuentas");
+			
 			return "**Null**";
 		}
 		
