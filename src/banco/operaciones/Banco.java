@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.Buffer;
 import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -39,7 +38,7 @@ public class Banco {
 			System.out.println("6.- Consultar movimientos");
 			System.out.println("7.- Seleccionar cuenta");
 			System.out.println("8.- Salir");
-			
+
 			int opcion = 0;
 			try {
 				opcion = Integer.parseInt(leerTecladoTexto());
@@ -53,27 +52,44 @@ public class Banco {
 				try {
 					int ultimaCuenta = calcularNumeroDeCuenta();
 					ultimaCuenta++;
-					grabaArchivo("banco.cuentas", ultimaCuenta+";"+alias);
+					grabaArchivo("banco.cuentas", ultimaCuenta + ";" + alias);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
+
 			case 2:// Listadfo cuentas
-				BufferedReader bufferedReader= leerArchivo("banco.cuentas");
+				BufferedReader bufferedReader = leerArchivo("banco.cuentas");
 				try {
-					while(bufferedReader.ready()) {
-						String linea= bufferedReader.readLine();
-						StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-						System.err.println("Cuenta:"+stringTokenizer.nextToken()+" - alias:"+stringTokenizer.nextToken());
+					while (bufferedReader.ready()) {
+						String linea = bufferedReader.readLine();
+						StringTokenizer stringTokenizer = new StringTokenizer(linea, ";");
+						System.out.println(
+								"Cuenta:" + stringTokenizer.nextToken() + " - alias:" + stringTokenizer.nextToken());
 					}
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				break;
+
 			case 3:// Ingresar dinero
+				System.out.println("Señala a que cuenta quieres ingreesar el dinero");
+				@SuppressWarnings("unused")
+				String dinero = leerTecladoTexto();
+
+				try {
+					BufferedReader bufferedReader1 = new BufferedReader(new InputStreamReader(System.in));
+					//return bufferedReader1.readLine();
+				} catch (Exception e) {
+					e.printStackTrace();
+					//return "0";
+				}
+				System.out.println("cuanto dinero quiere ingresar");
+				Scanner consola = new Scanner(System.in);
+				int dinero1 = consola.nextInt();
+				System.out.println("Cantidad=" + dinero1);
 				break;
+
 			case 4:// Sacar dinero
 				break;
 			case 5:// Consultar saldo
@@ -92,8 +108,19 @@ public class Banco {
 
 	}
 
+	private static void grabarArchivo(String string, int ultimoSaldo) {
+
+	}
+
+	private static int calcularSaldo() {
+		return 0;
+	}
+
+	private static int sacarDineroDeCuenta() {
+		return 0;
+	}
+
 	private static int calcularNumeroDeCuenta() throws IOException {
-		// TODO Auto-generated method stub
 		BufferedReader bufferedReader = leerArchivo("banco.cuentas");
 		if (bufferedReader == null) {
 			return 0;
@@ -145,7 +172,7 @@ public class Banco {
 
 	public static BufferedReader leerArchivo(String archivo) {
 
-		try  {
+		try {
 			FileInputStream fileInputStream = new FileInputStream(archivo);
 			InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 			BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
