@@ -9,8 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.TreeMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -23,7 +25,7 @@ import banco.movimientos.Movimiento;
  * @created 23-ene.-2023 14:03:59
  */
 
-public class Banco {
+public class Banco implements Runnable{
 
 	private static Map<Cuenta, List<Movimiento>> cuentas;
 
@@ -123,13 +125,12 @@ public class Banco {
 	}
 
 	private static void ingresarDinero() {
-
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
 		getCuentas().get(cuentaElegida).add(movimiento);
-		grabarCuenta(cuentaElegida);
+		grabaArchivo("banco.cuentas", getCuentas());
 	}
 
 	private static void sacarDinero() {
@@ -151,7 +152,13 @@ public class Banco {
 	private static void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		for (Movimiento movimiento : getCuentas().get(cuentaElegida)) {
-			System.out.println(movimiento.getFecha()+" - "+movimiento.getImporte());
+			
+			Calendar a= movimiento.getFecha();
+			//System.out.println(a);
+			System.out.println(a.get(Calendar.DAY_OF_MONTH)+"/"
+					+a.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault())+"/"
+					+a.get(Calendar.YEAR)+" - "
+					+movimiento.getImporte());
 		}
 
 	}
@@ -299,6 +306,12 @@ public class Banco {
 
 	public static void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
 		Banco.cuentas = cuentas;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
