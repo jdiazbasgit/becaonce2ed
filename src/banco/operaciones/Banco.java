@@ -98,9 +98,27 @@ public class Banco {
 				break;
 			case 4:// Sacar dinero
 				spaceLine(10);
-				System.out.println("¿Cuantos dineros quieres sacar el dinero? :");
-				
+				BufferedReader bufferedReader31 = leerArchivo("banco.lista");
+				try {
+					while (bufferedReader31.ready()) {
+						String linea = bufferedReader31.readLine();
+						String nombreDelArchivo = linea + ".movimientos";
+						System.out.println("Escribe el importe a retirar:");
+						String ingreso1 = leerTecladoTexto();
+						if (consultarSaldo() > Integer.parseInt(ingreso1))
+							grabaArchivo(nombreDelArchivo, fechaToday() + ";" + "-" + ingreso1);
+						else {
+							System.err.println("Saldo insuficiente");
+							grabarCuenBanco();
+						}
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
+				
+			
 			case 5:// Consultar saldo
 				spaceLine(10);
 				BufferedReader bufferedReader4= leerArchivo("banco.lista");
@@ -268,11 +286,40 @@ public class Banco {
 		return "No has seleccionado todavía";
 	}
 	/**
-	 * 
-	 * @param cuenta
 	 */
-	public static int consultarSaldo(Cuenta cuenta) {
-		return 0;
+	private static int consultarSaldo() {
+		System.out.print("Saldo disponible: ");
+		int sumatorioTotal = 0;
+		BufferedReader bufferedReader4 = leerArchivo("banco.lista");
+		try {
+			while (bufferedReader4.ready()) {
+				String linea = bufferedReader4.readLine();
+				String nombreDelArchivo = linea + ".movimientos";
+				BufferedReader bufferedReader7 = leerArchivo(nombreDelArchivo);
+				try {
+					while (bufferedReader7.ready()) {
+						String linea2 = bufferedReader7.readLine();
+						StringTokenizer stringTokenizer = new StringTokenizer(linea2, ";");
+						stringTokenizer.nextToken();
+						String sumatorioStr = stringTokenizer.nextToken();
+						int sumatorioInt = Integer.parseInt(sumatorioStr);
+						sumatorioTotal += sumatorioInt;
+					}
+					System.err.println(sumatorioTotal);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sumatorioTotal;
 	}
 
 	public Cuenta[] getCuentas() {
