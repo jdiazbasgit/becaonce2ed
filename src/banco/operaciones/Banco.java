@@ -17,6 +17,8 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
+import javax.management.ValueExp;
+
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
 
@@ -134,8 +136,9 @@ public class Banco {
 				generarSaltosDeLinea(2);
 				System.out.println("Selecciona la cuenta para operar: ");
 				String cuentaElegida = leerTecladoTexto();
-				Object intStr = (listado.get(cuentaElegida));
-				grabaArchivoSobreescribiendo("banco.sesion", Integer.toString((int) intStr));
+				int i = Integer.parseInt(cuentaElegida);
+				Integer c = listado.get(i);
+				grabaArchivoSobreescribiendo("banco.sesion", Integer.toString(c));
 				break;
 			case 4:// Ingresar dinero
 				operar(cuentaSesion, true);
