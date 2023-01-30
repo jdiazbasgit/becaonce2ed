@@ -1,11 +1,18 @@
 package banco.operaciones;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
 public class EmpezarBanco {
 	public void main(String[] args) {
 
-		Banco banco = new Banco("Santander");
+		Banco banco = new Banco();
 		try {
-			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+			banco.setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
 
 		}
@@ -27,6 +34,16 @@ public class EmpezarBanco {
 			}
 			switch (opcion) {
 			case 1:
+				public void listarCuentas() {
+					try {
+						Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
+						for (Cuenta cuenta : cuentas.keySet()) {
+							System.err.println("numero de cuenta:" + cuenta.getNumeroCuenta() + " - alias:" + cuenta.getAlias());
+						}
+					} catch (Exception e) {
+						System.out.println("no existen cuentas");
+					}
+				}
 				break;
 			case 2:
 
@@ -49,6 +66,16 @@ public class EmpezarBanco {
 			}
 		}
 
+	}
+
+	private Map<Cuenta, List<Movimiento>> leerArchivo(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private String leerTecladoTexto() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
