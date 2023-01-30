@@ -25,9 +25,7 @@ public class Cuenta implements Comparable<Cuenta>,Serializable{
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
+	
 
 	public String getAlias(){
 		return alias;
