@@ -70,23 +70,7 @@ public class Movimiento implements Serializable{
 		int importeLeido=0;
 		int importeTotal=0;
 
-		try {
-			while(bufferedReader.ready()) {
-				String linea= bufferedReader.readLine();
-				StringTokenizer stringTokenizer= new StringTokenizer(linea,";");
-				cuentaLeido = Integer.parseInt(stringTokenizer.nextToken());
-				stringTokenizer.nextToken();
-				importeLeido = Integer.parseInt(stringTokenizer.nextToken());
-//				System.err.println("Cuenta: "+cuentaLeido+", fechaLeido: "+fechaLeido+", importeLeido: "+importeLeido);
-				if (cuentaLeido == this.cuenta.getNumeroCuenta()) {
-					importeTotal += importeLeido;
-				}
-//				System.err.println("importeTotal: "+importeTotal);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		
 		return importeTotal;
 
 	}
