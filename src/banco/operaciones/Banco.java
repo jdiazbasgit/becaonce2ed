@@ -27,7 +27,7 @@ import banco.movimientos.Movimiento;
 
 public class Banco {
 
-	private  Map<Cuenta, List<Movimiento>> cuentas;
+	public  Map<Cuenta, List<Movimiento>> cuentas;
 
 	public Banco() {
 
@@ -35,7 +35,7 @@ public class Banco {
 
 	
 
-	private  void crearCuenta() {
+	public  void crearCuenta() {
 
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
@@ -54,7 +54,7 @@ public class Banco {
 	}
 
 	@SuppressWarnings("unchecked")
-	private  void listarCuentas() {
+	public  void listarCuentas() {
 		try {
 			Map<Cuenta, List<Movimiento>>cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
 			for (Cuenta cuenta : cuentas.keySet()) {
@@ -65,7 +65,7 @@ public class Banco {
 		} 
 	}
 
-	private  void ingresarDinero() {
+	public  void ingresarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = escribirImporte();
 		if(operar(cuentaElegida, importe))
@@ -89,7 +89,7 @@ public class Banco {
 		
 	}
 
-	private  void sacarDinero() {
+	public  void sacarDinero() {
 		System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int saldo=consultarSaldo(cuentaElegida);
@@ -109,7 +109,7 @@ public class Banco {
 
 	}
 
-	private  int consultarSaldo(Cuenta cuenta) {
+	public  int consultarSaldo(Cuenta cuenta) {
 		
 		int saldo=0;
 		for(Movimiento movimiento:getCuentas().get(cuenta)) {
@@ -121,7 +121,7 @@ public class Banco {
 
 	}
 
-	private  void consultarMovimiento() {
+	public  void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		for (Movimiento movimiento : getCuentas().get(cuentaElegida)) {
 			
@@ -134,7 +134,7 @@ public class Banco {
 
 	}
 
-	private  Cuenta seleccionarCuenta() {
+	public  Cuenta seleccionarCuenta() {
 		listarCuentas();
 		System.out.println("indica numero de cuenta:");
 		int numeroCuenta=Integer.parseInt(leerTecladoTexto());
@@ -151,7 +151,7 @@ public class Banco {
 	}
 
 	
-	private  int escribirImporte() {
+	public  int escribirImporte() {
 
 		int importe = 0;
 		System.out.println(" Escribir importe: ");
@@ -167,7 +167,7 @@ public class Banco {
 	}
 
 	@SuppressWarnings("unchecked")
-	private  int calcularNumeroDeCuenta() throws IOException {
+	public  int calcularNumeroDeCuenta() throws IOException {
 		Map<Cuenta, List<Movimiento>> cuentas = null;
 		try {
 			cuentas = (Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
