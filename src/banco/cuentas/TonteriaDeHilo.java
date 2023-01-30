@@ -1,9 +1,5 @@
 package banco.cuentas;
 
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 public class TonteriaDeHilo {
 
 	public static void main(String[] args) {
@@ -32,6 +28,7 @@ public class TonteriaDeHilo {
 			} 
 		}*/
 		
+		@SuppressWarnings("unused")
 		MiHilo hilo1= new MiHilo(1000, "un segundo");
 		MiHilo hilo2= new MiHilo(2000, "dos segundo");
 		MiHilo hilo3= new MiHilo(3000, "tres segundo");

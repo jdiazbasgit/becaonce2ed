@@ -137,7 +137,7 @@ public class Banco implements Runnable{
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
 		movimiento.sacar();
-
+        		
 	}
 
 	private static void consultarSaldo() {
