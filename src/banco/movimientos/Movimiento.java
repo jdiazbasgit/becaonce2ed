@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @version 1.0
  * @created 23-ene.-2023 14:03:55
  */
+@SuppressWarnings("serial")
 public class Movimiento implements Serializable {
 
 	private String fecha;
