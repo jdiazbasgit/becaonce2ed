@@ -297,12 +297,6 @@ public class Banco implements Runnable{
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
 		
-		Cuenta cuentaElegida = seleccionarCuenta();
-		int importe = escribirImporte();
-		System.out.println("Importe obtenido es: " + importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		
-		
 		
 		
 		
