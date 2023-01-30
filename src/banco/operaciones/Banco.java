@@ -1,6 +1,5 @@
 package banco.operaciones;
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -151,7 +150,7 @@ public class Banco {
 		try {
 			importe = Integer.parseInt(leerTecladoTexto());
 		} catch (NumberFormatException e) {
-			System.err.println("Debes escribir un numero");
+			System.out.println("Debes escribir un numero");
 		}
 
 		return importe;
