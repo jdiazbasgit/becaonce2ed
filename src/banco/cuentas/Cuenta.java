@@ -56,4 +56,9 @@ public class Cuenta implements Comparable<Cuenta>,Serializable{
 		return this.getAlias().compareTo(otra.getAlias());
 	}
 
+	 public int getSaldo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
