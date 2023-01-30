@@ -27,71 +27,15 @@ import banco.movimientos.Movimiento;
 
 public class Banco {
 
-	private static Map<Cuenta, List<Movimiento>> cuentas;
+	private  Map<Cuenta, List<Movimiento>> cuentas;
 
 	public Banco() {
 
 	}
 
-	public static void main(String[] args) {
+	
 
-		try {
-			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
-		} catch (Exception e) {
-			
-		} 
-		while (true) {
-			System.out.println();
-			System.out.println("MENU DEL BANCO");
-			System.out.println("1.- Crear cuenta");
-			System.out.println("2.- Listado Cuentas");
-			System.out.println("3.- Ingresar dinero");
-			System.out.println("4.- Sacar dinero");
-			System.out.println("5.- Consultar saldo");
-			System.out.println("6.- Consultar movimientos");
-			System.out.println("7.- Salir");
-			int opcion = 0;
-			try {
-				opcion = Integer.parseInt(leerTecladoTexto());
-			} catch (NumberFormatException e) {
-				System.err.println("Debes escribir un numero");
-			}
-			switch (opcion) {
-			case 1:
-				crearCuenta();
-				break;
-			case 2:
-				listarCuentas();
-				
-				break;
-			case 3:
-				ingresarDinero();
-				break;
-			case 4:
-				sacarDinero();
-			
-				
-				break;
-			case 5:
-				Cuenta cuentaSeleccionada = seleccionarCuenta();
-				System.out.println("el saldo de la cuenta "+cuentaSeleccionada.getAlias()+" es "+consultarSaldo(cuentaSeleccionada));
-				break;
-			case 6:
-				consultarMovimiento();
-				break;
-			
-			case 7:
-				System.out.println("Fin...");
-				System.exit(0);
-				break;
-			default:
-				System.err.println("debes escribir una opcion valida");
-			}
-		}
-
-	}
-
-	private static void crearCuenta() {
+	private  void crearCuenta() {
 
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
@@ -110,7 +54,7 @@ public class Banco {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static void listarCuentas() {
+	private  void listarCuentas() {
 		try {
 			Map<Cuenta, List<Movimiento>>cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
 			for (Cuenta cuenta : cuentas.keySet()) {
@@ -121,7 +65,7 @@ public class Banco {
 		} 
 	}
 
-	private static void ingresarDinero() {
+	private  void ingresarDinero() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = escribirImporte();
 		if(operar(cuentaElegida, importe))
@@ -130,7 +74,7 @@ public class Banco {
 			System.err.println("El importe no se ha podido ingresar");
 	}
 	
-	public static boolean operar(Cuenta cuenta, int importe) {
+	public  boolean operar(Cuenta cuenta, int importe) {
 		
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(new GregorianCalendar(), importe);
@@ -145,11 +89,11 @@ public class Banco {
 		
 	}
 
-	private static void sacarDinero() {
-		/*System.out.println("Seleccione cuenta");
+	private  void sacarDinero() {
+		System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
-<<<<<<< HEAD
 		int saldo=consultarSaldo(cuentaElegida);
+		System.out.println("indica el importe:");
 		int importe = escribirImporte();
 		if(importe>saldo)
 		{
@@ -160,19 +104,12 @@ public class Banco {
 			System.err.println("importe reintegrado correctamentre");
 		else
 			System.err.println("El importe no se ha podido reintegrar");
-=======
-		int importe = -escribirImporte();
-		System.out.println("Importe obtenido es: " + importe);
-		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
-		getCuentas().get(cuentaElegida).add(movimiento);
-		grabaArchivo("banco.cuenta",getCuentas());
-		movimiento.sacar();*/
->>>>>>> branch 'bancoMap' of https://github.com/jdiazbasgit/becaonce2ed.git
+
 		
 
 	}
 
-	private static int consultarSaldo(Cuenta cuenta) {
+	private  int consultarSaldo(Cuenta cuenta) {
 		
 		int saldo=0;
 		for(Movimiento movimiento:getCuentas().get(cuenta)) {
@@ -184,7 +121,7 @@ public class Banco {
 
 	}
 
-	private static void consultarMovimiento() {
+	private  void consultarMovimiento() {
 		Cuenta cuentaElegida = seleccionarCuenta();
 		for (Movimiento movimiento : getCuentas().get(cuentaElegida)) {
 			
@@ -197,7 +134,7 @@ public class Banco {
 
 	}
 
-	private static Cuenta seleccionarCuenta() {
+	private  Cuenta seleccionarCuenta() {
 		listarCuentas();
 		System.out.println("indica numero de cuenta:");
 		int numeroCuenta=Integer.parseInt(leerTecladoTexto());
@@ -214,7 +151,7 @@ public class Banco {
 	}
 
 	
-	private static int escribirImporte() {
+	private  int escribirImporte() {
 
 		int importe = 0;
 		System.out.println(" Escribir importe: ");
@@ -230,7 +167,7 @@ public class Banco {
 	}
 
 	@SuppressWarnings("unchecked")
-	private static int calcularNumeroDeCuenta() throws IOException {
+	private  int calcularNumeroDeCuenta() throws IOException {
 		Map<Cuenta, List<Movimiento>> cuentas = null;
 		try {
 			cuentas = (Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas");
@@ -252,7 +189,7 @@ public class Banco {
 	 * 
 	 * @param cuenta
 	 */
-	public static void grabarCuenta(Cuenta cuenta) {
+	public  void grabarCuenta(Cuenta cuenta) {
 
 		if (getCuentas() == null)
 			setCuentas(new TreeMap<>());
@@ -267,7 +204,7 @@ public class Banco {
 
 	}
 
-	public static void grabaArchivo(String archivo, Object objetoAGrabar) throws Exception {
+	public  void grabaArchivo(String archivo, Object objetoAGrabar) throws Exception {
 
 		try (FileOutputStream fileOutputStream = new FileOutputStream(archivo);
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
@@ -280,7 +217,7 @@ public class Banco {
 
 	}
 
-	public static Object leerArchivo(String archivo) throws ClassNotFoundException, IOException {
+	public  Object leerArchivo(String archivo) throws ClassNotFoundException, IOException {
 
 		FileInputStream fileInputStream = new FileInputStream(archivo);
 		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -289,7 +226,7 @@ public class Banco {
 	}
 
 	
-	public static String leerTecladoTexto() {
+	public  String leerTecladoTexto() {
 
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -301,16 +238,18 @@ public class Banco {
 
 	}
 
-
-	
-
-	public static Map<Cuenta, List<Movimiento>> getCuentas() {
+	public Map<Cuenta, List<Movimiento>> getCuentas() {
 		return cuentas;
 	}
 
-	public static void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
-		Banco.cuentas = cuentas;
+	public void setCuentas(Map<Cuenta, List<Movimiento>> cuentas) {
+		this.cuentas = cuentas;
 	}
+
+
+	
+
+	
 
 	
 
