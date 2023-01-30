@@ -32,9 +32,7 @@ public class Banco implements Runnable{
 	}
 
 	public static void main(String[] args) {
-
-		System.out.println("Autor: LuisFer");
-		System.out.println();
+		System.out.println("SOY EL FUCKING RUEDAS");
 		try {
 			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
@@ -63,12 +61,15 @@ public class Banco implements Runnable{
 				break;
 			case 2:
 				listarCuentas();
+				
 				break;
 			case 3:
 				ingresarDinero();
 				break;
 			case 4:
 				sacarDinero();
+			
+				
 				break;
 			case 5:
 				consultarSaldo();
@@ -132,12 +133,21 @@ public class Banco implements Runnable{
 	}
  
 	private static void sacarDinero() {
+		/*System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
 		int importe = -escribirImporte();
 		System.out.println("Importe obtenido es: " + importe);
 		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+<<<<<<< HEAD
 		movimiento.sacar();
         		
+=======
+		getCuentas().get(cuentaElegida).add(movimiento);
+		grabaArchivo("banco.cuenta",getCuentas());
+		movimiento.sacar();*/
+		
+
+>>>>>>> branch 'feature/bancoMap/jccb' of https://github.com/jdiazbasgit/becaonce2ed.git
 	}
 
 	private static void consultarSaldo() {
@@ -294,12 +304,26 @@ public class Banco implements Runnable{
 
 	}
 
+<<<<<<< HEAD
+	public static void operar(Cuenta cuenta, int importe) {
+		  {
+				Cuenta cuentaElegida = seleccionarCuenta();
+				 importe = escribirImporte();
+				System.out.println("Importe obtenido es: " + importe);
+				Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+				getCuentas().get(cuentaElegida).add(movimiento);
+				grabaArchivo("banco.cuentas", getCuentas());
+			}
+		if ( importe<=importe )
+		return;
+=======
 	public static boolean operar(Cuenta cuenta, int importe) {
 		return false;
 		
 		
 		
 		
+>>>>>>> branch 'feature/bancoMap/jccb' of https://github.com/jdiazbasgit/becaonce2ed.git
 	}
 
 	public static Map<Cuenta, List<Movimiento>> getCuentas() {
