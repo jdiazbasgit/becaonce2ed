@@ -36,13 +36,13 @@ public class Banco {
 	public static void main(String[] args) {
 
 		// solicitarAcceso();
-		try {
+		/*try {
 			setCuentasMap((TreeMap<Cuenta, List<Movimiento>>) leerArchivo("bovedaDeDatos.banco"));
 		} catch (Exception e) {
-		}
+		}*/
 		boolean menuActivo = true;
 		while (menuActivo) {
-			generarSaltosDeLinea(15);
+			generarSaltosDeLinea(50);
 			generarLogo();
 			generarSaltosDeLinea(1);
 			Cuenta cuentaSesion = leerSesion("banco.sesion");
@@ -173,8 +173,6 @@ public class Banco {
 				break;
 			case 7:// Consultar movimientos
 				generarSaltosDeLinea(50);
-				System.out.println("  Fecha               Importe	            Concepto");
-				System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 				TreeMap<Cuenta, List<Movimiento>> cuentas1 = null;
 				try {
 					cuentas1 = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
@@ -185,6 +183,8 @@ public class Banco {
 				}
 				try {
 					List<Movimiento> movimientos = cuentas1.get(cuentaSesion);
+					System.out.println("  Fecha               Importe	                   Concepto");
+					System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 					for (Movimiento movimientoLinea : movimientos) {
 						System.out.println(movimientoLinea.getFecha() + "               " + movimientoLinea.getImporte()
 								+ "                     " + movimientoLinea.getConcepto());
@@ -393,24 +393,7 @@ public class Banco {
 		return sumatorioTotal;
 	}
 
-	/*
-	 * private static int consultarSaldoS(String numeroCuenta) { //
-	 * System.out.print("Saldo disponible: "); int sumatorioTotal = 0; //
-	 * BufferedReader bufferedReader4= leerArchivo("banco.sesion"); try { //
-	 * while(bufferedReader4.ready()) { // String linea= bufferedReader4.readLine();
-	 * String nombreDelArchivo = numeroCuenta + ".movimientos"; BufferedReader
-	 * bufferedReader7 = leerArchivoTexto(nombreDelArchivo); try { while
-	 * (bufferedReader7.ready()) { String linea2 = bufferedReader7.readLine();
-	 * StringTokenizer stringTokenizer = new StringTokenizer(linea2, ";");
-	 * stringTokenizer.nextToken(); String sumatorioStr =
-	 * stringTokenizer.nextToken(); int sumatorioInt =
-	 * Integer.parseInt(sumatorioStr); sumatorioTotal += sumatorioInt; } //
-	 * System.err.println(sumatorioTotal);
-	 * 
-	 * } catch (IOException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } // } } catch (NumberFormatException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } return sumatorioTotal; }
-	 */
+
 
 	private static String cuentaActual(Cuenta cuentaSesion) {
 
@@ -426,7 +409,7 @@ public class Banco {
 			return "**Ninguna Cuenta Seleccionada**";
 		}
 
-		return "Ninguna Cuenta Seleccionada";
+		return "**Ninguna Cuenta Seleccionada**";
 	}
 
 	@SuppressWarnings("unchecked")
@@ -590,3 +573,22 @@ public class Banco {
 	}
 
 }// end Banco
+
+/*
+ * private static int consultarSaldoS(String numeroCuenta) { //
+ * System.out.print("Saldo disponible: "); int sumatorioTotal = 0; //
+ * BufferedReader bufferedReader4= leerArchivo("banco.sesion"); try { //
+ * while(bufferedReader4.ready()) { // String linea= bufferedReader4.readLine();
+ * String nombreDelArchivo = numeroCuenta + ".movimientos"; BufferedReader
+ * bufferedReader7 = leerArchivoTexto(nombreDelArchivo); try { while
+ * (bufferedReader7.ready()) { String linea2 = bufferedReader7.readLine();
+ * StringTokenizer stringTokenizer = new StringTokenizer(linea2, ";");
+ * stringTokenizer.nextToken(); String sumatorioStr =
+ * stringTokenizer.nextToken(); int sumatorioInt =
+ * Integer.parseInt(sumatorioStr); sumatorioTotal += sumatorioInt; } //
+ * System.err.println(sumatorioTotal);
+ * 
+ * } catch (IOException e) { // TODO Auto-generated catch block
+ * e.printStackTrace(); } // } } catch (NumberFormatException e) { // TODO
+ * Auto-generated catch block e.printStackTrace(); } return sumatorioTotal; }
+ */
