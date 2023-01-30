@@ -34,18 +34,25 @@ public class EmpezarBanco {
 			}
 			switch (opcion) {
 			case 1:
+				banco.crearCuenta();
 				break;
 			case 2:
+				banco.listarCuentas();
 				break;
 			case 3:
+				banco.ingresarDinero();
 				break;
 			case 4:
+				banco.sacarDinero();
 				break;
 			case 5:
+				Cuenta cuentaSeleccionada = banco.seleccionarCuenta();
+				System.out.println("el saldo de la cuenta "+cuentaSeleccionada.getAlias()+" es "+banco.consultarSaldo(cuentaSeleccionada));
 				break;
 			case 6:
+				banco.consultarMovimiento();
 				break;
-
+			
 			case 7:
 				System.out.println("Fin...");
 				System.exit(0);
