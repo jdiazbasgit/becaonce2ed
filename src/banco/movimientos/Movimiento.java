@@ -21,7 +21,7 @@ import banco.cuentas.Cuenta;
 
 public class Movimiento implements Serializable{
 
-	private Cuenta cuenta;
+	
 	private java.util.Calendar fecha;
 	private int importe;
 
@@ -29,20 +29,16 @@ public class Movimiento implements Serializable{
 
 	}
 
-	public Movimiento(Cuenta cuenta){
-		
-		Calendar fecha = Calendar.getInstance();
 
-		setCuenta(cuenta);
-		setFecha(fecha);
-		setImporte(0);
-		
+
+	public Movimiento(Calendar fecha, int importe) {
+		super();
+		this.fecha = fecha;
+		this.importe = importe;
 	}
 
-	public Movimiento(Cuenta cuenta, int importe){
-		
-		Calendar fecha = Calendar.getInstance();
 
+<<<<<<< HEAD
 		setCuenta(cuenta);
 		setFecha(fecha);
 		setImporte(importe);
@@ -140,6 +136,8 @@ public class Movimiento implements Serializable{
 	public Cuenta getCuenta(){
 		return cuenta;
 	}
+=======
+>>>>>>> branch 'bancoMap' of https://github.com/jdiazbasgit/becaonce2ed.git
 
 	public java.util.Calendar getFecha(){
 		return fecha;
@@ -148,15 +146,7 @@ public class Movimiento implements Serializable{
 	public int getImporte(){
 		return importe;
 	}
-
-	/**
-	 * 
-	 * @param cuenta
-	 */
-	public void setCuenta(Cuenta cuenta){
-		this.cuenta = cuenta;
-	}
-
+	
 	/**
 	 * 
 	 * @param fecha
