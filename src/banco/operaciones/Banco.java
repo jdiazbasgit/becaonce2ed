@@ -30,6 +30,8 @@ public class Banco {
 	public  Map<Cuenta, List<Movimiento>> cuentas;
 	
 	private String nombreDelBanco; 
+	//hola!
+	
 
 	public String getNombreDelBanco() {
 		return nombreDelBanco;
