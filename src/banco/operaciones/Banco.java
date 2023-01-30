@@ -11,7 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.TreeMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -35,9 +34,7 @@ public class Banco {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(Color.RED.getRGB());
-		System.out.println("Autor: LuisFer");
-		System.out.println();
+
 		try {
 			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
@@ -65,12 +62,15 @@ public class Banco {
 				break;
 			case 2:
 				listarCuentas();
+				
 				break;
 			case 3:
 				ingresarDinero();
 				break;
 			case 4:
 				sacarDinero();
+			
+				
 				break;
 			case 5:
 				Cuenta cuentaSeleccionada = seleccionarCuenta();
@@ -146,7 +146,9 @@ public class Banco {
 	}
 
 	private static void sacarDinero() {
+		/*System.out.println("Seleccione cuenta");
 		Cuenta cuentaElegida = seleccionarCuenta();
+<<<<<<< HEAD
 		int saldo=consultarSaldo(cuentaElegida);
 		int importe = escribirImporte();
 		if(importe>saldo)
@@ -158,6 +160,14 @@ public class Banco {
 			System.err.println("importe reintegrado correctamentre");
 		else
 			System.err.println("El importe no se ha podido reintegrar");
+=======
+		int importe = -escribirImporte();
+		System.out.println("Importe obtenido es: " + importe);
+		Movimiento movimiento = new Movimiento(cuentaElegida, importe);
+		getCuentas().get(cuentaElegida).add(movimiento);
+		grabaArchivo("banco.cuenta",getCuentas());
+		movimiento.sacar();*/
+>>>>>>> branch 'bancoMap' of https://github.com/jdiazbasgit/becaonce2ed.git
 		
 
 	}
@@ -290,6 +300,7 @@ public class Banco {
 		}
 
 	}
+
 
 	
 
