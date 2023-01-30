@@ -1,6 +1,5 @@
 package banco.operaciones;
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,10 +28,7 @@ public class Banco {
 
 	public  Map<Cuenta, List<Movimiento>> cuentas;
 	
-	private String nombreDelBanco; 
-	//hola!
-	//hola 2!
-	
+	private String nombreDelBanco;	
 
 	public String getNombreDelBanco() {
 		return nombreDelBanco;

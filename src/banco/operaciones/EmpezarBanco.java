@@ -1,15 +1,22 @@
 package banco.operaciones;
 
+import java.util.List;
+import java.util.Map;
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
 public class EmpezarBanco {
 	public void main(String[] args) {
 
 		Banco banco = new Banco("Santander");
 		try {
-			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
 
 		}
 		while (true) {
+			System.out.println("Bienvenido al banco "+banco.getNombreDelBanco());
 			System.out.println();
 			System.out.println("MENU DEL BANCO");
 			System.out.println("1.- Crear cuenta");
@@ -21,7 +28,7 @@ public class EmpezarBanco {
 			System.out.println("7.- Salir");
 			int opcion = 0;
 			try {
-				opcion = Integer.parseInt(leerTecladoTexto());
+				opcion = Integer.parseInt(banco.leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
@@ -29,7 +36,6 @@ public class EmpezarBanco {
 			case 1:
 				break;
 			case 2:
-
 				break;
 			case 3:
 				break;
