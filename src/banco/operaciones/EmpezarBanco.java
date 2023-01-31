@@ -3,7 +3,10 @@ package banco.operaciones;
 import java.util.List;
 import java.util.Map;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.TreeMap;
+=======
+>>>>>>> 8289f827ad8ea56e282de6cbe46a1cd790c45bd3
 
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
@@ -11,9 +14,12 @@ import banco.movimientos.Movimiento;
 public class EmpezarBanco {
 	public void main(String[] args) {
 
+<<<<<<< HEAD
 		Banco banco = new Banco();
 		try {
 			banco.setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+=======
+>>>>>>> 8289f827ad8ea56e282de6cbe46a1cd790c45bd3
 =======
 
 import banco.cuentas.Cuenta;
@@ -22,12 +28,13 @@ import banco.movimientos.Movimiento;
 public class EmpezarBanco {
 	public static void main(String[] args) {
 
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 		Banco banco = new Banco();
 		try {
 			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 >>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		while (true) {
 			System.out.println();
@@ -78,7 +85,6 @@ public class EmpezarBanco {
 			case 6:
 				banco.consultarMovimiento();
 				break;
-
 			case 7:
 				System.out.println("Fin...");
 				System.exit(0);
