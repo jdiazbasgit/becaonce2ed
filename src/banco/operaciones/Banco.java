@@ -55,7 +55,8 @@ public class Banco {
 			System.out.println("	7.- Consultar movimientos");
 			System.out.println("	8.- Traspaso entre cuentas");
 			System.out.println("	9.- Salir");
-			System.out.println("	10.- Eliminar datos de prueba");
+			System.out.println("	10.- Eliminar cuenta");
+			System.out.println("	11.- Eliminar todos los datos");
 			System.out.println("_______________________________________");
 			int opcion = 0;
 			try {
@@ -215,7 +216,17 @@ public class Banco {
 				solicitarAcceso();
 				// System.exit(0);
 				break;
-			case 10:// Borrar datos de los ficheros
+			case 10:// Borrar key de la cuenta
+				generarSaltosDeLinea(50);
+				try {
+					darDeBajaCuenta(cuentaSesion);
+				}
+				catch (Exception e) {
+					System.out.println("Debes elegir una cuenta para Operar");
+				}
+				pulsaEnter();
+				break;
+			case 11:// Borrar datos de los ficheros
 				grabaArchivoVaciarDatos("banco.sesion");
 				grabaArchivoVaciarDatos("banco.cuentas");
 				grabaArchivoVaciarDatos("banco.traspaso");
@@ -227,6 +238,49 @@ public class Banco {
 			}
 		}
 
+	}
+	private static void darDeBajaCuenta(Cuenta cuentaSesion) throws SinSaldoExepcion {
+		System.out.println("**Atención**");
+		System.out.println("Está a punto de borrar definitivamente la cuenta [" + cuentaSesion.getAlias() + "]. El saldo será Traspasado a otra cuenta");
+		System.out.println("¿Desea continuar? (Escribe S o N)");
+		String continuar = leerTecladoTexto();
+		if (continuar.contentEquals("no") || continuar.contentEquals("n") || continuar.contentEquals("No") || continuar.contentEquals("NO") || continuar.contentEquals("N")) {
+			System.out.println("Operación cancelada");
+			return;
+		}
+		generarSaltosDeLinea(50);
+		System.out.println("La cuenta [" + cuentaSesion.getAlias() + "] tiene un saldo de "+consultarSaldo(cuentaSesion)+"€");
+		System.out.println("Selecciona la cuenta de destino donde Traspasar el saldo:");
+		Map<Integer, Integer> listado = new TreeMap<Integer, Integer>();
+		try {
+			@SuppressWarnings("unchecked")
+			Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+			int i = 1;
+			for (Cuenta cuenta : cuentas.keySet()) {
+				listado.put(i, cuenta.getNumeroCuenta());
+				System.out.print(i + ".- [");
+				System.out.print(cuenta.getAlias());
+				System.out.print("]   CCC: ");
+				System.out.println(cuenta.getNumeroCuenta());
+				i++;
+			}
+		} catch (Exception e) {
+			// System.out.println("Aún no has creado ninguna cuenta");
+		}
+		String cuentaDestino = leerTecladoTexto();
+		int i = Integer.parseInt(cuentaDestino);
+		Integer c = listado.get(i);
+		grabaArchivoSobreescribiendo("banco.traspaso", Integer.toString(c));
+		Cuenta cuentaDestinoC = leerSesion("banco.traspaso");
+		String conceptoD = "Traspaso desde [" + cuentaSesion.getAlias() + "]";
+		//String concepto = "Traspaso destino [" + cuentaDestinoC.getAlias() + "]";
+		grabarMovimiento(cuentaDestinoC, Integer.toString(consultarSaldo(cuentaSesion)), conceptoD);
+		System.out.println("Traspaso a favor: " + consultarSaldo(cuentaSesion) + "€ registrado en [" + cuentaDestinoC.getAlias()
+				+ "]. Saldo disponible: " + consultarSaldo(cuentaDestinoC)+"€");
+		//continuar = "-" + continuar;
+		//grabarMovimiento(cuentaSesion, continuar, concepto);
+		System.out.println("Retirado " + "€ desde [" + cuentaSesion.getAlias() + "]. Saldo disponible: "
+				+ consultarSaldo(cuentaSesion)+"€");
 	}
 
 	private static void traspaso(Cuenta cuentaSesion) throws SinSaldoExepcion {
@@ -435,7 +489,7 @@ public class Banco {
 					break;
 				}
 			}
-			if (usado != true) {
+			if (!usado) {
 				return salida;
 			}
 		}
