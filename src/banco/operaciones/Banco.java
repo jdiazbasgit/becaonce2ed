@@ -38,9 +38,13 @@ public class Banco {
 	public void setNombreDelBanco(String nombreDelBanco) {
 		this.nombreDelBanco = nombreDelBanco;
 	}
+<<<<<<< HEAD
 	public Banco() {
 		setNombreDelBanco(nombreDelBanco);
 	}
+=======
+	
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 
 
 

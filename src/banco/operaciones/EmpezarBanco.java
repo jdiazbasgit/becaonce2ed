@@ -2,6 +2,7 @@ package banco.operaciones;
 
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
 
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
@@ -13,6 +14,17 @@ public class EmpezarBanco {
 
 		try {
 
+=======
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
+public class EmpezarBanco {
+	public static void main(String[] args) {
+
+		Banco banco = new Banco();
+		try {
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
 
@@ -30,7 +42,10 @@ public class EmpezarBanco {
 			int opcion = 0;
 
 			try {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 				opcion = Integer.parseInt(banco.leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
@@ -49,10 +64,15 @@ public class EmpezarBanco {
 				banco.sacarDinero();
 				break;
 			case 5:
+<<<<<<< HEAD
 				Cuenta cuenta = banco.seleccionarCuenta();
 
 				System.out
 						.println("El saldo de la cuenta " + cuenta.getAlias() + " es " + banco.consultarSaldo(cuenta));
+=======
+				Cuenta cuenta=banco.seleccionarCuenta();
+				System.out.println("el saldo de la cuenta "+cuenta.getAlias()+" es "+banco.consultarSaldo(cuenta));
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 				break;
 			case 6:
 				banco.consultarMovimiento();
