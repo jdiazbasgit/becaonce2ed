@@ -26,6 +26,15 @@ public class EmpezarBanco {
 =======
 import java.util.List;
 import java.util.Map;
+<<<<<<< HEAD
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
+public class EmpezarBanco {
+	public void main(String[] args) {
+
+=======
 
 import banco.cuentas.Cuenta;
 import banco.movimientos.Movimiento;
@@ -38,7 +47,7 @@ public class EmpezarBanco {
 		try {
 			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		while (true) {
 			System.out.println();
