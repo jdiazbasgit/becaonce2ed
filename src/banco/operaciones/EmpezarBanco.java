@@ -1,5 +1,6 @@
 package banco.operaciones;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -22,6 +23,17 @@ public class EmpezarBanco {
 
 	public void main(String[] args) {
 
+=======
+import java.util.List;
+import java.util.Map;
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
+public class EmpezarBanco {
+	public static void main(String[] args) {
+
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 		Banco banco = new Banco();
 		try {
 			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
@@ -59,8 +71,12 @@ public class EmpezarBanco {
 				break;
 			case 5:
 				Cuenta cuenta=banco.seleccionarCuenta();
+<<<<<<< HEAD
 				banco.consultarSaldo(cuenta);
 				System.out.println("El saldo de la cuenta "+cuenta.getAlias()+" es "+banco.consultarSaldo(cuenta));
+=======
+				System.out.println("el saldo de la cuenta "+cuenta.getAlias()+" es "+banco.consultarSaldo(cuenta));
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 				break;
 			case 6:
 				banco.consultarMovimiento();

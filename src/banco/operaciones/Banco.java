@@ -24,6 +24,7 @@ import banco.movimientos.Movimiento;
 public class Banco {
 
 	public  Map<Cuenta, List<Movimiento>> cuentas;
+<<<<<<< HEAD
 
 	public Banco() {
 
@@ -32,6 +33,24 @@ public class Banco {
 	
 
 	public  void crearCuenta() {
+=======
+	
+	private String nombreDelBanco; 
+	//hola!
+	
+
+	public String getNombreDelBanco() {
+		return nombreDelBanco;
+	}
+	public void setNombreDelBanco(String nombreDelBanco) {
+		this.nombreDelBanco = nombreDelBanco;
+	}
+	
+
+
+
+	public void crearCuenta() {
+>>>>>>> 6762b373d2886dd116ee4d2f030170288644f5de
 
 		System.out.println("Escribe el alias de la cuenta:");
 		String alias = leerTecladoTexto();
