@@ -29,7 +29,18 @@ public class Banco {
 
 	public  Map<Cuenta, List<Movimiento>> cuentas;
 	
+	private String nombreDelBanco; 
+	//hola!
 	
+
+	public String getNombreDelBanco() {
+		return nombreDelBanco;
+	}
+	public void setNombreDelBanco(String nombreDelBanco) {
+		this.nombreDelBanco = nombreDelBanco;
+	}
+	
+
 
 
 	public void crearCuenta() {
