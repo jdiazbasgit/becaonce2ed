@@ -37,9 +37,7 @@ public class Banco {
 	public void setNombreDelBanco(String nombreDelBanco) {
 		this.nombreDelBanco = nombreDelBanco;
 	}
-	public Banco(String nombreDelBanco) {
-		setNombreDelBanco(nombreDelBanco);
-	}
+	
 
 
 
