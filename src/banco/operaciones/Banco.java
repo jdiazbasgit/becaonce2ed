@@ -1,6 +1,5 @@
 package banco.operaciones;
 
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,9 +28,6 @@ public class Banco {
 
 	public  Map<Cuenta, List<Movimiento>> cuentas;
 	
-	
-
-
 	public void crearCuenta() {
 
 		System.out.println("Escribe el alias de la cuenta:");
@@ -187,7 +183,6 @@ public class Banco {
 		try {
 			grabaArchivo("banco.cuentas", getCuentas());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

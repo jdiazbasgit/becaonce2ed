@@ -1,13 +1,19 @@
 package banco.operaciones;
 
+import java.util.List;
+import java.util.Map;
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
 public class EmpezarBanco {
 	public void main(String[] args) {
 
-		Banco banco = new Banco("Santander");
+		Banco banco = new Banco();
 		try {
-			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		while (true) {
 			System.out.println();
@@ -21,12 +27,13 @@ public class EmpezarBanco {
 			System.out.println("7.- Salir");
 			int opcion = 0;
 			try {
-				opcion = Integer.parseInt(leerTecladoTexto());
+				opcion = Integer.parseInt(banco.leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
 			switch (opcion) {
 			case 1:
+				banco.crearCuenta();
 				break;
 			case 2:
 
@@ -39,7 +46,6 @@ public class EmpezarBanco {
 				break;
 			case 6:
 				break;
-
 			case 7:
 				System.out.println("Fin...");
 				System.exit(0);
