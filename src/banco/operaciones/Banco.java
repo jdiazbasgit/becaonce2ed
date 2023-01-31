@@ -428,7 +428,6 @@ public class Banco {
 		boolean loop = true;
 		while (loop) {
 			salida = sacarRandoms(100000000, 999999999);
-			@SuppressWarnings("unused")
 			boolean usado = false;
 			for (Cuenta cuenta : cuentas.keySet()) {
 				if (cuenta.getNumeroCuenta() == salida) {
@@ -436,8 +435,8 @@ public class Banco {
 					break;
 				}
 			}
-			if (usado = true) {
-				loop = false;
+			if (usado != true) {
+				return salida;
 			}
 		}
 		return salida;
