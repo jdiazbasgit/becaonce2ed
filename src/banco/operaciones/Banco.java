@@ -66,7 +66,7 @@ public class Banco {
 			switch (opcion) {
 			case 1:// crear cuenta
 				generarSaltosDeLinea(50);
-				System.out.println("Escribe un nombre para la nueva cuenta: ");
+				System.out.print("Escribe un nombre para la nueva cuenta: ");
 				String alias = leerTecladoTexto();
 				try {
 					// int ultimaCuenta = calcularNumeroDeCuentaSecuencial();
@@ -82,7 +82,7 @@ public class Banco {
 					 * generarSaltosDeLinea(15);
 					 */
 					generarSaltosDeLinea(50);
-					System.out.println("Se ha creado la cuenta  \"" + alias + "\" con número " + ultimaCuenta);
+					System.out.println("Se ha creado la cuenta  [" + alias + "] con número " + ultimaCuenta);
 					generarSaltosDeLinea(2);
 					pulsaEnter();
 				} catch (IOException e) {
