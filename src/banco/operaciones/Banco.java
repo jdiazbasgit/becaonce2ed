@@ -26,11 +26,23 @@ import banco.movimientos.Movimiento;
 
 public class Banco {
 
-	public Map<Cuenta, List<Movimiento>> cuentas;
+	public  Map<Cuenta, List<Movimiento>> cuentas;
+	
+	private String nombreDelBanco; 
+	//hola!
+	
 
-	public Banco() {
-
+	public String getNombreDelBanco() {
+		return nombreDelBanco;
 	}
+	public void setNombreDelBanco(String nombreDelBanco) {
+		this.nombreDelBanco = nombreDelBanco;
+	}
+	public Banco() {
+		setNombreDelBanco(nombreDelBanco);
+	}
+
+
 
 	public void crearCuenta() {
 
