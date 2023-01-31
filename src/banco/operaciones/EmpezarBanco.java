@@ -1,11 +1,30 @@
 package banco.operaciones;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TreeMap;
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
 public class EmpezarBanco {
+	private Map<Cuenta, List<Movimiento>> cuentas;
+
 	public void main(String[] args) {
 
-		Banco banco = new Banco("Santander");
+		Banco banco = new Banco();
 		try {
-			setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+			banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 		} catch (Exception e) {
 
 		}
@@ -21,34 +40,42 @@ public class EmpezarBanco {
 			System.out.println("7.- Salir");
 			int opcion = 0;
 			try {
-				opcion = Integer.parseInt(leerTecladoTexto());
+				opcion = Integer.parseInt(banco.leerTecladoTexto());
 			} catch (NumberFormatException e) {
 				System.err.println("Debes escribir un numero");
 			}
 			switch (opcion) {
 			case 1:
+				banco.crearCuenta();
 				break;
 			case 2:
-
+				banco.listarCuentas();
 				break;
 			case 3:
+				banco.ingresarDinero();
 				break;
 			case 4:
+				banco.sacarDinero();
 				break;
 			case 5:
+				Cuenta cuenta=banco.seleccionarCuenta();
+				banco.consultarSaldo(cuenta);
+				System.out.println("El saldo de la cuenta "+cuenta.getAlias()+" es "+banco.consultarSaldo(cuenta));
 				break;
 			case 6:
+				banco.consultarMovimiento();
 				break;
-
 			case 7:
 				System.out.println("Fin...");
 				System.exit(0);
 				break;
 			default:
-				System.err.println("debes escribir una opcion valida");
+				System.out.println("debes escribir una opcion valida");
 			}
 		}
-
 	}
 
-}
+	private void leerArchivo(String string){
+		
+		
+	}}
