@@ -1,10 +1,20 @@
 package banco.operaciones;
 
+import java.util.List;
+import java.util.Map;
+
+import banco.cuentas.Cuenta;
+import banco.movimientos.Movimiento;
+
 public class EmpezarBanco {
-	public  void main(String[] args) {
+
+	public static void main(String[] args) {
+		
+		Banco banco = new Banco();
+			
 
 	try {
-		setCuentas((Map<Cuenta, List<Movimiento>>) leerArchivo("banco.cuentas"));
+	banco.setCuentas((Map<Cuenta, List<Movimiento>>) banco.leerArchivo("banco.cuentas"));
 	} catch (Exception e) {
 		
 	} 
@@ -20,23 +30,29 @@ public class EmpezarBanco {
 		System.out.println("7.- Salir");
 		int opcion = 0;
 		try {
-			opcion = Integer.parseInt(leerTecladoTexto());
+		//	opcion = Integer.parseInt(leerTecladoTexto());
 		} catch (NumberFormatException e) {
 			System.err.println("Debes escribir un numero");
 		}
 		switch (opcion) {
 		case 1:
+			banco.crearCuenta();
 			break;
 		case 2:
-			
+			banco.listarCuentas();
 			break;
 		case 3:
+			banco.ingresarDinero();
 			break;
 		case 4:
+			banco.sacarDinero();
 			break;
 		case 5:
+			Cuenta cuenta = banco.seleccionarCuenta();
+			System.out.println("el saldo de la cuenta "+cuenta.getAlias()+"es "+banco.consultarSaldo(cuenta));
 			break;
 		case 6:
+			banco.consultarMovimiento();
 			break;
 		
 		case 7:
