@@ -10,7 +10,9 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -35,10 +37,10 @@ public class Banco {
 	public static void main(String[] args) {
 
 		// solicitarAcceso();
-		/*try {
-			setCuentasMap((TreeMap<Cuenta, List<Movimiento>>) leerArchivo("bovedaDeDatos.banco"));
-		} catch (Exception e) {
-		}*/
+		/*
+		 * try { setCuentasMap((TreeMap<Cuenta, List<Movimiento>>)
+		 * leerArchivo("bovedaDeDatos.banco")); } catch (Exception e) { }
+		 */
 		boolean menuActivo = true;
 		while (menuActivo) {
 			generarSaltosDeLinea(50);
@@ -54,9 +56,9 @@ public class Banco {
 			System.out.println("	6.- Consultar saldo");
 			System.out.println("	7.- Consultar movimientos");
 			System.out.println("	8.- Traspaso entre cuentas");
-			System.out.println("	9.- Salir");
-			System.out.println("	10.- Eliminar cuenta");
-			System.out.println("	11.- Eliminar todos los datos");
+			System.out.println("	9.- Eliminar cuenta");
+			System.out.println("	10.- Eliminar todos los datos");
+			System.out.println("	11.- Salir");
 			System.out.println("_______________________________________");
 			int opcion = 0;
 			try {
@@ -76,14 +78,9 @@ public class Banco {
 					cuentaCreada.setNumeroCuenta(ultimaCuenta);
 					cuentaCreada.setAlias(alias);
 					grabarCuenta(cuentaCreada);
-					/*
-					 * String nombreFicheroMovimientosAsociado = ultimaCuenta+".movimientos";
-					 * grabaArchivo(nombreFicheroMovimientosAsociado, fechaActual()+";"+"0");
-					 * generarSaltosDeLinea(15);
-					 */
 					generarSaltosDeLinea(50);
 					System.out.println("Se ha creado la cuenta  [" + alias + "] con número " + ultimaCuenta);
-					generarSaltosDeLinea(2);
+					// generarSaltosDeLinea(2);
 					pulsaEnter();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -91,23 +88,7 @@ public class Banco {
 				break;
 			case 2:// Listado cuentas
 				generarSaltosDeLinea(50);
-				try {
-					TreeMap<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo(
-							"boveda.banco");
-					System.out.println("Listado de Cuentas operativas:");
-					generarSaltosDeLinea(1);
-					for (Cuenta cuenta : cuentas.keySet()) {
-						System.out.print("Nombre de la cuenta: [");
-						System.out.print(cuenta.getAlias());
-						System.out.print("]	   CCC: ");
-						System.out.print(cuenta.getNumeroCuenta());
-						System.out.print("	   Saldo disponible: ");
-						System.out.println(consultarSaldo(cuenta)+"€");
-					}
-				} catch (Exception e) {
-					System.out.println("Aún no has creado ninguna cuenta");
-				}
-				//generarSaltosDeLinea(2);
+				listarCuentas();
 				pulsaEnter();
 				break;
 			case 3:// Seleccionar Cuenta
@@ -118,8 +99,6 @@ public class Banco {
 							"boveda.banco");
 					int i = 1;
 					for (Cuenta cuenta : cuentas.keySet()) {
-						// System.err.println("Nombre de la cuenta: "+cuenta.getAlias() +" Número:
-						// "+cuenta.getNumeroCuenta()+" Saldo disponible: ");
 						listado.put(i, cuenta.getNumeroCuenta());
 						System.out.print(i + ".- [");
 						System.out.print(cuenta.getAlias());
@@ -133,7 +112,7 @@ public class Banco {
 					break;
 				}
 				generarSaltosDeLinea(1);
-				System.out.println("Selecciona la cuenta para operar: ");
+				System.out.print("Selecciona la cuenta para operar: ");
 				String cuentaElegida = leerTecladoTexto();
 				int i = Integer.parseInt(cuentaElegida);
 				Integer c = listado.get(i);
@@ -164,10 +143,10 @@ public class Banco {
 			case 6:// Consultar saldo
 				generarSaltosDeLinea(50);
 				try {
-					System.out.println("Consulta de la cuenta ["+ cuentaSesion.getAlias()+"]");
+					System.out.println("Consulta de la cuenta [" + cuentaSesion.getAlias() + "]");
 					generarSaltosDeLinea(1);
 					System.out.print("Saldo disponible: ");
-					System.out.println(consultarSaldo(cuentaSesion)+"€");
+					System.out.println(consultarSaldo(cuentaSesion) + "€");
 				} catch (Exception e1) {
 					System.out.println("Debes elegir una cuenta para Operar");
 				}
@@ -185,12 +164,15 @@ public class Banco {
 				}
 				try {
 					List<Movimiento> movimientos = cuentas1.get(cuentaSesion);
-					System.out.println("Movimientos de la cuenta ["+ cuentaSesion.getAlias()+"]:");
+					System.out.println("Movimientos de la cuenta [" + cuentaSesion.getAlias() + "]:");
 					generarSaltosDeLinea(1);
 					System.out.println("  Fecha               Importe	                   Concepto");
 					System.out.println("▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀");
 					for (Movimiento movimientoLinea : movimientos) {
-						System.out.println(movimientoLinea.getFecha() + "               " + movimientoLinea.getImporte()
+						Calendar fecha = movimientoLinea.getFecha();						
+						System.out.println(fecha.get(Calendar.DAY_OF_MONTH) + "/"
+								+ fecha.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault()) + "/" + fecha.get(Calendar.YEAR)
+								+"               " + movimientoLinea.getImporte()
 								+ "                     " + movimientoLinea.getConcepto());
 					}
 				} catch (Exception e) {
@@ -205,32 +187,37 @@ public class Banco {
 					traspaso(cuentaSesion);
 				} catch (SinSaldoExepcion objExcep) {
 					System.out.println(objExcep.getMessage());
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					System.out.println("Debes elegir una cuenta para Operar");
 				}
 				pulsaEnter();
 				break;
-			case 9:// Salir
-				grabaArchivoVaciarDatos("banco.sesion");
-				solicitarAcceso();
-				// System.exit(0);
-				break;
-			case 10:// Borrar key de la cuenta
+			case 9:// Borrar key de la cuenta
 				generarSaltosDeLinea(50);
 				try {
 					darDeBajaCuenta(cuentaSesion);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					System.out.println("Debes elegir una cuenta para Operar");
 				}
 				pulsaEnter();
 				break;
-			case 11:// Borrar datos de los ficheros
-				grabaArchivoVaciarDatos("banco.sesion");
-				grabaArchivoVaciarDatos("banco.cuentas");
-				grabaArchivoVaciarDatos("banco.traspaso");
-				grabaArchivoVaciarDatos("boveda.banco");
+			case 10:// Borrar datos de los ficheros
+				generarSaltosDeLinea(50);
+				try {
+					borradoGeneral();
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}
+				pulsaEnter();
+				break;
+			case 11:// Salir
+				try {
+					grabaArchivoVaciarDatos("banco.sesion");
+					solicitarAcceso();
+				} catch (Exception e) {					
+					e.printStackTrace();
+				}
+				// System.exit(0);
 				break;
 			default:
 				System.err.println("Escribe una opcion valida");
@@ -239,24 +226,76 @@ public class Banco {
 		}
 
 	}
-	private static void darDeBajaCuenta(Cuenta cuentaSesion) throws SinSaldoExepcion {
+
+	private static void listarCuentas() {
+		try {
+			@SuppressWarnings("unchecked")
+			TreeMap<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo(
+					"boveda.banco");
+			System.out.println("Listado de Cuentas operativas:");
+			generarSaltosDeLinea(1);
+			for (Cuenta cuenta : cuentas.keySet()) {
+				System.out.print("Nombre de la cuenta: [");
+				System.out.print(cuenta.getAlias());
+				System.out.print("]	   CCC: ");
+				System.out.print(cuenta.getNumeroCuenta());
+				System.out.print("	   Saldo disponible: ");
+				System.out.println(consultarSaldo(cuenta) + "€");
+			}
+		} catch (Exception e) {
+			System.out.println("Aún no has creado ninguna cuenta");
+		}
+	}
+	private static void borradoGeneral() {
 		System.out.println("**Atención**");
-		System.out.println("Está a punto de borrar definitivamente la cuenta [" + cuentaSesion.getAlias() + "]. El saldo será Traspasado a otra cuenta");
+		System.out.println("Está a punto de borrar definitivamente todos los datos, esta operación no se puede deshacer");
+		System.out.println("¿Desea continuar? (Escribe SI o NO)");
+		while (true) {
+			String continuar = leerTecladoTexto();
+			if (continuar.contentEquals("no") || continuar.contentEquals("n") || continuar.contentEquals("No")
+					|| continuar.contentEquals("NO") || continuar.contentEquals("N")) {
+				System.out.println("Operación cancelada");
+				return;
+			}
+			if (continuar.contentEquals("si") || continuar.contentEquals("s") || continuar.contentEquals("Si")
+					|| continuar.contentEquals("SI") || continuar.contentEquals("S")) {
+				grabaArchivoVaciarDatos("banco.sesion");
+				grabaArchivoVaciarDatos("banco.traspaso");
+				grabaArchivoVaciarDatos("boveda.banco");
+				System.out.println("Datos borrados con éxito");
+				return;
+			}
+			System.out.println("Debes responder SI o NO");
+		}
+	}
+
+	private static void darDeBajaCuenta(Cuenta cuentaSesion) throws IOException, ClassNotFoundException {
+		System.out.println("**Atención**");
+		@SuppressWarnings("unchecked")
+		Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+		if (cuentas.size() < 2) {
+			System.out.println("Necesitas al menos otra cuenta donde Traspasar los fondos");
+			return;
+		}
+		System.out.println("Está a punto de borrar definitivamente la cuenta [" + cuentaSesion.getAlias()
+				+ "]. El saldo será Traspasado a otra cuenta");
 		System.out.println("¿Desea continuar? (Escribe S o N)");
 		String continuar = leerTecladoTexto();
-		if (continuar.contentEquals("no") || continuar.contentEquals("n") || continuar.contentEquals("No") || continuar.contentEquals("NO") || continuar.contentEquals("N")) {
+		if (continuar.contentEquals("no") || continuar.contentEquals("n") || continuar.contentEquals("No")
+				|| continuar.contentEquals("NO") || continuar.contentEquals("N")) {
 			System.out.println("Operación cancelada");
 			return;
 		}
 		generarSaltosDeLinea(50);
-		System.out.println("La cuenta [" + cuentaSesion.getAlias() + "] tiene un saldo de "+consultarSaldo(cuentaSesion)+"€");
+		System.out.println(
+				"La cuenta [" + cuentaSesion.getAlias() + "] tiene un saldo de " + consultarSaldo(cuentaSesion) + "€");
 		System.out.println("Selecciona la cuenta de destino donde Traspasar el saldo:");
 		Map<Integer, Integer> listado = new TreeMap<Integer, Integer>();
-		try {
-			@SuppressWarnings("unchecked")
-			Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+		try {			
 			int i = 1;
 			for (Cuenta cuenta : cuentas.keySet()) {
+				if (cuentaSesion.getNumeroCuenta() == cuenta.getNumeroCuenta())
+					continue;
 				listado.put(i, cuenta.getNumeroCuenta());
 				System.out.print(i + ".- [");
 				System.out.print(cuenta.getAlias());
@@ -273,17 +312,24 @@ public class Banco {
 		grabaArchivoSobreescribiendo("banco.traspaso", Integer.toString(c));
 		Cuenta cuentaDestinoC = leerSesion("banco.traspaso");
 		String conceptoD = "Traspaso desde [" + cuentaSesion.getAlias() + "]";
-		//String concepto = "Traspaso destino [" + cuentaDestinoC.getAlias() + "]";
 		grabarMovimiento(cuentaDestinoC, Integer.toString(consultarSaldo(cuentaSesion)), conceptoD);
-		System.out.println("Traspaso a favor: " + consultarSaldo(cuentaSesion) + "€ registrado en [" + cuentaDestinoC.getAlias()
-				+ "]. Saldo disponible: " + consultarSaldo(cuentaDestinoC)+"€");
-		//continuar = "-" + continuar;
-		//grabarMovimiento(cuentaSesion, continuar, concepto);
-		System.out.println("Retirado " + "€ desde [" + cuentaSesion.getAlias() + "]. Saldo disponible: "
-				+ consultarSaldo(cuentaSesion)+"€");
+		System.out.println("Traspaso a favor: " + consultarSaldo(cuentaSesion) + "€ registrado en ["
+				+ cuentaDestinoC.getAlias() + "]. Saldo disponible: " + consultarSaldo(cuentaDestinoC) + "€");		
+		try {			
+			cuentas.remove(cuentaSesion);
+			grabarArchivo("boveda.banco", cuentas);			
+		} catch (Exception e) {
+			// System.out.println("Aún no has creado ninguna cuenta");
+		}
 	}
 
-	private static void traspaso(Cuenta cuentaSesion) throws SinSaldoExepcion {
+	private static void traspaso(Cuenta cuentaSesion) throws SinSaldoExepcion, ClassNotFoundException, IOException {
+		@SuppressWarnings("unchecked")
+		Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+		if (cuentas.size() < 2) {
+			System.out.println("**ATENCION**\n Necesitas al menos otra cuenta donde Traspasar los fondos");
+			return;
+		}
 		System.out.print("Operando en la cuenta [" + cuentaSesion.getAlias() + "]. Escribe el importe a retirar: ");
 		String ingreso = leerTecladoTexto();
 		if (consultarSaldo(leerSesion("banco.sesion")) < Integer.parseInt(ingreso)) {
@@ -293,10 +339,11 @@ public class Banco {
 		System.out.println("Selecciona la cuenta de destino: ");
 		Map<Integer, Integer> listado = new TreeMap<Integer, Integer>();
 		try {
-			@SuppressWarnings("unchecked")
-			Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+			//Map<Cuenta, List<Movimiento>> cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
 			int i = 1;
 			for (Cuenta cuenta : cuentas.keySet()) {
+				if (cuentaSesion.getNumeroCuenta() == cuenta.getNumeroCuenta())
+					continue;
 				listado.put(i, cuenta.getNumeroCuenta());
 				System.out.print(i + ".- [");
 				System.out.print(cuenta.getAlias());
@@ -316,11 +363,11 @@ public class Banco {
 		String concepto = "Traspaso destino [" + cuentaDestinoC.getAlias() + "]";
 		grabarMovimiento(cuentaDestinoC, ingreso, conceptoD);
 		System.out.println("Traspaso a favor: " + ingreso + "€ registrado en [" + cuentaDestinoC.getAlias()
-				+ "]. Saldo disponible: " + consultarSaldo(cuentaDestinoC)+"€");
+				+ "]. Saldo disponible: " + consultarSaldo(cuentaDestinoC) + "€");
 		ingreso = "-" + ingreso;
 		grabarMovimiento(cuentaSesion, ingreso, concepto);
 		System.out.println("Retirado " + ingreso + "€ desde [" + cuentaSesion.getAlias() + "]. Saldo disponible: "
-				+ consultarSaldo(cuentaSesion)+"€");
+				+ consultarSaldo(cuentaSesion) + "€");
 	}
 
 	private static void operar(Cuenta cuentaSesion, boolean positivo) throws SinSaldoExepcion {
@@ -345,9 +392,9 @@ public class Banco {
 		grabarMovimiento(cuentaSesion, ingreso, concepto);
 
 		if (positivo) {
-			System.out.println("Ingreso " + ingreso + ". Saldo disponible: " + consultarSaldo(cuentaSesion)+"€");
+			System.out.println("Ingreso " + ingreso + ". Saldo disponible: " + consultarSaldo(cuentaSesion) + "€");
 		} else {
-			System.out.println("Retirado " + ingreso + ". Saldo disponible: " + consultarSaldo(cuentaSesion)+"€");
+			System.out.println("Retirado " + ingreso + ". Saldo disponible: " + consultarSaldo(cuentaSesion) + "€");
 		}
 	}
 
@@ -355,8 +402,7 @@ public class Banco {
 	public static void grabarMovimiento(Cuenta cuentaS, String ingreso, String concepto) {
 		Movimiento movimiento = new Movimiento();
 		movimiento.setImporte(Integer.parseInt(ingreso));
-		movimiento.setFecha(fechaActual());
-		// generarSaltosDeLinea(1);
+		movimiento.setFecha(fechaActual());		
 		movimiento.setConcepto(concepto);
 		TreeMap<Cuenta, List<Movimiento>> cuentas = null;
 		try {
@@ -407,12 +453,17 @@ public class Banco {
 		}
 	}
 
-	private static String fechaActual() {
+	/*private static String fechaActual() {
 		Calendar calendario = Calendar.getInstance();
 		String fecha = Integer.toString(calendario.get(Calendar.DATE)) + "-"
 				+ Integer.toString(calendario.get(Calendar.MONTH) + 1) + "-"
 				+ Integer.toString(calendario.get(Calendar.YEAR));
 		return fecha;
+	}*/
+	
+	private static Calendar fechaActual() {
+		Calendar calendario = new GregorianCalendar();
+		return calendario;
 	}
 
 	private static void pulsaEnter() {
@@ -452,22 +503,35 @@ public class Banco {
 		return sumatorioTotal;
 	}
 
-
-
+	@SuppressWarnings("unchecked")
 	private static String cuentaActual(Cuenta cuentaSesion) {
 
-		BufferedReader bufferedReader = leerArchivoTexto("banco.sesion");
+		TreeMap<Cuenta, List<Movimiento>> cuentas = null;
 		try {
+			cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
+			if (cuentas.isEmpty()) {
+				grabaArchivoVaciarDatos("boveda.banco");
+				return "**ATENCION: No se ha podido acceder a la Bóveda**\n \t Continuar creará una nueva bbdd local \n";
+				// El Map existe pero está vacio, limpiamos el archivo para que las demás
+				// opciones no muestren un listado vacio
+			}
+		} catch (Exception e1) {
+			return "**ATENCION: No se ha podido acceder a la Bóveda**\n \t Continuar creará una nueva bbdd local \n";
+			// exista o no el archivo, no hay Map
+		}
+		cuentas = null;// llamo al gc???
+		BufferedReader bufferedReader = null;
+		try {
+			bufferedReader = leerArchivoTexto("banco.sesion");
 			while (bufferedReader.ready()) {
 				String cuentaActiva = "Operando en la cuenta: " + bufferedReader.readLine() + " ["
 						+ cuentaSesion.getAlias() + "]";
 				return cuentaActiva;
 			}
-		} catch (Exception e) {			
-			return "**ATENCION: No se ha podido acceder a la Bóveda**\n \t Continuar creará una nueva bbdd local \n";
+		} catch (NullPointerException | IOException e) {
+			return "**Ninguna Cuenta Seleccionada**";// hay datos pero de otra cuenta que ya no existe
 		}
-
-		return "**Ninguna Cuenta Seleccionada**";
+		return "**Ninguna Cuenta Seleccionada**";// no entra al while porque el archivo está en blanco
 	}
 
 	@SuppressWarnings("unchecked")
@@ -536,7 +600,7 @@ public class Banco {
 
 		FileInputStream fileInputStream = new FileInputStream(archivo);
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
-			//objectInputStream.close();
+			// objectInputStream.close();
 			return objectInputStream.readObject();
 		}
 
@@ -592,7 +656,6 @@ public class Banco {
 		grabarArchivo("boveda.banco", getCuentasMap());
 	}
 
-
 	public static String leerTecladoTexto() {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -613,27 +676,21 @@ public class Banco {
 
 }// end Banco
 
-/*@SuppressWarnings("unchecked")
-private static int calcularNumeroDeCuentaSecuencial() throws IOException {
-	TreeMap<Cuenta, List<Movimiento>> cuentas = null;
-	try {
-		cuentas = (TreeMap<Cuenta, List<Movimiento>>) leerArchivo("boveda.banco");
-	} catch (Exception e1) {
-		// System.out.println("Aún no hay cuentas");
-		return 0;
-	}
-	int salida = 0;
-	for (Cuenta cuenta : cuentas.keySet()) {
-		if (cuenta.getNumeroCuenta() > salida)
-			salida = cuenta.getNumeroCuenta();
+/*
+ * @SuppressWarnings("unchecked") private static int
+ * calcularNumeroDeCuentaSecuencial() throws IOException { TreeMap<Cuenta,
+ * List<Movimiento>> cuentas = null; try { cuentas = (TreeMap<Cuenta,
+ * List<Movimiento>>) leerArchivo("boveda.banco"); } catch (Exception e1) { //
+ * System.out.println("Aún no hay cuentas"); return 0; } int salida = 0; for
+ * (Cuenta cuenta : cuentas.keySet()) { if (cuenta.getNumeroCuenta() > salida)
+ * salida = cuenta.getNumeroCuenta();
+ * 
+ * } return salida; }
+ */
 
-	}
-	return salida;
-}*/
-
-/*public static Movimiento[] listadoMovimientos(Cuenta cuenta) {
-return null;
-}*/
+/*
+ * public static Movimiento[] listadoMovimientos(Cuenta cuenta) { return null; }
+ */
 
 /*
  * private static int consultarSaldoS(String numeroCuenta) { //

@@ -1,6 +1,7 @@
 package banco.movimientos;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * @author UsuarioM
@@ -10,20 +11,26 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Movimiento implements Serializable {
 
-	private String fecha;
+	private Calendar fecha;
 	private int importe;
 	private String concepto;
 	
 	public Movimiento(){
 	}
 	
+	public Movimiento(Calendar fecha, int importe, String concepto){
+		this.fecha = fecha;
+		this.importe = importe;
+		this.concepto = concepto;
+	}
 	
 	
-	public String getFecha() {
+	
+	public Calendar getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
+	public void setFecha(Calendar fecha) {
 		this.fecha = fecha;
 	}
 
