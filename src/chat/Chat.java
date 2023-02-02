@@ -36,7 +36,7 @@ public class Chat extends Frame {
 	    pInferior.add(new Button("Enviar"));
 
 	    Panel pIzquierda = new Panel();
-	    pIzquierda.setBackground(Color.BLUE);
+	    pIzquierda.setBackground(Color.CYAN);
 	    pIzquierda.setLayout(new FlowLayout(FlowLayout.CENTER,25,100));
 	    pIzquierda.add(new Label("Usuarios"));
 
