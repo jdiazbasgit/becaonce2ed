@@ -34,7 +34,7 @@ public class Chat extends Frame {
 		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 
-		setbRegistrar(new Button("Nick:"));
+		setbRegistrar(new Button("Nicky:"));
 
 		// componentes
 	}
