@@ -1,12 +1,18 @@
 package chat;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 
 import java.awt.TextField;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -23,30 +29,74 @@ public class Chat extends Frame {
 	private Label lNick, lUsuarios, lMensajes;
 
 	public Chat() {
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		/*
-		 * Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
-		 * setSize(dimension.width/2,dimension.height/2);
-		 * setLocation(dimension.width/4,dimension.height/4);
-		 */
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		setbRegistrar(new Button("Nick:"));
-		Dimension tamanoActualizableFrame = this.getSize();
+		this.setLayout(new BorderLayout());
+		Dimension tamanoActualizableFrame = Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(tamanoActualizableFrame.width/2,tamanoActualizableFrame.height/2);
+		setLocation(tamanoActualizableFrame.width/4,tamanoActualizableFrame.height/4);
 		System.out.println(tamanoActualizableFrame);
+		
+		
+		this.setpSuperior(new Panel());
+		this.add(getpSuperior(),BorderLayout.NORTH);
+		getpSuperior().setLayout(new FlowLayout(FlowLayout.CENTER, 90, 20));
+		getpSuperior().setBackground(Color.ORANGE);
+		
+		this.setlNick(new Label("Nick:"));
+		getpSuperior().add(getlNick());
+		
+		this.settNick(new TextField("Escribe cómo te verán los demás",0));
+		getpSuperior().add(gettNick());
+		
+		this.setbRegistrar(new Button("REGISTRAR"));
+		getpSuperior().add(getbRegistrar());
+		
+		
+		this.setpIzquierda(new Panel());
+		this.add(getpIzquierda(),BorderLayout.WEST);
+		getpIzquierda().setLayout(new BorderLayout());
+		getpIzquierda().setBackground(Color.RED);
+		//---------
+		this.setpIzquierdaSuperior(new Panel());
+		getpIzquierda().add(getpIzquierdaSuperior(),BorderLayout.NORTH);
+		getpIzquierdaSuperior().setLayout(new BorderLayout());
+		getpIzquierdaSuperior().setBackground(Color.DARK_GRAY);
+		
+		this.setlUsuarios(new Label("Usuarios:"));
+		getpIzquierdaSuperior().add(getlUsuarios());
+		//-----------
+		
+		getpIzquierda().add(getpIzquierdaSuperior());
+		
+				
+		this.setTaUsuarios(new TextArea());
+		//getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
 
-		Panel pNorte = new Panel();
-		Panel pSur = new Panel();
-		Panel pOeste = new Panel();
-		Panel pCentro = new Panel();
-		this.add(pOeste, BorderLayout.WEST);
-		this.add(pCentro, BorderLayout.CENTER);
-
-		pNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 90, 50));
-		pNorte.add(new Label("Usuario"));
-		pNorte.add(new TextField("Introduce tu nombre", 0));
-		pNorte.add(new Button("Registrar"));
-
-		// componentes
+		
+		
+		this.setpInferior(new Panel());
+		this.add(getpInferior(),BorderLayout.SOUTH);
+		getpInferior().setLayout(new FlowLayout(FlowLayout.CENTER, 90, 20));
+		getpInferior().setBackground(Color.ORANGE);
+		
+		this.setlMensajes(new Label("Mensaje:"));
+		getpInferior().add(getlMensajes());
+		
+		this.settMensaje(new TextField("Escribe un mensaje",60));
+		getpInferior().add(gettMensaje());
+		
+		this.setbEnviar(new Button("ENVIAR"));
+		getpInferior().add(getbEnviar());
+		
+		
+		this.setTaMensajes(new TextArea());
+		this.add(getTaMensajes());
+		
+		
+		
+		
 	}
 
 	public Button getbRegistrar() {
