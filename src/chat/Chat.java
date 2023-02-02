@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Checkbox;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
@@ -21,8 +22,12 @@ public class Chat extends Frame {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setSize(800, 600);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		this.setLayout(new BorderLayout(20,20));
-	    Panel pNorte = new Panel();
+		this.setLayout(new BorderLayout());
+		Dimension tamanoActualizableFrame = this.getSize();
+		System.out.println(tamanoActualizableFrame);
+	    
+		
+		Panel pNorte = new Panel();
 	    Panel pSur = new Panel();
 	    Panel pOeste = new Panel();
 	    Panel pCentro = new Panel();
@@ -37,7 +42,7 @@ public class Chat extends Frame {
 	    this.add(pOeste, BorderLayout.WEST);
 	    this.add(pCentro, BorderLayout.CENTER);	  
 	    
-	    pNorte.setLayout(new FlowLayout(FlowLayout.CENTER,200,50));
+	    pNorte.setLayout(new FlowLayout(FlowLayout.CENTER,90,50));
 	    pNorte.add(new Label("Usuario"));
 	    pNorte.add(new TextField("Introduce tu nombre", 0));
 	    pNorte.add(new Button("Registrar"));
