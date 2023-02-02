@@ -13,9 +13,9 @@ import javafx.scene.control.TextField;
 
 import java.awt.TextField;
 
-
 import javax.swing.JFrame;
 >>>>>>> bc6265182d43672585003dd19804b4ad7fadda43
+
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
