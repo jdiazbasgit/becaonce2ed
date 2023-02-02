@@ -12,7 +12,7 @@ import java.awt.Panel;
 import java.awt.TextArea;
 
 
-
+//oscar
 
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
