@@ -23,7 +23,6 @@ public class Chat extends Frame {
 	private Label lNick,lUsuarios,lMensajes;
 	public Chat() {
 
-
 setExtendedState(JFrame.MAXIMIZED_BOTH);
    this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
    this.setSize(800, 800);
