@@ -1,23 +1,15 @@
 package chat;
-
-
 import java.awt.BorderLayout;
 import java.awt.Button;
-
 import java.awt.Color;
-
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
-
-
-
+import java.awt.TextField;
 
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
-
-
 @SuppressWarnings("serial")
 public class Chat extends Frame {
 
@@ -33,7 +25,49 @@ setExtendedState(JFrame.MAXIMIZED_BOTH);
    this.setSize(800, 800);
 		this.setLayout(new BorderLayout());
 		setbRegistrar(new Button("Nick:"));		
-	//componentes
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//componentes
 	}
 	public Button getbRegistrar() {
 		return bRegistrar;
@@ -119,4 +153,4 @@ setExtendedState(JFrame.MAXIMIZED_BOTH);
 	
 	}
 
-}
+
