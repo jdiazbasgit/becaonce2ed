@@ -1,73 +1,124 @@
 package chat;
 
-import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
-import java.awt.Checkbox;
+import java.awt.Button;
+
 import java.awt.Color;
-import java.awt.FlowLayout;
+
+import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.Label;
+import java.awt.TextArea;
+
+
 
 import javax.swing.JFrame;
-
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
-@SuppressWarnings({ "serial", "unused" })
-public class Chat extends Frame {
-	
-	public Chat() {
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		this.setSize(800, 800);
-		this.setLayout(new GridLayout(2, 2));
-		
-		Label l1 = new Label("uno");
-		Label l2 = new Label("dos");
-		l2.setBackground(Color.CYAN);
-		Label l3 = new Label("tres");
-		Label l4 = new Label("cuatro");
 
-		Panel p1 = new Panel();
-		Panel p2 = new Panel();
-		Panel p3 = new Panel();
-		p1.setBackground(Color.RED);
-		p2.setBackground(Color.GREEN);
-		p3.setBackground(Color.YELLOW);
-		
-		Panel pCentral= new Panel();
-		pCentral.setBackground(Color.LIGHT_GRAY);
-		pCentral.setLayout(new BorderLayout());
-		pCentral.add(l1,BorderLayout.SOUTH);
-		Panel pSuperior= new Panel();
-		pSuperior.setLayout(new FlowLayout());
-		pSuperior.add(l2);
-		pCentral.add(pSuperior,BorderLayout.NORTH);
-		pCentral.add(l3,BorderLayout.EAST);
-		pCentral.add(l4,BorderLayout.WEST);
-		
-		
-		this.add(p1);
-		this.add(p2);
-		this.add(p3);
-		this.add(pCentral);
-		
-		
-		Panel pFlow= new Panel();
-		pFlow.add(new Checkbox());
-		pFlow.add(new Checkbox());
-		pFlow.add(new Checkbox());
-		pFlow.add(new Checkbox());
-		pFlow.add(new Checkbox());
-		
-		pCentral.add(pFlow,BorderLayout.CENTER);
-		
-		
+@SuppressWarnings("serial")
+
+public class Chat extends Frame {
+
+	private Button bRegistrar,bEnviar;
+	private TextField tNick,tMensaje;
+	private Panel pSuperior,pInferior,pIzquierda,pIzquierdaSuperior;
+	private TextArea taMensajes,taUsuarios;
+	private Label lNick,lUsuarios,lMensajes;
+	public Chat() {
+
+setExtendedState(JFrame.MAXIMIZED_BOTH);
+   this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+   this.setSize(800, 800);
+		this.setLayout(new BorderLayout());
+		setbRegistrar(new Button("Nick:"));		
+	//componentes
+	}
+	public Button getbRegistrar() {
+		return bRegistrar;
+	}
+	public void setbRegistrar(Button bRegistrar) {
+		this.bRegistrar = bRegistrar;
+	}
+	public Button getbEnviar() {
+		return bEnviar;
+	}
+	public void setbEnviar(Button bEnviar) {
+		this.bEnviar = bEnviar;
+	}
+	public TextField gettNick() {
+		return tNick;
+	}
+	public void settNick(TextField tNick) {
+		this.tNick = tNick;
+	}
+	public TextField gettMensaje() {
+		return tMensaje;
+	}
+	public void settMensaje(TextField tMensaje) {
+		this.tMensaje = tMensaje;
+	}
+	public Panel getpSuperior() {
+		return pSuperior;
+	}
+	public void setpSuperior(Panel pSuperior) {
+		this.pSuperior = pSuperior;
 
 	}
+	public Panel getpInferior() {
+		return pInferior;
+	}
+	public void setpInferior(Panel pInferior) {
+		this.pInferior = pInferior;
+	}
+	public Panel getpIzquierda() {
+		return pIzquierda;
+	}
+	public void setpIzquierda(Panel pIzquierda) {
+		this.pIzquierda = pIzquierda;
+	}
+	public Panel getpIzquierdaSuperior() {
+		return pIzquierdaSuperior;
+	}
+	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
+		this.pIzquierdaSuperior = pIzquierdaSuperior;
+	}
+	public TextArea getTaMensajes() {
+		return taMensajes;
+	}
+	public void setTaMensajes(TextArea taMensajes) {
+		this.taMensajes = taMensajes;
+	}
+	public TextArea getTaUsuarios() {
+		return taUsuarios;
+	}
+	public void setTaUsuarios(TextArea taUsuarios) {
+		this.taUsuarios = taUsuarios;
+	}
+	public Label getlNick() {
+		return lNick;
+	}
+	public void setlNick(Label lNick) {
+		this.lNick = lNick;
+	}
+	public Label getlUsuarios() {
+		return lUsuarios;
+	}
+	public void setlUsuarios(Label lUsuarios) {
+		this.lUsuarios = lUsuarios;
+	}
+	public Label getlMensajes() {
+		return lMensajes;
+	}
+	public void setlMensajes(Label lMensajes) {
+		this.lMensajes = lMensajes;
+	}
+
+
 	
 	
+	}
+
 
 }
