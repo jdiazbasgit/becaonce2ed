@@ -17,7 +17,7 @@ import java.awt.TextArea;
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
-
+//Algoooo
 @SuppressWarnings("serial")
 public class Chat extends Frame {
 
