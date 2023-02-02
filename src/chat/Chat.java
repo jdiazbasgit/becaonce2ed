@@ -1,11 +1,13 @@
 package chat;
 
 import java.awt.Button;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -22,6 +24,9 @@ public class Chat extends Frame {
 	
 	public Chat() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		/*Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(dimension.width/2,dimension.height/2);
+		setLocation(dimension.width/4,dimension.height/4);*/
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		setbRegistrar(new Button("Nick:"));
 		
