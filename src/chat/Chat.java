@@ -10,46 +10,101 @@ import java.awt.Panel;
 import java.awt.TextField;
 
 import javax.swing.JFrame;
-
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
-
 @SuppressWarnings("serial")
 public class Chat extends Frame {
-	
+	private Button bRegistrar,bEnviar;
+	private TextField tNick,tMensaje;
+	private Panel pSuperior,pInferior,pIzquierda,pIzquierdaSuperior;
+	private TextArea taMensajes,taUsuarios;
+	private Label lNick,lUsuarios,lMensajes;
 	public Chat() {
 
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		
-	    Panel pSuperior = new Panel();
-	    pSuperior.setBackground(Color.YELLOW);
-	    pSuperior.setLayout(new FlowLayout(FlowLayout.CENTER,100,25));
-	    pSuperior.add(new Label("Usuario"));
-	    pSuperior.add(new TextField("Nombre...", 0));
-	    pSuperior.add(new Button("Registrar"));
-
-	    Panel pInferior = new Panel();
-	    pInferior.setBackground(Color.GREEN);
-	    pInferior.setLayout(new FlowLayout(FlowLayout.CENTER,100,25));
-	    pInferior.add(new Label("Mensaje"));
-	    pInferior.add(new TextField("Comentar...", 0));
-	    pInferior.add(new Button("Enviar"));
-
-	    Panel pIzquierda = new Panel();
-	    pIzquierda.setBackground(Color.CYAN);
-	    pIzquierda.setLayout(new FlowLayout(FlowLayout.CENTER,25,100));
-	    pIzquierda.add(new Label("Usuarios"));
-
-	    Panel pCentro = new Panel();
-	    pCentro.setBackground(Color.PINK);
-	    pCentro.setLayout(new FlowLayout(FlowLayout.CENTER,25,100));
-	    pCentro.add(new Label("Area de mensajes"));
-
-	    this.add(pSuperior, BorderLayout.NORTH);
-	    this.add(pInferior, BorderLayout.SOUTH);
-	    this.add(pIzquierda, BorderLayout.WEST);
-	    this.add(pCentro);
-	    
+setExtendedState(JFrame.MAXIMIZED_BOTH);
+   this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+   this.setSize(800, 800);
+		this.setLayout(new BorderLayout());
+		setbRegistrar(new Button("Nick:"));		
+	//componentes
 	}
-	
+	public Button getbRegistrar() {
+		return bRegistrar;
+	}
+	public void setbRegistrar(Button bRegistrar) {
+		this.bRegistrar = bRegistrar;
+	}
+	public Button getbEnviar() {
+		return bEnviar;
+	}
+	public void setbEnviar(Button bEnviar) {
+		this.bEnviar = bEnviar;
+	}
+	public TextField gettNick() {
+		return tNick;
+	}
+	public void settNick(TextField tNick) {
+		this.tNick = tNick;
+	}
+	public TextField gettMensaje() {
+		return tMensaje;
+	}
+	public void settMensaje(TextField tMensaje) {
+		this.tMensaje = tMensaje;
+	}
+	public Panel getpSuperior() {
+		return pSuperior;
+	}
+	public void setpSuperior(Panel pSuperior) {
+		this.pSuperior = pSuperior;
+	}
+	public Panel getpInferior() {
+		return pInferior;
+	}
+	public void setpInferior(Panel pInferior) {
+		this.pInferior = pInferior;
+	}
+	public Panel getpIzquierda() {
+		return pIzquierda;
+	}
+	public void setpIzquierda(Panel pIzquierda) {
+		this.pIzquierda = pIzquierda;
+	}
+	public Panel getpIzquierdaSuperior() {
+		return pIzquierdaSuperior;
+	}
+	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
+		this.pIzquierdaSuperior = pIzquierdaSuperior;
+	}
+	public TextArea getTaMensajes() {
+		return taMensajes;
+	}
+	public void setTaMensajes(TextArea taMensajes) {
+		this.taMensajes = taMensajes;
+	}
+	public TextArea getTaUsuarios() {
+		return taUsuarios;
+	}
+	public void setTaUsuarios(TextArea taUsuarios) {
+		this.taUsuarios = taUsuarios;
+	}
+	public Label getlNick() {
+		return lNick;
+	}
+	public void setlNick(Label lNick) {
+		this.lNick = lNick;
+	}
+	public Label getlUsuarios() {
+		return lUsuarios;
+	}
+	public void setlUsuarios(Label lUsuarios) {
+		this.lUsuarios = lUsuarios;
+	}
+	public Label getlMensajes() {
+		return lMensajes;
+	}
+	public void setlMensajes(Label lMensajes) {
+		this.lMensajes = lMensajes;
+	}
+	}
+
 }
