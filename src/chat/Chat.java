@@ -8,9 +8,7 @@ import java.awt.TextArea;
 
 import java.awt.TextField;
 
-
 import javax.swing.JFrame;
-
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
@@ -33,6 +31,20 @@ public class Chat extends Frame {
 		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		setbRegistrar(new Button("Nick:"));
+		Dimension tamanoActualizableFrame = this.getSize();
+		System.out.println(tamanoActualizableFrame);
+
+		Panel pNorte = new Panel();
+		Panel pSur = new Panel();
+		Panel pOeste = new Panel();
+		Panel pCentro = new Panel();
+		this.add(pOeste, BorderLayout.WEST);
+		this.add(pCentro, BorderLayout.CENTER);
+
+		pNorte.setLayout(new FlowLayout(FlowLayout.CENTER, 90, 50));
+		pNorte.add(new Label("Usuario"));
+		pNorte.add(new TextField("Introduce tu nombre", 0));
+		pNorte.add(new Button("Registrar"));
 
 		// componentes
 	}
@@ -143,4 +155,3 @@ public class Chat extends Frame {
 	}
 
 }
-
