@@ -1,41 +1,39 @@
 package chat;
 
 import java.awt.Button;
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
+
 public class Chat extends Frame {
-	
-	private Button bRegistrar,bEnviar;
-	private TextField tNick,tMensaje;
-	private Panel pSuperior,pInferior,pIzquierda,pIzquierdaSuperior;
-	private TextArea taMensajes,taUsuarios;
-	private Label lNick,lUsuarios,lMensajes;
-	
+
+	private Button bRegistrar, bEnviar;
+	private TextField tNick, tMensaje;
+	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
+	private TextArea taMensajes, taUsuarios;
+	private Label lNick, lUsuarios, lMensajes;
+
 	public Chat() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		/*Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(dimension.width/2,dimension.height/2);
-		setLocation(dimension.width/4,dimension.height/4);*/
+		/*
+		 * Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
+		 * setSize(dimension.width/2,dimension.height/2);
+		 * setLocation(dimension.width/4,dimension.height/4);
+		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		setbRegistrar(new Button("Nick:"));
-		
-		//componentes
+
+		// componentes
 	}
 
-	
-	
-	
 	public Button getbRegistrar() {
 		return bRegistrar;
 	}
@@ -74,6 +72,7 @@ public class Chat extends Frame {
 
 	public void setpSuperior(Panel pSuperior) {
 		this.pSuperior = pSuperior;
+
 	}
 
 	public Panel getpInferior() {
@@ -139,6 +138,5 @@ public class Chat extends Frame {
 	public void setlMensajes(Label lMensajes) {
 		this.lMensajes = lMensajes;
 	}
-	
 
 }
