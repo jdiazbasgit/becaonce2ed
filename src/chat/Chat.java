@@ -37,6 +37,7 @@ public class Chat extends Frame {
 	    pOeste.setBackground(Color.ORANGE);
 	    pCentro.setBackground(Color.LIGHT_GRAY);
 
+	    
 	    this.add(pNorte, BorderLayout.NORTH);
 	    this.add(pSur, BorderLayout.SOUTH);
 	    this.add(pOeste, BorderLayout.WEST);
