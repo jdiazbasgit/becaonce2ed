@@ -1,19 +1,20 @@
 package chat;
 
-
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.PopupMenu;
 import java.awt.TextArea;
 
 import java.awt.TextField;
 
-
 import javax.swing.JFrame;
 
-
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
+
 
 @SuppressWarnings("serial")
 
@@ -34,8 +35,43 @@ public class Chat extends Frame {
 		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 
-		setbRegistrar(new Button("Nicky:"));
+		setbRegistrar(new Button("REGISTRAR"));
+		setbEnviar(new Button("ENVIAR"));
+		settNick(new TextField(20));
+		settMensaje(new TextField(20));
+		setpSuperior(new Panel());
+		setpInferior(new Panel());
+		setpIzquierda(new Panel());
+		setpIzquierdaSuperior(new Panel());
+		setTaMensajes(new TextArea());
+		setTaUsuarios(new TextArea());
+		setlNick(new Label("USUARIO"));
+		setlUsuarios(new Label("USUARIO"));
+		setlMensajes(new Label("MENSAJE"));
+		
+		getpSuperior().setBackground(Color.GREEN);
+		pSuperior.add(getlNick());
+		pSuperior.add(gettNick());
+		pSuperior.add(getbRegistrar());
+		this.add(pSuperior, BorderLayout.NORTH);
+         
+		getpInferior().setBackground(Color.RED);
+		pInferior.add(getlMensajes());
+		pInferior.add(gettMensaje());
+		pInferior.add(getbEnviar());
+		this.add(pInferior,BorderLayout.SOUTH);
+		
+		getpIzquierdaSuperior().setBackground(Color.MAGENTA);
+		pIzquierdaSuperior.add(getlUsuarios());
+		pIzquierdaSuperior.add(getTaUsuarios());
+		add(pIzquierdaSuperior,BorderLayout.NORTH);
+		getpIzquierda().setBackground(Color.ORANGE);
+	
+		
+		//this.add.(pIzquierda,BorderLayout. );
+		this.add(getTaMensajes(),BorderLayout.CENTER);
 
+		
 		// componentes
 	}
 
@@ -146,4 +182,3 @@ public class Chat extends Frame {
 	}
 
 }
-
