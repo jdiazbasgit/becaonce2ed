@@ -10,15 +10,9 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
-
-
-<<<<<<< HEAD
-//oscar
-=======
->>>>>>> fd4155d8904c36beb0fc9e23e6e31552bf67bd80
-
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
+import javafx.scene.control.TextField;
 
 
 @SuppressWarnings("serial")
@@ -125,4 +119,4 @@ setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
 
-}
+
