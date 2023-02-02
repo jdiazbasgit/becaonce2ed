@@ -5,19 +5,11 @@ import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
-<<<<<<< HEAD 
+
 import javax.swing.JFrame;
+
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import javafx.scene.control.TextField;
-=======
-
-import java.awt.TextField;
-
-import javax.swing.JFrame;
->>>>>>> bc6265182d43672585003dd19804b4ad7fadda43
-
-
-import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
@@ -147,14 +139,5 @@ public class Chat extends Frame {
 		this.lMensajes = lMensajes;
 	}
 
-<<<<<<< HEAD
-
-	
-	
-	}
-
-
-=======
 }
->>>>>>> bc6265182d43672585003dd19804b4ad7fadda43
 
