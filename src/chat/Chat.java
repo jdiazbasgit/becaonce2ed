@@ -68,11 +68,12 @@ public class Chat extends Frame {
 		getpIzquierdaSuperior().add(getlUsuarios());
 		//-----------
 		
-		getpIzquierda().add(getpIzquierdaSuperior());
+		getpIzquierda().add(getpIzquierdaSuperior(),BorderLayout.NORTH);
 		
 				
-		this.setTaUsuarios(new TextArea());
-		//getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
+		this.setTaUsuarios(new TextArea("",1,20,TextArea.SCROLLBARS_VERTICAL_ONLY));
+		//getTaUsuarios().TextArea.SCROLLBARS_VERTICAL_ONLY
+		getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
 
 		
 		
@@ -91,7 +92,7 @@ public class Chat extends Frame {
 		getpInferior().add(getbEnviar());
 		
 		
-		this.setTaMensajes(new TextArea());
+		this.setTaMensajes(new TextArea("",0,0,TextArea.SCROLLBARS_VERTICAL_ONLY));
 		this.add(getTaMensajes());
 		
 		
