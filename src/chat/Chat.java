@@ -13,12 +13,12 @@ import java.awt.TextArea;
 
 
 
-
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 
 @SuppressWarnings("serial")
+
 public class Chat extends Frame {
 
 	private Button bRegistrar,bEnviar;
@@ -64,6 +64,7 @@ setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 	public void setpSuperior(Panel pSuperior) {
 		this.pSuperior = pSuperior;
+
 	}
 	public Panel getpInferior() {
 		return pInferior;
@@ -118,5 +119,6 @@ setExtendedState(JFrame.MAXIMIZED_BOTH);
 	
 	
 	}
+
 
 }
