@@ -1,6 +1,9 @@
 package chat;
 
+import java.awt.Panel;
 import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Button;
 
 import javax.swing.JFrame;
 
@@ -13,7 +16,10 @@ public class Chat extends Frame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		
-		//componentes
+		
+		
+		
+		
 	}
 	
 
