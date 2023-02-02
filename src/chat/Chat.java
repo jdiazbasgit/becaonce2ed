@@ -1,5 +1,6 @@
 package chat;
 
+import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
 import java.awt.Color;
