@@ -1,11 +1,14 @@
 package chat;
-import java.awt.Button;
+
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.TextArea;
 import java.awt.TextField;
+
 import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 @SuppressWarnings("serial")
@@ -16,7 +19,8 @@ public class Chat extends Frame {
 	private TextArea taMensajes,taUsuarios;
 	private Label lNick,lUsuarios,lMensajes;
 	public Chat() {
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+setExtendedState(JFrame.MAXIMIZED_BOTH);
    this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
    this.setSize(800, 800);
 		this.setLayout(new BorderLayout());
@@ -102,4 +106,5 @@ public class Chat extends Frame {
 		this.lMensajes = lMensajes;
 	}
 	}
+
 }
