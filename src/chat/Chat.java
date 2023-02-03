@@ -25,11 +25,13 @@ public class Chat extends Frame {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		setSize(1200, 800);
+		setBackground(Color.ORANGE);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
 	    int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 	    setLocation(x, y);
+	      
 			
 		setLayout(new BorderLayout());
 		//setbRegistrar(new Button("Nick:"));		
@@ -45,9 +47,10 @@ public class Chat extends Frame {
 		bRegistrar.setFont(new Font("Verdana", Font.PLAIN, 20));
 		
 	    Panel pSuperior = new Panel();
-	    pSuperior.setBackground(Color.RED);
+	    //pSuperior.setBackground(Color.ORANGE);
 		pSuperior.add(lNick);
 		pSuperior.add(tNick);
+		//pSuperior.createLineBorder(Color.black);
 		pSuperior.add(bRegistrar);
 		
 		pSuperior.add(lNick, BorderLayout.PAGE_START);
@@ -70,7 +73,7 @@ public class Chat extends Frame {
 	    bEnviar.setFont(new Font("Verdana", Font.PLAIN, 20));
 	    
 	    Panel pInferior = new Panel();
-	    pInferior.setBackground(Color.BLUE);
+	    //pInferior.setBackground(Color.BLUE);
 	    pInferior.setPreferredSize(new Dimension(Frame.MAXIMIZED_HORIZ, 45));
 	  
 	    pInferior.add(lMensajes);
@@ -88,7 +91,7 @@ public class Chat extends Frame {
 	    TextArea taMensajes =new TextArea();	    
 	    Panel pDerecha = new Panel();
 	    pDerecha.setLayout(new BorderLayout());
-	    pDerecha.setBackground(Color.GREEN);
+	    //pDerecha.setBackground(Color.GREEN);
 	    pDerecha.add(taMensajes,BorderLayout.CENTER);
 	    add(pDerecha,BorderLayout.CENTER);
 	    
@@ -98,13 +101,13 @@ public class Chat extends Frame {
 	    /* IZQUIERDA */
 	    TextArea taUsuarios =new TextArea();
 	    
-	    Label lUsuarios = new Label("Usuarios");
+	    Label lUsuarios = new Label("Usuarios", Label.CENTER);
 	    lUsuarios.setFont(new Font("Verdana", Font.PLAIN, 20));
 	    
 	    Panel pIzquierda = new Panel();
 	    pIzquierda.setLayout(new BorderLayout());
 	    pIzquierda.add(lUsuarios,BorderLayout.NORTH);
-	    pIzquierda.setBackground(Color.YELLOW);
+	    //pIzquierda.setBackground(Color.YELLOW);
 	    pIzquierda.add(taUsuarios,BorderLayout.CENTER);
 	    pIzquierda.setPreferredSize(new Dimension(300, Frame.MAXIMIZED_VERT));
 	    add(pIzquierda, BorderLayout.WEST);
