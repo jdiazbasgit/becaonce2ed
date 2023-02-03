@@ -1,15 +1,17 @@
 package chat;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
+import java.awt.TextField;
 
 import javax.swing.JFrame;
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
-import javafx.scene.control.TextField;
 
 @SuppressWarnings("serial")
 
@@ -29,10 +31,61 @@ public class Chat extends Frame {
 		 * setLocation(dimension.width/4,dimension.height/4);
 		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		setbRegistrar(new Button("Nick:"));
+		setbRegistrar(new Button("REGISTRAR"));
+		setbEnviar(new Button("ENVIAR"));
+		settNick(new TextField(80));
+		
+		settMensaje(new TextField(80));
+		setpSuperior(new Panel());
+		setpInferior(new Panel());
+		setpIzquierda(new Panel());
+		setpIzquierdaSuperior(new Panel());
+		setTaMensajes(new TextArea());
+		setTaUsuarios(new TextArea());
+		setlNick(new Label("NICK"));
+		setlUsuarios(new Label ("USUARIOS"));
+		setlMensajes(new Label("MENSAJES"));
+		
+		
+		getpSuperior().add(getlNick());
+		getpSuperior().add(gettNick());
+		getpSuperior().add(getbRegistrar());
+		getpSuperior().setBackground(Color.LIGHT_GRAY);
+		add(getpSuperior(),BorderLayout.NORTH);
+		
+		getpInferior().add(getlMensajes());
+		getpInferior().add(gettMensaje());
+		getpInferior().add(getbEnviar());
+		getpInferior().setBackground(Color.ORANGE);
+		add(getpInferior(),BorderLayout.SOUTH);
+		
+		getpIzquierda().setLayout(new BorderLayout());
+		getpIzquierda().setBackground(Color.green);
+		add(getpIzquierda(),BorderLayout.WEST);
+		add(getTaMensajes(),BorderLayout.CENTER);
+		
+		getpIzquierdaSuperior().add(getlUsuarios());
+		getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
+		getpIzquierda().add(getpIzquierdaSuperior(), BorderLayout.NORTH);
+		getpIzquierdaSuperior().setBackground(Color.YELLOW);
+		add(getpIzquierda(),BorderLayout.WEST);
+		
+		
+		
+		
+		
 
 		// componentes
+		
 	}
+	
+	
+
+	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
+		this.pIzquierdaSuperior = pIzquierdaSuperior;
+	}
+
+
 
 	public Button getbRegistrar() {
 		return bRegistrar;
@@ -51,7 +104,7 @@ public class Chat extends Frame {
 	}
 
 	public TextField gettNick() {
-		return tNick;
+		return this.tNick;
 	}
 
 	public void settNick(TextField tNick) {
@@ -95,7 +148,7 @@ public class Chat extends Frame {
 		return pIzquierdaSuperior;
 	}
 
-	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
+	public void getpIzquierdaSuperior(Panel pIzquierdaSuperior) {
 		this.pIzquierdaSuperior = pIzquierdaSuperior;
 	}
 
