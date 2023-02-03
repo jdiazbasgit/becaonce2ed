@@ -1,18 +1,18 @@
 package chat;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
-
 import java.awt.TextField;
-
 
 import javax.swing.JFrame;
 
-
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
+import javafx.scene.chart.BarChart;
 
 @SuppressWarnings("serial")
 
@@ -25,18 +25,57 @@ public class Chat extends Frame {
 	private Label lNick, lUsuarios, lMensajes;
 
 	public Chat() {
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		/*
-		 * Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
-		 * setSize(dimension.width/2,dimension.height/2);
-		 * setLocation(dimension.width/4,dimension.height/4);
-		 */
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		setbRegistrar(new Button("Nick:"));
+
+		setbRegistrar(new Button("REGISTRAR"));
+		setbEnviar(new Button("ENVIAR"));
+		settNick(new TextField(80));
+
+		settMensaje(new TextField(80));
+		setpSuperior(new Panel());
+		setpInferior(new Panel());
+		setpIzquierda(new Panel());
+		setpIzquierdaSuperior(new Panel());
+		setTaMensajes(new TextArea());
+		setTaUsuarios(new TextArea());
+		setlNick(new Label("NICK"));
+		
+		setlMensajes(new Label("NICK"));
+		setlUsuarios(new Label("USUARIOS"));
+		setlMensajes(new Label("MENSAJES"));
+		
+
+		getpSuperior().add(getlNick());
+		getpSuperior().add(gettNick());
+		getpSuperior().add(getbRegistrar());
+
+		getpSuperior().setBackground(Color.blue);
+		add(getpSuperior(), BorderLayout.NORTH);
+
+		getpInferior().add(getlMensajes());
+		getpInferior().add(gettMensaje());
+		getpInferior().add(getbEnviar());
+		getpInferior().setBackground(Color.blue);
+		add(getpInferior(), BorderLayout.SOUTH);
+
+		getpIzquierda().setLayout(new BorderLayout());
+		getpIzquierda().setBackground(Color.YELLOW);
+		add(getpIzquierda(), BorderLayout.WEST);
+		add(getTaMensajes(), BorderLayout.CENTER);
+
+		getpIzquierdaSuperior().add(getlUsuarios());
+		getpIzquierda().add(getTaUsuarios(), BorderLayout.CENTER);
+		getpIzquierda().add(getpIzquierdaSuperior(), BorderLayout.NORTH);
+		getpIzquierdaSuperior().setBackground(Color.green);
+		this.add(getpIzquierda(), BorderLayout.WEST);
 
 		// componentes
+
 	}
 
+	
 	public Button getbRegistrar() {
 		return bRegistrar;
 	}
@@ -75,7 +114,6 @@ public class Chat extends Frame {
 
 	public void setpSuperior(Panel pSuperior) {
 		this.pSuperior = pSuperior;
-
 	}
 
 	public Panel getpInferior() {
@@ -143,4 +181,3 @@ public class Chat extends Frame {
 	}
 
 }
-
