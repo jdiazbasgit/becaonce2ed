@@ -2,12 +2,15 @@ package chat;
 import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.Toolkit;
+
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
@@ -20,35 +23,93 @@ public class Chat extends Frame {
 	
 	public Chat() {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		this.setSize(1200, 800);
-		this.setLayout(new BorderLayout());
+		addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+		setSize(1200, 800);
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+	    setLocation(x, y);
+			
+		setLayout(new BorderLayout());
 		//setbRegistrar(new Button("Nick:"));		
 		
-		Label lblNick = new Label("Nick:::");
+		/* SUPERIOR */
+		Label lNick = new Label("Nick:::");	
+		lNick.setFont(new Font("Verdana", Font.PLAIN, 20));
 		
-	    this.setLayout(new BorderLayout());
+		TextField tNick = new TextField(50);
+		tNick.setFont(new Font("Verdana", Font.PLAIN, 20));
+		
+		Button bRegistrar = new Button("Registrar");
+		bRegistrar.setFont(new Font("Verdana", Font.PLAIN, 20));
+		
 	    Panel pSuperior = new Panel();
 	    pSuperior.setBackground(Color.RED);
-	    pSuperior.add(lblNick,BorderLayout.SOUTH);
-	    pSuperior.setPreferredSize(new Dimension(Frame.MAXIMIZED_HORIZ, 100));
-	    this.add(pSuperior, BorderLayout.NORTH);
+		pSuperior.add(lNick);
+		pSuperior.add(tNick);
+		pSuperior.add(bRegistrar);
+		
+		pSuperior.add(lNick, BorderLayout.PAGE_START);
+		pSuperior.add(tNick, BorderLayout.PAGE_START);
+		pSuperior.add(bRegistrar, BorderLayout.PAGE_START);
+		
+	    pSuperior.setPreferredSize(new Dimension(Frame.MAXIMIZED_HORIZ, 45));
+	    add(pSuperior, BorderLayout.NORTH);
 
+	    
+	    
+	    /* INFERIOR */
+	    Label lMensajes = new Label("Mensaje:::");	
+	    lMensajes.setFont(new Font("Verdana", Font.PLAIN, 20));
+	    
+	    TextField tMensaje = new TextField(50);
+	    tMensaje.setFont(new Font("Verdana", Font.PLAIN, 20));
+	    
+	    Button bEnviar = new Button("Enviar");
+	    bEnviar.setFont(new Font("Verdana", Font.PLAIN, 20));
+	    
 	    Panel pInferior = new Panel();
 	    pInferior.setBackground(Color.BLUE);
-	    pInferior.setPreferredSize(new Dimension(Frame.MAXIMIZED_HORIZ, 100));
-	    this.add(pInferior, BorderLayout.SOUTH);
+	    pInferior.setPreferredSize(new Dimension(Frame.MAXIMIZED_HORIZ, 45));
+	  
+	    pInferior.add(lMensajes);
+	    pInferior.add(tMensaje);
+		pInferior.add(bEnviar);
+		
+	    pInferior.add(lMensajes, BorderLayout.PAGE_START);
+	    pInferior.add(tMensaje, BorderLayout.PAGE_START);
+	    pInferior.add(bEnviar, BorderLayout.PAGE_START);
+	    add(pInferior, BorderLayout.SOUTH);
 
-	    Panel pDerecha = new Panel();
-	    pDerecha.setBackground(Color.GREEN);
-	    this.add(pDerecha,BorderLayout.CENTER);
-
-	    Panel pIzquierda = new Panel();
-	    pIzquierda.setBackground(Color.YELLOW);
-	    pIzquierda.setPreferredSize(new Dimension(200, Frame.MAXIMIZED_VERT));
-	    this.add(pIzquierda, BorderLayout.WEST);
 	    
-	    this.setTitle("Chat anónimo");
+	    
+	    /* CENTER */
+	    TextArea taMensajes =new TextArea();	    
+	    Panel pDerecha = new Panel();
+	    pDerecha.setLayout(new BorderLayout());
+	    pDerecha.setBackground(Color.GREEN);
+	    pDerecha.add(taMensajes,BorderLayout.CENTER);
+	    add(pDerecha,BorderLayout.CENTER);
+	    
+	    
+	    
+	    
+	    /* IZQUIERDA */
+	    TextArea taUsuarios =new TextArea();
+	    
+	    Label lUsuarios = new Label("Usuarios");
+	    lUsuarios.setFont(new Font("Verdana", Font.PLAIN, 20));
+	    
+	    Panel pIzquierda = new Panel();
+	    pIzquierda.setLayout(new BorderLayout());
+	    pIzquierda.add(lUsuarios,BorderLayout.NORTH);
+	    pIzquierda.setBackground(Color.YELLOW);
+	    pIzquierda.add(taUsuarios,BorderLayout.CENTER);
+	    pIzquierda.setPreferredSize(new Dimension(300, Frame.MAXIMIZED_VERT));
+	    add(pIzquierda, BorderLayout.WEST);
+	    
+	    setTitle("Chat anónimo");
 		
 	}
 	
