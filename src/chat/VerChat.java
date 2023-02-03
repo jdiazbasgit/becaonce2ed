@@ -6,6 +6,9 @@ public class VerChat {
 		Chat chat= new Chat();
 		chat.setVisible(true);
 		
+		ChatGridBad chatGridBag = new ChatGridBad();
+		chatGridBag.setVisible(true);
+		
 	}
 
 }

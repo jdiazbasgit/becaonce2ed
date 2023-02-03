@@ -10,6 +10,11 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import java.awt.TextField;
 import java.awt.Toolkit;
@@ -20,7 +25,7 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
-public class Chat extends Frame {
+public class ChatGridBad extends Frame {
 
 	private Button bRegistrar, bEnviar;
 	private TextField tNick, tMensaje;
@@ -28,7 +33,7 @@ public class Chat extends Frame {
 	private TextArea taMensajes, taUsuarios;
 	private Label lNick, lUsuarios, lMensajes;
 
-	public Chat() {
+	public ChatGridBad() {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
@@ -39,6 +44,53 @@ public class Chat extends Frame {
 		System.out.println(tamanoActualizableFrame);
 		
 		
+		//----------------------------
+		setSize(500, 500);
+		Button b1 = new Button("Uno");
+		Button b2 = new Button("Dos");
+		Button b3 = new Button("tres");
+		setLayout(new GridBagLayout());
+		GridBagConstraints restriccionesB1 =new GridBagConstraints();
+		GridBagConstraints restriccionesB2 =new GridBagConstraints();
+		GridBagConstraints restriccionesB3 =new GridBagConstraints();
+		restriccionesB1.gridx =0;
+		restriccionesB1.gridy =0;
+		restriccionesB1.weightx=1;
+		restriccionesB1.weighty=1;		
+	    restriccionesB1.fill=GridBagConstraints.BOTH;
+		
+		
+		restriccionesB2.gridx =0;
+		restriccionesB2.gridy =1;
+		restriccionesB2.weightx=0.5;
+		restriccionesB2.weighty=0.5;
+		restriccionesB2.gridwidth=2;
+		restriccionesB2.fill=GridBagConstraints.BOTH;
+		
+		
+		
+		Insets engordar=new Insets(50, 0, 0, 50);
+		restriccionesB3.ipadx=20;
+		restriccionesB3.ipady=50;
+		restriccionesB3.insets=engordar;
+		restriccionesB3.gridx =1;
+		restriccionesB3.gridy =0;
+		restriccionesB3.anchor=GridBagConstraints.NORTHEAST;
+		restriccionesB3.fill=GridBagConstraints.BOTH;
+		
+		
+		add(b2,restriccionesB2);
+		add(b1,restriccionesB1);
+		add(b3,restriccionesB3);
+		
+		
+		
+		
+		
+		
+		
+		//----------------------------
+		/*
 		this.setpSuperior(new Panel());
 		this.add(getpSuperior(),BorderLayout.NORTH);
 		getpSuperior().setLayout(new FlowLayout(FlowLayout.CENTER, 90, 20));
@@ -91,7 +143,7 @@ public class Chat extends Frame {
 		
 		this.setTaMensajes(new TextArea("",0,0,TextArea.SCROLLBARS_VERTICAL_ONLY));
 		this.add(getTaMensajes());
-		
+		*/
 		
 		
 		
