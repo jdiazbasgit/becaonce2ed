@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
-public class Chat extends Frame {
+public class ChatBag extends Frame {
 	
 	
 	private Button bRegistrar,bEnviar;
@@ -24,7 +24,7 @@ public class Chat extends Frame {
 	private Label lNick, lUsuarios, lMensajes;
 	
 	
-	public Chat() {
+	public ChatBag() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		
