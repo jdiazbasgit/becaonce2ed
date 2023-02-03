@@ -50,25 +50,31 @@ public class Chat extends Frame {
 		setlMensajes(new Label("MENSAJE"));
 		
 		getpSuperior().setBackground(Color.GREEN);
-		pSuperior.add(getlNick());
-		pSuperior.add(gettNick());
-		pSuperior.add(getbRegistrar());
-		this.add(pSuperior, BorderLayout.NORTH);
+		getpSuperior().add(getlNick());
+		getpSuperior().add(gettNick());
+		getpSuperior().add(getbRegistrar());
+		this.add(getpSuperior(),BorderLayout.NORTH);
          
 		getpInferior().setBackground(Color.RED);
-		pInferior.add(getlMensajes());
-		pInferior.add(gettMensaje());
-		pInferior.add(getbEnviar());
-		this.add(pInferior,BorderLayout.SOUTH);
+		getpInferior().add(getlMensajes());
+		getpInferior().add(gettMensaje());
+		getpInferior().add(getbEnviar());
+		this.add(getpInferior(),BorderLayout.SOUTH);
 		
+	    getpIzquierdaSuperior().setLayout(new BorderLayout());
 		getpIzquierdaSuperior().setBackground(Color.MAGENTA);
-		pIzquierdaSuperior.add(getlUsuarios());
-		pIzquierdaSuperior.add(getTaUsuarios());
-		add(pIzquierdaSuperior,BorderLayout.NORTH);
+		getpIzquierdaSuperior().add(getTaUsuarios());
+		
+		
+		
+		getpIzquierda().setLayout(new BorderLayout());
+		getpIzquierda().add(getlUsuarios(),BorderLayout.NORTH);
 		getpIzquierda().setBackground(Color.ORANGE);
+		getpIzquierda().add(getpIzquierdaSuperior());
+		this.add(getpIzquierda(),BorderLayout.WEST);
 	
 		
-		//this.add.(pIzquierda,BorderLayout. );
+		
 		this.add(getTaMensajes(),BorderLayout.CENTER);
 
 		
