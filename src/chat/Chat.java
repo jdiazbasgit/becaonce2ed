@@ -93,8 +93,6 @@ public class Chat extends Frame {
 		this.add(getTaMensajes());
 		
 		
-		
-		
 	}
 
 	public Button getbRegistrar() {
