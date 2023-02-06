@@ -21,6 +21,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import chat.eventos.ElQueSabeLoQueHayQueHacerConElFoco;
+import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
@@ -47,38 +49,44 @@ public class ChatGridBad extends Frame {
 			// setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 			this.setLayout(new GridBagLayout());
-			Insets margenExterior10 = new Insets(10, 30, 10, 30);
-
+			Insets margenExterior10 = new Insets(0, 0, 0, 0);
+			Insets margenDecha300 = new Insets(0,0,0,300);
+			Insets margenDecha100 = new Insets(0,0,0,120);
+			
 			// ---Primera zona-------------------------
 
 			this.setlNick(new Label("Nick:"));
 			this.settNick(new TextField("Escribe cómo te verán los demás", 0));
 			this.setbRegistrar(new Button("REGISTRAR"));
+			gettNick().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 
 			GridBagConstraints gbcLabelNick = new GridBagConstraints();
 			GridBagConstraints gcbTextFieldNick = new GridBagConstraints();
 			GridBagConstraints gbcButtonRegistrar = new GridBagConstraints();
 			gbcLabelNick.gridx = 0;
 			gbcLabelNick.gridy = 0;
-			gbcLabelNick.weightx = 0.25;
+			gbcLabelNick.weightx = 0.1;
 			gbcLabelNick.weighty = 0.2;
 			gbcLabelNick.anchor = GridBagConstraints.EAST;
 			gbcLabelNick.insets = margenExterior10;
 
 			gcbTextFieldNick.gridx = 1;
 			gcbTextFieldNick.gridy = 0;
-			gcbTextFieldNick.weightx = 0.5;
+			gcbTextFieldNick.weightx = 0.8;
 			gcbTextFieldNick.weighty = 0.2;
 			gcbTextFieldNick.fill = GridBagConstraints.HORIZONTAL;
+			gcbTextFieldNick.insets = margenDecha300;
+			gcbTextFieldNick.gridwidth = 2;
 
-			gbcButtonRegistrar.gridx = 2;
+			gbcButtonRegistrar.gridx = 1;
 			gbcButtonRegistrar.gridy = 0;
-			gbcButtonRegistrar.weightx = 0.25;
+			gbcButtonRegistrar.weightx = 0.1;
 			gbcButtonRegistrar.weighty = 0.2;
-			gbcButtonRegistrar.anchor = GridBagConstraints.WEST;
-			gbcButtonRegistrar.insets = margenExterior10;
+			gbcButtonRegistrar.anchor = GridBagConstraints.EAST;
+			gbcButtonRegistrar.insets = margenDecha100;
+			//gbcButtonRegistrar.insets = margenExterior10;
 			gbcButtonRegistrar.ipadx = 10;
-			gbcButtonRegistrar.ipady = 10;
+			gbcButtonRegistrar.ipady = 10;		
 
 			this.add(getlNick(), gbcLabelNick);
 			this.add(gettNick(), gcbTextFieldNick);
@@ -94,31 +102,31 @@ public class ChatGridBad extends Frame {
 			GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();
 			gbcLabelUsuarios.gridx = 0;
 			gbcLabelUsuarios.gridy = 1;
-			gbcLabelUsuarios.weightx = 0.25;
+			//gbcLabelUsuarios.weightx = 0.25;
 			gbcLabelUsuarios.weighty = 0.1;
 			gbcLabelUsuarios.anchor = GridBagConstraints.SOUTH;
 
 			gcbTextAreaMensajes.gridx = 1;
 			gcbTextAreaMensajes.gridy = 1;
-			gcbTextAreaMensajes.weightx = 0.75;
+			//gcbTextAreaMensajes.weightx = 0.9;
 			gcbTextAreaMensajes.weighty = 0.1;
 			gcbTextAreaMensajes.gridwidth = 2;
 			gcbTextAreaMensajes.gridheight = 2;
 			gcbTextAreaMensajes.fill = GridBagConstraints.BOTH;
-			gcbTextAreaMensajes.insets = margenExterior10;
+			//gcbTextAreaMensajes.insets = margenExterior10;
 
 			add(getlUsuarios(), gbcLabelUsuarios);
 			add(getTaMensajes(), gcbTextAreaMensajes);
 
-			this.setTaUsuarios(new TextArea("", 22, 19, TextArea.SCROLLBARS_VERTICAL_ONLY));
+			this.setTaUsuarios(new TextArea("", 30,1, TextArea.SCROLLBARS_VERTICAL_ONLY));
 
 			GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
 			gcbTextAreaUsuarios.gridx = 0;
 			gcbTextAreaUsuarios.gridy = 2;
-			gcbTextAreaUsuarios.weightx = 0.25;
+			//gcbTextAreaUsuarios.weightx = 0.25;
 			gcbTextAreaUsuarios.weighty = 0.5;
 			gcbTextAreaUsuarios.fill = GridBagConstraints.BOTH;
-			gcbTextAreaUsuarios.insets = margenExterior10;
+			//gcbTextAreaUsuarios.insets = margenExterior10;
 
 			add(getTaUsuarios(), gcbTextAreaUsuarios);
 
@@ -127,26 +135,27 @@ public class ChatGridBad extends Frame {
 			this.setlMensaje(new Label("Mensaje:"));
 			this.settMensaje(new TextField("Escribe un mensaje", 60));
 			this.setbEnviar(new Button("ENVIAR"));
+			gettMensaje().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 
 			GridBagConstraints gbcLabelMensaje = new GridBagConstraints();
 			GridBagConstraints gcbTextFieldMensaje = new GridBagConstraints();
 			GridBagConstraints gbcButtonEnviar = new GridBagConstraints();
 			gbcLabelMensaje.gridx = 0;
 			gbcLabelMensaje.gridy = 3;
-			gbcLabelMensaje.weightx = 0.25;
+			//gbcLabelMensaje.weightx = 0.25;
 			gbcLabelMensaje.weighty = 0.2;
 			gbcLabelMensaje.anchor = GridBagConstraints.EAST;
 			gbcLabelMensaje.insets = margenExterior10;
 
 			gcbTextFieldMensaje.gridx = 1;
 			gcbTextFieldMensaje.gridy = 3;
-			gcbTextFieldMensaje.weightx = 0.5;
+			//gcbTextFieldMensaje.weightx = 0.5;
 			gcbTextFieldMensaje.weighty = 0.2;
 			gcbTextFieldMensaje.fill = GridBagConstraints.HORIZONTAL;
 
 			gbcButtonEnviar.gridx = 2;
 			gbcButtonEnviar.gridy = 3;
-			gbcButtonEnviar.weightx = 0.25;
+			//gbcButtonEnviar.weightx = 0.25;
 			gbcButtonEnviar.weighty = 0.2;
 			gbcButtonEnviar.anchor = GridBagConstraints.WEST;
 			gbcButtonEnviar.insets = margenExterior10;
