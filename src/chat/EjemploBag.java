@@ -1,18 +1,16 @@
 package chat;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
-import java.awt.Panel;
 import java.awt.TextArea;
-import java.awt.TextField;
+import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
@@ -20,205 +18,210 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
-public class EjemploBag extends Frame {
+public class EjemploBag extends JFrame {
 
-	private Button bRegistrar, bEnviar;
-	private TextField tNick, tMensaje;
-	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
-	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private JButton botonRegistrar, botonEnviar;
+	private JTextField textNick, textMensaje;
+	private JPanel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
+	private TextArea TextAreaMensajes, TextAreaUsuario;
+	private JLabel JLabelNick, JLabelUsuarios, lMensajes;
 
 	public EjemploBag() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		
-		setbRegistrar(new Button("Registrar"));
-		setbEnviar(new Button("Enviar"));
+		setbotonRegistrar(new JButton("Registrar"));
+		setbotonEnviar(new JButton("Enviar"));
 		
-		settNick(new TextField("Nombre...", 0));
-		settMensaje(new TextField("Comentar...", 0));
+		settextNick(new JTextField("Escribe tu nombre, k_p_llo", 0));
+		settextMensaje(new JTextField("Escribe aqui tu mensaje pelele", 0));
 		
-		setTaMensajes(new TextArea());
-		setTaUsuarios(new TextArea());
+		setTextAreaMensajes(new TextArea());
+		setTextAreaUsuario(new TextArea(30,1));
 		
-		setlNick(new Label("Nick:"));
-		setlUsuarios(new Label("Usuarios:"));
-		setlMensajes(new Label("Mensaje:"));
+		setJLabelNick(new JLabel("Nickname: "));
+		setJLabelUsuarios(new JLabel("Usuarios: "));
+		setlMensajes(new JLabel("Mensaje: "));
+		setTitle("Whatsaaaaaaaaap!");
 		
 		setLayout(new GridBagLayout());
 		
-		GridBagConstraints restLNick =new GridBagConstraints();
-		restLNick.gridx = 0;
-		restLNick.gridy = 0;
-		restLNick.weightx=0.3;
-		restLNick.weighty=0.2;		
-		add(getlNick(),restLNick);
+		GridBagConstraints restJLabelNick =new GridBagConstraints();
+		restJLabelNick.gridx = 0;
+		restJLabelNick.gridy = 0;
+		restJLabelNick.weightx=0.1;
+		restJLabelNick.weighty=0.2;		
+		add(getJLabelNick(),restJLabelNick);
 
-		GridBagConstraints restTNick =new GridBagConstraints();
-		restTNick.gridx = 1;
-		restTNick.gridy = 0;
-		restTNick.weightx=0.3;
-		restTNick.weighty=0.2;		
-		add(gettNick(),restTNick);
+		GridBagConstraints resttextNick =new GridBagConstraints();
+		resttextNick.gridx = 1;
+		resttextNick.gridy = 0;
+		resttextNick.weightx=0.8;
+		//resttextNick.weighty=0.2;
+		resttextNick.fill=GridBagConstraints.HORIZONTAL;
+		add(gettextNick(),resttextNick);
 
-		GridBagConstraints restBRegistrar =new GridBagConstraints();
-		restBRegistrar.gridx = 2;
-		restBRegistrar.gridy = 0;
-		restBRegistrar.weightx=0.3;
-		restBRegistrar.weighty=0.2;		
-		add(getbRegistrar(),restBRegistrar);
+		//setbotonRegistrar(new JButton(new ImageIcon(Toolkit.getDefaultToolkit().getImage("icon.png"))));
+		GridBagConstraints restbotonRegistrar =new GridBagConstraints();
+		restbotonRegistrar.gridx = 2;
+		restbotonRegistrar.gridy = 0;
+		restbotonRegistrar.weightx=0.1;
+		//restbotonRegistrar.weighty=0.2;		
+		add(getbotonRegistrar(),restbotonRegistrar);
 
-		GridBagConstraints restLUsuarios =new GridBagConstraints();
-		restLUsuarios.gridx = 0;
-		restLUsuarios.gridy = 1;
-		restLUsuarios.weightx=0.3;
-		restLUsuarios.weighty=0.2;		
-		add(getlUsuarios(),restLUsuarios);
+		GridBagConstraints restJLabelUsuarios =new GridBagConstraints();
+		restJLabelUsuarios.gridx = 0;
+		restJLabelUsuarios.gridy = 1;
+		//restJLabelUsuarios.weightx=0.3;
+		restJLabelUsuarios.weighty=0.05;		
+		add(getJLabelUsuarios(),restJLabelUsuarios);
 
-		GridBagConstraints restTaUsuarios =new GridBagConstraints();
-		restTaUsuarios.gridx = 0;
-		restTaUsuarios.gridy = 2;
-		restTaUsuarios.weightx=0.3;
-		restTaUsuarios.weighty=0.2;		
-		add(getTaUsuarios(),restTaUsuarios);
+		GridBagConstraints restTextAreaUsuario =new GridBagConstraints();
+		restTextAreaUsuario.gridx = 0;
+		restTextAreaUsuario.gridy = 2;
+		//restTextAreaUsuario.weightx=0.3;
+		restTextAreaUsuario.weighty=0.55;		
+		restTextAreaUsuario.fill= GridBagConstraints.BOTH;
+		add(getTextAreaUsuario(),restTextAreaUsuario);
 
-		GridBagConstraints restTaMensajes =new GridBagConstraints();
-		restTaMensajes.gridx = 1;
-		restTaMensajes.gridy = 1;
-		restTaMensajes.weightx=0.3;
-		restTaMensajes.weighty=0.2;
-		restTaMensajes.gridwidth=2;
-		restTaMensajes.gridheight=2;
-
-		add(getTaMensajes(),restTaMensajes);
+		GridBagConstraints restTextAreaMensajes =new GridBagConstraints();
+		restTextAreaMensajes.gridx = 1;
+		restTextAreaMensajes.gridy = 1;
+		//restTextAreaMensajes.weightx=0.3;
+		//restTextAreaMensajes.weighty=0.2;
+		restTextAreaMensajes.gridwidth=2;
+		restTextAreaMensajes.gridheight=2;
+		restTextAreaMensajes.fill=GridBagConstraints.BOTH;
+		add(getTextAreaMensajes(),restTextAreaMensajes);
 
 		GridBagConstraints restLMensajes =new GridBagConstraints();
 		restLMensajes.gridx = 0;
 		restLMensajes.gridy = 3;
-		restLMensajes.weightx=0.3;
+		//restLMensajes.weightx=0.3;
 		restLMensajes.weighty=0.2;		
 		add(getlMensajes(),restLMensajes);
 
-		GridBagConstraints restTMensaje =new GridBagConstraints();
-		restTMensaje.gridx = 1;
-		restTMensaje.gridy = 3;
-		restTMensaje.weightx=0.3;
-		restTMensaje.weighty=0.2;		
-		add(gettMensaje(),restTMensaje);
+		GridBagConstraints resttextMensaje =new GridBagConstraints();
+		resttextMensaje.gridx = 1;
+		resttextMensaje.gridy = 3;
+		//resttextMensaje.weightx=0.3;
+		//resttextMensaje.weighty=0.2;	
+		resttextMensaje.fill=GridBagConstraints.HORIZONTAL;
+		add(gettextMensaje(),resttextMensaje);
 
-		GridBagConstraints restBEnviar =new GridBagConstraints();
-		restBEnviar.gridx = 2;
-		restBEnviar.gridy = 3;
-		restBEnviar.weightx=0.3;
-		restBEnviar.weighty=0.2;		
-		add(getbEnviar(),restBEnviar);
+		GridBagConstraints restbotonEnviar =new GridBagConstraints();
+		restbotonEnviar.gridx = 2;
+		restbotonEnviar.gridy = 3;
+		//restbotonEnviar.weightx=0.3;
+		//restbotonEnviar.weighty=0.2;		
+		add(getbotonEnviar(),restbotonEnviar);
 
 	}
 
 	
 	
-	public Button getbRegistrar() {
-		return bRegistrar;
+	public JButton getbotonRegistrar() {
+		return botonRegistrar;
 	}
 
-	public void setbRegistrar(Button bRegistrar) {
-		this.bRegistrar = bRegistrar;
+	public void setbotonRegistrar(JButton botonRegistrar) {
+		this.botonRegistrar = botonRegistrar;
 	}
 
-	public Button getbEnviar() {
-		return bEnviar;
+	public JButton getbotonEnviar() {
+		return botonEnviar;
 	}
 
-	public void setbEnviar(Button bEnviar) {
-		this.bEnviar = bEnviar;
+	public void setbotonEnviar(JButton botonEnviar) {
+		this.botonEnviar = botonEnviar;
 	}
 
-	public TextField gettNick() {
-		return tNick;
+	public JTextField gettextNick() {
+		return textNick;
 	}
 
-	public void settNick(TextField tNick) {
-		this.tNick = tNick;
+	public void settextNick(JTextField textNick) {
+		this.textNick = textNick;
 	}
 
-	public TextField gettMensaje() {
-		return tMensaje;
+	public JTextField gettextMensaje() {
+		return textMensaje;
 	}
 
-	public void settMensaje(TextField tMensaje) {
-		this.tMensaje = tMensaje;
+	public void settextMensaje(JTextField textMensaje) {
+		this.textMensaje = textMensaje;
 	}
 
-	public Panel getpSuperior() {
+	public JPanel getpSuperior() {
 		return pSuperior;
 	}
 
-	public void setpSuperior(Panel pSuperior) {
+	public void setpSuperior(JPanel pSuperior) {
 		this.pSuperior = pSuperior;
 	}
 
-	public Panel getpInferior() {
+	public JPanel getpInferior() {
 		return pInferior;
 	}
 
-	public void setpInferior(Panel pInferior) {
+	public void setpInferior(JPanel pInferior) {
 		this.pInferior = pInferior;
 	}
 
-	public Panel getpIzquierda() {
+	public JPanel getpIzquierda() {
 		return pIzquierda;
 	}
 
-	public void setpIzquierda(Panel pIzquierda) {
+	public void setpIzquierda(JPanel pIzquierda) {
 		this.pIzquierda = pIzquierda;
 	}
 
-	public Panel getpIzquierdaSuperior() {
+	public JPanel getpIzquierdaSuperior() {
 		return pIzquierdaSuperior;
 	}
 
-	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
+	public void setpIzquierdaSuperior(JPanel pIzquierdaSuperior) {
 		this.pIzquierdaSuperior = pIzquierdaSuperior;
 	}
 
-	public TextArea getTaMensajes() {
-		return taMensajes;
+	public TextArea getTextAreaMensajes() {
+		return TextAreaMensajes;
 	}
 
-	public void setTaMensajes(TextArea taMensajes) {
-		this.taMensajes = taMensajes;
+	public void setTextAreaMensajes(TextArea TextAreaMensajes) {
+		this.TextAreaMensajes = TextAreaMensajes;
 	}
 
-	public TextArea getTaUsuarios() {
-		return taUsuarios;
+	public TextArea getTextAreaUsuario() {
+		return TextAreaUsuario;
 	}
 
-	public void setTaUsuarios(TextArea taUsuarios) {
-		this.taUsuarios = taUsuarios;
+	public void setTextAreaUsuario(TextArea TextAreaUsuario) {
+		this.TextAreaUsuario = TextAreaUsuario;
 	}
 
-	public Label getlNick() {
-		return lNick;
+	public JLabel getJLabelNick() {
+		return JLabelNick;
 	}
 
-	public void setlNick(Label lNick) {
-		this.lNick = lNick;
+	public void setJLabelNick(JLabel JLabelNick) {
+		this.JLabelNick = JLabelNick;
 	}
 
-	public Label getlUsuarios() {
-		return lUsuarios;
+	public JLabel getJLabelUsuarios() {
+		return JLabelUsuarios;
 	}
 
-	public void setlUsuarios(Label lUsuarios) {
-		this.lUsuarios = lUsuarios;
+	public void setJLabelUsuarios(JLabel JLabelUsuarios) {
+		this.JLabelUsuarios = JLabelUsuarios;
 	}
 
-	public Label getlMensajes() {
+	public JLabel getlMensajes() {
 		return lMensajes;
 	}
 
-	public void setlMensajes(Label lMensajes) {
+	public void setlMensajes(JLabel lMensajes) {
 		this.lMensajes = lMensajes;
 	}
 }

@@ -40,6 +40,7 @@ public class Chat extends Frame {
 		setBackground(Color.LIGHT_GRAY);
 		setTitle("Whatsaaaaaaaaap!");
 		
+
 		// componentes
 
 		
