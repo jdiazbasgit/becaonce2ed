@@ -3,16 +3,16 @@ package bolas.hilos;
 import bolas.ventanas.VentanaBolas;
 
 public class Pintor extends Thread {
-	
+
 	private VentanaBolas ventanaBolas;
-	
+
 	public Pintor(VentanaBolas ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
-	
+
 	@Override
 	public void run() {
-		while(true) {
+		while (true) {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
@@ -21,10 +21,8 @@ public class Pintor extends Thread {
 			}
 			getVentanaBolas().repaint();
 		}
-		
-	}
 
-	
+	}
 
 	public VentanaBolas getVentanaBolas() {
 		return ventanaBolas;

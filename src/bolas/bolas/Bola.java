@@ -1,15 +1,13 @@
 package bolas.bolas;
 
 public class Bola {
-	
-	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
-	
-	
+
+	private int posicionX, posicionY, incrementoX, incrementoY, sentidoX, sentidoY, dimension;
+
 	public void calcularPosicion() {
-		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
-		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
+		setPosicionX(getPosicionX() + (getIncrementoX() * getSentidoX()));
+		setPosicionY(getPosicionY() + (getIncrementoY() * getSentidoY()));
 	}
-	
 
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
 			int dimension) {

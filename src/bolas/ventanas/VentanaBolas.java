@@ -1,9 +1,7 @@
 package bolas.ventanas;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +16,9 @@ public class VentanaBolas extends JFrame {
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
-	// private Bola bola;
 	private List<Bola> bolas;
 
 	public VentanaBolas() {
-		// setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
@@ -35,7 +31,6 @@ public class VentanaBolas extends JFrame {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 
-			// setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
 			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
 			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
 			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
@@ -59,27 +54,26 @@ public class VentanaBolas extends JFrame {
 			bolaHilo2.start();
 			bolaHilo3.start();
 			bolaHilo4.start();
+
 			Pintor pintor = new Pintor(this);
 			pintor.start();
 			setPrimeraVez(false);
 		}
-
-		/*
-		 * g.setColor(Color.YELLOW); g.fillRect(100, 100, 100, 100);
-		 * g.setColor(Color.RED); g.drawOval(250, 100, 100, 100); int[] x = { 50, 100,
-		 * 150 }; int[] y = { 80, 300, 250 }; g.drawPolygon(x, y, 3);
-		 */
 
 		try {
 			Thread.sleep(5);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
+
 		for (Bola bola : getBolas()) {
 			getExterno().fillOval(bola.getPosicionX(), bola.getPosicionY(), bola.getDimension(), bola.getDimension());
 		}
+
 		g.drawImage(getImagen(), 0, 0, this);
+
 	}
 
 	public Image getImagen() {
@@ -105,12 +99,6 @@ public class VentanaBolas extends JFrame {
 	public void setPrimeraVez(boolean primeraVez) {
 		this.primeraVez = primeraVez;
 	}
-
-	/*
-	 * public Bola getBola() { return bola; }
-	 * 
-	 * public void setBola(Bola bola) { this.bola = bola; }
-	 */
 
 	public List<Bola> getBolas() {
 		return bolas;

@@ -19,7 +19,6 @@ public class BolaHilo extends Thread {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (getBola().getPosicionX() < 0
