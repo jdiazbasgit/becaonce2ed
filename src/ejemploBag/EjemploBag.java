@@ -86,8 +86,8 @@ public class EjemploBag extends JFrame {
 		restTaUsuarios.gridx = 0;
 		restTaUsuarios.gridy = 2;
 		restTaUsuarios.weighty=0.55;
-		
 		restTaUsuarios.fill = GridBagConstraints.BOTH;
+		getTaUsuarios().setEditable(false);
 		getTaUsuarios().setFont(new Font("Verdana", Font.PLAIN, 15));
 		getContentPane().add(getTaUsuarios(),restTaUsuarios);
 		/* ==========================================================*/
@@ -102,6 +102,7 @@ public class EjemploBag extends JFrame {
 		restTaMensajes.gridheight=2;
 		restTaMensajes.insets = new Insets(0, 5, 0, 0);
 		restTaMensajes.fill = GridBagConstraints.BOTH;
+		getTaMensajes().setEditable(false);
 		getTaMensajes().setFont(new Font("Verdana", Font.PLAIN, 15));
 		getContentPane().add(getTaMensajes(),restTaMensajes);
 		/* ==========================================================*/
