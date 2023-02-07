@@ -1,41 +1,31 @@
 package chat;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.TextArea;
-import java.awt.Button;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
-import java.awt.TextField;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-import chat.eventos.ElQueSabeLoQueHayQueHacerConElFoco;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
-public class ChatGridBad extends Frame {
+public class ChatGridBad extends JFrame {
 
-	private Button bRegistrar, bEnviar;
-	private TextField tNick, tMensaje;
-	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
+	private JButton bRegistrar, bEnviar;
+	private JTextField tNick, tMensaje;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensaje;
+	private JLabel lNick, lUsuarios, lMensaje;
 
-	public ChatGridBad(boolean grid) {
+	public ChatGridBad() {
 
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		this.setLayout(new BorderLayout());
@@ -43,253 +33,146 @@ public class ChatGridBad extends Frame {
 		setSize(tamanoActualizableFrame.width / 2, tamanoActualizableFrame.height / 2);
 		setLocation(tamanoActualizableFrame.width / 4, tamanoActualizableFrame.height / 4);
 		System.out.println(tamanoActualizableFrame);
+
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+		this.setLayout(new GridBagLayout());
 		
 		
-		if (grid) {
-			// setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-			this.setLayout(new GridBagLayout());
-			Insets margenExterior10 = new Insets(0, 0, 0, 0);
-			Insets margenDecha300 = new Insets(0,0,0,300);
-			Insets margenDecha100 = new Insets(0,0,0,120);
-			
-			// ---Primera zona-------------------------
+		// ---Primera zona-------------------------
 
-			this.setlNick(new Label("Nick:"));
-			this.settNick(new TextField("Escribe cómo te verán los demás", 0));
-			this.setbRegistrar(new Button("REGISTRAR"));
-			gettNick().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+		this.setlNick(new JLabel("Nick:   "));
+		this.settNick(new JTextField("Escribe cómo te verán los demás", 0));
+		this.setbRegistrar(new JButton("REGISTRAR"));
+		gettNick().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 
-			GridBagConstraints gbcLabelNick = new GridBagConstraints();
-			GridBagConstraints gcbTextFieldNick = new GridBagConstraints();
-			GridBagConstraints gbcButtonRegistrar = new GridBagConstraints();
-			gbcLabelNick.gridx = 0;
-			gbcLabelNick.gridy = 0;
-			gbcLabelNick.weightx = 0.1;
-			gbcLabelNick.weighty = 0.2;
-			gbcLabelNick.anchor = GridBagConstraints.EAST;
-			gbcLabelNick.insets = margenExterior10;
-
-			gcbTextFieldNick.gridx = 1;
-			gcbTextFieldNick.gridy = 0;
-			gcbTextFieldNick.weightx = 0.8;
-			gcbTextFieldNick.weighty = 0.2;
-			gcbTextFieldNick.fill = GridBagConstraints.HORIZONTAL;
-			gcbTextFieldNick.insets = margenDecha300;
-			gcbTextFieldNick.gridwidth = 2;
-
-			gbcButtonRegistrar.gridx = 1;
-			gbcButtonRegistrar.gridy = 0;
-			gbcButtonRegistrar.weightx = 0.1;
-			gbcButtonRegistrar.weighty = 0.2;
-			gbcButtonRegistrar.anchor = GridBagConstraints.EAST;
-			gbcButtonRegistrar.insets = margenDecha100;
-			//gbcButtonRegistrar.insets = margenExterior10;
-			gbcButtonRegistrar.ipadx = 10;
-			gbcButtonRegistrar.ipady = 10;		
-
-			this.add(getlNick(), gbcLabelNick);
-			this.add(gettNick(), gcbTextFieldNick);
-			this.add(getbRegistrar(), gbcButtonRegistrar);
-
-			// ---Segunda zona----------------------------
-
-			this.setlUsuarios(new Label("Usuarios:"));
-			this.setTaMensajes(
-					new TextArea("Lista de mensajes, panel principal", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
-
-			GridBagConstraints gbcLabelUsuarios = new GridBagConstraints();
-			GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();
-			gbcLabelUsuarios.gridx = 0;
-			gbcLabelUsuarios.gridy = 1;
-			//gbcLabelUsuarios.weightx = 0.25;
-			gbcLabelUsuarios.weighty = 0.1;
-			gbcLabelUsuarios.anchor = GridBagConstraints.SOUTH;
-
-			gcbTextAreaMensajes.gridx = 1;
-			gcbTextAreaMensajes.gridy = 1;
-			//gcbTextAreaMensajes.weightx = 0.9;
-			gcbTextAreaMensajes.weighty = 0.1;
-			gcbTextAreaMensajes.gridwidth = 2;
-			gcbTextAreaMensajes.gridheight = 2;
-			gcbTextAreaMensajes.fill = GridBagConstraints.BOTH;
-			//gcbTextAreaMensajes.insets = margenExterior10;
-
-			add(getlUsuarios(), gbcLabelUsuarios);
-			add(getTaMensajes(), gcbTextAreaMensajes);
-
-			this.setTaUsuarios(new TextArea("", 30,1, TextArea.SCROLLBARS_VERTICAL_ONLY));
-
-			GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
-			gcbTextAreaUsuarios.gridx = 0;
-			gcbTextAreaUsuarios.gridy = 2;
-			//gcbTextAreaUsuarios.weightx = 0.25;
-			gcbTextAreaUsuarios.weighty = 0.5;
-			gcbTextAreaUsuarios.fill = GridBagConstraints.BOTH;
-			//gcbTextAreaUsuarios.insets = margenExterior10;
-
-			add(getTaUsuarios(), gcbTextAreaUsuarios);
-
-			// ---Tercera zona----------------------------
-
-			this.setlMensaje(new Label("Mensaje:"));
-			this.settMensaje(new TextField("Escribe un mensaje", 60));
-			this.setbEnviar(new Button("ENVIAR"));
-			gettMensaje().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
-
-			GridBagConstraints gbcLabelMensaje = new GridBagConstraints();
-			GridBagConstraints gcbTextFieldMensaje = new GridBagConstraints();
-			GridBagConstraints gbcButtonEnviar = new GridBagConstraints();
-			gbcLabelMensaje.gridx = 0;
-			gbcLabelMensaje.gridy = 3;
-			//gbcLabelMensaje.weightx = 0.25;
-			gbcLabelMensaje.weighty = 0.2;
-			gbcLabelMensaje.anchor = GridBagConstraints.EAST;
-			gbcLabelMensaje.insets = margenExterior10;
-
-			gcbTextFieldMensaje.gridx = 1;
-			gcbTextFieldMensaje.gridy = 3;
-			//gcbTextFieldMensaje.weightx = 0.5;
-			gcbTextFieldMensaje.weighty = 0.2;
-			gcbTextFieldMensaje.fill = GridBagConstraints.HORIZONTAL;
-
-			gbcButtonEnviar.gridx = 2;
-			gbcButtonEnviar.gridy = 3;
-			//gbcButtonEnviar.weightx = 0.25;
-			gbcButtonEnviar.weighty = 0.2;
-			gbcButtonEnviar.anchor = GridBagConstraints.WEST;
-			gbcButtonEnviar.insets = margenExterior10;
-			gbcButtonEnviar.ipadx = 10;
-			gbcButtonEnviar.ipady = 10;
-
-			this.add(getlMensaje(), gbcLabelMensaje);
-			this.add(gettMensaje(), gcbTextFieldMensaje);
-			this.add(getbEnviar(), gbcButtonEnviar);
-		}
+		GridBagConstraints gbcLabelNick = new GridBagConstraints();
+		GridBagConstraints gcbTextFieldNick = new GridBagConstraints();
+		GridBagConstraints gbcButtonRegistrar = new GridBagConstraints();
+		gbcLabelNick.gridx = 0;
+		gbcLabelNick.gridy = 0;
+		gbcLabelNick.weightx = 0.2;
+		gbcLabelNick.weighty = 0.2;
+		gbcLabelNick.anchor = GridBagConstraints.EAST;
 		
-		
-		//--------Chat SIN grid----------
-		else {
-			
-			this.setpSuperior(new Panel());
-			this.add(getpSuperior(),BorderLayout.NORTH);
-			getpSuperior().setLayout(new FlowLayout(FlowLayout.CENTER, 90, 20));
-			getpSuperior().setBackground(Color.ORANGE);
-			
-			this.setlNick(new Label("Nick:"));
-			getpSuperior().add(getlNick());
-			
-			this.settNick(new TextField("Escribe cómo te verán los demás",0));
-			getpSuperior().add(gettNick());
-			
-			this.setbRegistrar(new Button("REGISTRAR"));
-			getpSuperior().add(getbRegistrar());
-			
-			
-			this.setpIzquierda(new Panel());
-			this.add(getpIzquierda(),BorderLayout.WEST);
-			getpIzquierda().setLayout(new BorderLayout());
-			getpIzquierda().setBackground(Color.RED);
-			//---------
-			this.setpIzquierdaSuperior(new Panel());
-			getpIzquierda().add(getpIzquierdaSuperior(),BorderLayout.NORTH);
-			getpIzquierdaSuperior().setLayout(new FlowLayout());
-			getpIzquierdaSuperior().setBackground(Color.DARK_GRAY);
-			
-			this.setlUsuarios(new Label("Usuarios:"));
-			getpIzquierdaSuperior().add(getlUsuarios());
-			//-----------
-			
-			getpIzquierda().add(getpIzquierdaSuperior(),BorderLayout.NORTH);
-			
-					
-			this.setTaUsuarios(new TextArea("",1,20,TextArea.SCROLLBARS_VERTICAL_ONLY));
-			//getTaUsuarios().TextArea.SCROLLBARS_VERTICAL_ONLY
-			getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
+		gcbTextFieldNick.gridx = 1;
+		gcbTextFieldNick.gridy = 0;
+		gcbTextFieldNick.weightx = 0.6;
+		gcbTextFieldNick.fill = GridBagConstraints.HORIZONTAL;
+		//Insets margenDechaDv4 = new Insets(0, 0, 0, tamanoActualizableFrame.width / 4);
+		//gcbTextFieldNick.insets = margenDechaDv4;
+		//gcbTextFieldNick.gridwidth = 2;
 
-			
-			
-			this.setpInferior(new Panel());
-			this.add(getpInferior(),BorderLayout.SOUTH);
-			getpInferior().setLayout(new FlowLayout(FlowLayout.CENTER, 90, 20));
-			getpInferior().setBackground(Color.ORANGE);		
-			this.setlMensaje(new Label("Mensaje:"));
-			getpInferior().add(getlMensaje());		
-			this.settMensaje(new TextField("Escribe un mensaje",60));
-			getpInferior().add(gettMensaje());		
-			this.setbEnviar(new Button("ENVIAR"));
-			getpInferior().add(getbEnviar());
-			
-			
-			this.setTaMensajes(new TextArea("",0,0,TextArea.SCROLLBARS_VERTICAL_ONLY));
-			this.add(getTaMensajes());
-		}
+		gbcButtonRegistrar.gridx = 2;
+		gbcButtonRegistrar.gridy = 0;
+		gbcButtonRegistrar.weightx = 0.2;
+		gbcButtonRegistrar.anchor = GridBagConstraints.WEST;
+		Insets margenDechaDv7 = new Insets(0, 10, 0, tamanoActualizableFrame.width / 7);
+		gbcButtonRegistrar.insets = margenDechaDv7;
+		
+		getContentPane().add(getlNick(), gbcLabelNick);
+		getContentPane().add(gettNick(), gcbTextFieldNick);
+		getContentPane().add(getbRegistrar(), gbcButtonRegistrar);
+
+		// ---Segunda zona----------------------------
+
+		this.setlUsuarios(new JLabel("Usuarios:"));
+		this.setTaMensajes(new TextArea("Lista de mensajes, panel principal", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
+
+		GridBagConstraints gbcLabelUsuarios = new GridBagConstraints();
+		GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();
+		gbcLabelUsuarios.gridx = 0;
+		gbcLabelUsuarios.gridy = 1;
+		gbcLabelUsuarios.weighty = 0.1;
+		gbcLabelUsuarios.anchor = GridBagConstraints.SOUTH;
+
+		gcbTextAreaMensajes.gridx = 1;
+		gcbTextAreaMensajes.gridy = 1;
+		gcbTextAreaMensajes.weighty = 0.1;
+		gcbTextAreaMensajes.gridwidth = 2;
+		gcbTextAreaMensajes.gridheight = 2;
+		gcbTextAreaMensajes.fill = GridBagConstraints.BOTH;
+
+		getContentPane().add(getlUsuarios(), gbcLabelUsuarios);
+		getContentPane().add(getTaMensajes(), gcbTextAreaMensajes);
+
+		this.setTaUsuarios(new TextArea("", 30, 1, TextArea.SCROLLBARS_VERTICAL_ONLY));
+
+		GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
+		gcbTextAreaUsuarios.gridx = 0;
+		gcbTextAreaUsuarios.gridy = 2;
+		gcbTextAreaUsuarios.weighty = 0.5;
+		gcbTextAreaUsuarios.fill = GridBagConstraints.BOTH;
+
+		getContentPane().add(getTaUsuarios(), gcbTextAreaUsuarios);
+
+		// ---Tercera zona----------------------------
+
+		this.setlMensaje(new JLabel("Mensaje:   "));
+		this.settMensaje(new JTextField("Escribe un mensaje", 60));
+		this.setbEnviar(new JButton("ENVIAR"));
+		gettMensaje().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+
+		GridBagConstraints gbcLabelMensaje = new GridBagConstraints();
+		GridBagConstraints gcbTextFieldMensaje = new GridBagConstraints();
+		GridBagConstraints gbcButtonEnviar = new GridBagConstraints();
+		gbcLabelMensaje.gridx = 0;
+		gbcLabelMensaje.gridy = 3;
+		gbcLabelMensaje.weighty = 0.2;
+		gbcLabelMensaje.anchor = GridBagConstraints.EAST;
+		
+
+		gcbTextFieldMensaje.gridx = 1;
+		gcbTextFieldMensaje.gridy = 3;
+		gcbTextFieldMensaje.weighty = 0.2;
+		gcbTextFieldMensaje.fill = GridBagConstraints.HORIZONTAL;
+		//gcbTextFieldMensaje.gridwidth = 2;
+		
+
+		gbcButtonEnviar.gridx = 2;
+		gbcButtonEnviar.gridy = 3;
+		gbcButtonEnviar.weighty = 0.2;
+		gbcButtonEnviar.anchor = GridBagConstraints.WEST;
+		Insets margenDechaDv12 = new Insets(0, 10, 0, tamanoActualizableFrame.width / 18);
+		gbcButtonEnviar.insets = margenDechaDv12;
+
+		getContentPane().add(getlMensaje(), gbcLabelMensaje);
+		getContentPane().add(gettMensaje(), gcbTextFieldMensaje);
+		getContentPane().add(getbEnviar(), gbcButtonEnviar);
 
 	}
 
-	public Button getbRegistrar() {
+	public JButton getbRegistrar() {
 		return bRegistrar;
 	}
 
-	public void setbRegistrar(Button bRegistrar) {
+	public void setbRegistrar(JButton bRegistrar) {
 		this.bRegistrar = bRegistrar;
 	}
 
-	public Button getbEnviar() {
+	public JButton getbEnviar() {
 		return bEnviar;
 	}
 
-	public void setbEnviar(Button bEnviar) {
+	public void setbEnviar(JButton bEnviar) {
 		this.bEnviar = bEnviar;
 	}
 
-	public TextField gettNick() {
+	public JTextField gettNick() {
 		return tNick;
 	}
 
-	public void settNick(TextField tNick) {
+	public void settNick(JTextField tNick) {
 		this.tNick = tNick;
 	}
 
-	public TextField gettMensaje() {
+	public JTextField gettMensaje() {
 		return tMensaje;
 	}
 
-	public void settMensaje(TextField tMensaje) {
+	public void settMensaje(JTextField tMensaje) {
 		this.tMensaje = tMensaje;
-	}
-
-	public Panel getpSuperior() {
-		return pSuperior;
-	}
-
-	public void setpSuperior(Panel pSuperior) {
-		this.pSuperior = pSuperior;
-
-	}
-
-	public Panel getpInferior() {
-		return pInferior;
-	}
-
-	public void setpInferior(Panel pInferior) {
-		this.pInferior = pInferior;
-	}
-
-	public Panel getpIzquierda() {
-		return pIzquierda;
-	}
-
-	public void setpIzquierda(Panel pIzquierda) {
-		this.pIzquierda = pIzquierda;
-	}
-
-	public Panel getpIzquierdaSuperior() {
-		return pIzquierdaSuperior;
-	}
-
-	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
-		this.pIzquierdaSuperior = pIzquierdaSuperior;
 	}
 
 	public TextArea getTaMensajes() {
@@ -308,27 +191,27 @@ public class ChatGridBad extends Frame {
 		this.taUsuarios = taUsuarios;
 	}
 
-	public Label getlNick() {
+	public JLabel getlNick() {
 		return lNick;
 	}
 
-	public void setlNick(Label lNick) {
+	public void setlNick(JLabel lNick) {
 		this.lNick = lNick;
 	}
 
-	public Label getlUsuarios() {
+	public JLabel getlUsuarios() {
 		return lUsuarios;
 	}
 
-	public void setlUsuarios(Label lUsuarios) {
+	public void setlUsuarios(JLabel lUsuarios) {
 		this.lUsuarios = lUsuarios;
 	}
 
-	public Label getlMensaje() {
+	public JLabel getlMensaje() {
 		return lMensaje;
 	}
 
-	public void setlMensaje(Label lMensaje) {
+	public void setlMensaje(JLabel lMensaje) {
 		this.lMensaje = lMensaje;
 	}
 
