@@ -1,31 +1,33 @@
 package chat;
 
-import java.awt.Button;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
-import java.awt.TextField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
-public class Chat extends Frame {
+public class Chat extends JFrame {
 
-	private Button bRegistrar, bEnviar;
-	private TextField tNick, tMensaje;
+	private JButton bRegistrar, bEnviar;
+	private JTextField tNick, tMensaje;
 	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private JLabel lNick, lUsuarios, lMensajes;
 
-	public Label getlMensajes() {
+	public JLabel getlMensajes() {
 		return lMensajes;
 	}
 
-	public void setlMensajes(Label lMensajes) {
+	public void setlMensajes(JLabel lMensajes) {
 		this.lMensajes = lMensajes;
 	}
 
@@ -48,21 +50,21 @@ public class Chat extends Frame {
 		//this.add(getpInferior(), BorderLayout.SOUTH);
 		//this.add(getpIzquierda(), BorderLayout.WEST);
 
-		//setlNick(new Label("Nick"));
-		//settNick(new TextField(100));
+		//setlNick(new JLabel("Nick"));
+		//settNick(new JTextField(100));
 		//getpSuperior().add(getlNick());
 		//getpSuperior().add(gettNick());
 		//getpSuperior().add(getbRegistrar());
 
-		//setbEnviar(new Button("|>"));
-		//setbRegistrar(new Button("Registrar"));
-		//setlMensajes(new Label("Mensajes"));
-		//settMensaje(new TextField(100));
+		//setbEnviar(new JButton("|>"));
+		//setbRegistrar(new JButton("Registrar"));
+		//setlMensajes(new JLabel("Mensajes"));
+		//settMensaje(new JTextField(100));
 		//getpInferior().add(getlMensajes());
 		//getpInferior().add(gettMensaje());
 		//getpInferior().add(getbEnviar());
 
-		//setlUsuarios(new Label("Usuarios"));
+		//setlUsuarios(new JLabel("Usuarios"));
 		//settaUsuarios(new TextArea());
 		//getpIzquierdaSuperior().add(getlUsuarios());
 		//getpIzquierda().setLayout(new BorderLayout());
@@ -72,34 +74,33 @@ public class Chat extends Frame {
 		//settaMensajes(new TextArea());
 		//this.add(gettaMensajes(), BorderLayout.CENTER);
 	
-		Label nick = new Label("Nick");
+		setlNick(new JLabel());
 		GridBagConstraints GBCSNick =new GridBagConstraints();
 		GBCSNick.gridx =0;
 		GBCSNick.gridy =0;
 		GBCSNick.weightx=0.25;
 		GBCSNick.weighty=0.2;	
-		add(nick,GBCSNick);
+		add(getlNick(),GBCSNick);
 		
-		TextField elDelNick= new TextField(100);
+		settMensaje(new JTextField(100));		
 		GridBagConstraints GBCSNickTestField =new GridBagConstraints();
 		GBCSNickTestField.gridx =1;
 		GBCSNickTestField.gridy =0;
 		GBCSNickTestField.weightx=0.5;
 		GBCSNickTestField.weighty=0.2;	
-		add(elDelNick,GBCSNickTestField);
-		elDelNick.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+		add(gettMensaje(),GBCSNickTestField);
+		//elDelNick.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 		
 		
-		Button registrar = new Button("Registrar");
+	    setbRegistrar(new JButton(new ImageIcon("Icono.png")));
 		GridBagConstraints GBCSRegistrar =new GridBagConstraints();
 		GBCSRegistrar.gridx =2;
 		GBCSRegistrar.gridy =0;
 		GBCSRegistrar.weightx=0.25;
-		GBCSRegistrar.weighty=0.2;	
-		GBCSRegistrar.fill=GridBagConstraints.BOTH;
-		add(registrar,GBCSRegistrar);
+		GBCSRegistrar.weighty=0.2;		
+		add(getbRegistrar(),GBCSRegistrar);
 		
-		Label mensajes =new Label("Mensajes");
+		JLabel mensajes =new JLabel("Mensajes");
 		GridBagConstraints GBCIMensaje =new GridBagConstraints();
 		GBCIMensaje.gridx =0;
 		GBCIMensaje.gridy =3;
@@ -107,24 +108,26 @@ public class Chat extends Frame {
 		GBCIMensaje.weighty=0.2;	
 		add(mensajes,GBCIMensaje);
 		
-		TextField elDelMensaje= new TextField(100);
+		JTextField elDelMensaje= new JTextField(100);
+		elDelMensaje.setText("Escriba mensaje");
 		GridBagConstraints GBCITexto =new GridBagConstraints();
 		GBCITexto.gridx =1;
 		GBCITexto.gridy =3;
 		GBCITexto.weightx=0.5;
 		GBCITexto.weighty=0.2;	
 		add(elDelMensaje,GBCITexto);
+		elDelMensaje.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 		
-		Button enviar= new Button("|>");
+		JButton enviar= new JButton("Enviar");
 		GridBagConstraints GBCIEnviar =new GridBagConstraints();
 		GBCIEnviar.gridx =2;
 		GBCIEnviar.gridy =3;
 		GBCIEnviar.weightx=0.25;
 		GBCIEnviar.weighty=0.2;	
-		GBCIEnviar.fill=GridBagConstraints.BOTH;
+		
 		add(enviar,GBCIEnviar);
 		
-		Label usuarios = new Label("Usuarios");
+		JLabel usuarios = new JLabel("Usuarios");
 		GridBagConstraints GBCIzSUsuario =new GridBagConstraints();
 		GBCIzSUsuario.gridx =0;
 		GBCIzSUsuario.gridy =1;
@@ -132,7 +135,7 @@ public class Chat extends Frame {
 		GBCIzSUsuario.weighty=0.1;	
 		add(usuarios,GBCIzSUsuario);
 		
-		TextArea elDelUsuario = new TextArea();
+		TextArea elDelUsuario = new TextArea(30,1);
 		GridBagConstraints GBCIZSDondeEstanLosUsuarios =new GridBagConstraints();
 		GBCIZSDondeEstanLosUsuarios.gridx =0;
 		GBCIZSDondeEstanLosUsuarios.gridy =2;
@@ -155,31 +158,31 @@ public class Chat extends Frame {
 		
 	}
 
-	public Button getbRegistrar() {
+	public JButton getbRegistrar() {
 		return bRegistrar;
 	}
 
-	public void setbRegistrar(Button bRegistrar) {
+	public void setbRegistrar(JButton bRegistrar) {
 		this.bRegistrar = bRegistrar;
 	}
 
-	public Button getbEnviar() {
+	public JButton getbEnviar() {
 		return bEnviar;
 	}
 
-	public void setbEnviar(Button bEnviar) {
+	public void setbEnviar(JButton bEnviar) {
 		this.bEnviar = bEnviar;
 	}
 
-	public TextField gettNick() {
+	public JTextField gettNick() {
 		return tNick;
 	}
 
-	public void settNick(TextField tNick) {
+	public void settNick(JTextField tNick) {
 		this.tNick = tNick;
 	}
 
-	public TextField gettMensaje() {
+	public JTextField gettMensaje() {
 		return tMensaje;
 	}
 
@@ -232,23 +235,23 @@ public class Chat extends Frame {
 		this.taUsuarios = taUsuarios;
 	}
 
-	public Label getlNick() {
+	public JLabel getlNick() {
 		return lNick;
 	}
 
-	public void setlNick(Label lNick) {
+	public void setlNick(JLabel lNick) {
 		this.lNick = lNick;
 	}
 
-	public Label getlUsuarios() {
+	public JLabel getlUsuarios() {
 		return lUsuarios;
 	}
 
-	public void setlUsuarios(Label lUsuarios) {
+	public void setlUsuarios(JLabel lUsuarios) {
 		this.lUsuarios = lUsuarios;
 	}
 
-	public void settMensaje(TextField tMensaje) {
+	public void settMensaje(JTextField tMensaje) {
 		this.tMensaje = tMensaje;
 	}
 

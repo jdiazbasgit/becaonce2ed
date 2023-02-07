@@ -1,21 +1,16 @@
-package chat;
+package chat.eventos;
 
 import java.awt.TextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener{
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		((TextField) e.getSource()).setText("");
-		
+		((TextField) e.getSource()).setText("");	
 	}
-
 	@Override
 	public void mousePressed(MouseEvent e) {
-	
-		
 	}
 
 	@Override
@@ -29,19 +24,11 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
-
-
 }
 
 
