@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class VentanaBolas extends JFrame {
 	private boolean primeraVez;
 	// private Bola bola;
 	private List<Bola> bolas;
+	
 
 	public VentanaBolas() {
 		// setSize(500, 500);
