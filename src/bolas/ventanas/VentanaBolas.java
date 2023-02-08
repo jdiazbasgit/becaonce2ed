@@ -3,17 +3,19 @@ package bolas.ventanas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import bolas.bolas.Bola;
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
-public class VentanaBolas extends JFrame {
+@SuppressWarnings("serial")
+public class VentanaBolas extends JPanel {
 
 	private Image imagen;
 	private Graphics externo;
@@ -22,13 +24,16 @@ public class VentanaBolas extends JFrame {
 	private List<Bola> bolas;
 
 	public VentanaBolas() {
-		// setSize(500, 500);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
+		addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 	}
 
+	
 	@Override
 	public void paint(Graphics g) {
 		if (isPrimeraVez()) {
