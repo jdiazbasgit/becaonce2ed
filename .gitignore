@@ -1,6 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+<<<<<<< HEAD
+=======
+/.metadata/
+>>>>>>> 2c7468f3e4c2f21078fdc957e3e0c4962353d1a6
 /node_modules
 /.pnp
 .pnp.js
@@ -26,4 +30,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 
+=======
+pom.xml
+>>>>>>> 2c7468f3e4c2f21078fdc957e3e0c4962353d1a6
