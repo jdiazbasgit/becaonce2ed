@@ -1,5 +1,6 @@
 package chat.eventos;
 
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JTextField;
@@ -37,3 +38,11 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	}
 
 }
+
+
+
+
+
+
+
+
