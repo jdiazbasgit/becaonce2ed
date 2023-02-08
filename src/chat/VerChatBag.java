@@ -3,7 +3,7 @@ package chat;
 public class VerChatBag {
 
 	public static void main(String[] args) {
-		Chat chat= new Chat();
+		ChatBag chat= new ChatBag();
 		chat.setVisible(true);
 	}
 

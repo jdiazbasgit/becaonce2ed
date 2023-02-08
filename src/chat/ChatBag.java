@@ -1,13 +1,14 @@
 package chat;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Label;
-import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.FocusAdapter;
 
 import javax.swing.JFrame;
 
@@ -19,66 +20,116 @@ public class ChatBag extends Frame {
 	
 	private Button bRegistrar,bEnviar;
 	private TextField tNick, tMensaje;
-	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private Label lNick, lUsuarios, lMensaje;
 	
 	
 	public ChatBag() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+
+		setLayout(new GridBagLayout());
+		
 		
 		setbRegistrar(new Button ("Registrar"));
+		GridBagConstraints restriccionesbRegistrar = new GridBagConstraints();
+		
+		getbRegistrar().setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		
+		restriccionesbRegistrar.gridx = 2;
+		restriccionesbRegistrar.gridy = 0;
+		
+		restriccionesbRegistrar.weightx = 0.2;		
+		add(bRegistrar,restriccionesbRegistrar);
+		
+		
 		setbEnviar(new Button("Enviar"));
-		settNick(new TextField(80));
-		settMensaje(new TextField(80));
-		setpSuperior(new Panel());
-		setpInferior(new Panel());
-		setpIzquierda(new Panel());
-		setpIzquierdaSuperior(new Panel());
-		setTaMensajes(new TextArea());
-		setTaUsuarios(new TextArea());
+		GridBagConstraints restriccionesbEnviar = new GridBagConstraints();
+		
+		getbEnviar().setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		
+		restriccionesbEnviar.gridx = 2;
+		restriccionesbEnviar.gridy = 3;
+		
+		add(bEnviar,restriccionesbEnviar);
+		
 		setlNick(new Label("Nick"));
+		
+		GridBagConstraints restriccioneslNick = new GridBagConstraints();
+		
+		getlNick().setFont(new Font(Font.DIALOG,Font.BOLD,20));
+		
+		restriccioneslNick.gridx = 0;
+		restriccioneslNick.gridy = 0;
+		
+		restriccioneslNick.weightx = 0.2;
+		restriccioneslNick.weighty = 0.2;
+		
+		add(lNick,restriccioneslNick);
+		
+		settNick(new TextField());
+		GridBagConstraints restriccionestNick = new GridBagConstraints();
+		
+		restriccionestNick.gridx = 1;
+		restriccionestNick.gridy = 0;
+		
+		restriccionestNick.weightx = 0.8;
+		restriccionestNick.fill = GridBagConstraints.HORIZONTAL;
+		add(tNick,restriccionestNick);
+
+		settMensaje(new TextField());
+		GridBagConstraints restriccionestMensaje = new GridBagConstraints();
+		
+		restriccionestMensaje.gridx = 1;
+		restriccionestMensaje.gridy = 3;
+		
+		restriccionestMensaje.fill = GridBagConstraints.HORIZONTAL;
+		
+		add(tMensaje,restriccionestMensaje);
+		
+		setTaMensajes(new TextArea());
+		GridBagConstraints restriccionestaMensajes = new GridBagConstraints();
+		
+		restriccionestaMensajes.gridx = 1;
+		restriccionestaMensajes.gridy = 1;
+		
+		restriccionestaMensajes.gridwidth = 2;
+		restriccionestaMensajes.gridheight = 2;
+		restriccionestaMensajes.fill = GridBagConstraints.BOTH;
+		
+		add(getTaMensajes(),restriccionestaMensajes);
+		
 		setlUsuarios(new Label("Usuarios"));
-		setlMensajes(new Label("Mensajes"));
+		GridBagConstraints restriccioneslUsuarios = new GridBagConstraints();
 		
+		restriccioneslUsuarios.gridx = 0;
+		restriccioneslUsuarios.gridy = 1;
 		
-		getpSuperior().add(getlNick());
-		getpSuperior().add(gettNick());
-		getpSuperior().add(getbRegistrar());
-		getpSuperior().setBackground(Color.LIGHT_GRAY);
-		add(getpSuperior(),BorderLayout.NORTH);
+		restriccioneslUsuarios.weighty = 0.1;
 		
-		getpInferior().add(getlMensajes());
-		getpInferior().add(gettMensaje());
-		getpInferior().add(getbEnviar());
-		getpInferior().setBackground(Color.GREEN);       
-		add(getpInferior(),BorderLayout.SOUTH);
+		add(lUsuarios,restriccioneslUsuarios);
 		
+		setTaUsuarios(new TextArea());
+		GridBagConstraints restriccionestaUsuarios = new GridBagConstraints();
 		
-		getpIzquierda().setLayout(new BorderLayout());
-		getpIzquierda().add(getTaUsuarios());
-		getpIzquierda().setBackground(Color.ORANGE);
-		add(getpIzquierda(),BorderLayout.WEST);
+		restriccionestaUsuarios.gridx = 0;
+		restriccionestaUsuarios.gridy = 2;
 		
+		restriccionestaUsuarios.weighty = 0.5;
 		
+		restriccionestaUsuarios.fill = GridBagConstraints.BOTH;
 		
+		add(taUsuarios,restriccionestaUsuarios);
 		
+		setlMensaje(new Label("Mensaje"));
+		GridBagConstraints restriccioneslMensaje = new GridBagConstraints();
 		
+		restriccioneslMensaje.gridx = 0;
+		restriccioneslMensaje.gridy = 3;
 		
+		restriccioneslMensaje.weighty = 0.2;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		add(lMensaje,restriccioneslMensaje);
 	}
 
 
@@ -122,45 +173,12 @@ public class ChatBag extends Frame {
 	}
 
 
-	public Panel getpSuperior() {
-		return pSuperior;
-	}
+	
+
+	
 
 
-	public void setpSuperior(Panel pSuperior) {
-		this.pSuperior = pSuperior;
-	}
-
-
-	public Panel getpInferior() {
-		return pInferior;
-	}
-
-
-	public void setpInferior(Panel pInferior) {
-		this.pInferior = pInferior;
-	}
-
-
-	public Panel getpIzquierda() {
-		return pIzquierda;
-	}
-
-
-	public void setpIzquierda(Panel pIzquierda) {
-		this.pIzquierda = pIzquierda;
-	}
-
-
-	public Panel getpIzquierdaSuperior() {
-		return pIzquierdaSuperior;
-	}
-
-
-	public void setpIzquierdaSuperior(Panel pIzquierdaSuperior) {
-		this.pIzquierdaSuperior = pIzquierdaSuperior;
-	}
-
+	
 
 	public TextArea getTaMensajes() {
 		return taMensajes;
@@ -202,13 +220,13 @@ public class ChatBag extends Frame {
 	}
 
 
-	public Label getlMensajes() {
-		return lMensajes;
+	public Label getlMensaje() {
+		return lMensaje;
 	}
 
 
-	public void setlMensajes(Label lMensajes) {
-		this.lMensajes = lMensajes;
+	public void setlMensaje(Label lMensaje) {
+		this.lMensaje = lMensaje;
 	}
 	
 
