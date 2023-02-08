@@ -35,6 +35,8 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 		getCursor().setPosicionY(e.getY());
 		getCursor().repaint();
 	}
+	
+	
 
 	public Cursor getCursor() {
 		return cursor;
@@ -45,3 +47,4 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 	}
 
 }
+
