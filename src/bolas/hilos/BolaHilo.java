@@ -21,7 +21,7 @@ public class BolaHilo extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(9);
+				Thread.sleep(4);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

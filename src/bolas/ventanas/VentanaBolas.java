@@ -1,9 +1,7 @@
 package bolas.ventanas;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import javax.swing.JPanel;
 
 import bolas.bolas.Bola;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
-import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
 @SuppressWarnings("serial")
