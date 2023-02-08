@@ -14,8 +14,7 @@ public class VerVentanaBolas {
 		Dimension tamanoDeLaPantalla = Toolkit.getDefaultToolkit().getScreenSize();
 		framePrincipal.setSize(tamanoDeLaPantalla.width/2,tamanoDeLaPantalla.height/2);
 		framePrincipal.setLocation(tamanoDeLaPantalla.width/4,tamanoDeLaPantalla.height/4);
-		framePrincipal.setVisible(true);		
-	    
-	}
-
+		framePrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		framePrincipal.setVisible(true);
+		}
 }

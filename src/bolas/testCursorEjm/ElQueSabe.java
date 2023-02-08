@@ -1,0 +1,48 @@
+package bolas.testCursorEjm;
+
+
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
+import bolas.testCursorEjm.Cursor;
+
+public class ElQueSabe implements MouseMotionListener {
+
+	private Cursor cursor;
+
+	public ElQueSabe(Cursor cursor) {
+		this.cursor = cursor;
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (e.getModifiersEx() == 1024)
+			getCursor().getExterno().setColor(Color.RED);
+		if (e.getModifiersEx() == 4096)
+			getCursor().getExterno().setColor(Color.YELLOW);
+		colocarCursor(e);
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		getCursor().getExterno().setColor(Color.BLUE);
+		colocarCursor(e);
+
+	}
+
+	private void colocarCursor(MouseEvent e) {
+		getCursor().setPosicionX(e.getX());
+		getCursor().setPosicionY(e.getY());
+		getCursor().repaint();
+	}
+
+	public Cursor getCursor() {
+		return cursor;
+	}
+
+	public void setCursor(Cursor cursor) {
+		this.cursor = cursor;
+	}
+
+}

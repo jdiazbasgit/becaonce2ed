@@ -1,8 +1,11 @@
 package bolas.bolas;
 
+import java.awt.Color;
+
 public class Bola {
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
+	private Color color;
 	
 	
 	public void calcularPosicion() {
@@ -12,7 +15,7 @@ public class Bola {
 	
 
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
-			int dimension) {
+			int dimension, Color color) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -20,6 +23,8 @@ public class Bola {
 		this.sentidoX = sentidoX;
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
+		this.color = color;
+		
 	}
 
 	public int getPosicionX() {
@@ -76,6 +81,16 @@ public class Bola {
 
 	public void setDimension(int dimension) {
 		this.dimension = dimension;
+	}
+
+
+	public Color getColor() {
+		return color;
+	}
+
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }
