@@ -1,5 +1,6 @@
 package bolas.ventanas;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -33,11 +34,11 @@ public class VentanaBolas extends JFrame {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 
-			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
-			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
-			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
-			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100);
-			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 5);
+			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25, Color.WHITE);
+			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60, Color.WHITE);
+			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50, Color.WHITE);
+			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100, Color.WHITE);
+			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 5, Color.WHITE);
 
 			getBolas().add(bola);
 			getBolas().add(bola1);

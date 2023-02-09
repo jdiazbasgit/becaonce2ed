@@ -1,5 +1,6 @@
 package bolas.eventos;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Bola bola = new Bola(e.getX(), e.getY(), generarIncremento(), generarIncremento(), generarOrientacion(), generarOrientacion(), generarDimension());
+		Bola bola = new Bola(e.getX(), e.getY(), generarIncremento(), generarIncremento(), generarOrientacion(), generarOrientacion(), generarDimension(), (e.getButton() == 3) ? Color.RED : Color.BLACK);
 		this.vbr.getBolas().add(bola);
 		BolaHiloRaton bolaHiloRaton = new BolaHiloRaton(bola, getVbr());
 		bolaHiloRaton.start();
@@ -43,9 +44,9 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	}
 
 	public int generarDimension() {
-		// Generar los cinco numeros: 20, 40, 60, 80 y 100
+		// Generar los cinco numeros: 20, 40, 60 y 80
 		Random random = new Random();
-	    int dimension = (random.nextInt(4) + 1) * 20;
+	    int dimension = (random.nextInt(3) + 1) * 20;
 		return dimension;
 	}
 

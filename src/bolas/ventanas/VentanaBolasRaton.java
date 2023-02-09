@@ -39,7 +39,7 @@ public class VentanaBolasRaton extends JFrame {
 		}
 
 		try {
-			Thread.sleep(5);
+			Thread.sleep(3);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -47,6 +47,7 @@ public class VentanaBolasRaton extends JFrame {
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
 
 		for (Bola bola : getBolas()) {
+			getExterno().setColor(bola.getColor());
 			getExterno().fillOval(bola.getPosicionX(), bola.getPosicionY(), bola.getDimension(), bola.getDimension());
 		}
 

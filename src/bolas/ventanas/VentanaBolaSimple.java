@@ -29,7 +29,7 @@ public class VentanaBolaSimple extends JFrame {
 
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
-			setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
+			setBola(new Bola(100, 100, 1, 1, 1, -1, 50, Color.WHITE));
 			setPrimeraVez(false);
 
 		}

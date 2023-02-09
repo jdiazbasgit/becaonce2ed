@@ -1,5 +1,8 @@
 package bolas.hilos;
 
+import java.awt.Color;
+import java.awt.Rectangle;
+
 import bolas.bolas.Bola;
 import bolas.ventanas.VentanaBolasRaton;
 
@@ -16,20 +19,41 @@ public class BolaHiloRaton extends Thread {
 	@Override
 	public void run() {
 		while (true) {
+			
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (getBola().getPosicionX() < 0
-					|| getBola().getPosicionX() > getVentanaBolasRaton().getWidth() - getBola().getDimension())
-				getBola().setSentidoX(getBola().getSentidoX() * -1);
+			
+			if (getBola().getPosicionX() < 0 || getBola().getPosicionX() > getVentanaBolasRaton().getWidth() - getBola().getDimension())
+				getBola().cambiarSentidoX();
 
-			if (getBola().getPosicionY() < 0
-					|| getBola().getPosicionY() > getVentanaBolasRaton().getHeight() - getBola().getDimension())
-				getBola().setSentidoY(getBola().getSentidoY() * -1);
+			if (getBola().getPosicionY() < 0 || getBola().getPosicionY() > getVentanaBolasRaton().getHeight() - getBola().getDimension())
+				getBola().cambiarSentidoY();
 			
 			getBola().calcularPosicion();
+			
+			Rectangle thisRectangle = new Rectangle(getBola().getPosicionX(), getBola().getPosicionY(), getBola().getDimension(), getBola().getDimension());
+			
+			for (Bola otraBola: ventanaBolasRaton.getBolas()) {
+
+				if (!otraBola.equals(getBola())) {
+					
+					if (thisRectangle.intersects(new Rectangle(otraBola.getPosicionX(), otraBola.getPosicionY(), otraBola.getDimension(), otraBola.getDimension()))) {
+						
+						otraBola.cambiarSentidoX();
+						otraBola.cambiarSentidoY();
+						
+						if (getBola().getColor().equals(Color.RED)) {
+							otraBola.setColor(Color.RED);
+						}
+						
+					}
+					
+				}
+				
+			}
 		}
 	}
 
