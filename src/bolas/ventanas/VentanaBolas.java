@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import bolas.bolas.Bola;
+import bolas.elementos.Bola;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import bolas.hilos.Pintor;
 
@@ -72,7 +72,7 @@ public class VentanaBolas extends JPanel {
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
 		for (Bola bola : this.getBolas()) {
 			getExterno().setColor(bola.getColor());
-			getExterno().fillOval(bola.getPosicionX(), bola.getPosicionY(), bola.getDimension(), bola.getDimension());
+			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
 		}
 		g.drawImage(getImagen(), 0, 0, this);
 	}

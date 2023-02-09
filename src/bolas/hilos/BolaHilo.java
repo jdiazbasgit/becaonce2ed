@@ -2,7 +2,7 @@ package bolas.hilos;
 
 import java.awt.Rectangle;
 
-import bolas.bolas.Bola;
+import bolas.elementos.Bola;
 import bolas.ventanas.VentanaBolas;
 
 public class BolaHilo extends Thread {
@@ -19,16 +19,16 @@ public class BolaHilo extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(10);
+				Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (getBola().getPosicionX() < 0
-					|| bola.getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension()) {
+			if ((int) Math.round(getBola().getPosicionX()) < 0
+					|| (int) Math.round(getBola().getPosicionX()) > getVentanaBolas().getWidth() - getBola().getDimension()) {
 				getBola().setSentidoX(getBola().getSentidoX() * -1);
 			}
-			if (getBola().getPosicionY() < 0
-					|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension()) {
+			if ((int) Math.round(getBola().getPosicionY()) < 0
+					|| (int) Math.round(getBola().getPosicionY()) > getVentanaBolas().getHeight() - getBola().getDimension()) {
 				getBola().setSentidoY(getBola().getSentidoY() * -1);
 			}
 			getBola().calcularPosicion();
@@ -38,10 +38,10 @@ public class BolaHilo extends Thread {
 			for (Bola otraBola : ventanaBolas.getBolas()) {
 				if (bolaQueCompruebo.equals(otraBola))	
 					continue;
-				Rectangle bolaQueComprueboRect = new Rectangle(bolaQueCompruebo.getPosicionX(),
-						bolaQueCompruebo.getPosicionY(), bolaQueCompruebo.getDimension(),
+				Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
+						(int) Math.round(bolaQueCompruebo.getPosicionY()), bolaQueCompruebo.getDimension(),
 						bolaQueCompruebo.getDimension());
-				Rectangle otraBolaRect = new Rectangle(otraBola.getPosicionX(), otraBola.getPosicionY(),
+				Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()), (int) Math.round(otraBola.getPosicionY()),
 						otraBola.getDimension(), otraBola.getDimension());
 				if (bolaQueComprueboRect.intersects(otraBolaRect)) {
 					bolaQueCompruebo.setSentidoX(bolaQueCompruebo.getSentidoX() * -1);
@@ -49,11 +49,12 @@ public class BolaHilo extends Thread {
 					//otraBola.setSentidoX(otraBola.getSentidoX() * -1);
 					//otraBola.setSentidoY(otraBola.getSentidoY() * -1);
 					//while (bolaQueComprueboRect.intersects(otraBolaRect))
-					this.desplazarAlChocar(bolaQueCompruebo);
+					//this.desplazarAlChocar(bolaQueCompruebo);
 						//elBolero.desplazarAlChocar(otraBola);
-					
+					getBola().calcularPosicion();
 				}
 			}
+			
 			// }
 		}
 	}

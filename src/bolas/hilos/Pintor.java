@@ -14,7 +14,7 @@ public class Pintor extends Thread {
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(10);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();

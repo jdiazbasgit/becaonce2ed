@@ -1,10 +1,11 @@
-package bolas.bolas;
+package bolas.elementos;
 
 import java.awt.Color;
 
 public class Bola {
 	
-	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
+	private int sentidoX,sentidoY,dimension,velocidadThread;
+	private float posicionX,posicionY,incrementoX,incrementoY;
 	private Color color;
 	
 	
@@ -15,20 +16,23 @@ public class Bola {
 		/*
 		  if (getColor().getRed()>180 && getColor().getGreen()<100 &&
 		  getColor().getBlue()<100) { setIncrementoY(4); setIncrementoX(4); }
-		 
-		if (getPosicionY() >= 900)
+		 */
+		
+		/*
+		if (getPosicionY() >= 500 && getIncrementoX()>1)
 		{
-			setIncrementoY(1);
-			setIncrementoX(1);
+			setIncrementoX(getIncrementoX()/2);
+			setIncrementoY(getIncrementoY()/2);
 		}else {
-			setIncrementoY(4);
-			setIncrementoX(4);
-		}*/
+			setIncrementoX((float) (getIncrementoX()+0.2));
+			setIncrementoY((float) (getIncrementoY()+0.2));
+		}
+		*/
 	}
 	
 
-	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
-			int dimension, Color color) {
+	public Bola(float posicionX, float posicionY, float incrementoX, float incrementoY, int sentidoX, int sentidoY,
+			int dimension, Color color, int velocidadThread) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -37,38 +41,39 @@ public class Bola {
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
 		this.color = color;
+		this.velocidadThread = velocidadThread;
 		
 	}
 
-	public int getPosicionX() {
+	public float getPosicionX() {
 		return posicionX;
 	}
 
-	public void setPosicionX(int posicionX) {
+	public void setPosicionX(float posicionX) {
 		this.posicionX = posicionX;
 	}
 
-	public int getPosicionY() {
+	public float getPosicionY() {
 		return posicionY;
 	}
 
-	public void setPosicionY(int posicionY) {
+	public void setPosicionY(float posicionY) {
 		this.posicionY = posicionY;
 	}
 
-	public int getIncrementoX() {
+	public float getIncrementoX() {
 		return incrementoX;
 	}
 
-	public void setIncrementoX(int incrementoX) {
+	public void setIncrementoX(float incrementoX) {
 		this.incrementoX = incrementoX;
 	}
 
-	public int getIncrementoY() {
+	public float getIncrementoY() {
 		return incrementoY;
 	}
 
-	public void setIncrementoY(int incrementoY) {
+	public void setIncrementoY(float incrementoY) {
 		this.incrementoY = incrementoY;
 	}
 
@@ -104,6 +109,16 @@ public class Bola {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+
+	public int getVelocidadThread() {
+		return velocidadThread;
+	}
+
+
+	public void setVelocidadThread(int velocidadThread) {
+		this.velocidadThread = velocidadThread;
 	}
 
 }
