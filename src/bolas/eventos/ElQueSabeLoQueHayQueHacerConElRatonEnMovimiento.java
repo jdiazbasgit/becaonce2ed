@@ -13,6 +13,7 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 	public ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(Cursor cursor) {
 		this.cursor = cursor;
 	}
+	//hola que tal
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
