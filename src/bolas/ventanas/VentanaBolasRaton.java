@@ -33,33 +33,6 @@ public class VentanaBolasRaton extends JFrame {
 			
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
-
-/*
-			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
-			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
-			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
-			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100);
-			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 5);
-
-			getBolas().add(bola);
-			getBolas().add(bola1);
-			getBolas().add(bola2);
-			getBolas().add(bola3);
-			getBolas().add(bola4);
-
-			BolaHiloRaton bolaHiloRaton = new BolaHiloRaton(bola, this);
-			BolaHiloRaton bolaHiloRaton1 = new BolaHiloRaton(bola1, this);
-			BolaHiloRaton bolaHiloRaton2 = new BolaHiloRaton(bola2, this);
-			BolaHiloRaton bolaHiloRaton3 = new BolaHiloRaton(bola3, this);
-			BolaHiloRaton bolaHiloRaton4 = new BolaHiloRaton(bola4, this);
-
-			bolaHiloRaton.start();
-			bolaHiloRaton1.start();
-			bolaHiloRaton2.start();
-			bolaHiloRaton3.start();
-			bolaHiloRaton4.start();
-*/
-
 			PintorRaton pintorRaton = new PintorRaton(this);
 			pintorRaton.start();
 			setPrimeraVez(false);

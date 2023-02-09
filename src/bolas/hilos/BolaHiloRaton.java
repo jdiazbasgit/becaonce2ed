@@ -28,6 +28,7 @@ public class BolaHiloRaton extends Thread {
 			if (getBola().getPosicionY() < 0
 					|| getBola().getPosicionY() > getVentanaBolasRaton().getHeight() - getBola().getDimension())
 				getBola().setSentidoY(getBola().getSentidoY() * -1);
+			
 			getBola().calcularPosicion();
 		}
 	}
