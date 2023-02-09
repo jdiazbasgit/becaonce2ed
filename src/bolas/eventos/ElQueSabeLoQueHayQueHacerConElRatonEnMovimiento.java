@@ -14,7 +14,6 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 		this.cursor = cursor;
 	}
 
-	@Override
 	public void mouseDragged(MouseEvent e) {
 		if (e.getModifiersEx() == 1024)
 			getCursor().getExterno().setColor(Color.RED);
@@ -23,7 +22,6 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 		colocarCursor(e);
 	}
 
-	@Override
 	public void mouseMoved(MouseEvent e) {
 		getCursor().getExterno().setColor(Color.BLUE);
 		colocarCursor(e);

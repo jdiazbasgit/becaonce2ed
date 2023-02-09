@@ -14,6 +14,7 @@ import bolas.bolas.Bola;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
+@SuppressWarnings("serial")
 public class VentanaBolas extends JFrame {
 
 	private Image imagen;
