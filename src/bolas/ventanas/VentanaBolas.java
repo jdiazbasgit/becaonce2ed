@@ -43,7 +43,7 @@ public class VentanaBolas extends JFrame {
 			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
 			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
 			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100);
-			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 5);
+			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 10);
 
 			getBolas().add(bola);
 			getBolas().add(bola1);

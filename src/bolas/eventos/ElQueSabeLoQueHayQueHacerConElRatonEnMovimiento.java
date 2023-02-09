@@ -16,14 +16,14 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 
 	public void mouseDragged(MouseEvent e) {
 		if (e.getModifiersEx() == 1024)
-			getCursor().getExterno().setColor(Color.RED);
-		if (e.getModifiersEx() == 4096)
 			getCursor().getExterno().setColor(Color.YELLOW);
+		if (e.getModifiersEx() == 4096)
+			getCursor().getExterno().setColor(Color.BLACK);
 		colocarCursor(e);
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		getCursor().getExterno().setColor(Color.BLUE);
+		getCursor().getExterno().setColor(Color.CYAN);
 		colocarCursor(e);
 
 	}
