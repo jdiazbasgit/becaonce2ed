@@ -27,7 +27,9 @@ public class VentanaBolas extends JFrame {
 
 	@Override
 	public void paint(Graphics g) {
+
 		if (isPrimeraVez()) {
+
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 

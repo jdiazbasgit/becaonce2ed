@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import bolas.bolas.Bola;
+import bolas.cursor.Cursor;
 import bolas.hilos.BolaHiloRaton;
 import bolas.hilos.PintorRaton;
 
@@ -17,6 +18,7 @@ public class VentanaBolasRaton extends JFrame {
 	private Graphics externo;
 	private boolean primeraVez;
 	private List<Bola> bolas;
+	private Cursor cursor;
 
 	public VentanaBolasRaton() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,9 +31,11 @@ public class VentanaBolasRaton extends JFrame {
 	public void paint(Graphics g) {
 
 		if (isPrimeraVez()) {
+			
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 
+/*
 			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
 			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
 			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
@@ -55,6 +59,11 @@ public class VentanaBolasRaton extends JFrame {
 			bolaHiloRaton2.start();
 			bolaHiloRaton3.start();
 			bolaHiloRaton4.start();
+*/
+			Bola bola = new Bola(getCursor().getPosicionX(), 100, 1, 1, -1, 1, 25);
+			getBolas().add(bola);
+			BolaHiloRaton bolaHiloRaton = new BolaHiloRaton(bola, this);
+			bolaHiloRaton.start();
 
 			PintorRaton pintorRaton = new PintorRaton(this);
 			pintorRaton.start();
