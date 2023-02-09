@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -30,6 +33,9 @@ public class VentanaBolas extends JFrame {
 		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
 	}
+	
+	
+
 
 	@Override
 	public void paint(Graphics g) {
@@ -65,6 +71,15 @@ public class VentanaBolas extends JFrame {
 			pintor.start();
 			setPrimeraVez(false);
 		}
+		
+		 addMouseListener(new MouseAdapter() {
+			  public void mousePressed(MouseEvent e) {
+			   setBolas(getBolas());
+               
+			    repaint();
+			  }
+			});
+
 
 		/*
 		 * g.setColor(Color.YELLOW); g.fillRect(100, 100, 100, 100);
@@ -83,6 +98,11 @@ public class VentanaBolas extends JFrame {
 		}
 		g.drawImage(getImagen(), 0, 0, this);
 	}
+	
+	 public void mousePressed(MouseEvent e) {
+		   
+		    repaint();
+		  }
 
 	public Image getImagen() {
 		return imagen;

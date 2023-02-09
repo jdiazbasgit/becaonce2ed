@@ -37,6 +37,8 @@ public class ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento implements MouseMot
 	}
 	
 	
+	
+	
 
 	public Cursor getCursor() {
 		return cursor;
