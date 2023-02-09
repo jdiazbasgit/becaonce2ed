@@ -31,7 +31,6 @@ public class Cursor extends JFrame {
 			setExterno(getImagen().getGraphics());
 			getExterno().setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 			setPrimeraVez(false);
-			getCursor().setPosicionX(e.getX());
 		}
 		
 		getExterno().clearRect(0, 0, getWidth(), getHeight());
