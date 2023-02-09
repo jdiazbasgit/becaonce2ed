@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class    CrearBolaConUnClick extends JFrame {
+	
+	
 
 public static void main(String[] args) {
 	
@@ -23,7 +25,7 @@ public static void main(String[] args) {
     panel.setLayout(null);
     
     panel.addMouseListener(new MouseAdapter() {
-      @Override
+    
       public void mouseClicked(MouseEvent e) {
        Point point = e.getPoint();
         JLabel ball = new JLabel("Q");
