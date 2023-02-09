@@ -6,6 +6,7 @@ import java.awt.Image;
 
 import javax.swing.JFrame;
 
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
 
 public class Cursor extends JFrame{
@@ -20,6 +21,7 @@ public class Cursor extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso(this));
 	}
 	
 	
