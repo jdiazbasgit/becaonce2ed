@@ -4,10 +4,28 @@ import java.awt.Color;
 
 public class Bola {
 	
-	private int sentidoX,sentidoY,dimension,velocidadThread;
+	private int sentidoX,sentidoY,dimension,velocidadThread, velocidadRalentizada;
 	private float posicionX,posicionY,incrementoX,incrementoY;
 	private Color color;
 	
+	
+
+	
+
+	public Bola(float posicionX, float posicionY, float incrementoX, float incrementoY, int sentidoX, int sentidoY,
+			int dimension, Color color, int velocidadThread, int velocidadRalentizada) {
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+		this.incrementoX = incrementoX;
+		this.incrementoY = incrementoY;
+		this.sentidoX = sentidoX;
+		this.sentidoY = sentidoY;
+		this.dimension = dimension;
+		this.color = color;
+		this.velocidadThread = velocidadThread;
+		this.velocidadRalentizada = velocidadRalentizada;
+		
+	}
 	
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
@@ -28,21 +46,6 @@ public class Bola {
 			setIncrementoY((float) (getIncrementoY()+0.2));
 		}
 		*/
-	}
-	
-
-	public Bola(float posicionX, float posicionY, float incrementoX, float incrementoY, int sentidoX, int sentidoY,
-			int dimension, Color color, int velocidadThread) {
-		this.posicionX = posicionX;
-		this.posicionY = posicionY;
-		this.incrementoX = incrementoX;
-		this.incrementoY = incrementoY;
-		this.sentidoX = sentidoX;
-		this.sentidoY = sentidoY;
-		this.dimension = dimension;
-		this.color = color;
-		this.velocidadThread = velocidadThread;
-		
 	}
 
 	public float getPosicionX() {
@@ -119,6 +122,16 @@ public class Bola {
 
 	public void setVelocidadThread(int velocidadThread) {
 		this.velocidadThread = velocidadThread;
+	}
+
+
+	public int getVelocidadRalentizada() {
+		return velocidadRalentizada;
+	}
+
+
+	public void setVelocidadRalentizada(int velocidadRalentizada) {
+		this.velocidadRalentizada = velocidadRalentizada;
 	}
 
 }

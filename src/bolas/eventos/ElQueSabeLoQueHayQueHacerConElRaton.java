@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.util.Random;
 
 import bolas.elementos.Bola;
+import bolas.elementos.TimeTrap;
 import bolas.hilos.BolaHilo;
 import bolas.ventanas.VentanaBolas;
 
@@ -19,7 +20,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 
 	public int generarRandom1o2() {
 		Random random = new Random();
-		int resultado = random.nextInt(20) + 1;
+		int resultado = random.nextInt(16) + 1;
 		return resultado;
 	}
 
@@ -38,10 +39,16 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		Color color = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
 		return color;
 	}
-	
+	public int cualEsMayor(int a, int b) {
+	    if (a > b) {
+	        return a;
+	    } else {
+	        return b;
+	    }
+	}
 	public int calcularVelocidad(int incrX, int incrY) {
-				//TODO Utilizar este dato donde a más incremento = mayor sleep para sincronizar velocidades
-		return 0;
+		int maxIncrEnUso = cualEsMayor(incrX, incrY);
+		return maxIncrEnUso*2;
 	}
 
 	@Override
@@ -51,24 +58,23 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		int incrX = generarRandom1o2();
 		int incrY = generarRandom1o2();
 		int velocidad = calcularVelocidad(incrX, incrY);
-		int dimension = 40;
+		int velocidadRalentizada = velocidad;
+		int dimensionBola = 50;
+		int dimensionTrap = 160;
 		if (e.getButton() == 1) {
-			Bola bola = new Bola((e.getPoint().x)-(dimension/2), (e.getPoint().y)-(dimension/2), incrX, incrY,
-					generarRandomPosNeg(), generarRandomPosNeg(), dimension, generarColorAleatorio(), velocidad);
-			System.out.println(generarRandom1o2());
+			Bola bola = new Bola((e.getPoint().x)-(dimensionBola/2), (e.getPoint().y)-(dimensionBola/2), incrX, incrY,
+					generarRandomPosNeg(), generarRandomPosNeg(), dimensionBola, generarColorAleatorio(), velocidad, velocidadRalentizada);
+			//System.out.println(generarRandom1o2());
 			// getVentanaBolas().getExterno().setColor(bola.getColor());
 			this.ventanaBolas.getBolas().add(bola);
 			BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
 			bolaHilo.start();
 		}
 		if (e.getButton() == 3) {
-			Bola bola = new Bola(e.getPoint().x, e.getPoint().y, generarRandom1o2(), generarRandom1o2(),
-					generarRandomPosNeg(), generarRandomPosNeg(), 50, generarColorAleatorio(), velocidad);
-			System.out.println(generarRandom1o2());
-			// getVentanaBolas().getExterno().setColor(bola.getColor());
-			this.ventanaBolas.getBolas().add(bola);
-			BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
-			bolaHilo.start();
+			TimeTrap timeTrap = new TimeTrap((e.getPoint().x)-(dimensionTrap/2), (e.getPoint().y)-(dimensionTrap/2),dimensionTrap);
+			this.ventanaBolas.getTimeTraps().add(timeTrap);
+			//BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
+			//bolaHilo.start();
 		}
 	}
 

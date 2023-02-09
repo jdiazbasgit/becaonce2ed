@@ -1,5 +1,6 @@
 package bolas.ventanas;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import bolas.elementos.Bola;
+import bolas.elementos.TimeTrap;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 import bolas.hilos.Pintor;
 
@@ -18,12 +20,16 @@ public class VentanaBolas extends JPanel {
 	private Graphics externo;
 	private boolean primeraVez;
 	private List<Bola> bolas;
+	private List<TimeTrap> timeTraps;
+	
+	 //image = new ImageIcon("ruta/a/tu/imagen.png").getImage();
 
 	public VentanaBolas() {
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBolas(new ArrayList<>());
+		setTimeTraps(new ArrayList<>());
 		setPrimeraVez(true);		
 		addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton(this));
 	}
@@ -65,7 +71,7 @@ public class VentanaBolas extends JPanel {
 		 */
 
 		try {
-			Thread.sleep(10);
+			Thread.sleep(0);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -73,6 +79,11 @@ public class VentanaBolas extends JPanel {
 		for (Bola bola : this.getBolas()) {
 			getExterno().setColor(bola.getColor());
 			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
+		}
+		for (TimeTrap timeTrap : this.getTimeTraps()) {
+			getExterno().setColor(Color.RED);
+			getExterno().drawRect(timeTrap.getPosicionX(),timeTrap.getPosicionY(), timeTrap.getDimension(), timeTrap.getDimension());
+			
 		}
 		g.drawImage(getImagen(), 0, 0, this);
 	}
@@ -108,6 +119,16 @@ public class VentanaBolas extends JPanel {
 
 	public void setBolas(List<Bola> bolas) {
 		this.bolas = bolas;
+	}
+
+
+	public List<TimeTrap> getTimeTraps() {
+		return timeTraps;
+	}
+
+
+	public void setTimeTraps(List<TimeTrap> timeTraps) {
+		this.timeTraps = timeTraps;
 	}
 
 	/*
