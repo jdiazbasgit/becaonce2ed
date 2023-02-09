@@ -24,8 +24,6 @@ public class Pintor extends Thread {
 		
 	}
 
-	
-
 	public VentanaBolas getVentanaBolas() {
 		return ventanaBolas;
 	}

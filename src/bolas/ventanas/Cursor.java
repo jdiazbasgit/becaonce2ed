@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
 
 public class Cursor extends JFrame{
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
