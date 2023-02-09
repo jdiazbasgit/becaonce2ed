@@ -33,7 +33,7 @@ public class Cursor extends JFrame{
 			setPrimeraVez(false);
 		}
 		
-		//getExterno().clearRect(0, 0, getWidth(), getHeight());
+		getExterno().clearRect(0, 0, getWidth(), getHeight());
 		getExterno().drawString("("+getPosicionX()+" - "+getPosicionY()+")", getPosicionX(), getPosicionY());
 		g.drawImage(getImagen(), 0, 0, this);
 		

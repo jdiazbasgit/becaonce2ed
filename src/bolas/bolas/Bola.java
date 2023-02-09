@@ -11,6 +11,19 @@ public class Bola {
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
 		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
+		
+		/*
+		  if (getColor().getRed()>180 && getColor().getGreen()<100 &&
+		  getColor().getBlue()<100) { setIncrementoY(4); setIncrementoX(4); }
+		 
+		if (getPosicionY() >= 900)
+		{
+			setIncrementoY(1);
+			setIncrementoX(1);
+		}else {
+			setIncrementoY(4);
+			setIncrementoX(4);
+		}*/
 	}
 	
 

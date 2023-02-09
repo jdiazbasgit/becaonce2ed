@@ -1,13 +1,9 @@
 package bolas.eventos;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
-
-import javax.swing.JTextField;
 
 import bolas.bolas.Bola;
 import bolas.hilos.BolaHilo;
@@ -23,7 +19,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 
 	public int generarRandom1o2() {
 		Random random = new Random();
-	    int resultado = random.nextInt(2) + 1;
+	    int resultado = random.nextInt(20) + 1;
 		return resultado;
 	}
 	public int generarRandomPosNeg() {
@@ -38,8 +34,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	}
 	public Color generarColorAleatorio() {
         Random random = new Random();
-        Color color = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
-        System.out.println(color);
+        Color color = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());        
         return color;
 	}
 
@@ -50,7 +45,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		Bola bola = new Bola(e.getPoint().x, e.getPoint().y, generarRandom1o2(), generarRandom1o2(),generarRandomPosNeg(),generarRandomPosNeg(), 50, generarColorAleatorio());
 		System.out.println(generarRandom1o2());
 		//getVentanaBolas().getExterno().setColor(bola.getColor());
-		getVentanaBolas().getBolas().add(bola);
+		this.ventanaBolas.getBolas().add(bola);
 		BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
 		bolaHilo.start();		
 	}

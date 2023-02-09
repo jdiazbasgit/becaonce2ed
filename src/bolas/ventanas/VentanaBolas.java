@@ -17,16 +17,14 @@ public class VentanaBolas extends JPanel {
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
-	// private Bola bola;
 	private List<Bola> bolas;
 
 	public VentanaBolas() {
 		
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
-		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
+		setPrimeraVez(true);		
 		addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton(this));
 	}
 
@@ -67,12 +65,12 @@ public class VentanaBolas extends JPanel {
 		 */
 
 		try {
-			Thread.sleep(5);
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
-		for (Bola bola : getBolas()) {
+		for (Bola bola : this.getBolas()) {
 			getExterno().setColor(bola.getColor());
 			getExterno().fillOval(bola.getPosicionX(), bola.getPosicionY(), bola.getDimension(), bola.getDimension());
 		}
@@ -103,18 +101,21 @@ public class VentanaBolas extends JPanel {
 		this.primeraVez = primeraVez;
 	}
 
+	public List<Bola> getBolas() {
+		return bolas;
+	}
+
+
+	public void setBolas(List<Bola> bolas) {
+		this.bolas = bolas;
+	}
+
 	/*
 	 * public Bola getBola() { return bola; }
 	 * 
 	 * public void setBola(Bola bola) { this.bola = bola; }
 	 */
 
-	public List<Bola> getBolas() {
-		return bolas;
-	}
 
-	public void setBolas(List<Bola> bolas) {
-		this.bolas = bolas;
-	}
 
 }
