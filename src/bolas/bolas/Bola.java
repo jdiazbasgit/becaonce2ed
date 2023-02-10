@@ -3,7 +3,7 @@ package bolas.bolas;
 public class Bola {
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
-	
+	private int impactos;
 	
 
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
@@ -77,5 +77,15 @@ public class Bola {
 	public void setDimension(int dimension) {
 		this.dimension = dimension;
 	}
+
+	public int getImpactos() {
+		return impactos;
+	}
+
+	public void setImpactos(int impactos) {
+		this.impactos = impactos;
+	}
+
+	
 
 }
