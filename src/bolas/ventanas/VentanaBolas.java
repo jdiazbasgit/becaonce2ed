@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import bolas.bolas.Bola;
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
@@ -30,6 +31,7 @@ public class VentanaBolas extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
+//		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
 
 	@Override
@@ -38,7 +40,7 @@ public class VentanaBolas extends JFrame {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 
-			// setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
+			/*setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
 			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
 			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
 			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
@@ -64,7 +66,7 @@ public class VentanaBolas extends JFrame {
 			bolaHilo4.start();
 			Pintor pintor = new Pintor(this);
 			pintor.start();
-			setPrimeraVez(false);
+			setPrimeraVez(false);*/
 		}
 
 		/*

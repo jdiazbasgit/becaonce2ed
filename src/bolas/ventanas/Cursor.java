@@ -3,11 +3,10 @@ package bolas.ventanas;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.JFrame;
 
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
-
+//import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso;
 public class Cursor extends JFrame{
 	
 	private Image imagen;

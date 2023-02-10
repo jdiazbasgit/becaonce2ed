@@ -1,5 +1,7 @@
 package bolas.hilos;
 
+import java.awt.Rectangle;
+
 import bolas.bolas.Bola;
 import bolas.ventanas.VentanaBolas;
 
@@ -13,13 +15,14 @@ public class BolaHilo extends Thread {
 		this.ventanaBolas = ventanaBolas;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void run() {
 		while (true) {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
-			
+
 				e.printStackTrace();
 			}
 			if (getBola().getPosicionX() < 0
@@ -29,6 +32,22 @@ public class BolaHilo extends Thread {
 			if (getBola().getPosicionY() < 0
 					|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
 				getBola().setSentidoY(getBola().getSentidoY() * -1);
+
+			/*for (Bola otra : getVentanaBolas().getBolas()) {
+				if (!getBola().equals(otra)) {
+
+					Rectangle yo = new Rectangle(getBola().getPosicionX(), getBola().getPosicionY(),
+							getBola().getDimension(), getBola().getDimension());
+
+					Rectangle otro = new Rectangle(otra.getPosicionX(), otra.getPosicionY(), otra.getDimension(),
+							otra.getDimension());
+					if (yo.intersects(otro)) {
+						getBola().setSentidoX(getBola().getSentidoX() * -1);
+						getBola().setSentidoY(getBola().getSentidoY() * -1);
+					}
+				}
+			}*/
+
 			getBola().calcularPosicion();
 		}
 	}
