@@ -45,6 +45,8 @@ public class VentanaBolasRaton extends JFrame {
 		}
 
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
+		
+		getExterno().drawString(String.valueOf(getBolas().size()), 50, 50);
 
 		for (Bola bola : getBolas()) {
 			getExterno().setColor(bola.getColor());

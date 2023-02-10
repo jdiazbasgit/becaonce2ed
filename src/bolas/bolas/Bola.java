@@ -8,6 +8,18 @@ public class Bola extends JFrame {
 
 	private int posicionX, posicionY, incrementoX, incrementoY, sentidoX, sentidoY, dimension;
 	private Color color;
+	private boolean intersectado;
+	private int numImpacto;
+
+	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY, int dimension) {
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
+		this.incrementoX = incrementoX;
+		this.incrementoY = incrementoY;
+		this.sentidoX = sentidoX;
+		this.sentidoY = sentidoY;
+		this.dimension = dimension;
+	}
 
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY, int dimension, Color color) {
 		this.posicionX = posicionX;
@@ -18,6 +30,8 @@ public class Bola extends JFrame {
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
 		this.color = color;
+		this.intersectado = false;
+		this.numImpacto = 500;
 	}
 
 	public void calcularPosicion() {
@@ -95,6 +109,22 @@ public class Bola extends JFrame {
 
 	public void setColor(Color color) {
 		this.color = color;
+	}
+
+	public boolean isIntersectado() {
+		return intersectado;
+	}
+
+	public void setIntersectado(boolean intersectado) {
+		this.intersectado = intersectado;
+	}
+
+	public int getNumImpacto() {
+		return numImpacto;
+	}
+
+	public void setNumImpacto(int numImpacto) {
+		this.numImpacto = numImpacto;
 	}
 
 }

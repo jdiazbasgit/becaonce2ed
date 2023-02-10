@@ -16,19 +16,21 @@ public class BolaHilo extends Thread {
 	@Override
 	public void run() {
 		while (true) {
+			
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if (getBola().getPosicionX() < 0
-					|| getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension())
+			
+			if (getBola().getPosicionX() < 0 || getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension())
 				getBola().setSentidoX(getBola().getSentidoX() * -1);
 
-			if (getBola().getPosicionY() < 0
-					|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
+			if (getBola().getPosicionY() < 0 || getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
 				getBola().setSentidoY(getBola().getSentidoY() * -1);
+
 			getBola().calcularPosicion();
+			
 		}
 	}
 

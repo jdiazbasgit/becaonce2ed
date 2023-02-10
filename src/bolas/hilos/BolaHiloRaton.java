@@ -32,28 +32,87 @@ public class BolaHiloRaton extends Thread {
 			if (getBola().getPosicionY() < 0 || getBola().getPosicionY() > getVentanaBolasRaton().getHeight() - getBola().getDimension())
 				getBola().cambiarSentidoY();
 			
+			Rectangle yoRectangle = new Rectangle(getBola().getPosicionX(), getBola().getPosicionY(), getBola().getDimension(), getBola().getDimension());
+			
+			int i = 2;
+
+			try {
+				for (Bola otraBola : ventanaBolasRaton.getBolas()) {
+
+					if (!getBola().equals(otraBola) || otraBola.equals(null)) {
+
+						Rectangle otroRectangle = new Rectangle(otraBola.getPosicionX(), otraBola.getPosicionY(),
+								otraBola.getDimension(), otraBola.getDimension());
+
+						switch (i) {
+
+						case 1: // Caso 1: Variable isIntersectado es intentar que lo cambien los sentidos una vez
+
+							if (yoRectangle.intersects(otroRectangle) && !getBola().isIntersectado()) {
+
+								getBola().setIntersectado(true);
+
+								getBola().cambiarSentidoX();
+								getBola().cambiarSentidoY();
+
+								if (otraBola.getColor().equals(Color.RED)) {
+									getBola().setColor(Color.RED);
+								}
+
+							} else {
+
+								if (!yoRectangle.intersects(otroRectangle)) {
+									getBola().setIntersectado(false);
+								}
+
+							}
+
+							break;
+
+						case 2: // Caso 2: 
+
+							if (yoRectangle.intersects(otroRectangle)) {
+
+								getBola().cambiarSentidoX();
+								getBola().cambiarSentidoY();
+
+								if (otraBola.getColor().equals(Color.RED)) {
+									getBola().setColor(Color.RED);
+								}
+
+								getBola().setNumImpacto(getBola().getNumImpacto() - 1);
+
+								if (getBola().getNumImpacto() == 0) {
+									ventanaBolasRaton.getBolas().remove(getBola());
+									break;
+								}
+
+							}
+
+							break;
+
+						default:
+
+							System.out.println("No exise el menu " + i);
+						
+						}
+					}
+				}
+			} catch (Exception e) {
+				ventanaBolasRaton.getBolas().remove(getBola());
+				e.printStackTrace();
+				break;
+			}
+
 			getBola().calcularPosicion();
 			
-			Rectangle thisRectangle = new Rectangle(getBola().getPosicionX(), getBola().getPosicionY(), getBola().getDimension(), getBola().getDimension());
-			
-			for (Bola otraBola: ventanaBolasRaton.getBolas()) {
-
-				if (!otraBola.equals(getBola())) {
-					
-					if (thisRectangle.intersects(new Rectangle(otraBola.getPosicionX(), otraBola.getPosicionY(), otraBola.getDimension(), otraBola.getDimension()))) {
-						
-						otraBola.cambiarSentidoX();
-						otraBola.cambiarSentidoY();
-						
-						if (getBola().getColor().equals(Color.RED)) {
-							otraBola.setColor(Color.RED);
-						}
-						
-					}
-					
+			if (i == 2) {
+				if (getBola().getNumImpacto() == 0) {
+					ventanaBolasRaton.getBolas().remove(getBola());
+					break;
 				}
-				
 			}
+			
 		}
 	}
 
