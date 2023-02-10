@@ -7,7 +7,7 @@ public class Bola {
 	
 	
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
-			int dimension) {
+			int dimension,int impactos) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -15,6 +15,7 @@ public class Bola {
 		this.sentidoX = sentidoX;
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
+		this.impactos= impactos;
 	}
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
