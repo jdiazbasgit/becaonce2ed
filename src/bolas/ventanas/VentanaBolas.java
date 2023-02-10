@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import bolas.elementos.Bola;
@@ -21,8 +22,9 @@ public class VentanaBolas extends JPanel {
 	private boolean primeraVez;
 	private List<Bola> bolas;
 	private List<TimeTrap> timeTraps;
+	private List<Bola> bolasTemporal;
+	private List<TimeTrap> timeTrapsTemporal;
 	
-	 //image = new ImageIcon("ruta/a/tu/imagen.png").getImage();
 
 	public VentanaBolas() {
 		
@@ -30,6 +32,8 @@ public class VentanaBolas extends JPanel {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBolas(new ArrayList<>());
 		setTimeTraps(new ArrayList<>());
+		setBolasTemporal(new ArrayList<>());
+		setTimeTrapsTemporal(new ArrayList<>());
 		setPrimeraVez(true);		
 		addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton(this));
 	}
@@ -40,24 +44,13 @@ public class VentanaBolas extends JPanel {
 		if (isPrimeraVez()) {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
+			
 
-			// setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
-			/*
-			 * Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25); Bola bola1 = new Bola(50,
-			 * 50, 1, 1, -1, -1, 60); Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50); Bola
-			 * bola3 = new Bola(200, 300, 1, 1, 1, -1, 100); Bola bola4 = new Bola(10, 400,
-			 * 1, 1, 1, 1, 5);
-			 * 
-			 * getBolas().add(bola); getBolas().add(bola1); getBolas().add(bola2);
-			 * getBolas().add(bola3); getBolas().add(bola4);
-			 * 
-			 * BolaHilo bolaHilo = new BolaHilo(bola, this); BolaHilo bolaHilo1 = new
-			 * BolaHilo(bola1, this); BolaHilo bolaHilo2 = new BolaHilo(bola2, this);
-			 * BolaHilo bolaHilo3 = new BolaHilo(bola3, this); BolaHilo bolaHilo4 = new
-			 * BolaHilo(bola4, this);
-			 * 
-			 * bolaHilo.start(); bolaHilo1.start(); bolaHilo2.start(); bolaHilo3.start();
-			 * bolaHilo4.start();
+			/* setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
+			 * Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
+			 * getBolas().add(bola);			 * 
+			 * BolaHilo bolaHilo = new BolaHilo(bola, this);		 * 
+			 * bolaHilo.start();
 			 */
 			Pintor pintor = new Pintor(this);
 			pintor.start();
@@ -76,15 +69,22 @@ public class VentanaBolas extends JPanel {
 			e.printStackTrace();
 		}
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
+		/*Image imagenSlim;
+		imagenSlim = new ImageIcon("recursos/slime.png").getImage();*/
+		Image imageMiniSlime;
+		imageMiniSlime = new ImageIcon("recursos/minislime.png").getImage();
+		
 		for (Bola bola : this.getBolas()) {
 			getExterno().setColor(bola.getColor());
 			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
 		}
 		for (TimeTrap timeTrap : this.getTimeTraps()) {
 			getExterno().setColor(Color.RED);
-			getExterno().drawRect(timeTrap.getPosicionX(),timeTrap.getPosicionY(), timeTrap.getDimension(), timeTrap.getDimension());
+			getExterno().drawImage(imageMiniSlime, timeTrap.getPosicionX()-(timeTrap.getDimension()/2), timeTrap.getPosicionY()-(timeTrap.getDimension()/2), this);
+			//getExterno().drawRect(timeTrap.getPosicionX(),timeTrap.getPosicionY(), timeTrap.getDimension(), timeTrap.getDimension());
 			
 		}
+		//getExterno().drawImage(imagenSlim, 0, 0, this);
 		g.drawImage(getImagen(), 0, 0, this);
 	}
 
@@ -129,6 +129,26 @@ public class VentanaBolas extends JPanel {
 
 	public void setTimeTraps(List<TimeTrap> timeTraps) {
 		this.timeTraps = timeTraps;
+	}
+
+
+	public List<TimeTrap> getTimeTrapsTemporal() {
+		return timeTrapsTemporal;
+	}
+
+
+	public void setTimeTrapsTemporal(List<TimeTrap> timeTrapsTemporal) {
+		this.timeTrapsTemporal = timeTrapsTemporal;
+	}
+
+
+	public List<Bola> getBolasTemporal() {
+		return bolasTemporal;
+	}
+
+
+	public void setBolasTemporal(List<Bola> bolasTemporal) {
+		this.bolasTemporal = bolasTemporal;
 	}
 
 	/*
