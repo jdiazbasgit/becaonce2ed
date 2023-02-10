@@ -18,9 +18,9 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		this.ventanaBolas = ventanaBolas;
 	}
 
-	public int generarRandom1o2() {
+	public int generarRandom1o2(int i) {
 		Random random = new Random();
-		int resultado = random.nextInt(4) + 1;
+		int resultado = random.nextInt(i) + 1;
 		return resultado;
 	}
 
@@ -29,9 +29,8 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		int resultado = random.nextInt(2) + 1;
 		if (resultado == 1) {
 			return -1;
-		} else {
-			return 1;
 		}
+		return 1;
 	}
 
 	public Color generarColorAleatorio() {
@@ -42,9 +41,8 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	public int cualEsMayor(int a, int b) {
 	    if (a > b) {
 	        return a;
-	    } else {
-	        return b;
 	    }
+	    return b;
 	}
 	public int calcularVelocidad(int incrX, int incrY) {
 		int maxIncrEnUso = cualEsMayor(incrX, incrY);
@@ -55,11 +53,11 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		//System.out.println(e.getPoint());
 		//System.out.println(e);
-		int incrX = generarRandom1o2();
-		int incrY = generarRandom1o2();
+		int incrX = generarRandom1o2(16);
+		int incrY = generarRandom1o2(16);
 		int velocidad = calcularVelocidad(incrX, incrY)/2;
 		int velocidadRalentizada = velocidad;
-		int dimensionBola = 50;
+		int dimensionBola = 60;
 		int dimensionTrap = 100;
 		if (e.getButton() == 1) {
 			Bola bola = new Bola((e.getPoint().x)-(dimensionBola/2), (e.getPoint().y)-(dimensionBola/2), incrX, incrY,

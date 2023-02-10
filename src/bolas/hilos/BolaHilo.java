@@ -38,16 +38,16 @@ public class BolaHilo extends Thread {
 			}
 			getBola().calcularPosicion();
 			Bola bolaQueCompruebo = this.bola;
-			ventanaBolas.getBolasTemporal().addAll(ventanaBolas.getBolas());
-			ventanaBolas.getTimeTrapsTemporal().addAll(ventanaBolas.getTimeTraps());
-			for (Bola otraBola : ventanaBolas.getBolasTemporal()) {
+			//ventanaBolas.getBolasTemporal().addAll(ventanaBolas.getBolas());
+			//ventanaBolas.getTimeTrapsTemporal().addAll(ventanaBolas.getTimeTraps());
+			for (Bola otraBola : ventanaBolas.getBolas()) {
 				Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
 						(int) Math.round(bolaQueCompruebo.getPosicionY()), bolaQueCompruebo.getDimension(),
 						bolaQueCompruebo.getDimension());
 				Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()),
 						(int) Math.round(otraBola.getPosicionY()), otraBola.getDimension(), otraBola.getDimension());
 				
-				for (TimeTrap timeTrap : ventanaBolas.getTimeTrapsTemporal()) {
+				for (TimeTrap timeTrap : ventanaBolas.getTimeTraps()) {
 					Rectangle timeTrapRect = new Rectangle(timeTrap.getPosicionX(), timeTrap.getPosicionY(),
 							timeTrap.getDimension(), timeTrap.getDimension());
 					if (bolaQueComprueboRect.intersects(timeTrapRect)) {
@@ -66,7 +66,7 @@ public class BolaHilo extends Thread {
 						}
 					}else {
 						boolean noToca = true;
-						for (TimeTrap otraTimeTrap : ventanaBolas.getTimeTrapsTemporal()) {
+						for (TimeTrap otraTimeTrap : ventanaBolas.getTimeTraps()) {
 							Rectangle otraTimeTrapRect = new Rectangle(otraTimeTrap.getPosicionX(), otraTimeTrap.getPosicionY(),
 									otraTimeTrap.getDimension(), otraTimeTrap.getDimension());
 							if (!(bolaQueComprueboRect.intersects(otraTimeTrapRect)))
