@@ -38,14 +38,14 @@ public class Bola {
 		  getColor().getBlue()<100) { setIncrementoY(4); setIncrementoX(4); }
 		 */
 		
-		
+		/*
 		if (getPosicionY() >= 400 && getIncrementoY()>1 )
 		{
 			setIncrementoY(getIncrementoY()-10);
 		}else {
 			//setIncrementoX((float) (getIncrementoX()+0.2));
 			setIncrementoY((float) (getIncrementoY()+0.5));
-		}
+		}*/
 		
 	}
 

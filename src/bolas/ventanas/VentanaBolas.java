@@ -87,16 +87,16 @@ public class VentanaBolas extends JPanel {
 		}
 		
 		for (Bola bola : this.getBolas()) {
-			//getExterno().setColor(bola.getColor());
-			//getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
-			getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
+			getExterno().setColor(bola.getColor());
+			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
+			//getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
 			getExterno().setColor(Color.BLACK);
 			Font fuente = new Font(Font.MONOSPACED, Font.BOLD, bola.getDimension()/2);
 			getExterno().setFont(fuente);
-			//getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
+			getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
 		}
 		
-		getExterno().drawImage(panalSlim, 0, 0, this);
+		//getExterno().drawImage(panalSlim, 0, 0, this);
 		g.drawImage(getImagen(), 0, 0, this);
 	}
 

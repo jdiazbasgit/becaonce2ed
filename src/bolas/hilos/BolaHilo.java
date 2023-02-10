@@ -44,19 +44,15 @@ public class BolaHilo extends Thread {
 			for (int i = 0; i < ventanaBolas.getBolas().size(); i++) {
 				Bola otraBola = ventanaBolas.getBolas().get(i);
 				
-				//Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
-					//	(int) Math.round(bolaQueCompruebo.getPosicionY()), bolaQueCompruebo.getDimension(),
-						//bolaQueCompruebo.getDimension());
-				//Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()),
-					//	(int) Math.round(otraBola.getPosicionY()), otraBola.getDimension(), otraBola.getDimension());
+				Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
+						(int) Math.round(bolaQueCompruebo.getPosicionY()), bolaQueCompruebo.getDimension(),
+						bolaQueCompruebo.getDimension());
+				Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()),
+						(int) Math.round(otraBola.getPosicionY()), otraBola.getDimension(), otraBola.getDimension());
 
 				
 				
-				Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
-						(int) Math.round(bolaQueCompruebo.getPosicionY()), (bolaQueCompruebo.getDimension())/2,
-						(bolaQueCompruebo.getDimension())/2);
-				Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()),
-						(int) Math.round(otraBola.getPosicionY()), otraBola.getDimension(), otraBola.getDimension());
+				
 
 				for (int j = 0; j < ventanaBolas.getTimeTraps().size(); j++) {
 					TimeTrap timeTrap = ventanaBolas.getTimeTraps().get(j);
@@ -120,8 +116,8 @@ public class BolaHilo extends Thread {
 					// this.desplazarAlChocar(bolaQueCompruebo);
 					// elBolero.desplazarAlChocar(otraBola);
 					getBola().calcularPosicion();
-					//bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
-					//bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
+					bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
+					bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
 					
 					// ventanaBolas.getBolas().set(i, otraBola);
 				}
