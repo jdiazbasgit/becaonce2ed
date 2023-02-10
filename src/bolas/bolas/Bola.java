@@ -3,8 +3,18 @@ package bolas.bolas;
 public class Bola {
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
+	private int impactos;
 	
-	
+	public int getImpactos() {
+		return impactos;
+	}
+
+
+	public void setImpactos(int impactos) {
+		this.impactos = impactos;
+	}
+
+
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
 		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));

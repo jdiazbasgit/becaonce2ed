@@ -7,46 +7,61 @@ import bolas.ventanas.VentanaBolas;
 
 public class BolaHilo extends Thread {
 
-	private Bola bola;
-	private VentanaBolas ventanaBolas;
-
-	public BolaHilo(Bola bola, VentanaBolas ventanaBolas) {
-		this.bola = bola;
-		this.ventanaBolas = ventanaBolas;
-	}
-
-	@Override
-	public void run() {
-		while (true) {
-			try {
-				Thread.sleep(3);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (getBola().getPosicionX() < 0
-					|| getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension())
-				getBola().setSentidoX(getBola().getSentidoX() * -1);
-
-			if (getBola().getPosicionY() < 0
-					|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
-				getBola().setSentidoY(getBola().getSentidoY() * -1);
-			getBola().calcularPosicion();
-			
-			for (Bola otra : getVentanaBolas().getBolas()) {
-				if(!getBola().equals(otra)) {
-					Rectangle  yo = new Rectangle(getBola().getPosicionX(),getBola().getPosicionY(),getBola().getDimension(),getBola().getDimension());
-					Rectangle otro = new Rectangle(otra.getPosicionX(),otra.getPosicionY(),otra.getDimension(),otra.getDimension());
-					if(yo.intersects(otro)) {
-						getBola().setSentidoX(getBola().getSentidoX()*-1);
-						getBola().setSentidoY(getBola().getSentidoY()*-1);
-					}
-				}
-				
-			}
+		private Bola bola;
+		private VentanaBolas ventanaBolas;
+		private final int rebotesMaximos = 100;
+		public BolaHilo(Bola bola, VentanaBolas ventanaBolas) {
+			this.bola = bola;
+			this.ventanaBolas = ventanaBolas;
 		}
-	}
 
+		@Override
+		public void run() {
+			while (true) {
+				try {
+					Thread.sleep(3);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (getBola().getPosicionX() < 0
+						|| getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension()) {
+					getBola().setSentidoX(getBola().getSentidoX() * -1);
+					
+				}
+
+				if (getBola().getPosicionY() < 0
+						|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension()) {
+					getBola().setSentidoY(getBola().getSentidoY() * -1);
+					
+				}
+				try {
+					for (Bola otra : getVentanaBolas().getBolas()) {
+						if (!getBola().equals(otra)) {
+							Rectangle yo = new Rectangle(getBola().getPosicionX(),getBola().getPosicionY(),getBola().getDimension(),getBola().getDimension());
+							Rectangle otro = new Rectangle(otra.getPosicionX(),otra.getPosicionY(),otra.getDimension(),otra.getDimension());
+							if (yo.intersects(otro)) {
+								getBola().setSentidoX(getBola().getSentidoX()*-1);
+								getBola().setSentidoY(getBola().getSentidoY()*-1);	
+								getBola().setImpactos(getBola().getImpactos()+1);						
+								}
+						}				
+					}
+				} catch (Exception e) {
+					getVentanaBolas().getBolas().remove(getBola());
+					break;
+				}			
+				
+				getBola().calcularPosicion();
+				if (getBola().getImpactos()>rebotesMaximos) {
+					getVentanaBolas().getBolas().remove(getBola());
+					break;
+					
+				}
+					
+				}
+			}
+		
+	
 	public Bola getBola() {
 		return bola;
 	}
@@ -63,4 +78,4 @@ public class BolaHilo extends Thread {
 		this.ventanaBolas = ventanaBolas;
 	}
 
-}
+	}
