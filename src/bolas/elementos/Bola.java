@@ -4,7 +4,7 @@ import java.awt.Color;
 
 public class Bola {
 	
-	private int sentidoX,sentidoY,dimension,velocidadThread, velocidadRalentizada;
+	private int sentidoX,sentidoY,dimension,velocidadThread, velocidadRalentizada, impactos;
 	private float posicionX,posicionY,incrementoX,incrementoY;
 	private Color color;
 	
@@ -13,7 +13,7 @@ public class Bola {
 	
 
 	public Bola(float posicionX, float posicionY, float incrementoX, float incrementoY, int sentidoX, int sentidoY,
-			int dimension, Color color, int velocidadThread, int velocidadRalentizada) {
+			int dimension, Color color, int velocidadThread, int velocidadRalentizada, int impactos) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -24,9 +24,11 @@ public class Bola {
 		this.color = color;
 		this.velocidadThread = velocidadThread;
 		this.velocidadRalentizada = velocidadRalentizada;
+		this.impactos = impactos;
 		
 	}
 	
+
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
 		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
@@ -36,16 +38,15 @@ public class Bola {
 		  getColor().getBlue()<100) { setIncrementoY(4); setIncrementoX(4); }
 		 */
 		
-		/*
-		if (getPosicionY() >= 500 && getIncrementoX()>1)
+		
+		if (getPosicionY() >= 400 && getIncrementoY()>1 )
 		{
-			setIncrementoX(getIncrementoX()/2);
-			setIncrementoY(getIncrementoY()/2);
+			setIncrementoY(getIncrementoY()-10);
 		}else {
-			setIncrementoX((float) (getIncrementoX()+0.2));
-			setIncrementoY((float) (getIncrementoY()+0.2));
+			//setIncrementoX((float) (getIncrementoX()+0.2));
+			setIncrementoY((float) (getIncrementoY()+0.5));
 		}
-		*/
+		
 	}
 
 	public float getPosicionX() {
@@ -132,6 +133,14 @@ public class Bola {
 
 	public void setVelocidadRalentizada(int velocidadRalentizada) {
 		this.velocidadRalentizada = velocidadRalentizada;
+	}
+	
+	public int getImpactos() {
+		return impactos;
+	}
+
+	public void setImpactos(int impactos) {
+		this.impactos = impactos;
 	}
 
 }

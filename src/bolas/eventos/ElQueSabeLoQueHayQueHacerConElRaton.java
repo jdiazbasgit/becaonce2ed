@@ -57,11 +57,12 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		int incrY = generarRandom1o2(16);
 		int velocidad = calcularVelocidad(incrX, incrY)/2;
 		int velocidadRalentizada = velocidad;
-		int dimensionBola = 60;
+		int dimensionBola = 200;
 		int dimensionTrap = 100;
+		int impactos = 0;
 		if (e.getButton() == 1) {
 			Bola bola = new Bola((e.getPoint().x)-(dimensionBola/2), (e.getPoint().y)-(dimensionBola/2), incrX, incrY,
-					generarRandomPosNeg(), generarRandomPosNeg(), dimensionBola, generarColorAleatorio(), velocidad, velocidadRalentizada);
+					generarRandomPosNeg(), generarRandomPosNeg(), dimensionBola, generarColorAleatorio(), velocidad, velocidadRalentizada, impactos);
 			//System.out.println(generarRandom1o2());
 			// getVentanaBolas().getExterno().setColor(bola.getColor());
 			this.ventanaBolas.getBolas().add(bola);
