@@ -38,7 +38,7 @@ public class ElRatonEnPlenoMeneo implements MouseMotionListener {
 
 	}
 
-	@SuppressWarnings("unused")
+	
 	public int dameSentido() {
 		int valor = (int) (Math.random() * 20);
 		if (valor % 2 == 0)

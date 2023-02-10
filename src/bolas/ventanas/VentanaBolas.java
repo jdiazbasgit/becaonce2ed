@@ -1,19 +1,13 @@
 package bolas.ventanas;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import bolas.bolas.Bola;
-import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
-import bolas.hilos.BolaHilo;
-import bolas.hilos.Pintor;
 
 @SuppressWarnings("serial")
 public class VentanaBolas extends JFrame {
