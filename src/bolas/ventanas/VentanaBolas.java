@@ -4,16 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Polygon;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import bolas.bolas.Bola;
+import bolas.eventos.CrearBolaConUnClick;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
@@ -24,6 +22,7 @@ public class VentanaBolas extends JFrame {
 	private boolean primeraVez;
 	// private Bola bola;
 	private List<Bola> bolas;
+
 	
 
 	public VentanaBolas() {
@@ -32,10 +31,8 @@ public class VentanaBolas extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
+		this.addMouseListener(new CrearBolaConUnClick(this));
 	}
-	
-	
-
 
 	@Override
 	public void paint(Graphics g) {
@@ -43,49 +40,13 @@ public class VentanaBolas extends JFrame {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
 
-			// setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
-			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
-			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
-			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
-			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100);
-			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 5);
-
-			getBolas().add(bola);
-			getBolas().add(bola1);
-			getBolas().add(bola2);
-			getBolas().add(bola3);
-			getBolas().add(bola4);
-
-			BolaHilo bolaHilo = new BolaHilo(bola, this);
-			BolaHilo bolaHilo1 = new BolaHilo(bola1, this);
-			BolaHilo bolaHilo2 = new BolaHilo(bola2, this);
-			BolaHilo bolaHilo3 = new BolaHilo(bola3, this);
-			BolaHilo bolaHilo4 = new BolaHilo(bola4, this);
-
-			bolaHilo.start();
-			bolaHilo1.start();
-			bolaHilo2.start();
-			bolaHilo3.start();
-			bolaHilo4.start();
+			
 			Pintor pintor = new Pintor(this);
 			pintor.start();
 			setPrimeraVez(false);
 		}
+
 		
-		 addMouseListener(new MouseAdapter() {
-			  public void mousePressed(MouseEvent e) {
-			   setBolas(getBolas());
-               
-			    repaint();
-			  }
-			});
-
-
-		/*
-		 * g.setColor(Color.YELLOW); g.fillRect(100, 100, 100, 100);
-		 * g.setColor(Color.RED); g.drawOval(250, 100, 100, 100); int[] x = { 50, 100,
-		 * 150 }; int[] y = { 80, 300, 250 }; g.drawPolygon(x, y, 3);
-		 */
 
 		try {
 			Thread.sleep(5);
@@ -96,13 +57,12 @@ public class VentanaBolas extends JFrame {
 		for (Bola bola : getBolas()) {
 			getExterno().fillOval(bola.getPosicionX(), bola.getPosicionY(), bola.getDimension(), bola.getDimension());
 		}
+		
 		g.drawImage(getImagen(), 0, 0, this);
 	}
+
 	
-	 public void mousePressed(MouseEvent e) {
-		   
-		    repaint();
-		  }
+	
 
 	public Image getImagen() {
 		return imagen;

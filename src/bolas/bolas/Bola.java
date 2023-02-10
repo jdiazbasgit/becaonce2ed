@@ -3,14 +3,9 @@ package bolas.bolas;
 public class Bola {
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
+	private int impactos;
 	
 	
-	public void calcularPosicion() {
-		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
-		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
-	}
-	
-
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
 			int dimension) {
 		this.posicionX = posicionX;
@@ -21,7 +16,11 @@ public class Bola {
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
 	}
-
+	public void calcularPosicion() {
+		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
+		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
+	}
+	
 	public int getPosicionX() {
 		return posicionX;
 	}
@@ -76,6 +75,20 @@ public class Bola {
 
 	public void setDimension(int dimension) {
 		this.dimension = dimension;
+	}
+	public int getRebotes() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int getRebotesMaximos() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public int getImpactos() {
+		return impactos;
+	}
+	public void setImpactos(int impactos) {
+		this.impactos = impactos;
 	}
 
 }
