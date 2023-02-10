@@ -21,7 +21,7 @@ public class Cursor extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
-		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso(this));
+		//this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso(this));
 	}
 	
 	

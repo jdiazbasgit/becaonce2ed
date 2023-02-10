@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import bolas.bolas.Bola;
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
@@ -29,6 +30,7 @@ public class VentanaBolas extends JFrame {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		setBolas(new ArrayList<>());
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso(this));
 	}
 
 	@Override
@@ -38,29 +40,23 @@ public class VentanaBolas extends JFrame {
 			setExterno(getImagen().getGraphics());
 
 			// setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
-			Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
-			Bola bola1 = new Bola(50, 50, 1, 1, -1, -1, 60);
-			Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50);
-			Bola bola3 = new Bola(200, 300, 1, 1, 1, -1, 100);
-			Bola bola4 = new Bola(10, 400, 1, 1, 1, 1, 150);
-
-			getBolas().add(bola);
-			getBolas().add(bola1);
-			getBolas().add(bola2);
-			getBolas().add(bola3);
-			getBolas().add(bola4);
-
-			BolaHilo bolaHilo = new BolaHilo(bola, this);
-			BolaHilo bolaHilo1 = new BolaHilo(bola1, this);
-			BolaHilo bolaHilo2 = new BolaHilo(bola2, this);
-			BolaHilo bolaHilo3 = new BolaHilo(bola3, this);
-			BolaHilo bolaHilo4 = new BolaHilo(bola4, this);
-
-			bolaHilo.start();
-			bolaHilo1.start();
-			bolaHilo2.start();
-			bolaHilo3.start();
-			bolaHilo4.start();
+			/*
+			 * Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25); Bola bola1 = new Bola(50,
+			 * 50, 1, 1, -1, -1, 60); Bola bola2 = new Bola(80, 10, 1, 1, -1, 1, 50); Bola
+			 * bola3 = new Bola(200, 300, 1, 1, 1, -1, 100); Bola bola4 = new Bola(10, 400,
+			 * 1, 1, 1, 1, 150);
+			 * 
+			 * getBolas().add(bola); getBolas().add(bola1); getBolas().add(bola2);
+			 * getBolas().add(bola3); getBolas().add(bola4);
+			 * 
+			 * BolaHilo bolaHilo = new BolaHilo(bola, this); BolaHilo bolaHilo1 = new
+			 * BolaHilo(bola1, this); BolaHilo bolaHilo2 = new BolaHilo(bola2, this);
+			 * BolaHilo bolaHilo3 = new BolaHilo(bola3, this); BolaHilo bolaHilo4 = new
+			 * BolaHilo(bola4, this);
+			 * 
+			 * bolaHilo.start(); bolaHilo1.start(); bolaHilo2.start(); bolaHilo3.start();
+			 * bolaHilo4.start();
+			 */
 			Pintor pintor = new Pintor(this);
 			pintor.start();
 			setPrimeraVez(false);
