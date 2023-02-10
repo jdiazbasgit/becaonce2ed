@@ -67,11 +67,11 @@ public class VentanaBolas extends JPanel {
 		}
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
 		Image panalSlim;
-		panalSlim = new ImageIcon("recursos/panal.jpg").getImage();
+		panalSlim = new ImageIcon("recursos/panal.png").getImage();
 		Image imageMiniSlime;		
 		imageMiniSlime = new ImageIcon("recursos/minislime.png").getImage();
 		Image abeja;		
-		abeja = new ImageIcon("recursos/abeja.jpg").getImage();
+		abeja = new ImageIcon("recursos/abeja.png").getImage();
 		
 		for (int i = 0; i < this.getBolas().size(); i++) {
 			if(this.getBolas().get(i).getImpactos() >= 40) {
@@ -85,7 +85,7 @@ public class VentanaBolas extends JPanel {
 			//getExterno().drawRect(timeTrap.getPosicionX(),timeTrap.getPosicionY(), timeTrap.getDimension(), timeTrap.getDimension());
 			
 		}
-		getExterno().drawImage(panalSlim, 0, 0, this);
+		
 		for (Bola bola : this.getBolas()) {
 			//getExterno().setColor(bola.getColor());
 			//getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
@@ -96,7 +96,7 @@ public class VentanaBolas extends JPanel {
 			//getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
 		}
 		
-		
+		getExterno().drawImage(panalSlim, 0, 0, this);
 		g.drawImage(getImagen(), 0, 0, this);
 	}
 
