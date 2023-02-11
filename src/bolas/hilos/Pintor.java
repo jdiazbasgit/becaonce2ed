@@ -9,6 +9,8 @@ public class Pintor extends Thread {
 	
 	private VentanaPelota ventanaPelota;
 	
+	
+
 	public Pintor(VentanaPelota ventanaPelota) {
 		this.ventanaPelota = ventanaPelota;
 	}
@@ -31,10 +33,9 @@ public class Pintor extends Thread {
 
 	
 
-	private Component getVentanaPelota() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	
+	
 
 
 	public VentanaPelota getVentanaBolas() {

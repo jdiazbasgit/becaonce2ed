@@ -7,7 +7,7 @@ public class Pelota {
 	private int impactos; 
     
     
-    public Pelota(int posicionX, int posicionY, int dimension, int incrementoX, int incrementoY, int sentidoX, int sentidoY,int impactos) {
+    public Pelota(int posicionX, int posicionY, int dimension, int incrementoX, int incrementoY, int sentidoX, int sentidoY) {
     	this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -15,7 +15,7 @@ public class Pelota {
 		this.sentidoX = sentidoX;
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
-		this.impactos = impactos;
+		//this.impactos = impactos;
     }  
 	public void cacularPosicion() {
 		setPosicionX(getPosicionX() + (getIncrementoX() * getSentidoX()));

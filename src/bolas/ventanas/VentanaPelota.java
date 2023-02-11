@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.swing.JFrame;
-
 import bolas.bolas.Pelota;
 import bolas.eventos.ElRatonEnPlenoMeneo;
 import bolas.hilos.PelotaHilo;
@@ -23,16 +21,17 @@ public class VentanaPelota extends JFrame {
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
-	private Set<Pelota> bolas;
-	private int rebotes = 2;
+	private Set<Pelota> pelota;      //por que pelotas y no pelota?
+	private int rebotes = 0;
 	private final int rebotesMaximos = 6;
-	private Set<Pelota> pelota;
+	//private Set<Pelota> pelota;
 
 	public VentanaPelota() {
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		setPelota(new HashSet<>(), pelota);
+		setPelota(new HashSet<>());
 		this.addMouseListener(new ElRatonEnPlenoMeneo(this));
 	}
 	
@@ -96,9 +95,8 @@ public class VentanaPelota extends JFrame {
 
 
 
-	public void remove(Pelota pelota2) {
-		// TODO Auto-generated method stub
+	//public void remove(Pelota pelota) {
+		
 		
 	}
 
-}

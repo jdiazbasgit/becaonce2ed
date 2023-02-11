@@ -10,7 +10,7 @@ public class PelotaHilo extends Thread {
 
 	private Pelota pelota;
 	private VentanaPelota ventanaPelota;
-	private final int rebotesMaximos = 111;
+	private final int rebotesMaximos = 1000;
 
 	public PelotaHilo(Pelota pelota, VentanaPelota ventanaPelota) {
 		this.pelota = pelota;
@@ -27,12 +27,14 @@ public class PelotaHilo extends Thread {
 				e.printStackTrace();
 			}
 			if (getPelota().getPosicionX() < 0
-					|| getPelota().getPosicionX() > getVentanaPelota().getWidth() - getPelota().getDimension())
+					|| getPelota().getPosicionX() > getVentanaPelota().getWidth() - getPelota().getDimension()) {
 				getPelota().setSentidoX(getPelota().getSentidoX() * -1);
-
+			}
 			if (getPelota().getPosicionY() < 0
-					|| getPelota().getPosicionY() > getVentanaPelota().getHeight() - getPelota().getDimension())
+					|| getPelota().getPosicionY() > getVentanaPelota().getHeight() - getPelota().getDimension()) {
 				getPelota().setSentidoY(getPelota().getSentidoY() * -1);
+			}
+				
 try {
 			for (Pelota otra : getVentanaPelota().getPelota()) {
 				if (!getPelota().equals(otra)) {
@@ -51,13 +53,7 @@ try {
 
 			//getPelota().cacularPosicion();
 
-		}
-	
-
-	catch(
-
-	Exception e)
-	{
+		}catch(Exception e){
 		getVentanaPelota().remove(getPelota());
 		break;
 

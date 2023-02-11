@@ -3,12 +3,14 @@ package bolas.ventanas;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.MouseMotionListener;
+//import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame; 
 import bolas.eventos.ElRatonEnPlenoMeneo;
 
 public class Cursor extends JFrame {
+	
+	
 	private static final long serialVersionUID = 1L;
 	private Image imagen;
 	private Graphics externo;
@@ -19,8 +21,11 @@ public class Cursor extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		this.removeMouseMotionListener((MouseMotionListener) new ElRatonEnPlenoMeneo(this));
+		//this.removeMouseMotionListener((MouseMotionListener) new ElRatonEnPlenoMeneo(this));
+		this.addMouseMotionListener(new ElRatonEnPlenoMeneo(this));
 	}
+
+	
 
 	public void paint(Graphics g) {
 		if (isPrimeraVez()) {
@@ -75,5 +80,8 @@ public class Cursor extends JFrame {
 	public void setPosicionY(int posicionY) {
 		this.posicionY = posicionY;
 	}
-
+	public void addMouseMotionListener(ElRatonEnPlenoMeneo elRatonEnPlenoMeneo) {
+		// TODO Auto-generated method stub
+		
+	}
 }
