@@ -93,7 +93,7 @@ public class VentanaBolas extends JPanel {
 			getExterno().setColor(Color.BLACK);
 			Font fuente = new Font(Font.MONOSPACED, Font.BOLD, bola.getDimension()/2);
 			getExterno().setFont(fuente);
-			//getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
+			getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
 		}
 		
 		//getExterno().drawImage(panalSlim, 0, 0, this);
