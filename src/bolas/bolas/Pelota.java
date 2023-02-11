@@ -3,12 +3,11 @@ package bolas.bolas;
 public class Pelota {
 
 	private int posicionX, posicionY, incrementoX, incrementoY, sentidoX, sentidoY, dimension;
-
-	public void cacularPosicion() {
-		setPosicionX(getPosicionX() + (getIncrementoX() * getSentidoX()));
-		setPosicionY(getPosicionY() + (getIncrementoY() * getSentidoY()));
-	}
-    public Pelota(int posicionX, int posicionY, int dimension, int incrementoX, int incrementoY, int sentidoX, int sentidoY) {
+    @SuppressWarnings("unused")
+	private int impactos; 
+    
+    
+    public Pelota(int posicionX, int posicionY, int dimension, int incrementoX, int incrementoY, int sentidoX, int sentidoY,int impactos) {
     	this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;
@@ -16,7 +15,13 @@ public class Pelota {
 		this.sentidoX = sentidoX;
 		this.sentidoY = sentidoY;
 		this.dimension = dimension;
+		this.impactos = impactos;
+    }  
+	public void cacularPosicion() {
+		setPosicionX(getPosicionX() + (getIncrementoX() * getSentidoX()));
+		setPosicionY(getPosicionY() + (getIncrementoY() * getSentidoY()));
 	}
+   
     	public int getPosicionX() {
     		return posicionX;
     	}
@@ -72,6 +77,13 @@ public class Pelota {
     	public void setDimension(int dimension) {
     		this.dimension = dimension;
     	}
+		public int getImpactos() {
+			return 0;
+		}
+		public void setImpactos(int i) {
+			
+			
+		}
 
     }
 	

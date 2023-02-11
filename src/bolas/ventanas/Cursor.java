@@ -3,10 +3,10 @@ package bolas.ventanas;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.JFrame;
+import java.awt.event.MouseMotionListener;
 
-import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
-//import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso;
+import javax.swing.JFrame; 
+import bolas.eventos.ElRatonEnPlenoMeneo;
 
 public class Cursor extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +19,7 @@ public class Cursor extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
+		this.removeMouseMotionListener((MouseMotionListener) new ElRatonEnPlenoMeneo(this));
 	}
 
 	public void paint(Graphics g) {

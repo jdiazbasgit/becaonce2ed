@@ -2,6 +2,7 @@ package bolas.hilos;
 
 import java.awt.Rectangle;
 
+
 import bolas.bolas.Pelota;
 import bolas.ventanas.VentanaPelota;
 
@@ -9,6 +10,7 @@ public class PelotaHilo extends Thread {
 
 	private Pelota pelota;
 	private VentanaPelota ventanaPelota;
+	private final int rebotesMaximos = 111;
 
 	public PelotaHilo(Pelota pelota, VentanaPelota ventanaPelota) {
 		this.pelota = pelota;
@@ -19,7 +21,7 @@ public class PelotaHilo extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(3);
+				Thread.sleep(2);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
@@ -31,7 +33,7 @@ public class PelotaHilo extends Thread {
 			if (getPelota().getPosicionY() < 0
 					|| getPelota().getPosicionY() > getVentanaPelota().getHeight() - getPelota().getDimension())
 				getPelota().setSentidoY(getPelota().getSentidoY() * -1);
-
+try {
 			for (Pelota otra : getVentanaPelota().getPelota()) {
 				if (!getPelota().equals(otra)) {
 					Rectangle yo = new Rectangle(getPelota().getPosicionX(), getPelota().getPosicionY(),
@@ -41,14 +43,34 @@ public class PelotaHilo extends Thread {
 					if (yo.intersects(otro)) {
 						getPelota().setSentidoX(getPelota().getSentidoX() * -1);
 						getPelota().setSentidoY(getPelota().getSentidoY() * -1);
+						getPelota().setImpactos(getPelota().getImpactos() + 1);
 					}
 				}
 
 			}
 
-			getPelota().cacularPosicion();
+			//getPelota().cacularPosicion();
+
 		}
+	
+
+	catch(
+
+	Exception e)
+	{
+		getVentanaPelota().remove(getPelota());
+		break;
+
 	}
+
+        getPelota().cacularPosicion();
+       if (getPelota().getImpactos()>rebotesMaximos) {
+	     getVentanaPelota().getPelota().remove(getPelota());
+	break;
+       }	
+}
+	}
+	
 
 	public Pelota getPelota() {
 		return pelota;

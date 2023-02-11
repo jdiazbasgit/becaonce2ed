@@ -1,14 +1,18 @@
 package bolas.hilos;
 
-import bolas.ventanas.VentanaBolas;
+
+import java.awt.Component;
+
+import bolas.ventanas.VentanaPelota;
 
 public class Pintor extends Thread {
 	
-	private VentanaBolas ventanaBolas;
+	private VentanaPelota ventanaPelota;
 	
-	public Pintor(VentanaBolas ventanaBolas) {
-		this.ventanaBolas = ventanaBolas;
+	public Pintor(VentanaPelota ventanaPelota) {
+		this.ventanaPelota = ventanaPelota;
 	}
+	
 	
 	@Override
 	public void run() {
@@ -16,22 +20,29 @@ public class Pintor extends Thread {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+								e.printStackTrace();
 			}
-			getVentanaBolas().repaint();
+			getVentanaPelota().repaint();
 		}
 		
 	}
 
 	
 
-	public VentanaBolas getVentanaBolas() {
-		return ventanaBolas;
+	
+
+	private Component getVentanaPelota() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public void setVentanaBolas(VentanaBolas ventanaBolas) {
-		this.ventanaBolas = ventanaBolas;
+
+	public VentanaPelota getVentanaBolas() {
+		return ventanaPelota;
+	}
+
+	public void setVentanaBolas(VentanaPelota ventanaBolas) {
+		this.ventanaPelota = ventanaBolas;
 	}
 
 }

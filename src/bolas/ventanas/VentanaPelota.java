@@ -1,61 +1,65 @@
 package bolas.ventanas;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Polygon;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
 import bolas.bolas.Pelota;
 import bolas.eventos.ElRatonEnPlenoMeneo;
+import bolas.hilos.PelotaHilo;
 import bolas.hilos.Pintor;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "unused", "serial" })
 public class VentanaPelota extends JFrame {
 
-	private Image image;
-	private Graphics externo;
-	private boolean primeravez;
-	private List<Pelota> pelota;
 	private Image imagen;
+	private Graphics externo;
+	private boolean primeraVez;
+	private Set<Pelota> bolas;
+	private int rebotes = 2;
+	private final int rebotesMaximos = 6;
+	private Set<Pelota> pelota;
 
 	public VentanaPelota() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		setPelota(new ArrayList<>());
+		setPelota(new HashSet<>(), pelota);
 		this.addMouseListener(new ElRatonEnPlenoMeneo(this));
 	}
+	
+	
 
-	private void setPelota(ArrayList arrayList) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@SuppressWarnings("unused")
 	public void paint(Graphics g) {
 		if (isPrimeraVez()) {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
-			Pintor pintor = Pintor(this);
+			Pintor pintor = new Pintor(this);
 			pintor.start();
 			setPrimeraVez(false);
 		}
+
 		try {
-		Thread.sleep(5);
-		}catch (InterruptedException e) {
+			Thread.sleep(5);
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
+		getExterno().drawString(String.valueOf(getPelota().size()), 50, 50);
+
 		for (Pelota pelota : getPelota()) {
+
 			getExterno().fillOval(pelota.getPosicionX(), pelota.getPosicionY(), pelota.getDimension(), pelota.getDimension());
 		}
 		g.drawImage(getImagen(), 0, 0, this);
-	}
-	private Pintor Pintor(VentanaPelota ventanaPelota) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public Image getImagen() {
@@ -75,26 +79,26 @@ public class VentanaPelota extends JFrame {
 	}
 
 	public boolean isPrimeraVez() {
-		return primeravez;
+		return primeraVez;
 	}
 
 	public void setPrimeraVez(boolean primeraVez) {
-		this.primeravez = primeraVez;
+		this.primeraVez = primeraVez;
 	}
 
-	/*
-	 * public Bola getBola() { return bola; }
-	 * 
-	 * public void setBola(Bola bola) { this.bola = bola; }
-	 */
-
-	public List<Pelota> getPelota() {
+	public Set<Pelota> getPelota() {
 		return pelota;
 	}
 
-	public void setBolas(List<Pelota> pelota) {
+	public void setPelota(Set<Pelota> Pelota, Set<Pelota> pelota) {
 		this.pelota = pelota;
 	}
 
-	
+
+
+	public void remove(Pelota pelota2) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

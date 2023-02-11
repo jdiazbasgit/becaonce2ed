@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import bolas.bolas.Pelota;
 import bolas.hilos.PelotaHilo;
+import bolas.ventanas.Cursor;
 import bolas.ventanas.VentanaPelota;
 
 public class ElRatonEnPlenoMeneo implements MouseListener {
@@ -16,6 +17,8 @@ public class ElRatonEnPlenoMeneo implements MouseListener {
 		this.ventanaPelota = ventanaPelota;
 
 	}
+
+	
 
 	public int dameIncremento() {
 		int valor = (int) (Math.random() * 10);
@@ -33,9 +36,13 @@ public class ElRatonEnPlenoMeneo implements MouseListener {
 
 	}
 
+	public ElRatonEnPlenoMeneo(Cursor cursor) {
+		
+	}
+	
 	public void mouseClicked(MouseEvent e) {
 		Pelota pelota = new Pelota(e.getX(), e.getY(), dameIncremento(), dameIncremento(), dameSentido(), dameSentido(),
-				50);
+				50, 0);
 		PelotaHilo pelotaHilo = new PelotaHilo(pelota, getVentanaPelota());
 		pelotaHilo.start();
 		getVentanaPelota().getPelota();
