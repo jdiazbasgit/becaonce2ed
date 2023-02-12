@@ -1,4 +1,4 @@
-package bolas.ventanas;
+package pelotas.ventanas;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,33 +9,45 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.swing.JFrame;
-import bolas.bolas.Pelota;
-import bolas.eventos.ElRatonEnPlenoMeneo;
-import bolas.hilos.PelotaHilo;
-import bolas.hilos.Pintor;
 
-@SuppressWarnings({ "unused", "serial" })
-public class VentanaPelota extends JFrame {
+import pelotas.pelotas.Pelota;
+import pelotas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
+import pelotas.hilos.PelotaHilo;
+import pelotas.hilos.Pintor;
 
+@SuppressWarnings({ "serial", "unused" })
+public class VentanaPelotas  extends JFrame {
+	
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
-	private Set<Pelota> pelota;      //por que pelotas y no pelota?
+	private Set<Pelota> pelotas;
+	
 	private int rebotes = 0;
-	private final int rebotesMaximos = 6;
-	//private Set<Pelota> pelota;
+	
+	private final int rebotesMaximos = 5;
 
-	public VentanaPelota() {
-		
+	
+	public VentanaPelotas() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		setPelota(new HashSet<>());
-		this.addMouseListener(new ElRatonEnPlenoMeneo(this));
+		setPelotas(new HashSet<>());
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
-	
-	
+
+	/*
+	 * Bola bola = new Bola(100, 100, 1, 1, -1, 1, 50);
+	 * 
+	 * getBolas().add(bola);
+	 * 
+	 * 
+	 * BolaHilo bolaHilo = new BolaHilo(bola, this);
+	 * 
+	 * bolaHilo.start();
+	 */
 
 	public void paint(Graphics g) {
 		if (isPrimeraVez()) {
@@ -52,9 +64,9 @@ public class VentanaPelota extends JFrame {
 			e.printStackTrace();
 		}
 		getExterno().clearRect(0, 0, this.getWidth(), this.getHeight());
-		getExterno().drawString(String.valueOf(getPelota().size()), 50, 50);
+		getExterno().drawString(String.valueOf(getPelotas().size()), 50, 50);
 
-		for (Pelota pelota : getPelota()) {
+		for (Pelota pelota : getPelotas()) {
 
 			getExterno().fillOval(pelota.getPosicionX(), pelota.getPosicionY(), pelota.getDimension(), pelota.getDimension());
 		}
@@ -85,18 +97,14 @@ public class VentanaPelota extends JFrame {
 		this.primeraVez = primeraVez;
 	}
 
-	public Set<Pelota> getPelota() {
-		return pelota;
+	public Set<Pelota> getPelotas() {
+		return pelotas;
 	}
 
-	public void setPelota(Set<Pelota> Pelota, Set<Pelota> pelota) {
-		this.pelota = pelota;
+	public void setPelotas(Set<Pelota> pelotas) {
+		this.pelotas = pelotas;
 	}
 
+	
 
-
-	//public void remove(Pelota pelota) {
-		
-		
-	}
-
+}

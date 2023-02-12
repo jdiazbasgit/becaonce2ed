@@ -1,44 +1,43 @@
-package bolas.ventanas;
+package pelotas.ventanas;
 
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-//import java.awt.event.MouseMotionListener;
 
-import javax.swing.JFrame; 
-import bolas.eventos.ElRatonEnPlenoMeneo;
+import javax.swing.JFrame;
+
+import pelotas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
+
+
 
 public class Cursor extends JFrame {
-	
 	
 	private static final long serialVersionUID = 1L;
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
 	private int posicionX, posicionY;
-
+	
 	public Cursor() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		//this.removeMouseMotionListener((MouseMotionListener) new ElRatonEnPlenoMeneo(this));
-		this.addMouseMotionListener(new ElRatonEnPlenoMeneo(this));
+		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
-
-	
-
+		
+	@Override
 	public void paint(Graphics g) {
-		if (isPrimeraVez()) {
-			setImagen(createImage(getWidth(), getHeight()));
+		if(isPrimeraVez()) {
+			setImagen(createImage(getWidth(),getHeight()));
 			setExterno(getImagen().getGraphics());
 			getExterno().setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 			setPrimeraVez(false);
 		}
-
-		// getExterno().clearRect(0, 0, getWidth(), getHeight());
-		getExterno().drawString("(" + getPosicionX() + " - " + getPosicionY() + ")", getPosicionX(), getPosicionY());
+		
+		//getExterno().clearRect(0, 0, getWidth(), getHeight());
+		getExterno().drawString("("+getPosicionX()+" - "+getPosicionY()+")", getPosicionX(), getPosicionY());
 		g.drawImage(getImagen(), 0, 0, this);
-
+		
 	}
 
 	public Image getImagen() {
@@ -80,8 +79,8 @@ public class Cursor extends JFrame {
 	public void setPosicionY(int posicionY) {
 		this.posicionY = posicionY;
 	}
-	public void addMouseMotionListener(ElRatonEnPlenoMeneo elRatonEnPlenoMeneo) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	
+	
+
 }
