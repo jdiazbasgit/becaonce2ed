@@ -5,14 +5,14 @@ import java.awt.Rectangle;
 
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
-import bolas.ventanas.VentanaBolas;
+import bolas.ventanas.VentanaZonaDeJuego;
 
 public class BolaHilo extends Thread {
 
 	private Bola bola;
-	private VentanaBolas ventanaBolas;
+	private VentanaZonaDeJuego ventanaBolas;
 
-	public BolaHilo(Bola bola, VentanaBolas ventanaBolas) {
+	public BolaHilo(Bola bola, VentanaZonaDeJuego ventanaBolas) {
 		this.bola = bola;
 		this.ventanaBolas = ventanaBolas;
 	}
@@ -110,14 +110,15 @@ public class BolaHilo extends Thread {
 				if (bolaQueComprueboRect.intersects(otraBolaRect)) {
 					bolaQueCompruebo.setSentidoX(bolaQueCompruebo.getSentidoX() * -1);
 					bolaQueCompruebo.setSentidoY(bolaQueCompruebo.getSentidoY() * -1);
-					// otraBola.setSentidoX(otraBola.getSentidoX() * -1);
-					// otraBola.setSentidoY(otraBola.getSentidoY() * -1);
+					//otraBola.setSentidoX(otraBola.getSentidoX() * -1);
+					//otraBola.setSentidoY(otraBola.getSentidoY() * -1);
+					otraBola.setImpactos(bolaQueCompruebo.getImpactos()+1);
 					// while (bolaQueComprueboRect.intersects(otraBolaRect))
 					// this.desplazarAlChocar(bolaQueCompruebo);
 					// elBolero.desplazarAlChocar(otraBola);
 					getBola().calcularPosicion();
 					bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
-					bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
+					//bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
 					
 					// ventanaBolas.getBolas().set(i, otraBola);
 				}
@@ -148,11 +149,11 @@ public class BolaHilo extends Thread {
 		this.bola = bola;
 	}
 
-	public VentanaBolas getVentanaBolas() {
+	public VentanaZonaDeJuego getVentanaBolas() {
 		return ventanaBolas;
 	}
 
-	public void setVentanaBolas(VentanaBolas ventanaBolas) {
+	public void setVentanaBolas(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
 

@@ -1,12 +1,12 @@
 package bolas.hilos;
 
-import bolas.ventanas.VentanaBolas;
+import bolas.ventanas.VentanaZonaDeJuego;
 
 public class Pintor extends Thread {
 	
-	private VentanaBolas ventanaBolas;
+	private VentanaZonaDeJuego ventanaBolas;
 	
-	public Pintor(VentanaBolas ventanaBolas) {
+	public Pintor(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
 	
@@ -26,11 +26,11 @@ public class Pintor extends Thread {
 
 	
 
-	public VentanaBolas getVentanaBolas() {
+	public VentanaZonaDeJuego getVentanaBolas() {
 		return ventanaBolas;
 	}
 
-	public void setVentanaBolas(VentanaBolas ventanaBolas) {
+	public void setVentanaBolas(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
 

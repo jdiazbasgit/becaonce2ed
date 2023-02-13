@@ -1,6 +1,7 @@
 package bolas.ventanas;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -10,29 +11,34 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import bolas.elementos.Barra;
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
-import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConLosInputs;
+import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
 @SuppressWarnings("serial")
-public class VentanaBolas extends JPanel {
+public class VentanaZonaDeJuego extends JPanel {
 
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
 	private List<Bola> bolas;
 	private List<TimeTrap> timeTraps;
+	private List<Barra> barras;
 	
 
-	public VentanaBolas() {
+	public VentanaZonaDeJuego() {
 		
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setBolas(new ArrayList<>());
 		setTimeTraps(new ArrayList<>());
-		setPrimeraVez(true);		
-		addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton(this));
+		setBarras(new ArrayList<>());
+		setPrimeraVez(true);
+		setBackground(Color.RED);
+		setPreferredSize(new Dimension(0, 0));
+		//addMouseListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
+		addKeyListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 	}
 
 	
@@ -41,24 +47,27 @@ public class VentanaBolas extends JPanel {
 		if (isPrimeraVez()) {
 			setImagen(createImage(this.getWidth(), this.getHeight()));
 			setExterno(getImagen().getGraphics());
-			
-
-			/* setBola(new Bola(100, 100, 1, 1, 1, -1, 50));
-			 * Bola bola = new Bola(100, 100, 1, 1, -1, 1, 25);
-			 * getBolas().add(bola);			 * 
-			 * BolaHilo bolaHilo = new BolaHilo(bola, this);		 * 
-			 * bolaHilo.start();
-			 */
+						
+			  Bola bola = new Bola(100, 100, 0, 0, 1, 1, 150, Color.WHITE, 1,1,0);
+			  getBolas().add(bola);
+			  BolaHilo bolaHilo = new BolaHilo(bola, this);
+			  bolaHilo.start();
+			  Bola bola2 = new Bola(300, 100, 0, 0, 1, 1, 150, Color.WHITE, 1,1,0);
+			  getBolas().add(bola2);
+			  BolaHilo bolaHilo2 = new BolaHilo(bola2, this);
+			  bolaHilo2.start();
+			  Bola bola3 = new Bola(500, 100, 0, 0, 1, 1, 150, Color.WHITE, 1,1,0);
+			  getBolas().add(bola3);
+			  BolaHilo bolaHilo3 = new BolaHilo(bola3, this);
+			  bolaHilo3.start();
+			  
+			  Barra barra1 = new Barra(40, 300, 100, 20);
+			  barras.add(barra1);
+			 
 			Pintor pintor = new Pintor(this);
 			pintor.start();
 			setPrimeraVez(false);
-		}
-
-		/*
-		 * g.setColor(Color.YELLOW); g.fillRect(100, 100, 100, 100);
-		 * g.setColor(Color.RED); g.drawOval(250, 100, 100, 100); int[] x = { 50, 100,
-		 * 150 }; int[] y = { 80, 300, 250 }; g.drawPolygon(x, y, 3);
-		 */
+		}		
 
 		try {
 			Thread.sleep(0);
@@ -87,13 +96,19 @@ public class VentanaBolas extends JPanel {
 		}
 		
 		for (Bola bola : this.getBolas()) {
-			//getExterno().setColor(bola.getColor());
+			getExterno().setColor(bola.getColor());
 			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
 			//getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
-			//getExterno().setColor(Color.BLACK);
+			getExterno().setColor(Color.BLACK);
 			Font fuente = new Font(Font.MONOSPACED, Font.BOLD, bola.getDimension()/2);
 			getExterno().setFont(fuente);
-			//getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
+			getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
+		}
+		
+		for (Barra barra : this.getBarras()) {
+			getExterno().setColor(Color.ORANGE);
+			getExterno().fillRect(barra.getPosicionX(), barra.getPosicionY(), barra.getDimensionX(), barra.getDimensionY());
+			//getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
 		}
 		
 		//getExterno().drawImage(panalSlim, 0, 0, this);
@@ -144,11 +159,14 @@ public class VentanaBolas extends JPanel {
 	}
 
 
-	/*
-	 * public Bola getBola() { return bola; }
-	 * 
-	 * public void setBola(Bola bola) { this.bola = bola; }
-	 */
+	public List<Barra> getBarras() {
+		return barras;
+	}
+
+
+	public void setBarras(List<Barra> barras) {
+		this.barras = barras;
+	}
 
 
 

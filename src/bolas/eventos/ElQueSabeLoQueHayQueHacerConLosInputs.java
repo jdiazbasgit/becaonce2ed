@@ -1,6 +1,8 @@
 package bolas.eventos;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
@@ -8,13 +10,13 @@ import java.util.Random;
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
 import bolas.hilos.BolaHilo;
-import bolas.ventanas.VentanaBolas;
+import bolas.ventanas.VentanaZonaDeJuego;
 
-public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
+public class ElQueSabeLoQueHayQueHacerConLosInputs implements MouseListener, KeyListener {
 
-	private VentanaBolas ventanaBolas;
+	private VentanaZonaDeJuego ventanaBolas;
 
-	public ElQueSabeLoQueHayQueHacerConElRaton(VentanaBolas ventanaBolas) {
+	public ElQueSabeLoQueHayQueHacerConLosInputs(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
 
@@ -57,7 +59,7 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 		int incrY = generarRandom1o2(16);
 		int velocidad = calcularVelocidad(incrX, incrY)/2;
 		int velocidadRalentizada = velocidad;
-		int dimensionBola = 200;
+		int dimensionBola = 20;
 		int dimensionTrap = 100;
 		int impactos = 0;
 		if (e.getButton() == 1) {
@@ -76,6 +78,43 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 			//bolaHilo.start();
 		}
 	}
+	
+	
+	@Override
+	public void keyPressed(KeyEvent k) {
+		if (k.getKeyCode() == KeyEvent.VK_Z) {			
+			ventanaBolas.getBarras().get(1).setPosicionX(ventanaBolas.getBarras().get(1).getPosicionX()-5);
+            if (ventanaBolas.getBarras().get(1).getPosicionX() < 0) {
+            	ventanaBolas.getBarras().get(1).setPosicionX(0);
+            }
+        }
+		if (k.getKeyCode() == KeyEvent.VK_X) {			
+			ventanaBolas.getBarras().get(1).setPosicionX(ventanaBolas.getBarras().get(1).getPosicionX()+5);
+            if (ventanaBolas.getBarras().get(1).getPosicionX() > 500) {
+            	ventanaBolas.getBarras().get(1).setPosicionX(0);
+            }
+        }
+	}
+
+	@Override
+	public void keyReleased(KeyEvent k) {
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	@Override
+	public void keyTyped(KeyEvent k) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -101,12 +140,14 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 
 	}
 
-	public VentanaBolas getVentanaBolas() {
+	public VentanaZonaDeJuego getVentanaBolas() {
 		return ventanaBolas;
 	}
 
-	public void setVentanaBolas(VentanaBolas ventanaBolas) {
+	public void setVentanaBolas(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
+
+
 
 }
