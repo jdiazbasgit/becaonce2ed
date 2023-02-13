@@ -6,3 +6,4 @@ public class VerVentanaBolas  {
 		v.setVisible(true);
 	}
 }
+ 

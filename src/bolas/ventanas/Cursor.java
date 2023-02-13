@@ -21,7 +21,7 @@ public class Cursor extends JFrame{
 		setPrimeraVez(true);
 		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
-	
+	 
 	@Override
 	public void paint(Graphics g) {
 		if(isPrimeraVez()) {

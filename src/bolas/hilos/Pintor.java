@@ -1,5 +1,5 @@
 package bolas.hilos;
-
+ 
 import bolas.ventanas.VentanaBolas;
 
 public class Pintor extends Thread {

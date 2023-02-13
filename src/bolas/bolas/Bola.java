@@ -1,6 +1,6 @@
 package bolas.bolas;
 
-public class Bola {
+public class Bola { 
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
 	

@@ -6,5 +6,5 @@ public class VerCursor {
 		Cursor cursor= new Cursor();
 		cursor.setVisible(true);
 	}
-
+ 
 }

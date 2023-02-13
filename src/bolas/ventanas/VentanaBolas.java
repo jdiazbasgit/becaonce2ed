@@ -19,7 +19,7 @@ public class VentanaBolas extends JFrame implements MouseListener  {
 	private Graphics externo;
 	private boolean primeraVez;
 	private List<Bola> bolas;
-	
+	 
 	public VentanaBolas() {
 		addMouseListener(this);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
