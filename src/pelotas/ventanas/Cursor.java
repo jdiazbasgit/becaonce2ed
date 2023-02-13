@@ -22,7 +22,7 @@ public class Cursor extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
-		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
 		
 	@Override
