@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
 
 public class Cursor extends JFrame{
-	
+	private static final long serialVersionUID = 1L;
 	private Image imagen;
 	private Graphics externo;
 	private boolean primeraVez;
@@ -21,7 +21,6 @@ public class Cursor extends JFrame{
 		setPrimeraVez(true);
 		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
 	}
-	
 	
 	@Override
 	public void paint(Graphics g) {

@@ -1,5 +1,7 @@
 package bolas.hilos;
 
+import java.awt.Rectangle;
+
 import bolas.bolas.Bola;
 import bolas.ventanas.VentanaBolas;
 
@@ -19,19 +21,37 @@ public class BolaHilo extends Thread {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if (getBola().getPosicionX() < 0
-					|| getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension())
+			if (getBola().getPosicionX() < 0 || getBola().getPosicionX() > getVentanaBolas().getWidth() - getBola().getDimension())
 				getBola().setSentidoX(getBola().getSentidoX() * -1);
 
-			if (getBola().getPosicionY() < 0
-					|| getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
+			if (getBola().getPosicionY() < 0 || getBola().getPosicionY() > getVentanaBolas().getHeight() - getBola().getDimension())
 				getBola().setSentidoY(getBola().getSentidoY() * -1);
+			
 			getBola().calcularPosicion();
+			
+			for(Bola otra: getVentanaBolas().getBolas()) {
+				if(!getBola().equals(otra)) {
+					Rectangle yo = new Rectangle(getBola().getPosicionX(),getBola().getPosicionY(),getBola().getDimension(),getBola().getDimension());
+					Rectangle otro = new Rectangle(otra.getPosicionX(),otra.getPosicionY(),otra.getDimension(),otra.getDimension());
+					
+					//System.out.println(yo.intersects(otro));
+				
+					if(yo.getBounds().intersects(otro.getBounds())) {
+						/*System.out.println("X:::"+getBola().getSentidoX());
+						System.out.println("Y:::"+getBola().getSentidoY());*/
+												
+						getBola().setSentidoX(getBola().getSentidoX()*-1);
+						getBola().setSentidoY(getBola().getSentidoY()*-1);
+						
+
+					}
+				}
+			}
 		}
 	}
+
 
 	public Bola getBola() {
 		return bola;

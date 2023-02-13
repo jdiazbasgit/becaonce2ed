@@ -4,15 +4,13 @@ public class Bola {
 	
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
 	
-	
 	public void calcularPosicion() {
 		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
 		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
 	}
 	
 
-	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
-			int dimension) {
+	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY, int dimension) {
 		this.posicionX = posicionX;
 		this.posicionY = posicionY;
 		this.incrementoX = incrementoX;

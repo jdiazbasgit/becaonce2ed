@@ -16,15 +16,11 @@ public class Pintor extends Thread {
 			try {
 				Thread.sleep(3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			getVentanaBolas().repaint();
 		}
-		
 	}
-
-	
 
 	public VentanaBolas getVentanaBolas() {
 		return ventanaBolas;
