@@ -22,7 +22,7 @@ public class BolaHilo extends Thread {
 		boolean matar = false;
 		while (!matar) {
 			try {
-				Thread.sleep((getBola().getVelocidadRalentizada() * getBola().getDimension())/100);
+				Thread.sleep((getBola().getVelocidadRalentizada()));
 				// Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -59,9 +59,10 @@ public class BolaHilo extends Thread {
 					Rectangle timeTrapRect = new Rectangle(timeTrap.getPosicionX(), timeTrap.getPosicionY(),
 							timeTrap.getDimension(), timeTrap.getDimension());
 					if (bolaQueComprueboRect.intersects(timeTrapRect)) {
-						bolaQueCompruebo.setVelocidadRalentizada(bolaQueCompruebo.getVelocidadThread() * 10);
-						if (bolaQueCompruebo.getColor().getRed() >= 1) {
-							Color colorRestRojo = new Color(bolaQueCompruebo.getColor().getRed() - 1,
+						bolaQueCompruebo.setIncrementoX(0);
+						bolaQueCompruebo.setIncrementoY(0);
+						if (bolaQueCompruebo.getColor().getRed() < 255) {
+							Color colorRestRojo = new Color(bolaQueCompruebo.getColor().getRed() + 1,
 									bolaQueCompruebo.getColor().getGreen(), bolaQueCompruebo.getColor().getBlue());
 							bolaQueCompruebo.setColor(colorRestRojo);
 						}
@@ -70,9 +71,9 @@ public class BolaHilo extends Thread {
 									bolaQueCompruebo.getColor().getGreen(), bolaQueCompruebo.getColor().getBlue() - 1);
 							bolaQueCompruebo.setColor(colorRestBlue);
 						}
-						if (bolaQueCompruebo.getColor().getGreen() < 255) {
+						if (bolaQueCompruebo.getColor().getGreen() >= 1) {
 							Color colorRestGreen = new Color(bolaQueCompruebo.getColor().getRed(),
-									bolaQueCompruebo.getColor().getGreen() + 1, bolaQueCompruebo.getColor().getBlue());
+									bolaQueCompruebo.getColor().getGreen() - 1, bolaQueCompruebo.getColor().getBlue());
 							bolaQueCompruebo.setColor(colorRestGreen);
 						}
 					} else {
@@ -116,8 +117,8 @@ public class BolaHilo extends Thread {
 					// this.desplazarAlChocar(bolaQueCompruebo);
 					// elBolero.desplazarAlChocar(otraBola);
 					getBola().calcularPosicion();
-					bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
-					bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
+					//bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
+					//bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
 					
 					// ventanaBolas.getBolas().set(i, otraBola);
 				}

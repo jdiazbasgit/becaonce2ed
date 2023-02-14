@@ -81,7 +81,7 @@ public class VentanaBolas extends JPanel {
 		
 		for (TimeTrap timeTrap : this.getTimeTraps()) {
 			getExterno().setColor(Color.RED);
-			getExterno().drawImage(imageMiniSlime, timeTrap.getPosicionX()-(timeTrap.getDimension()/2), timeTrap.getPosicionY()-(timeTrap.getDimension()/2), this);
+			//getExterno().drawImage(imageMiniSlime, timeTrap.getPosicionX()-(timeTrap.getDimension()/2), timeTrap.getPosicionY()-(timeTrap.getDimension()/2), this);
 			//getExterno().drawRect(timeTrap.getPosicionX(),timeTrap.getPosicionY(), timeTrap.getDimension(), timeTrap.getDimension());
 			
 		}
@@ -90,10 +90,10 @@ public class VentanaBolas extends JPanel {
 			getExterno().setColor(bola.getColor());
 			getExterno().fillOval((int) Math.round(bola.getPosicionX()),(int) Math.round(bola.getPosicionY()), bola.getDimension(), bola.getDimension());
 			//getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
-			getExterno().setColor(Color.BLACK);
-			Font fuente = new Font(Font.MONOSPACED, Font.BOLD, bola.getDimension()/2);
+			getExterno().setColor(Color.WHITE);
+			Font fuente = new Font(Font.MONOSPACED, Font.BOLD, bola.getDimension());
 			getExterno().setFont(fuente);
-			getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
+			getExterno().drawString("♥", (int) Math.round(bola.getPosicionX())+(bola.getDimension()/12*2-2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())*4/4-2);
 		}
 		
 		//getExterno().drawImage(panalSlim, 0, 0, this);
