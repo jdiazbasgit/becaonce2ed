@@ -16,7 +16,7 @@ public class EnvioRegistrCliente extends Cliente {
 		String nick=getChat().getTNick().getText().trim();
 		String salida="";
 		for(int i=0;i<nick.length();i++) {
-			if(!nick.substring(i,i+1).equals(" "))
+			if(!nick.substring(i,i+1).equals(" ") && !nick.substring(i,i+1).equals(Character.valueOf('\u3164').toString()))
 				salida=salida+nick.substring(i,i+1);
 		}
 		try {

@@ -25,6 +25,7 @@ public class EscuchaRegistroCliente extends Servidor {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 

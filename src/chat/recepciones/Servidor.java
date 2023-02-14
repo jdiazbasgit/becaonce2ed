@@ -38,6 +38,7 @@ public abstract class Servidor extends Thread {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.exit(0);
 		}
 	}
 
