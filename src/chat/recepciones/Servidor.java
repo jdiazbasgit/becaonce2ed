@@ -19,6 +19,7 @@ import lombok.Data;
 public abstract class Servidor extends Thread {
 	public static final int PUERTO_ESCUCHA_REGISTRO_SERVIDOR = 5000;
 	public static final int PUERTO_ESCUCHA_MENSAJE_SERVIDOR = 5002;
+	public static final int PUERTO_ESCUCHA_BAJA_SERVIDOR=5004;
 	
 	public static int PUERTO_ESCUCHA_BAJA = 5003;
 	public static Map<String, String> usuarios= new HashMap<>();
