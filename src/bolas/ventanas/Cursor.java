@@ -3,10 +3,13 @@ package bolas.ventanas;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.security.PublicKey;
 
 import javax.swing.JFrame;
 
+import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento;
+
 
 public class Cursor extends JFrame{
 	
@@ -20,6 +23,8 @@ public class Cursor extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setPrimeraVez(true);
 		this.addMouseMotionListener(new ElQueSabeLoQueHayQueHacerConElRatonEnMovimiento(this));
+		//this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRatonCuandoPulso(this));
+		
 	}
 	
 	

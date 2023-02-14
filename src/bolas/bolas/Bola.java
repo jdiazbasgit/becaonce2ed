@@ -5,10 +5,11 @@ public class Bola {
 	private int posicionX,posicionY,incrementoX,incrementoY,sentidoX,sentidoY,dimension;
 	
 	
-	public void calcularPosicion() {
-		setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
-		setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY()));
-	}
+	/*
+	 * public void calcularPosicion() {
+	 * setPosicionX(getPosicionX()+(getIncrementoX()*getSentidoX()));
+	 * setPosicionY(getPosicionY()+(getIncrementoY()*getSentidoY())); }
+	 */
 	
 
 	public Bola(int posicionX, int posicionY, int incrementoX, int incrementoY, int sentidoX, int sentidoY,
@@ -22,8 +23,13 @@ public class Bola {
 		this.dimension = dimension;
 	}
 
+	public void calcularPosicion() {
+		setPosicionX(getPosicionX()+(getIncrementoX()+(getSentidoX())));
+		setPosicionY(getPosicionY()+(getIncrementoY()+(getSentidoY())));
+	}
+
 	public int getPosicionX() {
-		return posicionX;
+			return posicionX;
 	}
 
 	public void setPosicionX(int posicionX) {
