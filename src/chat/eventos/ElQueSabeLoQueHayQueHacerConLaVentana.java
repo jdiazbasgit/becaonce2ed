@@ -17,6 +17,7 @@ public class ElQueSabeLoQueHayQueHacerConLaVentana implements WindowListener {
 	@Override
 	public void windowClosing(WindowEvent e) {
 		EnvioBajaCliente envioBajaCliente= new EnvioBajaCliente(Cliente.IP_SERVIDOR, Cliente.PUERTO_ENVIO_BAJA_CLIENTE, null);
+		envioBajaCliente.start();
 		System.exit(0);
 	}
 
