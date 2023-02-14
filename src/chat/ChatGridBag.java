@@ -46,7 +46,6 @@ public class ChatGridBag extends JFrame {
 		this.setTNick(new JTextField());
 		this.setBRegistrar(new JButton("REGISTRAR"));
 		getBRegistrar().addActionListener(new ElQueSabeLoQueHayQueHacerConElBoton(this));
-		getTNick().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 
 		GridBagConstraints gbcLabelNick = new GridBagConstraints();
 		GridBagConstraints gcbTextFieldNick = new GridBagConstraints();
@@ -80,7 +79,7 @@ public class ChatGridBag extends JFrame {
 		// ---Segunda zona----------------------------
 
 		this.setLUsuarios(new JLabel("Usuarios:"));
-		this.setTaMensajes(new TextArea("Lista de mensajes, panel principal", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
+		this.setTaMensajes(new TextArea("Lista de mensajes, panel principal\n", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
 
 		GridBagConstraints gbcLabelUsuarios = new GridBagConstraints();
 		GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();

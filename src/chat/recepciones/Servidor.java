@@ -33,12 +33,11 @@ public abstract class Servidor extends Thread {
 			ServerSocket serverSocket=new ServerSocket(getPuerto());
 			while (true) {
 				Socket socket= serverSocket.accept();
-				System.out.println("paso");
 					hacerAlgo(socket);
 					socket.close();
 			}
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
