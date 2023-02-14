@@ -82,16 +82,16 @@ public class ElQueSabeLoQueHayQueHacerConLosInputs implements MouseListener, Key
 	
 	@Override
 	public void keyPressed(KeyEvent k) {
-		if (k.getKeyCode() == KeyEvent.VK_Z) {			
-			ventanaBolas.getBarras().get(1).setPosicionX(ventanaBolas.getBarras().get(1).getPosicionX()-5);
-            if (ventanaBolas.getBarras().get(1).getPosicionX() < 0) {
-            	ventanaBolas.getBarras().get(1).setPosicionX(0);
+		if (k.getKeyCode() == KeyEvent.VK_LEFT) {			
+			ventanaBolas.getBarras().get(0).setPosicionX(ventanaBolas.getBarras().get(0).getPosicionX()-5);
+            if (ventanaBolas.getBarras().get(0).getPosicionX() < 0) {
+            	ventanaBolas.getBarras().get(0).setPosicionX(0);
             }
         }
-		if (k.getKeyCode() == KeyEvent.VK_X) {			
-			ventanaBolas.getBarras().get(1).setPosicionX(ventanaBolas.getBarras().get(1).getPosicionX()+5);
-            if (ventanaBolas.getBarras().get(1).getPosicionX() > 500) {
-            	ventanaBolas.getBarras().get(1).setPosicionX(0);
+		if (k.getKeyCode() == KeyEvent.VK_RIGHT) {			
+			ventanaBolas.getBarras().get(0).setPosicionX(ventanaBolas.getBarras().get(0).getPosicionX()+5);
+            if (ventanaBolas.getBarras().get(0).getPosicionX() > 500) {
+            	ventanaBolas.getBarras().get(0).setPosicionX(500);
             }
         }
 	}
@@ -99,7 +99,12 @@ public class ElQueSabeLoQueHayQueHacerConLosInputs implements MouseListener, Key
 	@Override
 	public void keyReleased(KeyEvent k) {
 		
-		
+		 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+		        izquierdaPresionada = false;
+		    }
+		    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		        derechaPresionada = false;
+		    }
 	}
 	
 	

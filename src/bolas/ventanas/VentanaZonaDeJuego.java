@@ -37,7 +37,9 @@ public class VentanaZonaDeJuego extends JPanel {
 		setPrimeraVez(true);
 		setBackground(Color.RED);
 		setPreferredSize(new Dimension(0, 0));
-		//addMouseListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
+		setFocusable(true);
+        //setFocusTraversalKeysEnabled(false);
+		addMouseListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 		addKeyListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 	}
 
