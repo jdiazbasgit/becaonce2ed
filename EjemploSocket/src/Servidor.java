@@ -7,9 +7,11 @@ import java.net.Socket;
 
 public class Servidor {
 
+	
 	public static void main(String[] args) {
 		
 			try {
+				
 				ServerSocket serverSocket= new ServerSocket(5000);
 				
 				while(true) {
