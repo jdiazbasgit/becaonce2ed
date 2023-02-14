@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import chat.ChatGridBag;
 import chat.envios.Cliente;
+import chat.envios.cliente.EnvioMensajesCliente;
 import chat.envios.cliente.EnvioRegistrCliente;
 import chat.recepciones.Servidor;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,8 @@ public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 			}
 		}
 		if(e.getSource().equals(getChatGridBag().getBEnviar())){
-			
+			EnvioMensajesCliente envioMensajesCliente= new EnvioMensajesCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_MENSAJE_SERVIDOR, chatGridBag);
+			envioMensajesCliente.start();
 		}
 		
 
