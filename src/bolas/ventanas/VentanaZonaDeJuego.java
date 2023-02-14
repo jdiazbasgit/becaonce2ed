@@ -42,6 +42,8 @@ public class VentanaZonaDeJuego extends JPanel {
 		addMouseListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 		addKeyListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 	}
+	
+	
 
 	
 	@Override
