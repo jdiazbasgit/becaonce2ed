@@ -128,7 +128,7 @@ public class ChatGridBag extends JFrame {
 		gcbTextFieldMensaje.weighty = 0.2;
 		gcbTextFieldMensaje.fill = GridBagConstraints.HORIZONTAL;
 		// gcbTextFieldMensaje.gridwidth = 2;
-
+		//prueba
 		gbcButtonEnviar.gridx = 2;
 		gbcButtonEnviar.gridy = 3;
 		gbcButtonEnviar.weighty = 0.2;
