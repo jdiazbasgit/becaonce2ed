@@ -14,7 +14,7 @@ public class EnvioBajaCliente extends Cliente {
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		
+		System.out.println("adios");
 
 	}
 

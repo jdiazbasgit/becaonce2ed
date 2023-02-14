@@ -1,5 +1,6 @@
 package chat.recepciones;
 
+import chat.recepciones.servidor.EscuchaBajaServidor;
 import chat.recepciones.servidor.EscuchaRegistroServidor;
 
 public class LevantarServidor {
@@ -10,6 +11,8 @@ public class LevantarServidor {
 		EscuchaRegistroServidor escuchaRegistroServidor =
 				new EscuchaRegistroServidor(Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR,null);
 		escuchaRegistroServidor.start();
+		EscuchaBajaServidor escuchaBajaServidor= new EscuchaBajaServidor(Servidor.PUERTO_ESCUCHA_BAJA_SERVIDOR, null);
+		escuchaBajaServidor.start();
 
 	}
 
