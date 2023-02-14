@@ -10,8 +10,9 @@ public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		((JTextField) e.getSource()).setText("");
+
 	}
-	
+
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
