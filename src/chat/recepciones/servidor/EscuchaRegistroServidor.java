@@ -23,10 +23,8 @@ public class EscuchaRegistroServidor extends Servidor {
 			for (String destino : Servidor.usuarios.keySet()) {
 				EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(destino, Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, getChat());
 				envioRegistroServidor.start();
-				
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -17,7 +17,6 @@ public class EnvioRegistroServidor extends Cliente {
 		try {
 			enviarObjeto(socket, Servidor.usuarios);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

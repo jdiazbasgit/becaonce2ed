@@ -15,21 +15,26 @@ import lombok.Data;
 public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 
 	private ChatGridBag chatGridBag;
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(getChatGridBag().getBRegistrar())) {
-			if(!getChatGridBag().getTNick().getText().trim().equals("")) {
-			EnvioRegistrCliente envioRegistrCliente= new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
-			envioRegistrCliente.start();
-			}
-			else {
+		if (e.getSource().equals(getChatGridBag().getBRegistrar())) {
+			if (!getChatGridBag().getTNick().getText().trim().equals("")) {
+				EnvioRegistrCliente envioRegistrCliente = new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
+				envioRegistrCliente.start();
+			} else {
 				getChatGridBag().getTaMensajes().append("El nick no puede estar vacio...\n");
 			}
 		}
-		if(e.getSource().equals(getChatGridBag().getBEnviar())){
-			
+		if (e.getSource().equals(getChatGridBag().getBEnviar())) {
+
+			if (!getChatGridBag().getTMensaje().getText().trim().equals("")) {
+				EnvioRegistrCliente envioRegistrCliente = new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
+				envioRegistrCliente.start();
+			} else {
+				getChatGridBag().getTaMensajes().append("El nick no puede estar vacio...\n");
+			}
 		}
-		
 
 	}
 
