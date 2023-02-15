@@ -18,10 +18,9 @@ import lombok.Data;
 @AllArgsConstructor
 public abstract class Servidor extends Thread {
 	public static final int PUERTO_ESCUCHA_REGISTRO_SERVIDOR = 5000;
-	public static final int PUERTO_ESCUCHA_MENSAJE_SERVIDOR = 5002;
 
-	//public static final int PUERTO_ENVIO_REGISTRO_SERVIDOR = 5003;
-	public static final int PUERTO_ENVIO_MENSAJE_SERVIDOR = 5003;
+	public static final int PUERTO_ESCUCHA_MENSAJE_SERVIDOR = 5002;
+	//public static final int PUERTO_ENVIO_MENSAJE_SERVIDOR = 5003;
 
 	public static final int PUERTO_ESCUCHA_BAJA_SERVIDOR=5004;
 

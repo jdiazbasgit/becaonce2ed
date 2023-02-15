@@ -20,7 +20,7 @@ public class EnvioMensajeCliente extends Cliente {
 		System.out.println("DESDE EnvioMensajeCliente - mensaje: " + mensajeCompleto);
 		try {
 			enviarTexto(socket, mensajeCompleto);
-			getChat().getTMensaje().disable();
+			//getChat().getTMensaje().disable();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

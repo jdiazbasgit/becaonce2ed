@@ -16,7 +16,7 @@ import lombok.Data;
 @AllArgsConstructor
 public abstract class Cliente extends Thread {
 
-	public static final int PUERTO_ENVIO_REGISTRO_CLIENTE = 5000;
+	//public static final int PUERTO_ENVIO_REGISTRO_CLIENTE = 5000;
 	public static final int PUERTO_ESCUCHA_REGISTRO_CLIENTE=5001;
 
 	public static final int PUERTO_ENVIO_MENSAJE_CLIENTE = 5002;
