@@ -9,12 +9,12 @@ public class EnvioMensajesServidor extends Cliente {
 
 	public EnvioMensajesServidor(String ip, int puerto, ChatGridBag chat) {
 		super(ip, puerto, chat);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
