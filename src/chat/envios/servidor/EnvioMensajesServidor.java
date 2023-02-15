@@ -12,7 +12,6 @@ public class EnvioMensajesServidor extends Cliente {
 		
 	}
 
-	@Override
 	public void hacerAlgo(Socket socket) {
 		
 
