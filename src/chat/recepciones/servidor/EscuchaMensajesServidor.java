@@ -21,11 +21,10 @@ public class EscuchaMensajesServidor extends Servidor {
 			String mensaje=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
 			String nombre = Servidor.usuarios.get(ip);
-			String mensajesYaEscritos=getChat().getTaMensajes().getText();
-			String mensajesTotal = mensajesYaEscritos +"\n"+ nombre+ " Dice: " +mensaje;
-			getChat().getTaMensajes().setText(mensajesTotal);
+			String mensajesTotal = "\n"+ nombre+ " Dice: " +mensaje;
+			
 			for (String destino : Servidor.usuarios.keySet()) {
-				EnvioMensajesServidor envioMensajesServidor= new EnvioMensajesServidor(destino, Cliente.PUERTO_ENVIO_MENSAJE_SERVIDOR, getChat());
+				EnvioMensajesServidor envioMensajesServidor= new EnvioMensajesServidor(destino, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, mensajesTotal);
 				envioMensajesServidor.start();
 				
 			}

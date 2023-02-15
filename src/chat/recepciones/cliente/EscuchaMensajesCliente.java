@@ -16,16 +16,12 @@ public class EscuchaMensajesCliente extends Servidor {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
-			setChat((ChatGridBag) leerObjeto(socket));
-			getChat().getTaMensajes().setText("");
-			for (String usuario : Cliente.usuarios.values()) {
-				getChat().getTaUsuarios().append(usuario+"\n");
-				
-			}
+			String nuevoMensaje = leerMensaje(socket);
+			getChat().getTaMensajes().append(nuevoMensaje+"\n");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.exit(0);
+			//System.exit(0);
 		}
 	}
 
