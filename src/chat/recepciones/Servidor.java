@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,11 +28,18 @@ public abstract class Servidor extends Thread {
 	private int puerto;
 	private ChatGridBag chat;
 	
+	public abstract void hacerAlgo(Socket socket);
 	
 	@Override
 	public void run() {
 		try {
-			ServerSocket serverSocket=new ServerSocket(getPuerto());
+			ServerSocket serverSocket=new ServerSocket(getPuerto()); 
+			if(getPuerto()==5000) {
+				System.out.println(FechaActual() + " (5000) Servidor esta iniciando...");
+			} else {
+				System.out.println(FechaActual() + " Servidor baja: " + getPuerto());
+			}
+			
 			while (true) {
 				Socket socket= serverSocket.accept();
 					hacerAlgo(socket);
@@ -41,9 +50,6 @@ public abstract class Servidor extends Thread {
 			System.exit(0);
 		}
 	}
-
-	public abstract void hacerAlgo(Socket socket);
-
 	
 	public String leerMensaje(Socket socket) throws Exception {
 		try(BufferedReader bufferedReader= new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
@@ -75,6 +81,12 @@ public abstract class Servidor extends Thread {
 			throw e;
 		}
 	}
+	
+	public static String FechaActual(){
+        Date fechaHoraActual = new Date();
+        String fechaFormateada = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(fechaHoraActual);
+        return fechaFormateada;
+    }
 
 
 }

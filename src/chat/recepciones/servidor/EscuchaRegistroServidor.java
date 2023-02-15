@@ -11,11 +11,11 @@ public class EscuchaRegistroServidor extends Servidor {
 
 	public EscuchaRegistroServidor(int puerto, ChatGridBag chat) {
 		super(puerto, chat);
+		
 	}
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		
 		try {
 			String nick=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();

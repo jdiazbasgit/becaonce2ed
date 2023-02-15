@@ -16,7 +16,17 @@ public class EscuchaRegistroCliente extends Servidor {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
+			String users;
+			
 			Cliente.usuarios=(Map<String, String>) leerObjeto(socket);
+			System.out.println(Cliente.usuarios);
+			
+			for (String usuario : Cliente.usuarios.values()) {
+				System.out.println(usuario+"\n");
+				users=usuario.toString();
+			}
+			getChat().getListUsuarios();
+			
 			/*getChat().getTaUsuarios().setText("");
 			for (String usuario : Cliente.usuarios.values()) {
 				getChat().getTaUsuarios().append(usuario+"\n");

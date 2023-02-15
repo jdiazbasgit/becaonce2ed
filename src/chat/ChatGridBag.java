@@ -30,6 +30,7 @@ public class ChatGridBag extends JFrame {
 	private JLabel LNick, LUsuarios, LMensaje;
 
 	private JList<String> ListUsuarios;
+	private String Usuarios;
 	
 	public ChatGridBag() {
 		//setSize(1200,800);
@@ -192,5 +193,7 @@ public class ChatGridBag extends JFrame {
 		ListUsuarios = listUsuarios;
 	}
 
-	
+	public void setUsuarios(String usuarios) {
+		Usuarios = usuarios;
+	}
 }
