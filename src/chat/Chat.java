@@ -23,9 +23,6 @@ public class Chat extends JFrame {
 	private TextArea taMensajes, taUsuarios;
 	private Label lNick, lUsuarios, lMensajes;
 
-
-
-
 	public Chat() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
@@ -70,11 +67,6 @@ public class Chat extends JFrame {
 		getpIzquierdaSuperior().setBackground(Color.YELLOW);
 		add(getpIzquierda(),BorderLayout.WEST);
 		
-		
-		
-		
-		
-
 
 		setbRegistrar(new Button("Nick:"));
 

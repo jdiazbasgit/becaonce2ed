@@ -19,10 +19,14 @@ import lombok.Data;
 public abstract class Servidor extends Thread {
 	public static final int PUERTO_ESCUCHA_REGISTRO_SERVIDOR = 5000;
 	public static final int PUERTO_ESCUCHA_MENSAJE_SERVIDOR = 5002;
-	public static final int PUERTO_ESCUCHA_BAJA_SERVIDOR=5004;
+
+	//public static final int PUERTO_ENVIO_REGISTRO_SERVIDOR = 5003;
 	public static final int PUERTO_ENVIO_MENSAJE_SERVIDOR = 5003;
-	
+
+	public static final int PUERTO_ESCUCHA_BAJA_SERVIDOR=5004;
+
 	public static Map<String, String> usuarios= new HashMap<>();
+	public static Map<String, String> mensajes= new HashMap<>();
 
 	private int puerto;
 	private ChatGridBag chat;
@@ -31,6 +35,8 @@ public abstract class Servidor extends Thread {
 	@Override
 	public void run() {
 		try {
+			//LFRM-BORRAR
+			System.out.println("DESDE SERVIDOR - getpuerto: "+getPuerto());
 			ServerSocket serverSocket=new ServerSocket(getPuerto());
 			while (true) {
 				Socket socket= serverSocket.accept();

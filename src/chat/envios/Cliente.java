@@ -16,20 +16,20 @@ import lombok.Data;
 @AllArgsConstructor
 public abstract class Cliente extends Thread {
 
-	public static final int PUERTO_ENVIO_REGISTRO_SERVIDOR = 5000;
-	//public static final int PUERTO_ENVIO_MENSAJE_SERVIDOR = 5002;
+	public static final int PUERTO_ENVIO_REGISTRO_CLIENTE = 5000;
 	public static final int PUERTO_ESCUCHA_REGISTRO_CLIENTE=5001;
-	public static final int PUERTO_ESCUCHA_MENSAJE_CLIENTE = 5003;
-	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
 
 	public static final int PUERTO_ENVIO_MENSAJE_CLIENTE = 5002;
+	public static final int PUERTO_ESCUCHA_MENSAJE_CLIENTE = 5003;
 
+	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
 	
-	public static final String IP_SERVIDOR = "192.168.10.27";
+	public static final String IP_SERVIDOR = "192.168.10.89";
 	// public static int PUERTO_ENVIO_MENSAJE_CLIENTE = 5002;
 	// public static int PUERTO_ENVIO_ARCHIVO = 5003;
 	// public static int PUERTO_ENVIO_PRIVADO = 5004;
 	public static Map<String, String> usuarios= new HashMap<>();
+	public static Map<String, String> mensajes= new HashMap<>();
 
 	private String ip;
 	private int puerto;
@@ -40,6 +40,8 @@ public abstract class Cliente extends Thread {
 
 		Socket socket = null;
 		try {
+			//LFRM-BORRAR
+			System.out.println("DESDE CLIENTE - getip: "+getIp()+" getpuerto: "+getPuerto());
 			socket = new Socket(getIp(), getPuerto());
 			hacerAlgo(socket);
 		} catch (IOException e) {
