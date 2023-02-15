@@ -20,7 +20,6 @@ public class EscuchaRegistroCliente extends Servidor {
 			getChat().getTaUsuarios().setText("");
 			for (String usuario : Cliente.usuarios.values()) {
 				getChat().getTaUsuarios().append(usuario+"\n");
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

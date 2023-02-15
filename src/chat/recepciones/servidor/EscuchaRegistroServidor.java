@@ -19,6 +19,8 @@ public class EscuchaRegistroServidor extends Servidor {
 		try {
 			String nick=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
+			//LFRM-BORRAR
+			System.out.println("DESDE EscuchaRegistroServidor - nick: "+nick);
 			Servidor.usuarios.put(ip, nick);
 			for (String destino : Servidor.usuarios.keySet()) {
 				EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(destino, Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, getChat());

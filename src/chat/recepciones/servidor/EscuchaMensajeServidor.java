@@ -17,9 +17,11 @@ public class EscuchaMensajeServidor extends Servidor {
 	public void hacerAlgo(Socket socket) {
 		
 		try {
-			String nick=leerMensaje(socket);
+			String mensajeCompleto=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
-			Servidor.mensajes.put(ip, nick);
+			//LFRM-BORRAR
+			System.out.println("DESDE EscuchaMensajeServidor - mensajeCompleto: "+mensajeCompleto);
+			Servidor.mensajes.put(ip, mensajeCompleto);
 			for (String destino : Servidor.mensajes.keySet()) {
 				EnvioMensajeServidor envioMensajeServidor= new EnvioMensajeServidor(destino, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChat());
 				envioMensajeServidor.start();

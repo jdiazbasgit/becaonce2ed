@@ -17,10 +17,9 @@ public class EscuchaMensajeCliente extends Servidor {
 	public void hacerAlgo(Socket socket) {
 		try {
 			Cliente.mensajes=(Map<String, String>) leerObjeto(socket);
-			getChat().getTaMensajes().setText("");
+			//getChat().getTaMensajes().setText("");
 			for (String mensaje : Cliente.mensajes.values()) {
 				getChat().getTaMensajes().append(mensaje+"\n");
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
