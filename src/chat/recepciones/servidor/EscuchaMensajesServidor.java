@@ -4,6 +4,7 @@ import java.net.Socket;
 
 import chat.ChatGridBag;
 import chat.envios.Cliente;
+import chat.envios.servidor.EnvioMensajesServidor;
 import chat.envios.servidor.EnvioRegistroServidor;
 import chat.recepciones.Servidor;
 
@@ -19,10 +20,13 @@ public class EscuchaMensajesServidor extends Servidor {
 		try {
 			String mensaje=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
-			Servidor.usuarios.put(ip, mensaje);
+			String nombre = Servidor.usuarios.get(ip);
+			String mensajesYaEscritos=getChat().getTaMensajes().getText();
+			String mensajesTotal = mensajesYaEscritos +"\n"+ nombre+ " Dice: " +mensaje;
+			getChat().getTaMensajes().setText(mensajesTotal);
 			for (String destino : Servidor.usuarios.keySet()) {
-				EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(destino, Cliente.PUERTO_ENVIO_MENSAJE_SERVIDOR, getChat());
-				envioRegistroServidor.start();
+				EnvioMensajesServidor envioMensajesServidor= new EnvioMensajesServidor(destino, Cliente.PUERTO_ENVIO_MENSAJE_SERVIDOR, getChat());
+				envioMensajesServidor.start();
 				
 			}
 		} catch (Exception e) {

@@ -15,7 +15,6 @@ public class EnvioMensajesCliente extends Cliente {
 	public void hacerAlgo(Socket socket) {
 		String mensaje=getChat().getTMensaje().getText().trim();
 		
-		
 		try {
 			enviarTexto(socket, mensaje);
 			

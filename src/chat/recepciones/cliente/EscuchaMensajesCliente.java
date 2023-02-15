@@ -16,8 +16,8 @@ public class EscuchaMensajesCliente extends Servidor {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
-			Cliente.usuarios=(Map<String, String>) leerObjeto(socket);
-			getChat().getTaUsuarios().setText("");
+			setChat((ChatGridBag) leerObjeto(socket));
+			getChat().getTaMensajes().setText("");
 			for (String usuario : Cliente.usuarios.values()) {
 				getChat().getTaUsuarios().append(usuario+"\n");
 				

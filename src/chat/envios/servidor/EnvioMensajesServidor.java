@@ -15,7 +15,7 @@ public class EnvioMensajesServidor extends Cliente {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
-			enviarObjeto(socket, Servidor.usuarios);
+			enviarObjeto(socket, getChat());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
