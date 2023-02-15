@@ -3,19 +3,25 @@ package chat.envios.cliente;
 import java.net.Socket;
 
 import chat.ChatGridBag;
-import chat.recepciones.Servidor;
+import chat.envios.Cliente;
 
-public class EnvioMensajesCliente extends Servidor {
+public class EnvioMensajesCliente extends Cliente {
 
-	public EnvioMensajesCliente(int puerto, ChatGridBag chat) {
-		super(puerto, chat);
-		// TODO Auto-generated constructor stub
+	public EnvioMensajesCliente(String ip, int puerto, ChatGridBag chat) {
+		super(ip, puerto, chat);
 	}
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		// TODO Auto-generated method stub
-
+		String mensaje=getChat().getTMensaje().getText().trim();
+		
+		
+		try {
+			enviarTexto(socket, mensaje);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
