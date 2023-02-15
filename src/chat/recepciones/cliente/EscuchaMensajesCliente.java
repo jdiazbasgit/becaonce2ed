@@ -1,10 +1,8 @@
 package chat.recepciones.cliente;
 
 import java.net.Socket;
-import java.util.Map;
 
 import chat.ChatGridBag;
-import chat.envios.Cliente;
 import chat.recepciones.Servidor;
 
 public class EscuchaMensajesCliente extends Servidor {
@@ -15,18 +13,21 @@ public class EscuchaMensajesCliente extends Servidor {
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		try {
-			Cliente.usuarios=(Map<String, String>) leerObjeto(socket);
-			getChat().getTaUsuarios().setText("");
-			for (String usuario : Cliente.usuarios.values()) {
-				getChat().getTaUsuarios().append(usuario+"\n");
-				
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.exit(0);
-		}
+		String mensaje=getChat().getTMensaje().getText();
+		String salidaMensaje="";
+	
+	try {
+		mensaje(socket, salidaMensaje);
+		getChat().getTMensaje().disable();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+}
+
+	private void mensaje(Socket socket, String salidaMensaje) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
