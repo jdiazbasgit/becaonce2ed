@@ -58,6 +58,7 @@ public abstract class Cliente extends Thread {
 		try (PrintWriter printWriter = new PrintWriter(socket.getOutputStream())) {
 			printWriter.println(texto);
 			printWriter.flush();
+			System.out.println("cucu");
 		} catch (Exception e) {
 			throw e;
 		}

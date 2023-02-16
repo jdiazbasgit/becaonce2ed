@@ -19,12 +19,16 @@ public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(getChatGridBag().getBRegistrar())) {
-			if(!getChatGridBag().getTNick().getText().trim().equals("")) {
-			EnvioRegistrCliente envioRegistrCliente= new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
-			envioRegistrCliente.start();
-			}
+			if (Servidor.usuarios.containsValue(getChatGridBag().getTNick().getText().trim()))
+				getChatGridBag().getTaMensajes().append("El Usuario ya está registrado \n");
 			else {
-				getChatGridBag().getTaMensajes().append("El nick no puede estar vacio...\n");
+				if(!getChatGridBag().getTNick().getText().trim().equals("")) {
+					EnvioRegistrCliente envioRegistrCliente= new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
+					envioRegistrCliente.start();
+					}
+					else {
+						getChatGridBag().getTaMensajes().append("El nick no puede estar vacio...\n");
+					}
 			}
 		}
 		if(e.getSource().equals(getChatGridBag().getBEnviar())){

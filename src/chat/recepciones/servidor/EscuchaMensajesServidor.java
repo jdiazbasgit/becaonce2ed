@@ -33,7 +33,6 @@ public class EscuchaMensajesServidor extends Servidor {
 			e.printStackTrace();
 		}
 		
-
 	}
 
 }
