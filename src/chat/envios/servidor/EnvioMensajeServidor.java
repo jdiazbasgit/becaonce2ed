@@ -12,7 +12,7 @@ public class EnvioMensajeServidor extends Cliente {
 	private String mensaje;
 	public EnvioMensajeServidor(String ip, int puerto, ChatGridBag chat) {
 		super(ip, puerto, chat);
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public EnvioMensajeServidor(String ip,int puerto,String mensaje) {

@@ -148,6 +148,7 @@ public class ChatGridBag extends JFrame {
 		restBEnviar.gridy = 3;
 		restBEnviar.ipady=5;
 		restBEnviar.ipadx=50;
+		getBEnviar().addActionListener(new ElQueSabeLoQueHayQueHacerConElBoton(this));
 		getBEnviar().setFont(new Font("Verdana", Font.PLAIN, 15));
 		getContentPane().add(getBEnviar(),restBEnviar);
 
