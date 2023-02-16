@@ -15,25 +15,26 @@ public class EscuchaRegistroCliente extends Servidor {
 
 	@Override
 	public void hacerAlgo(Socket socket) {
-		try {
-			String users;
-			
+		try {			
 			Cliente.usuarios=(Map<String, String>) leerObjeto(socket);
-			System.out.println(Cliente.usuarios);
-			
+			//System.out.println(Cliente.usuarios);
+
 			for (String usuario : Cliente.usuarios.values()) {
+				getChat().AddListItem(usuario);
+			}
+			
+			/*for (String usuario : Cliente.usuarios.values()) {
 				System.out.println(usuario+"\n");
 				users=usuario.toString();
 			}
 			getChat().getListUsuarios();
 			
-			/*getChat().getTaUsuarios().setText("");
+			getChat().getTaUsuarios().setText("");
 			for (String usuario : Cliente.usuarios.values()) {
 				getChat().getTaUsuarios().append(usuario+"\n");
 				
 			}*/
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(0);
 		}

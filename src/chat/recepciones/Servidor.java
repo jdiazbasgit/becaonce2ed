@@ -35,9 +35,7 @@ public abstract class Servidor extends Thread {
 		try {
 			ServerSocket serverSocket=new ServerSocket(getPuerto()); 
 			if(getPuerto()==5000) {
-				System.out.println(FechaActual() + " (5000) Servidor esta iniciando...");
-			} else {
-				System.out.println(FechaActual() + " Servidor baja: " + getPuerto());
+				System.out.println(FechaActual() + " Iniciando servidor (5000)");
 			}
 			
 			while (true) {

@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 //import java.awt.Toolkit;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,12 +31,12 @@ public class ChatGridBag extends JFrame {
 	private JLabel LNick, LUsuarios, LMensaje;
 
 	private JList<String> ListUsuarios;
-	private String Usuarios;
+	DefaultListModel<String> Usuarios = new DefaultListModel<String>();
 	
 	public ChatGridBag() {
 		//setSize(1200,800);
 		addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
-		//setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		//Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		//setSize(tamanoActualizableFrame.width / 2, tamanoActualizableFrame.height / 2);
 		//setLocation(tamanoActualizableFrame.width / 4, tamanoActualizableFrame.height / 4);
@@ -87,14 +88,14 @@ public class ChatGridBag extends JFrame {
 		
 		/* 2 ==========================================================*/
 		setLUsuarios(new JLabel("Usuarios:"));
-		setListUsuarios(new JList<>());
-		
 		GridBagConstraints restLUsuarios =new GridBagConstraints();
 		restLUsuarios.gridx = 0;
 		restLUsuarios.gridy = 1;
 		restLUsuarios.weighty=0.05;
 		getLUsuarios().setFont(new Font("Verdana", Font.PLAIN, 20));
 		getContentPane().add(getLUsuarios(),restLUsuarios);
+		
+		setListUsuarios(new JList<>(Usuarios));
 		GridBagConstraints restTaUsuarios =new GridBagConstraints();
 		restTaUsuarios.gridx = 0;
 		restTaUsuarios.gridy = 2;
@@ -102,6 +103,7 @@ public class ChatGridBag extends JFrame {
 		restTaUsuarios.fill = GridBagConstraints.BOTH;
 		getListUsuarios().setFont(new Font("Verdana", Font.PLAIN, 15));
 		getContentPane().add(getListUsuarios(),restTaUsuarios);
+		
 		/* ==========================================================*/
 		
 		
@@ -118,6 +120,36 @@ public class ChatGridBag extends JFrame {
 		getTaMensajes().setFont(new Font("Verdana", Font.PLAIN, 15));
 		getContentPane().add(getTaMensajes(),restTaMensajes);
 		/* ==========================================================*/
+		
+		
+		/* 4 ==========================================================*/
+		setLMensaje(new JLabel("Mensaje:"));
+		GridBagConstraints restLMensajes =new GridBagConstraints();
+		restLMensajes.insets = new Insets(0, 0, 0, 10);
+		restLMensajes.gridx = 0;
+		restLMensajes.gridy = 3;
+		restLMensajes.weighty=0.1;
+		getLMensaje().setFont(new Font("Verdana", Font.PLAIN, 20));
+		restLMensajes.anchor = GridBagConstraints.EAST;
+		getContentPane().add(getLMensaje(),restLMensajes);
+
+		setTMensaje(new JTextField("", 0));
+		GridBagConstraints restTMensaje =new GridBagConstraints();
+		restTMensaje.gridx = 1;
+		restTMensaje.gridy = 3;	
+		restTMensaje.fill = GridBagConstraints.HORIZONTAL;
+		restTMensaje.insets = new Insets(0, 5, 0, 0);
+		getTMensaje().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(getTMensaje(),restTMensaje);
+		
+		setBEnviar(new JButton("Enviar"));
+		GridBagConstraints restBEnviar =new GridBagConstraints();
+		restBEnviar.gridx = 2;
+		restBEnviar.gridy = 3;
+		restBEnviar.ipady=5;
+		restBEnviar.ipadx=50;
+		getBEnviar().setFont(new Font("Verdana", Font.PLAIN, 15));
+		getContentPane().add(getBEnviar(),restBEnviar);
 
 	}
 
@@ -192,8 +224,9 @@ public class ChatGridBag extends JFrame {
 	public void setListUsuarios(JList<String> listUsuarios) {
 		ListUsuarios = listUsuarios;
 	}
-
-	public void setUsuarios(String usuarios) {
-		Usuarios = usuarios;
+	
+	public void AddListItem(String usuarios) {
+		
+		Usuarios.addElement(usuarios);
 	}
 }
