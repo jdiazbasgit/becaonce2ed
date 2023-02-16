@@ -29,7 +29,8 @@ public abstract class Cliente extends Thread {
 	// public static int PUERTO_ENVIO_ARCHIVO = 5003;
 	// public static int PUERTO_ENVIO_PRIVADO = 5004;
 	public static Map<String, String> usuarios= new HashMap<>();
-	public static Map<String, String> mensajes= new HashMap<>();
+	//public static Map<String, String> mensajes= new HashMap<>();
+	public static String mensajeCompleto;
 
 	private String ip;
 	private int puerto;

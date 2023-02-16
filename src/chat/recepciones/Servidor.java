@@ -25,11 +25,11 @@ public abstract class Servidor extends Thread {
 	public static final int PUERTO_ESCUCHA_BAJA_SERVIDOR=5004;
 
 	public static Map<String, String> usuarios= new HashMap<>();
-	public static Map<String, String> mensajes= new HashMap<>();
+	//public static Map<String, String> mensajes= new HashMap<>();
+	public static String mensajeCompleto;
 
 	private int puerto;
 	private ChatGridBag chat;
-	
 	
 	@Override
 	public void run() {

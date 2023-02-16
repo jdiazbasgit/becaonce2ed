@@ -21,14 +21,23 @@ public class EscuchaMensajeServidor extends Servidor {
 			String ip= socket.getInetAddress().getHostAddress();
 			//LFRM-BORRAR
 			System.out.println("DESDE EscuchaMensajeServidor - mensajeCompleto: "+mensajeCompleto);
-			Servidor.mensajes.put(ip, mensajeCompleto);
-			for (String destino : Servidor.mensajes.keySet()) {
+			Servidor.mensajeCompleto = mensajeCompleto;
+			
+			
+			// REVISAR
+			
+			
+			EnvioMensajeServidor envioMensajeServidor= new EnvioMensajeServidor("", Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChat());
+			envioMensajeServidor.start();
+			
+			/*
+			for (String destino : Servidor.mensajeCompleto.keySet()) {
 				EnvioMensajeServidor envioMensajeServidor= new EnvioMensajeServidor(destino, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChat());
 				envioMensajeServidor.start();
 				
 			}
+			*/
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

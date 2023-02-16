@@ -15,17 +15,17 @@ public class EscuchaMensajeCliente extends Servidor {
 
 	@Override
 	public void hacerAlgo(Socket socket) {
+		
 		try {
-			Cliente.mensajes=(Map<String, String>) leerObjeto(socket);
-			//getChat().getTaMensajes().setText("");
-			for (String mensaje : Cliente.mensajes.values()) {
-				getChat().getTaMensajes().append(mensaje+"\n");
-			}
+			//Cliente.mensajeCompleto=(String) leerObjeto(socket);
+			Cliente.mensajeCompleto = (String) leerMensaje(socket);
+			getChat().getTaMensajes().append(Cliente.mensajeCompleto+"\n");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(0);
 		}
+		
 	}
 
 }

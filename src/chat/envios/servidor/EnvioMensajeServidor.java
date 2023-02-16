@@ -15,7 +15,8 @@ public class EnvioMensajeServidor extends Cliente {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
-			enviarObjeto(socket, Servidor.mensajes);
+			//enviarObjeto(socket, Servidor.mensajeCompleto);
+			enviarTexto(socket, Servidor.mensajeCompleto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
