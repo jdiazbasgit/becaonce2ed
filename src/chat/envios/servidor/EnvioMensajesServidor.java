@@ -16,8 +16,6 @@ public class EnvioMensajesServidor extends Cliente {
 		super(ip, puerto, chat);
 	}
 	
-
-	
 	public EnvioMensajesServidor(String ip, int puerto, String mensaje) {
 		setMensaje(mensaje);
 		setPuerto(puerto);

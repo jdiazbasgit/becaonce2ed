@@ -9,10 +9,9 @@ public class VerChat {
 	public static void main(String[] args) {
 		ChatGridBag chat= new ChatGridBag();
 		chat.setVisible(true);
-		EscuchaRegistroCliente escuchaRegistroCliente= new EscuchaRegistroCliente(Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, chat);
+		EscuchaRegistroCliente escuchaRegistroCliente = new EscuchaRegistroCliente(Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, chat);
 		escuchaRegistroCliente.start();
 		EscuchaMensajesCliente escuchaMensajesCliente = new EscuchaMensajesCliente(Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, chat);
 		escuchaMensajesCliente.start();
 	}
-
 }

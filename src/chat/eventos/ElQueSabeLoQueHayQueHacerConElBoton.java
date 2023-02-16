@@ -20,10 +20,11 @@ public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(getChatGridBag().getBRegistrar())) {
 			if (Servidor.usuarios.containsValue(getChatGridBag().getTNick().getText().trim()))
+				//no funciona xq el map está vacio en esta etapa
 				getChatGridBag().getTaMensajes().append("El Usuario ya está registrado \n");
 			else {
 				if(!getChatGridBag().getTNick().getText().trim().equals("")) {
-					EnvioRegistrCliente envioRegistrCliente= new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
+					EnvioRegistrCliente envioRegistrCliente= new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, getChatGridBag());
 					envioRegistrCliente.start();
 					}
 					else {
@@ -32,10 +33,9 @@ public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 			}
 		}
 		if(e.getSource().equals(getChatGridBag().getBEnviar())){
-			EnvioMensajesCliente envioMensajesCliente= new EnvioMensajesCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_MENSAJE_SERVIDOR, chatGridBag);
+			EnvioMensajesCliente envioMensajesCliente= new EnvioMensajesCliente(Cliente.IP_SERVIDOR, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChatGridBag());
 			envioMensajesCliente.start();
 		}
-		
 
 	}
 

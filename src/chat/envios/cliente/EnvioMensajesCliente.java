@@ -10,6 +10,10 @@ public class EnvioMensajesCliente extends Cliente {
 	public EnvioMensajesCliente(String ip, int puerto, ChatGridBag chat) {
 		super(ip, puerto, chat);
 	}
+	
+	public EnvioMensajesCliente() {
+		
+	}
 
 	@Override
 	public void hacerAlgo(Socket socket) {
@@ -17,6 +21,7 @@ public class EnvioMensajesCliente extends Cliente {
 		
 		try {
 			enviarTexto(socket, mensaje);
+			//getChat().getTMensaje().setText("");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
