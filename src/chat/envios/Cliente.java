@@ -11,9 +11,11 @@ import java.util.Map;
 import chat.ChatGridBag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public abstract class Cliente extends Thread {
 
 	public static final int PUERTO_ENVIO_REGISTRO_SERVIDOR = 5000;
@@ -21,7 +23,8 @@ public abstract class Cliente extends Thread {
 	public static final int PUERTO_ESCUCHA_REGISTRO_CLIENTE=5001;
 	public static final int PUERTO_ESCUCHA_MENSAJE_CLIENTE = 5003;
 	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
-	public static final String IP_SERVIDOR = "192.168.10.27";
+	public static final String IP_SERVIDOR = "192.168.10.29";
+	
 	// public static int PUERTO_ENVIO_MENSAJE_CLIENTE = 5002;
 	// public static int PUERTO_ENVIO_ARCHIVO = 5003;
 	// public static int PUERTO_ENVIO_PRIVADO = 5004;

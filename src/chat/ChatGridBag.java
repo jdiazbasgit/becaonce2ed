@@ -113,6 +113,7 @@ public class ChatGridBag extends JFrame {
 		this.setLMensaje(new JLabel("Mensaje:   "));
 		this.setTMensaje(new JTextField("Escribe un mensaje", 60));
 		this.setBEnviar(new JButton("ENVIAR"));
+		getBEnviar().addActionListener(new ElQueSabeLoQueHayQueHacerConElBoton(this));
 		getTMensaje().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
 
 		GridBagConstraints gbcLabelMensaje = new GridBagConstraints();

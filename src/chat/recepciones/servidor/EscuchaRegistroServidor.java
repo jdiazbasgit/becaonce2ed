@@ -4,6 +4,7 @@ import java.net.Socket;
 
 import chat.ChatGridBag;
 import chat.envios.Cliente;
+import chat.envios.servidor.EnvioMensajeServidor;
 import chat.envios.servidor.EnvioRegistroServidor;
 import chat.recepciones.Servidor;
 
@@ -19,6 +20,15 @@ public class EscuchaRegistroServidor extends Servidor {
 		try {
 			String nick=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
+			for (String nickSeleccionado  : Servidor.usuarios.values()) {
+				if(nickSeleccionado.equals(nick)) {
+					EnvioMensajeServidor envioMensajeServidor= new EnvioMensajeServidor(ip, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChat());
+					envioMensajeServidor.start();
+					return;
+				}
+				
+			}
+			
 			Servidor.usuarios.put(ip, nick);
 			for (String destino : Servidor.usuarios.keySet()) {
 				EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(destino, Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, getChat());
