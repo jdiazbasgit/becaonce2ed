@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElBoton;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
+import chat.eventos.ElQueSabeLoQueHayQueHacerConElTeclado;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import lombok.Data;
 
@@ -80,7 +81,7 @@ public class ChatGridBag extends JFrame {
 
 		this.setLUsuarios(new JLabel("Usuarios:"));
 		this.setTaMensajes(new TextArea("Lista de mensajes, panel principal\n", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
-
+		this.getTaMensajes().disable();
 		GridBagConstraints gbcLabelUsuarios = new GridBagConstraints();
 		GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();
 		gbcLabelUsuarios.gridx = 0;
@@ -99,6 +100,7 @@ public class ChatGridBag extends JFrame {
 		getContentPane().add(getTaMensajes(), gcbTextAreaMensajes);
 
 		this.setTaUsuarios(new TextArea("", 30, 1, TextArea.SCROLLBARS_VERTICAL_ONLY));
+		this.getTaUsuarios().disable();
 
 		GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
 		gcbTextAreaUsuarios.gridx = 0;
@@ -115,6 +117,7 @@ public class ChatGridBag extends JFrame {
 		this.setBEnviar(new JButton("ENVIAR"));
 		getBEnviar().addActionListener(new ElQueSabeLoQueHayQueHacerConElBoton(this));
 		getTMensaje().addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+		getTMensaje().addKeyListener(new ElQueSabeLoQueHayQueHacerConElTeclado(this));
 
 		GridBagConstraints gbcLabelMensaje = new GridBagConstraints();
 		GridBagConstraints gcbTextFieldMensaje = new GridBagConstraints();

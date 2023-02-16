@@ -22,6 +22,7 @@ public class EscuchaRegistroCliente extends Servidor {
 				getChat().getTaUsuarios().append(usuario+"\n");
 				
 			}
+			getChat().getTNick().setEnabled(false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -21,7 +21,6 @@ public class EnvioRegistrCliente extends Cliente {
 		}
 		try {
 			enviarTexto(socket, salida);
-			getChat().getTNick().disable();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
