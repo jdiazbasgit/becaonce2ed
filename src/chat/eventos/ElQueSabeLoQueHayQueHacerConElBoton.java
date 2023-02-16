@@ -31,8 +31,6 @@ public class ElQueSabeLoQueHayQueHacerConElBoton implements ActionListener {
 			if (!getChatGridBag().getTMensaje().getText().trim().equals("")) {
 				EnvioRegistrCliente envioRegistrCliente = new EnvioRegistrCliente(Cliente.IP_SERVIDOR, Servidor.PUERTO_ESCUCHA_REGISTRO_SERVIDOR, chatGridBag);
 				envioRegistrCliente.start();
-			} else {
-				getChatGridBag().getTaMensajes().append("El nick no puede estar vacio...\n");
 			}
 		}
 

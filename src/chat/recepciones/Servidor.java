@@ -81,10 +81,10 @@ public abstract class Servidor extends Thread {
 	}
 	
 	public static String FechaActual(){
-        Date fechaHoraActual = new Date();
-        String fechaFormateada = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(fechaHoraActual);
-        return fechaFormateada;
-    }
+        	Date fechaHoraActual = new Date();
+        	String fechaFormateada = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(fechaHoraActual);
+        	return fechaFormateada;
+    	}
 
 
 }
