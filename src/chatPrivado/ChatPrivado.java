@@ -1,4 +1,4 @@
-package ejemploBag;
+package chatPrivado;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,14 +16,14 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
-public class EjemploBag extends JFrame {
+public class ChatPrivado extends JFrame {
 
 	private JButton bRegistrar, bEnviar;
 	private JTextField tNick, tMensaje;
 	private JTextArea taMensajes, taUsuarios;
 	private JLabel lNick, lUsuarios, lMensajes;
 	
-	public EjemploBag() {
+	public ChatPrivado() {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setSize(1200,800);
 		
