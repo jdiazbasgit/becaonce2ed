@@ -17,11 +17,11 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 public class Chat extends JFrame {
 
-	private Button bRegistrar, bEnviar;
+	private Button bRegistrar, bEnviar, bPenviar;
 	private TextField tNick, tMensaje;
 	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
-	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private TextArea taMensajes, taUsuarios,  taPrivado;
+	private Label lNick, lUsuarios, lMensajes, lPrivado;
 
 
 
@@ -35,7 +35,9 @@ public class Chat extends JFrame {
 		setbEnviar(new Button("ENVIAR"));
 		settNick(new TextField(80));
 		
+		
 		settMensaje(new TextField(80));
+		setTaPrivado(new TextArea(""));
 		setpSuperior(new Panel());
 		setpInferior(new Panel());
 		setpIzquierda(new Panel());
@@ -44,8 +46,9 @@ public class Chat extends JFrame {
 		setTaUsuarios(new TextArea());
 		setlNick(new Label("NICK"));
 		setlUsuarios(new Label ("USUARIOS"));
+		setlPrivado(new Label(""));
 		setlMensajes(new Label("MENSAJES"));
-		
+		setbPenviar(new Button("ENVIAR"));
 		
 		getpSuperior().add(getlNick());
 		getpSuperior().add(gettNick());
@@ -262,6 +265,55 @@ public class Chat extends JFrame {
 	public void setlMensajes(Label lMensajes) {
 		this.lMensajes = lMensajes;
 	}
+
+
+
+
+	public Button getbPenviar() {
+		return bPenviar;
+	}
+
+
+
+
+	public void setbPenviar(Button bPenviar) {
+		this.bPenviar = bPenviar;
+	}
+
+
+
+
+	
+
+
+	public Label getlPrivado() {
+		return lPrivado;
+	}
+
+
+
+
+	public void setlPrivado(Label lPrivado) {
+		this.lPrivado = lPrivado;
+	}
+
+
+
+
+	public TextArea getTaPrivado() {
+		return taPrivado;
+	}
+
+
+
+
+	public void setTaPrivado(TextArea taPrivado) {
+		this.taPrivado = taPrivado;
+	}
+
+
+
+
 	
 	
 

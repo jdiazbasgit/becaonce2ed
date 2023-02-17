@@ -22,10 +22,10 @@ import lombok.Data;
 @Data
 public class ChatGridBag extends JFrame {
 
-	private JButton bRegistrar, bEnviar;
+	private JButton bRegistrar, bEnviar,bPenvair;
 	private JTextField tNick, tMensaje;
-	private TextArea taMensajes, taUsuarios;
-	private JLabel lNick, lUsuarios, lMensaje;
+	private TextArea taMensajes, taUsuarios, taPrivado;
+	private JLabel lNick, lUsuarios, lMensaje,lPrivado;
 
 	public ChatGridBag() {
 
@@ -65,7 +65,7 @@ public class ChatGridBag extends JFrame {
 		// gcbTextFieldNick.insets = margenDechaDv4;
 		// gcbTextFieldNick.gridwidth = 2;
 
-		gbcButtonRegistrar.gridx = 2;
+		gbcButtonRegistrar.gridx = 2;	
 		gbcButtonRegistrar.gridy = 0;
 		gbcButtonRegistrar.weightx = 0.2;
 		gbcButtonRegistrar.anchor = GridBagConstraints.WEST;
