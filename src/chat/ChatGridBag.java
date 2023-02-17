@@ -29,6 +29,7 @@ public class ChatGridBag extends JFrame {
 	private JLabel lNick, lUsuarios, lMensaje;
 
 	public ChatGridBag() {
+		
 
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		this.setLayout(new BorderLayout());
