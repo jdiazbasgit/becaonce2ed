@@ -15,6 +15,7 @@ import bolas.elementos.Barra;
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
 import bolas.eventos.ElQueSabeLoQueHayQueHacerConLosInputs;
+import bolas.hilos.BarraHilo;
 import bolas.hilos.BolaHilo;
 import bolas.hilos.Pintor;
 
@@ -26,14 +27,16 @@ public class VentanaZonaDeJuego extends JPanel {
 	private boolean primeraVez;
 	private List<Bola> bolas;
 	private List<TimeTrap> timeTraps;
-	private List<Barra> barras;
+	private Barra barra;
 	
 
 	public VentanaZonaDeJuego() {
 		
 		setBolas(new ArrayList<>());
 		setTimeTraps(new ArrayList<>());
-		setBarras(new ArrayList<>());
+		setBarra(new Barra(40, 900, 100, 20, false, false, this));
+		BarraHilo barraHilo = new BarraHilo(barra, this);
+		barraHilo.start();
 		setPrimeraVez(true);
 		setBackground(Color.RED);
 		setPreferredSize(new Dimension(0, 0));
@@ -65,8 +68,8 @@ public class VentanaZonaDeJuego extends JPanel {
 			  BolaHilo bolaHilo3 = new BolaHilo(bola3, this);
 			  bolaHilo3.start();
 			  
-			  Barra barra1 = new Barra(40, 300, 100, 20);
-			  barras.add(barra1);
+			  //Barra barra = new Barra(40, 300, 100, 20);
+			  //barras.add(barra1);
 			 
 			Pintor pintor = new Pintor(this);
 			pintor.start();
@@ -109,11 +112,10 @@ public class VentanaZonaDeJuego extends JPanel {
 			getExterno().drawString(Integer.toString( bola.getImpactos()), (int) Math.round(bola.getPosicionX())+(bola.getDimension()/5*2), (int) Math.round(bola.getPosicionY())+(bola.getDimension())/2);
 		}
 		
-		for (Barra barra : this.getBarras()) {
-			getExterno().setColor(Color.ORANGE);
-			getExterno().fillRect(barra.getPosicionX(), barra.getPosicionY(), barra.getDimensionX(), barra.getDimensionY());
+		getExterno().setColor(Color.ORANGE);
+		getExterno().fillRect(barra.getPosicionX(), barra.getPosicionY(), barra.getDimensionX(), barra.getDimensionY());
 			//getExterno().drawImage(abeja, (int) Math.round(bola.getPosicionX()), (int) Math.round(bola.getPosicionY()),this);
-		}
+		
 		
 		//getExterno().drawImage(panalSlim, 0, 0, this);
 		g.drawImage(getImagen(), 0, 0, this);
@@ -163,13 +165,13 @@ public class VentanaZonaDeJuego extends JPanel {
 	}
 
 
-	public List<Barra> getBarras() {
-		return barras;
+	public Barra getBarra() {
+		return barra;
 	}
 
 
-	public void setBarras(List<Barra> barras) {
-		this.barras = barras;
+	public void setBarra(Barra barra) {
+		this.barra = barra;
 	}
 
 

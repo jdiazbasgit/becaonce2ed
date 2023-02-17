@@ -3,6 +3,7 @@ package bolas.hilos;
 import java.awt.Color;
 import java.awt.Rectangle;
 
+import bolas.elementos.Barra;
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
 import bolas.ventanas.VentanaZonaDeJuego;
@@ -22,7 +23,7 @@ public class BolaHilo extends Thread {
 		boolean matar = false;
 		while (!matar) {
 			try {
-				Thread.sleep((getBola().getVelocidadRalentizada() * getBola().getDimension())/100);
+				Thread.sleep((getBola().getVelocidadRalentizada()));
 				// Thread.sleep(20);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -43,6 +44,7 @@ public class BolaHilo extends Thread {
 			// ventanaBolas.getTimeTrapsTemporal().addAll(ventanaBolas.getTimeTraps());
 			for (int i = 0; i < ventanaBolas.getBolas().size(); i++) {
 				Bola otraBola = ventanaBolas.getBolas().get(i);
+				Barra barra = ventanaBolas.getBarra();
 				
 				Rectangle bolaQueComprueboRect = new Rectangle((int) Math.round(bolaQueCompruebo.getPosicionX()),
 						(int) Math.round(bolaQueCompruebo.getPosicionY()), bolaQueCompruebo.getDimension(),
@@ -50,7 +52,8 @@ public class BolaHilo extends Thread {
 				Rectangle otraBolaRect = new Rectangle((int) Math.round(otraBola.getPosicionX()),
 						(int) Math.round(otraBola.getPosicionY()), otraBola.getDimension(), otraBola.getDimension());
 
-				
+				Rectangle barraRect = new Rectangle((int) Math.round(barra.getPosicionX()),
+						(int) Math.round(barra.getPosicionY()), barra.getDimensionX(), barra.getDimensionY());
 				
 				
 
@@ -117,7 +120,22 @@ public class BolaHilo extends Thread {
 					// this.desplazarAlChocar(bolaQueCompruebo);
 					// elBolero.desplazarAlChocar(otraBola);
 					getBola().calcularPosicion();
-					bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
+					//bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
+					//bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
+					
+					// ventanaBolas.getBolas().set(i, otraBola);
+				}
+				if (bolaQueComprueboRect.intersects(barraRect)) {
+					//bolaQueCompruebo.setSentidoX(bolaQueCompruebo.getSentidoX() * -1);
+					bolaQueCompruebo.setSentidoY(bolaQueCompruebo.getSentidoY() * -1);
+					//otraBola.setSentidoX(otraBola.getSentidoX() * -1);
+					//otraBola.setSentidoY(otraBola.getSentidoY() * -1);
+					//otraBola.setImpactos(bolaQueCompruebo.getImpactos()+1);
+					// while (bolaQueComprueboRect.intersects(otraBolaRect))
+					// this.desplazarAlChocar(bolaQueCompruebo);
+					// elBolero.desplazarAlChocar(otraBola);
+					getBola().calcularPosicion();
+					//bolaQueCompruebo.setImpactos(bolaQueCompruebo.getImpactos()+1);
 					//bolaQueCompruebo.setDimension(bolaQueCompruebo.getDimension()-5);
 					
 					// ventanaBolas.getBolas().set(i, otraBola);

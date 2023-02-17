@@ -40,86 +40,79 @@ public class ElQueSabeLoQueHayQueHacerConLosInputs implements MouseListener, Key
 		Color color = new Color(random.nextFloat(), random.nextFloat(), random.nextFloat());
 		return color;
 	}
+
 	public int cualEsMayor(int a, int b) {
-	    if (a > b) {
-	        return a;
-	    }
-	    return b;
+		if (a > b) {
+			return a;
+		}
+		return b;
 	}
+
 	public int calcularVelocidad(int incrX, int incrY) {
 		int maxIncrEnUso = cualEsMayor(incrX, incrY);
-		return maxIncrEnUso*2;
+		return maxIncrEnUso * 2;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//System.out.println(e.getPoint());
-		//System.out.println(e);
+		// System.out.println(e.getPoint());
+		// System.out.println(e);
 		int incrX = generarRandom1o2(16);
 		int incrY = generarRandom1o2(16);
-		int velocidad = calcularVelocidad(incrX, incrY)/2;
+		int velocidad = calcularVelocidad(incrX, incrY) / 2;
 		int velocidadRalentizada = velocidad;
 		int dimensionBola = 20;
 		int dimensionTrap = 100;
 		int impactos = 0;
 		if (e.getButton() == 1) {
-			Bola bola = new Bola((e.getPoint().x)-(dimensionBola/2), (e.getPoint().y)-(dimensionBola/2), incrX, incrY,
-					generarRandomPosNeg(), generarRandomPosNeg(), dimensionBola, generarColorAleatorio(), velocidad, velocidadRalentizada, impactos);
-			//System.out.println(generarRandom1o2());
+			Bola bola = new Bola((e.getPoint().x) - (dimensionBola / 2), (e.getPoint().y) - (dimensionBola / 2), incrX,
+					incrY, generarRandomPosNeg(), generarRandomPosNeg(), dimensionBola, generarColorAleatorio(),
+					200, 30, impactos);
+			// System.out.println(generarRandom1o2());
 			// getVentanaBolas().getExterno().setColor(bola.getColor());
 			this.ventanaBolas.getBolas().add(bola);
 			BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
 			bolaHilo.start();
 		}
 		if (e.getButton() == 3) {
-			TimeTrap timeTrap = new TimeTrap((e.getPoint().x)-(dimensionTrap/2), (e.getPoint().y)-(dimensionTrap/2),dimensionTrap);
+			TimeTrap timeTrap = new TimeTrap((e.getPoint().x) - (dimensionTrap / 2),
+					(e.getPoint().y) - (dimensionTrap / 2), dimensionTrap);
 			this.ventanaBolas.getTimeTraps().add(timeTrap);
-			//BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
-			//bolaHilo.start();
+			// BolaHilo bolaHilo = new BolaHilo(bola, getVentanaBolas());
+			// bolaHilo.start();
 		}
 	}
-	
-	
+
 	@Override
 	public void keyPressed(KeyEvent k) {
-		if (k.getKeyCode() == KeyEvent.VK_LEFT) {			
-			ventanaBolas.getBarras().get(0).setPosicionX(ventanaBolas.getBarras().get(0).getPosicionX()-5);
-            if (ventanaBolas.getBarras().get(0).getPosicionX() < 0) {
-            	ventanaBolas.getBarras().get(0).setPosicionX(0);
-            }
-        }
-		if (k.getKeyCode() == KeyEvent.VK_RIGHT) {			
-			ventanaBolas.getBarras().get(0).setPosicionX(ventanaBolas.getBarras().get(0).getPosicionX()+5);
-            if (ventanaBolas.getBarras().get(0).getPosicionX() > 500) {
-            	ventanaBolas.getBarras().get(0).setPosicionX(500);
-            }
-        }
+		
+		//ventanaBolas.getBarra().mover();
+		if (k.getKeyCode() == KeyEvent.VK_LEFT) {
+			ventanaBolas.getBarra().setFeclaIzquierdaPresionada(true);
+		}
+		if (k.getKeyCode() == KeyEvent.VK_RIGHT) {
+			ventanaBolas.getBarra().setFlechaDerechaPresionada(true);
+		}
+		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent k) {
-		
-		 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-		        izquierdaPresionada = false;
-		    }
-		    if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-		        derechaPresionada = false;
-		    }
+
+		//ventanaBolas.getBarra().mover();
+		if (k.getKeyCode() == KeyEvent.VK_LEFT) {
+			ventanaBolas.getBarra().setFeclaIzquierdaPresionada(false);
+		}
+		if (k.getKeyCode() == KeyEvent.VK_RIGHT) {
+			ventanaBolas.getBarra().setFlechaDerechaPresionada(false);
+		}
 	}
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public void keyTyped(KeyEvent k) {
 		// TODO Auto-generated method stub
-		
-	}
 
-	
-	
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -152,7 +145,5 @@ public class ElQueSabeLoQueHayQueHacerConLosInputs implements MouseListener, Key
 	public void setVentanaBolas(VentanaZonaDeJuego ventanaBolas) {
 		this.ventanaBolas = ventanaBolas;
 	}
-
-
 
 }
