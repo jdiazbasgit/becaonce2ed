@@ -23,10 +23,12 @@ import lombok.Data;
 @Data
 public class ChatGridBag extends JFrame {
 
-	private JButton bRegistrar, bEnviar;
-	private JTextField tNick, tMensaje;
+	private JButton bRegistrar, bEnviar,bEnviar2;
+	private JTextField tNick, tMensaje,tPrivado;
 	private TextArea taMensajes, taUsuarios;
 	private JLabel lNick, lUsuarios, lMensaje;
+	//private jChoice chUsuarios;
+	
 
 	public ChatGridBag() {
 
@@ -105,7 +107,7 @@ public class ChatGridBag extends JFrame {
 		GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
 		gcbTextAreaUsuarios.gridx = 0;
 		gcbTextAreaUsuarios.gridy = 2;
-		gcbTextAreaUsuarios.weighty = 0.5;
+		gcbTextAreaUsuarios.weighty = 0.2;
 		gcbTextAreaUsuarios.fill = GridBagConstraints.BOTH;
 
 		getContentPane().add(getTaUsuarios(), gcbTextAreaUsuarios);
@@ -126,15 +128,35 @@ public class ChatGridBag extends JFrame {
 		gbcLabelMensaje.gridy = 3;
 		gbcLabelMensaje.weighty = 0.2;
 		gbcLabelMensaje.anchor = GridBagConstraints.EAST;
-
+/*
+		GridBagConstraints gbcbEnviar2 =new GridBagConstraints();
+		gbcbEnviar2.gridx=0;
+		gbcbEnviar2.gridy=6;
+		gbcbEnviar2.weighty=0.1;
+		gbcbEnviar2.anchor=GridBagConstraints.EAST;
+	
+		GridBagConstraints gbctPrivado = new GridBagConstraints();
+		gbctPrivado.gridx=0;
+		gbctPrivado.gridy=4;
+		gbctPrivado.weighty=0.1;
+		gbctPrivado.anchor=GridBagConstraints.EAST;
+		
+			
+		GridBagConstraints gbcchUsuarios = new GridBagConstraints();
+		gbcchUsuarios.gridx=0;
+		gbcchUsuarios.gridy=5;
+		gbcchUsuarios.weighty=0.1;
+		gbcchUsuarios.anchor=GridBagConstraints.EAST;
+		*/
+		
 		gcbTextFieldMensaje.gridx = 1;
-		gcbTextFieldMensaje.gridy = 3;
+		gcbTextFieldMensaje.gridy = 7;
 		gcbTextFieldMensaje.weighty = 0.2;
 		gcbTextFieldMensaje.fill = GridBagConstraints.HORIZONTAL;
 		// gcbTextFieldMensaje.gridwidth = 2;
 
 		gbcButtonEnviar.gridx = 2;
-		gbcButtonEnviar.gridy = 3;
+		gbcButtonEnviar.gridy = 7;
 		gbcButtonEnviar.weighty = 0.2;
 		gbcButtonEnviar.anchor = GridBagConstraints.WEST;
 		Insets margenDechaDv12 = new Insets(0, 10, 0, tamanoActualizableFrame.width / 18);
