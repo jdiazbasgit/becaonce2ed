@@ -1,12 +1,14 @@
 package chat;
 
 import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.TextArea;
 import java.awt.Toolkit;
+import java.text.ChoiceFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,12 +23,13 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-public class ChatGridBag extends JFrame {
+public class ChatGridBag<JChoice> extends JFrame {
 
-	private JButton bRegistrar, bEnviar;
+	private JButton bRegistrar, bEnviar,bEnviar2;
 	private JTextField tNick, tMensaje;
 	private TextArea taMensajes, taUsuarios;
-	private JLabel lNick, lUsuarios, lMensaje;
+	private JLabel lNick, lUsuarios, lMensaje,lPrivado;
+	private JChoice cDespreglable;
 
 	public ChatGridBag() {
 
@@ -82,8 +85,16 @@ public class ChatGridBag extends JFrame {
 		this.setLUsuarios(new JLabel("Usuarios:"));
 		this.setTaMensajes(new TextArea("Lista de mensajes, panel principal\n", 0, 0, TextArea.SCROLLBARS_VERTICAL_ONLY));
 		this.getTaMensajes().disable();
+		this.setLPrivado(new JLabel("Privado"));
+		this.setCDespreglable(new Choice());
+		GridBagConstraints desChocie = new GridBagConstraints();
 		GridBagConstraints gbcLabelUsuarios = new GridBagConstraints();
 		GridBagConstraints gcbTextAreaMensajes = new GridBagConstraints();
+		GridBagConstraints privLabelPrivado = new GridBagConstraints();
+		privLabelPrivado.gridx=0;
+		privLabelPrivado.gridy=0;
+		privLabelPrivado.weightx=0.2;
+		privLabelPrivado.weighty=0.6;
 		gbcLabelUsuarios.gridx = 0;
 		gbcLabelUsuarios.gridy = 1;
 		gbcLabelUsuarios.weighty = 0.1;
@@ -98,9 +109,13 @@ public class ChatGridBag extends JFrame {
 
 		getContentPane().add(getLUsuarios(), gbcLabelUsuarios);
 		getContentPane().add(getTaMensajes(), gcbTextAreaMensajes);
+		
+	
 
 		this.setTaUsuarios(new TextArea("", 30, 1, TextArea.SCROLLBARS_VERTICAL_ONLY));
 		this.getTaUsuarios().disable();
+		getContentPane().add(getLPrivado(),privLabelPrivado);
+
 
 		GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
 		gcbTextAreaUsuarios.gridx = 0;
@@ -144,5 +159,10 @@ public class ChatGridBag extends JFrame {
 		getContentPane().add(getTMensaje(), gcbTextFieldMensaje);
 		getContentPane().add(getBEnviar(), gbcButtonEnviar);
 
+	}
+
+	private void setCDespreglable(Choice choice) {
+		// TODO Auto-generated method stub
+		
 	}
 }

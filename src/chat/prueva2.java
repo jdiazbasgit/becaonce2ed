@@ -15,25 +15,24 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 
 @SuppressWarnings("serial")
 
-public class Chat extends JFrame {
+public class prueva2 extends JFrame {
 
-	private Button bRegistrar, bEnviar,bEnviar2;
+	private Button bRegistrar, bEnviar;
 	private TextField tNick, tMensaje;
 	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes,lPrivado;
+	private Label lNick, lUsuarios, lMensajes;
 
 
 
 
-	public Chat() {
+	public prueva2() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 
 
 		setbRegistrar(new Button("REGISTRAR"));
 		setbEnviar(new Button("ENVIAR"));
-		setbEnviar2(new Button("ENVIAR"));
 		settNick(new TextField(80));
 		
 		settMensaje(new TextField(80));
@@ -46,7 +45,7 @@ public class Chat extends JFrame {
 		setlNick(new Label("NICK"));
 		setlUsuarios(new Label ("USUARIOS"));
 		setlMensajes(new Label("MENSAJES"));
-		setlPrivado(new Label("PRIVADO"));
+		
 		
 		getpSuperior().add(getlNick());
 		getpSuperior().add(gettNick());
@@ -79,22 +78,6 @@ public class Chat extends JFrame {
 
 		setbRegistrar(new Button("Nick:"));
 
-		
-	}
-
-
-
-
-	private void setbEnviar2(Button button) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	private void setlPrivado(Label label) {
-		// TODO Auto-generated method stub
 		
 	}
 

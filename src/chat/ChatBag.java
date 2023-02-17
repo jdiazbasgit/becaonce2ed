@@ -1,4 +1,4 @@
-package chat;
+1package chat;
 
 import java.awt.Button;
 import java.awt.Frame;
@@ -40,7 +40,6 @@ public class ChatBag extends Frame {
 		restriccionesbRegistrar.gridy = 0;
 		restriccionesbRegistrar.weightx = 0.2;
 		add(getbRegistrar(), restriccionesbRegistrar);
-
 //Botón Enviar
 		
 		setbEnviar(new Button("ENVIAR"));
