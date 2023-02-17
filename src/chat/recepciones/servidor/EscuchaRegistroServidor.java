@@ -22,7 +22,8 @@ public class EscuchaRegistroServidor extends Servidor {
 			String ip= socket.getInetAddress().getHostAddress();
 			for (String nickSeleccionado  : Servidor.usuarios.values()) {
 				if(nickSeleccionado.equals(nick)) {
-					EnvioMensajeServidor envioMensajeServidor= new EnvioMensajeServidor(ip, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, getChat());
+					EnvioMensajeServidor envioMensajeServidor=
+							new EnvioMensajeServidor(ip, Cliente.PUERTO_ESCUCHA_MENSAJE_CLIENTE, "el usuario ya existe");
 					envioMensajeServidor.start();
 					return;
 				}
