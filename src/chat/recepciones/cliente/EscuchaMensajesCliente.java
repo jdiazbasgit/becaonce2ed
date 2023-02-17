@@ -1,10 +1,8 @@
 package chat.recepciones.cliente;
 
 import java.net.Socket;
-import java.util.Map;
 
 import chat.ChatGridBag;
-import chat.envios.Cliente;
 import chat.recepciones.Servidor;
 
 public class EscuchaMensajesCliente extends Servidor {
@@ -14,6 +12,7 @@ public class EscuchaMensajesCliente extends Servidor {
 	}
 
 	@Override
+<<<<<<< HEAD
 	/*public void hacerAlgo(Socket socket) {
 		try {
 			Cliente.usuarios=(Map<String, String>) leerObjeto(socket);
@@ -27,6 +26,24 @@ public class EscuchaMensajesCliente extends Servidor {
 			e.printStackTrace();
 			System.exit(0);
 		}*/
+=======
+	public void hacerAlgo(Socket socket) {
+		String mensaje=getChat().getTMensaje().getText();
+		String salidaMensaje="";
+	
+	try {
+		mensaje(socket, salidaMensaje);
+		getChat().getTMensaje().disable();
+	} catch (Exception e){
+		e.printStackTrace();
+	}
+	
+}
+
+	private void mensaje(Socket socket, String salidaMensaje) {
+		// TODO Auto-generated method stub
+		
+>>>>>>> branch 'feature/chatoperativo/grupo2' of https://github.com/jdiazbasgit/becaonce2ed.git
 	}
 
 }
