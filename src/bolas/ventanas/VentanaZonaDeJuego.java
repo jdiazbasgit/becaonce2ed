@@ -8,6 +8,9 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -44,10 +47,9 @@ public class VentanaZonaDeJuego extends JPanel {
         //setFocusTraversalKeysEnabled(false);
 		addMouseListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
 		addKeyListener(new ElQueSabeLoQueHayQueHacerConLosInputs(this));
+
 	}
 	
-	
-
 	
 	@Override
 	public void paint(Graphics g) {
@@ -173,7 +175,6 @@ public class VentanaZonaDeJuego extends JPanel {
 	public void setBarra(Barra barra) {
 		this.barra = barra;
 	}
-
 
 
 }

@@ -6,13 +6,14 @@ import java.awt.Rectangle;
 import bolas.elementos.Barra;
 import bolas.elementos.Bola;
 import bolas.elementos.TimeTrap;
+import bolas.ventanas.FramePrincipal;
 import bolas.ventanas.VentanaZonaDeJuego;
 
 public class BolaHilo extends Thread {
 
 	private Bola bola;
 	private VentanaZonaDeJuego ventanaBolas;
-
+	
 	public BolaHilo(Bola bola, VentanaZonaDeJuego ventanaBolas) {
 		this.bola = bola;
 		this.ventanaBolas = ventanaBolas;

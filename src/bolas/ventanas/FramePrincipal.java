@@ -5,10 +5,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class FramePrincipal extends JFrame {
+	
+	
 	
 	public FramePrincipal() {
 		this.setTitle("                                                                              ▁ ▂ ▄ ▅ ▆ ▇ █ ArKaNoId █ ▇ ▆ ▅ ▄ ▂ ▁");
@@ -37,10 +42,14 @@ public class FramePrincipal extends JFrame {
 		gbcZonaDeDatos.insets.left = 10;
 		this.add(ventanaZonaDeJuego, gbcZonaDeJuego);
 		this.add(new VentanaZonaDeDatos(), gbcZonaDeDatos);
-		
-		
-		//framePrincipal.add(new VentanaZonaDeJuego());
-		
+			
+		//framePrincipal.add(new VentanaZonaDeJuego());		
 		//framePrincipal.setVisible(true);
+		
+		
+
+		
 		}
+
+
 }
