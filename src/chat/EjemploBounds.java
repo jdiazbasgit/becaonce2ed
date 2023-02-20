@@ -3,8 +3,9 @@ package chat;
 import java.awt.Button;
 import java.awt.Frame;
 
-import javafx.scene.control.ButtonType;
+//import javafx.scene.control.ButtonType;
 
+@SuppressWarnings("serial")
 public class EjemploBounds extends Frame {
 	
 	public EjemploBounds() {
