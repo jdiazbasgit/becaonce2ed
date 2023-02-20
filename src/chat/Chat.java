@@ -1,9 +1,5 @@
 package chat;
-<<<<<<< HEAD
-=======
 
-
->>>>>>> d2f04b7c79010d8808e5efecadc11893e483728f
 import java.awt.Button;
 import java.awt.Frame;
 import java.awt.Label;
