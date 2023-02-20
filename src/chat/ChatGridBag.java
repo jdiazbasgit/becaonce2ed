@@ -28,6 +28,7 @@ public class ChatGridBag extends JFrame {
 	private TextArea taMensajes, taUsuarios, taPrivado;
 	private JLabel lNick, lUsuarios, lMensaje,lPrivado;
 
+	@SuppressWarnings("deprecation")
 	public ChatGridBag() {
 
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());

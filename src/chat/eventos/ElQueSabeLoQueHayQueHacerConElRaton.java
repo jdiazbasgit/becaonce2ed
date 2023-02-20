@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
 
+@SuppressWarnings("unused")
 public class ElQueSabeLoQueHayQueHacerConElRaton implements MouseListener {
 
 	@Override

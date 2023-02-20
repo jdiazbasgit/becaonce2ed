@@ -119,6 +119,7 @@ public class ChatBag extends Frame {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void addMouseListener() {
 		// TODO Auto-generated method stub
 		

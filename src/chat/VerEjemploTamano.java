@@ -4,6 +4,7 @@ import java.awt.Toolkit;
 
 import javax.tools.Tool;
 
+@SuppressWarnings("unused")
 public class VerEjemploTamano {
 
 	public static void main(String[] args) {

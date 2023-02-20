@@ -4,6 +4,7 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.TextArea;
 
+@SuppressWarnings("serial")
 public class EjemploTamano extends Frame {
 
 	

@@ -13,6 +13,7 @@ public class EscuchaRegistroCliente extends Servidor {
 		super(puerto, chat);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
