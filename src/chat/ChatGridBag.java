@@ -21,7 +21,7 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConElBoton;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import lombok.Data;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 
 public class ChatGridBag extends JFrame {
 
