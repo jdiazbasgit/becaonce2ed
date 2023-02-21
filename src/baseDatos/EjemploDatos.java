@@ -20,14 +20,14 @@ public class EjemploDatos {
 		try {
 			DriverManager.registerDriver(new Driver());
 			// 2.- Crear la conexion
-			 conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/accesosOnce?useSSL=false", "curso",
+			 conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false", "curso",
 					"Cursocurso1;");
 			// "jdbc:oracle:@thin:localhost:1521:company"
 
 			PreparedStatement preparedStatement1 = conexion
 					.prepareStatement("insert into roles (rol) values (?)");
 			preparedStatement1.setString(1, "Javier");
-			preparedStatement1.execute();
+			//preparedStatement1.execute();
 			preparedStatement1.setString(1, "asoltero triste");
 			//preparedStatement1.execute();
 			preparedStatement1.setString(1, "asoltero solo");
@@ -38,7 +38,7 @@ public class EjemploDatos {
 			//preparedStatement2.execute();
 
 			PreparedStatement preparedStatement = conexion
-					.prepareStatement("SELECT nombre,apellidos FROM employees");
+					.prepareStatement("SELECT name, nif FROM employees");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				System.out.println(resultSet.getString(1) + " - " + resultSet.getString(2));
