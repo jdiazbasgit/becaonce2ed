@@ -16,8 +16,18 @@ public class EjemploDatos {
 		Connection conexion = null;
 		try {
 			DriverManager.registerDriver(new Driver());
-			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/company?useSSL=false",
-					"curso", "Cursocurso1;");
+			// 2.- Crear la conexion
+			 conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false", "curso",
+					"Cursocurso1;");
+			
+			PreparedStatement preparedStatement4 = conexion
+					.prepareStatement("select description from marital_statuses");
+			preparedStatement4.execute();
+			ResultSet resultSet4 = preparedStatement4.executeQuery();
+			while (resultSet4.next()) {
+				System.out.println("el estado civil: "+ resultSet4.getString(1) );
+				
+			}
 			
 			PreparedStatement preparedStatement3 = conexion
 					.prepareStatement("select name FROM  employees");
@@ -32,7 +42,7 @@ public class EjemploDatos {
 			
 			
 			PreparedStatement preparedStatement2 = conexion
-					.prepareStatement("select girls FROM  children");
+					.prepareStatement("select guys FROM  children");
 			preparedStatement2.execute();
 			ResultSet resultSet = preparedStatement2.executeQuery();
 			while (resultSet.next()) {
