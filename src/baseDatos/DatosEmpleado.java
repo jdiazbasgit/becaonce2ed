@@ -30,10 +30,10 @@ public class DatosEmpleado {
 				System.out.println(resultSet.getString(1));
 			}
 			while (resultSet1.next()) {
-				System.out.println(resultSet1.getString(2));
+				System.out.println(resultSet1.getString(1));
 			}
 			while (resultSet2.next()) {
-				System.out.println(resultSet2.getString(2));
+				System.out.println(resultSet2.getString(1));
 			}
 			while (resultSet3.next()) {
 				System.out.println(resultSet3.getString(1));
