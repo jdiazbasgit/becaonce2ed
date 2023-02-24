@@ -1,11 +1,11 @@
 package chat.recepciones;
 
 import java.sql.Connection;
-import com.mysql.jdbc.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.Driver;
 
 import chat.envios.Cliente;
 import chat.recepciones.servidor.EscuchaBajaServidor;
@@ -40,16 +40,7 @@ public class LevantarServidor {
 					+ "  `NAME` VARCHAR(45) NOT NULL,"
 					+ "  `IP_ADDRESS` VARCHAR(45) NOT NULL,"
 					+ "  PRIMARY KEY (`ID`));");
-			preparedStatement2.execute();
-			
-			/*ResultSet resultSet3 = preparedStatement3.executeQuery();
-			while (resultSet3.next()) {
-				System.out.println("Conozcamos a "+ resultSet3.getString(1).toUpperCase() 
-				+ ", tiene un salario humilde de "+ resultSet3.getString(2)
-				+ " granos de arroz, que emplea para cazar palomas. Las guisa junto a "+ resultSet3.getString(3)
-				+ " hijo gandul que acogió tras quedarse "+ resultSet3.getString(4).toLowerCase()+"\n");				
-			}*/				
-			
+			preparedStatement2.execute();			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

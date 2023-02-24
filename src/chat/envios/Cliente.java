@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 
 import chat.ChatGridBag;
 import lombok.AllArgsConstructor;
@@ -25,7 +23,7 @@ public abstract class Cliente extends Thread {
 	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
 	public static final String IP_SERVIDOR = "127.0.0.1";
 	
-	public static Map<String, String> usuarios= new HashMap<>();
+	//public static Map<String, String> usuarios= new HashMap<>();
 
 	private String ip;
 	private int puerto;
@@ -52,6 +50,10 @@ public abstract class Cliente extends Thread {
 
 	public abstract void hacerAlgo(Socket socket);
 
+	public void enviarPing(Socket socket) throws Exception {
+
+	}
+	
 	public void enviarTexto(Socket socket, String texto) throws Exception {
 		try (PrintWriter printWriter = new PrintWriter(socket.getOutputStream())) {
 			printWriter.println(texto);

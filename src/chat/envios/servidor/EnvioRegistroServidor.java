@@ -15,7 +15,7 @@ public class EnvioRegistroServidor extends Cliente {
 	@Override
 	public void hacerAlgo(Socket socket) {
 		try {
-			enviarObjeto(socket, Servidor.usuarios);
+			enviarPing(socket);//antes enviaba el Map como objeto
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -32,7 +32,7 @@ public class EscuchaBajaServidor extends Servidor {
 					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + LevantarServidor.PUERTO_BBDD + "/?useSSL=false",
 					"curso", "Cursocurso1;");
 			PreparedStatement preparedStatement1 = conexion.prepareStatement(
-					"DELETE FROM chatbbdd.users WHERE IP_ADDRESS="+ip+";");
+					"DELETE FROM chatbbdd.users WHERE IP_ADDRESS='"+ip+"';");
 			preparedStatement1.execute();
 						
 			PreparedStatement preparedStatementConsulta2 = conexion
