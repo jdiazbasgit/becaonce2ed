@@ -33,7 +33,7 @@ public class ChatGridBag extends JFrame {
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 		this.setLayout(new BorderLayout());
 		Dimension tamanoActualizableFrame = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(tamanoActualizableFrame.width / 2, tamanoActualizableFrame.height / 2);
+		setSize(tamanoActualizableFrame.width / 2+100, tamanoActualizableFrame.height / 2+100);
 		setLocation(tamanoActualizableFrame.width / 4, tamanoActualizableFrame.height / 4);
 		// System.out.println(tamanoActualizableFrame);
 
