@@ -14,7 +14,8 @@ public static final String USUARIO="curso";
 public static final String PASWORD="Cursocurso1;";
 public static final String QUERY_CONSULTA="SELECT CHAT.USUARIO FROM CHAT.USUARIOS";
  public static final String QUERY_ALTA="INSERT INTO CHAT.USUSARIO (USUARIO,IP) VALUES (?,?)";
- public static final String QUERY_BAJA="DELETE FROM CHAT.USUARIOS(USUARIO) VALUES(?)";
+ public static final String QUERY_BAJA="DELETE FROM CHAT.USUARIOS WHERE USUARIO=?";
+ public static final String QUERY_IP="SELECT IP FRON CHAT.USUSARIOS WHERE USUARIO=?";
 	public BaseDatos() {
 	}
 	
@@ -61,11 +62,29 @@ public static final String QUERY_CONSULTA="SELECT CHAT.USUARIO FROM CHAT.USUARIO
 		
 	}
 	public void quitarUsuario(String usuario0) {
-		PreparedStatement preparedStatement=
+		
+		try {
+			PreparedStatement preparedStatement= getConexion().prepareStatement(BaseDatos.QUERY_BAJA);
+			preparedStatement.setString(1,USUARIO);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
 	public String dameIpDeUsuario(String usuario) {
+		ResultSet resulSet=null;
+		try {
+			PreparedStatement preparedStatement=getConexion().prepareStatement(BaseDatos.QUERY_IP);
+			preparedStatement.setString(1,USUARIO);
+			resulSet=preparedStatement.executeQuery();
+			resulSet.next();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
