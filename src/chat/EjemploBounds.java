@@ -3,8 +3,6 @@ package chat;
 import java.awt.Button;
 import java.awt.Frame;
 
-import javafx.scene.control.ButtonType;
-
 public class EjemploBounds extends Frame {
 	
 	public EjemploBounds() {
