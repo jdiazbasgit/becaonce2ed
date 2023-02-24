@@ -3,6 +3,14 @@ package chat;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.TextArea;
+import java.awt.Button;
+import java.awt.Container;
+import java.awt.Frame;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Label;
+import java.awt.TextArea;
+import java.awt.TextField;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,15 +21,20 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 @SuppressWarnings("serial")
 
+@SuppressWarnings({ "serial", "unused" })
+
 public class ChatBagConSwing extends JFrame {
 
 	private JButton bRegistrar, bEnviar;
 	private JTextField tNick, tMensaje;
+	// private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
 	private JLabel lNick, lUsuarios, lMensajes;
 
 	public ChatBagConSwing() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+		setExtendedState(ChatBagConSwing.MAXIMIZED_BOTH);
 		/*
 		 * Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
 		 * setSize(dimension.width/2,dimension.height/2);
@@ -33,6 +46,14 @@ public class ChatBagConSwing extends JFrame {
 
 //Botón Registrar
 		
+
+
+		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+		setLayout(new GridBagLayout());
+		
+		//TButton REGISTRAR
+
 		setbRegistrar(new JButton("REGISTRAR"));
 		GridBagConstraints restriccionesbRegistrar = new GridBagConstraints();
 		restriccionesbRegistrar.gridx = 2;
@@ -42,6 +63,11 @@ public class ChatBagConSwing extends JFrame {
 
 //Botón Enviar
 		
+		// restriccionesbRegistrar.weighty = 0.2;
+		add(getbRegistrar(), restriccionesbRegistrar);
+		
+		//TButton ENVIAR
+
 		setbEnviar(new JButton("ENVIAR"));
 		GridBagConstraints restriccionesbEnviar = new GridBagConstraints();
 		restriccionesbEnviar.gridx = 2;
@@ -50,6 +76,12 @@ public class ChatBagConSwing extends JFrame {
 
 //TextField Nick
 		
+		// restriccionesbEnviar.weightx = 0.25;
+		// restriccionesbEnviar.weighty = 0.2;
+		add(getbEnviar(), restriccionesbEnviar);
+		
+		//TTextField NICK
+
 		settNick(new JTextField());
 		GridBagConstraints restriccionestNick = new GridBagConstraints();
 		restriccionestNick.gridx = 1;
@@ -60,6 +92,12 @@ public class ChatBagConSwing extends JFrame {
 		
 //TextField Mensaje
 		
+		// restriccionestNick.weighty = 0.2;
+		restriccionestNick.fill = GridBagConstraints.HORIZONTAL;
+		add(gettNick(), restriccionestNick);
+		
+		//TTextField MENSAJE
+
 		settMensaje(new JTextField());
 		GridBagConstraints restriccionestMensaje = new GridBagConstraints();
 		restriccionestMensaje.gridx = 1;
@@ -70,6 +108,13 @@ public class ChatBagConSwing extends JFrame {
 
 //TextArea Mensajes
 		
+		// restriccionestMensaje.weightx = 0.5;
+		//restriccionestMensaje.weighty = 0.2;
+		restriccionestMensaje.fill = GridBagConstraints.HORIZONTAL;
+		add(gettMensaje(), restriccionestMensaje);
+		
+		//TextArea MENSAJES
+
 		setTaMensajes(new TextArea());
 		GridBagConstraints restriccionesTaMensajes = new GridBagConstraints();
 		restriccionesTaMensajes.gridx = 1;
@@ -91,6 +136,22 @@ public class ChatBagConSwing extends JFrame {
 
 // Label Nick
 		
+		restriccionesTaMensajes.fill = GridBagConstraints.BOTH;
+		add(getTaMensajes(), restriccionesTaMensajes);
+		
+		//TextArea USUARIOS
+
+		setTaUsuarios(new TextArea(30, 1));
+		GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
+		restriccionesTaUsuarios.gridx = 0;
+		restriccionesTaUsuarios.gridy = 2;
+		//restriccionesTaUsuarios.weightx = 0.5;
+		//restriccionesTaUsuarios.weighty = 0.5;
+		restriccionesTaUsuarios.fill = GridBagConstraints.BOTH;
+		add(getTaUsuarios(), restriccionesTaUsuarios);
+		
+		//TLabel NICK
+
 		setlNick(new JLabel("NICK"));
 		GridBagConstraints restriccioneslNick = new GridBagConstraints();
 		restriccioneslNick.gridx = 0;
@@ -101,6 +162,10 @@ public class ChatBagConSwing extends JFrame {
 
 // Label Usuarios
 		
+		add(getlNick(), restriccioneslNick);
+		
+		//TLabel USUARIOS
+
 		setlUsuarios(new JLabel("USUARIOS"));
 		GridBagConstraints restriccioneslUsuarios = new GridBagConstraints();
 		restriccioneslUsuarios.gridx = 0;
@@ -116,6 +181,27 @@ public class ChatBagConSwing extends JFrame {
 		restriccioneslMensajes.weighty = 0.2;
 		getContentPane().add(getlMensajes(), restriccioneslMensajes);
 
+		//restriccioneslUsuarios.weightx = 1;
+		restriccioneslUsuarios.weighty = 0.1;
+		add(getlUsuarios(), restriccioneslUsuarios);
+		
+		//TLabel MENSAJES
+
+		setlMensajes(new JLabel("MENSAJE"));
+		GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
+		restriccioneslMensajes.gridx = 0;
+		restriccioneslMensajes.gridy = 3;
+		//restriccioneslMensajes.weightx = 0.2;
+		restriccioneslMensajes.weighty = 0.2;
+		add(getlMensajes(), restriccioneslMensajes);
+
+		// componentes
+
+	}
+
+	private void addMouseListener() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public JButton getbRegistrar() {

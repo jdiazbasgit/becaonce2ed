@@ -4,6 +4,7 @@ public class VerChatBagConSwing {
 
 	public static void main(String[] args) {
 		ChatBagConSwing chat= new ChatBagConSwing();
+		ChatBagConSwing chat = new ChatBagConSwing();
 		chat.setVisible(true);
 	}
 

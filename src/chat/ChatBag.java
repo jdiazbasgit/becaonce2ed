@@ -1,6 +1,7 @@
 package chat;
 
 import java.awt.Button;
+import java.awt.Container;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,14 +15,18 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 @SuppressWarnings("serial")
 
+@SuppressWarnings({ "serial", "unused" })
+
 public class ChatBag extends Frame {
 
 	private Button bRegistrar, bEnviar;
 	private TextField tNick, tMensaje;
+	// private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
 	private Label lNick, lUsuarios, lMensajes;
 
 	public ChatBag() {
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		/*
 		 * Dimension dimension=Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,6 +39,13 @@ public class ChatBag extends Frame {
 
 //Botón Registrar
 		
+
+		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
+		this.addMouseListener(new ElQueSabeLoQueHayQueHacerConElRaton());
+		setLayout(new GridBagLayout());
+		
+		//BUTTON REGISTRAR
+
 		setbRegistrar(new Button("REGISTRAR"));
 		GridBagConstraints restriccionesbRegistrar = new GridBagConstraints();
 		restriccionesbRegistrar.gridx = 2;
@@ -43,6 +55,11 @@ public class ChatBag extends Frame {
 
 //Botón Enviar
 		
+		// restriccionesbRegistrar.weighty = 0.2;
+		add(getbRegistrar(), restriccionesbRegistrar);
+		
+		//BUTTON ENVIAR
+
 		setbEnviar(new Button("ENVIAR"));
 		GridBagConstraints restriccionesbEnviar = new GridBagConstraints();
 		restriccionesbEnviar.gridx = 2;
@@ -51,6 +68,13 @@ public class ChatBag extends Frame {
 
 //TextField Nick
 		
+
+		// restriccionesbEnviar.weightx = 0.25;
+		// restriccionesbEnviar.weighty = 0.2;
+		add(getbEnviar(), restriccionesbEnviar);
+		
+		//TextField NICK
+
 		settNick(new TextField());
 		GridBagConstraints restriccionestNick = new GridBagConstraints();
 		restriccionestNick.gridx = 1;
@@ -61,6 +85,12 @@ public class ChatBag extends Frame {
 		
 //TextField Mensaje
 		
+		// restriccionestNick.weighty = 0.2;
+		restriccionestNick.fill = GridBagConstraints.HORIZONTAL;
+		add(gettNick(), restriccionestNick);
+		
+		//TextField MENSAJE
+
 		settMensaje(new TextField());
 		GridBagConstraints restriccionestMensaje = new GridBagConstraints();
 		restriccionestMensaje.gridx = 1;
@@ -71,6 +101,13 @@ public class ChatBag extends Frame {
 
 //TextArea Mensajes
 		
+		// restriccionestMensaje.weightx = 0.5;
+		//restriccionestMensaje.weighty = 0.2;
+		restriccionestMensaje.fill = GridBagConstraints.HORIZONTAL;
+		add(gettMensaje(), restriccionestMensaje);
+		
+		//TextArea MENSAJES
+
 		setTaMensajes(new TextArea());
 		GridBagConstraints restriccionesTaMensajes = new GridBagConstraints();
 		restriccionesTaMensajes.gridx = 1;
@@ -92,6 +129,22 @@ public class ChatBag extends Frame {
 
 // Label Nick
 		
+		restriccionesTaMensajes.fill = GridBagConstraints.BOTH;
+		add(getTaMensajes(), restriccionesTaMensajes);
+		
+		//TextArea USUARIOS
+
+		setTaUsuarios(new TextArea(30, 1));
+		GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
+		restriccionesTaUsuarios.gridx = 0;
+		restriccionesTaUsuarios.gridy = 2;
+		//restriccionesTaUsuarios.weightx = 0.5;
+		//restriccionesTaUsuarios.weighty = 0.5;
+		restriccionesTaUsuarios.fill = GridBagConstraints.BOTH;
+		add(getTaUsuarios(), restriccionesTaUsuarios);
+		
+		//Label NICK
+
 		setlNick(new Label("NICK"));
 		GridBagConstraints restriccioneslNick = new GridBagConstraints();
 		restriccioneslNick.gridx = 0;
@@ -102,6 +155,9 @@ public class ChatBag extends Frame {
 
 // Label Usuarios
 		
+		
+		//Label USUARIOS
+
 		setlUsuarios(new Label("USUARIOS"));
 		GridBagConstraints restriccioneslUsuarios = new GridBagConstraints();
 		restriccioneslUsuarios.gridx = 0;
@@ -116,6 +172,22 @@ public class ChatBag extends Frame {
 		restriccioneslMensajes.gridy = 3;
 		restriccioneslMensajes.weighty = 0.2;
 		add(getlMensajes(), restriccioneslMensajes);
+
+		//restriccioneslUsuarios.weightx = 1;
+		restriccioneslUsuarios.weighty = 0.1;
+		add(getlUsuarios(), restriccioneslUsuarios);
+		
+		//Label MENSAJES
+
+		setlMensajes(new Label("MENSAJE"));
+		GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
+		restriccioneslMensajes.gridx = 0;
+		restriccioneslMensajes.gridy = 3;
+		//restriccioneslMensajes.weightx = 0.2;
+		restriccioneslMensajes.weighty = 0.2;
+		add(getlMensajes(), restriccioneslMensajes);
+
+		// componentes
 
 	}
 

@@ -1,9 +1,11 @@
 package chat;
 
+import java.awt.BorderLayout;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
@@ -27,6 +29,7 @@ public class Chat extends JFrame {
 
 
 	public Chat() {
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.addWindowListener(new ElQueSabeLoQueHayQueHacerConLaVentana());
 
@@ -35,6 +38,10 @@ public class Chat extends JFrame {
 		setbEnviar(new Button("ENVIAR"));
 		settNick(new TextField(80));
 		
+		setbRegistrar(new Button("REGISTRAR"));
+		setbEnviar(new Button("ENVIAR"));
+		settNick(new TextField(80));
+
 		settMensaje(new TextField(80));
 		setpSuperior(new Panel());
 		setpInferior(new Panel());
@@ -83,6 +90,41 @@ public class Chat extends JFrame {
 
 
 
+
+		
+		setlMensajes(new Label("NICK"));
+		setlUsuarios(new Label("USUARIOS"));
+		setlMensajes(new Label("MENSAJES"));
+		
+
+		getpSuperior().add(getlNick());
+		getpSuperior().add(gettNick());
+		getpSuperior().add(getbRegistrar());
+
+		getpSuperior().setBackground(Color.blue);
+		add(getpSuperior(), BorderLayout.NORTH);
+
+		getpInferior().add(getlMensajes());
+		getpInferior().add(gettMensaje());
+		getpInferior().add(getbEnviar());
+		getpInferior().setBackground(Color.blue);
+		add(getpInferior(), BorderLayout.SOUTH);
+
+		getpIzquierda().setLayout(new BorderLayout());
+		getpIzquierda().setBackground(Color.YELLOW);
+		add(getpIzquierda(), BorderLayout.WEST);
+		add(getTaMensajes(), BorderLayout.CENTER);
+
+		getpIzquierdaSuperior().add(getlUsuarios());
+		getpIzquierda().add(getTaUsuarios(), BorderLayout.CENTER);
+		getpIzquierda().add(getpIzquierdaSuperior(), BorderLayout.NORTH);
+		getpIzquierdaSuperior().setBackground(Color.green);
+		this.add(getpIzquierda(), BorderLayout.WEST);
+		setbRegistrar(new Button("Nick:"));
+
+		// componentes
+
+	}
 
 	public Button getbRegistrar() {
 		return bRegistrar;
@@ -265,5 +307,4 @@ public class Chat extends JFrame {
 	
 	
 
-	
 }
