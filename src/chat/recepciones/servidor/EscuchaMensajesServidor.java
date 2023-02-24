@@ -38,9 +38,7 @@ public class EscuchaMensajesServidor extends Servidor {
 			String respuesta = null;
 			while (resultSet.next()) {					
 				respuesta = resultSet.getString(1) + " dice: " + mensaje;					
-			}	
-			
-			
+			}			
 			
 			PreparedStatement preparedStatementConsulta2 = conexion
 					.prepareStatement("SELECT IP_ADDRESS FROM chatbbdd.users;");
