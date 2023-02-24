@@ -15,7 +15,6 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConLaVentana;
 import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 @SuppressWarnings("serial")
 
-@SuppressWarnings({ "serial", "unused" })
 
 public class ChatBag extends Frame {
 
@@ -135,7 +134,7 @@ public class ChatBag extends Frame {
 		//TextArea USUARIOS
 
 		setTaUsuarios(new TextArea(30, 1));
-		GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
+		//GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
 		restriccionesTaUsuarios.gridx = 0;
 		restriccionesTaUsuarios.gridy = 2;
 		//restriccionesTaUsuarios.weightx = 0.5;
@@ -180,7 +179,7 @@ public class ChatBag extends Frame {
 		//Label MENSAJES
 
 		setlMensajes(new Label("MENSAJE"));
-		GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
+		//GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
 		restriccioneslMensajes.gridx = 0;
 		restriccioneslMensajes.gridy = 3;
 		//restriccioneslMensajes.weightx = 0.2;
