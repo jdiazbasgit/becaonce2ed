@@ -24,18 +24,18 @@ public class EjemploDatos {
 					"Cursocurso1;");
 			// "jdbc:oracle:@thin:localhost:1521:company"
 
-			PreparedStatement preparedStatement1 = conexion
+			PreparedStatement row = conexion
 					.prepareStatement("insert into roles (rol) values (?)");
-			preparedStatement1.setString(1, "Javier");
-			//preparedStatement1.execute();
-			preparedStatement1.setString(1, "asoltero triste");
-			//preparedStatement1.execute();
-			preparedStatement1.setString(1, "asoltero solo");
-			//preparedStatement1.execute();
+			row.setString(1, "Javier");
+			//row.execute();
+			row.setString(1, "asoltero triste");
+			//row.execute();
+			row.setString(1, "asoltero solo");
+			//row.execute();
 			
-			PreparedStatement preparedStatement2 = conexion
+			PreparedStatement row2 = conexion
 					.prepareStatement("delete from mAriTal_staTuses where description like '%soltero%'");
-			//preparedStatement2.execute();
+			//row2.execute();
 
 			PreparedStatement preparedStatement = conexion
 					.prepareStatement("SELECT name, nif FROM employees");
