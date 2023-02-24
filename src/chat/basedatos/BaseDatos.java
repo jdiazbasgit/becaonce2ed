@@ -80,12 +80,14 @@ public static final String QUERY_CONSULTA="SELECT CHAT.USUARIO FROM CHAT.USUARIO
 			preparedStatement.setString(1,USUARIO);
 			resulSet=preparedStatement.executeQuery();
 			resulSet.next();
+			
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return usuario;
 		
-		return null;
+	
 	}
 
 }
