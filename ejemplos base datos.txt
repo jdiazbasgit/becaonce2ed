@@ -1,0 +1,61 @@
+Create -> 
+
+INSERT INTO [TABLAS] (NOMBRES DE LOS CAMPOS) VALUES (VALORES DE LOS CAMPOS)
+INSERT INTO COMPANY.charges (DESCRIPTION) VALUES ('Rafael'); //entre comilla simple para darle un String
+INSERT INTO COMPANY.children (GUYS,GIRLS) VALUES (69,96);
+INSERT INTO COMPANY.companies (CIF,DESCRIPTION) VALUES ('R3333333','MONASTERIO DE SAN RAFAEL');
+INSERT INTO COMPANY.employees (NAME,NIF,PHONE,BIRTH_DATE,DATE_HIGHT,LOW_DATE,PERSONAL_INFORMATION_ID,LABORAL_INFORMATION_ID,COMPANIES_ID)
+					VALUES ('RAFAEL','00000014Z',626262626,'1908/12/1','1998/2/27','2022/8/7',19,31,46);
+//si queremos dejar NULL en el campo low_date (fecha de baja), omitimos el campo al pasar los valores a modificar en el insert y tambien omitimos el valor en el value
+
+
+Retrieve ->
+
+SELECT [CAMPOS] FROM [TABLAS] WHERE [CODICIONES, FILTROS] ORDER BY [CAMPOS]
+
+Update
+
+UPDATE {TABLAS} SET [CMPO]=[VALOR]
+UPDATE COMPANY.companies SET DESCRIPTION='RAFAEL' WHERE ID=2;
+UPDATE COMPANY.companies SET CIF='B0000088', DESCRIPTION='RAFAEL' WHERE DESCRIPTION LIKE 'RAF%'; //actualiza todas las entradas que comienzan por RAF... en la DESCRIPTION
+
+
+Delete
+
+DELETE FROM [TABLAS] WHERE [CONDICIONES]
+DELETE FROM COMPANY.personal_information WHERE ID=6; //borra toda la fila
+
+EJEMPLOS
+
+SELECT * FROM company.marital_statuses;
+UPDATE company.marital_statuses SET DESCRIPTION='SEPARADO' WHERE ID=41;
+
+DELETE FROM MARITAL_STATUSES ;INSERT INTO MARITAL_STATUSES (DESCRIPTION) VALUES ('CASADO');
+INSERT INTO MARITAL_STATUSES (DESCRIPTION) VALUES ('DIVORCIADO');
+INSERT INTO MARITAL_STATUSES (DESCRIPTION) VALUES ('VIUDO');
+INSERT INTO MARITAL_STATUSES (DESCRIPTION) VALUES ('SEPADARO');
+INSERT INTO MARITAL_STATUSES (DESCRIPTION) VALUES ('PAREJA DE HECHO');
+
+select   ms.description,ch.girls  from marital_statuses as ms, children as ch, personal_information pi 
+where ms.id=pi.marital_statuses_id and ch.id=pi.children_id;
+
+
+
+select e.NAME AS NOMBRE,e.NIF AS DNI,e.DATE_HIGHT AS FECHA_ALTA,
+c.DESCRIPTION AS CARGO,ms.DESCRIPTION AS ESTADO_CIVIL,ch.GIRLS AS CHICAS
+from employees as e,charges as c,marital_statuses as ms,
+children as ch,personal_information as pi,laboral_information as li
+WHERE ch.id=pi.children_id 
+and ms.id=pi.marital_statuses_id 
+and pi.id=e.personal_information_id
+and c.id=li.charges_id 
+and li.id=e.laboral_information_id
+
+
+select em.name, li.salary, ch.guys, ms.description 
+from employees as em, laboral_information as li, children as ch, marital_statuses as ms, personal_information as pi
+
+where ms.id=pi.marital_statuses_id
+and ch.id=pi.children_id
+and li.id=em.LABORAL_INFORMATION_ID
+and em.PERSONAL_INFORMATION_ID=pi.id;
