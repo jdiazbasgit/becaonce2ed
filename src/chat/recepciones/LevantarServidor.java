@@ -29,13 +29,13 @@ public class LevantarServidor {
 		Connection conexion = null;
 		try {
 			DriverManager.registerDriver(new Driver());			
-			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://"+Cliente.IP_SERVIDOR+":"+Cliente.PUERTO_BBDD+ "/?useSSL=false",
+			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://"+Cliente.IP_SERVIDOR+":"+Cliente.PUERTO_BBDD+ "/CHAT?useSSL=false",
 					"curso", "Cursocurso1;");
 			
-			PreparedStatement preparedStatement1 = conexion.prepareStatement("DROP TABLE IF EXISTS chatbbdd.users;");
+			PreparedStatement preparedStatement1 = conexion.prepareStatement("DROP TABLE IF EXISTS users;");
 			preparedStatement1.execute();
 			
-			PreparedStatement preparedStatement2 = conexion.prepareStatement("CREATE TABLE chatbbdd.users ("
+			PreparedStatement preparedStatement2 = conexion.prepareStatement("CREATE TABLE users ("
 					+ "  `ID` INT NOT NULL AUTO_INCREMENT,"
 					+ "  `NAME` VARCHAR(45) NOT NULL,"
 					+ "  `IP_ADDRESS` VARCHAR(45) NOT NULL,"

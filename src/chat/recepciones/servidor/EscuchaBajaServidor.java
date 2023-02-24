@@ -29,14 +29,14 @@ public class EscuchaBajaServidor extends Servidor {
 			String ip = socket.getInetAddress().getHostAddress();
 			DriverManager.registerDriver(new Driver());
 			conexion = (Connection) DriverManager.getConnection(
-					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/?useSSL=false",
+					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/CHAT?useSSL=false",
 					"curso", "Cursocurso1;");
 			PreparedStatement preparedStatement1 = conexion.prepareStatement(
-					"DELETE FROM chatbbdd.users WHERE IP_ADDRESS='"+ip+"';");
+					"DELETE FROM users WHERE IP_ADDRESS='"+ip+"';");
 			preparedStatement1.execute();
 						
 			PreparedStatement preparedStatementConsulta2 = conexion
-					.prepareStatement("SELECT IP_ADDRESS FROM chatbbdd.users;");
+					.prepareStatement("SELECT IP_ADDRESS FROM users;");
 			ResultSet resultSet2 = preparedStatementConsulta2.executeQuery();
 			while (resultSet2.next()) {					
 					EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(resultSet2.getString(1), Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, getChat());

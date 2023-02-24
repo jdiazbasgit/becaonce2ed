@@ -41,11 +41,11 @@ public class EscuchaRegistroCliente extends Servidor {
 		try {			
 			DriverManager.registerDriver(new Driver());
 			conexion = (Connection) DriverManager.getConnection(
-					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/?useSSL=false",
+					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/CHAT?useSSL=false",
 					"curso", "Cursocurso1;");
 
 			PreparedStatement preparedStatementConsulta = conexion
-					.prepareStatement("SELECT NAME FROM chatbbdd.users;");
+					.prepareStatement("SELECT NAME FROM users;");
 			ResultSet resultSet = preparedStatementConsulta.executeQuery();
 			getChat().getTaUsuarios().setText("");
 			while (resultSet.next()) {

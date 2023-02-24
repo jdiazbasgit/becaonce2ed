@@ -29,11 +29,11 @@ public class EscuchaMensajesServidor extends Servidor {
 			String ip = socket.getInetAddress().getHostAddress();
 			DriverManager.registerDriver(new Driver());
 			conexion = (Connection) DriverManager.getConnection(
-					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/?useSSL=false",
+					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/CHAT?useSSL=false",
 					"curso", "Cursocurso1;");
 						
 			PreparedStatement preparedStatementConsulta = conexion
-					.prepareStatement("SELECT NAME FROM chatbbdd.users WHERE IP_ADDRESS='"+ip+"';");
+					.prepareStatement("SELECT NAME FROM users WHERE IP_ADDRESS='"+ip+"';");
 			ResultSet resultSet = preparedStatementConsulta.executeQuery();
 			String respuesta = null;
 			while (resultSet.next()) {					
@@ -41,7 +41,7 @@ public class EscuchaMensajesServidor extends Servidor {
 			}			
 			
 			PreparedStatement preparedStatementConsulta2 = conexion
-					.prepareStatement("SELECT IP_ADDRESS FROM chatbbdd.users;");
+					.prepareStatement("SELECT IP_ADDRESS FROM users;");
 			ResultSet resultSet2 = preparedStatementConsulta2.executeQuery();
 			while (resultSet2.next()) {					
 				EnvioMensajeServidor envioMensajeServidor = new EnvioMensajeServidor(resultSet2.getString(1),
