@@ -15,7 +15,7 @@ import chat.recepciones.servidor.EscuchaRegistroServidor;
 public class LevantarServidor {
 
 
-	public static final int PUERTO_BBDD = 3306;
+	
 
 	public static void main(String[] args) {
 		EscuchaRegistroServidor escuchaRegistroServidor =
@@ -29,7 +29,7 @@ public class LevantarServidor {
 		Connection conexion = null;
 		try {
 			DriverManager.registerDriver(new Driver());			
-			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://"+Cliente.IP_SERVIDOR+":"+PUERTO_BBDD+ "/?useSSL=false",
+			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://"+Cliente.IP_SERVIDOR+":"+Cliente.PUERTO_BBDD+ "/?useSSL=false",
 					"curso", "Cursocurso1;");
 			
 			PreparedStatement preparedStatement1 = conexion.prepareStatement("DROP TABLE IF EXISTS chatbbdd.users;");

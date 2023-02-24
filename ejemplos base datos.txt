@@ -54,8 +54,20 @@ and li.id=e.laboral_information_id
 
 select em.name, li.salary, ch.guys, ms.description 
 from employees as em, laboral_information as li, children as ch, marital_statuses as ms, personal_information as pi
-
 where ms.id=pi.marital_statuses_id
 and ch.id=pi.children_id
 and li.id=em.LABORAL_INFORMATION_ID
 and em.PERSONAL_INFORMATION_ID=pi.id;
+
+arriba con WHERE
+-------------------------------------------------------------------------
+abajo con JOIN
+
+SELECT e.NAME AS NOMBRE, e.NIF AS DNI, e.DATE_HIGHT AS FECHA_ALTA,
+       c.DESCRIPTION AS CARGO, ms.DESCRIPTION AS ESTADO_CIVIL, ch.GIRLS AS CHICAS
+FROM employees as e
+INNER JOIN personal_information as pi ON e.personal_information_id = pi.id
+INNER JOIN marital_statuses as ms ON pi.marital_statuses_id = ms.id
+INNER JOIN children as ch ON pi.children_id = ch.id
+INNER JOIN laboral_information  as li ON e.laboral_information_id = li.id
+INNER JOIN charges as c ON li.charges_id = c.id;

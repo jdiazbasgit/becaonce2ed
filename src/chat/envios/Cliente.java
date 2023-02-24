@@ -22,6 +22,7 @@ public abstract class Cliente extends Thread {
 	public static final int PUERTO_ESCUCHA_MENSAJE_CLIENTE = 5003;
 	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
 	public static final String IP_SERVIDOR = "127.0.0.1";
+	public static final int PUERTO_BBDD = 3306;
 	
 	//public static Map<String, String> usuarios= new HashMap<>();
 

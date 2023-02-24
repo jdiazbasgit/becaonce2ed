@@ -37,7 +37,7 @@ public class EscuchaRegistroServidor extends Servidor {
 			String ip = socket.getInetAddress().getHostAddress();
 			DriverManager.registerDriver(new Driver());
 			conexion = (Connection) DriverManager.getConnection(
-					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + LevantarServidor.PUERTO_BBDD + "/?useSSL=false",
+					"jdbc:mysql://" + Cliente.IP_SERVIDOR + ":" + Cliente.PUERTO_BBDD + "/?useSSL=false",
 					"curso", "Cursocurso1;");
 
 			PreparedStatement preparedStatementConsulta = conexion
