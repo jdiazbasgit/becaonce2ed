@@ -147,8 +147,8 @@ public class ChatGridBag extends JFrame {
 		gbcchUsuarios.gridy=5;
 		gbcchUsuarios.weighty=0.1;
 		gbcchUsuarios.anchor=GridBagConstraints.EAST;
+	
 		*/
-		
 		gcbTextFieldMensaje.gridx = 1;
 		gcbTextFieldMensaje.gridy = 7;
 		gcbTextFieldMensaje.weighty = 0.2;
