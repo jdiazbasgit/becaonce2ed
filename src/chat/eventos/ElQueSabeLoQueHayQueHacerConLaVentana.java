@@ -3,6 +3,9 @@ package chat.eventos;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import chat.envios.Cliente;
+import chat.envios.cliente.EnvioBajaCliente;
+
 public class ElQueSabeLoQueHayQueHacerConLaVentana implements WindowListener {
 
 	@Override
@@ -13,6 +16,8 @@ public class ElQueSabeLoQueHayQueHacerConLaVentana implements WindowListener {
 
 	@Override
 	public void windowClosing(WindowEvent e) {
+		EnvioBajaCliente envioBajaCliente= new EnvioBajaCliente(Cliente.IP_SERVIDOR, Cliente.PUERTO_ENVIO_BAJA_CLIENTE, null);
+		envioBajaCliente.start();
 		System.exit(0);
 	}
 
