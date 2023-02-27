@@ -21,7 +21,7 @@ public class Chat extends JFrame {
 	private TextField tNick, tMensaje;
 	private Panel pSuperior, pInferior, pIzquierda, pIzquierdaSuperior;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private Label lNick, lUsuarios, lMensajes, lPrivate;
 
 
 
@@ -45,7 +45,7 @@ public class Chat extends JFrame {
 		setlNick(new Label("NICK"));
 		setlUsuarios(new Label ("USUARIOS"));
 		setlMensajes(new Label("MENSAJES"));
-		
+		setlPrivate(new Label("PRIVATE"));
 		
 		getpSuperior().add(getlNick());
 		getpSuperior().add(gettNick());
@@ -67,21 +67,14 @@ public class Chat extends JFrame {
 		getpIzquierdaSuperior().add(getlUsuarios());
 		getpIzquierda().add(getTaUsuarios(),BorderLayout.CENTER);
 		getpIzquierda().add(getpIzquierdaSuperior(), BorderLayout.NORTH);
+		getpIzquierdaSuperior().add(getlPrivate(),BorderLayout.SOUTH);
 		getpIzquierdaSuperior().setBackground(Color.YELLOW);
 		add(getpIzquierda(),BorderLayout.WEST);
-		
-		
-		
-		
-		
 
 
 		setbRegistrar(new Button("Nick:"));
-
 		
 	}
-
-
 
 
 	public Button getbRegistrar() {
@@ -261,6 +254,16 @@ public class Chat extends JFrame {
 
 	public void setlMensajes(Label lMensajes) {
 		this.lMensajes = lMensajes;
+	}
+
+
+	public Label getlPrivate() {
+		return lPrivate;
+	}
+
+
+	public void setlPrivate(Label lPrivate) {
+		this.lPrivate = lPrivate;
 	}
 	
 	

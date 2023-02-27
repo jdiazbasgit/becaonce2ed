@@ -1,6 +1,7 @@
 package chat;
 
 import java.awt.Button;
+import java.awt.Choice;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,10 +17,11 @@ import chat.eventos.ElQueSabeLoQueHayQueHacerConElRaton;
 
 public class ChatBag extends Frame {
 
-	private Button bRegistrar, bEnviar;
+	private Choice ChSeleccionarUsuario;
+	private Button bRegistrar, bEnviar,bConfirmarUsuarios;
 	private TextField tNick, tMensaje;
 	private TextArea taMensajes, taUsuarios;
-	private Label lNick, lUsuarios, lMensajes;
+	private Label lNick, lUsuarios, lMensajes,lPrivado;
 
 	public ChatBag() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -46,7 +48,7 @@ public class ChatBag extends Frame {
 		setbEnviar(new Button("ENVIAR"));
 		GridBagConstraints restriccionesbEnviar = new GridBagConstraints();
 		restriccionesbEnviar.gridx = 2;
-		restriccionesbEnviar.gridy = 3;
+		restriccionesbEnviar.gridy = 6;
 		add(getbEnviar(), restriccionesbEnviar);
 
 //TextField Nick
@@ -64,12 +66,9 @@ public class ChatBag extends Frame {
 		settMensaje(new TextField());
 		GridBagConstraints restriccionestMensaje = new GridBagConstraints();
 		restriccionestMensaje.gridx = 1;
-		restriccionestMensaje.gridy = 3;
+		restriccionestMensaje.gridy = 6;
 		restriccionestMensaje.fill = GridBagConstraints.HORIZONTAL;
 		add(gettMensaje(), restriccionestMensaje);
-		
-
-//TextArea Mensajes
 		
 		setTaMensajes(new TextArea());
 		GridBagConstraints restriccionesTaMensajes = new GridBagConstraints();
@@ -79,18 +78,6 @@ public class ChatBag extends Frame {
 		restriccionesTaMensajes.gridheight = 2;
 		restriccionesTaMensajes.fill=GridBagConstraints.BOTH;
 		add(getTaMensajes(), restriccionesTaMensajes);
-
-//TextArea Usuarios
-		
-		setTaUsuarios(new TextArea(20,1));
-		GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
-		restriccionesTaUsuarios.gridx = 0;
-		restriccionesTaUsuarios.gridy = 2;
-		restriccionesTaUsuarios.weighty = 0.5;
-		restriccionesTaUsuarios.fill=GridBagConstraints.BOTH;
-		add(getTaUsuarios(), restriccionesTaUsuarios);
-
-// Label Nick
 		
 		setlNick(new Label("NICK"));
 		GridBagConstraints restriccioneslNick = new GridBagConstraints();
@@ -100,7 +87,12 @@ public class ChatBag extends Frame {
 		restriccioneslNick.weighty = 0.2;
 		add(getlNick(), restriccioneslNick);
 
-// Label Usuarios
+		setlMensajes(new Label("MENSAJES"));
+		GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
+		restriccioneslMensajes.gridx = 0;
+		restriccioneslMensajes.gridy = 6;
+		restriccioneslMensajes.weighty = 0.2;
+		add(getlMensajes(), restriccioneslMensajes);
 		
 		setlUsuarios(new Label("USUARIOS"));
 		GridBagConstraints restriccioneslUsuarios = new GridBagConstraints();
@@ -109,18 +101,37 @@ public class ChatBag extends Frame {
 		restriccioneslUsuarios.weighty = 0.1;
 		add(getlUsuarios(), restriccioneslUsuarios);
 
-		// Label Mensajes
-		setlMensajes(new Label("MENSAJES"));
-		GridBagConstraints restriccioneslMensajes = new GridBagConstraints();
+		setlPrivado(new Label("PRIVATE"));
+		GridBagConstraints restriccioneslPrivado = new GridBagConstraints();
 		restriccioneslMensajes.gridx = 0;
 		restriccioneslMensajes.gridy = 3;
-		restriccioneslMensajes.weighty = 0.2;
-		add(getlMensajes(), restriccioneslMensajes);
-
+		restriccioneslMensajes.weighty = 0.1;
+		add(getlPrivado(), restriccioneslPrivado);
+		
+		setbConfirmarUsuarios(new Button("CONFIRMAR"));
+		GridBagConstraints restriccionesbConfirmarUsuarios = new GridBagConstraints();
+		restriccionesbConfirmarUsuarios.gridx = 0;
+		restriccionesbConfirmarUsuarios.gridy = 5;
+		restriccionesbConfirmarUsuarios.weighty = 0.1;
+		add(getbConfirmarUsuarios(), restriccionesbConfirmarUsuarios);
+		
+		setChSeleccionarUsuario(new Choice());
+		GridBagConstraints restriccionesChSeleccionarUsuario = new GridBagConstraints();
+		restriccionesChSeleccionarUsuario.gridx = 0;
+		restriccionesChSeleccionarUsuario.gridy = 4;
+		restriccionesChSeleccionarUsuario.weighty = 0.15;
+		add(getChSeleccionarUsuario(), restriccionesChSeleccionarUsuario);
+		
+		setTaUsuarios(new TextArea(20,1));
+		GridBagConstraints restriccionesTaUsuarios = new GridBagConstraints();
+		restriccionesTaUsuarios.gridx = 0;
+		restriccionesTaUsuarios.gridy = 2;
+		restriccionesTaUsuarios.weighty = 0.15;
+		restriccionesTaUsuarios.fill=GridBagConstraints.BOTH;
+		add(getTaUsuarios(), restriccionesTaUsuarios);
 	}
 
 	private void addMouseListener() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -195,6 +206,30 @@ public class ChatBag extends Frame {
 	public void setlMensajes(Label lMensajes) {
 		this.lMensajes = lMensajes;
 
+	}
+
+	public Label getlPrivado() {
+		return lPrivado;
+	}
+
+	public void setlPrivado(Label lPrivado) {
+		this.lPrivado = lPrivado;
+	}
+
+	public Button getbConfirmarUsuarios() {
+		return bConfirmarUsuarios;
+	}
+
+	public void setbConfirmarUsuarios(Button bConfirmarUsuarios) {
+		this.bConfirmarUsuarios = bConfirmarUsuarios;
+	}
+
+	public Choice getChSeleccionarUsuario() {
+		return ChSeleccionarUsuario;
+	}
+
+	public void setChSeleccionarUsuario(Choice chSeleccionarUsuario) {
+		ChSeleccionarUsuario = chSeleccionarUsuario;
 	}
 
 }

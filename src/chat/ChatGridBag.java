@@ -1,10 +1,13 @@
 package chat;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Label;
 import java.awt.TextArea;
 import java.awt.Toolkit;
 
@@ -23,10 +26,11 @@ import lombok.Data;
 @Data
 public class ChatGridBag extends JFrame {
 
-	private JButton bRegistrar, bEnviar;
-	private JTextField tNick, tMensaje;
-	private TextArea taMensajes, taUsuarios;
-	private JLabel lNick, lUsuarios, lMensaje;
+	private Choice ChSeleccionarUsuario;
+	private JButton BRegistrar, BEnviar,BConfirmarUsuarios;
+	private JTextField TNick, TMensaje;
+	private TextArea TaMensajes, TaUsuarios;
+	private JLabel LNick, LUsuarios, LMensaje, LPrivado;
 
 	public ChatGridBag() {
 
@@ -105,10 +109,31 @@ public class ChatGridBag extends JFrame {
 		GridBagConstraints gcbTextAreaUsuarios = new GridBagConstraints();
 		gcbTextAreaUsuarios.gridx = 0;
 		gcbTextAreaUsuarios.gridy = 2;
-		gcbTextAreaUsuarios.weighty = 0.5;
+		gcbTextAreaUsuarios.weighty = 0.15;
 		gcbTextAreaUsuarios.fill = GridBagConstraints.BOTH;
 
 		getContentPane().add(getTaUsuarios(), gcbTextAreaUsuarios);
+		
+		setChSeleccionarUsuario(new Choice());
+		GridBagConstraints restriccionesChSeleccionarUsuario = new GridBagConstraints();
+		restriccionesChSeleccionarUsuario.gridx = 0;
+		restriccionesChSeleccionarUsuario.gridy = 4;
+		restriccionesChSeleccionarUsuario.weighty = 0.15;
+		add(getChSeleccionarUsuario(), restriccionesChSeleccionarUsuario);
+		
+		setBConfirmarUsuarios(new Button("CONFIRMAR"));
+		GridBagConstraints restriccionesbConfirmarUsuarios = new GridBagConstraints();
+		restriccionesbConfirmarUsuarios.gridx = 0;
+		restriccionesbConfirmarUsuarios.gridy = 5;
+		restriccionesbConfirmarUsuarios.weighty = 0.1;
+		add(getBConfirmarUsuarios(), restriccionesbConfirmarUsuarios);
+		
+		setLPrivado(new Label("PRIVATE"));
+		GridBagConstraints restriccioneslPrivado = new GridBagConstraints();
+		restriccioneslPrivado.gridx = 0;
+		restriccioneslPrivado.gridy = 3;
+		restriccioneslPrivado.weighty = 0.1;
+		add(getLPrivado(), restriccioneslPrivado);
 
 		// ---Tercera zona----------------------------
 
