@@ -20,6 +20,7 @@ public class EscuchaRegistroServidor extends Servidor {
 			String nick=leerMensaje(socket);
 			String ip= socket.getInetAddress().getHostAddress();
 			Servidor.usuarios.put(ip, nick);
+			
 			for (String destino : Servidor.usuarios.keySet()) {
 				EnvioRegistroServidor envioRegistroServidor= new EnvioRegistroServidor(destino, Cliente.PUERTO_ESCUCHA_REGISTRO_CLIENTE, getChat());
 				envioRegistroServidor.start();

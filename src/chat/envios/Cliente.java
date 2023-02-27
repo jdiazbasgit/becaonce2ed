@@ -23,7 +23,7 @@ public abstract class Cliente extends Thread {
 	public static final int PUERTO_ESCUCHA_REGISTRO_CLIENTE=5001;
 	public static final int PUERTO_ESCUCHA_MENSAJE_CLIENTE = 5003;
 	public static final int PUERTO_ENVIO_BAJA_CLIENTE=5004;
-	public static final String IP_SERVIDOR = "192.168.10.29";
+	public static final String IP_SERVIDOR = "192.168.10.71";
 	
 	// public static int PUERTO_ENVIO_MENSAJE_CLIENTE = 5002;
 	// public static int PUERTO_ENVIO_ARCHIVO = 5003;
@@ -41,6 +41,7 @@ public abstract class Cliente extends Thread {
 		try {
 			socket = new Socket(getIp(), getPuerto());
 			hacerAlgo(socket);
+			System.out.println("Hacer algo::: "+socket);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
