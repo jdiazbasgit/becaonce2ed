@@ -1,27 +1,36 @@
 package chatPrivado;
 
+import java.awt.Choice;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import javafx.scene.paint.Color;
+
+import javax.swing.JPanel;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class ChatPrivado extends JFrame {
 
-	private JButton bRegistrar, bEnviar;
-	private JTextField tNick, tMensaje;
-	private JTextArea taMensajes, taUsuarios;
-	private JLabel lNick, lUsuarios, lMensajes;
+	private JButton BRegistrar, BEnviar, BEnviarPrivado;
+	private JTextField TNick, TMensaje;
+	private JTextArea TaMensajes;
+	private JLabel LNick, LUsuarios, LMensajes, LPrivado;
+	private JList<String> ListUsuarios;
+	
+	DefaultListModel<String> Usuarios = new DefaultListModel<String>();
 	
 	public ChatPrivado() {
 		//setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -40,7 +49,7 @@ public class ChatPrivado extends JFrame {
 	    setIconImage(img.getImage());
 		
 		/* 1 ==========================================================*/
-		setlNick(new JLabel("Apodo:"));
+		setLNick(new JLabel("Usuario:"));
 		GridBagConstraints restLNick =new GridBagConstraints();
 		restLNick.insets = new Insets(0, 0, 0, 10);
 		restLNick.gridx = 0;
@@ -48,8 +57,8 @@ public class ChatPrivado extends JFrame {
 		restLNick.weightx=0.05;
 		restLNick.weighty=0.05;
 		restLNick.anchor = GridBagConstraints.EAST;
-		getlNick().setFont(new Font("Verdana", Font.PLAIN, 20));
-		getContentPane().add(getlNick(), restLNick);
+		getLNick().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(getLNick(), restLNick);
 		
 		settNick(new JTextField(""));
 		GridBagConstraints restTNick =new GridBagConstraints();
@@ -61,35 +70,54 @@ public class ChatPrivado extends JFrame {
 		gettNick().setFont(new Font("Verdana", Font.PLAIN, 20));
 		getContentPane().add(gettNick(),restTNick);
 
-		setbRegistrar(new JButton("Registrar"));
+		setBRegistrar(new JButton("Registrar"));
 		GridBagConstraints restBRegistrar =new GridBagConstraints();
 		restBRegistrar.gridx = 2;
 		restBRegistrar.gridy = 0;
 		restBRegistrar.weightx=0.05;
 		restBRegistrar.ipady=5;
 		restBRegistrar.ipadx=40;
-		getbRegistrar().setFont(new Font("Verdana", Font.PLAIN, 15));
-		getContentPane().add(getbRegistrar(),restBRegistrar);
+		getBRegistrar().setFont(new Font("Verdana", Font.PLAIN, 15));
+		getContentPane().add(getBRegistrar(),restBRegistrar);
 		/* ==========================================================*/
 		
-		/* 2 ==========================================================*/
-		setlUsuarios(new JLabel("Usuarios:"));
+		/* 2 ==========================================================*/			
+		setLUsuarios(new JLabel("Usuarios:"));
 		GridBagConstraints restLUsuarios =new GridBagConstraints();
 		restLUsuarios.gridx = 0;
 		restLUsuarios.gridy = 1;
 		restLUsuarios.weighty=0.05;
-		getlUsuarios().setFont(new Font("Verdana", Font.PLAIN, 20));
-		getContentPane().add(getlUsuarios(),restLUsuarios);
-		
-		setTaUsuarios(new JTextArea("", 20, 1));
+		getLUsuarios().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(getLUsuarios(),restLUsuarios);
+			
+		setListUsuarios(new JList<>(Usuarios));
 		GridBagConstraints restTaUsuarios =new GridBagConstraints();
 		restTaUsuarios.gridx = 0;
 		restTaUsuarios.gridy = 2;
-		restTaUsuarios.weighty=0.55;
+		restTaUsuarios.weighty=0.50;
 		restTaUsuarios.fill = GridBagConstraints.BOTH;
-		getTaUsuarios().setEditable(false);
-		getTaUsuarios().setFont(new Font("Verdana", Font.PLAIN, 15));
-		getContentPane().add(getTaUsuarios(),restTaUsuarios);
+		getListUsuarios().setFont(new Font("Verdana", Font.PLAIN, 15));
+		getContentPane().add(getListUsuarios(),restTaUsuarios);
+		
+		setLPrivado(new JLabel("Privado"));
+		GridBagConstraints restLPrivado =new GridBagConstraints();
+		restLPrivado.gridx = 0;
+		restLPrivado.gridy = 3;
+		restLPrivado.weighty=0.05;
+		getLPrivado().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(getLPrivado(),restLPrivado);
+		
+		Choice ChoiceUsuarioPrivado = new Choice();   
+		ChoiceUsuarioPrivado.add("....");    
+		ChoiceUsuarioPrivado.add("....");
+		GridBagConstraints restCPrivado =new GridBagConstraints();
+		restCPrivado.gridx = 0;
+		restCPrivado.gridy = 4;
+		restCPrivado.weighty=0.05;
+		ChoiceUsuarioPrivado.setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(ChoiceUsuarioPrivado,restCPrivado);
+		
+		
 		/* ==========================================================*/
 		
 		
@@ -108,104 +136,120 @@ public class ChatPrivado extends JFrame {
 		/* ==========================================================*/
 		
 		/* 4 ==========================================================*/
-		setlMensajes(new JLabel("Mensaje:"));
+		setLMensajes(new JLabel("Mensaje:"));
 		GridBagConstraints restLMensajes =new GridBagConstraints();
 		restLMensajes.insets = new Insets(0, 0, 0, 10);
 		restLMensajes.gridx = 0;
-		restLMensajes.gridy = 3;
+		restLMensajes.gridy = 5;
 		restLMensajes.weighty=0.1;
-		getlMensajes().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getLMensajes().setFont(new Font("Verdana", Font.PLAIN, 20));
 		restLMensajes.anchor = GridBagConstraints.EAST;
-		getContentPane().add(getlMensajes(),restLMensajes);
+		getContentPane().add(getLMensajes(),restLMensajes);
 
-		settMensaje(new JTextField("", 0));
+		setTMensaje(new JTextField("", 0));
 		GridBagConstraints restTMensaje =new GridBagConstraints();
 		restTMensaje.gridx = 1;
-		restTMensaje.gridy = 3;	
+		restTMensaje.gridy = 5;	
 		restTMensaje.fill = GridBagConstraints.HORIZONTAL;
 		restTMensaje.insets = new Insets(0, 5, 0, 0);
-		gettMensaje().setFont(new Font("Verdana", Font.PLAIN, 20));
-		getContentPane().add(gettMensaje(),restTMensaje);
+		getTMensaje().setFont(new Font("Verdana", Font.PLAIN, 20));
+		getContentPane().add(getTMensaje(),restTMensaje);
 		
-		setbEnviar(new JButton("Enviar"));
+		setBEnviar(new JButton("Enviar"));
 		GridBagConstraints restBEnviar =new GridBagConstraints();
 		restBEnviar.gridx = 2;
-		restBEnviar.gridy = 3;
+		restBEnviar.gridy = 5;
 		restBEnviar.ipady=5;
 		restBEnviar.ipadx=50;
-		getbEnviar().setFont(new Font("Verdana", Font.PLAIN, 15));
-		getContentPane().add(getbEnviar(),restBEnviar);
+		getBEnviar().setFont(new Font("Verdana", Font.PLAIN, 15));
+		getContentPane().add(getBEnviar(),restBEnviar);
 	}
 	
-	public JButton getbRegistrar() {
-		return bRegistrar;
+	public JButton getBRegistrar() {
+		return BRegistrar;
 	}
 
-	public void setbRegistrar(JButton button) {
-		this.bRegistrar = button;
+	public void setBRegistrar(JButton button) {
+		this.BRegistrar = button;
 	}
 
-	public JButton getbEnviar() {
-		return bEnviar;
+	public JButton getBEnviar() {
+		return BEnviar;
 	}
 
-	public void setbEnviar(JButton bEnviar) {
-		this.bEnviar = bEnviar;
+	public void setBEnviar(JButton bEnviar) {
+		this.BEnviar = bEnviar;
 	}
 
 	public JTextField gettNick() {
-		return tNick;
+		return TNick;
 	}
 
 	public void settNick(JTextField tNick) {
-		this.tNick = tNick;
+		this.TNick = tNick;
 	}
 
-	public JTextField gettMensaje() {
-		return tMensaje;
+	public JTextField getTMensaje() {
+		return TMensaje;
 	}
 
-	public void settMensaje(JTextField tMensaje) {
-		this.tMensaje = tMensaje;
+	public void setTMensaje(JTextField tMensaje) {
+		this.TMensaje = tMensaje;
 	}
 
 	public JTextArea getTaMensajes() {
-		return taMensajes;
+		return TaMensajes;
 	}
 
 	public void setTaMensajes(JTextArea taMensajes) {
-		this.taMensajes = taMensajes;
+		this.TaMensajes = taMensajes;
 	}
 
-	public JTextArea getTaUsuarios() {
-		return taUsuarios;
+	public JLabel getLNick() {
+		return LNick;
 	}
 
-	public void setTaUsuarios(JTextArea taUsuarios) {
-		this.taUsuarios = taUsuarios;
+	public void setLNick(JLabel Label) {
+		this.LNick = Label;
 	}
 
-	public JLabel getlNick() {
-		return lNick;
+	public JLabel getLUsuarios() {
+		return LUsuarios;
 	}
 
-	public void setlNick(JLabel Label) {
-		this.lNick = Label;
+	public void setLUsuarios(JLabel lUsuarios) {
+		this.LUsuarios = lUsuarios;
 	}
 
-	public JLabel getlUsuarios() {
-		return lUsuarios;
+	public JLabel getLMensajes() {
+		return LMensajes;
 	}
 
-	public void setlUsuarios(JLabel lUsuarios) {
-		this.lUsuarios = lUsuarios;
+	public void setLMensajes(JLabel lMensajes) {
+		this.LMensajes = lMensajes;
 	}
 
-	public JLabel getlMensajes() {
-		return lMensajes;
+	public JButton getBEnviarPrivado() {
+		return BEnviarPrivado;
 	}
 
-	public void setlMensajes(JLabel lMensajes) {
-		this.lMensajes = lMensajes;
+	public void setBEnviarPrivado(JButton bEnviarPrivado) {
+		BEnviarPrivado = bEnviarPrivado;
+	}
+
+	public JList<String> getListUsuarios() {
+		return ListUsuarios;
+	}
+
+	public void setListUsuarios(JList<String> listUsuarios) {
+		ListUsuarios = listUsuarios;
+	}
+
+	public JLabel getLPrivado() {
+		return LPrivado;
+	}
+
+	public void setLPrivado(JLabel lPrivado) {
+		LPrivado = lPrivado;
 	}
 }
