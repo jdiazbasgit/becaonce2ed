@@ -28,24 +28,14 @@
 			%>
 		</h1>
 		<h1>
-			<%
-			HttpSession mochila = session;
-			%>
+			<jsp:useBean id="contadorPrivado" class="beans.Contador" scope="session"></jsp:useBean>
 			ERES EL
 			<div class="text-warning">VISITANTE</div>
 			NUMERO:
 			<%=contador%>
-			<%
-			if (mochila.getAttribute("visitas") == null) {
-				mochila.setAttribute("visitas", 1);
-			} else {
-				int visitas = (Integer) mochila.getAttribute("visitas");
-				visitas++;
-				mochila.setAttribute("visitas", visitas);
-			}
-			%>
+			<jsp:setProperty property="contador" name="contadorPrivado" value="<%=contadorPrivado.getContador()+1 %>"/>
 			<br> TU HAS VENIDO A VERME
-			<%=mochila.getAttribute("visitas")%>
+			<jsp:getProperty property="contador" name="contadorPrivado"/>
 			VECES
 		</h1>
 		<jsp:useBean id="miClase" class="beans.MiClase"></jsp:useBean>
