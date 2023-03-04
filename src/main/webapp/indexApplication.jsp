@@ -13,7 +13,7 @@
 <body>
 	<div class="container">
 		<h1 class="text-danger">
-			<%!int contador = 0;%>
+			<jsp:useBean id="contador" class="beans.Contador" scope="application"></jsp:useBean>
 			<!--  es propiedad -->
 			<%
 			String texto = request.getParameter("texto");
@@ -23,9 +23,7 @@
 			y tiene
 			<%=texto.length()%>
 			letras con sintaxix reducida <br>
-			<%
-			contador++;
-			%>
+			<jsp:setProperty property="contador" name="contador" value="<%=contador.getContador()+1%>"/>
 		</h1>
 		<h1>
 			<%
@@ -34,7 +32,7 @@
 			ERES EL
 			<div class="text-warning">VISITANTE</div>
 			NUMERO:
-			<%=contador%>
+			<jsp:getProperty property="contador" name="contador"/>
 			<%
 			if (mochila.getAttribute("visitas") == null) {
 				mochila.setAttribute("visitas", 1);
