@@ -12,13 +12,13 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-danger">
+		<h1 class="text-success">
 			<%!int contador = 0;%>
 			<!--  es propiedad -->
 			<%
 			String texto = request.getParameter("texto");
 			%>
-			<div class="text-success">Has escrito</div>
+			<spam class="text-success">Has escrito</spam>
 			<%=texto.toUpperCase()%>
 			y tiene
 			<%=texto.length()%>
