@@ -15,14 +15,14 @@ public class ConexionBodyTag extends BodyTagSupport {
 	private String cadena;
 	private String usuarios;
 	private String clave;
-	
+	private Connection conexion =null;
 	
 	@Override
 	public int doStartTag() throws JspException {
-		Connection conexion =null;
+		//Connection conexion =null;//
 		try {
 			DriverManager.registerDriver((Driver) new ConexionBodyTag());
-			conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/CHAT","curso","Cursocurso1;");
+			conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY","curso","Cursocurso1;");
 			return EVAL_BODY_BUFFERED;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
