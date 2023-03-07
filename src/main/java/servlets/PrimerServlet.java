@@ -21,9 +21,12 @@ public class PrimerServlet extends HttpServlet {
 		String texto = request.getParameter("texto");
 		// response.getWriter().println("<script>alert('estamos a punto de irnos a
 		// casa')</script>");
-		String salida = "<h1 style='color:#fabada'>has escrito " + texto.toUpperCase() + " y tiene " + texto.length()
+		String salida = "<h1 style='color:#00ff00'>has escrito " + texto.toUpperCase() + " y tiene " + texto.length()
 				+ " letras</h1>";
 		response.getWriter().println(salida);
+		
+		
+		
 		response.getWriter().println("<h1>ERES EL VISITANTE NUMERO: " + getContador() + "</h1>");
 		HttpSession mochila=request.getSession(true);
 		if(mochila.getAttribute("visitas")==null) {
