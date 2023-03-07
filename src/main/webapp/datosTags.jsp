@@ -16,14 +16,14 @@
 		<tr><th>Telefono</th></tr>
 			<datos:conexion cadena ="jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false" usuario = "curso" clave = "Cursocurso1;">
 				<datos:consulta>
+				
 					sentencia = "SELECT NAME, NIF, PHONE FROM COMPANY.employees;">
 					<tr><th><datos:valorcampo"1"/></th></tr>
 					<tr><th><datos:valorcampo"2"/></th></tr>
 					<tr><th><datos:valorcampo"3"/></th></tr>
+					
 				</datos:consulta>
-				
-					<li><once:valor tipo="true" /></li>
-				
+								
 			</datos:conexion>
 		
 	</div>
