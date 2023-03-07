@@ -50,7 +50,7 @@
 			<javaee:name>campo</javaee:name>
 			<javaee:required>false</javaee:required>
 			<javaee:rtexprvalue>false</javaee:rtexprvalue>
-			<javaee:type>String</javaee:type>
+			<javaee:type>int</javaee:type>
 		</javaee:attribute>
 	</javaee:tag>
 	

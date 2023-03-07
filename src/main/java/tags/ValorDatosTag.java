@@ -1,6 +1,8 @@
 package tags;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
@@ -9,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class ValorDatosTag extends TagSupport {
-	private boolean tipo;
+	private int campo;
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -18,21 +20,14 @@ public class ValorDatosTag extends TagSupport {
 
 	@Override
 	public int doEndTag() throws JspException {
-		//RepeticionesBodyTag papa = (RepeticionesBodyTag) getParent();
-		RepeticionesBodyTag papa=null;
 		try {
-			papa = (RepeticionesBodyTag) findAncestorWithClass(this, Class.forName("tags.RepeticionesBodyTag"));
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			if (isTipo())
-				pageContext.getOut().println(papa.getTexto().toUpperCase());
-			else
-				pageContext.getOut().println(papa.getTexto().toLowerCase());
+			ConsultaBodyTag consulta = (ConsultaBodyTag) findAncestorWithClass(this,
+					Class.forName("tags.ConsultaBodyTag"));			
+			//consulta.getResultSet().next();
+			pageContext.getOut().println(consulta.getResultSet().getString(getCampo()));
 			return EVAL_PAGE;
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (ClassNotFoundException | IOException | SQLException e1) {
+			e1.printStackTrace();
 			return SKIP_PAGE;
 		}
 
