@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="datos" uri="/WEB-INF/tlds/datos.tld"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,29 +24,28 @@
     box-shadow: 5px 0px 5px #0c0000;
     outline: none;       
     user-select: none;
-		}
-	.filaimpar {
-	color: rgb(19, 190, 250);
-    outline: none;       
-    user-select: none;
-    animation-name: desliz;
-    animation-duration: 2s;
+    animation-name: desliz2;
+    animation-duration: .03s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in;
 		}
 	@keyframes desliz {
     0% {
-        transform: translateX(20px);
+        transform: translateX(.5px);
         opacity: 1;
     }
 
-    100% {
-        transform: translateX(-20px);
-        opacity: 0.9;
+    40%,
+    50% {
+        transform: translateX(-1px);
+        opacity: 0.5;
     }
 
-   }
+    60% {
+        transform: translateX(.5px);
+        opacity: 1;
+    }}
     @keyframes respiracion {
     from {
         box-shadow: 0px 3px 6px #f0f0f0;
@@ -57,6 +55,7 @@
         box-shadow: 0px 3px 16px #f0f0f0;
     }
 }
+
 #texto:hover {
     animation-name: respiracion;
     animation-duration: 0.3s;
@@ -64,12 +63,11 @@
     animation-direction: alternate;
     animation-timing-function: ease-in-out;
 }
-
 	</style>
 </head>
 <body>
 	<div class="container mt-5" >
-		<table class= "table table-dark" id="texto">
+		<table class= "table table-dark table-striped" id="texto">
 		<tr>
 		<th>Nombre</th>
 		<th>NIF</th>
@@ -77,26 +75,13 @@
 		</tr>
 			<datos:conexion cadena="jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false"
 				usuario="curso" clave="Cursocurso1;">
-				<c:set var="contador" value="1"></c:set>
 				<datos:consulta
 					sentencia="SELECT NAME, NIF, PHONE FROM COMPANY.employees">
-					<c:choose>
-					<c:when test="${contador mod 2==0}">
 					<tr>
 					<td><datos:valor campo="1" /></td>
 					<td><datos:valor campo="2" /></td>
 					<td><datos:valor campo="3" /></td>
-					</tr>
-					</c:when>
-					<c:otherwise>
-					<tr class="filaimpar">
-					<td><datos:valor campo="1" /></td>
-					<td><datos:valor campo="2" /></td>
-					<td><datos:valor campo="3" /></td>
-					</tr>
-					</c:otherwise>
-					</c:choose>
-					<c:set var="contador" value="${contador+1}"></c:set>			
+					</tr>					
 				</datos:consulta>
 			</datos:conexion>
 

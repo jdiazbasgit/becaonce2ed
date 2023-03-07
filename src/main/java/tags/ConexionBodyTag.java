@@ -1,16 +1,14 @@
 package tags;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.BodyTagSupport;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import com.mysql.jdbc.Driver;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 import lombok.Data;
 
@@ -26,8 +24,8 @@ public class ConexionBodyTag extends BodyTagSupport {
 		
 		try {
 			DriverManager.registerDriver(new Driver());
-			setConexion(DriverManager.getConnection(cadena,
-					usuario, clave));
+			setConexion(DriverManager.getConnection(getCadena(),
+					getUsuario(), getClave()));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		

@@ -1,7 +1,6 @@
 package tags;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.servlet.jsp.JspException;
@@ -10,7 +9,8 @@ import javax.servlet.jsp.tagext.TagSupport;
 import lombok.Data;
 
 @Data
-public class ValorDatosTag extends TagSupport {
+public class ValorDatosTag extends TagSupport { 
+	//También valdría SimpleTagSupport nos da herencia de etiqueta sin cuerpo y sin doStart ni doAfter, en su lugar ejecuta doTag()
 	private int campo;
 
 	@Override

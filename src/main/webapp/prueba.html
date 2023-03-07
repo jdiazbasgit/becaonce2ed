@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Tabla de Empleados</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap')
+	;
+
+body {
+	background: linear-gradient(135deg, rgb(161, 160, 150), rgb(44, 39, 28));
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+th {
+	font-size: 35px;
+}
+
+#texto {
+	font-family: 'Allerta Stencil', sans-serif;
+	font-size: 22px;
+	text-shadow: 2px 2px 4px #000000;
+	box-shadow: 5px 0px 5px #0c0000;
+	outline: none;
+	user-select: none;
+}
+
+.filaimpar {
+	color: rgb(19, 190, 250);
+	outline: none;
+	user-select: none;
+	animation-name: desliz;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+
+@
+keyframes desliz { 0% {
+	transform: translateX(20px);
+	opacity: 1;
+}
+
+100%
+{
+transform
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+translateX
+
+
+
+
+
+
+(-20
+px
+
+
+
+
+);
+opacity
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+0
+.9
+
+
+
+
+
+
+;
+}
+}
+@
+keyframes respiracion {from { box-shadow:0px3px6px#f0f0f0;
+	
+}
+
+to {
+	box-shadow: 0px 3px 16px #f0f0f0;
+}
+
+#texto:hover {
+	animation-name: respiracion;
+	animation-duration: 0.3s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+</style>
+</head>
+<body>
+	<div class="container mt-5">
+		<table class="table table-dark" id="texto">
+			<tr>
+				<th>Nombre</th>
+				<th>NIF</th>
+				<th>Teléfono</th>
+			</tr>
+
+
+
+
+
+
+			<tr class="filaimpar">
+				<td>EDÚ</td>
+				<td>A000001</td>
+				<td>4540055445</td>
+			</tr>
+
+
+
+
+
+
+			<tr>
+				<td>RAFAEL</td>
+				<td>00000014Z</td>
+				<td>626262626</td>
+			</tr>
+
+
+
+
+
+
+
+
+			<tr class="filaimpar">
+				<td>OSCAR</td>
+				<td>52123123P</td>
+				<td>654654654</td>
+			</tr>
+
+
+
+
+
+
+			<tr>
+				<td>DAVID</td>
+				<td>A333333</td>
+				<td>999999999</td>
+			</tr>
+
+
+
+
+
+
+
+
+			<tr class="filaimpar">
+				<td>Denis</td>
+				<td>Y0314053W</td>
+				<td>660621295</td>
+			</tr>
+
+
+
+
+
+
+			<tr>
+				<td>LUISCARLOS</td>
+				<td>12345678A</td>
+				<td>612345678</td>
+			</tr>
+
+
+
+
+
+
+
+
+			<tr class="filaimpar">
+				<td>RONALD</td>
+				<td>tr324587</td>
+				<td>32146549879</td>
+			</tr>
+
+
+
+
+
+
+			<tr>
+				<td>JUAN CARLOS</td>
+				<td>505555555</td>
+				<td>650270000</td>
+			</tr>
+
+
+
+
+
+
+
+
+			<tr class="filaimpar">
+				<td>LUISFER</td>
+				<td>A000000</td>
+				<td>651651</td>
+			</tr>
+
+
+
+
+
+
+		</table>
+	</div>
+</body>
+</html>
