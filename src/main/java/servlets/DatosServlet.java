@@ -56,14 +56,15 @@ public class DatosServlet extends HttpServlet {
 				cargos.add(cargo);
 			}
 			request.setAttribute("cargos", cargos);
-			getServletContext().getRequestDispatcher("/el.jsp").forward(request, response);
+			//getServletContext().getRequestDispatcher("/el.jsp").forward(request, response);
+			response.sendRedirect("el.jsp");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		getServletContext().getRequestDispatcher("/el.jsp").forward(request, response);
+		//getServletContext().getRequestDispatcher("/el.jsp").forward(request, response);
 	}
 
 	/**
