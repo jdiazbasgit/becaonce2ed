@@ -1,6 +1,8 @@
 package tags;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
@@ -8,34 +10,26 @@ import lombok.Data;
 
 @SuppressWarnings("serial")
 @Data
-public class ValorDatosTag extends TagSupport {
-	
-@Override
+public class ValorDatosTag extends TagSupport { 
+	//También valdría SimpleTagSupport nos da herencia de etiqueta sin cuerpo y sin doStart ni doAfter, en su lugar ejecuta doTag()
+	private int campo;
+
+	@Override
 	public int doStartTag() throws JspException {
 		return SKIP_BODY;
 	}
 
 	@Override
 	public int doEndTag() throws JspException {
-		//RepeticionesBodyTag papa = (RepeticionesBodyTag) getParent();
-		ConexionBodyTag papa=null;
 		try {
-			papa = (ConexionBodyTag) findAncestorWithClass(this, Class.forName("tags.ConexionBodyTag"));
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			/*if (isTipo())
-				pageContext.getOut().println(papa.getTexto().toUpperCase());
-			else
-				pageContext.getOut().println(papa.getTexto().toLowerCase());*/
+			ConsultaBodyTag consulta = (ConsultaBodyTag) findAncestorWithClass(this, Class.forName("tags.ConsultaBodyTag"));			
+			pageContext.getOut().println(consulta.getRs().getString(getCampo()));
 			return EVAL_PAGE;
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (ClassNotFoundException | IOException | SQLException e1) {
+			e1.printStackTrace();
 			return SKIP_PAGE;
 		}
 
 	}
 
-	
 }

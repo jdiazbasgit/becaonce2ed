@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd ">
 	<javaee:tlib-version>1.2</javaee:tlib-version>
-	<javaee:short-name>datos</javaee:short-name>
+	<javaee:short-name>once</javaee:short-name>
 	<javaee:tag>
 		<javaee:name>conexion</javaee:name>
 		<javaee:tag-class>tags.ConexionBodyTag</javaee:tag-class>
@@ -42,7 +42,7 @@
 		</javaee:attribute>
 	</javaee:tag>
 	
-	<javaee:tag>
+		<javaee:tag>
 		<javaee:name>valor</javaee:name>
 		<javaee:tag-class>tags.ValorDatosTag</javaee:tag-class>
 		<javaee:body-content>JSP</javaee:body-content>
