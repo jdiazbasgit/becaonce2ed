@@ -22,6 +22,7 @@
 		<table class="table">
 			<thead>
 				<tr style="background-color: #AFD8FF;">
+					<th scope="col">ID</th>
 					<th scope="col">NOMBRE</th>
 					<th scope="col">NIF</th>
 					<th scope="col">TELEFONO</th>
@@ -29,11 +30,12 @@
 			</thead>
 			<tbody>
 				<datos:conexion cadena="jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false" usuario="curso" clave="Cursocurso1;">
-					<datos:consulta sentencia="SELECT NAME, NIF, PHONE FROM employees">
+					<datos:consulta sentencia="SELECT ID, NAME, NIF, PHONE FROM employees">
 						<tr>
 							<td><datos:valor campo="1" /></td>
 							<td><datos:valor campo="2" /></td>
 							<td><datos:valor campo="3" /></td>
+							<td><datos:valor campo="4" /></td>
 						</tr>		
 					</datos:consulta>
 				</datos:conexion>

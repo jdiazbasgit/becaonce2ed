@@ -36,7 +36,7 @@
 		<javaee:body-content>JSP</javaee:body-content>
 		<javaee:attribute>
 			<javaee:name>sentencia</javaee:name>
-			<javaee:required>false</javaee:required>
+			<javaee:required>true</javaee:required>
 			<javaee:rtexprvalue>false</javaee:rtexprvalue>
 			<javaee:type>String</javaee:type>
 		</javaee:attribute>

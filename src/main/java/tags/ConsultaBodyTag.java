@@ -21,12 +21,14 @@ public class ConsultaBodyTag extends BodyTagSupport {
 			ConexionBodyTag conexion = (ConexionBodyTag) findAncestorWithClass(this, Class.forName("tags.ConexionBodyTag"));			
 			PreparedStatement preparedStatement = conexion.getConexion().prepareStatement(getSentencia());
 			setRs(preparedStatement.executeQuery());
-			getRs().next();			
+			getRs().next();
+			
+			//return EVAL_BODY_BUFFERED;
+			return super.doStartTag();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			return SKIP_PAGE;
 		}
-		return EVAL_BODY_BUFFERED;
 	}
 
 	@Override
