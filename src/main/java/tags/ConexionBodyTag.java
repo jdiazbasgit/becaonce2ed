@@ -2,7 +2,7 @@ package tags;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Driver;
+import com.mysql.jdbc.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -21,8 +21,8 @@ public class ConexionBodyTag extends BodyTagSupport {
 	public int doStartTag() throws JspException {
 		//Connection conexion =null;//
 		try {
-			DriverManager.registerDriver((Driver) new ConexionBodyTag());
-			conexion = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY","curso","Cursocurso1;");
+			DriverManager.registerDriver(new Driver());
+			setConexion(DriverManager.getConnection(getCadena(),getUsuarios(),getClave()));
 			return EVAL_BODY_BUFFERED;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -45,9 +45,5 @@ public class ConexionBodyTag extends BodyTagSupport {
 		
 	}
 
-	public Object getConexion() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

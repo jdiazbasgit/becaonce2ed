@@ -20,11 +20,11 @@ public class ConsultaBodyTag extends BodyTagSupport {
 	public int doStartTag() throws JspException {
 		try {
 			ConexionBodyTag conexion = (ConexionBodyTag) findAncestorWithClass(this, Class.forName("tags.ConexionBodyTag"));			
-			PreparedStatement preparedStatement = conexion.getConexion().prepareStatement(sentencia);
+			PreparedStatement preparedStatement = conexion.getConexion().prepareStatement(getSentencia());
 			setResultSet(preparedStatement.executeQuery());
 			getResultSet().next();	
 			
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		
 		}
