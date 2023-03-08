@@ -1,18 +1,22 @@
 package tags;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+//cambios de git para subir
 
 public class ConsultaBodyTag extends BodyTagSupport {
+	
+	private ResultSet resultSet;
 
 	@Override
 	public int doStartTag() throws JspException {
 		
 		try {
 			ConexionBodyTags conexion = (ConexionBodyTags) findAncestorWithClass(this, Class.forName("tags.ConexionBodyTag"));
-			PreparedStatement preparedStatement = conexion.getConexion().preparedStatement(sentenia);
+			PreparedStatement preparedStatement = conexion.getConexion().preparedStatement(sentencia);
 			setResultSet(preparedStatement.executeQuery());
 			getResultSet().next();
 		} catch (Exception e) {
