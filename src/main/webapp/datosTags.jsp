@@ -31,7 +31,7 @@
 				<datos:conexion cadena="jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false" usuario="curso" clave="Cursocurso1;">
 					<datos:consulta sentencia="SELECT NAME, NIF, PHONE FROM employees">
 						<tr>
-							<td><datos:valor campo="1"/></td>
+							<td><datos:valor campo="1" /></td>
 							<td><datos:valor campo="2" /></td>
 							<td><datos:valor campo="3" /></td>
 						</tr>		

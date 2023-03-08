@@ -11,7 +11,6 @@ import lombok.Data;
 @SuppressWarnings("serial")
 @Data
 public class ValorDatosTag extends TagSupport { 
-	//También valdría SimpleTagSupport nos da herencia de etiqueta sin cuerpo y sin doStart ni doAfter, en su lugar ejecuta doTag()
 	private int campo;
 
 	@Override
