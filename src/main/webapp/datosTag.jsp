@@ -11,11 +11,11 @@
 </head>
 <body>
 	<div class="container">
-		<table>
+		<table class="table table-bordered">
 			<tr>
-				<th>NOMBRE</th>
-				<th>NIF</th>
-				<th>FECHA DE ALTA</th>
+				<td>NOMBRE</td>
+				<td>NIF</td>
+				<td>FECHA DE ALTA</td>
 			</tr>
 			<datos:conexion cadena="jdbc:mysql://82.223.202.137:3306/COMPANY"
 				usuario="curso" clave="Cursocurso1;">
@@ -24,7 +24,11 @@
 					sentencia="select NAME, NIF ,DATE_HIGHT from employees">
 					<tr>
 						<td><datos:valor campo="1" /></td>
+					</tr>
+					<tr>
 						<td><datos:valor campo="2" /></td>
+					</tr>
+					<tr>
 						<td><datos:valor campo="3" /></td>
 					</tr>
 				</datos:consulta>
