@@ -24,11 +24,7 @@
 					sentencia="select NAME, NIF ,DATE_HIGHT from employees">
 					<tr>
 						<td><datos:valor campo="1" /></td>
-					</tr>
-					<tr>
 						<td><datos:valor campo="2" /></td>
-					</tr>
-					<tr>
 						<td><datos:valor campo="3" /></td>
 					</tr>
 				</datos:consulta>
