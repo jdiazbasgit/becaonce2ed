@@ -1,13 +1,13 @@
-<<<<<<< HEAD
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
 	pageEncoding="ISO-8859-1" %>
 <%@taglib prefix="once" uri="/WEB-INF/tlds/once.tld"%>
-=======
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="datos" uri="/WEB-INF/tlds/datos.tld"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
->>>>>>> c9113e36c1d5ecc891b54577fa6d82353b72dd96
+
 <!DOCTYPE html>
 <html>
 <head>
