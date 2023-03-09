@@ -1,0 +1,12 @@
+servlets\S1.class
+tags\ConsultaBodyTag.class
+servlets\PrimerServlet.class
+beans\Contador.class
+tags\ValorTag.class
+tags\RepeticionesBodyTag.class
+servlets\DatosServlet.class
+servlets\S2.class
+tags\ValorDatosTag.class
+beans\MiClase.class
+servlets\Cargo.class
+tags\ConexionBodyTag.class
