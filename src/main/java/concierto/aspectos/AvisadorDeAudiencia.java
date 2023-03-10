@@ -76,10 +76,14 @@ public class AvisadorDeAudiencia {
 		return salida;
 		
 	}
-	
-	
-	
-	
+public void SinSonidoException() {
+	  try {
+		    ;
+		  } catch (Exception e) {		    
+		    System.out.println("Nos vamos a tomar por culo " + e.getMessage());
+		    e.printStackTrace();
+		  }
+		}	
 }
 
 
