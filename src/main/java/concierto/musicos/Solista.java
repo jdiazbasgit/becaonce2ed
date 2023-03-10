@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import concierto.anotaciones.Conectar;
+import concierto.excepciones.SinSonidoException;
 import concierto.instrumentos.Instrumento;
 import lombok.Data;
 
@@ -21,8 +22,11 @@ public class Solista extends Musico {
 	
 	@Override
 	@Conectar
-	public void tocar() {
+	public void tocar() throws SinSonidoException {
 		System.out.println(getInstrumento().sonar());
+		if ((getInstrumento().getSonido().equals("nada"))) {
+			throw new SinSonidoException();
+		}
 		try {
 			ResultSet resultSet= getConexion().prepareStatement("select id,descripcion from cargos").executeQuery();
 			while(resultSet.next()) {

@@ -49,20 +49,20 @@ public class AvisadorDeAudiencia {
 		
 	}
 	
-	@Around("sujetador()")
+	//@Around("sujetador()")
 	public Object hacerTodo(ProceedingJoinPoint joinPoint) {
 		Object salida=null;
 		Connection conexion=getConexion();
 		Solista solista=(Solista) joinPoint.getTarget();
 		try {
 			//Before
-			
 			solista.setConexion(conexion);
 			apagarMoviles();
 			salida=joinPoint.proceed();
 			//AfterReturning
 		} catch (Throwable e) {
-			//afterThrowing
+			@AfterThrowing("sujetador()")
+			
 		}
 		finally{
 			//After

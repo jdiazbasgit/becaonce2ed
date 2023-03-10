@@ -2,6 +2,7 @@ package concierto.musicos;
 
 import java.util.List;
 
+import concierto.excepciones.SinSonidoException;
 import concierto.instrumentos.Instrumento;
 import lombok.Data;
 
@@ -13,6 +14,6 @@ public abstract class Musico implements MusicoInterface {
 	private List<Instrumento> instrumentos;
 	
 	@Override
-	public abstract void tocar();
+	public abstract void tocar() throws SinSonidoException;
 
 }
