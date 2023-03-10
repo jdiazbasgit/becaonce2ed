@@ -1,6 +1,6 @@
 package tags;
 
-<<<<<<< HEAD
+
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
 public class ConsultaBodyTag extends BodyTagSupport {
@@ -67,5 +67,5 @@ public class ConsultaBodyTag extends BodyTagSupport {
 			return SKIP_PAGE;
 		}
 	}
->>>>>>> a07cc87d5c90066a49f20c4274ab22d356ed422b
+
 }
