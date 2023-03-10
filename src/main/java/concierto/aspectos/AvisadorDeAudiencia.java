@@ -61,8 +61,10 @@ public class AvisadorDeAudiencia {
 			apagarMoviles();
 			salida=joinPoint.proceed();
 			//AfterReturning
+			System.out.println("el instrumento se ha arreglado");
 		} catch (Throwable e) {
 			//afterThrowing
+			System.out.println("señores el instrumento se ha estropeado");
 		}
 		finally{
 			//After
