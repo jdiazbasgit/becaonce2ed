@@ -1,8 +1,6 @@
 package concierto.excepciones;
 
-import lombok.Data;
 
-@Data
 
 
 
