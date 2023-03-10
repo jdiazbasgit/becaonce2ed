@@ -6,10 +6,16 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd ">
 	<javaee:tlib-version>1.2</javaee:tlib-version>
 	<javaee:short-name>datos</javaee:short-name>
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
 	<javaee:tag>
 		<javaee:name>conexion</javaee:name>
 		<javaee:tag-class>tags.ConexionBodyTag</javaee:tag-class>
 		<javaee:body-content>JSP</javaee:body-content>
+<<<<<<< HEAD
 		<javaee:attribute>
 			<javaee:name>cadena</javaee:name>
 			<javaee:required>true</javaee:required>
@@ -30,6 +36,11 @@
 		</javaee:attribute>
 	</javaee:tag>
 
+=======
+		
+	</javaee:tag>
+	
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
 	<javaee:tag>
 		<javaee:name>consulta</javaee:name>
 		<javaee:tag-class>tags.ConsultaBodyTag</javaee:tag-class>
@@ -40,18 +51,33 @@
 			<javaee:rtexprvalue>false</javaee:rtexprvalue>
 			<javaee:type>String</javaee:type>
 		</javaee:attribute>
+<<<<<<< HEAD
 		
 	</javaee:tag>
 	<javaee:tag>
 		<javaee:name>valor</javaee:name>
 		<javaee:tag-class>tags.ValorPruebaTag</javaee:tag-class>
+=======
+	</javaee:tag>
+	
+	<javaee:tag>
+		<javaee:name>valor</javaee:name>
+		<javaee:tag-class>tags.ValorDatosTag</javaee:tag-class>
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
 		<javaee:body-content>JSP</javaee:body-content>
 		<javaee:attribute>
 			<javaee:name>campo</javaee:name>
 			<javaee:required>true</javaee:required>
 			<javaee:rtexprvalue>false</javaee:rtexprvalue>
+<<<<<<< HEAD
 			<javaee:type>String</javaee:type>
 		</javaee:attribute>
 		
 	</javaee:tag>
+=======
+			<javaee:type>int</javaee:type>
+		</javaee:attribute>
+	</javaee:tag>
+	
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
 </javaee:taglib>

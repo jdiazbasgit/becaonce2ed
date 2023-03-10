@@ -9,8 +9,15 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<<<<<<< HEAD
 </head>
 <body>
+=======
+	
+</head>
+<body>
+	
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
 	<div class="container">
 		<h1 class="text-success">
 			<%!int contador = 0;%>

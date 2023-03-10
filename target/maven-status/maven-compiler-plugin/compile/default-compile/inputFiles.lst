@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\servlets\PrimerServlet.java
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\servlets\S1.java
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\tags\ValorTag.java
@@ -7,3 +8,17 @@ C:\Users\UsuarioM\git\becaonce2ed\src\main\java\beans\Contador.java
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\beans\MiClase.java
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\tags\RepeticionesBodyTag.java
 C:\Users\UsuarioM\git\becaonce2ed\src\main\java\servlets\S2.java
+=======
+C:\Users\fjdia\git\becaonce2ed\src\main\java\tags\ValorDatosTag.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\servlets\S2.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\tags\ValorTag.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\servlets\S1.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\beans\Contador.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\tags\ConexionBodyTag.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\beans\MiClase.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\tags\RepeticionesBodyTag.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\servlets\Cargo.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\servlets\DatosServlet.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\tags\ConsultaBodyTag.java
+C:\Users\fjdia\git\becaonce2ed\src\main\java\servlets\PrimerServlet.java
+>>>>>>> 89f4a4cf82b2aed76fdedacb6913d5da263761db
