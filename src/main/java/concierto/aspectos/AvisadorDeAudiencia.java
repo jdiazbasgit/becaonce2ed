@@ -67,7 +67,7 @@ public class AvisadorDeAudiencia {
 		finally{
 			//After
 			encenderMoviles();
-			try {
+			try {  
 				conexion.close();
 			} catch (SQLException e) {
 			}
