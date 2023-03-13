@@ -22,13 +22,8 @@ public class Solista extends Musico {
 	
 	@Override
 	@Conectar
-	public void tocar() {
-		try {
-			System.out.println(getInstrumento().sonar());
-		} catch (SinSonidoException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public void tocar() throws SinSonidoException {
+		System.out.println(getInstrumento().sonar());
 		try {
 			ResultSet resultSet= getConexion().prepareStatement("select id,descripcion from cargos").executeQuery();
 			while(resultSet.next()) {
