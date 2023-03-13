@@ -1,5 +1,6 @@
 package concierto.trabajo;
 
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -18,10 +19,16 @@ public class ConciertoSolistaSpring {
 		
 		//solista.getInstrumento().setSonido("dfghfghdgdfghdfhdfg");
 		System.out.println("toca el solista");
-		solista.tocar();
-		MusicoInterface hombreOrquesta=(MusicoInterface) armario.getBean("hombreOrquesta");
-		System.out.println("toca el HombreOrquesta");
-		hombreOrquesta.tocar();
+		try {
+			solista.tocar();
+			MusicoInterface hombreOrquesta=(MusicoInterface) armario.getBean("hombreOrquesta");
+			System.out.println("toca el HombreOrquesta");
+			
+			hombreOrquesta.tocar();
+			
+		} catch (Exception e) {
+			System.out.println("señores  no hay instrumento para su casa");
+		}
 
 	}
 
