@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.mysql.cj.jdbc.Driver;
 
+import concierto.exception.SinSonidoException;
 import concierto.musicos.Solista;
 
 @Component
@@ -50,7 +51,7 @@ public class AvisadorDeAudiencia {
 	}
 	
 	@Around("sujetador()")
-	public Object hacerTodo(ProceedingJoinPoint joinPoint) {
+	public Object hacerTodo(ProceedingJoinPoint joinPoint) throws SinSonidoException {
 		Object salida=null;
 		Connection conexion=getConexion();
 		Solista solista=(Solista) joinPoint.getTarget();
@@ -62,6 +63,9 @@ public class AvisadorDeAudiencia {
 			salida=joinPoint.proceed();
 			//AfterReturning
 		} catch (Throwable e) {
+			solista.getInstrumento().setSonido("pi pipi pi pipi");
+			System.out.println("señores el instrumento ya esta arreglado, continuamos con el concierto");
+			solista.tocar();
 			//afterThrowing
 		}
 		finally{
