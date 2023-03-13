@@ -13,8 +13,6 @@ public class Instrumento implements InstrumentoInterface {
 		if(getSonido().equals("nada"))
 			throw new SinSonidoException();
 		
-		
-		
 		return getSonido();
 	}
 

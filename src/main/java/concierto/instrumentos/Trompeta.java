@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class Trompeta extends Instrumento {
 	
 	@Override
-	@Value("tuuu, tuuu, tuuu en anotaciones")
+	@Value("nada")
 	public void setSonido(String sonido) {
 		super.setSonido(sonido);
 	}

@@ -5,95 +5,77 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import com.mysql.cj.jdbc.Driver;
 
+import concierto.excepciones.SinSonidoException;
 import concierto.musicos.Solista;
 
 @Component
 @Aspect
 public class AvisadorDeAudiencia {
 
-	//@Pointcut("execution(* *.tocar(..))")
+	// @Pointcut("execution(* *.tocar(..))")
 	@Pointcut("execution(@concierto.anotaciones.Conectar * *.*(..))")
-	public void sujetador() {}
-	
-	//sujetador() el la referencia al pointcut
-	//@Before("sujetador()")
+	public void sujetador() {
+	}
+
+	// sujetador() el la referencia al pointcut
+	// @Before("sujetador()")
 	public void apagarMoviles() {
-		System.out.println("SEÑORES APAGUEN LOS MOVILES QUE VA A EMPEZAR EL CONCIERTO EN AROND");
+		System.out.println("SEÑORES APAGUEN LOS MOVILES QUE VA A EMPEZAR EL CONCIERTO");
 	}
-	
-	//@After("sujetador()")
+
+	// @After("sujetador()")
 	public void encenderMoviles() {
-		System.out.println("SEÑORES YA PUEDEN ENCENDER LOS MOVILES QUE EL COINCIERTO HA TERMINADO EN AROUND");
+		System.out.println("SEÑORES YA PUEDEN ENCENDER LOS MOVILES QUE EL COINCIERTO HA TERMINADO");
 	}
-	
+
 	public Connection getConexion() {
-		Connection salida= null;
+		Connection salida = null;
 		try {
 			DriverManager.registerDriver(new Driver());
-			salida=DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/empresas", "curso", "Cursocurso1;");
+			salida = DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/empresas", "curso", "Cursocurso1;");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return salida;
-		
+
 	}
-	
+
 	@Around("sujetador()")
-	public Object hacerTodo(ProceedingJoinPoint joinPoint) {
-		Object salida=null;
-		Connection conexion=getConexion();
-		Solista solista=(Solista) joinPoint.getTarget();
+	public Object hacerTodo(ProceedingJoinPoint joinPoint) throws SinSonidoException {
+		Object salida = null;
+		Connection conexion = getConexion();
+		Solista solista = (Solista) joinPoint.getTarget();
 		try {
-			//Before
-			
+			// Before
+
 			solista.setConexion(conexion);
 			apagarMoviles();
-			salida=joinPoint.proceed();
-			//AfterReturning
+			salida = joinPoint.proceed();
+			// AfterReturning
 		} catch (Throwable e) {
-			//afterThrowing
-		}
-		finally{
-			//After
+			solista.getInstrumento().setSonido("sonido arreglado del instrumento. tutututut  tutt");
+			System.out.println("SEÑORES, LA TROMPETA SE HA ESTROPEADO, POR FAVOR, ESPEREN UNOS MOMENTOS MIENTRAS VEMOS QUE HACER");
+			solista.tocar();
+
+		} finally {
+			// After
 			encenderMoviles();
 			try {
 				conexion.close();
 			} catch (SQLException e) {
 			}
 		}
-		
+
 		return salida;
-		
+
 	}
-public void SinSonidoException() {
-	  try {
-		    ;
-		  } catch (Exception e) {		    
-		    System.out.println("Nos vamos a tomar por culo " + e.getMessage());
-		    e.printStackTrace();
-		  }
-		}	
 }
-
-
-
-
-
-
-
-
-
-
-
-
