@@ -5,15 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import com.mysql.cj.jdbc.Driver;
 
+import concierto.musicos.Musico;
 import concierto.musicos.Solista;
 
 @Component
@@ -53,11 +52,15 @@ public class AvisadorDeAudiencia {
 	public Object hacerTodo(ProceedingJoinPoint joinPoint) {
 		Object salida=null;
 		Connection conexion=getConexion();
-		Solista solista=(Solista) joinPoint.getTarget();
+		//Solista solista=(Solista) joinPoint.getTarget();
+		Musico musico = (Musico) joinPoint.getTarget(); 
+		
+		
 		try {
 			//Before
-			
+			if(musico instanceof Solista) {
 			solista.setConexion(conexion);
+			}
 			apagarMoviles();
 			salida=joinPoint.proceed();
 			//AfterReturning
@@ -83,15 +86,5 @@ public class AvisadorDeAudiencia {
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 

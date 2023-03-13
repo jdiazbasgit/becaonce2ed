@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import concierto.configuracion.ConfiguracionSpring;
+import concierto.exeption.SinSonidoException;
 import concierto.musicos.HombreOrquesta;
 import concierto.musicos.MusicoInterface;
 import concierto.musicos.Solista;
@@ -18,10 +19,18 @@ public class ConciertoSolistaSpring {
 		
 		//solista.getInstrumento().setSonido("dfghfghdgdfghdfhdfg");
 		System.out.println("toca el solista");
-		solista.tocar();
+		try {
+			solista.tocar();
+	
+		
 		MusicoInterface hombreOrquesta=(MusicoInterface) armario.getBean("hombreOrquesta");
 		System.out.println("toca el HombreOrquesta");
-		hombreOrquesta.tocar();
+		
+			//hombreOrquesta.tocar();
+		}catch (SinSonidoException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Señores se ha esptropeado el instumento");
+		}
 
 	}
 
