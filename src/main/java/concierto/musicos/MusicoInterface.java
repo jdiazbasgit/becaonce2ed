@@ -1,7 +1,9 @@
 package concierto.musicos;
 
+import concierto.exception.SinSonidoException;
+
 public interface MusicoInterface {
 	
-	public void tocar();
+	public void tocar() throws SinSonidoException;
 
 }

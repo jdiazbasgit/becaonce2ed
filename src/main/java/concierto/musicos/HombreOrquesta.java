@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import concierto.exception.SinSonidoException;
 import concierto.instrumentos.Instrumento;
 import lombok.extern.apachecommons.CommonsLog;
 
@@ -13,7 +14,7 @@ import lombok.extern.apachecommons.CommonsLog;
 public class HombreOrquesta extends Musico {
 
 	@Override
-	public void tocar() {
+	public void tocar() throws SinSonidoException {
 		for (Instrumento instrumento : getInstrumentos()) {
 			System.out.println(instrumento.sonar());
 		}
