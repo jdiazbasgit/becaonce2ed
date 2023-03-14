@@ -13,12 +13,15 @@ public class Cancion {
 	public static void main(String[] args) {
 		ApplicationContext libroDeCuentos = new AnnotationConfigApplicationContext(ConfiguracionSpring.class);
 		KnightInterface darkKnight = (KnightInterface) libroDeCuentos.getBean("darkKnight");
-		darkKnight.embarcar();
 		try {
-			darkKnight.matarAlDragon();
+			darkKnight.entregarEspada(true);
+			darkKnight.embarcar();
+						
 		} catch (SinEspadaException e) {
-			System.out.println("Estamos peeeeerrddddiiiiddddoooooooosssssss!");
+			
 		}
+		
+		
 	}
 
 }

@@ -11,19 +11,24 @@ public class DarkKnight implements KnightInterface{
 	
 	private boolean espada;
 
-	public void embarcar() {
-				
-	}
-
-	public void matarAlDragon() throws SinEspadaException {
+	public void embarcar() throws SinEspadaException {
 		if ((!isEspada())) {
 			throw new SinEspadaException();
 		}
-						
+		matarAlDragon();
+		
+	}
+
+	public void matarAlDragon() {
+
+		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón,\n celebremos su victoria con esta canción");
 	}
 
 	public boolean comprobarEspada() {
-		System.out.println(isEspada());
+		return isEspada();
+	}
+	public boolean entregarEspada(boolean x) {
+		setEspada(x);
 		return isEspada();
 	}
 

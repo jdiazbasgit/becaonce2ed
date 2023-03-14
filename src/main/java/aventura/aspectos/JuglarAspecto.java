@@ -23,10 +23,7 @@ public class JuglarAspecto {
 		System.out.println("El "+this.getClass().getSimpleName()+ " se embarcó en gloriosa aventura,\n la de rescatar a su reina futura");
 	}
 	
-	//@After("dondeApuntaElPointcut()")
-	public void narrarDesembarque() {
-		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón,\n celebremos su victoria con esta canción");
-	}
+	
 	
 	
 	@Around("dondeApuntaElPointcut()")
@@ -37,17 +34,19 @@ public class JuglarAspecto {
 			//Before
 			narrarEmbarque();
 			puntoDePausa=joinPoint.proceed();
+			
 			//AfterReturning
 		} 
 		catch (Throwable e) {
-			 System.out.println("uuuuuuuuuuuuups! no funciona");
+			 System.out.println("\n uuuuuuuuuuuuups! Se olvidó la espada :(");
+			 System.out.println("Estamos peeeeerrddddiiiiddddoooooooosssssss!\n");
 			 //darkKnight.setEspada(true);
 			 //AfterThrowing
 			
 		}
 		finally{
 			//After
-			narrarDesembarque();
+			
 			
 		}
 		

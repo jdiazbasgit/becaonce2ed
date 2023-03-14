@@ -4,10 +4,12 @@ import aventura.excepciones.SinEspadaException;
 
 public interface KnightInterface {
 	
-	public void embarcar();
+	public void embarcar() throws SinEspadaException;
 	
-	public void matarAlDragon() throws SinEspadaException;
+	public void matarAlDragon();
 	
 	public boolean comprobarEspada();
+	
+	public boolean entregarEspada(boolean x);
 
 }
