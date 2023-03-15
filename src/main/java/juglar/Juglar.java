@@ -1,7 +1,9 @@
 package juglar;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -13,9 +15,9 @@ public class Juglar {
 	@Pointcut("execution(void caballero.Knight.embarcar(..))")
 	public void cuentaCuento() {}
 	
-	@Before ("cuentaCuento()")
+/*	@Before ("cuentaCuento()")
 	public void antesDeEmbarcar() {
-		System.out.println("El caballero Knight embarco camino a rescatar a Fiona");
+		System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona");
 	}
 	@AfterReturning ("cuentaCuento()")
 	public void despuesDeEmbarcar() {
@@ -24,6 +26,19 @@ public class Juglar {
 	@AfterThrowing("cuentaCuento()")
 	public void finalTragico() {
 		System.out.println("El Dragón se comió al caballero por no llevar la espada");
+	}*/
+	
+@Around ("cuentaCuento()")
+public void hacerTodo(ProceedingJoinPoint joinPoint) {
+	
+	try {
+		System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona");
+		joinPoint.proceed();
+		System.out.println("El caballero Knight volvió glorioso con su princesa Fiona");
+	} catch (Throwable e) {
+		System.out.println("El Dragón se comió al caballero por no llevar la espada");
 	}
-
+	
+	
+}
 }
