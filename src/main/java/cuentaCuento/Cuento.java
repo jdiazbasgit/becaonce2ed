@@ -11,7 +11,7 @@ public class Cuento {
 
 	public static void main(String[] args) {
 		ApplicationContext aventuras = new AnnotationConfigApplicationContext(ConfiguraciónSpring.class);
-		KnightInterface knight = (KnightInterface) aventuras.getBean("knigth");
+		KnightInterface knight = (KnightInterface) aventuras.getBean("knight");
 		
 		
 		try {

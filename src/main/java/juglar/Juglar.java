@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class Juglar {
-	@Pointcut("execution(void rescate.caballero.Knight.embarcar(..)")
+	@Pointcut("execution(void caballero.Knight.embarcar(..))")
 	public void cuentaCuento() {}
 	
 	@Before ("cuentaCuento()")

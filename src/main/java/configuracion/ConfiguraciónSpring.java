@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
-@ComponentScan({"rescate.juglar","rescate.Knight"})
+@ComponentScan({"juglar","caballero"})
 @EnableAspectJAutoProxy
 public class ConfiguraciónSpring {
 
