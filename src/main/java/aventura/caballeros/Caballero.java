@@ -23,7 +23,7 @@ public class Caballero implements CaballeroInterface{
 
 	public void matarAlDragon() {
 
-		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón,\n celebremos su victoria con esta canción");
+		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón,\n celebremos la victoria con unos cuantos barriles de cerveza Mahou");
 	}
 
 	public boolean comprobarEspada() {

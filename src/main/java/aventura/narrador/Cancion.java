@@ -10,8 +10,8 @@ import aventura.excepciones.SinEspadaException;
 public class Cancion {
 
 	public static void main(String[] args) {
-		ApplicationContext libroDeCuentos = new AnnotationConfigApplicationContext(ConfiguracionSpring.class);
-		CaballeroInterface caballero = (CaballeroInterface) libroDeCuentos.getBean("caballero");
+		ApplicationContext cuentaCuento = new AnnotationConfigApplicationContext(ConfiguracionSpring.class);
+		CaballeroInterface caballero = (CaballeroInterface) cuentaCuento.getBean("caballero");
 		try {
 			caballero.entregarEspada(true);
 			caballero.embarcar();
