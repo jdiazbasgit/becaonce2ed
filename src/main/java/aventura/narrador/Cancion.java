@@ -13,7 +13,7 @@ public class Cancion {
 		ApplicationContext cuentaCuento = new AnnotationConfigApplicationContext(ConfiguracionSpring.class);
 		CaballeroInterface caballero = (CaballeroInterface) cuentaCuento.getBean("caballero");
 		try {
-			caballero.entregarEspada(true);
+			//caballero.entregarEspada(false);
 			caballero.embarcar();
 						
 		} catch (SinEspadaException e) {

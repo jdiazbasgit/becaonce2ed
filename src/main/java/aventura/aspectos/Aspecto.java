@@ -1,8 +1,10 @@
 package aventura.aspectos;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +20,12 @@ public class Aspecto {
 	
 	//@Before("marcadorPointCut()")
 	public void narrarEmbarque() {
-		System.out.println("El "+this.getClass().getSimpleName()+ " se embarco para rescatar a la princesa Leonor");
+		System.out.println("El "+this.getClass().getSimpleName()+ " se embarco para rescatar a la princesa Leonor de Borbón");
 	}
 	
 	//@After("marcadorPointCut()")
 	public void narrarDesembarque() {
-		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón de Daenerys Targaryen,\n celebremos su victoria con esta canción tan honorable");
+		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón de Daenerys Targaryen,\n todo el pueblo celebran la victoria de un \n caballero tan valiente llamado Denis el ruedas");
 	}
 	
 	
