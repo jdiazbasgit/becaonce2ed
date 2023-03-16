@@ -126,6 +126,12 @@ listadoISO = {
                 "traducido": "Español"
             }
         ,
+        "srp": 
+        {
+            "completo": "Serbian",
+            "traducido": "Serbio"
+        }
+        ,
         "swe": 
             {
                 "completo": "Swedish",
