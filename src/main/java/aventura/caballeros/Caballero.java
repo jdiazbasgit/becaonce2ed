@@ -15,7 +15,7 @@ public class Caballero implements CaballeroInterface{
 
 	public void embarcar() throws SinEspadaException {
 		if ((!isEspada())) {
-			throw new SinEspadaException();
+			throw new SinEspadaException(null);
 		}
 		matarAlDragon();
 		
