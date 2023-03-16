@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+<<<<<<< HEAD
 import concierto.excepciones.SinSonidoException;
+=======
+import concierto.exception.SinSonidoException;
+>>>>>>> branch 'springCore' of https://github.com/jdiazbasgit/becaonce2ed.git
 import concierto.instrumentos.Instrumento;
 import lombok.extern.apachecommons.CommonsLog;
 

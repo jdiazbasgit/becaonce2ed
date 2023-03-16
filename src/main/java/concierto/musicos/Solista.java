@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import concierto.anotaciones.Conectar;
+<<<<<<< HEAD
 import concierto.excepciones.SinSonidoException;
+=======
+import concierto.exception.SinSonidoException;
+>>>>>>> branch 'springCore' of https://github.com/jdiazbasgit/becaonce2ed.git
 import concierto.instrumentos.Instrumento;
 import lombok.Data;
 
@@ -22,8 +26,18 @@ public class Solista extends Musico {
 	
 	@Override
 	@Conectar
+<<<<<<< HEAD
 	public void tocar() throws SinSonidoException {
 		System.out.println(getInstrumento().sonar());
+=======
+	public void tocar() {
+		try {
+			System.out.println(getInstrumento().sonar());
+		} catch (SinSonidoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+>>>>>>> branch 'springCore' of https://github.com/jdiazbasgit/becaonce2ed.git
 		try {
 			ResultSet resultSet= getConexion().prepareStatement("select id,descripcion from cargos").executeQuery();
 			while(resultSet.next()) {
