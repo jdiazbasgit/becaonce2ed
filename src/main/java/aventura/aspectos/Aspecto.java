@@ -1,5 +1,7 @@
 package aventura.aspectos;
 
+import java.util.GregorianCalendar;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
@@ -35,8 +37,12 @@ public class Aspecto {
 		Caballero caballero=(Caballero) joinPoint.getTarget();
 		try {
 			//Before
+			Thread.sleep(0);
 			cuentaElcuento();
 			puntoDePausa=joinPoint.proceed();
+			
+			GregorianCalendar fecha= new GregorianCalendar();
+			System.out.println("fecha: "+ fecha.getGregorianChange());
 			//AfterReturning
 		} 
 		catch (Throwable e) {
