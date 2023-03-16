@@ -18,13 +18,13 @@ public class Aspecto {
 	@Pointcut("execution(* *.embarcar(..))")
 	public void marcadorPointCut() {}
 	
-	//@Before("marcadorPointCut()")
-	public void narrarEmbarque() {
+	//para -> @Before("marcadorPointCut()")
+	public void cuentaElcuento() {
 		System.out.println("El "+this.getClass().getSimpleName()+ " se embarco para rescatar a la princesa Leonor de Borbón");
 	}
 	
-	//@After("marcadorPointCut()")
-	public void narrarDesembarque() {
+	//para -> @After("marcadorPointCut()")
+	public void finalCuento() {
 		System.out.println("El "+this.getClass().getSimpleName()+ " derrotó al temible dragón de Daenerys Targaryen,\n todo el pueblo celebran la victoria de un \n caballero tan valiente llamado Denis el ruedas");
 	}
 	
@@ -35,7 +35,7 @@ public class Aspecto {
 		Caballero caballero=(Caballero) joinPoint.getTarget();
 		try {
 			//Before
-			narrarEmbarque();
+			cuentaElcuento();
 			puntoDePausa=joinPoint.proceed();
 			//AfterReturning
 		} 
@@ -47,7 +47,7 @@ public class Aspecto {
 		}
 		finally{
 			//After
-			narrarDesembarque();
+			finalCuento();
 			
 		}
 		
