@@ -13,32 +13,33 @@ import org.springframework.stereotype.Component;
 @Component
 public class Juglar {
 	@Pointcut("execution(void caballero.Knight.embarcar(..))")
-	public void cuentaCuento() {}
-	
-/*	@Before ("cuentaCuento()")
-	public void antesDeEmbarcar() {
-		System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona");
+	public void cuentaCuento() {
 	}
-	@AfterReturning ("cuentaCuento()")
-	public void despuesDeEmbarcar() {
-		System.out.println("El caballero Knight volvió glorioso con su princesa Fiona");
+
+	/*
+	 * @Before ("cuentaCuento()") public void antesDeEmbarcar() {
+	 * System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona"
+	 * ); }
+	 * 
+	 * @AfterReturning ("cuentaCuento()") public void despuesDeEmbarcar() {
+	 * System.out.
+	 * println("El caballero Knight volvió glorioso con su princesa Fiona"); }
+	 * 
+	 * @AfterThrowing("cuentaCuento()") public void finalTragico() {
+	 * System.out.println("El Dragón se comió al caballero por no llevar la espada"
+	 * ); }
+	 */
+
+	@Around("cuentaCuento()")
+	public void hacerTodo(ProceedingJoinPoint joinPoint) {
+
+		try {
+			System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona");
+			joinPoint.proceed();
+			System.out.println("El caballero Knight volvió glorioso con su princesa Fiona");
+		} catch (Throwable e) {
+			System.out.println("El Dragón se comió al caballero por no llevar la espada");
+		}
+
 	}
-	@AfterThrowing("cuentaCuento()")
-	public void finalTragico() {
-		System.out.println("El Dragón se comió al caballero por no llevar la espada");
-	}*/
-	
-@Around ("cuentaCuento()")
-public void hacerTodo(ProceedingJoinPoint joinPoint) {
-	
-	try {
-		System.out.println("El caballero Knight se embarcó camino a rescatar a Fiona");
-		joinPoint.proceed();
-		System.out.println("El caballero Knight volvió glorioso con su princesa Fiona");
-	} catch (Throwable e) {
-		System.out.println("El Dragón se comió al caballero por no llevar la espada");
-	}
-	
-	
-}
 }
