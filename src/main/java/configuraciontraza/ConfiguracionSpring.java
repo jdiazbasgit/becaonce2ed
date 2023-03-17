@@ -8,5 +8,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 @ComponentScan({"aspectos", "traza"})
 public class ConfiguracionSpring {
+	
+	public void imprimirPant() {
+		System.out.println("imprimir pantalla");
+	}
 
 }

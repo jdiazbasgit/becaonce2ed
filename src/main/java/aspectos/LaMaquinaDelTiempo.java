@@ -1,5 +1,6 @@
 package aspectos;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -20,7 +21,7 @@ public class LaMaquinaDelTiempo {
 	@Around("sujetador()")
 	public void hacerTodo1(ProceedingJoinPoint joinPoint) {
 		
-		
+		//por definir
 		
 		try {
 			
@@ -33,9 +34,11 @@ public class LaMaquinaDelTiempo {
 			Thread.sleep(64);
 			
 		} catch (Throwable e) {
-
+			GregorianCalendar fechas = new GregorianCalendar();
 			System.out.println("me perdi");
-			System.out.println("fechas");
+			System.out.println("asdf"+ fechas.MONTH);
+			System.out.println("asdf"+ fechas.MONDAY);
+			System.out.println("asdf"+ Calendar.DAY_OF_MONTH);
 			
 			e.printStackTrace();
 		}
