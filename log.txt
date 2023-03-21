@@ -1,0 +1,24 @@
+///(LoggerAspecto) Accediendo a ejecución  ----->  [590ms:42s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.entregarEspada(boolean))
+Método: entregarEspada Parámetros: true 
+
+///(LoggerAspecto) Ejecución terminada  <-----     [595ms:42s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.entregarEspada(boolean))
+Método: entregarEspada Parámetros: true 
+
+///(LoggerAspecto) Accediendo a ejecución  ----->  [595ms:42s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.ajustarSleep(int))
+Método: ajustarSleep Parámetros: 400 
+
+///(LoggerAspecto) Ejecución terminada  <-----     [596ms:42s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.ajustarSleep(int))
+Método: ajustarSleep Parámetros: 400 
+
+///(LoggerAspecto) Accediendo a ejecución  ----->  [597ms:42s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.embarcar())
+Método: embarcar Parámetros: 
+
+///(LoggerAspecto) Ejecución terminada  <-----     [827ms:43s:35m:11h - 21/3/2023] 
+execution(public abstract void aventura.caballeros.KnightInterface.embarcar())
+Método: embarcar Parámetros: 
+

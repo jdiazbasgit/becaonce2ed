@@ -7,9 +7,8 @@ public interface KnightInterface {
 	public void embarcar() throws SinEspadaException;
 	
 	public void matarAlDragon();
+		
+	public void entregarEspada(boolean x);
 	
-	public boolean comprobarEspada();
-	
-	public boolean entregarEspada(boolean x);
-
+	public void ajustarSleep(int y);
 }
