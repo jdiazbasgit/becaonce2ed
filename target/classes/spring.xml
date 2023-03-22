@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<!-- <bean id="tambor" class="concierto.instrumentos.Instrumento"> <property 
+		name="sonido" value="pom, pom, pom en xml"></property> </bean> <bean id="trompeta" 
+		class="concierto.instrumentos.Instrumento"> <property name="sonido" value="tuuu, 
+		tuuu, tuuu en xml"></property> </bean> <bean id="guitarra" class="concierto.instrumentos.Instrumento"> 
+		<property name="sonido" value="tlan, tlan, tlan en xml"></property> </bean> 
+		<bean class="concierto.musicos.Solista" id="solista"> <property name="instrumento" 
+		ref="tambor"></property> </bean> <bean id="hombreOrquesta" class="concierto.musicos.HombreOrquesta"> 
+		<property name="instrumentos" ref="instrumentos"></property> </bean> <util:list 
+		id="instrumentos"> <ref bean="guitarra" /> <ref bean="tambor" /> <ref bean="trompeta" 
+		/> </util:list> -->
+
+	<context:component-scan
+		base-package="concierto.instrumentos"></context:component-scan>
+	<context:component-scan
+		base-package="concierto.musicos"></context:component-scan>
+	<context:component-scan
+		base-package="concierto.aspectos"></context:component-scan>
+
+	<bean id="driver" class="com.mysql.cj.jdbc.Driver"></bean>
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+
+
+
+</beans>
+
+
+
+
+
+
+
