@@ -4,7 +4,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>once.curso</groupId>
 	<artifactId>concierto</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -67,4 +66,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<version>1</version>
 </project>
