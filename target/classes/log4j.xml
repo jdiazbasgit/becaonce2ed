@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="once.curso.SpringMVC">
+	<logger name="once.curso.springMVC">
 		<level value="info" />
 	</logger>
 	
