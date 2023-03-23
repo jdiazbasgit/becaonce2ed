@@ -14,8 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.sun.javafx.geom.AreaOp.AddOp;
+
+import lombok.Data;
+
+@Data
 @Controller
 public class HomeController {
+	private String nombre;
+	private int telefono;
+	private int dni;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -59,6 +67,32 @@ public class HomeController {
 		
 		model.addAttribute("lista", lista);
 		return "lista";
+	}
+	
+	@RequestMapping("/persona")
+	public void persona(Model model) {
+		
+		List<String> nombre = new ArrayList<String>();
+		nombre.add("jose");
+		nombre.add("maria");
+		nombre.add("sofia");
+		model.addAttribute("nombre", nombre);
+		
+		List<Integer> telefono = new ArrayList<Integer>();
+		telefono.add(000230501);
+		telefono.add(465479871);
+		telefono.add(789451236);
+		model.addAttribute("telefono", telefono);
+		
+		List<String> dni = new ArrayList<String>();
+		dni.add("Y3216547X");
+		dni.add("08000102D");
+		dni.add("78965211X");
+		model.addAttribute("dni", dni);
+		
+		
+		return "nombre", "telefono", "dni";
+		
 	}
 	
 }
