@@ -8,6 +8,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 			<!-- Este xml guarda una configuración global común para todos los servlets, debajo les daríamos una config a cada uno -->
+			<!-- como en este ejemplo solo usamos 1 servlet, incluso podríamos borrar este archivo root y no pasa nada -->
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

@@ -9,7 +9,7 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model (está dirigido por anotaciones -->
+	<!-- Enables the Spring MVC @Controller programming model (que está dirigido por anotaciones) -->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -18,11 +18,13 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- todo lo que está en WEB-INF está oculto por seguridad para el cliente pero lo configuramos para que Spring lo vea -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<!-- el suffix es simplemente la extensión, por si por algún motivo nuestros archivos jsp los creamos con otra extensión custom-->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="once.curso.springMVC" />
+	<context:component-scan base-package="once.curso.SpringMVC" />
 	
 	
 	
