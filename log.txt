@@ -1,0 +1,8 @@
+///(LoggerAspecto) Accediendo a ejecución  ----->  [220ms:40s:22m:10h - 21/3/2023] 
+execution(public abstract void panaderia.panaderos.PanaderoInterface.hornear(int))
+Método: hornear Parámetros: 2000 
+
+///(LoggerAspecto) Ejecución terminada  <-----     [231ms:42s:22m:10h - 21/3/2023] 
+execution(public abstract void panaderia.panaderos.PanaderoInterface.hornear(int))
+Método: hornear Parámetros: 2000 
+
