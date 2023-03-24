@@ -50,7 +50,8 @@ public class HomeController {
 	
 	//añadimos otro reques, otra url
 	@RequestMapping(value = "/prueba") //hará un forward a prueba.jsp 
-	//por defecto entra en GET y por seguiridad se creó directamente las anotaciones @GetMapping y @PostMapping pero requieren version 
+	//por defecto entra en GET y por seguiridad se creó directamente las anotaciones @GetMapping y @PostMapping
+	//pero requieren version de Spring 5.3.26, lo podemos cambiar en el pom
 	//http://localhost:8080/springMVC/prueba.jsp
 	public String prueba(@RequestParam String textoRecibido, Model model) {
 		
@@ -158,6 +159,9 @@ public class HomeController {
 	
 	//----------------------------------------------------------------------
 	//@GetMapping("/home2")
+	//Por defecto nos carga la versión 3 pero esta no incluye el @GetMapping:
+	//<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+	//Si queremos usar GetMapping, hay que subir la versión a la	5.3.26
 	public String home2(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
