@@ -11,18 +11,17 @@
 <body>
 	<h1>Datos personales</h1> 
 	<tr>
-		<th>NOMBRE</th>
-		<th>APELLIDOS</th>
+		<th>Nombre</th>
+		<th>apellidos</th>
 		<th>DNI</th>
 	</tr>
 	<table border="1">
-		<c:forEach items="${datosPersonales}" var="persona">
+		<c:forEach items="${datosPersonales}" var="persona"></c:forEach>
 		<tr>
-			<td>${persona.nombre}</td>
-			<td>${persona.apellido}</td>
-			<td>${persona.dni}</td>
+			<td>$persona.nombre</td>
+			<td>$persona.apellidos</td>
+			<td>$persona.dni</td>
 		</tr>
-		</c:forEach>
 	</table>
 </body>
 </html>
