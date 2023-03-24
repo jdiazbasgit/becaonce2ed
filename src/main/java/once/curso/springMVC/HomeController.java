@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import clase.persona.Persona;
+
 /**
  * Handles requests for the application home page.
  */
@@ -73,30 +75,31 @@ public class HomeController {
 	
 	model.addAttribute("lista", lista);
 	
-	return "lista";
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	return "lista";	
 		
 	}
 	
+	//@SuppressWarnings("unused")
+	@RequestMapping("/listapersona")
+	
+	public  String listapersona (Model model) {
+		
+		List<Persona> listapersona = new ArrayList<Persona>();
+		
+	   for(int i=0; i<10 ;i++) {
+		   
+		   String nombre = "Nombre " +i;
+		   String dni="Dni" + i;
+		   String telefono = "telefono"+i;
+		    Persona persona = new Persona(nombre,dni,telefono);
+		    listapersona.add(persona); 
+		    
+		    // listapersona.add(new Persona("pepe"+i, "12345678O"+i, "987654321"+i));
+	   }
+	   
+	  model.addAttribute("listapersona",listapersona);
+	return "listapersona";
+	
+	}
 }
+	
