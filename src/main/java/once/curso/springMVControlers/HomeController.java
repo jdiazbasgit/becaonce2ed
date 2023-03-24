@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import once.curso.beans.Persona;
 
@@ -120,7 +121,42 @@ public class HomeController {
 	
 	
 	//---------------------------------------------------------------------
-	//más moderno y simple es juntar Vista (view) y modelo:
+	//más moderno y simple es juntar Vista (view) y modelo usando ModelAndView como objeto retornado e inyectado:
+		
+	@RequestMapping("/listadoConPersonasModelAndView/{numeroPersonas}")
+	public ModelAndView grupoPersonasMetodoConMAV (@PathVariable int numeroPersonas, ModelAndView modelAndView) {
+		//ejem:  http://localhost:8080/springMVC/listadoConPersonasModelAndView/50
+			
+		List<Persona> grupoDePersonas = new ArrayList<Persona>();
+		String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		for (int i = 0; i < numeroPersonas; i++) {
+			String nombreNuevo = "Persona"+String.valueOf(i);
+			String dniNuevo = "0000000"+Integer.toString(i) + letras.charAt(i%letras.length());
+			if (i>9)
+			dniNuevo = dniNuevo.substring(Integer.toString(i).length()-1);
+			String telefonoNuevo = Integer.toString(600000000 + i);
+			grupoDePersonas.add(new Persona(nombreNuevo,dniNuevo,telefonoNuevo));
+		}
+						
+		modelAndView.addObject("propiedadGrupoPersonas", grupoDePersonas);
+		modelAndView.setViewName("listadoConPersonas"); //así le especificamos otro view al return,
+		//uno que ya tenemos creado y asi no creamos otro..
+		return modelAndView;//por defecto en el modelandview, si no especificamos coge el mismo view en que estamos
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//----------------------------------------------------------------------
 	//@GetMapping("/home2")
 	public String home2(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);

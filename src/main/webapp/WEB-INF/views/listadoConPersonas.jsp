@@ -44,11 +44,12 @@ td {
 			<th><h4>TELEFONO</h4></th>
 		</tr>
 
-		<c:forEach items="${propiedadGrupoPersonas}" var="l">
+		<c:forEach items="${propiedadGrupoPersonas}" var="persona">
 			<tr>
-				<td>${l.getNombre()}</td>
-				<td>${l.getDni()}</td>
-				<td>${l.getTelefono()}</td>
+				<td>${persona.nombre}</td>
+<!-- aqui no se deben utilizar los get y set, el framework entiende el contexto y sabe lo que tiene que hacer -->
+				<td>${persona.getDni()}</td>
+				<td>${persona.getTelefono()}</td>
 			</tr>
 		</c:forEach>
 
