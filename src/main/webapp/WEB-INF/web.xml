@@ -2,7 +2,10 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 443d389361fbd58b42b3d099f7468655df53bcff
 	
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
