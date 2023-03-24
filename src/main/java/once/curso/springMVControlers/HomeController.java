@@ -1,4 +1,4 @@
-package once.curso.SpringMVC;
+package once.curso.springMVControlers;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -88,15 +89,24 @@ public class HomeController {
 	
 	//---------------------------------------------------------------------
 	
+	//pasamos variables de dos formas, una es:
 	
+	@RequestMapping("/listadoConPersonas/{numeroPersonas}")
+	public String grupoDePersonasMetodo (@PathVariable int numeroPersonas, Model model) {
 	
-	@RequestMapping(value = "/listadoConPersonas")
-	public Object grupoDePersonasMetodo (@RequestParam int numeroPersonas, Model model) {
+	//es una forma de pasar una variable y conseguimos una url "friendly"
+	//ejem:  http://localhost:8080/springMVC/listadoConPersonas/50
+	
+	//segunda forma:
+	//@RequestMapping(value = "/listadoConPersonas")
+	//public String grupoDePersonasMetodo (@RequestParam int numeroPersonas, Model model) {
+		//ejem:  http://localhost:8080/springMVC/listadoConPersonas?numeroPersonas=50
+		//el return del método siempre es un String xq es un forward al nombre de una vista (jsp)
 		
 		List<Persona> grupoDePersonas = new ArrayList<Persona>();
 		String letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		for (int i = 0; i < numeroPersonas; i++) {
-			String nombreNuevo = "Persona"+i;
+			String nombreNuevo = "Persona"+String.valueOf(i);
 			String dniNuevo = "0000000"+Integer.toString(i) + letras.charAt(i%letras.length());
 			if (i>9)
 			dniNuevo = dniNuevo.substring(Integer.toString(i).length()-1);

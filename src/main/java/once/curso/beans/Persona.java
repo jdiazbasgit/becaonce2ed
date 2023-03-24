@@ -13,5 +13,4 @@ public class Persona {
 		this.setDni(dni);
 		this.setTelefono(telefono);
 	}
-
 }
