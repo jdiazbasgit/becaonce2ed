@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.annotation.Generated;
+import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +89,7 @@ public class HomeController {
 		
 	   for(int i=0; i<10 ;i++) {
 		   
-		   String nombre = "Nombre " +i;
+		   String nombre =JOptionPane.showInputDialog("introduce tu nombre por favor ") +i;
 		   String dni="Dni" + i;
 		   String telefono = "telefono"+i;
 		    Persona persona = new Persona(nombre,dni,telefono);
