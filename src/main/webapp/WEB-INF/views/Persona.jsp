@@ -7,14 +7,23 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>LISTA DE PERSONAS</title>
+<title>Isert title here</title>
 </head>
-<body>
 
-	<table border="1">
-		<c:forEach items="${Lista}" var="l">
+<body>
+	<h1>DATOS PERSONALES</h1>
+	<tr>
+		<th>NOMBRE</th>
+		<th>APALLIDO</th>
+		<th>DNI</th>
+	</tr>
+
+<table border="1">
+		<c:forEach items="${persona}" var="persona">
 			<tr>
-				<td>$[1]</td>
+				<td>$[Persona.nombre]</td>
+				<td>$[Persona.apellido]</td>
+				<td>$[Persona.dni]</td>
 			</tr>
 		</c:forEach>
 	</table>

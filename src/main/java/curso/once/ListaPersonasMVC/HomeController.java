@@ -66,18 +66,23 @@ public class HomeController {
 		
 		List<Persona> personas = new ArrayList<Persona>();
 		
-		personas.add (new Persona ("María", "Ruíz", "50505050M"));
-		personas.add (new Persona ("Flor:", "López:", "50505050M"));
-		personas.add (new Persona ("Paco:", "Perez:", "50505050M"));
-		personas.add (new Persona ("Marta:", "Guerra:", "50505050M"));
-		personas.add (new Persona ("Pepe:", "Racines:", "50505050M"));
-		personas.add (new Persona ("Juan:", "Narváez:", "50505050M"));
-		personas.add (new Persona ("Luis:", "Zambrano:", "50505050M"));
-		personas.add (new Persona ("José:", "Ortega:", "50505050M"));
-		personas.add (new Persona ("Maria:", "Dávila:", "50505050M"));
-		personas.add (new Persona ("Pedro:", "Paredes:", "50505050M"));
-		personas.add (new Persona ("Lucía:", "Segura:", "50505050M"));
-		personas.add (new Persona ("Marina:", "Vazques:", "50505050M"));
+		/*
+		 * personas.add (new Persona ("María", "Ruíz", "10505050M")); personas.add (new
+		 * Persona ("Flor:", "López:", "20505050M")); personas.add (new Persona
+		 * ("Paco:", "Perez:", "30505050M")); personas.add (new Persona ("Marta:",
+		 * "Guerra:", "40505050M")); personas.add (new Persona ("Pepe:", "Racines:",
+		 * "50505050M")); personas.add (new Persona ("Juan:", "Narváez:", "60505050M"));
+		 * personas.add (new Persona ("Luis:", "Zambrano:", "70505050M")); personas.add
+		 * (new Persona ("José:", "Ortega:", "80505050M")); personas.add (new Persona
+		 * ("Maria:", "Dávila:", "90505050M")); personas.add (new Persona ("Pedro:",
+		 * "Paredes:", "11505050M")); personas.add (new Persona ("Lucía:", "Segura:",
+		 * "12505050M")); personas.add (new Persona ("Marina:", "Vazques:",
+		 * "13505050M"))
+		 ;*/
+		
+		for (int i=0; i<11; i++) {
+			personas.add (new Persona ("María"+i, "Ruíz"+i, "10505050M"+i));
+		}
 		model.addAttribute("personas", personas);
 		return "persona";
 		
