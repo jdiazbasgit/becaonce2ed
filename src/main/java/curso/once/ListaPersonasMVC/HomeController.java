@@ -1,6 +1,6 @@
 package curso.once.ListaPersonasMVC;
 
-//Ronal y Marceh
+//Ronal y Marche estan estudiando
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
