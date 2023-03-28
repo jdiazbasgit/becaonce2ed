@@ -28,7 +28,7 @@ public class EjemploJpaApplication implements CommandLineRunner {
 		SpringApplication.run(EjemploJpaApplication.class, args);
 		
 	}
-
+	//ronald
 	@Override
 	public void run(String... args) throws Exception {
 		
