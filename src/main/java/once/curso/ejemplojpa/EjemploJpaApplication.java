@@ -50,8 +50,7 @@ public class EjemploJpaApplication implements CommandLineRunner {
 			System.out.println(laboralInformation.getCharge().getDescription());
 		}
 		
-		/*Iterable<Children> datos=getChildren().getGuy();
-		for (Children children : datos) {*/
+	
 		}
 		
 	}

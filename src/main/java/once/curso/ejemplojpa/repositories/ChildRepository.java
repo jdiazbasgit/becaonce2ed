@@ -7,9 +7,9 @@ import once.curso.ejemplojpa.entityes.Charge;
 import once.curso.ejemplojpa.entityes.Child;
 
 
-public interface ChildrenRepository extends CrudRepository<Child,Integer> {
+public interface ChildRepository extends CrudRepository<Child,Integer> {
 	
-	@Query(value = "select c.description from children c where c.descriopcion like :filtro",nativeQuery = true)
+	@Query(value = "select c.description from children c where c.descripcion like :filtro",nativeQuery = true)
 	public String[] dameChildren(String filtro);
 
 }
