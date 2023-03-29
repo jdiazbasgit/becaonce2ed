@@ -14,6 +14,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.context.annotation.Lazy;
 
 import lombok.Data;
+import once.curso.ejemplojpa.entityes.Charge;
 
 @Data
 @Entity
