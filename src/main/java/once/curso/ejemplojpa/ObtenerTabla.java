@@ -6,7 +6,9 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import com.mysql.jdbc.Driver;
 
+import java.io.BufferedReader;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,16 +24,19 @@ public class ObtenerTabla {
 			DriverManager.registerDriver(new Driver());
 			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false",
 					"curso", "Cursocurso1;");
-			
-			PreparedStatement preparedStatement = conexion.prepareStatement("SELECT * FROM COMPANY.employees");
+			System.out.println("Nombre de la tabla en el esquema SQL:");
+			String tabla = leerTecladoTexto();
+			//String tabla = "companies";
+			System.out.println("Nombre para la clase:");
+			String tablaAClase = leerTecladoTexto();
+			//String tablaAClase = "Company";
+			PreparedStatement preparedStatement = conexion.prepareStatement("SELECT * FROM COMPANY."+tabla);
 			preparedStatement.execute();
 			ResultSet resultSet = preparedStatement.executeQuery();			
 			ResultSetMetaData metadata = resultSet.getMetaData();
 			int i = 1;
-			String tabla = "charges";
-			String tablaAClase = "Charge";
-			//String tablaUpCap = tabla.substring(0, 1).toUpperCase() + tabla.substring(1);
 			String equalsINT = "INT";
+			String equalsVARCHAR = "VARCHAR";
 			String contenidoClase = "package once.curso.ejemplojpa.entities;\r\n" + 
 			"import javax.persistence.Entity;\r\n" + 
 			"import javax.persistence.GeneratedValue;\r\n" + 
@@ -49,12 +54,15 @@ public class ObtenerTabla {
 					"\r\n" +
 					"@GeneratedValue(strategy = GenerationType.AUTO)"+
 					"\r\n";
-			while (resultSet.next()) {
+			while (i<=metadata.getColumnCount()) {
 				String tipoDato = metadata.getColumnTypeName(i);
-				if (tipoDato.equals(contenidoClase))
-					tipoDato.toLowerCase();
-				contenidoClase = contenidoClase + "private "+ metadata.getColumnTypeName(i) + " "+  metadata.getColumnName(i) + ";\r\n";
-				//" +resultSet.getString(i) + "\";\r\n";			
+				if (tipoDato.equals(equalsINT)) {
+					tipoDato = tipoDato.toLowerCase();
+				}
+				if (tipoDato.equals(equalsVARCHAR)) {
+					tipoDato = "String";
+				}
+				contenidoClase = contenidoClase + "private "+ tipoDato + " "+  metadata.getColumnName(i).toLowerCase() + ";\r\n";
 				i++;
 			}			
 			
@@ -86,6 +94,15 @@ public class ObtenerTabla {
 			e.printStackTrace();
 		}
 
+	}
+	public static String leerTecladoTexto() {
+		try {
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+			return bufferedReader.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "0";
+		}
 	}
 
 }
