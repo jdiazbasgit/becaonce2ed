@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import lombok.Data;
 import once.curso.ejemplojpa.entityes.Charge;
+import once.curso.ejemplojpa.entityes.Child;
 import once.curso.ejemplojpa.entityes.LaboralInformation;
 import once.curso.ejemplojpa.services.ChargeService;
 import once.curso.ejemplojpa.services.LaboralInformationService;
@@ -23,6 +24,9 @@ public class EjemploJpaApplication implements CommandLineRunner {
 	
 	@Autowired
 	private LaboralInformationService laboralInformationService;
+
+	@Autowired
+	private Child children;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EjemploJpaApplication.class, args);
@@ -45,8 +49,13 @@ public class EjemploJpaApplication implements CommandLineRunner {
 			System.out.println(laboralInformation.getSalary());//+" - "+laboralInformation.getCharge().getDescription());
 			System.out.println(laboralInformation.getCharge().getDescription());
 		}
+		
+		/*Iterable<Children> datos=getChildren().getGuy();
+		for (Children children : datos) {*/
+		}
+		
 	}
 	
-	//hola juanca
+	
 
-}
+
