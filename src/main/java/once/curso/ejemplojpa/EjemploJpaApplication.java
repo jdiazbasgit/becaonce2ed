@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import lombok.Data;
-import once.curso.ejemplojpa.entityes.Charge;
-import once.curso.ejemplojpa.entityes.LaboralInformation;
+import once.curso.ejemplojpa.entities.Charge;
+import once.curso.ejemplojpa.entities.LaboralInformation;
 import once.curso.ejemplojpa.services.ChargeService;
 import once.curso.ejemplojpa.services.LaboralInformationService;
 

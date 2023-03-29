@@ -1,4 +1,4 @@
-package once.curso.ejemplojpa.entityes;
+package once.curso.ejemplojpa.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
