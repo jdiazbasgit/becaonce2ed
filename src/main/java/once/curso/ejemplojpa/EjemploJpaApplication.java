@@ -12,6 +12,7 @@ import lombok.Data;
 import once.curso.ejemplojpa.entityes.Charge;
 import once.curso.ejemplojpa.entityes.LaboralInformation;
 import once.curso.ejemplojpa.services.ChargeService;
+import once.curso.ejemplojpa.services.ChildrenService;
 import once.curso.ejemplojpa.services.LaboralInformationService;
 
 @SpringBootApplication
@@ -24,17 +25,22 @@ public class EjemploJpaApplication implements CommandLineRunner {
 	@Autowired
 	private LaboralInformationService laboralInformationService;
 	
+	@Autowired
+	private ChildrenService childrenService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(EjemploJpaApplication.class, args);
 		
 	}
-	//ronald
 	@Override
 	public void run(String... args) throws Exception {
 		
 		getChargeService().dameCargos();
 		
+		getChildrenService().dameHijos();
+		
 		String[] cargosFiltrados=getChargeService().dameCargosQueEmpiecenPor("D%");
+		
 		for (int i=0;i<cargosFiltrados.length;i++) {
 			System.err.println(cargosFiltrados[i]);
 		}
@@ -45,6 +51,9 @@ public class EjemploJpaApplication implements CommandLineRunner {
 			System.out.println(laboralInformation.getSalary());//+" - "+laboralInformation.getCharge().getDescription());
 			System.out.println(laboralInformation.getCharge().getDescription());
 		}
+		
+		
+		
 	}
 	
 	
