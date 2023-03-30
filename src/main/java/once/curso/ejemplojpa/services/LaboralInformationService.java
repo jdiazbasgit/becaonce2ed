@@ -16,6 +16,6 @@ public class LaboralInformationService {
 	
 	public Iterable<LaboralInformation> getDatosLaborales(){
 		return getLaboralInformationCRUDRepository().findAll();
-		
+		//return get.chargeRepository().save(entity); (llama el get)
 	}
 }

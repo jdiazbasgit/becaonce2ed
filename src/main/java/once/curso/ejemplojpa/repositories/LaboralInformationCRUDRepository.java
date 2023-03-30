@@ -9,3 +9,10 @@ import once.curso.ejemplojpa.entityes.LaboralInformation;
 public interface LaboralInformationCRUDRepository extends CrudRepository<LaboralInformation, Integer>{
 
 }
+/*purebas test 
+ * @test void findall(){
+ * public void findAll(){
+ * 	List<charge> cargos = (List<Charge>) getChargeService().
+ * }
+ * 
+ * }*/

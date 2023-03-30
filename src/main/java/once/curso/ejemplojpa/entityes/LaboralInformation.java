@@ -32,4 +32,4 @@ public class LaboralInformation {
 	@JoinColumn(name = "charges_id")
 	private Charge charge;
 	
-}
+}//temporal temporaltype.date

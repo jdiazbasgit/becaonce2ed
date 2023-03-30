@@ -1,5 +1,6 @@
 package once.curso.ejemplojpa.entityes;
 
+import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="marital_statuses")
+@Table(name = "marital_statuses")
 public class MaritalStatus {
 	
 	@Id
@@ -18,5 +19,6 @@ public class MaritalStatus {
 	private int id;
 	
 	private String description;
+	
 
 }
