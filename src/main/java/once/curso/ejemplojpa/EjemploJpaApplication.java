@@ -1,15 +1,11 @@
 package once.curso.ejemplojpa;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 import lombok.Data;
-import once.curso.ejemplojpa.entityes.Charge;
 import once.curso.ejemplojpa.entityes.LaboralInformation;
 import once.curso.ejemplojpa.services.ChargeService;
 import once.curso.ejemplojpa.services.ChildrenService;
@@ -20,7 +16,7 @@ import once.curso.ejemplojpa.services.LaboralInformationService;
 public class EjemploJpaApplication implements CommandLineRunner {
 
 	@Autowired
-	private ChargeService	 chargeService;
+	private ChargeService chargeService;
 	
 	@Autowired
 	private LaboralInformationService laboralInformationService;
@@ -37,7 +33,7 @@ public class EjemploJpaApplication implements CommandLineRunner {
 		
 		getChargeService().dameCargos();
 		
-		getChildrenService().dameHijos();
+		//getChildrenService().dameHijos();
 		
 		String[] cargosFiltrados=getChargeService().dameCargosQueEmpiecenPor("D%");
 		
