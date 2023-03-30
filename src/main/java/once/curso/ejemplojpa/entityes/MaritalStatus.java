@@ -10,13 +10,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="children")
-public class Children {
-	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int id;
-	private int guy;
-	private int girl;
-	
+@Table (name="marital_statuses")
 
+public class MaritalStatus {
+	
+	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	private int id;
+	private String description;
+	
 }
