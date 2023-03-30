@@ -17,6 +17,7 @@ public class Company {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String cif;
 	private String description;
 	

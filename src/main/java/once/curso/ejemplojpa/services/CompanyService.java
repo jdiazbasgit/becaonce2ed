@@ -2,6 +2,7 @@ package once.curso.ejemplojpa.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -12,24 +13,22 @@ import once.curso.ejemplojpa.repositories.CompanyRepository;
 @Service
 
 public class CompanyService {
-
+	
+	@Autowired
 	private CompanyRepository companyRepository;
 
-	public void dameCompanies() {
+	public void empresas() {
 
-		Iterable<Company> companies = getCompanyRepository().findAll();
-		for (Company company : companies) {
+		Iterable<Company> empresas = getCompanyRepository().findAll();
+		for (Company company : empresas) {
 			System.out.println(company.getDescription());
+			System.out.println(company.getCif());
 		}
 
 	}
 
-	public String[] dameCompañias(String filtro) {
-		return getCompanyRepository().dameCompany(filtro);
-	}
-
 	public <S extends Company> S save(S entity) {
-		return companyRepository.save(entity);
+		return getCompanyRepository().save(entity);
 	}
 
 	public <S extends Company> Iterable<S> saveAll(Iterable<S> entities) {
@@ -57,23 +56,29 @@ public class CompanyService {
 	}
 
 	public void deleteById(Integer id) {
-return ;
+		getCompanyRepository().deleteById(id);
 	}
 
 	public void delete(Company entity) {
-
+		getCompanyRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-
+		getCompanyRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Company> entities) {
-
+		getCompanyRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-
+		getCompanyRepository().deleteAll();
 	}
+
+	/*
+	 * @Query(value
+	 * ="select c.description froom companies c where c.descripcion like"
+	 * ,nativeQuery = true) public String[] dameCompany(String filtro);
+	 */
 
 }

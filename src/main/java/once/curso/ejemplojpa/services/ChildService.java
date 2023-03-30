@@ -1,5 +1,8 @@
 package once.curso.ejemplojpa.services;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -9,16 +12,64 @@ import once.curso.ejemplojpa.repositories.ChildRepository;
 @Service
 @Data
 public class ChildService {
-	
+
+	@Autowired
 	private ChildRepository childRepository;
-	public void dameJovenes() {
-		Iterable<Child> jovenes= getChildRepository().findAll();
+
+	public void Jovenes() {
+		Iterable<Child> jovenes = getChildRepository().findAll();
 		for (Child child : jovenes) {
-			System.out.println(child.getClass());
+			System.out.println(child.getGuys());
+			System.out.println(child.getGirls());
 		}
 	}
-	
-	public String[] dameJovenes(String filtro) {	
-return getChildRepository().dameChildren(filtro);
-}
+
+	public <S extends Child> S save(S entity) {
+		return getChildRepository().save(entity);
+	}
+
+	public <S extends Child> Iterable<S> saveAll(Iterable<S> entities) {
+		return getChildRepository().saveAll(entities);
+	}
+
+	public Optional<Child> findById(Integer id) {
+		return getChildRepository().findById(id);
+	}
+
+	public boolean existsById(Integer id) {
+		return getChildRepository().existsById(id);
+	}
+
+	public Iterable<Child> findAll() {
+		return getChildRepository().findAll();
+	}
+
+	public Iterable<Child> findAllById(Iterable<Integer> ids) {
+		return getChildRepository().findAllById(ids);
+	}
+
+	public long count() {
+		return getChildRepository().count();
+	}
+
+	public void deleteById(Integer id) {
+		getChildRepository().deleteById(id);
+	}
+
+	public void delete(Child entity) {
+		getChildRepository().delete(entity);
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		getChildRepository().deleteAllById(ids);
+	}
+
+	public void deleteAll(Iterable<? extends Child> entities) {
+		getChildRepository().deleteAll(entities);
+	}
+
+	public void deleteAll() {
+		getChildRepository().deleteAll();
+	}
+
 }

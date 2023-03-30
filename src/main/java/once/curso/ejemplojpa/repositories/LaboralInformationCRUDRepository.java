@@ -8,4 +8,6 @@ import once.curso.ejemplojpa.entityes.LaboralInformation;
 @Repository
 public interface LaboralInformationCRUDRepository extends CrudRepository<LaboralInformation, Integer>{
 
+	
+
 }

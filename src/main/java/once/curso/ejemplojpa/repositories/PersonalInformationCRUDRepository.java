@@ -10,4 +10,6 @@ import once.curso.ejemplojpa.entityes.PersonalInformation;
 @Repository
 public interface PersonalInformationCRUDRepository extends CrudRepository<PersonalInformation, Integer> {
 
+	
+
 }
