@@ -53,23 +53,25 @@ public class MaritalStatusService {
 	}
 
 	public void deleteById(Integer id) {
-
+		getMaritalStatusRepository().deleteById(id);
 	}
 
 	public void delete(MaritalStatus entity) {
-
+		getMaritalStatusRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-
+		getMaritalStatusRepository().deleteAllById(ids);
+		;
 	}
 
 	public void deleteAll(Iterable<? extends MaritalStatus> entities) {
-
+		getMaritalStatusRepository().deleteAll(entities);
+		;
 	}
 
 	public void deleteAll() {
-
+		getMaritalStatusRepository().deleteAll();
 	}
 
 }

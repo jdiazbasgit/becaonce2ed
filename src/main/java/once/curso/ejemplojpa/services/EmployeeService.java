@@ -24,10 +24,10 @@ public class EmployeeService {
 			System.out.println(employee.getPhone());
 			System.out.println(employee.getBirthDate());
 			System.out.println(employee.getDateHight());
-			System.out.println(employee.getLowCalendar());
-			System.out.println(employee.getDatosPersonales());
-			System.out.println(employee.getDatosLaborales());
-			System.out.println(employee.getCompañias());
+			System.out.println(employee.getLowDate());
+			System.out.println(employee.getPersonalInformation());
+			System.out.println(employee.getLaboralInformation());
+			System.out.println(employee.getCompany());
 		}
 	}
 	public <S extends Employee> S save(S entity) {
@@ -59,23 +59,23 @@ public class EmployeeService {
 	}
 
 	public void deleteById(Integer id) {
-		
+		getEmployeeRepository().deleteById(id);
 	}
 
 	public void delete(Employee entity) {
-		
+		getEmployeeRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		
+		getEmployeeRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Employee> entities) {
-		
+		getEmployeeRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		
+		getEmployeeRepository().deleteAll();
 	}
 
 }

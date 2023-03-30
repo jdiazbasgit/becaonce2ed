@@ -53,22 +53,22 @@ public class ChildService {
 	}
 
 	public void deleteById(Integer id) {
-		
+		getChildrenRepository().deleteById(id);
 	}
 
 	public void delete(Child entity) {
-		
+		getChildrenRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		
+		getChildrenRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Child> entities) {
-		
+		getChildrenRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		
+		getChildrenRepository().deleteAll();
 	}
 }

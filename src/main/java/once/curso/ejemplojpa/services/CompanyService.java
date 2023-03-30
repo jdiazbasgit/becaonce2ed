@@ -52,22 +52,23 @@ public class CompanyService {
 	}
 
 	public void deleteById(Integer id) {
-		
+		getCompanyRepository().deleteById(id);
 	}
 
 	public void delete(Company entity) {
+		getCompanyRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		
+		getCompanyRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Company> entities) {
-		
+		getCompanyRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		
+		getCompanyRepository().deleteAll();
 	}
 
 }

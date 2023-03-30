@@ -57,23 +57,24 @@ public class ChargeService {
 	}
 
 	public void deleteById(Integer id) {
+		getChargeRepository().deleteById(id);
 		
 	}
 
 	public void delete(Charge entity) {
-		
+		getChargeRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		
+		getChargeRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Charge> entities) {
-		
+		getChargeRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		
+		getChargeRepository().deleteAll();
 	}
 
 	

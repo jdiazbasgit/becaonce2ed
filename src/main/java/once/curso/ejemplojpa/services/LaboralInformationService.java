@@ -49,22 +49,22 @@ public class LaboralInformationService {
 	}
 
 	public void deleteById(Integer id) {
-
+		getLaboralInformationCRUDRepository().deleteById(id);
 	}
 
 	public void delete(LaboralInformation entity) {
-
+		getLaboralInformationCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-
+		getLaboralInformationCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends LaboralInformation> entities) {
-
+		getLaboralInformationCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-
+		getLaboralInformationCRUDRepository().deleteAll();
 	}
 }

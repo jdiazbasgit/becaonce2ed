@@ -6,7 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.Id;
 
@@ -25,22 +29,28 @@ public class Employee {
 	private String phone;
 	
 	@Column (name="birth_date")
+	@Temporal(TemporalType.DATE)
 	private GregorianCalendar birthDate;
 	
 	@Column (name="date_hight")
+	@Temporal(TemporalType.DATE)
 	private GregorianCalendar dateHight;
 	
 	@Column (name="low_date")
-	private GregorianCalendar lowCalendar;
+	@Temporal(TemporalType.DATE)
+	private GregorianCalendar lowDate;
 	
-	@Column (name="personal_information_id")
-	private PersonalInformation datosPersonales;
+	@ManyToOne
+	@JoinColumn (name="personal_information_id")
+	private PersonalInformation personalInformation;
 	
-	@Column (name="laboral_information_id")
-	private LaboralInformation datosLaborales;
+	@ManyToOne
+	@JoinColumn (name="laboral_information_id")
+	private LaboralInformation laboralInformation;
 	
-	@Column (name="companies_id")
-	private Company compañias;
+	@ManyToOne
+	@JoinColumn (name="companies_id")
+	private Company company;
 	
 	
 

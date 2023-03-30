@@ -55,23 +55,23 @@ public class PersonalInformationService {
 	}
 
 	public void deleteById(Integer id) {
-
+		getPersonalInformationRepository().deleteById(id);
 	}
 
 	public void delete(PersonalInformation entity) {
-
+		getPersonalInformationRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-
+		getPersonalInformationRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends PersonalInformation> entities) {
-
+		getPersonalInformationRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-
+		getPersonalInformationRepository().deleteAll();
 	}
 
 }
