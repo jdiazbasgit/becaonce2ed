@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 import once.curso.ejemplojpa.entities.Child;
 
 @Repository
-public interface ChildCRUDRepository extends CrudRepository<Child, Integer> {	
+public interface ChildCRUDRepository extends CrudRepository<Child, Integer> {
 }
+

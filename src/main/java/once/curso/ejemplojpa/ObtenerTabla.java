@@ -21,53 +21,74 @@ public class ObtenerTabla {
 	public static void main(String[] args) {
 		Connection conexion = null;
 		try {
+			System.out.println("Versión 1.0, se aplicarán por defecto relaciones @ManyToOne, revisar el resultado\n");
+			System.out.println("Escribe el nombre del esquema:");
+			String esquema = leerTecladoTexto();
 			DriverManager.registerDriver(new Driver());
-			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/COMPANY?useSSL=false",
+			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://82.223.202.137:3306/"+esquema+"?useSSL=false",
 					"curso", "Cursocurso1;");
-			System.out.println("Nombre de la tabla en el esquema SQL:");
-			String tabla = leerTecladoTexto();
-			//String tabla = "companies";
-			System.out.println("Nombre para la clase:");
-			String tablaAClase = leerTecladoTexto();
-			//String tablaAClase = "Company";
-			PreparedStatement preparedStatement = conexion.prepareStatement("SELECT * FROM COMPANY."+tabla);
-			preparedStatement.execute();
-			ResultSet resultSet = preparedStatement.executeQuery();			
-			ResultSetMetaData metadata = resultSet.getMetaData();
-			int i = 1;
-			String equalsINT = "INT";
-			String equalsVARCHAR = "VARCHAR";
-			String contenidoClase = "package once.curso.ejemplojpa.entities;\r\n" + 
-			"import javax.persistence.Entity;\r\n" + 
-			"import javax.persistence.GeneratedValue;\r\n" + 
-			"import javax.persistence.GenerationType;\r\n" + 
-			"import javax.persistence.Table;\r\n" + 
-			"import org.springframework.data.annotation.Id;"+
-			"import lombok.Data;"+
-					"\r\n" +
-					"@Data\r\n"+
-					"@Entity\r\n"+
-					"@Table (name = \""  +tabla+  "\") \r\n"+
-					"public class "+tablaAClase +" {\r\n" + 
-					"\r\n" +
-					"@Id" +
-					"\r\n" +
-					"@GeneratedValue(strategy = GenerationType.AUTO)"+
-					"\r\n";
-			while (i<=metadata.getColumnCount()) {
-				String tipoDato = metadata.getColumnTypeName(i);
-				if (tipoDato.equals(equalsINT)) {
-					tipoDato = tipoDato.toLowerCase();
-				}
-				if (tipoDato.equals(equalsVARCHAR)) {
-					tipoDato = "String";
-				}
-				contenidoClase = contenidoClase + "private "+ tipoDato + " "+  metadata.getColumnName(i).toLowerCase() + ";\r\n";
-				i++;
-			}			
+			PreparedStatement preparedStatementEsquema = conexion.prepareStatement("SELECT table_name FROM information_schema.tables "
+					+ "WHERE table_schema = '"+esquema+"' AND table_type = 'BASE TABLE';");
+			preparedStatementEsquema.execute();
+			ResultSet resultSetEsquema = preparedStatementEsquema.executeQuery();
+			while (resultSetEsquema.next()) {
+				System.out.println("Creando entorno SB JPA para tabla: "+ resultSetEsquema.getString(1) );
+				String tabla = resultSetEsquema.getString(1);
+				System.out.println("Escribe el nombre para la Clase (PascalCase y Singular): ");
+				String tablaAClase = leerTecladoTexto();
+				PreparedStatement preparedStatement = conexion.prepareStatement("SELECT * FROM "+esquema+"."+tabla);
+				preparedStatement.execute();
+				ResultSet resultSet = preparedStatement.executeQuery();			
+				ResultSetMetaData metadata = resultSet.getMetaData();
+				int i = 1;
+				String equalsINT = "INT";
+				String equalsVARCHAR = "VARCHAR";
+				String equalsDATE = "DATE";
+				String containsID = "_id";
+				String contenidoClase = "package once.curso.ejemplojpa.entities;\r\n" + 
+				"import javax.persistence.Entity;\r\n" + 
+				"import javax.persistence.GeneratedValue;\r\n" + 
+				"import javax.persistence.GenerationType;\r\n" + 
+				"import javax.persistence.Table;\r\n" + 
+				"import org.springframework.data.annotation.Id;"+
+				"import lombok.Data;"+
+						"\r\n" +
+						"@Data\r\n"+
+						"@Entity\r\n"+
+						"@Table (name = \""  +tabla+  "\") \r\n"+
+						"public class "+tablaAClase +" {\r\n" + 
+						"\r\n" +
+						"@Id" +
+						"\r\n" +
+						"@GeneratedValue(strategy = GenerationType.AUTO)"+
+						"\r\n";
+				while (i<=metadata.getColumnCount()) {
+					String tipoDato = metadata.getColumnTypeName(i);
+					System.out.println(metadata.getColumnDisplaySize(i));
+					if (tipoDato.equals(equalsINT)) {
+						tipoDato = tipoDato.toLowerCase();
+					}
+					if (tipoDato.equals(equalsVARCHAR)) {
+						tipoDato = "String";
+					}
+					if (tipoDato.equals(equalsDATE)) {
+						tipoDato = "GregorianCalendar";
+					}
+					if (tipoDato.contains(containsID)) {
+						String textoModificado = tipoDato.replaceAll("_(\\w)", "$1");
+						tipoDato = textoModificado;
+					}
+					
+					
+					contenidoClase = contenidoClase + "private "+ tipoDato + " "+  metadata.getColumnName(i).toLowerCase() + ";\r\n";
+					i++;
+				}		
+				leerTecladoTexto();
+				
+				contenidoClase = contenidoClase +"}";
+				grabaArchivoSobreescribiendo("src/main/java/once/curso/ejemplojpa/entities/"+tablaAClase+".java", contenidoClase);
+			}
 			
-			contenidoClase = contenidoClase +"}";
-			grabaArchivoSobreescribiendo("src/main/java/once/curso/ejemplojpa/entities/"+tablaAClase+".java", contenidoClase);
 			
 			
 
