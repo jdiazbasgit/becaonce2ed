@@ -1,5 +1,6 @@
 package once.curso.ejemplojpa.entityes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class LaboralInformation {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "charges_id")
+	@Column(name = "charges_id")
 	private Charge charge;
 	
 }
