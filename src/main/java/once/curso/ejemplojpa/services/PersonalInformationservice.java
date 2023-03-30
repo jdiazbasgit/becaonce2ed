@@ -15,14 +15,16 @@ public class PersonalInformationservice {
 	@Autowired
 	private PersonalInformationCRUDRepository personalInformationCRUDRepository;
 	
-	public Iterable<PersonalInformation> getDatosPersonales(){
-		return getPersonalInformationCRUDRepository().findAll();	
-				}
- 	
+	public void dameDatosPersonales() {
 	
+	Iterable<PersonalInformation> datosPersonales =
+		 getPersonalInformationCRUDRepository().findAll();	
+		for(PersonalInformation personalInformationCRUDRepository: datosPersonales) {	
+ 	System.out.println(personalInformationCRUDRepository.getChild());
+	System.out.println(personalInformationCRUDRepository.getMaritalStatus());
+	}
 	
-	
-	
+	}
 	
 	
 	
