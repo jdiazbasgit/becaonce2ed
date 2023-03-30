@@ -1,6 +1,7 @@
 package once.curso.ejemplojpa.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,54 @@ public class ChargeService {
 	public String[] dameCargosQueEmpiecenPor(String filtro){
 		return getChargeRepository().dameCargosQueEmpiecenPor(filtro);
 	}
+	public <S extends Charge> S save(S entity) {
+		return getChargeRepository().save(entity);
+	}
+
+	public <S extends Charge> Iterable<S> saveAll(Iterable<S> entities) {
+		return getChargeRepository().saveAll(entities);
+	}
+
+	public Optional<Charge> findById(Integer id) {
+		return getChargeRepository().findById(id);
+	}
+
+	public boolean existsById(Integer id) {
+		return getChargeRepository().existsById(id);
+	}
+
+	public Iterable<Charge> findAll() {
+		return getChargeRepository().findAll();
+	}
+
+	public Iterable<Charge> findAllById(Iterable<Integer> ids) {
+		return getChargeRepository().findAllById(ids);
+	}
+
+	public long count() {
+		return getChargeRepository().count();
+	}
+
+	public void deleteById(Integer id) {
+		
+	}
+
+	public void delete(Charge entity) {
+		
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		
+	}
+
+	public void deleteAll(Iterable<? extends Charge> entities) {
+		
+	}
+
+	public void deleteAll() {
+		
+	}
+
 	
 }
 

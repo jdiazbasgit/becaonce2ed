@@ -1,5 +1,7 @@
 package once.curso.ejemplojpa.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,52 @@ public class CompanyService {
 			System.out.println(company.getCif());
 			System.out.println(company.getDescription());
 		}
+	}
+	public <S extends Company> S save(S entity) {
+		return getCompanyRepository().save(entity);
+	}
+
+	public <S extends Company> Iterable<S> saveAll(Iterable<S> entities) {
+		return getCompanyRepository().saveAll(entities);
+	}
+
+	public Optional<Company> findById(Integer id) {
+		return getCompanyRepository().findById(id);
+	}
+
+	public boolean existsById(Integer id) {
+		return getCompanyRepository().existsById(id);
+	}
+
+	public Iterable<Company> findAll() {
+		return getCompanyRepository().findAll();
+	}
+
+	public Iterable<Company> findAllById(Iterable<Integer> ids) {
+		return getCompanyRepository().findAllById(ids);
+	}
+
+	public long count() {
+		return getCompanyRepository().count();
+	}
+
+	public void deleteById(Integer id) {
+		
+	}
+
+	public void delete(Company entity) {
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		
+	}
+
+	public void deleteAll(Iterable<? extends Company> entities) {
+		
+	}
+
+	public void deleteAll() {
+		
 	}
 
 }

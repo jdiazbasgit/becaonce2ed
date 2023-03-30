@@ -1,5 +1,6 @@
 package once.curso.ejemplojpa.entityes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +21,11 @@ public class PersonalInformation {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn (name="children_id")
+	@Column (name="children_id")
 	private Child children;
 	
 	@ManyToOne
-	@JoinColumn (name="marital_statuses_id")
+	@Column (name="marital_statuses_id")
 	private MaritalStatus maritalStatus;
 
 }
