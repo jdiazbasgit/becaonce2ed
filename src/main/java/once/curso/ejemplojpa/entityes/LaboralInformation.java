@@ -30,7 +30,7 @@ public class LaboralInformation {
 	
 	
 	@ManyToOne
-	@Column(name = "charges_id")
+	@JoinColumn(name = "charges_id")
 	private Charge charge;
 	
 }
