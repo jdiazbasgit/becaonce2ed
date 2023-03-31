@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import once.curso.ejemplojpa.entityes.LaboralInformation;
+import once.curso.ejemplojpa.entityes.Employee;
 
 @Repository
-public interface LaboralInformationCRUDRepository extends CrudRepository<LaboralInformation, Integer>{
+public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
 
 	
 
