@@ -1,6 +1,5 @@
 package once.curso.ejemplojpa.entityes;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

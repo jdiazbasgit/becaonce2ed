@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,12 +23,12 @@ public class PersonalInformation {
 	private int id;
 	
 	@ManyToOne
-	@Column
-	private Child childrenId;
+	@JoinColumn(name="children_id")
+	private Child child;
 	
 	
 	@ ManyToOne
-	@Column(name="marital_statuses_id")
+	@JoinColumn(name="marital_statuses_id")
 	private MaritalStatus maritalStatus;
 		
 	}
