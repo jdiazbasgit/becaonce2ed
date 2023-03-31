@@ -27,7 +27,7 @@ public class LaboralInformation {
 	
 	private int salary;
 	
-	
+	//luis
 	@ManyToOne
 	@JoinColumn(name = "charges_id")
 	private Charge charge;

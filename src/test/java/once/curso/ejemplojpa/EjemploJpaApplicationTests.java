@@ -1,13 +1,33 @@
 package once.curso.ejemplojpa;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class EjemploJpaApplicationTests {
+import lombok.Data;
+import once.curso.ejemplojpa.entityes.Child;
+import once.curso.ejemplojpa.services.ChildServices;
 
+@SpringBootTest
+@Data
+class EjemploJpaApplicationTests {
+	
+	@Autowired
+	private ChildServices hijoService;
+	
 	@Test
-	void contextLoads() {
+	public void findAll () {
+		
+		List<Child> children= (List<Child>) getHijoService().findAll();
+		assertNotEquals(children.size(), 0);
+		
 	}
 
+
+	
+
 }
+
