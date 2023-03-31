@@ -19,12 +19,10 @@ public class LaboralInformation {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	
 	private int salary;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "charges_id")
 	private Charge charge;
 	
-}//temporal temporaltype.date
+}

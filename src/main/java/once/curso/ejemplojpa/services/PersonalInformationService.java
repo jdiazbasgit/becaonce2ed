@@ -15,39 +15,40 @@ public class PersonalInformationService {
 
 	@Autowired
 	private PersonalInformationCRUDRepository personalInformationCRUDRepository;
+	
+	public void dameDatosPersonales() {
+		Iterable<PersonalInformation> datosPersonales = getPersonalInformationCRUDRepository().findAll();
+		for (PersonalInformation personalInformation : datosPersonales) {
+			System.out.println(personalInformation.getChildrenId());
+			System.out.println(personalInformation.getMaritalStatusId());
+		}
+	}
 
 	public <S extends PersonalInformation> S save(S entity) {
-
 		return getPersonalInformationCRUDRepository().save(entity);
 	}
 
 	public <S extends PersonalInformation> Iterable<S> saveAll(Iterable<S> entities) {
-
 		return getPersonalInformationCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<PersonalInformation> findById(Integer id) {
-
 		return getPersonalInformationCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
 		return getPersonalInformationCRUDRepository().existsById(id);
 	}
 
 	public Iterable<PersonalInformation> findAll() {
-
 		return getPersonalInformationCRUDRepository().findAll();
 	}
 
 	public Iterable<PersonalInformation> findAllById(Iterable<Integer> ids) {
-
 		return getPersonalInformationCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-
 		return getPersonalInformationCRUDRepository().count();
 	}
 
@@ -62,17 +63,13 @@ public class PersonalInformationService {
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
 		getPersonalInformationCRUDRepository().deleteAllById(ids);
-
 	}
 
 	public void deleteAll(Iterable<? extends PersonalInformation> entities) {
 		getPersonalInformationCRUDRepository().deleteAll(entities);
-
 	}
 
 	public void deleteAll() {
 		getPersonalInformationCRUDRepository().deleteAll();
-
 	}
-
 }

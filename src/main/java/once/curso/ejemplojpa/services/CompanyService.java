@@ -15,6 +15,14 @@ public class CompanyService {
 
 	@Autowired
 	private CompanyCRUDRepository companyCrudRepository;
+	
+	public void dameEmpresas(){
+		Iterable<Company> empresa = getCompanyCrudRepository().findAll();
+		for (Company company : empresa) {
+			System.out.println(company.getCif());
+			System.out.println(company.getDescription());
+		}
+	}
 
 	public <S extends Company> S save(S entity) {
 

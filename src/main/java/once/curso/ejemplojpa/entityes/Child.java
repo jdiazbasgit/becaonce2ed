@@ -1,5 +1,6 @@
 package once.curso.ejemplojpa.entityes;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,10 @@ public class Child {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@Column(name="guys")
 	private int guys;
 	
+	@Column(name="girls")
 	private int girls;
 
 }

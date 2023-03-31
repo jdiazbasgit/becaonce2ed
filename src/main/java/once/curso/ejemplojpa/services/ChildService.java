@@ -14,67 +14,66 @@ import once.curso.ejemplojpa.repositories.ChildCRUDRepository;
 public class ChildService {
 
 	@Autowired
-	private ChildCRUDRepository childrenCRUDRepository;
+	private ChildCRUDRepository childCRUDRepository;
+	
+	public void dameHijos() {
+		Iterable<Child> hijos = getChildCRUDRepository().findAll();
+		for (Child child : hijos) {
+			System.out.println(child.getGuys());
+			System.out.println(child.getGirls());
+		}
+	}
 
 	public Iterable<Child> getDatosLaborales() {
-
-		return getChildrenCRUDRepository().findAll();
+		return getChildCRUDRepository().findAll();
 	}
 
 	public <S extends Child> S save(S entity) {
-
-		return getChildrenCRUDRepository().save(entity);
+		return getChildCRUDRepository().save(entity);
 	}
 
 	public <S extends Child> Iterable<S> saveAll(Iterable<S> entities) {
-
-		return getChildrenCRUDRepository().saveAll(entities);
+		return getChildCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<Child> findById(Integer id) {
-
-		return getChildrenCRUDRepository().findById(id);
+		return getChildCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
-		return getChildrenCRUDRepository().existsById(id);
+		return getChildCRUDRepository().existsById(id);
 	}
 
 	public Iterable<Child> findAll() {
-
-		return getChildrenCRUDRepository().findAll();
+		return getChildCRUDRepository().findAll();
 	}
 
 	public Iterable<Child> findAllById(Iterable<Integer> ids) {
-
-		return getChildrenCRUDRepository().findAllById(ids);
+		return getChildCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-
-		return getChildrenCRUDRepository().count();
+		return getChildCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		
-		getChildrenCRUDRepository().deleteById(id);
+		getChildCRUDRepository().deleteById(id);
 	}
 
 	public void delete(Child entity) {
-		getChildrenCRUDRepository().delete(entity);
+		getChildCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getChildrenCRUDRepository().deleteAll();
+		getChildCRUDRepository().deleteAll();
 	}
 
 	public void deleteAll(Iterable<? extends Child> entities) {
-		getChildrenCRUDRepository().deleteAll(entities);
+		getChildCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getChildrenCRUDRepository().deleteAll();
+		getChildCRUDRepository().deleteAll();
 	}
 
 }

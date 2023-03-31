@@ -2,12 +2,16 @@ package once.curso.ejemplojpa.entityes;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -26,19 +30,28 @@ public class Employee {
 	
 	private String phone;
 	
-	private Calendar birthdate;
+	@Column(name="birth_date")
+	@Temporal(TemporalType.DATE)
+	private Calendar birthDate;
 	
-	private Calendar datehight;
+	@Column(name="date_hight")
+	@Temporal(TemporalType.DATE)
+	private Calendar dateHight;
 	
-	private Calendar lowdate;
+	@Column(name="low_date")
+	@Temporal(TemporalType.DATE)
+	private Calendar lowDate;
 	
 	@ManyToOne
+	@JoinColumn (name="personal_information_id")
 	private int personalInformationId;
 	
 	@ManyToOne
+	@JoinColumn(name="laboral_information_id")
 	private int laboralInforamtionId;
 	
 	@ManyToOne
+	@JoinColumn(name="companies_id")
 	private int companiesId;
 
 }

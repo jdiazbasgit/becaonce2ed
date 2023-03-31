@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.ejemplojpa.entityes.Employee;
 import once.curso.ejemplojpa.repositories.EmployeeCRUDRepository;
 
 @Service
@@ -15,17 +16,34 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeCRUDRepository employeeCRUDRepository;
 
-	public <S extends EmployeeCRUDRepository> S save(S entity) {
+	public void dameEmpleados() {
+		Iterable<Employee> empleados = getEmployeeCRUDRepository().findAll();
+		for (Employee employee : empleados) {
+			System.out.println(employee.getName());
+			System.out.println(employee.getNif());
+			System.out.println(employee.getPhone());
+			System.out.println(employee.getBirthDate());
+			System.out.println(employee.getDateHight());
+			System.out.println(employee.getLowDate());
+			System.out.println(employee.getPersonalInformationId());
+			System.out.println(employee.getLaboralInforamtionId());
+			System.out.println(employee.getCompaniesId());
+
+		}
+
+	}
+
+	public <S extends Employee> S save(S entity) {
 
 		return getEmployeeCRUDRepository().save(entity);
 	}
 
-	public <S extends EmployeeCRUDRepository> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Employee> Iterable<S> saveAll(Iterable<S> entities) {
 
 		return getEmployeeCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<EmployeeCRUDRepository> findById(Integer id) {
+	public Optional<Employee> findById(Integer id) {
 
 		return getEmployeeCRUDRepository().findById(id);
 	}
@@ -35,12 +53,12 @@ public class EmployeeService {
 		return getEmployeeCRUDRepository().existsById(id);
 	}
 
-	public Iterable<EmployeeCRUDRepository> findAll() {
+	public Iterable<Employee> findAll() {
 
 		return getEmployeeCRUDRepository().findAll();
 	}
 
-	public Iterable<EmployeeCRUDRepository> findAllById(Iterable<Integer> ids) {
+	public Iterable<Employee> findAllById(Iterable<Integer> ids) {
 
 		return getEmployeeCRUDRepository().findAllById(ids);
 	}
@@ -54,7 +72,7 @@ public class EmployeeService {
 		getEmployeeCRUDRepository().deleteById(id);
 	}
 
-	public void delete(EmployeeCRUDRepository entity) {
+	public void delete(Employee entity) {
 		getEmployeeCRUDRepository().delete(entity);
 	}
 

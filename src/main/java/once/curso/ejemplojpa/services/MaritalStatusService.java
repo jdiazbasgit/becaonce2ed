@@ -15,39 +15,39 @@ public class MaritalStatusService {
 
 	@Autowired
 	private MaritalStatusCRUDRepository maritalStatusCRUDRepository;
+	
+	public void dameEstadoCivil() {
+		Iterable<MaritalStatus> estadoCivil = getMaritalStatusCRUDRepository().findAll();
+		for (MaritalStatus maritalStatus : estadoCivil) {
+			System.out.println(maritalStatus.getDescription());
+		}
+	}
 
 	public <S extends MaritalStatus> S save(S entity) {
-
 		return getMaritalStatusCRUDRepository().save(entity);
 	}
 
 	public <S extends MaritalStatus> Iterable<S> saveAll(Iterable<S> entities) {
-
 		return getMaritalStatusCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<MaritalStatus> findById(Integer id) {
-
 		return getMaritalStatusCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
 		return getMaritalStatusCRUDRepository().existsById(id);
 	}
 
 	public Iterable<MaritalStatus> findAll() {
-
 		return getMaritalStatusCRUDRepository().findAll();
 	}
 
 	public Iterable<MaritalStatus> findAllById(Iterable<Integer> ids) {
-
 		return getMaritalStatusCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-
 		return getMaritalStatusCRUDRepository().count();
 	}
 

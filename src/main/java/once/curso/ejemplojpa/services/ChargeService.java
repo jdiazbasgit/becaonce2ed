@@ -29,47 +29,38 @@ public class ChargeService {
 	}
 
 	public <S extends Charge> S save(S entity) {
-
 		return getChargeRepository().save(entity);
 	}
 
 	public <S extends Charge> Iterable<S> saveAll(Iterable<S> entities) {
-
 		return getChargeRepository().saveAll(entities);
 	}
 
 	public Optional<Charge> findById(Integer id) {
-
 		return getChargeRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
 		return getChargeRepository().existsById(id);
 	}
 
 	public Iterable<Charge> findAll() {
-
 		return getChargeRepository().findAll();
 	}
 
 	public Iterable<Charge> findAllById(Iterable<Integer> ids) {
-
 		return getChargeRepository().findAllById(ids);
 	}
 
 	public long count() {
-
 		return getChargeRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		
 		getChargeRepository().deleteById(id);
 	}
 
 	public void delete(Charge entity) {
-		
 		getChargeRepository().delete(entity);
 	}
 
