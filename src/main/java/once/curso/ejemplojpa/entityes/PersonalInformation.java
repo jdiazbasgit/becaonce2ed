@@ -1,14 +1,12 @@
 package once.curso.ejemplojpa.entityes;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
@@ -21,11 +19,11 @@ public class PersonalInformation {
 	private int id;
 	
 	@ManyToOne
-	@Column (name="children_id")
+	@JoinColumn (name="children_id")
 	private Child children;
 	
 	@ManyToOne
-	@Column (name="marital_statuses_id")
+	@JoinColumn (name="marital_statuses_id")
 	private MaritalStatus maritalStatus;
 
 }
