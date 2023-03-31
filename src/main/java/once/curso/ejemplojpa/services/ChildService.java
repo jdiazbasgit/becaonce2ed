@@ -6,32 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.ejemplojpa.entityes.Children;
-import once.curso.ejemplojpa.repositories.ChildrenCRUDRepository;
+import once.curso.ejemplojpa.entityes.Child;
+import once.curso.ejemplojpa.repositories.ChildCRUDRepository;
 
 @Service
 @Data
-public class ChildrenService {
+public class ChildService {
 
 	@Autowired
-	private ChildrenCRUDRepository childrenCRUDRepository;
+	private ChildCRUDRepository childrenCRUDRepository;
 
-	public Iterable<Children> getDatosLaborales() {
+	public Iterable<Child> getDatosLaborales() {
 
 		return getChildrenCRUDRepository().findAll();
 	}
 
-	public <S extends Children> S save(S entity) {
+	public <S extends Child> S save(S entity) {
 
 		return getChildrenCRUDRepository().save(entity);
 	}
 
-	public <S extends Children> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Child> Iterable<S> saveAll(Iterable<S> entities) {
 
 		return getChildrenCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<Children> findById(Integer id) {
+	public Optional<Child> findById(Integer id) {
 
 		return getChildrenCRUDRepository().findById(id);
 	}
@@ -41,12 +41,12 @@ public class ChildrenService {
 		return getChildrenCRUDRepository().existsById(id);
 	}
 
-	public Iterable<Children> findAll() {
+	public Iterable<Child> findAll() {
 
 		return getChildrenCRUDRepository().findAll();
 	}
 
-	public Iterable<Children> findAllById(Iterable<Integer> ids) {
+	public Iterable<Child> findAllById(Iterable<Integer> ids) {
 
 		return getChildrenCRUDRepository().findAllById(ids);
 	}
@@ -61,7 +61,7 @@ public class ChildrenService {
 		getChildrenCRUDRepository().deleteById(id);
 	}
 
-	public void delete(Children entity) {
+	public void delete(Child entity) {
 		getChildrenCRUDRepository().delete(entity);
 	}
 
@@ -69,7 +69,7 @@ public class ChildrenService {
 		getChildrenCRUDRepository().deleteAll();
 	}
 
-	public void deleteAll(Iterable<? extends Children> entities) {
+	public void deleteAll(Iterable<? extends Child> entities) {
 		getChildrenCRUDRepository().deleteAll(entities);
 	}
 

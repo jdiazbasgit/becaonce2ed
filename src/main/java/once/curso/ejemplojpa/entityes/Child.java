@@ -11,14 +11,14 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="children")
-public class Children {
+public class Child {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private String guys;
+	private int guys;
 	
-	private String girls;
+	private int girls;
 
 }
