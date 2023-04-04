@@ -25,7 +25,7 @@ public class Profile {
 	private String identification;
 	private String email;
 	private String phone;
-	private Image image;
+	private Byte image;
 	
 	@ManyToOne
 	@JoinColumn (name="identification_type_id")

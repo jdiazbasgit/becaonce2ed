@@ -1,6 +1,7 @@
 package bancoEntityes;
 
 import java.sql.Time;
+import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,6 @@ public class AwardFine {
 	private AwardFineConfiguration awardFineConfiguration;
 	
 	@Temporal(TemporalType.TIME)
-	private Time time;
+	private Calendar time;
 
 }
