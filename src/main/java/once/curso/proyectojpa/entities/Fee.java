@@ -1,4 +1,4 @@
-package once.curso.proyectojpa.enttyes;
+package once.curso.proyectojpa.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,14 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name = "configurations")
-public class Configuration {
-	
+@Table(name = "fees")
+public class Fee {
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@
-	private int live_tine;
+	private String current;
 
 }
