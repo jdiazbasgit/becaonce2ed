@@ -20,7 +20,10 @@ public class AwardFineService {
 
 		Iterable<AwardFine> TipoPremiosMultas = getAwardFineRepository().findAll();
 		for (AwardFine awardFine : TipoPremiosMultas) {
+			System.out.println(awardFine.getAwardFineType());
+			System.out.println(awardFine.getAwardFieConfiguration());
 			System.out.println(awardFine.getTime());
+			
 		}
 	}
 

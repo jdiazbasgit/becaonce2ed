@@ -20,7 +20,7 @@ public class IdentificationTypeService {
 
 		Iterable<IdentificationType> identificationTypes = getIdentificationTypeRepository().findAll();
 		for (IdentificationType identificationType : identificationTypes) {
-			System.out.println(identificationType);
+			System.out.println(identificationType.getDescription());
 		}
 	}
 

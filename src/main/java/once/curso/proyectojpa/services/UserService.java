@@ -2,26 +2,29 @@ package once.curso.proyectojpa.services;
 
 import java.util.Optional;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectojpa.entities.User;
 import once.curso.proyectojpa.repositories.UserRepository;
 
 @Service
 @Data
 public class UserService {
-
 	@Autowired
 	private UserRepository userRepository;
 
-	public void dameUsers() {
+	public void dameUser() {
 
 		Iterable<User> users = getUserRepository().findAll();
 		for (User user : users) {
-			System.out.println(user.getUsername());
+			System.out.println(user.getUser());
+			System.out.println(user.getPassword());
+			System.out.println(user.getRol());
+			System.out.println(user.getEnabled());
 		}
+
 	}
 
 	public <S extends User> S save(S entity) {

@@ -5,13 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Profiles")
+@Table(name = "PROFILES")
 public class Profile {
 
 	@Id
@@ -25,12 +27,14 @@ public class Profile {
 	private String identification;
 	private String email;
 	private String phone;
-	private String image;
+	private byte image;
 
-	@Column(name = "identification_types_id")
-	private int IdentificationType;
+	@ManyToOne
+	@JoinColumn(name = "identification_type_id")
+	private IdentificationType IdentificationType;
 
-	@Column(name = "users_id")
-	private int user;
+	@ManyToOne
+	@JoinColumn(name = "users_id")
+	private User user;
 
 }

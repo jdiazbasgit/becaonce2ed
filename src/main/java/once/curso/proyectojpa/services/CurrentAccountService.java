@@ -20,7 +20,11 @@ public class CurrentAccountService {
 
 		Iterable<CurrentAccount> currenAccounts = getCurrentAccountRepository().findAll();
 		for (CurrentAccount currentAccount : currenAccounts) {
+			System.out.println(currentAccount.getNumber());
+			System.out.println(currentAccount.getCreationDate());
 			System.out.println(currentAccount.getFee());
+			System.out.println(currentAccount.getTypeAccounts());
+			System.out.println(currentAccount.getUser());
 		}
 	}
 

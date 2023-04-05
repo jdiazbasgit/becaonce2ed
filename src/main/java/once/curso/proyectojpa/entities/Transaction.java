@@ -17,23 +17,26 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Transactions")
+@Table(name = "TRANSACTIONS")
 public class Transaction {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String current;
 	
-	@Column (name="date")
-	@Temporal (TemporalType.DATE)
+	@Column(name = "current")
+	private double actual;
+
+	@Column(name = "date")
+	@Temporal(TemporalType.DATE)
 	private Calendar date;
-	
+
 	@ManyToOne
-	@JoinColumn(name="descriptions_id")
+	@JoinColumn(name = "descriptions_id")
 	private Description description;
-	
-	@Column(name="current_accounts_id")
+
+	@ManyToOne
+	@JoinColumn(name = "current_accounts_id")
 	private int currentAccount;
 
 }

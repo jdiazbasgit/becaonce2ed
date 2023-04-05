@@ -20,6 +20,7 @@ public class TransactionAwardFineService {
 
 		Iterable<TransactionAwardFine> Transactiones = getTransactionAwardFineRepository().findAll();
 		for (TransactionAwardFine transactionAwardFine : Transactiones) {
+			System.out.println(transactionAwardFine.getTransaction());
 			System.out.println(transactionAwardFine.getAwardFineType());
 		}
 

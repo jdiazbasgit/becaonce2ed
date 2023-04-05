@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "configurations")
+@Table(name = "CONFIGURATIONS")
 public class Configuration {
 
 	@Id

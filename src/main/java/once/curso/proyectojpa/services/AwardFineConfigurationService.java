@@ -22,7 +22,8 @@ public class AwardFineConfigurationService {
 				.findAll();
 		
 		for (AwardFineConfiguration awardFineConfiguration : awardsFinesConfigurations) {
-			System.out.println(awardFineConfiguration);
+			System.out.println(awardFineConfiguration.getCurrent());
+			System.out.println(awardFineConfiguration.getDescription());
 		}
 	}
 

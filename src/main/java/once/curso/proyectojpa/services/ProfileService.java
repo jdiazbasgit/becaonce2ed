@@ -3,10 +3,10 @@ package once.curso.proyectojpa.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectojpa.entities.Profile;
 import once.curso.proyectojpa.repositories.ProfileRepository;
 
 @Service
@@ -16,13 +16,19 @@ public class ProfileService {
 	@Autowired
 	private ProfileRepository profileRepository;
 
-	public void dameImage() {
+	public void dameProfile() {
 
-		Iterable<Profile> imagen = getProfileRepository().findAll();
-		for (Profile profile : imagen) {
+		Iterable<Profile> profiles = getProfileRepository().findAll();
+		for (Profile profile : profiles) {
+			System.out.println(profile.getName());
+			System.out.println(profile.getSecondName());
+			System.out.println(profile.getIdentification());
+			System.out.println(profile.getEmail());
+			System.out.println(profile.getPhone());
 			System.out.println(profile.getImage());
+			System.out.println(profile.getIdentificationType());
+			System.out.println(profile.getUser());
 		}
-
 	}
 
 	public <S extends Profile> S save(S entity) {
@@ -81,7 +87,7 @@ public class ProfileService {
 	}
 
 	public void deleteAll() {
-		getProfileRepository().deleteAll();
+		getProfileRepository().count();
 
 	}
 }

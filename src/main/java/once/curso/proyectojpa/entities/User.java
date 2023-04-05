@@ -1,17 +1,18 @@
 package once.curso.proyectojpa.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User {
 
 	@Id
@@ -19,9 +20,10 @@ public class User {
 	private int id;
 	private String user;
 	private String password;
-	private String enabled;
+	private Boolean enabled;
 
-	@Column(name = "roles_id")
+	@ManyToOne
+	@JoinColumn(name = "roles_id")
 	private int rol;
 
 }

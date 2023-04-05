@@ -10,12 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "fees")
+@Table(name = "FEES")
 public class Fee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String current;
+	private double current;
 
 }
