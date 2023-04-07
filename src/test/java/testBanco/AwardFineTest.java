@@ -1,8 +1,8 @@
-package tesBanco;
+package testBanco;
 
 import org.junit.jupiter.api.Test;
 
-public class AwardFineTes {
+public class AwardFineTest {
 
 	@Test
 	void AwardFineType() {}

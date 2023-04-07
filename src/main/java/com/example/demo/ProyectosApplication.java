@@ -5,36 +5,33 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import bancoRepositories.AwardFineTypeRepository;
-import bancoServices.AwardFineConfigurationService;
-import bancoServices.AwardFineService;
-import bancoServices.AwardFineTypeService;
 import lombok.Data;
+import once.curso.proyectojpa.services.AwardFineConfigurationService;
+import once.curso.proyectojpa.services.AwardFineService;
+import once.curso.proyectojpa.services.AwardFineTypeService;
 
 @SpringBootApplication
 @Data
 public class ProyectosApplication implements CommandLineRunner{
 	
-	@Autowired
-	private AwardFineService awardFineService;
+	@Autowired 
+	AwardFineService AwardFineService;
 	
 	@Autowired
-	private AwardFineConfigurationService awardFineConfigurationService;
-
+	AwardFineConfigurationService AwardFineConfigurationService;
+	
 	@Autowired
-	private AwardFineTypeService AwardFineTypeService;
+	AwardFineTypeService awardFineTypeService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectosApplication.class, args);
 	}
-
+	
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) throws Exception{
 		
-		getAwardFineService().dameMulta();
-		getAwardFineConfigurationService().dameConfiguracionMulta();
-		getAwardFineTypeService().dameTipoMulta();
-		
+		getAwardFineService().dameTipoPremiosMultas();
+		getAwardFineConfigurationService().damePremiosMultasConfiguraciones();
+		getAwardFineTypeService().dameAwardFineType();
 	}
-
 }
