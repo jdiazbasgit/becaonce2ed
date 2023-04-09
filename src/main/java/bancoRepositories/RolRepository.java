@@ -8,4 +8,6 @@ import bancoEntityes.Rol;
 @Repository
 public interface RolRepository extends CrudRepository<Rol, Integer> {
 
+	
+
 }

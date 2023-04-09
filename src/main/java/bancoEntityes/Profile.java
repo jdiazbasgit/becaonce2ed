@@ -1,7 +1,5 @@
 package bancoEntityes;
 
-import java.awt.Image;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -8,4 +8,5 @@ import bancoEntityes.TransactionAwardFine;
 @Repository
 public interface TransactionAwardFineRepository extends CrudRepository<TransactionAwardFine, Integer> {
 
+	
 }

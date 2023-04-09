@@ -12,65 +12,66 @@ import lombok.Data;
 @Data
 @Service
 public class AwardFineService {
-	
+
 	@Autowired
 	private AwardFineRepository awardFineRepository;
-	
-public void dameMulta() {
-	Iterable<AwardFine> multa= getAwardFineRepository().findAll();
-	for (AwardFine awardFine : multa) {
-		System.out.println(awardFine.getAwardFineConfiguration());
-		System.out.println(awardFine.getAwardFineType());
-		System.out.println(awardFine.getTime());
-		
+
+	public void dameMulta() {
+		Iterable<AwardFine> multa = getAwardFineRepository().findAll();
+		for (AwardFine awardFine : multa) {
+			System.out.println(awardFine.getAwardFineConfiguration());
+			System.out.println(awardFine.getAwardFineType());
+			System.out.println(awardFine.getTime());
+
+		}
 	}
-}
-public long count() {
-	return count();
-}
 
-public void delete(AwardFine entity) {
-getAwardFineRepository().delete(entity);	
-}
+	public long count() {
+		return count();
+	}
 
-public void deleteAll() {
-getAwardFineRepository().deleteAll();	
-}
+	public void delete(AwardFine entity) {
+		getAwardFineRepository().delete(entity);
+	}
 
-public void deleteAll(Iterable<? extends AwardFine> entities) {
-getAwardFineRepository().deleteAll(entities);	
-}
+	public void deleteAll() {
+		getAwardFineRepository().deleteAll();
+	}
 
-public void deleteAllById(Iterable<? extends Integer> ids) {
-	getAwardFineRepository().deleteAllById(ids);
-}
+	public void deleteAll(Iterable<? extends AwardFine> entities) {
+		getAwardFineRepository().deleteAll(entities);
+	}
 
-public void deleteById(Integer id) {
-getAwardFineRepository().deleteById(id);	
-}
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		getAwardFineRepository().deleteAllById(ids);
+	}
 
-public boolean existsById(Integer id) {
-	return getAwardFineRepository().existsById(id);
-}
+	public void deleteById(Integer id) {
+		getAwardFineRepository().deleteById(id);
+	}
 
-public Iterable<AwardFine> findAll() {
-	return getAwardFineRepository().findAll();
-}
+	public boolean existsById(Integer id) {
+		return getAwardFineRepository().existsById(id);
+	}
 
-public Iterable<AwardFine> findAllById(Iterable<Integer> ids) {
-	return getAwardFineRepository().findAllById(ids);
-}
+	public Iterable<AwardFine> findAll() {
+		return getAwardFineRepository().findAll();
+	}
 
-public Optional<AwardFine> findById(Integer id) {
-	return getAwardFineRepository().findById(id);
-}
+	public Iterable<AwardFine> findAllById(Iterable<Integer> ids) {
+		return getAwardFineRepository().findAllById(ids);
+	}
 
-public <S extends AwardFine> S save(S entity) {
-	return getAwardFineRepository().save(entity);
-}
+	public Optional<AwardFine> findById(Integer id) {
+		return getAwardFineRepository().findById(id);
+	}
 
-public <S extends AwardFine> Iterable<S> saveAll(Iterable<S> entities) {
-	return getAwardFineRepository().saveAll(entities);
-}
+	public <S extends AwardFine> S save(S entity) {
+		return getAwardFineRepository().save(entity);
+	}
+
+	public <S extends AwardFine> Iterable<S> saveAll(Iterable<S> entities) {
+		return getAwardFineRepository().saveAll(entities);
+	}
 
 }

@@ -8,4 +8,5 @@ import bancoEntityes.Transaction;
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 
+	
 }
