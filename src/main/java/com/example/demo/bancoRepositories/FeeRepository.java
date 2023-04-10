@@ -1,8 +1,8 @@
-package bancoRepositories;
+package com.example.demo.bancoRepositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import bancoEntityes.Fee;
+import com.example.demo.bancoEntityes.Fee;
 
 public interface FeeRepository extends CrudRepository<Fee,Integer> {
 

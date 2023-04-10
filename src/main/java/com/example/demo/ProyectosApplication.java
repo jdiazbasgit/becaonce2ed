@@ -5,20 +5,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import bancoServices.AwardFineConfigurationService;
-import bancoServices.AwardFineService;
-import bancoServices.AwardFineTypeService;
-import bancoServices.ConfigurationService;
-import bancoServices.CurrentAcountService;
-import bancoServices.DescriptionService;
-import bancoServices.FeeService;
-import bancoServices.IdentificationTypeService;
-import bancoServices.ProfileService;
-import bancoServices.RolService;
-import bancoServices.TransactionAwardFineService;
-import bancoServices.TransactionService;
-import bancoServices.TypeAccountService;
-import bancoServices.UserService;
+import com.example.demo.bancoServices.AwardFineConfigurationService;
+import com.example.demo.bancoServices.AwardFineService;
+import com.example.demo.bancoServices.AwardFineTypeService;
+import com.example.demo.bancoServices.ConfigurationService;
+import com.example.demo.bancoServices.CurrentAcountService;
+import com.example.demo.bancoServices.DescriptionService;
+import com.example.demo.bancoServices.FeeService;
+import com.example.demo.bancoServices.IdentificationTypeService;
+import com.example.demo.bancoServices.ProfileService;
+import com.example.demo.bancoServices.RolService;
+import com.example.demo.bancoServices.TransactionAwardFineService;
+import com.example.demo.bancoServices.TransactionService;
+import com.example.demo.bancoServices.TypeAccountService;
+import com.example.demo.bancoServices.UserService;
+
 import lombok.Data;
 
 @SpringBootApplication

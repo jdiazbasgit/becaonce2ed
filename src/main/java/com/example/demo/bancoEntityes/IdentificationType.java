@@ -1,4 +1,4 @@
-package bancoEntityes;
+package com.example.demo.bancoEntityes;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "identification_types")
+@Table(name = "identifications_types")
 public class IdentificationType {
 
 	@Id

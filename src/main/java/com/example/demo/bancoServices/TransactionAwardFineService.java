@@ -1,12 +1,13 @@
-package bancoServices;
+package com.example.demo.bancoServices;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bancoEntityes.TransactionAwardFine;
-import bancoRepositories.TransactionAwardFineRepository;
+import com.example.demo.bancoEntityes.TransactionAwardFine;
+import com.example.demo.bancoRepositories.TransactionAwardFineRepository;
+
 import lombok.Data;
 
 @Data

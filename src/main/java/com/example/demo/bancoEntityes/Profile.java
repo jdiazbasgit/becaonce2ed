@@ -1,4 +1,4 @@
-package bancoEntityes;
+package com.example.demo.bancoEntityes;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +26,7 @@ public class Profile {
 	private Byte image;
 	
 	@ManyToOne
-	@JoinColumn (name="identification_type_id")
+	@JoinColumn (name="identification_types_id")
 	private IdentificationType identificationType;
 	
 	@ManyToOne
