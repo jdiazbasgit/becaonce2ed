@@ -5,20 +5,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.bancoServices.AwardFineConfigurationService;
-import com.example.demo.bancoServices.AwardFineService;
-import com.example.demo.bancoServices.AwardFineTypeService;
-import com.example.demo.bancoServices.ConfigurationService;
-import com.example.demo.bancoServices.CurrentAcountService;
-import com.example.demo.bancoServices.DescriptionService;
-import com.example.demo.bancoServices.FeeService;
-import com.example.demo.bancoServices.IdentificationTypeService;
-import com.example.demo.bancoServices.ProfileService;
-import com.example.demo.bancoServices.RolService;
-import com.example.demo.bancoServices.TransactionAwardFineService;
-import com.example.demo.bancoServices.TransactionService;
-import com.example.demo.bancoServices.TypeAccountService;
-import com.example.demo.bancoServices.UserService;
+import com.example.demo.bancoservices.AwardFineConfigurationService;
+import com.example.demo.bancoservices.AwardFineService;
+import com.example.demo.bancoservices.AwardFineTypeService;
+import com.example.demo.bancoservices.ConfigurationService;
+import com.example.demo.bancoservices.CurrentAcountService;
+import com.example.demo.bancoservices.DescriptionService;
+import com.example.demo.bancoservices.FeeService;
+import com.example.demo.bancoservices.IdentificationTypeService;
+import com.example.demo.bancoservices.ProfileService;
+import com.example.demo.bancoservices.RolService;
+import com.example.demo.bancoservices.TransactionAwardFineService;
+import com.example.demo.bancoservices.TransactionService;
+import com.example.demo.bancoservices.TypeAccountService;
+import com.example.demo.bancoservices.UserService;
 
 import lombok.Data;
 
