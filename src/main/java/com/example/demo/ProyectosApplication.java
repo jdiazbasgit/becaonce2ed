@@ -6,9 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.Data;
-import once.curso.proyectojpa.services.AwardFineConfigurationService;
-import once.curso.proyectojpa.services.AwardFineService;
-import once.curso.proyectojpa.services.AwardFineTypeService;
+import once.curso.proyectoBancojpa.services.AwardFineConfigurationService;
+import once.curso.proyectoBancojpa.services.AwardFineService;
+import once.curso.proyectoBancojpa.services.AwardFineTypeService;
 
 @SpringBootApplication
 @Data
