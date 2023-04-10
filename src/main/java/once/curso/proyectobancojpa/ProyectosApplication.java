@@ -1,4 +1,4 @@
-package com.example.demo;
+package once.curso.proyectobancojpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -6,22 +6,22 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.Data;
-import once.curso.proyectoBancojpa.services.AwardFineConfigurationService;
-import once.curso.proyectoBancojpa.services.AwardFineService;
-import once.curso.proyectoBancojpa.services.AwardFineTypeService;
+import once.curso.proyectobancojpa.services.AwardFineConfigurationService;
+import once.curso.proyectobancojpa.services.AwardFineService;
+import once.curso.proyectobancojpa.services.AwardFineTypeService;
 
 @SpringBootApplication
 @Data
 public class ProyectosApplication implements CommandLineRunner{
 	
 	@Autowired 
-	AwardFineService AwardFineService;
+	private AwardFineService awardFineService;
 	
 	@Autowired
-	AwardFineConfigurationService AwardFineConfigurationService;
+	private AwardFineConfigurationService awardFineConfigurationService;
 	
 	@Autowired
-	AwardFineTypeService awardFineTypeService;
+	private AwardFineTypeService awardFineTypeService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectosApplication.class, args);
