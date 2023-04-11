@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.Generated;
 import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
