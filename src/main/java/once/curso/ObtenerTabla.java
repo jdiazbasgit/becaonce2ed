@@ -12,33 +12,21 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 //import com.mysql.jdbc.Driver;
 
 public class ObtenerTabla {
 
-	public ObtenerTabla() {
-	}
-
 	public static void main(String[] args) {
 		Connection conexion = null;
-		try {
-			
-			//----------------------------------------
-			
-			
-			//----------------------------------------
-			
-			
-			System.out.println("Versión 1.0\n"
+		try {			
+			System.out.println("Versión 1.1\n"
 					+ "**ATENCION:**\n"
-					+ "Errores conocidos: se aplicarán por defecto relaciones @ManyToOne y se pueden generar Imports no utlizados, revisar el resultado\n");
+					+ "Errores conocidos: se aplicarán por defecto relaciones @ManyToOne y se pueden generar Imports no utlizados, revisar el resultado\n"
+					+ "Changelog 1.1: Eliminada la línea que bloquea la autoconfiguración de SpringBoot del archivo .yml"
+					+ "\n"  
+					+"  autoconfigure:\n"  
+					+"    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration\n"
+					+"La exclusión de la autoconfiguración estaba causando que el entityManagerFactory no fuera creado automáticamente\n");
 			System.out.println("Pulsa intro para continuar");
 			leerTecladoTexto();
 			System.out.println(" \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
@@ -59,7 +47,7 @@ public class ObtenerTabla {
 					+ "WHERE table_schema = '"+esquema+"' AND table_type = 'BASE TABLE';");
 			preparedStatementEsquema.execute();
 			ResultSet resultSetEsquema = preparedStatementEsquema.executeQuery();
-			String importsPrincipal = "package once.curso;\n" +
+			String importsPrincipal = paquete+";\n" +
 					"import org.springframework.beans.factory.annotation.Autowired;\n" + 
 					"import org.springframework.boot.CommandLineRunner;\n" + 
 					"import org.springframework.boot.SpringApplication;\n" + 
@@ -67,6 +55,7 @@ public class ObtenerTabla {
 					"\n" + 
 					"import lombok.Data;\n";
 			String propiedadesPrincipal = "";
+			String runsPrincipal = "";
 			while (resultSetEsquema.next()) {
 				String tabla = resultSetEsquema.getString(1);
 				System.out.println("Creando entorno SB JPA para tabla: "+ tabla);
@@ -102,6 +91,7 @@ public class ObtenerTabla {
 						"@Table (name = \""  +tabla+  "\") \n"+
 						"public class "+tablaAClase +" {\n" + 
 						"\n";
+				String listaPrintsRun = "";
 				while (i<=metadata.getColumnCount()) {
 					
 					String tipoDato = metadata.getColumnTypeName(i);
@@ -161,7 +151,7 @@ public class ObtenerTabla {
 						tipoDato = leerTecladoTexto();
 						valorDato = tipoDato.substring(0, 1).toLowerCase() + tipoDato.substring(1);
 						if (primeraVezImportJoin) {
-						listaDeImports = listaDeImports //+ "import once.curso.banco.entities."+tipoDato+";\n"
+						listaDeImports = listaDeImports
 								+ "import javax.persistence.JoinColumn;\n"
 								+ "import javax.persistence.ManyToOne;\n";
 						primeraVezImportJoin = false;
@@ -187,6 +177,12 @@ public class ObtenerTabla {
 					
 					
 					contenidoClase = contenidoClase + "private "+ tipoDato + " "+  valorDato + ";\n";
+					String getOrIs = ".get";
+					if (tipoDato.equals("boolean")) {
+						getOrIs = ".is";
+					}
+					listaPrintsRun = listaPrintsRun + "System.out.println("+tablaAClase.substring(0, 1).toLowerCase() + tablaAClase.substring(1)+
+							getOrIs+valorDato.substring(0, 1).toUpperCase() + valorDato.substring(1)+"());\n";
 					i++;
 				}		
 				//leerTecladoTexto();
@@ -278,22 +274,32 @@ public class ObtenerTabla {
 				System.out.println("---------------SERVICIO CREADO CON EXITO------------------\n");
 				System.out.println("\n\n\n\n\n\n\n\n");
 				
-				importsPrincipal = importsPrincipal + "import once.curso."+esquema.toLowerCase()+".services."+tablaAClase+"Service;\n";
+				importsPrincipal = importsPrincipal + "import once.curso."+esquema.toLowerCase()+".services."+tablaAClase+"Service;\n"+
+						"import once.curso."+esquema.toLowerCase()+".entities."+tablaAClase+";\n";
 				propiedadesPrincipal = propiedadesPrincipal + 
 						"@Autowired\nprivate "+tablaAClase+"Service "+
 						tablaAClase.substring(0, 1).toLowerCase() + tablaAClase.substring(1)+"Service;\n";
+				runsPrincipal = runsPrincipal+ "\nIterable<"+tablaAClase+"> iter"+tablaAClase+" = get"+tablaAClase+"Service"+"().findAll();\n"+
+				"for ("+tablaAClase+" "+tablaAClase.substring(0, 1).toLowerCase() + tablaAClase.substring(1)+" : iter"+tablaAClase+") {\n"+
+				listaPrintsRun+"}\n";
 			}
+			System.out.print("Escribe un nombre para la aplicación: ");
+			String nombreAplicacion = leerTecladoTexto();
 			String contenidoPrincipal = importsPrincipal +
 					"@SpringBootApplication\n@Data\n" +
-					"public class AplicacionPrincipal implements CommandLineRunner {\n" +
+					"public class "+nombreAplicacion+" implements CommandLineRunner {\n" +
 					propiedadesPrincipal +
 					"public static void main(String[] args) {\n" +
-					"SpringApplication.run(AplicacionPrincipal.class, args);\n}\n" +
+					"SpringApplication.run("+nombreAplicacion+".class, args);\n}\n" +
 					"public void run(String... args) throws Exception {\n" +
-					"//Escribe tu código" +
+					"\n//--------------Código prescindible, imprimirá el contenido de las tablas en consola---------------\n" +
+					runsPrincipal+
+					"//--------------                                                                    ---------------\n"+
 					"\n}\n}";
-			grabaArchivoSobreescribiendo("src/main/java/once/curso/"+esquema.toLowerCase()+"/AplicacionPrincipal.java", contenidoPrincipal);
-			System.out.println("Ejecución terminada **Revisa el resultado**");
+			grabaArchivoSobreescribiendo("src/main/java/once/curso/"+esquema.toLowerCase()+"/"+nombreAplicacion+".java", contenidoPrincipal);
+			System.out.println("Ejecución terminada"
+					+ " **Revisa el resultado y configura la conexión en el yml conforme al esquema ("+esquema+")**\n"
+					+ "Ej: url: jdbc:mysql://127.0.0.1:3306/"+esquema);
 			
 			
 			

@@ -1,5 +1,5 @@
 package once.curso.banco;
-
+/*
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -15,7 +15,7 @@ import lombok.Data;
 @SpringBootTest
 @Data
 class PruebaTest {
-/*
+
 	@Autowired
 	private RolService rolService;
 	
@@ -38,5 +38,5 @@ class PruebaTest {
 		assertFalse(getRolService().findById(charge.getId()).isPresent());
 		
 	}	
-*/
-}
+
+}*/
