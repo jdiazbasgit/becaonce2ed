@@ -1,9 +1,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+<<<<<<< HEAD
     url: jdbc:mysql://82.223.202.137:3306/TIENDA
+=======
+    url: jdbc:mysql://82.223.202.137:3306/BANCO
+>>>>>>> 1316d9adc5a0aaa3e9eea623031cc82c69f5bdf6
     username: curso
     password: Cursocurso1;
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
+<<<<<<< HEAD
+=======
+  
+
+>>>>>>> 1316d9adc5a0aaa3e9eea623031cc82c69f5bdf6

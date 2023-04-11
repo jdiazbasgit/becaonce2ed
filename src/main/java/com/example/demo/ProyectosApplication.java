@@ -19,6 +19,7 @@ import once.curso.proyectojpa.services.SubCategoryService;
 import once.curso.proyectojpa.services.UserService;
 import once.curso.proyectojpa.services.UsersService;
 
+<<<<<<< HEAD
 @Data
 @SpringBootApplication
 public class ProyectosApplication implements CommandLineRunner {
@@ -58,13 +59,34 @@ public class ProyectosApplication implements CommandLineRunner {
 
 	@Autowired
 	private UsersService usersService;
+=======
+import bancoRepositories.AwardFineTypeRepository;
+import bancoServices.AwardFineConfigurationService;
+import bancoServices.AwardFineService;
+import bancoServices.AwardFineTypeService;
+import lombok.Data;
+>>>>>>> 1316d9adc5a0aaa3e9eea623031cc82c69f5bdf6
 
+@SpringBootApplication
+@Data
+public class ProyectosApplication implements CommandLineRunner{
+	
+	@Autowired
+	private AwardFineService awardFineService;
+	
+	@Autowired
+	private AwardFineConfigurationService awardFineConfigurationService;
+
+	@Autowired
+	private AwardFineTypeService AwardFineTypeService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectosApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 
 		getCardTypeService().dameTipos();
 		getCategoryService().dameCategorias();
@@ -79,4 +101,13 @@ public class ProyectosApplication implements CommandLineRunner {
 		getUserService().dameUsuario();
 		getUsersService().dameClientes();
 	}
+=======
+		
+		getAwardFineService().dameMulta();
+		getAwardFineConfigurationService().dameConfiguracionMulta();
+		getAwardFineTypeService().dameTipoMulta();
+		
+	}
+
+>>>>>>> 1316d9adc5a0aaa3e9eea623031cc82c69f5bdf6
 }
