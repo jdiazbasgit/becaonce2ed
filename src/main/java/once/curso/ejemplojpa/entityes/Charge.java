@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
-
+//ronald
 @Data
 @Entity
 @Table(name="charges")
