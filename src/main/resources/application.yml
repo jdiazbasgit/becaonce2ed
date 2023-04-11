@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://82.223.202.137:3306/TIENDA
+    url: jdbc:mysql://82.223.202.137:3306/COMPANY
     username: curso
     password: Cursocurso1;
   jpa:

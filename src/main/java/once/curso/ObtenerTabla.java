@@ -285,6 +285,13 @@ public class ObtenerTabla {
 			}
 			System.out.print("Escribe un nombre para la aplicación: ");
 			String nombreAplicacion = leerTecladoTexto();
+			runsPrincipal = 
+					"\n//--------------Código prescindible, imprimirá el contenido de las tablas en consola---------------\n" +
+					runsPrincipal+
+					"//--------------                                                                    ---------------\n";
+			if (!consultaSiNo("Generando impresión en consola de las tablas durante el arranque de la aplicación (findAll())")) {
+				runsPrincipal = "";
+			}
 			String contenidoPrincipal = importsPrincipal +
 					"@SpringBootApplication\n@Data\n" +
 					"public class "+nombreAplicacion+" implements CommandLineRunner {\n" +
@@ -292,9 +299,7 @@ public class ObtenerTabla {
 					"public static void main(String[] args) {\n" +
 					"SpringApplication.run("+nombreAplicacion+".class, args);\n}\n" +
 					"public void run(String... args) throws Exception {\n" +
-					"\n//--------------Código prescindible, imprimirá el contenido de las tablas en consola---------------\n" +
 					runsPrincipal+
-					"//--------------                                                                    ---------------\n"+
 					"\n}\n}";
 			grabaArchivoSobreescribiendo("src/main/java/once/curso/"+esquema.toLowerCase()+"/"+nombreAplicacion+".java", contenidoPrincipal);
 			System.out.println("Ejecución terminada"
@@ -333,6 +338,22 @@ public class ObtenerTabla {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "0";
+		}
+	}
+	public static boolean consultaSiNo(String mensaje) {
+		System.out.println(mensaje);
+		System.out.println("¿Proceder? (Escribe SI o NO)");
+		while (true) {
+			String continuar = leerTecladoTexto();
+			if (continuar.contentEquals("no") || continuar.contentEquals("n") || continuar.contentEquals("No")
+					|| continuar.contentEquals("NO") || continuar.contentEquals("N")) {
+				return false;
+			}
+			if (continuar.contentEquals("si") || continuar.contentEquals("s") || continuar.contentEquals("Si")
+					|| continuar.contentEquals("SI") || continuar.contentEquals("S")) {
+				return true;
+			}
+			System.out.println("Debes responder SI o NO");
 		}
 	}
 
