@@ -40,11 +40,11 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name = "personal_information_id")
-	private PersonalInformation personalInformationId;
+	private PersonalInformation personalInformation;
 	
 	@ManyToOne
 	@JoinColumn(name = "laboral_information_id")
-	private LaboralInformation laboralInformationId;
+	private LaboralInformation laboralInformation;
 	
 	@ManyToOne
 	@JoinColumn(name = "companies_id")

@@ -1,5 +1,6 @@
 package once.curso.ejemplojpa.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,14 @@ public class EmployeeService {
 			System.out.println(employee.getBirthDateCalendar());
 			System.out.println(employee.getHightCalendar());
 			System.out.println(employee.getLowCalendar());
-			System.out.println(employee.getPersonalInformationId());
-			System.out.println(employee.getLaboralInformationId());
+			System.out.println(employee.getPersonalInformation());
+			System.out.println(employee.getLaboralInformation());
 			System.out.println(employee.getCompanyId());
 		}
+	}
+	
+	public List<Employee> getEmpleadosbyGuys(int cantidad){
+		return getEmployeeRepository().getEmpleadosbyGuys(cantidad);
 	}
 
 	public <S extends Employee> S save(S entity) {

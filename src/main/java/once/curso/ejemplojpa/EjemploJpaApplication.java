@@ -21,28 +21,8 @@ import once.curso.ejemplojpa.services.PersonalInformationService;
 
 @SpringBootApplication
 @Data
-public class EjemploJpaApplication implements CommandLineRunner {
+public class EjemploJpaApplication  {
 
-	@Autowired
-	private ChargeService	 chargeService;
-	
-	@Autowired
-	private LaboralInformationService laboralInformationService;
-	
-	@Autowired
-	private CompanyService companyService;
-	
-	@Autowired
-	private ChildService childService;
-	
-	@Autowired
-	private EmployeeService employeeService;
-	
-	@Autowired
-	private PersonalInformationService PersonalInformationService;
-	
-	@Autowired
-	private MaritalStatusService maritalStatusService;
 	
 	
 	public static void main(String[] args) {
@@ -50,30 +30,5 @@ public class EjemploJpaApplication implements CommandLineRunner {
 		
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		
-		getChargeService().dameCargos();
-		
-		String[] cargosFiltrados=getChargeService().dameCargosQueEmpiecenPor("D%");
-		for (int i=0;i<cargosFiltrados.length;i++) {
-			System.err.println(cargosFiltrados[i]);
-		}
-		
-		Iterable<LaboralInformation> datos=getLaboralInformationService().getDatosLaborales();
-		
-		for (LaboralInformation laboralInformation : datos) {
-			System.out.println(laboralInformation.getSalary());//+" - "+laboralInformation.getCharge().getDescription());
-			System.out.println(laboralInformation.getCharge().getDescription());
-		}
-		getChargeService().dameCargos();
-		getCompanyService().dameCompany();
-		getChildService().dameHijos();
-		getEmployeeService().dameEmpleado();
-		getPersonalInformationService().dameInformacionPersonal();
-		getMaritalStatusService().dameEstadoCivil();
-		
-	}
-	
 	
 }

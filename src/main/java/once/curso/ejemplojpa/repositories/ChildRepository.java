@@ -9,5 +9,6 @@ import once.curso.ejemplojpa.entityes.Child;
 public interface ChildRepository extends CrudRepository<Child, Integer> {
 
 
+	
 
 }
