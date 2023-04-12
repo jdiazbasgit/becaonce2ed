@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.ejemplojpa.entityes.Employee;
-import once.curso.ejemplojpa.repositories.EmployeeRepository;
 import once.curso.ejemplojpa.services.EmployeeService;
 
 @RestController

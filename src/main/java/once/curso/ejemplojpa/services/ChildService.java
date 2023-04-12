@@ -2,6 +2,8 @@ package once.curso.ejemplojpa.services;
 
 import java.util.Optional;
 
+import org.hibernate.mapping.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -12,7 +14,7 @@ import once.curso.ejemplojpa.repositories.ChildRepository;
 @Data
 public class ChildService {
 
-	
+	@Autowired
 	private ChildRepository childRepository;
 	
 	public void dameHijos(){
@@ -31,13 +33,12 @@ public class ChildService {
 		return getChildRepository().saveAll(entities);
 	}
 
-	public Optional<Child> findById(Integer id) {
+	public Optional<Child> findById(Integer id)
+	
+	{
 		return getChildRepository().findById(id);
 	}
 
-	public boolean existsById(Integer id) {
-		return getChildRepository().existsById(id);
-	}
 
 	public Iterable<Child> findAll() {
 		return getChildRepository().findAll();
@@ -69,5 +70,10 @@ public class ChildService {
 
 	public void deleteAll() {
 		getChildRepository().deleteAll();
+	}
+
+	public List dameHijos(int cantidad) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
