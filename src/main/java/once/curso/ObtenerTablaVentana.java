@@ -3,7 +3,11 @@ package once.curso;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,6 +22,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -57,15 +62,16 @@ public class ObtenerTablaVentana extends JFrame {
 
 		// Configuración de la ventana
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(500, 400));
+		setSize(new Dimension(500, 800));
 		setLocationRelativeTo(null); // Centrar ventana en la pantalla
-		
-
-		// Creación del panel principal
-		JPanel panel = new JPanel(new BorderLayout());
 		setUndecorated(true);
 		getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		setBackground(Color.BLACK);
+		
+		
+		// Creación del panel principal
+		JPanel panel = new JPanel(new GridBagLayout());
+		
 		
 		// Establecer la opacidad inicial de la ventana en cero
         setOpacity(0.0f);
@@ -94,13 +100,26 @@ public class ObtenerTablaVentana extends JFrame {
         // Comenzar la transición de opacidad        
         timer.start();
 
+
+        // Disposicion
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		
 		// Creación del panel para la imagen
 		JPanel panelImagen = new JPanel(new BorderLayout());
 		JLabel imagen = new JLabel();
 		imagen.setPreferredSize(new Dimension(500, 200));
 		ImageIcon icono = new ImageIcon("src\\main\\java\\once\\curso\\imagen.gif");
 		imagen.setIcon(icono);
-		panelImagen.add(imagen, BorderLayout.CENTER);
+		c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 1.0;
+        c.weighty = 0.05;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.NORTH;
+        panelImagen.add(imagen);
+        panel.add(panelImagen, c);        
+		//panelImagen.add(imagen, BorderLayout.CENTER);		
 
 		// Arrastrable
 		panelImagen.addMouseListener(new MouseAdapter() {
@@ -117,30 +136,60 @@ public class ObtenerTablaVentana extends JFrame {
 			}
 		});
 
-		// Creación del panel para el JTextArea
+		//Creación del panel para el JTextArea
 		JTextArea textArea = new JTextArea();
-		textArea.setBackground(Color.BLACK);
-		textArea.setForeground(Color.WHITE);
-		textArea.setLineWrap(true);
-		textArea.setWrapStyleWord(true);
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		// scrollPane.setPreferredSize(new Dimension(500, 150));
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		textArea.setBackground(Color.BLACK);
+		textArea.setForeground(Color.WHITE);	
+        c.anchor = GridBagConstraints.NORTH;
+        c.gridx = 0; // columna 0
+        c.gridy = 1; // fila 1
+        c.fill = GridBagConstraints.BOTH; // rellenar tanto horizontal como verticalmente
+        c.weightx = 1.0; // expandir en el eje x
+        c.weighty = 0.9; // expandir en el eje y
+        panel.add(scrollPane, c);   
 
+        
+        
+        
 		// Creación del panel para el JTextField
 		JTextField textField = new JTextField();
 		textField.setBackground(Color.BLACK);
 		textField.setForeground(Color.WHITE);
-		// textField.setPreferredSize(new Dimension(500, 50));
-
-		// Agregamos los paneles al panel principal
-		panel.add(panelImagen, BorderLayout.NORTH);
-		panel.add(scrollPane, BorderLayout.CENTER);
-		panel.add(textField, BorderLayout.SOUTH);
+		//textField.setPreferredSize(new Dimension(500, 10));
+		c.anchor = GridBagConstraints.NORTH;
+        c.gridx = 0; // columna 0
+        c.gridy = 2; // fila 1
+        //c.fill = GridBagConstraints.BOTH; // rellenar tanto horizontal como verticalmente
+        c.weightx = 1.0; // expandir en el eje x
+        c.weighty = 0.05; // expandir en el eje y
+        panel.add(textField, c);  
 		
+		// Crear el JPanel para el botón personalizado
+		JButton botonCerrar = new JButton("Close");
+		botonCerrar.setPreferredSize(new Dimension(50, 5));
+		c.anchor = GridBagConstraints.NORTH;
+        c.gridx = 0; // columna 0
+        c.gridy = 3; // fila 1
+        //c.fill = GridBagConstraints.BOTH; // rellenar tanto horizontal como verticalmente
+        //c.weightx = 1.0; // expandir en el eje x
+        c.weighty = 0.05; // expandir en el eje y
+        panel.add(botonCerrar, c); 
 		
+		// Acción de botón cerrar
+		botonCerrar.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Cierra la aplicación
+		        System.exit(0);
+		    }
+		});
+	
 
 		// Agregamos el panel principal a la ventana
-		add(panel);
+		getContentPane().add(panel);
+		//add(panel);
 
 		// Hacemos visible la ventana
 		setVisible(true);

@@ -21,11 +21,11 @@ public class ChildRestController {
 	private ChildService childService;
 
 	@GetMapping(value = "/childrenId/{id}")
-	public Optional<Child> findById(@PathVariable Integer id) {
+	public Child findById(@PathVariable Integer id) {
 		if (!getChildService().findById(id).isPresent()) {
 			
 		}
-		return Optional.of(getChildService().findById(id).get());
+		return getChildService().findById(id).get();
 	}
 
 }
