@@ -1,0 +1,70 @@
+package once.curso.proyectobanco.services;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import lombok.Data;
+import once.curso.proyectobanco.entities.TypeAccount;
+import once.curso.proyectobanco.repositories.TypeAccountCRUDRepository;
+
+@Data
+@Service
+public class TypeAccountService {
+	
+	@Autowired
+	private TypeAccountCRUDRepository typeAccountCRUDRepository;
+	
+	public void dameTipoDeCuenta() {
+		
+		Iterable<TypeAccount> tipoCuenta =getTypeAccountCRUDRepository().findAll();
+	}
+	public <S extends TypeAccount> S save(S entity) {
+		return getTypeAccountCRUDRepository().save(entity);
+	}
+
+	public <S extends TypeAccount> Iterable<S> saveAll(Iterable<S> entities) {
+		return getTypeAccountCRUDRepository().saveAll(entities);
+	}
+
+	public Optional<TypeAccount> findById(Integer id) {
+		return getTypeAccountCRUDRepository().findById(id);
+	}
+
+	public boolean existsById(Integer id) {
+		return getTypeAccountCRUDRepository().existsById(id);
+	}
+
+	public Iterable<TypeAccount> findAll() {
+		return getTypeAccountCRUDRepository().findAll();
+	}
+
+	public Iterable<TypeAccount> findAllById(Iterable<Integer> ids) {
+		return getTypeAccountCRUDRepository().findAllById(ids);
+	}
+
+	public long count() {
+		return getTypeAccountCRUDRepository().count();
+	}
+
+	public void deleteById(Integer id) {
+		getTypeAccountCRUDRepository().deleteById(id);
+	}
+
+	public void delete(TypeAccount entity) {
+		getTypeAccountCRUDRepository().delete(entity);
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		getTypeAccountCRUDRepository().deleteAllById(ids);
+	}
+
+	public void deleteAll(Iterable<? extends TypeAccount> entities) {
+		getTypeAccountCRUDRepository().deleteAll(entities);
+	}
+
+	public void deleteAll() {
+		getTypeAccountCRUDRepository().deleteAll();
+	}
+}
