@@ -2,6 +2,7 @@ package once.curso.ejemplojpa.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -12,7 +13,7 @@ import once.curso.ejemplojpa.repositories.ChildRepository;
 @Data
 public class ChildService {
 
-	
+	@Autowired
 	private ChildRepository childRepository;
 	
 	public void dameHijos(){
@@ -23,8 +24,8 @@ public class ChildService {
 		}
 	}
 	
-	public <S extends Child> S save(S entity) {
-		return getChildRepository().save(entity);
+	public Child save(Child child) {
+		return getChildRepository().save(child);
 	}
 
 	public <S extends Child> Iterable<S> saveAll(Iterable<S> entities) {
@@ -70,4 +71,5 @@ public class ChildService {
 	public void deleteAll() {
 		getChildRepository().deleteAll();
 	}
+	
 }
