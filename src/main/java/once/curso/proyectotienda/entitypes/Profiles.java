@@ -52,15 +52,15 @@ public class Profiles {
 	
 	private String image;
 	
-	@OneToOne
-	@JoinColumn (name="Users_id")
+	//@OneToOne
+	//@JoinColumn (name="Users_id")
 	private int usersid;
 	
-	@OneToMany
-	@JoinColumn (name="Card_Types")
+	//@OneToMany
+	//@JoinColumn (name="Card_Types")
 	private int cardtypes;
 	
-	@OneToMany
-	@JoinColumn (name="Document_Types")
+	//@OneToMany
+	//@JoinColumn (name="Document_Types")
 	private int documenttypes;
 }
