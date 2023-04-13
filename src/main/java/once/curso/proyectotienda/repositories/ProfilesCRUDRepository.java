@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import once.curso.proyectotienda.entitypes.Profiles;
 
 @Repository
-public interface ProfilesRepository extends CrudRepository<Profiles, Integer> {
+public interface ProfilesCRUDRepository extends CrudRepository<Profiles, Integer> {
 
 }

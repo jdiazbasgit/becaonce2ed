@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import once.curso.proyectotienda.entitypes.ExistingProducts;
 
 @Repository
-public interface ExistingProductsRepository extends CrudRepository<ExistingProducts, Integer> {
+public interface ExistingProductsCRUDRepository extends CrudRepository<ExistingProducts, Integer> {
 
 }
