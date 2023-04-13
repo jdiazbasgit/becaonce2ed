@@ -11,19 +11,25 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-@Data
 @Entity
-@Table(name = "subcategories")
-public class SubCategory {
+@Data
+@Table(name = "user")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Column
-	private String description;
+	private String user;
+	
+	@Column
+	private String password;
+	
+	@Column
+	private boolean enabeld;
 	
 	@JoinColumn
 	@ManyToOne
-	private int categorieId;
+	private int rolesId;
 }

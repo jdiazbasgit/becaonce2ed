@@ -2,6 +2,7 @@ package once.curso.proyectotienda.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -12,6 +13,7 @@ import once.curso.proyectotienda.repository.SubCategoryRepository;
 @Data
 public class SubcategoryService {
 
+	@Autowired
 	private SubCategoryRepository subCategoryRepository;
 
 	public <S extends SubCategory> S save(S entity) {

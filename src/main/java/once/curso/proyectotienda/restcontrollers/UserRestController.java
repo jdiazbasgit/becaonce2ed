@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.SubCategory;
-import once.curso.proyectotienda.service.SubcategoryService;
+import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.service.UserService;
 
-@Data
-@RequestMapping("/tienda")
 @RestController
-public class SubCategoryRestController {
-
+@RequestMapping("/tienda")
+@Data
+public class UserRestController {
+	
 	@Autowired
-	private SubcategoryService subcategoryService;
+	private UserService userService;
 	
-	@PostMapping("/subcategory")
-	public SubCategory save(@RequestBody SubCategory subCategory) {
-		return getSubcategoryService().save(subCategory);
+	@PostMapping("/user")
+	public User save(@RequestBody User user) {
+		return getUserService().save(user);
 	}
 	
-	@GetMapping("/sucategory")
-	public Iterable<SubCategory> findAll(){
-		return getSubcategoryService().findAll();
+	@GetMapping("/user")
+	public Iterable<User> findAll(){
+		return getUserService().findAll();
 	}
 	
-	@DeleteMapping("/subcategory/{id}")
+	@DeleteMapping("/user/{id}")
 	public void deleteById(@PathVariable int id) {
-		getSubcategoryService().deleteById(id);
+		getUserService().deleteById(id);
 	}
 }
