@@ -1,9 +1,9 @@
-package curso.once.proyectotienda.repositories;
+package once.curso.proyectotienda.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import curso.once.proyectotienda.entitypes.Profiles;
+import once.curso.proyectotienda.entitypes.Profiles;
 
 @Repository
 public interface ProfilesRepository extends CrudRepository<Profiles, Integer> {
