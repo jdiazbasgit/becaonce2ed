@@ -1,17 +1,10 @@
-package once.curso.proyectotienda.repository;
-
-import java.util.Optional;
+package once.curso.proyectotienda.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import once.curso.proyectotienda.entitiies.DocumentType;
-
+import once.curso.proyectotienda.entities.DocumentType;
 
 @Repository
 public interface DocumentTypeRepository extends CrudRepository<DocumentType, Integer> {
-
-	
-	
 
 }
