@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.Profile;
 import once.curso.proyectotienda.entities.Rol;
-import once.curso.proyectotienda.services.ProfileService;
 import once.curso.proyectotienda.services.RolService;
 
 @RestController
