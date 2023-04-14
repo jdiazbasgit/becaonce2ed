@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entity.Category;
-import once.curso.proyectotienda.repository.CategoryRepository;
+import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.repositories.CategoryCRUDRepository;
 
 @Service
 @Data
 public class CategoryService {
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryCRUDRepository categoryRepository;
 
 	public Iterable<Category> getCategory() {
 		return getCategoryRepository().findAll();

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.rest_controller;
+package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entity.Category;
-import once.curso.proyectotienda.services.CategoryService;
+import once.curso.proyectotienda.entities.CardType;
+import once.curso.proyectotienda.services.CardTypeService;
 
 @RestController
-@RequestMapping("/once")
 @Data
-public class CategoryRestController {
-
+@RequestMapping("/once")
+public class CardTypeRestController {
 	@Autowired
-	private CategoryService categoryService;
+	private CardTypeService cardTypeService;
 
-	@PostMapping("/categories")
-	public Category save(@RequestBody Category category) {
-		return getCategoryService().save(category);
+	@PostMapping("/cardTypes")
+	public CardType save(@RequestBody CardType cardType) {
+		return getCardTypeService().save(cardType);
 	}
 
-	@GetMapping("/categories")
-	public Iterable<Category> findAll() {
-		return getCategoryService().findAll();
+	@GetMapping("/cardTypes")
+	public Iterable<CardType> findAll() {
+		return getCardTypeService().findAll();
 	}
 
-	@DeleteMapping("/categories/{id}")
+	@DeleteMapping("/cardTypes/{id}")
 	public void deleteById(@PathVariable int id) {
-		getCategoryService().deleteById(id);
+		getCardTypeService().deleteById(id);
 	}
+
 }

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.entity;
+package once.curso.proyectotienda.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entity.CardType;
-import once.curso.proyectotienda.repository.CardTypeRepository;
+import once.curso.proyectotienda.entities.CardType;
+import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
 
 @Service
 @Data
 public class CardTypeService {
 	@Autowired
-	private CardTypeRepository cardTypeRepository;
+	private CardTypeCRUDRepository cardTypeRepository;
 
 	public Iterable<CardType> getCardType() {
 		return getCardTypeRepository().findAll();
