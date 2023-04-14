@@ -6,24 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.ExistingProducts;
-import once.curso.proyectotienda.repositories.ExistingProductsCRUDRepository;
+import once.curso.proyectotienda.entitypes.ExistingProduct;
+import once.curso.proyectotienda.repositories.ExistingProductCRUDRepository;
 
 @Service
 @Data
-public class ExistingProductsService {
+public class ExistingProductService {
 	@Autowired
-	private ExistingProductsCRUDRepository existingProductsCRUDRepository;
+	private ExistingProductCRUDRepository existingProductsCRUDRepository;
 	
-	public <S extends ExistingProducts> S save(S entity) {
+	public <S extends ExistingProduct> S save(S entity) {
 		return getExistingProductsCRUDRepository().save(entity);
 	}
 
-	public <S extends ExistingProducts> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends ExistingProduct> Iterable<S> saveAll(Iterable<S> entities) {
 		return getExistingProductsCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<ExistingProducts> findById(Integer id) {
+	public Optional<ExistingProduct> findById(Integer id) {
 		return getExistingProductsCRUDRepository().findById(id);
 	}
 
@@ -31,11 +31,11 @@ public class ExistingProductsService {
 		return getExistingProductsCRUDRepository().existsById(id);
 	}
 
-	public Iterable<ExistingProducts> findAll() {
+	public Iterable<ExistingProduct> findAll() {
 		return getExistingProductsCRUDRepository().findAll();
 	}
 
-	public Iterable<ExistingProducts> findAllById(Iterable<Integer> ids) {
+	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) {
 		return getExistingProductsCRUDRepository().findAllById(ids);
 	}
 
@@ -47,7 +47,7 @@ public class ExistingProductsService {
 		getExistingProductsCRUDRepository().deleteById(id);
 	}
 
-	public void delete(ExistingProducts entity) {
+	public void delete(ExistingProduct entity) {
 		getExistingProductsCRUDRepository().delete(entity);
 	}
 
@@ -55,7 +55,7 @@ public class ExistingProductsService {
 		getExistingProductsCRUDRepository().deleteAllById(ids);
 	}
 
-	public void deleteAll(Iterable<? extends ExistingProducts> entities) {
+	public void deleteAll(Iterable<? extends ExistingProduct> entities) {
 		getExistingProductsCRUDRepository().deleteAll(entities);
 	}
 

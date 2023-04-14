@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -15,7 +17,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="existing_products")
-public class ExistingProducts implements Serializable {
+public class ExistingProduct implements Serializable {
 
     private static final long serialVersionUID = -1000119078147252957L;
     
@@ -37,6 +39,7 @@ public class ExistingProducts implements Serializable {
 	
 	private int stock;
 	
-	@Column(name = "Subcategories", nullable = false)
-	private int subcategories;
+	@ManyToOne
+	@JoinColumn(name="subcategories_id")
+	private Subcategory subcategories;
 }

@@ -4,35 +4,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.ExistingProducts;
-import once.curso.proyectotienda.repositories.ExistingProductsCRUDRepository;
+import once.curso.proyectotienda.entitypes.ExistingProduct;
+import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
 @Data
-public class ProductsRestController {
+public class ProductRestController {
 	
 	@Autowired
-	private final ExistingProductsCRUDRepository existingproductsCRUDRepository;
+	private final ExistingProductService existingProductService;
 
-	ProductsRestController(ExistingProductsCRUDRepository existingProductsCRUDRepository) {
-		this.existingproductsCRUDRepository = existingProductsCRUDRepository;
-	}
+	/*ProductRestController(ExistingProductCRUDRepository existingProductsCRUDRepository) {
+		this.existingProductService = existingProductService;
+	}*/
 	
-	@RequestMapping("/")
-	public String home() {
-	   return "index";
-	}
+	
 	
 	@GetMapping("/products")
-	public List<ExistingProducts> getProducts() {
-	    return (List<ExistingProducts>) existingproductsCRUDRepository.findAll();
+	public List<ExistingProduct> getProducts() {
+	    return (List<ExistingProduct>) existingProductService.findAll();
 	}
 	
 }

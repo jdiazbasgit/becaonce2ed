@@ -5,23 +5,23 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.Profiles;
-import once.curso.proyectotienda.repositories.ProfilesCRUDRepository;
+import once.curso.proyectotienda.entitypes.Profile;
+import once.curso.proyectotienda.repositories.ProfileCRUDRepository;
 
 @Service
 @Data
-public class ProfilesService {
-	private ProfilesCRUDRepository profilesCRUDRepository;
+public class ProfileService {
+	private ProfileCRUDRepository profilesCRUDRepository;
 	
-	public <S extends Profiles> S save(S entity) {
+	public <S extends Profile> S save(S entity) {
 		return getProfilesCRUDRepository().save(entity);
 	}
 
-	public <S extends Profiles> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Profile> Iterable<S> saveAll(Iterable<S> entities) {
 		return getProfilesCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<Profiles> findById(Integer id) {
+	public Optional<Profile> findById(Integer id) {
 		return getProfilesCRUDRepository().findById(id);
 	}
 
@@ -29,11 +29,11 @@ public class ProfilesService {
 		return getProfilesCRUDRepository().existsById(id);
 	}
 
-	public Iterable<Profiles> findAll() {
+	public Iterable<Profile> findAll() {
 		return getProfilesCRUDRepository().findAll();
 	}
 
-	public Iterable<Profiles> findAllById(Iterable<Integer> ids) {
+	public Iterable<Profile> findAllById(Iterable<Integer> ids) {
 		return getProfilesCRUDRepository().findAllById(ids);
 	}
 
@@ -45,7 +45,7 @@ public class ProfilesService {
 		getProfilesCRUDRepository().deleteById(id);
 	}
 
-	public void delete(Profiles entity) {
+	public void delete(Profile entity) {
 		getProfilesCRUDRepository().delete(entity);
 	}
 
@@ -53,7 +53,7 @@ public class ProfilesService {
 		getProfilesCRUDRepository().deleteAllById(ids);
 	}
 
-	public void deleteAll(Iterable<? extends Profiles> entities) {
+	public void deleteAll(Iterable<? extends Profile> entities) {
 		getProfilesCRUDRepository().deleteAll(entities);
 	}
 
