@@ -26,7 +26,7 @@ public class SubCategoryRestController {
 		return getSubcategoryService().save(subCategory);
 	}
 	
-	@GetMapping("/sucategory")
+	@GetMapping("/subcategory")
 	public Iterable<SubCategory> findAll(){
 		return getSubcategoryService().findAll();
 	}

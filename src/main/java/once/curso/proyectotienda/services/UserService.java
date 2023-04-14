@@ -72,3 +72,7 @@ public class UserService {
 		getUserRepository().deleteAll();
 	}
 }
+
+
+revisaremos los nombres de la tabla
+a ti y a mi nos toco una tabla de luis
