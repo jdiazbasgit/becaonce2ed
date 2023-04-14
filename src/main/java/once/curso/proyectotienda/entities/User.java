@@ -27,9 +27,9 @@ public class User {
 	private String password;
 	
 	@Column
-	private boolean enabeld;
+	private boolean enabled;
 	
 	@JoinColumn
 	@ManyToOne
-	private int rolesId;
+	private Rol rolesId;
 }

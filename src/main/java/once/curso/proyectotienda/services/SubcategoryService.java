@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.service;
+package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.SubCategory;
-import once.curso.proyectotienda.repository.SubCategoryRepository;
+import once.curso.proyectotienda.repositories.SubCategoryCRUDRepository;
 
 @Service
 @Data
 public class SubcategoryService {
 
 	@Autowired
-	private SubCategoryRepository subCategoryRepository;
+	private SubCategoryCRUDRepository subCategoryRepository;
 
 	public <S extends SubCategory> S save(S entity) {
 

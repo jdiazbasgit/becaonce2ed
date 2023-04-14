@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.User;
-import once.curso.proyectotienda.service.UserService;
+import once.curso.proyectotienda.services.UserService;
 
 @RestController
 @RequestMapping("/tienda")

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.repository;
+package once.curso.proyectotienda.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import once.curso.proyectotienda.entities.SubCategory;
 
 @Repository
-public interface SubCategoryRepository extends CrudRepository<SubCategory, Integer> {
+public interface SubCategoryCRUDRepository extends CrudRepository<SubCategory, Integer> {
 	
 }

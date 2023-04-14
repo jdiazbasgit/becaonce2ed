@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.service;
+package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.User;
-import once.curso.proyectotienda.repository.UserRepository;
+import once.curso.proyectotienda.repositories.UserCRUDRepository;
 
 @Service
 @Data
 public class UserService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserCRUDRepository userRepository;
 	
 	
 	public <S extends User> S save(S entity) {
