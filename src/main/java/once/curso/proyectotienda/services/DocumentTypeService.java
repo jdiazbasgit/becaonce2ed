@@ -6,18 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.Data;
 import once.curso.proyectotienda.entities.DocumentType;
-import once.curso.proyectotienda.repositories.DocumentTypeRepository;
+import once.curso.proyectotienda.repositories.DocumentTypeCRUDRepository;
 
 @Data
 @Service
 public class DocumentTypeService {
 
 	@Autowired
-	private DocumentTypeRepository documentTypeRepository;
+	private DocumentTypeCRUDRepository documentTypeCRUDRepository;
 
 	public void dameTiposDeDocumentos() {
 
-		Iterable<DocumentType> dameTipoDeDocumentos = getDocumentTypeRepository().findAll();
+		Iterable<DocumentType> dameTipoDeDocumentos = getDocumentTypeCRUDRepository().findAll();
 		for (DocumentType documentType : dameTipoDeDocumentos) {
 			System.out.println(documentType.getId());
 			System.out.println(documentType.getDescription());
@@ -26,51 +26,51 @@ public class DocumentTypeService {
 	}
 
 	public <S extends DocumentType> S save(S entity) {
-		return getDocumentTypeRepository().save(entity);
+		return getDocumentTypeCRUDRepository().save(entity);
 	}
 
 	public <S extends DocumentType> Iterable<S> saveAll(Iterable<S> entities) {
-		return getDocumentTypeRepository().saveAll(entities);
+		return getDocumentTypeCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<DocumentType> findById(Integer id) {
-		return getDocumentTypeRepository().findById(id);
+		return getDocumentTypeCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-		return getDocumentTypeRepository().existsById(id);
+		return getDocumentTypeCRUDRepository().existsById(id);
 	}
 
 	public Iterable<DocumentType> findAll() {
-		return getDocumentTypeRepository().findAll();
+		return getDocumentTypeCRUDRepository().findAll();
 	}
 
 	public Iterable<DocumentType> findAllById(Iterable<Integer> ids) {
-		return getDocumentTypeRepository().findAllById(ids);
+		return getDocumentTypeCRUDRepository().findAllById(ids);
 
 	}
 
 	public long count() {
-		return getDocumentTypeRepository().count();
+		return getDocumentTypeCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getDocumentTypeRepository().deleteById(id);
+		getDocumentTypeCRUDRepository().deleteById(id);
 	}
 
 	public void delete(DocumentType entity) {
-		getDocumentTypeRepository().delete(entity);
+		getDocumentTypeCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getDocumentTypeRepository().deleteAllById(ids);
+		getDocumentTypeCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends DocumentType> entities) {
-		getDocumentTypeRepository().deleteAll();
+		getDocumentTypeCRUDRepository().deleteAll();
 	}
 
 	public void deleteAll() {
-		getDocumentTypeRepository().deleteAll();
+		getDocumentTypeCRUDRepository().deleteAll();
 	}
 }

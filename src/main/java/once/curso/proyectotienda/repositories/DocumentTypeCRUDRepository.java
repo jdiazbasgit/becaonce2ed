@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import once.curso.proyectotienda.entities.DocumentType;
 
 @Repository
-public interface DocumentTypeRepository extends CrudRepository<DocumentType, Integer> {
+public interface DocumentTypeCRUDRepository extends CrudRepository<DocumentType, Integer> {
 
 }

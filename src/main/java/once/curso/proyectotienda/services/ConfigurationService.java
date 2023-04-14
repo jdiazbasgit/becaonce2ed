@@ -7,18 +7,18 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Configuration;
-import once.curso.proyectotienda.repositories.ConfigurationRepository;
+import once.curso.proyectotienda.repositories.ConfigurationCRUDRepository;
 
 @Data
 @Service
 public class ConfigurationService {
 
 	@Autowired
-	private ConfigurationRepository configurationRepository;
+	private ConfigurationCRUDRepository configurationCRUDRepository;
 
 	public void dameConfiguraciones() {
 
-		Iterable<Configuration> dameConfiguraciones = getConfigurationRepository().findAll();
+		Iterable<Configuration> dameConfiguraciones = getConfigurationCRUDRepository().findAll();
 		for (Configuration configuration : dameConfiguraciones) {
 			System.out.println(configuration.getId());
 			System.out.println(configuration.getStockAlarm());
@@ -26,52 +26,52 @@ public class ConfigurationService {
 	}
 
 	public <S extends Configuration> S save(S entity) {
-		return getConfigurationRepository().save(entity);
+		return getConfigurationCRUDRepository().save(entity);
 	}
 
 	public <S extends Configuration> Iterable<S> saveAll(Iterable<S> entities) {
-		return getConfigurationRepository().saveAll(entities);
+		return getConfigurationCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<Configuration> findById(Integer id) {
-		return getConfigurationRepository().findById(id);
+		return getConfigurationCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-		return getConfigurationRepository().existsById(id);
+		return getConfigurationCRUDRepository().existsById(id);
 	}
 
 	public Iterable<Configuration> findAll() {
-		return getConfigurationRepository().findAll();
+		return getConfigurationCRUDRepository().findAll();
 	}
 
 	public Iterable<Configuration> findAllById(Iterable<Integer> ids) {
-		return getConfigurationRepository().findAllById(ids);
+		return getConfigurationCRUDRepository().findAllById(ids);
 
 	}
 
 	public long count() {
-		return getConfigurationRepository().count();
+		return getConfigurationCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getConfigurationRepository().deleteById(id);
+		getConfigurationCRUDRepository().deleteById(id);
 	}
 
 	public void delete(Configuration entity) {
-		getConfigurationRepository().delete(entity);
+		getConfigurationCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getConfigurationRepository().deleteAllById(ids);
+		getConfigurationCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Configuration> entities) {
-		getConfigurationRepository().deleteAll();
+		getConfigurationCRUDRepository().deleteAll();
 	}
 
 	public void deleteAll() {
-		getConfigurationRepository().deleteAll();
+		getConfigurationCRUDRepository().deleteAll();
 	}
 
 }
