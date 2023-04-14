@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import once.curso.proyectobanco.entities.Description;
-import once.curso.proyectobanco.entities.CurrentAcount;
 
 import lombok.Data;
 
@@ -35,8 +33,8 @@ public class Transaction {
 	private Description description;
 	
 	@ManyToOne
-	@JoinColumn (name="current_accounts_id)"
-			private CurrentAcount currentAccount;
+	@JoinColumn (name="current_accounts_id")
+			private CurrentAccount currentAccount;
 
 			
 	
