@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.Profile;
+import once.curso.proyectotienda.entities.Profile;
 import once.curso.proyectotienda.repositories.ProfileCRUDRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.entitypes;
+package once.curso.proyectotienda.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -52,15 +53,15 @@ public class Profile {
 	
 	private String image;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn (name="Users_id")
 	private User Users;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn (name="Card_Types_Id")
-	private CardTypes cardstypes;
+	private CardType cardstypes;
 	
-	@OneToMany
-	@JoinColumn (name="Document_Types")
-	private DocumentTypes documentstypes;
+	@ManyToOne
+	@JoinColumn (name="Document_Types_Id")
+	private DocumentType documentstypes;
 }

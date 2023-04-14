@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.entitypes;
+package once.curso.proyectotienda.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,10 +18,7 @@ public class Rol {
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "Rol")
+	@Column(name = "ROL")
 	private String rol;
 	
-	
-
-
 }

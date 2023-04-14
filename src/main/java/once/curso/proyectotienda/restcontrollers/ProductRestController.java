@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.ExistingProduct;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.entitypes;
+package once.curso.proyectotienda.entities;
 
 import java.io.Serializable;
 

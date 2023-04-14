@@ -8,17 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Profile;
+import once.curso.proyectotienda.entities.Rol;
 import once.curso.proyectotienda.services.ProfileService;
+import once.curso.proyectotienda.services.RolService;
 
 @RestController
 @Data
-public class ProfileRestController {
+public class RolRestController {
 	@Autowired
-	private final ProfileService profileService;
+	private final RolService rolService;
 	
 
-	@GetMapping("/profile")
-	public List<Profile> getProfile() {
-	    return (List<Profile>) profileService.findAll();
+	@GetMapping("/rol")
+	public List<Rol> getRol() {
+	    return (List<Rol>) rolService.findAll();
 	}
 }

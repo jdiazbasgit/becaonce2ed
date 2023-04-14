@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectotienda.entitypes.ExistingProduct;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.repositories.ExistingProductCRUDRepository;
 
 @Service
