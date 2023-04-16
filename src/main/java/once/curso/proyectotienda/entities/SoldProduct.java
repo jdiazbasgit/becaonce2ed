@@ -23,5 +23,5 @@ public class SoldProduct {
 	
 	@ManyToOne
 	@JoinColumn(name = "existing_products_id")
-	private int existingProduct;
+	private ExistingProduct existingProduct;
 }

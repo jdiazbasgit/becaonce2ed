@@ -19,3 +19,4 @@ public class Configuration {
 	private int stockAlarm;
 
 }
+//holaaaaa
