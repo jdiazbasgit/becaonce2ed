@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import lombok.Data;
 import once.curso.proyectotienda.entities.Configuration;
 import once.curso.proyectotienda.services.ConfigurationService;
@@ -19,15 +20,18 @@ public class ConfigurationTest {
 
 	@Test
 	public void probarSaveFindDelete() {
-
 		Configuration configuration = new Configuration();
-		configuration.setStockAlarm();
+		configuration.setStockAlarm(0);
 		getConfigurationService().save(configuration);
+
+		
 		Configuration configurationRecuperado = getConfigurationService().findById(configuration.getId()).get();
 		getConfigurationService().delete(configurationRecuperado);
+		
+		assertFalse(getConfigurationService().findById(configuration.getId()).isPresent());
+		
 		Configuration configurationBorrado = getConfigurationService().findById(configuration.getId()).get();
 		assertNull(configurationBorrado);
-
-		assertFalse(getConfigurationService().findById(configuration.getId()).isPresent());
 	}
+
 }
