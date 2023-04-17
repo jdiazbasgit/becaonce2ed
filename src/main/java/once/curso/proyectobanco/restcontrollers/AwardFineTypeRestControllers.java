@@ -20,7 +20,7 @@ public class AwardFineTypeRestControllers {
 	
 	@GetMapping(value = "/awrdFineType/id")
 	public AwardFineType findById(@PathVariable Integer id) {
-		return getAwardFineTypeService().findById(id).get();
+		return getAwardFineTypeServices().findById(id).get();
 	}
 
 }
