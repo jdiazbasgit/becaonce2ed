@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
+
 @Table(name = "TYPE_ACCOUNTS")
 public class TypeAccount {
 
@@ -19,3 +20,4 @@ public class TypeAccount {
 	private String description;
 
 }
+

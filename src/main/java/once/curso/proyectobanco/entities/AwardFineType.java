@@ -10,14 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-
-@Table(name = "ROLES")
-public class Rol {
+@Table(name = "awards_fines_types")
+public class AwardFineType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String rol;
+	private String description;
 
 }
-
