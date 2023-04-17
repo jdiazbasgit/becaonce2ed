@@ -17,8 +17,8 @@ public class RolService {
 	@Autowired
 	private RolCRUDRepository rolCRUDRepository;
 	
-	public void damePapel() {
-		Iterable<Rol> papel =getRolCRUDRepository().findAll();
+	public Iterable<Rol> dameRoles() {
+		return getRolCRUDRepository().findAll();
 	}
 	public <S extends Rol> S save(S entity) {
 		return getRolCRUDRepository().save(entity);

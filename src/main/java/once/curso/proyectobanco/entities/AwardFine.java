@@ -2,10 +2,10 @@ package once.curso.proyectobanco.entities;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,27 +16,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name="transactions")
-public class Transaction {
-	
-	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
-	private int id;
-	
-	@Temporal(TemporalType.DATE)
-	private Calendar date;
-	
-	private double current;
-	
-	@ManyToOne
-	@JoinColumn (name="descriptions_id")
-	private Description description;
-	
-	@ManyToOne
-	@JoinColumn (name="current_accounts_id")
-			private CurrentAccount currentAccount;
+@Table(name = "awards_fines")
+public class AwardFine {
 
-			
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+
+	@ManyToOne
+	@JoinColumn(name = "awards_fines_types_id")
+	private int awrdFineType;
+
+	@ManyToOne
+	@JoinColumn(name = "awards_fies_configurations_id")
+	private int awardFieConfiguration;
+
+	@Column(name = "time")
+	@Temporal(TemporalType.DATE)
+	private Calendar time;
 
 }
