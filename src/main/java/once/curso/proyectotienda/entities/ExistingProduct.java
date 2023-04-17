@@ -41,5 +41,5 @@ public class ExistingProduct implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="subcategories_id")
-	private Subcategory subcategories;
+	private SubCategory subcategories;
 }

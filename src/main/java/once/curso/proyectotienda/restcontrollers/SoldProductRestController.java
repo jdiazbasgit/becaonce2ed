@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.services.CategoryService;
+import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController
 @RequestMapping("/once")
@@ -22,7 +24,7 @@ public class SoldProductRestController {
 	private SoldProductService soldProductService;
 
 	@PostMapping("/soldProducts")
-	public SoldProduct save(@RequestBody SoldProduct oldProduct) {
+	public SoldProduct save(@RequestBody SoldProduct soldProduct) {
 		return getSoldProductService().save(soldProduct);
 	}
 
