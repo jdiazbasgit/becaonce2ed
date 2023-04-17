@@ -18,7 +18,7 @@ public class RolRestController {
 	
 
 	@GetMapping("/rol")
-	public List<Rol> getRol() {
-	    return (List<Rol>) rolService.findAll();
+	public Iterable<Rol> getRol() {
+	    return rolService.findAll();
 	}
 }
