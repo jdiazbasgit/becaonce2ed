@@ -20,7 +20,7 @@ public class AwardFineTypeServices {
 
 		Iterable<AwardFineType> awardsFinesTypes = getAwardFineTypeCRUDRepositories().findAll();
 		for (AwardFineType awardFineType : awardsFinesTypes) {
-			/System.out.println(awardFineType.getDescription());
+			//System.out.println(awardFineType.getDescription());
 		}
 	}
 
