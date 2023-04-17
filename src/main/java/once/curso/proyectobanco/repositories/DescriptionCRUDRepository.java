@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface DescriptionCRUDRepository extends CrudRepository<DescriptionCRUDRepository, Integer> {
+import once.curso.proyectobanco.entities.Description;
+
+public interface DescriptionCRUDRepository extends CrudRepository<Description, Integer> {
 
 	
 
