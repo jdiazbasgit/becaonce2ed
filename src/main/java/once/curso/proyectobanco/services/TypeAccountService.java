@@ -11,6 +11,8 @@ import once.curso.proyectobanco.repositories.TypeAccountCRUDRepository;
 
 @Data
 @Service
+
+//fecha
 public class TypeAccountService {
 	
 	@Autowired
