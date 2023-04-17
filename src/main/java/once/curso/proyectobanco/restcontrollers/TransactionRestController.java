@@ -40,7 +40,7 @@ public class TransactionRestController {
 	public List<Transaction> saveAll(@RequestBody List<Transaction> transaction){
 		return (List<Transaction>)getTransactionService().saveAll(transaction);
 	}
-	@DeleteMapping(value="/transaction")
+	@DeleteMapping(value="/transaction/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}
