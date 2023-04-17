@@ -3,7 +3,11 @@ package once.curso.proyectotienda.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
@@ -12,7 +16,7 @@ import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
 @Data
-public class ProductRestController {
+public class ExistingProductRestController {
 	
 	@Autowired
 	private final ExistingProductService existingProductService;
@@ -21,11 +25,14 @@ public class ProductRestController {
 		this.existingProductService = existingProductService;
 	}*/
 	
-	
-	
 	@GetMapping("/products")
 	public List<ExistingProduct> getProducts() {
 	    return (List<ExistingProduct>) existingProductService.findAll();
+	}
+
+	@DeleteMapping("/products/{id}")
+	public void deleteById(@PathVariable int id) {
+		getExistingProductService().deleteById(id);
 	}
 	
 }

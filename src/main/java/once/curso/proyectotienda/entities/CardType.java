@@ -19,6 +19,7 @@ public class CardType {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	
 	private String description;
 
 }
