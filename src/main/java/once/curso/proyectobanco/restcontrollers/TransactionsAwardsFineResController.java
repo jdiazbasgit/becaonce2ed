@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +25,13 @@ public class TransactionsAwardsFineResController {
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	
 	
-	@PostMapping("/transactionsAwardsFineService")
+	@GetMapping("/transactionsAwardsFineService")
 	
 	public List<TransactionsAwardsFine> dameDato(){
 		return (List<TransactionsAwardsFine>) getTransactionsAwardsFineService().findAll();
 	}
 	
-	@PostMapping(value="/transactionsAwardsFineService/{id}")
+	@GetMapping(value="/transactionsAwardsFineService/{id}")
 	
 	public TransactionsAwardsFine findById(@PathVariable Integer id){
 		return getTransactionsAwardsFineService().findById(id).get();
