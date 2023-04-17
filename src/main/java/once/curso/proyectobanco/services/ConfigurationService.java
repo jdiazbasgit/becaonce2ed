@@ -3,9 +3,11 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.entities.Configuration;
 import once.curso.proyectobanco.repositories.ConfigurationCRUDRepository;
 
 @Data
@@ -15,20 +17,20 @@ public class ConfigurationService {
 	@Autowired
 	private ConfigurationCRUDRepository configurationCRUDRepository;
 	
-	public void dameConfiguracion() {
-		Iterable<ConfigurationCRUDRepository> configuration= getConfigurationCRUDRepository().findAll();
+	public Iterable<Configuration>dameConfiguracion() {
+		return getConfigurationCRUDRepository().findAll();
 		
 	}
 
-	public <S extends ConfigurationCRUDRepository> S save(S entity) {
+	public <S extends Configuration> S save(S entity) {
 		return getConfigurationCRUDRepository().save(entity);
 	}
 
-	public <S extends ConfigurationCRUDRepository> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Configuration> Iterable<S> saveAll(Iterable<S> entities) {
 		return getConfigurationCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<ConfigurationCRUDRepository> findById(Integer id) {
+	public Optional<Configuration> findById(Integer id) {
 		return getConfigurationCRUDRepository().findById(id);
 	}
 
@@ -36,11 +38,11 @@ public class ConfigurationService {
 		return getConfigurationCRUDRepository().existsById(id);
 	}
 
-	public Iterable<ConfigurationCRUDRepository> findAll() {
+	public Iterable<Configuration> findAll() {
 		return getConfigurationCRUDRepository().findAll();
 	}
 
-	public Iterable<ConfigurationCRUDRepository> findAllById(Iterable<Integer> ids) {
+	public Iterable<Configuration> findAllById(Iterable<Integer> ids) {
 		return getConfigurationCRUDRepository().findAllById(ids);
 	}
 
@@ -53,7 +55,7 @@ public class ConfigurationService {
 		getConfigurationCRUDRepository().deleteById(id);
 	}
 
-	public void delete(ConfigurationCRUDRepository entity) {
+	public void delete(Configuration entity) {
 		getConfigurationCRUDRepository().delete(entity);
 	}
 
@@ -61,7 +63,7 @@ public class ConfigurationService {
 		getConfigurationCRUDRepository().deleteAllById(ids);
 	}
 
-	public void deleteAll(Iterable<? extends ConfigurationCRUDRepository> entities) {
+	public void deleteAll(Iterable<? extends Configuration> entities) {
 		getConfigurationCRUDRepository().deleteAll(entities);
 	}
 

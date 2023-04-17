@@ -15,21 +15,21 @@ public class CurrentAccountService {
 	@Autowired
 	private CurrentAccountCRUDRepository accountCRUDRepository;
 	
-	public void dameCuenta() {
-		Iterable<CurrentAccountCRUDRepository> cuenta= getAccountCRUDRepository().findAll();
+	public Iterable<CurrentAccount>dameCuentas() {
+		return getAccountCRUDRepository().findAll();
 	
 	}
 
-	public <S extends CurrentAccountCRUDRepository> S save(S entity) {
+	public <S extends CurrentAccount> S save(S entity) {
 		return getAccountCRUDRepository().save(entity);
 		
 	}
 
-	public <S extends CurrentAccountCRUDRepository> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends CurrentAccount> Iterable<S> saveAll(Iterable<S> entities) {
 		return getAccountCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<CurrentAccountCRUDRepository> findById(Integer id) {
+	public Optional<CurrentAccount> findById(Integer id) {
 		return getAccountCRUDRepository().findById(id);
 	}
 
@@ -37,11 +37,11 @@ public class CurrentAccountService {
 		return getAccountCRUDRepository().existsById(id);
 	}
 
-	public Iterable<CurrentAccountCRUDRepository> findAll() {
+	public Iterable<CurrentAccount> findAll() {
 		return getAccountCRUDRepository().findAll();
 	}
 
-	public Iterable<CurrentAccountCRUDRepository> findAllById(Iterable<Integer> ids) {
+	public Iterable<CurrentAccount> findAllById(Iterable<Integer> ids) {
 		return getAccountCRUDRepository().findAllById(ids);
 	}
 
@@ -53,7 +53,7 @@ public class CurrentAccountService {
 		getAccountCRUDRepository().deleteById(id);
 	}
 
-	public void delete(CurrentAccountCRUDRepository entity) {
+	public void delete(CurrentAccount entity) {
 		getAccountCRUDRepository().delete(entity);
 	}
 
@@ -61,7 +61,7 @@ public class CurrentAccountService {
 		getAccountCRUDRepository().deleteAllById(ids);
 	}
 
-	public void deleteAll(Iterable<? extends CurrentAccountCRUDRepository> entities) {
+	public void deleteAll(Iterable<? extends CurrentAccount> entities) {
 		getAccountCRUDRepository().deleteAll(entities);;
 	}
 

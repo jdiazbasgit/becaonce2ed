@@ -3,10 +3,10 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.entities.Description;
 import once.curso.proyectobanco.repositories.DescriptionCRUDRepository;
 
 @Data
@@ -16,20 +16,20 @@ public class DescriptionService {
 	@Autowired
 	private DescriptionCRUDRepository DescriptionCRUDRepository;
 	
-	public void dameDescripcion() {
-		Iterable<DescriptionCRUDRepository> description= getDescriptionCRUDRepository().findAll();
+	public Iterable<Description> dameDescripcion() {
+		return getDescriptionCRUDRepository().findAll();
 		
 		}
 			
-	public <S extends DescriptionCRUDRepository> S save(S entity) {
+	public <S extends Description> S save(S entity) {
 		return getDescriptionCRUDRepository().save(entity);
 	}
 
-	public <S extends DescriptionCRUDRepository> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends Description> Iterable<S> saveAll(Iterable<S> entities) {
 		return getDescriptionCRUDRepository().saveAll(entities);
 	}
 
-	public Optional<DescriptionCRUDRepository> findById(Integer id) {
+	public Optional<Description> findById(Integer id) {
 		return getDescriptionCRUDRepository().findById(id);
 	}
 
@@ -37,11 +37,11 @@ public class DescriptionService {
 		return getDescriptionCRUDRepository().existsById(id);
 	}
 
-	public Iterable<DescriptionCRUDRepository> findAll() {
+	public Iterable<Description> findAll() {
 		return getDescriptionCRUDRepository().findAll();
 	}
 
-	public Iterable<DescriptionCRUDRepository> findAllById(Iterable<Integer> ids) {
+	public Iterable<Description> findAllById(Iterable<Integer> ids) {
 		return getDescriptionCRUDRepository().findAllById(ids);
 	}
 
@@ -53,7 +53,7 @@ public class DescriptionService {
 		getDescriptionCRUDRepository().deleteById(id);
 	}
 
-	public void delete(DescriptionCRUDRepository entity) {
+	public void delete(Description entity) {
 		getDescriptionCRUDRepository().delete(entity);
 	}
 
@@ -61,7 +61,7 @@ public class DescriptionService {
 		getDescriptionCRUDRepository().deleteAllById(ids);
 	}
 
-	public void deleteAll(Iterable<? extends DescriptionCRUDRepository> entities) {
+	public void deleteAll(Iterable<? extends Description> entities) {
 		getDescriptionCRUDRepository().deleteAll(entities);
 	}
 
