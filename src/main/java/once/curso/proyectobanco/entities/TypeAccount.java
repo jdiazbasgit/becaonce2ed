@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Table (name="type_Accounts")
 public class TypeAccount {
-
+   
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
