@@ -41,7 +41,7 @@ public class TypeAccountRestController {
 	public List<TypeAccount> saveAll(@RequestBody List<TypeAccount> typeAccount){
 		return (List<TypeAccount>)getTypeAccountService().saveAll(typeAccount);
 	}
-	@DeleteMapping(value="typeAccount")
+	@DeleteMapping(value="typeAccount/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getTypeAccountService().deleteById(id);
 	}

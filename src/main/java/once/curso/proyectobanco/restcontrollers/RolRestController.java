@@ -41,7 +41,7 @@ public class RolRestController {
 	public List<Rol> saveAll(@RequestBody List<Rol> rol){
 		return (List<Rol>)getRolService().saveAll(rol);
 	}
-	@DeleteMapping(value="/rol")
+	@DeleteMapping(value="/rol/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getRolService().deleteById(id);
 	}
