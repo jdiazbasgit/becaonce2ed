@@ -27,7 +27,7 @@ public class ConfigurationRestController {
 
 	}
 
-	@GetMapping(value = "configurations/id")
+	@GetMapping(value = "configurations/{id}")
 	public Configuration getConfigurations(@PathVariable int id) {
 		if (getConfigurationService().findById(id).isPresent())
 
@@ -40,7 +40,7 @@ public class ConfigurationRestController {
 		return getConfigurationService().save(configuration);
 	}
 
-	@DeleteMapping("/configurations/id")
+	@DeleteMapping("/configurations/{id}")
 	public void deleteById(@PathVariable int id) {
 		getConfigurationService().deleteById(id);
 	}

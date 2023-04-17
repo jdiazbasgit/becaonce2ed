@@ -26,7 +26,7 @@ public class DocumentTypeRestController {
 		return getDocumentTypeService().findAll();
 	}
 
-	@GetMapping(value = "/documents_types/id")
+	@GetMapping(value = "/documents_types/{id}")
 	public DocumentType getDocumentTypes(@PathVariable int id) {
 		if (getDocumentTypeService().findById(id).isPresent())
 
@@ -39,7 +39,7 @@ public class DocumentTypeRestController {
 		return getDocumentTypeService().save(documentType);
 	}
 
-	@DeleteMapping("/document_types/id")
+	@DeleteMapping("/document_types/{id}")
 	public void deleteById(@PathVariable int id) {
 		getDocumentTypeService().deleteById(id);
 	}
