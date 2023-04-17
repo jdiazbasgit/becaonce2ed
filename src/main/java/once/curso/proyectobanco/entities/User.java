@@ -1,3 +1,4 @@
+
 package once.curso.proyectobanco.entities;
 
 import javax.persistence.Entity;
@@ -12,18 +13,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name=("users"))
+
+@Table(name = "USERS")
 public class User {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String user;
 	private String password;
-	private boolean enabled ;
-	
+	private boolean enabled;
+
 	@ManyToOne
-	@JoinColumn (name="roles_id")
-   private Rol rol;
+	@JoinColumn(name = "roles_id")
+	private Rol rol;
+
 }
