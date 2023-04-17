@@ -1,12 +1,11 @@
 package once.curso.proyectotienda;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.List;
-
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import lombok.Data;
 import once.curso.proyectotienda.entities.Configuration;
 import once.curso.proyectotienda.services.ConfigurationService;
@@ -17,11 +16,18 @@ public class ConfigurationTest {
 
 	@Autowired
 	private ConfigurationService configurationService;
-	
-	public void findAll() {
-		
-		/*List<Configuration> dameConfiguraciones = (List<Configuration>getConfigurationService().findAll());
-		assertNotEquals(dameConfiguraciones.size(),0);*/
-	}
 
+	@Test
+	public void probarSaveFindDelete() {
+
+		Configuration configuration = new Configuration();
+		configuration.setStockAlarm();
+		getConfigurationService().save(configuration);
+		Configuration configurationRecuperado = getConfigurationService().findById(configuration.getId()).get();
+		getConfigurationService().delete(configurationRecuperado);
+		Configuration configurationBorrado = getConfigurationService().findById(configuration.getId()).get();
+		assertNull(configurationBorrado);
+
+		assertFalse(getConfigurationService().findById(configuration.getId()).isPresent());
+	}
 }
