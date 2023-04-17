@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Table (name="roles")
 public class Rol {
-	  
+	     
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
