@@ -43,7 +43,7 @@ public class AwardFineRestControllers {
 	
 	@PostMapping(value = "/awardFine")
 	public List<AwardFine> saveAll(@RequestBody List<AwardFine> awardFine){
-		return (List<AwardFine>)getAwardFineServices().saveAll(awardFine);
+		return (List<AwardFine>) getAwardFineServices().saveAll(awardFine);
 	}
 	
 	@DeleteMapping(value = "/awardFine")
