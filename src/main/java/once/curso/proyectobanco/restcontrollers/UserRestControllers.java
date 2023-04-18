@@ -26,7 +26,7 @@ public class UserRestControllers {
 	private UserService userService;
 	
 	
-	@GetMapping("/user")
+	@GetMapping("/users")
 	
 	public List<User> dameUser(){
 		 return (List<User>) getUserService().findAll();
@@ -47,7 +47,7 @@ public class UserRestControllers {
 		return (List<User>) getUserService().saveAll(users);
 	}
 	
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/users/{id}")
 	public void deleteById(@PathVariable int id) {
 		 getUserService().deleteById(id);
 	}
