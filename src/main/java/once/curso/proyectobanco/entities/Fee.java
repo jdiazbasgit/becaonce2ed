@@ -3,17 +3,25 @@ package once.curso.proyectobanco.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Table;
+
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "fees")
+
+@Table(name = "FEES")
+
 public class Fee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private double current;
+
+
 }
+
