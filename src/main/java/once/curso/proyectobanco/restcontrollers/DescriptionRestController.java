@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.Configuration;
 import once.curso.proyectobanco.entities.Description;
-import once.curso.proyectobanco.services.ConfigurationService;
 import once.curso.proyectobanco.services.DescriptionService;
 
 @RestController
