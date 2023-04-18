@@ -9,10 +9,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,6 +54,19 @@ public class ExistingProductRestController {
 		return getExistingProductService().findById(id);
 	}
 	
+	@PatchMapping("/products/update/{id}/{description}/{image}/{price}/{stock}")
+	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock) {
+		try {
+			ExistingProduct existingProduct = existingProductService.findById(id).get();
+			existingProduct.setDescription(description);
+			existingProduct.setPrice(price);
+			existingProduct.setStock(stock);
+			return new ResponseEntity<ExistingProduct>(existingProductService.save(existingProduct), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	/*@GetMapping("/get/{id}")
 	public @ResponseBody ResponseEntity<String>
 	getExistingProductById(@PathVariable String id) {
@@ -71,7 +86,7 @@ public class ExistingProductRestController {
 		return getExistingProductService().findById(id);
 	}*/
 	
-	@PutMapping("/products/update/{id}")
+	/*@PutMapping("/products/update/{id}")
 	public ResponseEntity<ExistingProduct> updateExistingProductById(@PathVariable(value = "id") int existingProductId, 
 			@Validated @RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException, IOException {
 		ExistingProduct existingProduct = existingProductService.findById(existingProductId)
@@ -81,13 +96,13 @@ public class ExistingProductRestController {
 		existingProduct.setDescription(existingProductDetails.getDescription());
 		existingProduct.setPrice(existingProductDetails.getPrice());
 		
-		/*String nameImage = "calzocillos.jpg";
+		//String nameImage = "calzocillos.jpg";
 		
-		Path imagePath = Paths.get(nameImage);
-		if (Files.exists(imagePath)) {
-			BufferedImage imageProduct = ImageIO.read(new File(nameImage));
-			existingProduct.setImage(imageProduct);
-		}*/
+		//Path imagePath = Paths.get(nameImage);
+		//if (Files.exists(imagePath)) {
+		//	BufferedImage imageProduct = ImageIO.read(new File(nameImage));
+		//	existingProduct.setImage(imageProduct);
+		//}
 		
 		existingProduct.setImage(existingProductDetails.getImage());
 		
@@ -97,7 +112,9 @@ public class ExistingProductRestController {
 		
 	    final ExistingProduct updatedExistingProduct = existingProductService.save(existingProduct);
 	    return ResponseEntity.ok(updatedExistingProduct);
-	}	
+	*/
+	
+	
 	
 	@GetMapping("/products/delete/{id}")
 	public Object deleteById(@PathVariable int id) {
