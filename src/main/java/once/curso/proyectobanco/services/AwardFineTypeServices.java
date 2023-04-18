@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFineType;
+import once.curso.proyectobanco.entities.AwardsFinesType;
 import once.curso.proyectobanco.repositories.AwardFineTypeCRUDRepositories;
 
 @Service
@@ -18,23 +18,23 @@ public class AwardFineTypeServices {
 
 	public void dameAwardFineType() {
 
-		Iterable<AwardFineType> awardsFinesTypes = getAwardFineTypeCRUDRepositories().findAll();
-		for (AwardFineType awardFineType : awardsFinesTypes) {
+		Iterable<AwardsFinesType> awardsFinesTypes = getAwardFineTypeCRUDRepositories().findAll();
+		for (AwardsFinesType awardFineType : awardsFinesTypes) {
 			//System.out.println(awardFineType.getDescription());
 		}
 	}
 
-	public <S extends AwardFineType> S save(S entity) {
+	public <S extends AwardsFinesType> S save(S entity) {
 
 		return getAwardFineTypeCRUDRepositories().save(entity);
 	}
 
-	public <S extends AwardFineType> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends AwardsFinesType> Iterable<S> saveAll(Iterable<S> entities) {
 
 		return getAwardFineTypeCRUDRepositories().saveAll(entities);
 	}
 
-	public Optional<AwardFineType> findById(Integer id) {
+	public Optional<AwardsFinesType> findById(Integer id) {
 
 		return getAwardFineTypeCRUDRepositories().findById(id);
 	}
@@ -44,12 +44,12 @@ public class AwardFineTypeServices {
 		return getAwardFineTypeCRUDRepositories().existsById(id);
 	}
 
-	public Iterable<AwardFineType> findAll() {
+	public Iterable<AwardsFinesType> findAll() {
 
 		return getAwardFineTypeCRUDRepositories().findAll();
 	}
 
-	public Iterable<AwardFineType> findAllById(Iterable<Integer> ids) {
+	public Iterable<AwardsFinesType> findAllById(Iterable<Integer> ids) {
 
 		return getAwardFineTypeCRUDRepositories().findAllById(ids);
 	}
@@ -64,7 +64,7 @@ public class AwardFineTypeServices {
 
 	}
 
-	public void delete(AwardFineType entity) {
+	public void delete(AwardsFinesType entity) {
 		getAwardFineTypeCRUDRepositories().delete(entity);
 
 	}
@@ -74,7 +74,7 @@ public class AwardFineTypeServices {
 
 	}
 
-	public void deleteAll(Iterable<? extends AwardFineType> entities) {
+	public void deleteAll(Iterable<? extends AwardsFinesType> entities) {
 		getAwardFineTypeCRUDRepositories().deleteAll(entities);
 
 	}

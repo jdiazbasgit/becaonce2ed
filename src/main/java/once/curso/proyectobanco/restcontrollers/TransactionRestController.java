@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,24 +24,24 @@ public class TransactionRestController {
 	@Autowired
 	private TransactionService transactionService;
 	
-	@GetMapping(value="/transaction/{id}")
+	@GetMapping(value="/transactions/{id}")
 	public Transaction findById(@PathVariable Integer id) {
 		return getTransactionService().findById(id).get();
 	}
-	@GetMapping(value = "/transaction")
+	@GetMapping(value = "/transactions")
 	public Iterable<Transaction> findAll(@PathVariable Integer id) {
 		return getTransactionService().findAll();
 	}
 
-	@PostMapping(value = "/transaction")
+	@PostMapping(value = "/transactions")
 	public Transaction save(@RequestBody Transaction transaction) {
 		return getTransactionService().save(transaction);
 	}
-	@PostMapping(value="/transaction")
+	@PutMapping(value="/transactions")
 	public List<Transaction> saveAll(@RequestBody List<Transaction> transaction){
 		return (List<Transaction>)getTransactionService().saveAll(transaction);
 	}
-	@DeleteMapping(value="/transaction/{id}")
+	@DeleteMapping(value="/transactions/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}

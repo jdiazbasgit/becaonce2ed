@@ -22,19 +22,19 @@ public class CurrentAccountRestController {
 	@Autowired
 	private CurrentAccountService currentAccountService;
 	
-	@GetMapping(value =" /currentAccount/{id}")
+	@GetMapping(value =" /currentAccounts/{id}")
 	public CurrentAccount findById(@PathVariable Integer id) {
 		return getCurrentAccountService().findById(id).get();
 	}
-	@GetMapping(value = "/currentAccount")
+	@GetMapping(value = "/currentAccounts")
 	public Iterable<CurrentAccount> CurrentAccountService(@PathVariable Integer id) {
 		return getCurrentAccountService().findAll();
 	}
-	@PostMapping(value = "/currentAccount")
+	@PostMapping(value = "/currentAccounts")
 	public CurrentAccount save(@RequestBody CurrentAccount currentAccount) {
 		return getCurrentAccountService().save(currentAccount);
 	}
-	@DeleteMapping(value="/currentAccount")
+	@DeleteMapping(value="/currentAccounts")
 	public void deleteById(@PathVariable Integer id) {
 		getCurrentAccountService().deleteById(id);
 	}

@@ -20,19 +20,19 @@ public class ConfigurationRestController {
 	@Autowired
 	private ConfigurationService configurationService;
 	
-	@GetMapping(value =" /configuration/{id}")
+	@GetMapping(value =" /configurations/{id}")
 	public Configuration findById(@PathVariable Integer id) {
 		return getConfigurationService().findById(id).get();
 	}
-	@GetMapping(value = "/configuration")
+	@GetMapping(value = "/configurations")
 	public Iterable<Configuration> findAll(@PathVariable Integer id) {
 		return getConfigurationService().findAll();
 	}
-	@PostMapping(value = "/configuration")
+	@PostMapping(value = "/configurations")
 	public Configuration save(@RequestBody Configuration configuration) {
 		return getConfigurationService().save(configuration);
 	}
-	@DeleteMapping(value="/configuration")
+	@DeleteMapping(value="/configurations")
 	public void deleteById(@PathVariable Integer id) {
 		getConfigurationService().deleteById(id);
 	}

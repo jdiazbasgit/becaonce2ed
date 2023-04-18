@@ -22,19 +22,19 @@ public class DescriptionRestController {
 	@Autowired
 	private DescriptionService descriptionService;
 	
-	@GetMapping(value =" /configuration/{id}")
+	@GetMapping(value =" /descriptions/{id}")
 	public Description findById(@PathVariable Integer id) {
 		return getDescriptionService().findById(id).get();
 	}
-	@GetMapping(value = "/description")
-	public Iterable<Description> findAll(@PathVariable Integer id) {
+	@GetMapping(value = "/descriptions")
+	public Iterable<Description> findAll() {
 		return getDescriptionService().findAll();
 	}
-	@PostMapping(value = "/description")
+	@PostMapping(value = "/descriptions")
 	public Description save(@RequestBody Description description) {
 		return getDescriptionService().save(description);
 	}
-	@DeleteMapping(value="/descriptiuon")
+	@DeleteMapping(value="/description/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getDescriptionService().deleteById(id);
 	}
