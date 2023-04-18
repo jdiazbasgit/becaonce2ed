@@ -25,5 +25,5 @@ public class TransactionsAwardsFine {
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_types_id")
-	private AwardsFinesType awardFineType;
+	private AwardsFinesType awardsFineType;
 }
