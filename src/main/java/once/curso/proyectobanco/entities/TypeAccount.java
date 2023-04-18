@@ -10,11 +10,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name="type_Accounts")
+
+@Table(name = "TYPE_ACCOUNTS")
 public class TypeAccount {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description;
+
 }
+

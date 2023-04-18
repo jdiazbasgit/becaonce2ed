@@ -11,7 +11,7 @@ import once.curso.proyectobanco.repositories.AwardFineCRUDRepositories;
 
 @Service
 @Data
-public class AwardFineServices {
+public class AwardsFinesServices {
 
 	@Autowired
 	private AwardFineCRUDRepositories awardFineCRUDRepositories;
