@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFine;
+import once.curso.proyectobanco.entities.AwardsFine;
 import once.curso.proyectobanco.services.AwardFineServices;
 
 @RestController
@@ -24,30 +24,30 @@ public class AwardFineRestControllers {
 	private AwardFineServices awardFineServices;
 
 	@GetMapping(value = "/awardFine/id")
-	public AwardFine findById(@PathVariable Integer id) {
+	public AwardsFine findById(@PathVariable Integer id) {
 		return getAwardFineServices().findById(id).get();
 		
 }
 
 	@GetMapping(value = "/awardFine")
-	public Iterable<AwardFine> findAll(@PathVariable Integer id){
+	public Iterable<AwardsFine> findAll(@PathVariable Integer id){
 		return getAwardFineServices().findAll();
 	}
 		
 	
 	@PostMapping(value = "/awardFine")
-	public AwardFine save(@RequestBody AwardFine awardFine) {
+	public AwardsFine save(@RequestBody AwardsFine awardFine) {
 		return getAwardFineServices().save(awardFine);
 
 	}
 	
 	@PostMapping(value = "/awardFine")
-	public List<AwardFine> saveAll(@RequestBody List<AwardFine> awardFine){
-		return (List<AwardFine>) getAwardFineServices().saveAll(awardFine);
+	public List<AwardsFine> saveAll(@RequestBody List<AwardsFine> awardFine){
+		return (List<AwardsFine>) getAwardFineServices().saveAll(awardFine);
 	}
 	
 	@DeleteMapping(value = "/awardFine")
-	public AwardFine deleteById(@RequestBody AwardFine awardFine) {
+	public AwardsFine deleteById(@RequestBody AwardsFine awardFine) {
 		return getAwardFineServices().save(awardFine);
 		
 	}

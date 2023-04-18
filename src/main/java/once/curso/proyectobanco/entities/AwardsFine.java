@@ -18,7 +18,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "awards_fines")
-public class AwardFine {
+public class AwardsFine {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
