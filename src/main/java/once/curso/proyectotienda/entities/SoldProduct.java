@@ -1,6 +1,5 @@
 package once.curso.proyectotienda.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +12,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "subcategories")
-public class SubCategory {
-
+@Table(name = "sold_products")
+public class SoldProduct {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	private int quantity;
 	
-	private String description;
-	
-	@JoinColumn(name = "categories_id")
 	@ManyToOne
-	private Category category;
+	@JoinColumn(name = "existing_products_id")
+	private ExistingProduct existingProduct;
 }
