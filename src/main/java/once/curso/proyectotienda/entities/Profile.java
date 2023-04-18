@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Entity
@@ -18,7 +18,7 @@ public class Profile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private String name;
+	@NonNull private String name;
 	
 	private String second_name;
 	
