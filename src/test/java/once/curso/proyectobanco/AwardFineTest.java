@@ -9,29 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFine;
-import once.curso.proyectobanco.services.AwardFineServices;
+import once.curso.proyectobanco.entities.AwardsFine;
+import once.curso.proyectobanco.services.AwardsFinesServices;
 
 @SpringBootTest
 @Data
 public class AwardFineTest {
 
 	@Autowired
-	private AwardFineServices AwardFineServices;
+	private AwardsFinesServices AwardFineServices;
 	
 	@Test
 	public void findAll() {
-		List<AwardFine> awardFines = (List<AwardFine>) getAwardFineServices().findAll();
+		List<AwardsFine> awardFines = (List<AwardsFine>) getAwardFineServices().findAll();
 		assertNotEquals(awardFines.size(), 0);
 	}
 	
-	@Test
-	public void probarSaveFinDelete() {
-		AwardFine awardFine = new AwardFine();
-		awardFine.setAwardFineConfiguration("prueba");
-		getAwardFineServices().save(awardFine);
-		AwardFine awardFineRecuperado = getAwardFineServices().findById(AwardFine.getId()).get();
-		getAwardFineServices().delete(awardFineRecuperado);
-		AwardFine awardFineB
-	}
+	
 }

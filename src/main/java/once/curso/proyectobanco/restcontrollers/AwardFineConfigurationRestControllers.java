@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
-import once.curso.proyectobanco.services.AwardFineConfigurationServices;
+import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
 
 @RestController
 @RequestMapping
@@ -22,7 +22,7 @@ import once.curso.proyectobanco.services.AwardFineConfigurationServices;
 public class AwardFineConfigurationRestControllers {
 	
 	@Autowired
-	private AwardFineConfigurationServices awardFineConfigurationServices;
+	private AwardsFinesConfigurationServices awardFineConfigurationServices;
 	
 	@GetMapping(value = "/awardFineConfigurations/id")
 	public AwardsFinesConfiguration findById(@PathVariable Integer id) {

@@ -18,7 +18,6 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "awards_fines")
-<<<<<<< HEAD:src/main/java/once/curso/proyectobanco/entities/AwardsFine.java
 public class AwardsFine {
 
 	@Id
@@ -27,27 +26,12 @@ public class AwardsFine {
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_types_id")
-	private AwardFineType awardFineType;
+	private AwardsFinesType awardFineType;
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fies_configurations_id")
-	private AwardFineConfiguration awardFineConfiguration;
-=======
-public class AwardFine {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private int id;
-	
-	@ManyToOne
-	@JoinColumn(name = "awards_fines_types_id")
-	private AwardsFinesType awardsFinesType;
+	private AwardsFinesConfiguration awardFineConfiguration;
 
-	@ManyToOne
-	@JoinColumn(name = "awards_fines_configurations_id")
-	private AwardsFinesConfiguration awardsFinesConfiguration;
->>>>>>> feature/develop-banco:src/main/java/once/curso/proyectobanco/entities/AwardFine.java
 
 	@Column(name = "time")
 	@Temporal(TemporalType.DATE)
