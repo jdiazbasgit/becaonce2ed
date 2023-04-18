@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFineConfiguration;
+import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.repositories.AwardFineConfigurationCRUDRepositories;
 
 @Service
@@ -18,25 +18,25 @@ public class AwardsFinesConfigurationServices {
 
 	public void damePremiosMultasConfiguraciones() {
 
-		Iterable<AwardFineConfiguration> awardsFinesConfigurations = getAwardFineConfigurationCRUDRepositories()
+		Iterable<AwardsFinesConfiguration> awardsFinesConfigurations = getAwardFineConfigurationCRUDRepositories()
 				.findAll();
-		for (AwardFineConfiguration awardFineConfiguration : awardsFinesConfigurations) {
+		for (AwardsFinesConfiguration awardFineConfiguration : awardsFinesConfigurations) {
 			//System.out.println(awardFineConfiguration.getCurrent());
 			//System.out.println(awardFineConfiguration.getDescription());
 		}
 	}
 
-	public <S extends AwardFineConfiguration> S save(S entity) {
+	public <S extends AwardsFinesConfiguration> S save(S entity) {
 
 		return getAwardFineConfigurationCRUDRepositories().save(entity);
 	}
 
-	public <S extends AwardFineConfiguration> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends AwardsFinesConfiguration> Iterable<S> saveAll(Iterable<S> entities) {
 
 		return getAwardFineConfigurationCRUDRepositories().saveAll(entities);
 	}
 
-	public Optional<AwardFineConfiguration> findById(Integer id) {
+	public Optional<AwardsFinesConfiguration> findById(Integer id) {
 
 		return getAwardFineConfigurationCRUDRepositories().findById(id);
 	}
@@ -46,12 +46,12 @@ public class AwardsFinesConfigurationServices {
 		return getAwardFineConfigurationCRUDRepositories().existsById(id);
 	}
 
-	public Iterable<AwardFineConfiguration> findAll() {
+	public Iterable<AwardsFinesConfiguration> findAll() {
 
 		return getAwardFineConfigurationCRUDRepositories().findAll();
 	}
 
-	public Iterable<AwardFineConfiguration> findAllById(Iterable<Integer> ids) {
+	public Iterable<AwardsFinesConfiguration> findAllById(Iterable<Integer> ids) {
 
 		return getAwardFineConfigurationCRUDRepositories().findAllById(ids);
 	}
@@ -66,7 +66,7 @@ public class AwardsFinesConfigurationServices {
 
 	}
 
-	public void delete(AwardFineConfiguration entity) {
+	public void delete(AwardsFinesConfiguration entity) {
 		getAwardFineConfigurationCRUDRepositories().delete(entity);
 
 	}
@@ -76,7 +76,7 @@ public class AwardsFinesConfigurationServices {
 
 	}
 
-	public void deleteAll(Iterable<? extends AwardFineConfiguration> entities) {
+	public void deleteAll(Iterable<? extends AwardsFinesConfiguration> entities) {
 		getAwardFineConfigurationCRUDRepositories().deleteAll(entities);
 
 	}

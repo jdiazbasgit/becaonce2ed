@@ -10,12 +10,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name="roles")
+
+@Table(name = "ROLES")
 public class Rol {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String rol;
 
 }
+

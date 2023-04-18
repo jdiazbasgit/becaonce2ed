@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,20 +29,20 @@ public class RolRestController {
 		return getRolService().findById(id).get();
 	}
 
-	@GetMapping(value = "/rol")
+	@GetMapping(value = "/roles")
 	public Iterable<Rol> findAll(@PathVariable Integer id) {
 		return getRolService().findAll();
 	}
 
-	@PostMapping(value = "/rol")
+	@PostMapping(value = "/roles")
 	public Rol save(@RequestBody Rol rol) {
 		return getRolService().save(rol);
 	}
-	@PostMapping(value="/rol")
+	@PutMapping(value="/roles")
 	public List<Rol> saveAll(@RequestBody List<Rol> rol){
 		return (List<Rol>)getRolService().saveAll(rol);
 	}
-	@DeleteMapping(value="/rol/{id}")
+	@DeleteMapping(value="/roles/{id}")
 	public void deleteById(@PathVariable Integer id) {
 		getRolService().deleteById(id);
 	}
