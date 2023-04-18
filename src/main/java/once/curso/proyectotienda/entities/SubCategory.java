@@ -20,10 +20,9 @@ public class SubCategory {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column
 	private String description;
 	
-	@JoinColumn
+	@JoinColumn(name = "categories_id")
 	@ManyToOne
-	private int categorieId;
+	private Category category;
 }
