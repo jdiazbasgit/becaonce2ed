@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Card_Type")
+@Table(name="Card_Types")
 public class CardType {
 	
 	

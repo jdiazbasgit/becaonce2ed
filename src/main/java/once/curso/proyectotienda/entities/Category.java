@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Category")
+@Table(name="Categories")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
