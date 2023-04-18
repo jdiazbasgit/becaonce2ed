@@ -27,7 +27,7 @@ public class ExistingProduct implements Serializable {
 	private int id;
 	private String description;
 	
-	private double price;
+	private Double price;
 	
 	@Lob
     @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
