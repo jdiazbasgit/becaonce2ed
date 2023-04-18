@@ -1,6 +1,7 @@
+
 Salida al Hijo:<input type="text" [(ngModel)]="salidaAlHijo"> <br>
-<h1>Mi hijo me dice <span class="text-danger">{{entradaDelHijo}}</span> </h1>
+<h1 class="text-danger">Mi hijo me dice <span class="text-danger">{{entradaDelHijo}}</span> </h1>
 
 <app-hijo [entradaDelPadre]="salidaAlHijo" (eventoAComunicar)="realizarComunicacion($event)"></app-hijo>
 
-<h1>Mi hijo me dice con el evento <span class="text-danger">{{eventoDelHijo}}</span> </h1>
+<h1>Mi hijo me dice con el evento <span class="azul">{{eventoDelHijo}}</span> </h1>

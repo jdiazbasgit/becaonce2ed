@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { HijoComponent } from '../hijo/hijo.component';
 
-@Component({
+@Component({ 
   selector: 'app-padre',
   templateUrl: './padre.component.html',
   styleUrls: ['./padre.component.css'],
