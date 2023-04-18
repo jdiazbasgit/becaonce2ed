@@ -25,6 +25,8 @@ public class UserTests {
 		User userRecuperado = getUserService().findById(user.getId()).get();
 		getUserService().delete(userRecuperado);
 		
+		//User password = new password
+		
 		assertFalse(getUserService().existsById(user.getId()));
 		
 	}
