@@ -27,7 +27,6 @@ public class ExistingProduct implements Serializable {
 	private int id;
 	private String description;
 	
-	@Column(name = "Price", nullable = false)
 	private double price;
 	
 	@Lob
