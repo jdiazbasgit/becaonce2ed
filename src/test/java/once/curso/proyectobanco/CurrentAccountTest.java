@@ -1,5 +1,8 @@
 package once.curso.proyectobanco;
 
+
+
+
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.List;
@@ -20,12 +23,10 @@ public class CurrentAccountTest {
 	private CurrentAccountService currentAccountService;
 	
 	@Test
-	public void findAll() {
-		List<CurrentAccount> currentAccount=(List<CurrentAccount>)getCurrentAccountService().findAll();
+	public void findAllTest() {
+		List<CurrentAccount> currentAccount=(List<CurrentAccount>) getCurrentAccountService().findAll();
 		assertNotEquals(currentAccount.size(),0);
 	}
 	
-	@Test
-	public void 
 	
 }
