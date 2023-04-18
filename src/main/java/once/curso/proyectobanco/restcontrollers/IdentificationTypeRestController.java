@@ -1,14 +1,17 @@
 package once.curso.proyectobanco.restcontrollers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
+
 import lombok.Data;
 import once.curso.proyectobanco.entities.IdentificationType;
 import once.curso.proyectobanco.services.IdentificationTypeService;
@@ -36,7 +39,7 @@ public class IdentificationTypeRestController {
 		return getIdentificationTypeService().save(identificationType);
 	}
 	
-	@PostMapping("/identificationsTypes")
+	@PutMapping("/identificationsTypes")
 	public List <IdentificationType> saveAll(@RequestBody List<IdentificationType> identificationsTypes) {
 		return (List<IdentificationType>) getIdentificationTypeService().saveAll(identificationsTypes);
 	}

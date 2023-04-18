@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFineConfiguration;
+import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.services.AwardFineConfigurationServices;
 
 @RestController
@@ -23,28 +24,28 @@ public class AwardFineConfigurationRestControllers {
 	@Autowired
 	private AwardFineConfigurationServices awardFineConfigurationServices;
 	
-	@GetMapping(value = "/awardFineConfiguration/id")
-	public AwardFineConfiguration findById(@PathVariable Integer id) {
+	@GetMapping(value = "/awardFineConfigurations/id")
+	public AwardsFinesConfiguration findById(@PathVariable Integer id) {
 		return getAwardFineConfigurationServices().findById(id).get();
 	}
 
-	@GetMapping(value = "/awardFineConfiguration")
-	public Iterable<AwardFineConfiguration> findAll(@PathVariable Integer id){
+	@GetMapping(value = "/awardFineConfigurations")
+	public Iterable<AwardsFinesConfiguration> findAll(@PathVariable Integer id){
 		return getAwardFineConfigurationServices().findAll();
 	}
 	
-	@PostMapping(value = "/awardFineConfiguration")
-	public AwardFineConfiguration save(@RequestBody AwardFineConfiguration awardFineConfiguration) {
+	@PostMapping(value = "/awardFineConfigurations")
+	public AwardsFinesConfiguration save(@RequestBody AwardsFinesConfiguration awardFineConfiguration) {
 		return getAwardFineConfigurationServices().save(awardFineConfiguration);
 	}
 	
-	@PostMapping(value = "/awardFineConfiguration")
-	public List<AwardFineConfiguration> saveAll(@RequestBody List<AwardFineConfiguration> awardFineConfigurations){
-		return (List<AwardFineConfiguration>) getAwardFineConfigurationServices().findAll();
+	@PutMapping(value = "/awardFineConfigurations")
+	public List<AwardsFinesConfiguration> saveAll(@RequestBody List<AwardsFinesConfiguration> awardFineConfigurations){
+		return (List<AwardsFinesConfiguration>) getAwardFineConfigurationServices().saveAll(awardFineConfigurations);
 	}
 	
-	@DeleteMapping(value = "/awardFineConfiguration")
-	public AwardFineConfiguration deleteById(@RequestBody AwardFineConfiguration awardFineConfiguration) {
+	@DeleteMapping(value = "/awardFineConfigurations")
+	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration awardFineConfiguration) {
 		return getAwardFineConfigurationServices().save(awardFineConfiguration);
 	}
 }
