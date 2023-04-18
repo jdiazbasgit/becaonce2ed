@@ -43,8 +43,9 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().count();
 	}
 
-	public void deleteById(Integer id) {
+	public Object deleteById(Integer id) {
 		getExistingProductsCRUDRepository().deleteById(id);
+		return id;
 	}
 
 	public void delete(ExistingProduct entity) {
