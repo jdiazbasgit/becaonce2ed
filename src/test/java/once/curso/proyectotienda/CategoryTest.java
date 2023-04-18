@@ -1,7 +1,8 @@
 package once.curso.proyectotienda;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -29,11 +30,10 @@ public class CategoryTest {
 	@Test
 	public void probarSaveFindDelete() {
 		Category category = new Category();
-		category.setDescription("prueba");
+		category.setDescription("prueba1");
 		getCategoryService().save(category);
 		Category categoryRecuperado = getCategoryService().findById(category.getId()).get();
 		getCategoryService().delete(categoryRecuperado);
-		Category categoryBorrado = getCategoryService().findById(category.getId()).get();
-		assertNull(categoryBorrado);
+		assertFalse(getCategoryService().existsById(category.getId()));
 	}
 }

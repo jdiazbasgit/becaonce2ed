@@ -1,7 +1,9 @@
 package once.curso.proyectotienda;
 
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -28,12 +30,12 @@ public class CardTypeTest {
 	@Test
 	public void probarSaveFindDelete() {
 		CardType cardType = new CardType();
-		cardType.setDescription("prueba");
+		cardType.setDescription("prueba1");
 		getCardTypeService().save(cardType);
 		CardType cardTypeRecuperado = getCardTypeService().findById(cardType.getId()).get();
 		getCardTypeService().delete(cardTypeRecuperado);
-		CardType cardTypeBorrado = getCardTypeService().findById(cardType.getId()).get();
-		assertNull(cardTypeBorrado);
+		
+		assertFalse(getCardTypeService().existsById(cardType.getId()));
 
 	}
 
