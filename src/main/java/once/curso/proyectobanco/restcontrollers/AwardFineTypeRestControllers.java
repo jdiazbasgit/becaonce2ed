@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFinesType;
-import once.curso.proyectobanco.services.AwardFineTypeServices;
+import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 
 @RestController
 @RequestMapping("/once")
@@ -22,7 +22,7 @@ import once.curso.proyectobanco.services.AwardFineTypeServices;
 public class AwardFineTypeRestControllers {
 
 	@Autowired
-	private AwardFineTypeServices awardFineTypeServices;
+	private AwardsFinesTypeServices awardFineTypeServices;
 
 	@GetMapping(value = "/awardsFinesTypes/{id}")
 	public AwardsFinesType findById(@PathVariable Integer id) {
