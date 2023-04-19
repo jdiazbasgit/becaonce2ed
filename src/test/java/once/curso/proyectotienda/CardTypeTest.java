@@ -2,8 +2,6 @@ package once.curso.proyectotienda;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

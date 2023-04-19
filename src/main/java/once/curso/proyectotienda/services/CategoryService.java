@@ -19,12 +19,12 @@ public class CategoryService {
 		return getCategoryRepository().findAll();
 	}
 
-	public <S extends Category> S save(S entity) {
+	public Category save(Category entity) {
 
 		return getCategoryRepository().save(entity);
 	}
 
-	public <S extends Category> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<Category> saveAll(Iterable<Category> entities) {
 
 		return getCategoryRepository().saveAll(entities);
 	}

@@ -19,12 +19,12 @@ public class CardTypeService {
 		return getCardTypeRepository().findAll();
 	}
 
-	public <S extends CardType> S save(S entity) {
+	public CardType save(CardType entity) {
 
 		return getCardTypeRepository().save(entity);
 	}
 
-	public <S extends CardType> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<CardType> saveAll(Iterable<CardType> entities) {
 
 		return getCardTypeRepository().saveAll(entities);
 	}
