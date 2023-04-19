@@ -13,65 +13,65 @@ import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
 @Data
 public class CardTypeService {
 	@Autowired
-	private CardTypeCRUDRepository cardTypeRepository;
+	private CardTypeCRUDRepository cardTypeCRUDRepository;
 
 	public Iterable<CardType> getCardType() {
-		return getCardTypeRepository().findAll();
+		return getCardTypeCRUDRepository().findAll();
 	}
 
 	public CardType save(CardType entity) {
 
-		return getCardTypeRepository().save(entity);
+		return getCardTypeCRUDRepository().save(entity);
 	}
 
 	public Iterable<CardType> saveAll(Iterable<CardType> entities) {
 
-		return getCardTypeRepository().saveAll(entities);
+		return getCardTypeCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<CardType> findById(Integer id) {
 
-		return getCardTypeRepository().findById(id);
+		return getCardTypeCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
 
-		return getCardTypeRepository().existsById(id);
+		return getCardTypeCRUDRepository().existsById(id);
 	}
 
 	public Iterable<CardType> findAll() {
 
-		return getCardTypeRepository().findAll();
+		return getCardTypeCRUDRepository().findAll();
 	}
 
 	public Iterable<CardType> findAllById(Iterable<Integer> ids) {
 
-		return getCardTypeRepository().findAllById(ids);
+		return getCardTypeCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
 
-		return getCardTypeRepository().count();
+		return getCardTypeCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getCardTypeRepository().deleteById(id);
+		getCardTypeCRUDRepository().deleteById(id);
 	}
 
 	public void delete(CardType entity) {
-		getCardTypeRepository().delete(entity);
+		getCardTypeCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getCardTypeRepository().deleteAllById(ids);
+		getCardTypeCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends CardType> entities) {
-		getCardTypeRepository().deleteAll(entities);
+		getCardTypeCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getCardTypeRepository().deleteAll();
+		getCardTypeCRUDRepository().deleteAll();
 	}
 
 }

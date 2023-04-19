@@ -13,65 +13,65 @@ import once.curso.proyectotienda.repositories.CategoryCRUDRepository;
 @Data
 public class CategoryService {
 	@Autowired
-	private CategoryCRUDRepository categoryRepository;
+	private CategoryCRUDRepository categoryCRUDRepository;
 
 	public Iterable<Category> getCategory() {
-		return getCategoryRepository().findAll();
+		return getCategoryCRUDRepository().findAll();
+	}
+	
+	public Iterable<Category> saveAll(Iterable<Category> entities) {
+
+		return getCategoryCRUDRepository().saveAll(entities);
 	}
 
 	public Category save(Category entity) {
 
-		return getCategoryRepository().save(entity);
-	}
-
-	public Iterable<Category> saveAll(Iterable<Category> entities) {
-
-		return getCategoryRepository().saveAll(entities);
+		return getCategoryCRUDRepository().save(entity);
 	}
 
 	public Optional<Category> findById(Integer id) {
 
-		return getCategoryRepository().findById(id);
+		return getCategoryCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
 
-		return getCategoryRepository().existsById(id);
+		return getCategoryCRUDRepository().existsById(id);
 	}
 
 	public Iterable<Category> findAll() {
 
-		return getCategoryRepository().findAll();
+		return getCategoryCRUDRepository().findAll();
 	}
 
 	public Iterable<Category> findAllById(Iterable<Integer> ids) {
 
-		return getCategoryRepository().findAllById(ids);
+		return getCategoryCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
 
-		return getCategoryRepository().count();
+		return getCategoryCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getCategoryRepository().deleteById(id);
+		getCategoryCRUDRepository().deleteById(id);
 	}
 
 	public void delete(Category entity) {
-		getCategoryRepository().delete(entity);
+		getCategoryCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getCategoryRepository().deleteAllById(ids);
+		getCategoryCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends Category> entities) {
-		getCategoryRepository().deleteAll(entities);
+		getCategoryCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getCategoryRepository().deleteAll();
+		getCategoryCRUDRepository().deleteAll();
 	}
 
 
