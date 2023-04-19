@@ -15,11 +15,11 @@ public class ExistingProductService {
 	@Autowired
 	private ExistingProductCRUDRepository existingProductsCRUDRepository;
 	
-	public <S extends ExistingProduct> S save(S entity) {
+	public ExistingProduct save(ExistingProduct entity) {
 		return getExistingProductsCRUDRepository().save(entity);
 	}
 
-	public <S extends ExistingProduct> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) {
 		return getExistingProductsCRUDRepository().saveAll(entities);
 	}
 
