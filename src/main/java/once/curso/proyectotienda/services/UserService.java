@@ -14,62 +14,62 @@ import once.curso.proyectotienda.repositories.UserCRUDRepository;
 public class UserService {
 
 	@Autowired
-	private UserCRUDRepository userRepository;
+	private UserCRUDRepository userCRUDRepository;
 	
 	
-	public <S extends User> S save(S entity) {
+	public User save(User entity) {
 
-		return getUserRepository().save(entity);
+		return getUserCRUDRepository().save(entity);
 	}
 
-	public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<User> saveAll(Iterable<User> entities) {
 
-		return getUserRepository().saveAll(entities);
+		return getUserCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<User> findById(Integer id) {
 
-		return getUserRepository().findById(id);
+		return getUserCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
 
-		return getUserRepository().existsById(id);
+		return getUserCRUDRepository().existsById(id);
 	}
 
 	public Iterable<User> findAll() {
 
-		return getUserRepository().findAll();
+		return getUserCRUDRepository().findAll();
 	}
 
 	public Iterable<User> findAllById(Iterable<Integer> ids) {
 
-		return getUserRepository().findAllById(ids);
+		return getUserCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
 
-		return getUserRepository().count();
+		return getUserCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getUserRepository().deleteById(id);
+		getUserCRUDRepository().deleteById(id);
 	}
 
 	public void delete(User entity) {
-		getUserRepository().delete(entity);
+		getUserCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getUserRepository().deleteAllById(ids);
+		getUserCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends User> entities) {
-		getUserRepository().deleteAll(entities);
+		getUserCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getUserRepository().deleteAll();
+		getUserCRUDRepository().deleteAll();
 	}
 }
 
