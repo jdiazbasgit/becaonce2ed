@@ -1,5 +1,4 @@
 package once.curso.proyectotienda.restcontrollers;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.*;
 import once.curso.proyectotienda.entities.ExistingProduct;
+import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
@@ -34,7 +34,7 @@ public class ExistingProductRestController {
     }
 	
 	/* C CREATE A PRODUCT */
-	@PostMapping(path = "addproducts")
+	@PostMapping(path = "addproduct")
 	public ExistingProduct createExistingProduct(@Validated @RequestBody ExistingProduct newExistingProduct) {
 		return existingProductService.save(newExistingProduct);
 	}
@@ -57,19 +57,20 @@ public class ExistingProductRestController {
 	}
 	
 	/* U UPDATE A PRODUCT */
-	@PatchMapping("/products/update/{id}/{description}/{price}/{stock}")
-	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock) {
+	@PatchMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
+	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
 		try {
 			ExistingProduct existingProduct = existingProductService.findById(id).get();
 			existingProduct.setDescription(description);
 			existingProduct.setPrice(price);
 			existingProduct.setStock(stock);
+			existingProduct.setSubcategories(subcategoriesid);
 			return new ResponseEntity<ExistingProduct>(existingProductService.save(existingProduct), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	/* D DELETE A PRODUCT */
 	@GetMapping("/products/delete/{id}")
 	public Object deleteById(@PathVariable int id) {
