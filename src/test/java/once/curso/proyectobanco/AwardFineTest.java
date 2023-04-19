@@ -21,7 +21,7 @@ import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 public class AwardFineTest {
 
 	@Autowired
-	private AwardsFinesServices AwardFineServices;
+	private AwardsFinesServices awardsFinesServices;
 	
 	@Autowired
 	private AwardsFinesTypeServices awardsFinesTypeServices;
@@ -31,7 +31,7 @@ public class AwardFineTest {
 	
 	@Test
 	public void findAll() {
-		List<AwardsFine> awardFines = (List<AwardsFine>) getAwardFineServices().findAll();
+		List<AwardsFine> awardFines = (List<AwardsFine>) getAwardsFinesServices().findAll();
 		assertNotEquals(awardFines.size(), 0);
 	}
 	
@@ -43,7 +43,7 @@ public class AwardFineTest {
 		awardsFine.setAwardFineConfiguration(awardsFinesConfiguration);
 		awardsFine.setAwardFineType(awardsFinesType);
 		awardsFine.setTime(35);		
-		getAwardFineServices().save(awardsFine);
+		getAwardsFinesServices().save(awardsFine);
 		assertNotEquals(awardsFine.getId(), 0);
 		
 	}
