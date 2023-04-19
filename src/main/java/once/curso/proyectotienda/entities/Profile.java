@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -18,7 +19,7 @@ public class Profile {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@NonNull private String name;
+	private String name;
 	
 	private String second_name;
 	
@@ -28,7 +29,7 @@ public class Profile {
 	
 	private String address;
 	
-	private String postalcode;
+	private String postal_code;
 	
 	private String country;
 	
@@ -38,7 +39,8 @@ public class Profile {
 	
 	private String phone;
 	
-	private String image;
+	@Lob
+	private byte[] image;
 	
 	@ManyToOne
 	@JoinColumn (name="Users_id")

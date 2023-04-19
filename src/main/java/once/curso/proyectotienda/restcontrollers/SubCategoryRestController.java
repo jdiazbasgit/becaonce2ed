@@ -13,15 +13,15 @@ import lombok.Data;
 import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.SubcategoryService;
 
-@Data
-@RequestMapping("/tienda")
 @RestController
+@Data
+@RequestMapping({"/api/v1/"})
 public class SubCategoryRestController {
 
 	@Autowired
 	private SubcategoryService subcategoryService;
 	
-	@PostMapping("/subcategory")
+	@PostMapping("/subcategory/create")
 	public SubCategory save(@RequestBody SubCategory subCategory) {
 		return getSubcategoryService().save(subCategory);
 	}

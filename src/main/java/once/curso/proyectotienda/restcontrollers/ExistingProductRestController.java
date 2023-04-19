@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,18 +24,17 @@ import once.curso.proyectotienda.services.ExistingProductService;
 @Data
 @RequestMapping({"/api/v1/"})
 public class ExistingProductRestController {
-	
 	@Autowired
 	private final ExistingProductService existingProductService;
 	
 	@RequestMapping("/")
     public String welcomeProducts() {
-		return "<p style='width:100%;font-size: 30px; text-align:center;'><b>Bienvenido a !!!</b></p>";
+		return "<p style='width:100%;font-size: 30px; text-align:center;'><b>Bienvenido!!!</b></p>";
     }
 	
 	/* C CREATE A PRODUCT */
-	@PostMapping(path = "addproduct")
-	public ExistingProduct createExistingProduct(@Validated @RequestBody ExistingProduct newExistingProduct) {
+	@PostMapping("/products/create")
+	public ExistingProduct createExistingProduct(@RequestBody ExistingProduct newExistingProduct) {
 		return existingProductService.save(newExistingProduct);
 	}
 
@@ -50,13 +49,13 @@ public class ExistingProductRestController {
 	public Optional<ExistingProduct> getExistingProductById(@PathVariable int id) {
 		Optional<ExistingProduct> p = existingProductService.findById(id);
 		if (!p.isPresent()) {
-	            System.err.println("El producto id " + id + " no existe.");
+				System.err.println("El producto id " + id + " no existe.");
 	            return Optional.empty();
 	    }
 		return getExistingProductService().findById(id);
 	}
 	
-	/* U UPDATE A PRODUCT */
+	/* U UPDATE A PRODUCT PRUEBA*/
 	@PatchMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
 	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
 		try {
@@ -66,13 +65,20 @@ public class ExistingProductRestController {
 			existingProduct.setStock(stock);
 			existingProduct.setSubcategories(subcategoriesid);
 			return new ResponseEntity<ExistingProduct>(existingProductService.save(existingProduct), HttpStatus.OK);
+			
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	/* D DELETE A PRODUCT */
-	@GetMapping("/products/delete/{id}")
+	@DeleteMapping("/products/delete/{id}")
+	public void deleteById(@PathVariable int id) {
+		getExistingProductService().deleteById(id);
+	}
+	
+	
+	/*@GetMapping("/products/delete/{id}")
 	public Object deleteById(@PathVariable int id) {
 		Optional<ExistingProduct> p = existingProductService.findById(id);
 		
@@ -82,7 +88,7 @@ public class ExistingProductRestController {
 	     }
 		
 		return "Se ha eliminado la fila " + getExistingProductService().deleteById(id) + " correctamente!!";
-	}
+	}*/
 	
 	/* TOTAL PRODUCTS */
 	@GetMapping("/products/count")

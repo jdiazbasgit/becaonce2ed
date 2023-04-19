@@ -2,6 +2,7 @@ package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -11,13 +12,14 @@ import once.curso.proyectotienda.repositories.ProfileCRUDRepository;
 @Service
 @Data
 public class ProfileService {
+	@Autowired
 	private ProfileCRUDRepository profilesCRUDRepository;
 	
-	public <S extends Profile> S save(S entity) {
+	public Profile save(Profile entity) {
 		return getProfilesCRUDRepository().save(entity);
 	}
 
-	public <S extends Profile> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<Profile> saveAll(Iterable<Profile> entities) {
 		return getProfilesCRUDRepository().saveAll(entities);
 	}
 
