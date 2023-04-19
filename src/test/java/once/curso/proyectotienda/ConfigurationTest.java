@@ -1,6 +1,11 @@
 package once.curso.proyectotienda;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +34,60 @@ public class ConfigurationTest {
 		assertFalse(getConfigurationService().existsById(configuration.getId()));
 	}
 
+	@Test
+	public void findAll() {
+		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
+		assertNotEquals(configurations.size(), 1);
+	}
+
+	@Test
+	public void SaveAll() {
+		Long cantidadAlEmpezar = getConfigurationService().count();
+
+		List<Configuration> configurations = new ArrayList<Configuration>();
+		Configuration configurationPrueba1 = new Configuration();
+		configurationPrueba1.setStockAlarm(1234);
+		configurations.add(configurationPrueba1);
+
+		getConfigurationService().saveAll(configurations);
+		assertEquals(getConfigurationService().count(), cantidadAlEmpezar + 1);
+
+	}
+
+	@Test
+	public void deleteAll() {
+
+		Long cantidadAlEmpezar = getConfigurationService().count();
+		List<Configuration> configurations = new ArrayList<Configuration>();
+		Configuration configurationPrueba2 = new Configuration();
+		configurationPrueba2.setStockAlarm(34);
+		configurations.add(configurationPrueba2);
+
+		getConfigurationService().deleteAll(configurations);
+		assertNotEquals(getConfigurationService().count(), cantidadAlEmpezar + 0);
+	}
+
+	@Test
+	public void existsById() {
+		Configuration configuration = new Configuration();
+		configuration.setStockAlarm(1234);
+		getConfigurationService().existsById(1);
+		assertFalse(getConfigurationService().existsById(configuration.getId()));
+
+	}
+
+	@Test
+	public void findAllById() {
+		
+		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAllById(null);
+		assertEquals(configurations.size(), 0);
+	}
+	
+	
+	
+
+	
+	
+	
+	
 }
