@@ -1,6 +1,9 @@
 package once.curso.proyectobanco;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,24 @@ class UserTests {
 	@Autowired
 	private RolService rolService;
 	
+	
+	
+	
+	@Test
+	public void saveUser() {
+		
+		User user = new User();
+		user.setUser("prueba");
+		user.setPassword("12344");
+		user.setEnabled(true);
+		user.setRol(getRolService().findById(2).get());
+
+		
+		getUserService().save(user);
+		getUserService().deleteById(user.getId());
+		assertFalse(getUserService().existsById(user.getId()));
+		 	
+	}
 	@Test
 	public void findAll () {
 		
@@ -29,23 +50,25 @@ class UserTests {
 		
 	}
 	
-	
 	@Test
-	public void grabarUser() {
-		
-		User user = new User();
-		user.setUser("prueba");
-		user.setPassword("12344");
-		user.setEnabled(true);
-		user.setRol(getRolService().findById(2).get());
-		user.setId(0);
-		
-		getUserService().save(user);
-		getUserService().deleteById(user.getId());
-		assertFalse(getUserService().existsById(user.getId()));
-		 
-		
-	
-		
+	public void saveAllUsers() {
+		long cantidadAlEmpezar=getUserService().count();
+	    List<User> users = new ArrayList<>();
+	   User user1= new User();
+	   user1.setUser("prueba11");
+	   user1.setPassword("4321");
+	   user1.setEnabled(true);
+	   user1.setRol(getRolService().findById(2).get());
+	   users.add(user1);
+	    
+	   User user2 =new User();
+	   user2.setUser("prueba12");
+	   user2.setPassword("1234");
+	   user2.setEnabled(true);
+	   user2.setRol(getRolService().findById(3).get());
+	   users.add(user2);
+	   
+	   getUserService().saveAll(users);
+	   assertEquals(getUserService().count(),cantidadAlEmpezar+2);
 	}
 }
