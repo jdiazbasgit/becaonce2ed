@@ -1,9 +1,7 @@
 package once.curso.proyectobanco;
 
-
-
-
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
@@ -28,5 +26,11 @@ public class CurrentAccountTest {
 		assertNotEquals(currentAccount.size(),0);
 	}
 	
+
+		/*public void testCurrentAccount() {
+			Iterable<CurrentAccount> currentAccount=currentAccountService.dameCuentas();
+			assertNotNull(currentAccount);
+		}*/
+
 	
 }
