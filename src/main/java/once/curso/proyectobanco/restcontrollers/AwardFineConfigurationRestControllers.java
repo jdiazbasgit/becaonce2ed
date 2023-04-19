@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +22,7 @@ import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
 @Data
 public class AwardFineConfigurationRestControllers {
 	
-	@Autowired
+	@Autowired 
 	private AwardsFinesConfigurationServices awardFineConfigurationServices;
 	
 	@GetMapping(value = "/awardFineConfigurations/id")
@@ -39,7 +40,7 @@ public class AwardFineConfigurationRestControllers {
 		return getAwardFineConfigurationServices().save(awardFineConfiguration);
 	}
 	
-	@PutMapping(value = "/awardFineConfigurations")
+	@PatchMapping(value = "/awardFineConfigurations")
 	public List<AwardsFinesConfiguration> saveAll(@RequestBody List<AwardsFinesConfiguration> awardFineConfigurations){
 		return (List<AwardsFinesConfiguration>) getAwardFineConfigurationServices().saveAll(awardFineConfigurations);
 	}

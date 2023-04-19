@@ -11,18 +11,17 @@ import once.curso.proyectobanco.repositories.AwardFineTypeCRUDRepositories;
 
 @Service
 @Data
-public class AwardFineTypeServices {
+public class AwardsFinesTypeServices {
 
 	@Autowired
 	private AwardFineTypeCRUDRepositories awardFineTypeCRUDRepositories;
 
 	public void dameAwardFineType() {
 
-		Iterable<AwardsFinesType> awardsFinesTypes = getAwardFineTypeCRUDRepositories().findAll();
-		for (AwardsFinesType awardFineType : awardsFinesTypes) {
+		//Iterable<AwardsFinesType> awardsFinesTypes = getAwardFineTypeCRUDRepositories().findAll();
+		//for (AwardsFinesType awardFineType : awardsFinesTypes) {
 			//System.out.println(awardFineType.getDescription());
 		}
-	}
 
 	public <S extends AwardsFinesType> S save(S entity) {
 

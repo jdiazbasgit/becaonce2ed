@@ -24,7 +24,7 @@ public class AwardsFinesConfigurationRestControllers {
 	@Autowired
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
 	
-	@GetMapping(value = "/awardsFinesConfiguration/id")
+	@GetMapping(value = "/awardsFinesConfiguration/{id}")
 	public AwardsFinesConfiguration findById(@PathVariable Integer id) {
 		return getAwardsFinesConfigurationServices().findById(id).get();
 	}
@@ -44,7 +44,7 @@ public class AwardsFinesConfigurationRestControllers {
 		return (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
 	}
 	
-	@DeleteMapping(value = "/AwardsFinesConfiguration")
+	@DeleteMapping(value = "/AwardsFinesConfiguration/{id}")
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}

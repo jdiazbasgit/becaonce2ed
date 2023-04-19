@@ -29,12 +29,11 @@ public class AwardsFine {
 	private AwardsFinesType awardFineType;
 
 	@ManyToOne
-	@JoinColumn(name = "awards_fies_configurations_id")
+	@JoinColumn(name = "awards_fines_configurations_id")
 	private AwardsFinesConfiguration awardFineConfiguration;
 
 
-	@Column(name = "time")
-	@Temporal(TemporalType.DATE)
-	private Calendar time;
+	
+	private int time;
 
 }

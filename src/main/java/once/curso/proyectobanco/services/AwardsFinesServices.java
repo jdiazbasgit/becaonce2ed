@@ -18,13 +18,12 @@ public class AwardsFinesServices {
 
 	public void dameTipoPremiosMultas() {
 
-		Iterable<AwardsFine> TipoPremiosMultas = getAwardFineCRUDRepositories().findAll();
-		for (AwardsFine awardFine : TipoPremiosMultas) {
+		//Iterable<AwardsFine> TipoPremiosMultas = getAwardFineCRUDRepositories().findAll();
+		//for (AwardsFine awardFine : TipoPremiosMultas) {
 			// System.out.println(awardFine.getAwrdFineType());
 			// System.out.println(awardFine.getAwardFieConfiguration());
 			// System.out.println(awardFine.getTime());
 		}
-	}
 
 	public <S extends AwardsFine> S save(S entity) {
 
