@@ -16,15 +16,16 @@ public class SoldProductService {
 	@Autowired
 	private SoldProductCRUDRepository soldProductCRUDRepository;
 
-	public void dameProductoVendidos() {
+	public Iterable<SoldProduct> getSoldproduct() {
 
+		return getSoldProductCRUDRepository().findAll();
 	}
 
-	public <S extends SoldProduct> S save(S entity) {
+	public SoldProduct save(SoldProduct entity) {
 		return getSoldProductCRUDRepository().save(entity);
 	}
 
-	public <S extends SoldProduct> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<SoldProduct> saveAll(Iterable<SoldProduct> entities) {
 		return getSoldProductCRUDRepository().saveAll(entities);
 	}
 

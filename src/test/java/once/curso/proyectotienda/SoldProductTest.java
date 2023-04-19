@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.services.SoldProductService;
 
@@ -26,7 +27,7 @@ public class SoldProductTest {
 		List<SoldProduct> soldProduct = (List<SoldProduct>) getSoldProductService().findAll();
 		assertNotEquals(soldProduct.size(), 0);
 	}
-
+@Test
 	public void probarFindDelete() {
 
 		SoldProduct soldProduct = new SoldProduct();
