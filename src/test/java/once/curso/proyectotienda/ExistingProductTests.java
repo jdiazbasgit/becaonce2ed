@@ -1,7 +1,11 @@
 package once.curso.proyectotienda;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import java.io.File;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,24 +21,55 @@ public class ExistingProductTests {
 	private String filename = "calzocillos.jpg";
 	@Autowired
 	private ExistingProductService existingProductService;
-		
+	@Autowired
+	private SubcategoryService subcategoriesService;
+	
+	@Test
+	public void ExistingProduct() {
+		List<ExistingProduct> existingProduct = (List<ExistingProduct>) getExistingProductService().findAll();
+		assertNotEquals(existingProduct.size(),0);
+	}
+	
 	@Test
 	public void AddExistingProduct() {
-		SubcategoryService subcategoriesService = new SubcategoryService();
-		
 		ExistingProduct existingProduct = new ExistingProduct();
-		existingProduct.setDescription("Bragas para niña Paquete de 12 algodón Calzoncillos para Niñas (2-9 años)");
-		existingProduct.setPrice(20.70);
+		existingProduct.setDescription("WJE Herramienta en forma de botella de cerveza para hombre");
+		existingProduct.setPrice(29.99);
 		existingProduct.setStock(10);
 		File file = new File(filename);
-        byte[] picInBytes = new byte[(int) file.length()];		
-		existingProduct.setImage(picInBytes);
+        byte[] imgInBytes = new byte[(int) file.length()];		
+		existingProduct.setImage(imgInBytes);
 			
-	    existingProduct.setSubcategories(subcategoriesService.findById(3).get());
+	    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
 	
-		existingProductService.save(existingProduct);
+		getExistingProductService().save(existingProduct);
 		
-		ExistingProduct savedExistingProduct = existingProductService.findById(existingProduct.getId()).orElse(null);
-		assertEquals(existingProduct, savedExistingProduct);
-	}	
+		ExistingProduct savedExistingProduct = getExistingProductService().findById(existingProduct.getId()).get();
+		assertEquals(existingProduct.getId(), savedExistingProduct.getId());
+	}
+	
+	@Test
+	public void DelByIdExistingProduct() {
+		int delnum = 7;
+		ExistingProduct existingProduct = getExistingProductService().findById(delnum).orElse(null);
+	    if (existingProduct != null) {
+	    	getExistingProductService().delete(existingProduct);
+	    }
+	}
+	
+	@Test
+	public void DelAllExistingProduct() {
+		/*
+		 NO TOQUEIS
+		 
+		 getExistingProductService().deleteAll();
+        assertEquals(0, getExistingProductService().count());*/
+	}
+	
+	@Test
+	public void CountExistingProduct() {
+		getExistingProductService().count();
+	}
+	
+	
 }

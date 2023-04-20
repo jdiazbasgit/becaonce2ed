@@ -3,6 +3,7 @@ package once.curso.proyectotienda.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class ExistingProduct implements Serializable {
 	
 	private int stock;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="subcategories_id")
 	private SubCategory subcategories;
 }

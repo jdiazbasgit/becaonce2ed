@@ -4,6 +4,7 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +29,10 @@ public class ExistingProductRestController {
 	@Autowired
 	private final ExistingProductService existingProductService;
 	
-	@RequestMapping("/")
+	/*@RequestMapping("/")
     public String welcomeProducts() {
 		return "<p style='width:100%;font-size: 30px; text-align:center;'><b>Bienvenido!!!</b></p>";
-    }
+    }*/
 	
 	/* C CREATE A PRODUCT */
 	@PostMapping("/products/create")
@@ -56,19 +58,22 @@ public class ExistingProductRestController {
 	}
 	
 	/* U UPDATE A PRODUCT PRUEBA*/
-	@PatchMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
+	/*@PatchMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
 	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
-		try {
-			ExistingProduct existingProduct = existingProductService.findById(id).get();
-			existingProduct.setDescription(description);
-			existingProduct.setPrice(price);
-			existingProduct.setStock(stock);
-			existingProduct.setSubcategories(subcategoriesid);
-			return new ResponseEntity<ExistingProduct>(existingProductService.save(existingProduct), HttpStatus.OK);
-			
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return existingProductService.save(existingProduct));
+		
+	}*/
+	
+	@GetMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
+	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
+		ExistingProduct existingProduct = existingProductService.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id:: " + id));
+		existingProduct.setDescription(description);
+		existingProduct.setPrice(price);
+		existingProduct.setStock(stock);
+		existingProduct.setSubcategories(subcategoriesid);
+		existingProductService.save(existingProduct);
+        return ResponseEntity.ok(existingProduct);
 	}
 
 	/* D DELETE A PRODUCT */
@@ -77,24 +82,9 @@ public class ExistingProductRestController {
 		getExistingProductService().deleteById(id);
 	}
 	
-	
-	/*@GetMapping("/products/delete/{id}")
-	public Object deleteById(@PathVariable int id) {
-		Optional<ExistingProduct> p = existingProductService.findById(id);
-		
-		 if (!p.isPresent()) {
-	         System.err.println("El producto id " + id + " no existe.");
-	         return p;
-	     }
-		
-		return "Se ha eliminado la fila " + getExistingProductService().deleteById(id) + " correctamente!!";
-	}*/
-	
 	/* TOTAL PRODUCTS */
 	@GetMapping("/products/count")
-	public long getExistingProductCount()
-	{
-		System.out.println("Total de productos:: " + existingProductService.count());
+	public long getExistingProductCount() {
 		return existingProductService.count();
     }
 	
@@ -202,33 +192,6 @@ public Optional<ExistingProduct> updateById(@PathVariable int id, @Validated @Re
 	return getExistingProductService().findById(id);
 }*/
 	
-/*@PutMapping("/products/update/{id}")
-public ResponseEntity<ExistingProduct> updateExistingProductById(@PathVariable(value = "id") int existingProductId, 
-		@Validated @RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException, IOException {
-	ExistingProduct existingProduct = existingProductService.findById(existingProductId)
-	.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado el producto :: " + existingProductId));
-
-	//existingProduct.setId(existingProductDetails.getId());
-	existingProduct.setDescription(existingProductDetails.getDescription());
-	existingProduct.setPrice(existingProductDetails.getPrice());
-	
-	//String nameImage = "calzocillos.jpg";
-	
-	//Path imagePath = Paths.get(nameImage);
-	//if (Files.exists(imagePath)) {
-	//	BufferedImage imageProduct = ImageIO.read(new File(nameImage));
-	//	existingProduct.setImage(imageProduct);
-	//}
-	
-	existingProduct.setImage(existingProductDetails.getImage());
-	
-	
-	existingProduct.setStock(existingProductDetails.getStock());
-	existingProduct.setSubcategories(existingProductDetails.getSubcategories());
-	
-    final ExistingProduct updatedExistingProduct = existingProductService.save(existingProduct);
-    return ResponseEntity.ok(updatedExistingProduct);
-*/
 	
 /*@DeleteMapping("/products/delete/{id}")
 public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
