@@ -2,6 +2,10 @@ package once.curso.proyectotienda;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
+import once.curso.proyectotienda.entities.Configuration;
 import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.services.DocumentTypeService;
 
@@ -21,20 +26,8 @@ public class DocumentTypeTest {
 	@Autowired
 	private DocumentTypeService documentTypeService;
 
-	/*@Test
-	public void probarSaveFindDelete() {
-
-		DocumentType documentType = new DocumentType();
-		documentType.setDescription("pruebaA");
-		getDocumentTypeService().save(documentType);
-
-		DocumentType documentTypeRecuperado = getDocumentTypeService().findById(documentType.getId()).get();
-		getDocumentTypeService().delete(documentTypeRecuperado);
-
-		assertFalse(getDocumentTypeService().existsById(documentType.getId()));
-	}*/
-
-	public void probarSaveAllDeleteAll() {
+	@Test
+	public void probarSaveAll() {
 
 		Long cantidadAlEmpezar = getDocumentTypeService().count();
 		List<DocumentType> documentTypes = new ArrayList<DocumentType>();
@@ -47,6 +40,65 @@ public class DocumentTypeTest {
 		documentTypes.add(documentTypePruebaC);
 
 		getDocumentTypeService().saveAll(documentTypes);
-		assertEquals(getDocumentTypeService().count(), cantidadAlEmpezar + 4);
+		assertEquals(getDocumentTypeService().count(), cantidadAlEmpezar + 2);
 	}
+
+	@Test
+	public void findAll() {
+		List<DocumentType> documentTypes = (List<DocumentType>) getDocumentTypeService().findAll();
+		assertNotEquals(documentTypes.size(), 19);
+
+	}
+
+	@Test
+	public void existsById() {
+
+		DocumentType documentType = new DocumentType();
+		documentType.setDescription("pruebaA");
+		getDocumentTypeService().existsById(11);
+		assertFalse(getDocumentTypeService().existsById(documentType.getId()));
+	}
+
+	@Test
+	public void findAllById() {
+		List<DocumentType> documentTypes = (List<DocumentType>) getDocumentTypeService().findAll();
+		List<Integer> idsQueCompruebo = new ArrayList<Integer>();
+		for (DocumentType documentTypeQueCompruebo : documentTypes) {
+			idsQueCompruebo.add(documentTypeQueCompruebo.getId());
+		}
+		assertEquals(documentTypes.size(),
+				((List<DocumentType>) getDocumentTypeService().findAllById(idsQueCompruebo)).size());
+	}
+
+	@Test
+	public void Delete() {
+		DocumentType documentType = new DocumentType();
+		documentType.setDescription("pruebaD");
+		getDocumentTypeService().save(documentType);
+
+		int documentTypeId = documentType.getId();
+
+		getDocumentTypeService().delete(documentType);
+
+		assertNotNull(getDocumentTypeService().findById(documentTypeId));
+	}
+
+	@Test
+	public void count() {
+
+		List<DocumentType> documentTypes = new ArrayList<DocumentType>();
+		DocumentType documentTypeA = new DocumentType();
+		documentTypeA.setDescription("pruebaD");
+		documentTypes.add(documentTypeA);
+
+		DocumentType documentTypeB = new DocumentType();
+		documentTypeB.setDescription("pruebaE");
+		documentTypes.add(documentTypeB);
+
+		long cantidad = documentTypeService.count();
+		assertEquals(2, cantidad);
+		documentTypes.forEach(documentType -> documentTypeService.deleteById(documentType.getId()));
+
+	}
+
 }

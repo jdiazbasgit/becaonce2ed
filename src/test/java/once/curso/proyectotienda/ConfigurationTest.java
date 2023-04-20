@@ -1,15 +1,16 @@
 package once.curso.proyectotienda;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.ClassOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,11 +20,13 @@ import once.curso.proyectotienda.services.ConfigurationService;
 
 @Data
 @SpringBootTest
+@TestClassOrder(value = OrderAnnotation.class)
 public class ConfigurationTest {
 
 	@Autowired
 	private ConfigurationService configurationService;
-
+	
+	@Order(1)
 	@Test
 	public void probarSaveFindDelete() {
 		Configuration configuration = new Configuration();
@@ -35,13 +38,14 @@ public class ConfigurationTest {
 
 		assertFalse(getConfigurationService().existsById(configuration.getId()));
 	}
-
+	
+	@Order(2)
 	@Test
 	public void findAll() {
 		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
 		assertNotEquals(configurations.size(), 1);
 	}
-
+	@Order(3)
 	@Test
 	public void SaveAll() {
 		Long cantidadAlEmpezar = getConfigurationService().count();
@@ -56,6 +60,7 @@ public class ConfigurationTest {
 
 	}
 
+	@Order(4)
 	@Test
 	public void deleteAll() {
 
@@ -68,7 +73,8 @@ public class ConfigurationTest {
 		getConfigurationService().deleteAll(configurations);
 		assertNotEquals(getConfigurationService().count(), cantidadAlEmpezar + 0);
 	}
-
+	
+	@Order(5)
 	@Test
 	public void existsById() {
 		Configuration configuration = new Configuration();
@@ -77,7 +83,8 @@ public class ConfigurationTest {
 		assertFalse(getConfigurationService().existsById(configuration.getId()));
 
 	}
-
+	
+	@Order(6)
 	@Test
 	public void findAllById() {
 
@@ -90,6 +97,32 @@ public class ConfigurationTest {
 				((List<Configuration>) getConfigurationService().findAllById(idsQueCompruebo)).size());
 
 	}
+	
+	@Order(7)
+	@Test
+	public void count() {
+		
+		List<Configuration> configurations  = new ArrayList<Configuration>();
+		
+		Configuration configurationA = new Configuration();
+		configurationA.setStockAlarm(1234);
+		configurations.add(configurationA);
+		
+		Configuration configurationB = new Configuration();
+		configurationB.setStockAlarm(1234);
+		configurations.add(configurationB);
+		configurationService.saveAll(configurations);
+		
+		long cantidad = configurationService.count();
+		assertEquals(2, cantidad);
+		
+		configurations.forEach(configuration -> configurationService.deleteById(configuration.getId()));
+		
+	}
 
-
+	
+	
+	
+	
+	
 }
