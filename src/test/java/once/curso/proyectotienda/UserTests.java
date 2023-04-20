@@ -1,11 +1,6 @@
 package once.curso.proyectotienda;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,25 +20,28 @@ public class UserTests {
 
 	@Autowired
 	private RolService rolService;
+	
+	
+//	public void findAll() {
+//		List<User> users = (List<User>) getUserService().findAll();
+//		assertEquals(users.size(), 0);
+//	}
 
 	@Test
-	public void probarSaveFindSaveDelete() {
-		long listado = getUserService().count();
-		List<User> users = new ArrayList<User>();
+	public void saveUser() {
 		
 		User user = new User();
 
 		user.setUser("pruebas de usuario");
 		user.setPassword("2468");
 		user.setEnabled(true);
-		user.setRolesId(getRolService().findById(user.getId()).get());
+		user.setRol(getRolService().findById(8).get());
 
 		getUserService().save(user);
-		User userRecuperado = getUserService().findById(user.getId()).get();
-		getUserService().delete(userRecuperado);
+		getUserService().deleteById(user.getId());
 
 		assertFalse(getUserService().existsById(user.getId()));
-
+		
 	}
 
 //	@Test

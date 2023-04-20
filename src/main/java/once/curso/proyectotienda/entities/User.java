@@ -27,5 +27,5 @@ public class User {
 	
 	@JoinColumn(name="roles_id")
 	@ManyToOne
-	private Rol rolesId;
+	private Rol rol;
 }
