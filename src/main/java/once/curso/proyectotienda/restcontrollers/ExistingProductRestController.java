@@ -51,28 +51,18 @@ public class ExistingProductRestController {
           .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
         return ResponseEntity.ok().body(existingProduct);
     }
-	
-	/*@GetMapping("/products/{id}")
-	public Optional<ExistingProduct> getExistingProductById(@PathVariable int id) {
-		Optional<ExistingProduct> p = getExistingProductService().findById(id);
-		if (!p.isPresent()) {
-				System.err.println("El producto id " + id + " no existe.");
-	            return Optional.empty();
-	    }
-		return getExistingProductService().findById(id);
-	}*/
-	
+		
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
 	//@GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
-	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId, ExistingProduct existingProductDetails) 
+	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId, @RequestBody ExistingProduct existingProductDetails) 
 			throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
 	    	    .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
 
 		existingProduct.setDescription(existingProductDetails.getDescription());
 		existingProduct.setPrice(existingProductDetails.getPrice());
-		//existingProduct.getImage(existingProductDetails.getImage()); TENGO QUE PREGUNTA CON EL PROFE
+		//existingProduct.getImage(existingProductDetails.getImage());
 		existingProduct.setStock(existingProductDetails.getStock());
 		existingProduct.setSubcategories(existingProductDetails.getSubcategories());
 		
@@ -177,7 +167,15 @@ public class ExistingProductRestController {
 
 
 
-
+/*@GetMapping("/products/{id}")
+public Optional<ExistingProduct> getExistingProductById(@PathVariable int id) {
+	Optional<ExistingProduct> p = getExistingProductService().findById(id);
+	if (!p.isPresent()) {
+			System.err.println("El producto id " + id + " no existe.");
+            return Optional.empty();
+    }
+	return getExistingProductService().findById(id);
+}*/
 
 /*@DeleteMapping("/products/delete/{id}")
 public void deleteById(@PathVariable int id) {

@@ -1,10 +1,12 @@
 package once.curso.proyectotienda;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +56,57 @@ public class ExistingProductTests {
 		assertEquals(existingProduct.getId(), savedExistingProduct.getId());
 	}
 	
+	/*@Test
+	public void testFindAllProducts() {
+	    List<ExistingProduct> products = (List<ExistingProduct>) getExistingProductService().findAll();
+	    assertThat(products).hasSize(2);
+	}*/
+	
+	/*@Test
+	public void AddAllExistingProduct() {
+		ExistingProduct existingProduct = new ExistingProduct();
+		existingProduct.setDescription("WJE Herramienta en forma de botella de cerveza para hombre");
+		existingProduct.setPrice(29.99);
+		existingProduct.setStock(10);
+		File file = new File(filename);
+        byte[] imgInBytes = new byte[(int) file.length()];		
+		existingProduct.setImage(imgInBytes);
+			
+	    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+	    
+	    ExistingProduct existingProduct2 = new ExistingProduct();
+	    existingProduct2.setDescription("WJE Herramienta en forma de botella de cerveza para hombre");
+	    existingProduct2.setPrice(29.99);
+	    existingProduct2.setStock(10);
+		File file2 = new File(filename);
+        byte[] imgInBytes2 = new byte[(int) file2.length()];		
+		existingProduct2.setImage(imgInBytes2);
+			
+	    existingProduct2.setSubcategories(getSubcategoriesService().findById(3).get());
+	
+		getExistingProductService().saveAll(List.of(existingProduct, existingProduct2));
+		
+		ExistingProduct savedExistingProduct = getExistingProductService().findById(existingProduct.getId()).get();
+		assertEquals(existingProduct.getId(), savedExistingProduct.getId());
+	}*/
+	
 	@Test
 	public void UpdExistingProduct() {
+		int numID = 3;
 		
+		Optional<ExistingProduct> p = getExistingProductService().findById(numID);
+		if (p.isPresent()) {
+			ExistingProduct existingProduct = p.get();
+	        existingProduct.setDescription("botella de cerveza");
+			existingProduct.setPrice(2.99);
+			existingProduct.setStock(10);
+			File file = new File(filename);
+	        byte[] imgInBytes = new byte[(int) file.length()];		
+			existingProduct.setImage(imgInBytes);
+		    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+		    
+		    getExistingProductService().save(existingProduct);
+		}
 	}
 	
 	@Test
