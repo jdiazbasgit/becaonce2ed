@@ -31,6 +31,12 @@ public class ExistingProductTests {
 	}
 	
 	@Test
+	public void findByIdExistingProduct() {
+		int numID = 3;
+		getExistingProductService().findById(numID).get();
+	}
+	
+	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
 		existingProduct.setDescription("WJE Herramienta en forma de botella de cerveza para hombre");
@@ -49,9 +55,14 @@ public class ExistingProductTests {
 	}
 	
 	@Test
+	public void UpdExistingProduct() {
+		
+	}
+	
+	@Test
 	public void DelByIdExistingProduct() {
-		int delnum = 7;
-		ExistingProduct existingProduct = getExistingProductService().findById(delnum).orElse(null);
+		int numID = 16;
+		ExistingProduct existingProduct = getExistingProductService().findById(numID).orElse(null);
 	    if (existingProduct != null) {
 	    	getExistingProductService().delete(existingProduct);
 	    }

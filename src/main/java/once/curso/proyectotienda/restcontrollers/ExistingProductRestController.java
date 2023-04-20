@@ -1,15 +1,13 @@
 package once.curso.proyectotienda.restcontrollers;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.*;
 import once.curso.proyectotienda.entities.ExistingProduct;
-import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
@@ -37,49 +34,64 @@ public class ExistingProductRestController {
 	/* C CREATE A PRODUCT */
 	@PostMapping("/products/create")
 	public ExistingProduct createExistingProduct(@RequestBody ExistingProduct newExistingProduct) {
-		return existingProductService.save(newExistingProduct);
+		return getExistingProductService().save(newExistingProduct);
 	}
 
 	/* R READ ALL PRODUCTS */
 	@GetMapping("/products")
 	public List<ExistingProduct> getExistingProducts() {
-	    return (List<ExistingProduct>) existingProductService.findAll();
+	    return (List<ExistingProduct>) getExistingProductService().findAll();
 	}
 	
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
+    public ResponseEntity<ExistingProduct> getExistingProductById(@PathVariable(value = "id") int existingProductId)
+        throws ResourceNotFoundException {
+		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
+          .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
+        return ResponseEntity.ok().body(existingProduct);
+    }
+	
+	/*@GetMapping("/products/{id}")
 	public Optional<ExistingProduct> getExistingProductById(@PathVariable int id) {
-		Optional<ExistingProduct> p = existingProductService.findById(id);
+		Optional<ExistingProduct> p = getExistingProductService().findById(id);
 		if (!p.isPresent()) {
 				System.err.println("El producto id " + id + " no existe.");
 	            return Optional.empty();
 	    }
 		return getExistingProductService().findById(id);
-	}
-	
-	/* U UPDATE A PRODUCT PRUEBA*/
-	/*@PatchMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
-	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
-		return existingProductService.save(existingProduct));
-		
 	}*/
 	
-	@GetMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
-	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
-		ExistingProduct existingProduct = existingProductService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id:: " + id));
-		existingProduct.setDescription(description);
-		existingProduct.setPrice(price);
-		existingProduct.setStock(stock);
-		existingProduct.setSubcategories(subcategoriesid);
-		existingProductService.save(existingProduct);
-        return ResponseEntity.ok(existingProduct);
-	}
+	/* U UPDATE A PRODUCT */
+	@PutMapping("/products/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
+	//@GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId, ExistingProduct existingProductDetails) 
+			throws ResourceNotFoundException {
+		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
+	    	    .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
 
+		existingProduct.setDescription(existingProductDetails.getDescription());
+		existingProduct.setPrice(existingProductDetails.getPrice());
+		//existingProduct.getImage(existingProductDetails.getImage()); TENGO QUE PREGUNTA CON EL PROFE
+		existingProduct.setStock(existingProductDetails.getStock());
+		existingProduct.setSubcategories(existingProductDetails.getSubcategories());
+		
+	    final ExistingProduct updateExistingProduct = getExistingProductService().save(existingProduct);
+	    return ResponseEntity.ok(updateExistingProduct);
+	}
+		
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/delete/{id}")
-	public void deleteById(@PathVariable int id) {
-		getExistingProductService().deleteById(id);
+	@DeleteMapping("/products/delete/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
+	//@GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId) 
+			throws ResourceNotFoundException {
+		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
+				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
+
+		getExistingProductService().delete(existingProduct);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
 	
 	/* TOTAL PRODUCTS */
@@ -87,15 +99,8 @@ public class ExistingProductRestController {
 	public long getExistingProductCount() {
 		return existingProductService.count();
     }
-	
-	
 }
 	
-	
-	
-	
-	
-	
 
 
 
@@ -172,6 +177,12 @@ public class ExistingProductRestController {
 
 
 
+
+
+/*@DeleteMapping("/products/delete/{id}")
+public void deleteById(@PathVariable int id) {
+getExistingProductService().deleteById(id);
+}*/
 
 /*@GetMapping("/get/{id}")
 public @ResponseBody ResponseEntity<String>
@@ -249,4 +260,16 @@ public Object deleteAll() {
 	        return repository.save(newExistingProducts);
 	      });
 	  }*/
+
+	/*@GetMapping("/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
+	public ResponseEntity<ExistingProduct> updateExistingProductPartially(@PathVariable int id, @PathVariable String description, @PathVariable double price, @PathVariable int stock, @PathVariable SubCategory subcategoriesid) {
+		ExistingProduct existingProduct = existingProductService.findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id:: " + id));
+		existingProduct.setDescription(description);
+		existingProduct.setPrice(price);
+		existingProduct.setStock(stock);
+		existingProduct.setSubcategories(subcategoriesid);
+		existingProductService.save(existingProduct);
+	    return ResponseEntity.ok(existingProduct);
+	}*/
 
