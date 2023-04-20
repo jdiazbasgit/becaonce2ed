@@ -16,22 +16,15 @@ public class ConfigurationService {
 	@Autowired
 	private ConfigurationCRUDRepository configurationCRUDRepository;
 
-	/*public void dameConfiguraciones() {
-
-		Iterable<Configuration> dameConfiguraciones = getConfigurationCRUDRepository().findAll();
-		for (Configuration configuration : dameConfiguraciones) {
-			System.out.println(configuration.getId());
-			System.out.println(configuration.getStockAlarm());
-		}}*/
-	public Iterable<Configuration> getConfiguration(){
+	public Iterable<Configuration> getConfiguration() {
 		return getConfigurationCRUDRepository().findAll();
 	}
 
-	public  Configuration save(Configuration entity) {
+	public Configuration save(Configuration entity) {
 		return getConfigurationCRUDRepository().save(entity);
 	}
 
-	public  Iterable<Configuration> saveAll(Iterable<Configuration> entities) {
+	public Iterable<Configuration> saveAll(Iterable<Configuration> entities) {
 		return getConfigurationCRUDRepository().saveAll(entities);
 	}
 

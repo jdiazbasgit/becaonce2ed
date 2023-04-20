@@ -1,8 +1,10 @@
 package once.curso.proyectotienda;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,16 +80,16 @@ public class ConfigurationTest {
 
 	@Test
 	public void findAllById() {
-		
-		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAllById(null);
-		assertEquals(configurations.size(), 0);
-	}
-	
-	
-	
 
-	
-	
-	
-	
+		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
+		List<Integer> idsQueCompruebo = new ArrayList<Integer>();
+		for (Configuration configurationQueCompruebo : configurations) {
+			idsQueCompruebo.add(configurationQueCompruebo.getId());
+		}
+		assertEquals(configurations.size(),
+				((List<Configuration>) getConfigurationService().findAllById(idsQueCompruebo)).size());
+
+	}
+
+
 }
