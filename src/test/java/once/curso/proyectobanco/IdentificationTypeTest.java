@@ -27,7 +27,7 @@ public class IdentificationTypeTest {
 	@Autowired
 	private IdentificationTypeService identificationTypeService;
 	
-	private static List<IdentificationType> identificationType = new ArrayList<IdentificationType>();
+	private static List<IdentificationType> identificationTypes = new ArrayList<IdentificationType>();
 	private static int numeroDeEntradas = 5; 
 	
 	
@@ -38,41 +38,41 @@ public class IdentificationTypeTest {
 		for (int i = 0; i < numeroDeEntradas; i++) {
 			IdentificationType identificationType = new IdentificationType();
 			identificationType.setDescription("Prueba"+i);
-			IdentificationTypeTest.identificationType.add(identificationType);
+			IdentificationTypeTest.identificationTypes.add(identificationType);
 		}	   
 	}
 
 	@Order(1)
 	@Test
 	public void saveTest() {		
-	    getIdentificationTypeService().save(IdentificationTypeTest.identificationType.get(0));
-	    assertTrue(getIdentificationTypeService().findById(IdentificationTypeTest.identificationType.get(0).getId()).isPresent());		
+	    getIdentificationTypeService().save(IdentificationTypeTest.identificationTypes.get(0));
+	    assertTrue(getIdentificationTypeService().findById(IdentificationTypeTest.identificationTypes.get(0).getId()).isPresent());		
 	}
 	
 	@Order(2)
 	@Test
 	public void existsByIdTest() {		
-	    assertTrue(getIdentificationTypeService().existsById((IdentificationTypeTest.identificationType.get(0).getId())));		
+	    assertTrue(getIdentificationTypeService().existsById((IdentificationTypeTest.identificationTypes.get(0).getId())));		
 	}
 
 	@Order(3)
 	@Test
 	public void deleteByIdTest() {
-	    IdentificationType IdentificationTypeRecuperado= getIdentificationTypeService().findById(IdentificationTypeTest.identificationType.get(0).getId()).get();
+	    IdentificationType IdentificationTypeRecuperado= getIdentificationTypeService().findById(IdentificationTypeTest.identificationTypes.get(0).getId()).get();
 	    getIdentificationTypeService().deleteById(IdentificationTypeRecuperado.getId());
-	    IdentificationTypeTest.identificationType.remove(0);
+	    IdentificationTypeTest.identificationTypes.remove(0);
 	    assertFalse(getIdentificationTypeService().findById(IdentificationTypeRecuperado.getId()).isPresent());		
 	}
 	
 	@Order(4)
 	@Test
 	public void saveAllTest() {
-	    getIdentificationTypeService().saveAll(identificationType);
+	    getIdentificationTypeService().saveAll(identificationTypes);
 	    List<Integer> idsAComprobar = new ArrayList<Integer>();
-	    for (IdentificationType IdentificationType : identificationType) {
+	    for (IdentificationType IdentificationType : identificationTypes) {
 			idsAComprobar.add(IdentificationType.getId());
 		}
-	    assertEquals(IdentificationTypeTest.identificationType.size(), ((List<?>) getIdentificationTypeService().findAllById(idsAComprobar)).size());
+	    assertEquals(IdentificationTypeTest.identificationTypes.size(), ((List<?>) getIdentificationTypeService().findAllById(idsAComprobar)).size());
 	}
 	
 	@Order(5)
@@ -84,9 +84,9 @@ public class IdentificationTypeTest {
 	@Order(6)
 	@Test
 	public void deleteEntity() {
-		IdentificationType entradaAComprobar = getIdentificationTypeService().findById(IdentificationTypeTest.identificationType.get(0).getId()).get();
-		getIdentificationTypeService().delete(getIdentificationTypeService().findById(IdentificationTypeTest.identificationType.get(0).getId()).get());
-	    IdentificationTypeTest.identificationType.remove(0);
+		IdentificationType entradaAComprobar = getIdentificationTypeService().findById(IdentificationTypeTest.identificationTypes.get(0).getId()).get();
+		getIdentificationTypeService().delete(getIdentificationTypeService().findById(IdentificationTypeTest.identificationTypes.get(0).getId()).get());
+	    IdentificationTypeTest.identificationTypes.remove(0);
 	    assertFalse(getIdentificationTypeService().findById(entradaAComprobar.getId()).isPresent());	    
 	}
 	
@@ -94,7 +94,7 @@ public class IdentificationTypeTest {
 	@Test
 	public void deleteAllByIdTest() {
 		List<Integer> idsABorrar = new ArrayList<Integer>();
-	    for (IdentificationType IdentificationType : identificationType) {
+	    for (IdentificationType IdentificationType : identificationTypes) {
 	    	idsABorrar.add(IdentificationType.getId());
 		}
 	    getIdentificationTypeService().deleteAllById(idsABorrar);
