@@ -55,20 +55,23 @@ class UserTests {
 		long cantidadAlEmpezar=getUserService().count();
 	    List<User> users = new ArrayList<>();
 	   User user1= new User();
-	   user1.setUser("prueba11");
+	   user1.setUser("prueba42");
 	   user1.setPassword("4321");
 	   user1.setEnabled(true);
 	   user1.setRol(getRolService().findById(2).get());
 	   users.add(user1);
 	    
 	   User user2 =new User();
-	   user2.setUser("prueba12");
+	   user2.setUser("prueba43");
 	   user2.setPassword("1234");
 	   user2.setEnabled(true);
 	   user2.setRol(getRolService().findById(3).get());
 	   users.add(user2);
 	   
 	   getUserService().saveAll(users);
+	   
 	   assertEquals(getUserService().count(),cantidadAlEmpezar+2);
+	   getUserService().deleteAll(users);
 	}
+	
 }
