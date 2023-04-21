@@ -40,7 +40,9 @@ public class DocumentTypeTest {
 		documentTypes.add(documentTypePruebaC);
 
 		getDocumentTypeService().saveAll(documentTypes);
-		assertEquals(getDocumentTypeService().count(), cantidadAlEmpezar + 2);
+		getDocumentTypeService().delete(documentTypePruebaC);
+		getDocumentTypeService().delete(documentTypePruebaB);
+		assertEquals(getDocumentTypeService().count(), cantidadAlEmpezar + 0);
 	}
 
 	@Test
@@ -88,15 +90,15 @@ public class DocumentTypeTest {
 
 		List<DocumentType> documentTypes = new ArrayList<DocumentType>();
 		DocumentType documentTypeA = new DocumentType();
-		documentTypeA.setDescription("pruebaD");
+		documentTypeA.setDescription("pruebaA");
 		documentTypes.add(documentTypeA);
 
 		DocumentType documentTypeB = new DocumentType();
-		documentTypeB.setDescription("pruebaE");
+		documentTypeB.setDescription("pruebaB");
 		documentTypes.add(documentTypeB);
 
 		long cantidad = documentTypeService.count();
-		assertEquals(2, cantidad);
+		assertEquals(12, cantidad);
 		documentTypes.forEach(documentType -> documentTypeService.deleteById(documentType.getId()));
 
 	}
