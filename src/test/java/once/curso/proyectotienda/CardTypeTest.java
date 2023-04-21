@@ -89,12 +89,12 @@ public class CardTypeTest {
 		cardTypeService.saveAll(cardTypes);
 
 		Optional<CardType> resultado = cardTypeService.findById(cardTypePrueba1.getId());
-		assertThat(resultado.isPresent()).isTrue();
-		assertThat(resultado.get().getDescription()).isEqualTo("pruebaA");
+		assertTrue(resultado.isPresent());
+		assertTrue(resultado.get().getDescription().equals("pruebaA"));
 
 		cardTypeService.deleteById(cardTypePrueba1.getId());
 		Optional<CardType> resultadoDespues = cardTypeService.findById(cardTypePrueba1.getId());
-		assertThat(resultadoDespues.isPresent()).isFalse();
+		assertFalse(resultadoDespues.isPresent());
 	}
 
 	@Test
