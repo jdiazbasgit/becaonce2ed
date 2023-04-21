@@ -35,12 +35,13 @@ public class UserTests {
 		user.setUser("pruebas de usuario");
 		user.setPassword("2468");
 		user.setEnabled(true);
-		user.setRol(getRolService().findById(8).get());
+		user.setRol(getRolService().findById(3).get());
 
 		getUserService().save(user);
 		getUserService().deleteById(user.getId());
 
 		assertFalse(getUserService().existsById(user.getId()));
+		
 		
 	}
 
