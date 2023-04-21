@@ -19,7 +19,7 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().save(entity);
 	}
 
-	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) {
+	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) { //*
 		return getExistingProductsCRUDRepository().saveAll(entities);
 	}
 
@@ -35,7 +35,7 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().findAll();
 	}
 
-	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) {
+	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) { //*
 		return getExistingProductsCRUDRepository().findAllById(ids);
 	}
 
@@ -51,13 +51,13 @@ public class ExistingProductService {
 	public void delete(ExistingProduct entity) {
 		getExistingProductsCRUDRepository().delete(entity);
 	}
-
-	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getExistingProductsCRUDRepository().deleteAllById(ids);
+	
+	public void deleteAll(Iterable<? extends ExistingProduct> entities) { //*
+		getExistingProductsCRUDRepository().deleteAll(entities);
 	}
 
-	public void deleteAll(Iterable<? extends ExistingProduct> entities) {
-		getExistingProductsCRUDRepository().deleteAll(entities);
+	public void deleteAllById(Iterable<? extends Integer> ids) {//*
+		getExistingProductsCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll() {
