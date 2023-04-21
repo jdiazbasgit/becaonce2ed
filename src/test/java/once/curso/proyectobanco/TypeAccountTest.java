@@ -71,5 +71,12 @@ public class TypeAccountTest {
 		assertNotEquals(getTypeAccountService().count(), cantidadAlEmpezar);
 
 	}
-
+	
+	@Test
+	@Order(5)
+	public void testDeleteByIdTypeAccount() {
+		
+	}
+	
+	
 }
