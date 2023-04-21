@@ -18,12 +18,13 @@ public class AwardsFinesServices {
 
 	public void dameTipoPremiosMultas() {
 
-		//Iterable<AwardsFine> TipoPremiosMultas = getAwardFineCRUDRepositories().findAll();
-		//for (AwardsFine awardFine : TipoPremiosMultas) {
-			// System.out.println(awardFine.getAwrdFineType());
-			// System.out.println(awardFine.getAwardFieConfiguration());
-			// System.out.println(awardFine.getTime());
-		}
+		// Iterable<AwardsFine> TipoPremiosMultas =
+		// getAwardFineCRUDRepositories().findAll();
+		// for (AwardsFine awardFine : TipoPremiosMultas) {
+		// System.out.println(awardFine.getAwrdFineType());
+		// System.out.println(awardFine.getAwardFieConfiguration());
+		// System.out.println(awardFine.getTime());
+	}
 
 	public <S extends AwardsFine> S save(S entity) {
 
@@ -84,4 +85,5 @@ public class AwardsFinesServices {
 		getAwardFineCRUDRepositories().deleteAll();
 
 	}
+
 }

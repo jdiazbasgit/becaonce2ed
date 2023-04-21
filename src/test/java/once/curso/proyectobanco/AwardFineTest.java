@@ -1,7 +1,9 @@
 package once.curso.proyectobanco;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -22,31 +24,66 @@ public class AwardFineTest {
 
 	@Autowired
 	private AwardsFinesServices awardsFinesServices;
-	
+
 	@Autowired
 	private AwardsFinesTypeServices awardsFinesTypeServices;
-	
+
 	@Autowired
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
-	
+
 	@Test
 	public void findAll() {
 		List<AwardsFine> awardFines = (List<AwardsFine>) getAwardsFinesServices().findAll();
 		assertNotEquals(awardFines.size(), 0);
 	}
-	
+
 	@Test
 	public void grabar() {
-		AwardsFinesType awardsFinesType=getAwardsFinesTypeServices().findById(1).get();
-		AwardsFinesConfiguration awardsFinesConfiguration=getAwardsFinesConfigurationServices().findById(1).get();
-		AwardsFine awardsFine= new AwardsFine();
+		AwardsFinesType awardsFinesType = getAwardsFinesTypeServices().findById(1).get();
+		AwardsFinesConfiguration awardsFinesConfiguration = getAwardsFinesConfigurationServices().findById(1).get();
+		AwardsFine awardsFine = new AwardsFine();
 		awardsFine.setAwardFineConfiguration(awardsFinesConfiguration);
 		awardsFine.setAwardFineType(awardsFinesType);
-		awardsFine.setTime(35);		
+		awardsFine.setTime(35);
 		getAwardsFinesServices().save(awardsFine);
 		assertNotEquals(awardsFine.getId(), 0);
+
+	}
+
+	@Test
+	public void testSaveAwardsFine() {
+		AwardsFine awardsFine = new AwardsFine();
+		awardsFine.setAwardFineConfiguration(getAwardsFinesConfigurationServices().findById(1).get());
+		getAwardsFinesServices().save(awardsFine);
+		assertNotEquals(awardsFine.getId(), 0);
+
+	}
+	
+	@Test
+	public void borraObjeto() {
+		List<AwardsFine> awardsFines = (List<AwardsFine>) getAwardsFinesServices().findAll();
+
+		List<AwardsFine> borrarLosObjetos = new ArrayList<AwardsFine>();
+		borrarLosObjetos.add(awardsFines.get(0));
+		borrarLosObjetos.add(awardsFines.get(1));
+		borrarLosObjetos.add(awardsFines.get(2));
+
+		getAwardsFinesServices().deleteAll(borrarLosObjetos);
+		
 		
 	}
 	
-	
+	@Test
+	public void borraInteger() {
+		List<AwardsFine> awardsFines = (List<AwardsFine>) getAwardsFinesServices().findAll();
+
+		List<Integer> borrarLosObjetos = new ArrayList<Integer>();
+		borrarLosObjetos.add(awardsFines.get(0).getId());
+		borrarLosObjetos.add(awardsFines.get(1).getId());
+		borrarLosObjetos.add(awardsFines.get(2).getId());
+
+		getAwardsFinesServices().deleteAllById(borrarLosObjetos);
+		
+		
+	}
 }
