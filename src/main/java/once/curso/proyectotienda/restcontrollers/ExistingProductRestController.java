@@ -62,7 +62,7 @@ public class ExistingProductRestController {
 
 		existingProduct.setDescription(existingProductDetails.getDescription());
 		existingProduct.setPrice(existingProductDetails.getPrice());
-		//existingProduct.getImage(existingProductDetails.getImage());
+		existingProduct.setImage(existingProductDetails.getImage());
 		existingProduct.setStock(existingProductDetails.getStock());
 		existingProduct.setSubcategories(existingProductDetails.getSubcategories());
 		
