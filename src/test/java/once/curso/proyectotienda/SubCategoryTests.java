@@ -2,10 +2,12 @@ package once.curso.proyectotienda;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.entities.SubCategory;
+import once.curso.proyectotienda.services.CardTypeService;
 import once.curso.proyectotienda.services.CategoryService;
 import once.curso.proyectotienda.services.SubcategoryService;
 
@@ -26,6 +29,7 @@ public class SubCategoryTests {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Order(1)
 	@Test
 	public void findAll() {
 
@@ -33,25 +37,51 @@ public class SubCategoryTests {
 		assertEquals(subCategories.size(), 0);
 	}
 	
+	@Order(2)
+	@Test
 	public void probarSaveFindDelete() {
 		
-		Iterable<SubCategory> subcategories= (List<SubCategory>) getSubcategoryService().findAll();
+		SubCategory subCategories = new SubCategory();
 		
-		List<SubCategory> subcategoriesborrar = new ArrayList<SubCategory>();
-		SubCategory subCategory = new SubCategory();
+		subCategories.setDescription("pruebas");
+		subCategories.setCategory(getCategoryService().findById(2).get());
 		
-		subCategory.setDescription("pruebas de description");
-		getSubcategoryService().save(subCategory);
+		getSubcategoryService().save(subCategories);
+		getSubcategoryService().deleteById(subCategories.getId());
 		
-		SubCategory subCategoryRecuperado = getSubcategoryService().findById(subCategory.getId()).get();
-		getSubcategoryService().delete(subCategoryRecuperado);
-		
+		assertFalse(getSubcategoryService().existsById(subCategories.getId()));
 		
 		
-		assertFalse(getSubcategoryService().existsById(subCategory.getId()));
 	}
+	@Order(3)
+	@Test
 	public void count() {
-		long listado = getSubcategoryService().count();
+		
+		List<SubCategory> subCategories = new ArrayList<SubCategory>();
+		
+		SubCategory prueba1 = new SubCategory();
+		prueba1.setDescription("prueba 1");
+		subCategories.add(prueba1);
+		subcategoryService.save(prueba1);
+		
+		long cantidad = subcategoryService.count();
+		assertEquals(4, cantidad);
+		
+		subCategories.forEach(subCategory -> subcategoryService.deleteById(subCategory.getId()));
+	}
+	
+	public void existByid() {
+		List<SubCategory> subCategories = new ArrayList<SubCategory>();
+		
+		SubCategory sCategoryp= new SubCategory();
+		sCategoryp.setDescription("probando existById");
+		
+		subCategories.add(sCategoryp);
+		subcategoryService.saveAll(subCategories);
+		
+		assertTrue(subcategoryService.existsById(sCategoryp.getId()));
+		
+		subcategoryService.delete(sCategoryp);
 		
 	}
 }
