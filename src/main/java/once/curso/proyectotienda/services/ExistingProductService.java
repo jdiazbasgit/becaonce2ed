@@ -47,17 +47,17 @@ public class ExistingProductService {
 		getExistingProductsCRUDRepository().deleteById(id);
 		return id;
 	}
-
+	
 	public void delete(ExistingProduct entity) {
 		getExistingProductsCRUDRepository().delete(entity);
 	}
 	
-	public void deleteAll(Iterable<? extends ExistingProduct> entities) { //*
+	public void deleteAll(Iterable<? extends ExistingProduct> entities) {
 		getExistingProductsCRUDRepository().deleteAll(entities);
 	}
 
-	public void deleteAllById(Iterable<? extends Integer> ids) {//*
-		getExistingProductsCRUDRepository().deleteAllById(ids);
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		for (Integer id : ids){getExistingProductsCRUDRepository().deleteById(id);}
 	}
 
 	public void deleteAll() {

@@ -18,11 +18,11 @@ public class ProfileService {
 	public Profile save(Profile entity) {
 		return getProfilesCRUDRepository().save(entity);
 	}
-
+	
 	public Iterable<Profile> saveAll(Iterable<Profile> entities) {
 		return getProfilesCRUDRepository().saveAll(entities);
 	}
-
+	
 	public Optional<Profile> findById(Integer id) {
 		return getProfilesCRUDRepository().findById(id);
 	}
@@ -34,11 +34,11 @@ public class ProfileService {
 	public Iterable<Profile> findAll() {
 		return getProfilesCRUDRepository().findAll();
 	}
-
+	
 	public Iterable<Profile> findAllById(Iterable<Integer> ids) {
 		return getProfilesCRUDRepository().findAllById(ids);
 	}
-
+	
 	public long count() {
 		return getProfilesCRUDRepository().count();
 	}
@@ -50,13 +50,15 @@ public class ProfileService {
 	public void delete(Profile entity) {
 		getProfilesCRUDRepository().delete(entity);
 	}
-
-	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getProfilesCRUDRepository().deleteAllById(ids);
-	}
-
+	
 	public void deleteAll(Iterable<? extends Profile> entities) {
 		getProfilesCRUDRepository().deleteAll(entities);
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		for (Integer id : ids){
+			getProfilesCRUDRepository().deleteById(id);
+		}
 	}
 
 	public void deleteAll() {

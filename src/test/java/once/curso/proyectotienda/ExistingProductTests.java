@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,7 @@ import once.curso.proyectotienda.services.SubcategoryService;
 
 @SpringBootTest
 @Data
-public class ExistingProductTests {
+public class ExistingProductTests{
 	private String filename = "calzocillos.jpg";
 	@Autowired
 	private ExistingProductService existingProductService;
@@ -40,8 +42,8 @@ public class ExistingProductTests {
 	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
-		existingProduct.setDescription("WJE Herramienta en forma de botella de cerveza para hombre");
-		existingProduct.setPrice(29.99);
+		existingProduct.setDescription("New World");
+		existingProduct.setPrice(74.99);
 		existingProduct.setStock(10);
 		File file = new File(filename);
         byte[] imgInBytes = new byte[(int) file.length()];		
@@ -95,12 +97,19 @@ public class ExistingProductTests {
 	}
 	
 	@Test
-	public void DelAllExistingProduct() {
+	public void DelAllByIdExistingProduct() {
 		/*
-		 NO TOQUEIS
-		 
-		 getExistingProductService().deleteAll();
-        assertEquals(0, getExistingProductService().count());*/
+		NO TOQUEIS
+		List<ExistingProduct> existingProduct = (List<ExistingProduct>) getExistingProductService().findAll();
+		List<Integer> idsToDelete =new ArrayList<>();
+		idsToDelete.add(existingProduct.get(3).getId());
+		idsToDelete.add(existingProduct.get(4).getId());
+		
+		getExistingProductService().deleteAllById(idsToDelete);*/
+	}
+	
+	public void delExistingProduct(ExistingProduct entity) {
+		//getExistingProductsCRUDRepository().delete(entity);
 	}
 	
 	@Test
@@ -108,5 +117,25 @@ public class ExistingProductTests {
 		getExistingProductService().count();
 	}
 	
+	@Test
+	public void DelAllentitiesExistingProduct() {
+		/*
+		NO TOQUEIS
+		
+		List<ExistingProduct> existingProduct = (List<ExistingProduct>) getExistingProductService().findAll();
+		List<ExistingProduct> objectToDelete =new ArrayList<ExistingProduct>();
+		objectToDelete.add(existingProduct.get(3));
+		objectToDelete.add(existingProduct.get(4));
+		
+		getExistingProductService().deleteAll(objectToDelete);*/
+	}
 	
+	@Test
+	public void DelAllExistingProduct() {
+		/*
+		 NO TOQUEIS
+		 
+		 getExistingProductService().deleteAll();
+        assertEquals(0, getExistingProductService().count());*/
+	}
 }

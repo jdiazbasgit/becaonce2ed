@@ -25,12 +25,12 @@ public class Profile {
 	
 	private String identification;
 	
-	private String creditcard;
+	private String credit_card;
 	
 	private String address;
 	
 	private String postal_code;
-	
+
 	private String country;
 	
 	private String email;
