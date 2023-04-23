@@ -21,4 +21,8 @@ public class Rol {
 	@Column(name = "ROL")
 	private String rol;
 	
+	@Override
+    public String toString() {
+        return "Rol{" + "id=" + id + ", rol=" + rol + '}';
+    }
 }
