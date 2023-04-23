@@ -49,7 +49,31 @@ public class SubCategoryTests {
 		getSubcategoryService().save(subCategories);
 		getSubcategoryService().deleteById(subCategories.getId());
 		
+		
 		assertFalse(getSubcategoryService().existsById(subCategories.getId()));
+		
+		
+	}
+	
+	public void findAllById() {
+		
+		List<SubCategory> subCategories = new ArrayList<SubCategory>();
+		
+		SubCategory pruebas = new SubCategory();
+		SubCategory pruebas2 = new SubCategory();
+		SubCategory pruebas3 = new SubCategory();
+		
+		pruebas.setDescription("prueba1");
+		pruebas2.setDescription("pruebas 2");
+		pruebas3.setDescription("pruebas 3");
+		
+		subCategories.add(pruebas);
+		subCategories.add(pruebas2);
+		subCategories.add(pruebas3);
+		
+		subcategoryService.saveAll(subCategories);
+		
+		
 		
 		
 	}
@@ -63,6 +87,13 @@ public class SubCategoryTests {
 		prueba1.setDescription("prueba 1");
 		subCategories.add(prueba1);
 		subcategoryService.save(prueba1);
+		
+		SubCategory prueba2 = new SubCategory();
+		prueba2.setDescription("prueba 2");
+		prueba2.setCategory(getCategoryService().findById(3).get());
+		subCategories.add(prueba2);
+		subcategoryService.save(prueba2);
+		
 		
 		long cantidad = subcategoryService.count();
 		assertEquals(4, cantidad);
