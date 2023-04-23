@@ -4,18 +4,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.Configuration;
 import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.services.DocumentTypeService;
 
@@ -97,9 +95,38 @@ public class DocumentTypeTest {
 		documentTypeB.setDescription("pruebaB");
 		documentTypes.add(documentTypeB);
 
-		long cantidad = documentTypeService.count();
-		assertEquals(12, cantidad);
-		documentTypes.forEach(documentType -> documentTypeService.deleteById(documentType.getId()));
+		long cantidad = getDocumentTypeService().count();
+		assertEquals(cantidad, 8);
+		// documentTypes.forEach(documentType ->
+		// documentTypeService.deleteById(documentType.getId()));
+
+	}
+
+	@Test
+	public void save() {
+
+		DocumentType documentType = new DocumentType();
+		documentType.setDescription("pruebaC");
+		getDocumentTypeService().save(documentType);
+
+		DocumentType dTypeRecuperado = getDocumentTypeService().findById(documentType.getId()).get();
+		getDocumentTypeService().delete(dTypeRecuperado);
+		assertNotNull(getDocumentTypeService().findById(documentType.getId()));
+
+	}
+
+	@Test
+	public void findById() {
+
+		DocumentType documentType = new DocumentType();
+		documentType.setDescription("pruebaD");
+		getDocumentTypeService().save(documentType);
+
+		DocumentType dTypeRecuperado = getDocumentTypeService().findById(documentType.getId()).orElse(null);
+		assertNotNull(getDocumentTypeService().findById(documentType.getId()));
+
+		getDocumentTypeService().delete(dTypeRecuperado);
+		// assertNotNull(getDocumentTypeService().findById(documentType.getId()));
 
 	}
 

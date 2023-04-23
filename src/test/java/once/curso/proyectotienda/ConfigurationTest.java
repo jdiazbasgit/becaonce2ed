@@ -3,6 +3,7 @@ package once.curso.proyectotienda;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ConfigurationTest {
 
 	@Autowired
 	private ConfigurationService configurationService;
-	
+
 	@Order(1)
 	@Test
 	public void probarSaveFindDelete() {
@@ -38,13 +39,14 @@ public class ConfigurationTest {
 
 		assertFalse(getConfigurationService().existsById(configuration.getId()));
 	}
-	
+
 	@Order(2)
 	@Test
 	public void findAll() {
 		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
 		assertNotEquals(configurations.size(), 1);
 	}
+
 	@Order(3)
 	@Test
 	public void SaveAll() {
@@ -73,17 +75,17 @@ public class ConfigurationTest {
 		getConfigurationService().deleteAll(configurations);
 		assertNotEquals(getConfigurationService().count(), cantidadAlEmpezar + 0);
 	}
-	
+
 	@Order(5)
 	@Test
 	public void existsById() {
 		Configuration configuration = new Configuration();
 		configuration.setStockAlarm(1234);
-		getConfigurationService().existsById(1);
+		getConfigurationService().existsById(0);
 		assertFalse(getConfigurationService().existsById(configuration.getId()));
 
 	}
-	
+
 	@Order(6)
 	@Test
 	public void findAllById() {
@@ -97,32 +99,41 @@ public class ConfigurationTest {
 				((List<Configuration>) getConfigurationService().findAllById(idsQueCompruebo)).size());
 
 	}
-	
+
 	@Order(7)
 	@Test
 	public void count() {
-		
-		List<Configuration> configurations  = new ArrayList<Configuration>();
-		
+
+		List<Configuration> configurations = new ArrayList<Configuration>();
+
 		Configuration configurationA = new Configuration();
 		configurationA.setStockAlarm(1234);
 		configurations.add(configurationA);
-		
+
 		Configuration configurationB = new Configuration();
 		configurationB.setStockAlarm(1234);
 		configurations.add(configurationB);
 		configurationService.saveAll(configurations);
-		
+
 		long cantidad = configurationService.count();
 		assertEquals(2, cantidad);
-		
+
 		configurations.forEach(configuration -> configurationService.deleteById(configuration.getId()));
+
+	}
+
+	@Order(8)
+	@Test
+	public void findById() {
+
+		Configuration configuration = new Configuration();
+		configuration.setStockAlarm(1234);
+		getConfigurationService().save(configuration);
+
+		Configuration dConfigurationRecuperado = getConfigurationService().findById(configuration.getId()).orElse(null);
+		assertNotNull(getConfigurationService().findById(dConfigurationRecuperado.getId()).orElse(null));
+		getConfigurationService().delete(dConfigurationRecuperado);
 		
 	}
 
-	
-	
-	
-	
-	
 }
