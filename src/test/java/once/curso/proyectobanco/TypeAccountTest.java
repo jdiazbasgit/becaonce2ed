@@ -69,10 +69,12 @@ public class TypeAccountTest {
 		typesAccounts.add(typeAccount3);
 		getTypeAccountService().saveAll(typesAccounts);
 		assertNotEquals(getTypeAccountService().count(), cantidadAlEmpezar);
-
+		getTypeAccountService().deleteById(typeAccount2.getId());
+		getTypeAccountService().deleteById(typeAccount3.getId());
+		assertEquals(getTypeAccountService().count(), cantidadAlEmpezar);
 	}
 	
-	
+
 	
 	
 }
