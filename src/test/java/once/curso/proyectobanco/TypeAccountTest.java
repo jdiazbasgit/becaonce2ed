@@ -72,11 +72,7 @@ public class TypeAccountTest {
 
 	}
 	
-	@Test
-	@Order(5)
-	public void testDeleteByIdTypeAccount() {
-		
-	}
+	
 	
 	
 }
