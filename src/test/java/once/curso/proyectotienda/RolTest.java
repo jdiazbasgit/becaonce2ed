@@ -28,8 +28,10 @@ public class RolTest {
 		String rolOld = "FindByIdTestRole";
 		int idGiven;
 
-		// Para encontrar el id del valor de rol, imprescindible debe existirlo en BBDD, para
-		// Primero buscarlo, si no lo existe, se debe insertarlo
+		// Para encontrar el ID de rol (findById), imprescindible debe existirlo en BBDD,
+		// lo primero es buscarlo, como encontrarlo (findByRol):
+		//  - Si lo existe (isPresent = true), debe obtener el numero de id (getId --> idGiven).
+		//  - Si no lo existe (isPresent = false), se debe insertarlo (save) y obtener id (getId --> idGiven).
 
 		Optional<Rol> rolFinded = rolService.findByRol(rolOld);
 		if (rolFinded.isPresent()) {
@@ -72,8 +74,11 @@ public class RolTest {
 
 		String rolOld = "FindByRolTestRole";
 
-		// Para encontrar el valor de rol, imprescindible debe existirlo en BBDD, para
-		// Primero buscarlo, si no lo existe, se debe insertarlo
+		// Para encontrar el VALOR de rol (findByRol), imprescindible debe existirlo en BBDD,
+		// lo primero es buscarlo, como encontrarlo (findByRol):
+		//  - Si lo existe (isPresent = true), no hace nada, queda igual, pasa a test findByRol
+		//  - Si no lo existe (isPresent = false), se debe insertarlo (save)
+		// Sin necesidad la variable idGiven
 
 		Optional<Rol> rolFinded = rolService.findByRol(rolOld);
 		if (rolFinded.isPresent()) {
@@ -98,8 +103,10 @@ public class RolTest {
 		
 		String rolNew = "SaveTestRole";
 
-		// Para grabar un nuevo valor de rol, imprescindible debe que no lo exista en BBDD, para
-		// evitar los duplicados. Primero buscarlo, si lo existe, se debe borrarlo
+		// Para grabar un NUEVO VALOR de rol (save), imprescindible no lo exista en BBDD,
+		// es una forma de evitar el problema de los duplicados (Duplicate for key 'roles.ROL_UNIQUE'),
+		// lo primero es buscarlo, como encontrarlo (findByRol):
+		//  - Si lo existe (isPresent = true), se debe borrarlo (deleteById)
 
 		Optional<Rol> rolFinded = rolService.findByRol(rolNew);
 		if (rolFinded.isPresent()) {
