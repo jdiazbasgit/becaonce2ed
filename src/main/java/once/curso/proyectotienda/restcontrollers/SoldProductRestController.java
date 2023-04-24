@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.entities.SoldProduct;
-import once.curso.proyectotienda.services.CategoryService;
 import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController

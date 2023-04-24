@@ -6,16 +6,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="Card_Type")
 public class CardType {
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
