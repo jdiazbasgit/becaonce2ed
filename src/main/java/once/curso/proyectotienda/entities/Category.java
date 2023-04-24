@@ -6,10 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> feature/develop-tienda-dlg
 import lombok.Data;
 
 @Data
