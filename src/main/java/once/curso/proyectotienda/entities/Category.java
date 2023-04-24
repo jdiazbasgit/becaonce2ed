@@ -6,12 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/develop-tienda-dlg
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Category")
+@Table(name="Categories")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

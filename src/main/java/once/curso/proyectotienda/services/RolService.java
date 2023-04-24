@@ -13,11 +13,11 @@ import once.curso.proyectotienda.repositories.RolCRUDRepository;
 public class RolService {
 	public RolCRUDRepository rolesCRUDRepository;
 
-	public <S extends Rol> S save(S entity) {
+	public Rol save(Rol entity) {
 		return getRolesCRUDRepository().save(entity);
 	}
 
-	public <S extends Rol> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<Rol> saveAll(Iterable<Rol> entities) {
 		return getRolesCRUDRepository().saveAll(entities);
 	}
 

@@ -16,38 +16,31 @@ public class SubcategoryService {
 	@Autowired
 	private SubCategoryCRUDRepository subCategoryRepository;
 
-	public <S extends SubCategory> S save(S entity) {
-
+	public SubCategory save(SubCategory entity) {
 		return getSubCategoryRepository().save(entity);
 	}
 
-	public <S extends SubCategory> Iterable<S> saveAll(Iterable<S> entities) {
-
+	public Iterable<SubCategory> saveAll(Iterable<SubCategory> entities) {
 		return getSubCategoryRepository().saveAll(entities);
 	}
 
 	public Optional<SubCategory> findById(Integer id) {
-
 		return getSubCategoryRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
 		return getSubCategoryRepository().existsById(id);
 	}
 
 	public Iterable<SubCategory> findAll() {
-
 		return getSubCategoryRepository().findAll();
 	}
 
 	public Iterable<SubCategory> findAllById(Iterable<Integer> ids) {
-
 		return getSubCategoryRepository().findAllById(ids);
 	}
 
 	public long count() {
-
 		return getSubCategoryRepository().count();
 	}
 

@@ -1,6 +1,5 @@
 package once.curso.proyectotienda.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +19,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column
 	private String user;
 	
-	@Column
 	private String password;
 	
-	@Column
 	private boolean enabled;
 	
 	@JoinColumn
