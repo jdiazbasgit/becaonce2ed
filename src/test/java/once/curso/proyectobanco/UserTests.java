@@ -2,6 +2,7 @@ package once.curso.proyectobanco;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,5 +74,16 @@ class UserTests {
 	   assertEquals(getUserService().count(),cantidadAlEmpezar+2);
 	   getUserService().deleteAll(users);
 	}
-	
+	 @Test
+	 public void delete() {
+		 
+		 	User userdelete = new User();
+		 	userdelete.setUser("pepe");
+		 	userdelete.setPassword("0987");
+		 	userdelete.setEnabled(true);
+		 	userdelete.setRol(getRolService().findById(3).get());
+		 	getUserService().save(userdelete);
+		 	getUserService().delete(userdelete);
+		 	assertTrue(true.getUserService().delete(userdelete));
+	 }
 }
