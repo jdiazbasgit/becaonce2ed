@@ -2,8 +2,8 @@ package once.curso.proyectotienda.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,23 +23,17 @@ public class ExistingProduct implements Serializable {
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Id", length = 20, nullable = false)
 	private int id;
 	private String description;
 	
-	@Column(name = "Price", nullable = false)
-	private double price;
+	private Double price;
 	
 	@Lob
-    @Column(name = "Image", length = Integer.MAX_VALUE, nullable = true)
 	private byte[] image;
-	
-	/*String imagePath = "path/to/your/image.jpg";
-	BufferedImage myPicture = ImageIO.read(new File(imagePath));*/
 	
 	private int stock;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="subcategories_id")
 	private SubCategory subcategories;
 }

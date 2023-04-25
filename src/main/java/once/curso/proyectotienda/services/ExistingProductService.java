@@ -15,11 +15,11 @@ public class ExistingProductService {
 	@Autowired
 	private ExistingProductCRUDRepository existingProductsCRUDRepository;
 	
-	public <S extends ExistingProduct> S save(S entity) {
+	public ExistingProduct save(ExistingProduct entity) {
 		return getExistingProductsCRUDRepository().save(entity);
 	}
 
-	public <S extends ExistingProduct> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) { //*
 		return getExistingProductsCRUDRepository().saveAll(entities);
 	}
 
@@ -35,7 +35,7 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().findAll();
 	}
 
-	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) {
+	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) { //*
 		return getExistingProductsCRUDRepository().findAllById(ids);
 	}
 
@@ -43,20 +43,21 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().count();
 	}
 
-	public void deleteById(Integer id) {
+	public Object deleteById(Integer id) {
 		getExistingProductsCRUDRepository().deleteById(id);
+		return id;
 	}
-
+	
 	public void delete(ExistingProduct entity) {
 		getExistingProductsCRUDRepository().delete(entity);
 	}
-
-	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getExistingProductsCRUDRepository().deleteAllById(ids);
-	}
-
+	
 	public void deleteAll(Iterable<? extends ExistingProduct> entities) {
 		getExistingProductsCRUDRepository().deleteAll(entities);
+	}
+
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		for (Integer id : ids){getExistingProductsCRUDRepository().deleteById(id);}
 	}
 
 	public void deleteAll() {
