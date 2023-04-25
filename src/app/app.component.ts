@@ -24,6 +24,12 @@ export class AppComponent {
       });
     })
   }
+  
+  noche:boolean = false
+
+  modoNoche():void{
+    this.noche=!this.noche;
+  }
 
 
 }

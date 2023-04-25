@@ -1,4 +1,11 @@
-<div class="container">
+<div class="container mt-5 p-2" [ngClass]="{'bg-dark':noche,'bg-light':!noche}">
+  <div class="d-flex justify-content-end">
+    <button (click)="modoNoche()" class="m-5">Modo noche</button>
+  </div>
+  
+  <br>
+  <app-login></app-login>
+  <br>
   <h1 [ngClass]="{'text-danger':flag,'text-success':!flag}" >{{title}}</h1><br>
   <input type="text" [(ngModel)]="title"><br>
   <button (click)="cambiar()">cambiar</button>
