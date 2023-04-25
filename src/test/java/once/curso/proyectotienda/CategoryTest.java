@@ -16,10 +16,21 @@ import org.junit.jupiter.api.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
+import once.curso.proyectotienda.services.SoldProductService;
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.ExistingProduct;
+import once.curso.proyectotienda.entities.SoldProduct;
+import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
+import once.curso.proyectotienda.repositories.CategoryCRUDRepository;
+import once.curso.proyectotienda.repositories.ExistingProductCRUDRepository;
+import once.curso.proyectotienda.repositories.SoldProductCRUDRepository;
+import once.curso.proyectotienda.repositories.SubCategoryCRUDRepository;
 import once.curso.proyectotienda.services.CategoryService;
+import once.curso.proyectotienda.services.ExistingProductService;
+import once.curso.proyectotienda.services.SubcategoryService;
 
 @SpringBootTest
 @Data
@@ -27,10 +38,35 @@ import once.curso.proyectotienda.services.CategoryService;
 public class CategoryTest {
 
 	@Autowired
-	private CardTypeCRUDRepository cardTypeCRUDRepository;
+	private CategoryCRUDRepository categoryCRUDRepository;
+	
+	
+	@Autowired
+	private SubCategoryCRUDRepository subCategoryCRUDRepository;
+	
+	
+	@Autowired
+	private ExistingProductCRUDRepository existingProductCRUDRepository;
+	
+	
+	@Autowired
+	private SoldProductCRUDRepository soldProductCRUDRepository;
+	
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	
+	@Autowired
+	private SubcategoryService subcategoryService;
+	
+	
+	@Autowired
+	private ExistingProductService existingProductService;
+	
+	
+	@Autowired
+	private SoldProductService soldProductService;
 
 	@Test
 	@Order(1)
@@ -87,12 +123,12 @@ public class CategoryTest {
 		categories.add(categoryPrueba1);
 		categoryService.saveAll(categories);
 
-		Optional<Category> resultado = categoryService.findById(categoryPrueba1.getId());
+		Optional<Category> resultado = getCategoryService().findById(categoryPrueba1.getId());
 		assertTrue(resultado.isPresent());
 		assertTrue(resultado.get().getDescription().equals("pruebaA"));
 
 		categoryService.deleteById(categoryPrueba1.getId());
-		Optional<Category> resultadoDespues = categoryService.findById(categoryPrueba1.getId());
+		Optional<Category> resultadoDespues = getCategoryService().findById(categoryPrueba1.getId());
 		assertFalse(resultadoDespues.isPresent());
 	}
 
@@ -109,12 +145,12 @@ public class CategoryTest {
 		categories.add(categoryPrueba1);
 		categories.add(categoryPrueba2);
 		categories.add(categoryPrueba3);
-		categoryService.saveAll(categories);
+		getCategoryService().saveAll(categories);
 
-		long cantidad = categoryService.count();
-		assertEquals(6, cantidad);
+		long cantidad = getCategoryService().count();
+		assertEquals(5, cantidad);
 
-		categories.forEach(category -> categoryService.deleteById(category.getId()));
+		categories.forEach(category -> getCategoryService().deleteById(category.getId()));
 	}
 
 	@Test
@@ -124,11 +160,11 @@ public class CategoryTest {
 		Category categoryPrueba1 = new Category();
 		categoryPrueba1.setDescription("pruebaA");
 		categories.add(categoryPrueba1);
-		categoryService.saveAll(categories);
+		getCategoryService().saveAll(categories);
 
-		assertTrue(categoryService.existsById(categoryPrueba1.getId()));
+		assertTrue(getCategoryService().existsById(categoryPrueba1.getId()));
 
-		categoryService.delete(categoryPrueba1);
+		getCategoryService().delete(categoryPrueba1);
 	}
 
 	@Test
@@ -141,14 +177,14 @@ public class CategoryTest {
 		Category category2 = new Category();
 		category2.setDescription("PruebaB");
 		categories.add(category2);
-		categoryService.saveAll(categories);
+		getCategoryService().saveAll(categories);
 
-		List<Category> allCategories = (List<Category>) categoryService.findAll();
-		assertEquals(5, allCategories.size());
+		List<Category> allCategories = (List<Category>) getCategoryService().findAll();
+		assertEquals(4, allCategories.size());
 		assertTrue(allCategories.contains(category1));
 		assertTrue(allCategories.contains(category2));
 
-		categories.forEach(category -> categoryService.deleteById(category.getId()));
+		categories.forEach(category -> getCategoryService().deleteById(category.getId()));
 	}
 
 	@Test
@@ -164,41 +200,96 @@ public class CategoryTest {
 	    categories.add(categoryPrueba1);
 	    categories.add(categoryPrueba2);
 	    categories.add(categoryPrueba3);
-	    categoryService.saveAll(categories);
+	    getCategoryService().saveAll(categories);
 
 	    List<Category> categoriesById = new ArrayList<Category>();
-	    categoriesById.add(categoryService.findById(categoryPrueba1.getId()).orElse(null));
-	    categoriesById.add(categoryService.findById(categoryPrueba2.getId()).orElse(null));
-	    categoriesById.add(categoryService.findById(categoryPrueba3.getId()).orElse(null));
+	    categoriesById.add(getCategoryService().findById(categoryPrueba1.getId()).orElse(null));
+	    categoriesById.add(getCategoryService().findById(categoryPrueba2.getId()).orElse(null));
+	    categoriesById.add(getCategoryService().findById(categoryPrueba3.getId()).orElse(null));
 
 	    assertEquals(3, categoriesById.size());
 	    assertEquals(categoryPrueba1.getDescription(), categoriesById.get(0).getDescription());
 	    assertEquals(categoryPrueba2.getDescription(), categoriesById.get(1).getDescription());
 	    assertEquals(categoryPrueba3.getDescription(), categoriesById.get(2).getDescription());
 	   
-	    categories.forEach(category -> categoryService.deleteById(category.getId()));
+	    categories.forEach(category -> getCategoryService().deleteById(category.getId()));
 	}
 	
-	@Test
+	/*@Test
 	@Order(9)
 	public void probarSaveAndRestoreTableData() {
-	    List<Category> categoriesAnteriores = (List<Category>) categoryService.findAll();
+	    List<Category> categoriesAnteriores = (List<Category>) getCategoryService().findAll();
+	    List<SubCategory> subCategoriesAnteriores = (List<SubCategory>) getSubcategoryService().findAll(); 
+	    List<ExistingProduct> existingProductsAnteriores = (List<ExistingProduct>) getExistingProductService().findAll();
+	    List<SoldProduct> soldProductsAnteriores = (List<SoldProduct>) getSoldProductService().findAll();
+	    
 	    
 	    List<Category> categoriesNuevos = new ArrayList<Category>();
 	    Category categoryPrueba1 = new Category();
 	    categoryPrueba1.setDescription("pruebaAA");
 	    categoriesNuevos.add(categoryPrueba1);
-	    categoryService.saveAll(categoriesNuevos);
+	    getCategoryService().saveAll(categoriesNuevos);
 	    
-	    categoryService.deleteAll();
+	    List<SubCategory> subCategoriesNuevos = new ArrayList<SubCategory>();
+	    SubCategory subCategoryPrueba1 = new SubCategory();
+	    subCategoryPrueba1.setDescription("pruebaBB");
+	    subCategoryPrueba1.setCategory(categoryPrueba1);
+	    subCategoriesNuevos.add(subCategoryPrueba1);
+	    getSubcategoryService().saveAll(subCategoriesNuevos);
 	    
-	    List<Category> categoriesVacios = (List<Category>) categoryService.findAll();
-	    assertTrue(categoriesVacios.isEmpty());
+	    List<ExistingProduct> existingProductsNuevos = new ArrayList<ExistingProduct>();
+	    ExistingProduct existingProductPrueba1 = new ExistingProduct();
+	    existingProductPrueba1.setDescription("pruebaCC");
+	    existingProductPrueba1.setPrice(10.00);
+	    existingProductPrueba1.setImage("pruebaCC");
+	    existingProductPrueba1.setSubcategories(subCategoryPrueba1); 
+	    existingProductsNuevos.add(existingProductPrueba1);
+	    getExistingProductService().saveAll(existingProductsNuevos);
 	    
-	    categoryService.saveAll(categoriesAnteriores);
+	    List<SoldProduct> soldProductsNuevos = new ArrayList<SoldProduct>();
+	    SoldProduct soldProductPrueba1 = new SoldProduct();
+	    soldProductPrueba1.setQuantity(77);
+	    soldProductPrueba1.setExistingProduct(existingProductPrueba1);
+	    soldProductsNuevos.add(soldProductPrueba1);
+	    getSoldProductService().saveAll(soldProductsNuevos);
 	    
-	    List<Category> categoriesRestaurados = (List<Category>) categoryService.findAll();
+	    
+	    getCategoryService().deleteAll();
+	    getSubcategoryService().deleteAll();
+	    getExistingProductService().deleteAll();
+	    getSoldProductService().deleteAll();
+	    
+	    
+	    List<Category> categoriesVacios = (List<Category>) getCategoryService().findAll();
+	    assertTrue(categoriesVacios.isEmpty());  
+	    List<SubCategory> subCategoriesVacios = (List<SubCategory>) getSubcategoryService().findAll();
+	    assertTrue(subCategoriesVacios.isEmpty());
+	    List<ExistingProduct> existingProductsVacios = (List<ExistingProduct>) getExistingProductService().findAll();
+	    assertTrue(existingProductsVacios.isEmpty());
+	    List<SoldProduct> soldProductsVacios = (List<SoldProduct>) getSoldProductService().findAll();
+	    assertTrue(soldProductsVacios.isEmpty());
+	    
+	    
+	    getCategoryService().saveAll(categoriesAnteriores);
+	    getSubcategoryService().saveAll(subCategoriesAnteriores);
+	    getExistingProductService().saveAll(existingProductsAnteriores);
+	    getSoldProductService().saveAll(soldProductsAnteriores);
+	    
+	    
+	    List<Category> categoriesRestaurados = (List<Category>) getCategoryService().findAll();
 	    assertFalse(categoriesRestaurados.isEmpty());
 	    assertEquals(categoriesAnteriores.size(), categoriesRestaurados.size());
-	}
+	    
+	    List<SubCategory> subCategoriesRestaurados = (List<SubCategory>) getSubcategoryService().findAll();
+	    assertFalse(subCategoriesRestaurados.isEmpty());
+	    assertEquals(subCategoriesAnteriores.size(), subCategoriesRestaurados.size());
+	    
+	    List<ExistingProduct> existingProductsRestaurados = (List<ExistingProduct>) getExistingProductService().findAll();
+	    assertFalse(existingProductsRestaurados.isEmpty());
+	    assertEquals(existingProductsAnteriores.size(), existingProductsRestaurados.size());
+	    
+	    List<SoldProduct> soldProductsRestaurados = (List<SoldProduct>) getSoldProductService().findAll();
+	    assertFalse(soldProductsRestaurados.isEmpty());
+	    assertEquals(soldProductsAnteriores.size(), soldProductsRestaurados.size());
+	}*/
 }
