@@ -13,65 +13,69 @@ import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
 @Data
 public class CardTypeService {
 	@Autowired
-	private CardTypeCRUDRepository cardTypeRepository;
+	private CardTypeCRUDRepository cardTypeCRUDRepository;
 
 	public Iterable<CardType> getCardType() {
-		return getCardTypeRepository().findAll();
+		return getCardTypeCRUDRepository().findAll();
 	}
 
-	public <S extends CardType> S save(S entity) {
-
-		return getCardTypeRepository().save(entity);
+	public CardType save(CardType entity) {
+//HECHO
+		return getCardTypeCRUDRepository().save(entity);
 	}
 
-	public <S extends CardType> Iterable<S> saveAll(Iterable<S> entities) {
-
-		return getCardTypeRepository().saveAll(entities);
+	public Iterable<CardType> saveAll(Iterable<CardType> entities) {
+//HECHO
+		return getCardTypeCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<CardType> findById(Integer id) {
-
-		return getCardTypeRepository().findById(id);
+//HECHO
+		return getCardTypeCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-
-		return getCardTypeRepository().existsById(id);
+//HECHO
+		return getCardTypeCRUDRepository().existsById(id);
 	}
 
 	public Iterable<CardType> findAll() {
-
-		return getCardTypeRepository().findAll();
+//HECHO
+		return getCardTypeCRUDRepository().findAll();
 	}
 
 	public Iterable<CardType> findAllById(Iterable<Integer> ids) {
-
-		return getCardTypeRepository().findAllById(ids);
+//HECHO
+		return getCardTypeCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-
-		return getCardTypeRepository().count();
+//HECHO
+		return getCardTypeCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getCardTypeRepository().deleteById(id);
+		//HECHO
+		getCardTypeCRUDRepository().deleteById(id);
 	}
 
 	public void delete(CardType entity) {
-		getCardTypeRepository().delete(entity);
+		//HECHO
+		getCardTypeCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getCardTypeRepository().deleteAllById(ids);
+		//HECHO
+		getCardTypeCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends CardType> entities) {
-		getCardTypeRepository().deleteAll(entities);
+		//HECHO
+		getCardTypeCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getCardTypeRepository().deleteAll();
+		getCardTypeCRUDRepository().deleteAll();
 	}
 
 }
