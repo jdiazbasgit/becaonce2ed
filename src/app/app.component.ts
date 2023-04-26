@@ -9,18 +9,24 @@ import { PaisesService } from './paises.service';
 export class AppComponent {
   title:string ;
   flag:boolean;
+  continente:string="0";
+  paises:Array<string>=[]
+  paisSeleccionado:string="0"
 
   constructor(private service:PaisesService){
     this.title="estamos en un curso de angular empezando"
     this.flag=false
   }
 
-  cambiar():void{
+  
+
+  cargarPaises():void{
     this.flag=!this.flag;
-    this.service.dameDatos("https://restcountries.com/v3.1/region/europe")
+    this.service.dameDatos("https://restcountries.com/v3.1/region/"+this.continente)
     .subscribe((datos:any)=>{
+      this.paises=[];
       datos.forEach((pais:any) => {
-        console.log(pais.capital)
+        this.paises.push(pais.name.common)
       });
     })
   }

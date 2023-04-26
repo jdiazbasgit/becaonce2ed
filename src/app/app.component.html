@@ -1,11 +1,21 @@
-<<<<<<< HEAD
-<app-menu></app-menu>
+Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
+  <option value="0">Selecciona continente....</option>
+  <option value="europe">EUROPA</option>
+  <option value="asia">ASIA</option>
+  <option value="americas">AMERICA</option>
+  <option value="africa">AFRICA</option>
+  <option value="oceania">OCEANIA</option>
+</select> Paises:
+<select [(ngModel)]="paisSeleccionado">
+  <option value="0">Selecciona pais....</option>
+  <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
+</select><br>
+
+<ul>
+  <li><a routerLink="generales/{{paisSeleccionado}}">generales</a></li>
+  <li><a routerLink="geograficos/{{paisSeleccionado}}">geograficos</a></li>
+  <li><a routerLink="banderas/{{paisSeleccionado}}">banderas</a></li>
+  <li><a routerLink="fronteras/{{paisSeleccionado}}">fronteras</a></li>
+
+</ul>
 <router-outlet></router-outlet>
-=======
-<div class="container">
-  <h1 [ngClass]="{'text-danger':flag,'text-success':!flag}" >{{title}}</h1><br>
-  <input type="text" [(ngModel)]="title"><br>
-  <button (click)="cambiar()">cambiar</button>
-</div>
-<app-login></app-login>
->>>>>>> 184b25c0d034011f4f3dabb3ba52d0c463d84587

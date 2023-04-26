@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DosComponent } from './dos.component';
+import { GeneralesComponent } from './generales.component';
 
-describe('DosComponent', () => {
-  let component: DosComponent;
-  let fixture: ComponentFixture<DosComponent>;
+describe('GeneralesComponent', () => {
+  let component: GeneralesComponent;
+  let fixture: ComponentFixture<GeneralesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DosComponent ]
+      declarations: [ GeneralesComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DosComponent);
+    fixture = TestBed.createComponent(GeneralesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

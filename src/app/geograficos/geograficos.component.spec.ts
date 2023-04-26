@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnoComponent } from './uno.component';
+import { GeograficosComponent } from './geograficos.component';
 
-describe('UnoComponent', () => {
-  let component: UnoComponent;
-  let fixture: ComponentFixture<UnoComponent>;
+describe('GeograficosComponent', () => {
+  let component: GeograficosComponent;
+  let fixture: ComponentFixture<GeograficosComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UnoComponent ]
+      declarations: [ GeograficosComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UnoComponent);
+    fixture = TestBed.createComponent(GeograficosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

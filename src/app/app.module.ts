@@ -4,22 +4,19 @@ import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { PrimerComponenteComponent } from './primer-componente/primer-componente.component';
-import { UnoComponent } from './uno/uno.component';
-import { DosComponent } from './dos/dos.component';
-import { TresComponent } from './tres/tres.component';
-import { MenuComponent } from './menu/menu.component';
-import { LoginComponent } from './login/login.component';
+
+import { GeneralesComponent } from './generales/generales.component';
+import { GeograficosComponent } from './geograficos/geograficos.component';
+import { BanderasComponent } from './banderas/banderas.component';
+import { FronterasComponent } from './fronteras/fronteras.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PrimerComponenteComponent,
-    UnoComponent,
-    DosComponent,
-    TresComponent,
-    MenuComponent
-    LoginComponent
+    GeneralesComponent,
+    GeograficosComponent,
+    BanderasComponent,
+    FronterasComponent
   ],
   imports: [
     BrowserModule,
