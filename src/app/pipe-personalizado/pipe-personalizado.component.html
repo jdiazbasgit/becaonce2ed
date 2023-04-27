@@ -1,0 +1,24 @@
+<h1>numeros en ingles</h1>
+<ul>
+    <li *ngFor="let numero of numeros">{{numero | miPipe:'ingles'}}</li>
+</ul>
+
+<h1>numeros en español</h1>
+<ul>
+    <li *ngFor="let numero of numeros">{{numero | miPipe:'español'}}</li>
+</ul>
+
+<h1>numeros en portugues</h1>
+<ul>
+    <li *ngFor="let numero of numeros">{{numero | miPipe:'portugues'}}</li>
+</ul>
+
+<h1>numeros sin dioma conocido</h1>
+<ul>
+    <li *ngFor="let numero of numeros">{{numero | miPipe:'ruso'}}</li>
+</ul>
+
+<h1>numeros sin idioma</h1>
+<ul>
+    <li >{{1 | miPipe:'' | uppercase}}</li>
+</ul>

@@ -1,5 +1,7 @@
+
 Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
-  <option value="0">Selecciona continente....</option>
+  <!--<option value="0">Selecciona continente....</option>-->
+  <option value="0">{{textoContinente | pipeSelect:5}}</option>
   <option value="europe">EUROPA</option>
   <option value="asia">ASIA</option>
   <option value="americas">AMERICA</option>
@@ -7,7 +9,8 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
   <option value="oceania">OCEANIA</option>
 </select> Paises:
 <select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
-  <option value="0">Selecciona pais....</option>
+  <!--<option value="0">Selecciona pais....</option>-->
+  <option value="0">{{textoPais | pipeSelect:10}}</option>
   <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
 </select><br>
 
@@ -18,4 +21,18 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
   <li><a routerLink="fronteras/{{paisSeleccionado}}">fronteras</a></li>
 
 </ul>
+<h1>el texto es: {{title}}</h1>
+<h1>el texto en mayusculas es: {{title | uppercase}}</h1>
+<h1>el texto en minusculas  es: {{title | lowercase}}</h1>
+<h1>el texto partido  es: {{title | slice:10:20 | uppercase}}</h1>
+<h1>el numero es: {{edad}}</h1>
+<h1>el numero como moneda es: {{edad | currency:'EUR'}}</h1>
+<h1>el numero en porcentaje  es: {{edad | percent}}</h1>
+<h1>La fecha  es: {{fecha}}</h1>
+<h1>La fecha formateada es: {{fecha | date:'short' }}</h1>
+<h1>La fecha formateada es: {{fecha | date:'long' }}</h1>
+<h1>La fecha formateada es: {{fecha | date:'dd/MM/yy' }}</h1>
+
+
 <router-outlet></router-outlet>
+<app-pipe-personalizado></app-pipe-personalizado>
