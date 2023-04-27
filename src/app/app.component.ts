@@ -18,12 +18,14 @@ export class AppComponent {
     this.flag=false
   }
 
-  
+  cambiarPais(){
+
+  }
 
   cargarPaises():void{
     this.flag=!this.flag;
     this.service.dameDatos("https://restcountries.com/v3.1/region/"+this.continente)
-    .subscribe((datos:any)=>{
+    .then((datos:any)=>{
       this.paises=[];
       datos.forEach((pais:any) => {
         this.paises.push(pais.name.common)
