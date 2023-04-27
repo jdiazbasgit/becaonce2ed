@@ -21,9 +21,9 @@ export class GeneralesComponent implements OnInit {
   ngOnInit(): void {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
 
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+    
     console.log("pais:" + this.paisEnRuta)
-    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
+    this.service.dameDatos("https://restcountries.com/v3.1/all/" + this.paisEnRuta)
 
       .subscribe((datos: any) => {
         console.log(datos)
