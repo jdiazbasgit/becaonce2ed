@@ -30,10 +30,7 @@ export class FronterasComponent implements OnInit {
         console.log(datos)
         this.datos = datos[0];
         this.fronteras = datos.borders;
-      })
-   
-
-   
+      })   
   }
 
 }

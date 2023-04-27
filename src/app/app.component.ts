@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PaisesService } from './paises.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,22 +9,19 @@ import { PaisesService } from './paises.service';
 })
 export class AppComponent {
   title:string ;
-  flag:boolean;
   continente:string="0";
   paises:Array<string>=[]
   paisSeleccionado:string="0"
 
-  constructor(private service:PaisesService){
+  constructor(private service:PaisesService, private router:Router){
     this.title="estamos en un curso de angular empezando"
-    this.flag=false
   }
 
-  cambiarPais(){
-
+  cambiarPais(){    
+    this.router.navigate(['generales/', this.paisSeleccionado])
   }
 
   cargarPaises():void{
-    this.flag=!this.flag;
     this.service.dameDatos("https://restcountries.com/v3.1/region/"+this.continente)
     .then((datos:any)=>{
       this.paises=[];

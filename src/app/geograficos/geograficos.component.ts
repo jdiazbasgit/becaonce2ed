@@ -9,13 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 export class GeograficosComponent {
   paisEnRuta:string=""
 
-  constructor(private rutaActiva:ActivatedRoute){
+ // constructor(private rutaActiva:ActivatedRoute){
     
-  }
+  //}
     
     
-    ngOnInit(): void {
-      this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
-    }
+    //ngOnInit(): void {
+   //   this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
+    //}
   
 }
