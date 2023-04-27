@@ -8,13 +8,17 @@ import { PaisesService } from './paises.service';
 })
 export class AppComponent {
   title:string ;
+  edad:number=234;
+  fecha:Date= new Date()
   flag:boolean;
   continente:string="0";
   paises:Array<string>=[]
   paisSeleccionado:string="0"
+  textoContinente:string="continente";
+  textoPais:string="pais";
 
   constructor(private service:PaisesService){
-    this.title="estamos en un curso de angular empezando"
+    this.title="estamos en un CURSO de angular empezando"
     this.flag=false
   }
 
