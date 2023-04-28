@@ -9,7 +9,7 @@ import { PaisesService } from '../paises.service';
 })
 export class GeneralesComponent implements OnInit {
   paisEnRuta: string = ""
-  datos: any;
+  datos: any
   datosGenerales: Array<string> = []
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
@@ -17,7 +17,7 @@ export class GeneralesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("entro en on init")
+    console.log("entro en on init generales")
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta)

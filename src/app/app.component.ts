@@ -18,7 +18,7 @@ export class AppComponent {
   }
 
   cambiarPais(){    
-    this.router.navigate(['generales/', this.paisSeleccionado])
+    this.router.navigate(['generales/', this.paisSeleccionado])    
   }
 
   cargarPaises():void{
