@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pipe-personalizado.component.css']
 })
 export class PipePersonalizadoComponent {
-  numeros:Array<number>=[1,2,3,4,5,6,7]
+  numeros:Array<number>=[1,2,3,4,5,6,7,8,9]
 }
