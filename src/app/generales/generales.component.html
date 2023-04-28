@@ -1,92 +1,10 @@
-<p>generales works!</p>
+<div class = "container">
 
-<div class="container">
-    <header>
-      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
-        align="left" width="227" height="156">
-      <img src="https://image.shutterstock.com/image-vector/cartoon-planet-earth-on-white-260nw-2140149873.jpg"
-        align="right" width="227" height="156">
-      <div class="container-fluid p-5 bg-success text-white text-center ">
-
-        <h1>PAISES DEL MUNDO</h1>
-      </div>
-    </header>
-
-    <div class="container mt-3">
-      <ul class="nav nav-pills nav-justified">
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos generales</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Datos geograficos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Traducción</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-success" href="#">Banderas</a>
-        </li>
-      </ul>
-    </div>
-    <div class="row mt-5">
-      <div class="col">
-        <h2>Seleccione continente</h2>
-        <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success" id="sel1" name="sellist1" onchange="cargarPaises(this.value)">
-          <option value="europe" onclick="cargarPaises(europe)">Europa</option>
-          <option value="americas" onclick="cargarPaises(americas)">America</option>
-          <option value="asia" onclick="cargarPaises(asia)">Asia</option>
-          <option value="africa" onclick="cargarPaises(africa)">Africa</option>
-          <option value="oceania" onclick="cargarPaises(oceania)">Oceania</option>
-        </select>
-      </div>
-      <div class="col">
-        <h2>Seleccione país</h2>
-        <label for="sel1" class="form-label"></label>
-        <select class="form-select bg-success " id="paises" name="sellist1" onchange="cargarPaises(paisesSelect)">
-          <option></option>
-        </select>
-      </div>
-    </div>
-    <div class="mx-auto w-50 mt-3 container-fluid" id="datos">
-      <table class="w-100">
-        <tr>
-          <td colspan="2">
-            <h3 class="mx-auto" id="capital" onchange="dameDatos()">Capital:</h3>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <h3 id="poblacion" onchange="dameDatos()">Población: </h3>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <h3 id="area" onchange="dameDatos()">Área: </h3>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-            <h3>Moneda:</h3>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td>
-            <h3 id="nombreMoneda" onchange="dameDatos()">nombre: Euro</h3>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <td>
-            <h3 id="simbolo" onchange="dameDatos()">Símbolo: €</h3>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <h1>{{datos?.name?.common}}</h1>
+  <p>Poblacion: {{datos?.population}}</p>
+  <p>Longitud: {{datos?.latlng[1] }}</p>
+  <p>Latitud: {{datos?.latlng[0] }}</p>
+  <p>Capital: {{datos?.capital[0] }}</p>
+  <p *ngFor = "let moneda of monedas">Moneda: {{moneda.name}}</p>
+  <p *ngFor = "let moneda of monedas">Símbolo: {{moneda.symbol}}</p>
+</div> 

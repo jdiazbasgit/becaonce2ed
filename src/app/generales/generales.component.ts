@@ -8,7 +8,7 @@ import { PaisesService } from '../paises.service';
   styleUrls: ['./generales.component.css']
 })
 export class GeneralesComponent implements OnInit {
-  paisEnRuta:string="";
+  paisEnRuta:string = "";
   datos: any;
   monedas:Array<any> = [];
 
