@@ -14,7 +14,7 @@ export class PaisesService {
       fetch(url).then(response=>{
         console.log(response)
         return response.json()
-        
+
       })
       .then(datos=>resolve(datos)).catch(error=>reject(error));
     })

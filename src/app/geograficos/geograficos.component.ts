@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,16 +6,15 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './geograficos.component.html',
   styleUrls: ['./geograficos.component.css']
 })
-export class GeograficosComponent {
+export class GeograficosComponent implements OnInit {
   paisEnRuta:string=""
 
   constructor(private rutaActiva:ActivatedRoute){
-    
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
-    
-    
+
     ngOnInit(): void {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
     }
-  
+
 }
