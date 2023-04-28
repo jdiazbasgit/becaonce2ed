@@ -12,6 +12,9 @@ import { FronterasComponent } from './fronteras/fronteras.component';
 import { PipePersonalizadoComponent } from './pipe-personalizado/pipe-personalizado.component';
 import { MiPipePipe } from './mi-pipe.pipe';
 import { PipeSelectPipe } from './pipe-select.pipe';
+import { MiDirectivaDirective } from './mi-directiva.directive';
+import { EjemploDirecTIVAComponent } from './ejemplo-direc-tiva/ejemplo-direc-tiva.component';
+import { DirectivaEventoDirective } from './directiva-evento.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { PipeSelectPipe } from './pipe-select.pipe';
     FronterasComponent,
     PipePersonalizadoComponent,
     MiPipePipe,
-    PipeSelectPipe
+    PipeSelectPipe,
+    MiDirectivaDirective,
+    EjemploDirecTIVAComponent,
+    DirectivaEventoDirective
   ],
   imports: [
     BrowserModule,
