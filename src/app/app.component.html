@@ -1,7 +1,7 @@
 
 Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
   <!--<option value="0">Selecciona continente....</option>-->
-  <option value="0">{{textoContinente | pipeSelect:5}}</option>
+  <option value="0">{{textoContinente | pipeSelect:3}}</option>
   <option value="europe">EUROPA</option>
   <option value="asia">ASIA</option>
   <option value="americas">AMERICA</option>
@@ -10,7 +10,7 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
 </select> Paises:
 <select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
   <!--<option value="0">Selecciona pais....</option>-->
-  <option value="0">{{textoPais | pipeSelect:10}}</option>
+  <option value="0">{{textoPais | pipeSelect:3}}</option>
   <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
 </select><br>
 
@@ -32,6 +32,7 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
 <h1>La fecha formateada es: {{fecha | date:'short' }}</h1>
 <h1>La fecha formateada es: {{fecha | date:'long' }}</h1>
 <h1>La fecha formateada es: {{fecha | date:'dd/MM/yy' }}</h1>
+<h1>La fecha formateada es: {{fecha | date:'dd/MM/yyyy' }}</h1>
 
 
 <router-outlet></router-outlet>

@@ -13,7 +13,6 @@ import { PipePersonalizadoComponent } from './pipe-personalizado/pipe-personaliz
 import { MiPipePipe } from './mi-pipe.pipe';
 import { PipeSelectPipe } from './pipe-select.pipe';
 
-
 @NgModule({
   declarations: [
     AppComponent,
