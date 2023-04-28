@@ -9,7 +9,7 @@ import { PaisesService } from '../paises.service';
   templateUrl: './fronteras.component.html',
   styleUrls: ['./fronteras.component.css']
 })
-export class FronterasComponent implements OnInit {
+export class FronterasComponent implements OnInit,OnChanges {
 
   //@Input() pais:string | undefined="";
   paisEnRuta: string = ""
@@ -18,6 +18,9 @@ export class FronterasComponent implements OnInit {
   fronteras: Array<string> = []
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+  }
+  ngOnChanges(changes: SimpleChanges): void {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
   ngOnInit(): void {
