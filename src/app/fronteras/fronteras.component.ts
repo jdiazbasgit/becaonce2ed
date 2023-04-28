@@ -26,8 +26,8 @@ export class FronterasComponent implements OnInit {
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta)
-    this.service.dameDatos("https://restcountries.com/v3.1/all/" + this.paisEnRuta)
-      .subscribe((datos: any) => {
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
+      .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
         this.fronteras = datos.any;

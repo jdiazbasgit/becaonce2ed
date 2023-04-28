@@ -1,14 +1,15 @@
 <div class="container">
 
-    <h1 *ngFor="let frontera of datos?.borders">{{monedas}}</h1>
+    <h1 *ngFor="let generales of datos?.borders">{{generales}}</h1>
     <h1>{{datos?.all?.common}}</h1>
 
     <p>Capital: {{datos?.capital[0]}}</p>
     <p>Poblacion: {{datos?.population}}</p>
-    <p>Longitud: {{datos?.latlng[1]}}</p>
-    <p>Latitud: {{datos?.latlng[0]}}</p>
+    <p>area: {{datos?.area}}</p>
+    <p>Latitud: {{datos?.latlng}}</p>
+
     <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}}</p>
-    <p *ngFor="let moneda of monedas">Simbolo:{{moneda.Simbol}}</p>
+    <p *ngFor="let moneda of monedas">Simbol:{{moneda.Simbol}}</p>
 
 
 

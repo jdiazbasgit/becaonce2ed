@@ -23,9 +23,9 @@ export class GeneralesComponent implements OnInit {
 
     
     console.log("pais:" + this.paisEnRuta)
-    this.service.dameDatos("https://restcountries.com/v3.1/all/" + this.paisEnRuta)
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
 
-      .subscribe((datos: any) => {
+      .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
 

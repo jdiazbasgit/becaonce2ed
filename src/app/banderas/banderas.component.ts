@@ -10,7 +10,10 @@ import { PaisesService } from '../paises.service';
 export class BanderasComponent {
   paisEnRuta: string = ""
   banderas: Array<any> = []
-  datos: any
+  datos: any;
+  escudo: string = "";
+  flag: boolean = true;
+
 
   constructor(private rutaActiva: ActivatedRoute) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais']
@@ -23,14 +26,14 @@ export class BanderasComponent {
 
 
     console.log("pais:" + this.paisEnRuta)
-    this.datos.dameDatos("https://restcountries.com/v3.1/all/" + this.paisEnRuta)
+    this.datos.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
 
-      .subscribe((datos: any) => {
+      .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
-
-        Object.keys(this.datos.currencies).forEach(moneda => this.banderas.push(this.datos.currencies[moneda]))
-
+        this.escudo = datos.coatOfArms.png;
+        this.banderas = datos.flags.png;
+       
       });
   }
 
