@@ -17,6 +17,7 @@ export class BanderasComponent implements OnInit {
   flag: boolean = true;
   fronteras: Array<string> = []
   banderas: string = '';
+  escudo: string='';
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
@@ -32,6 +33,7 @@ export class BanderasComponent implements OnInit {
         this.datos = datos[0];
         this.fronteras = datos.borders;
         this.banderas = this.datos.flags.png;
+        this.escudo=datos.coatOfArms.png;
       })
    
 

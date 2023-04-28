@@ -14,8 +14,8 @@ export class GeograficosComponent implements OnInit {
   datos: any;
   flag: boolean = true;
   fronteras: Array<string> = []
-  banderas: string = '';
-  geograficos : string='';
+  nombre : string='';
+  posicionEnElContinente: string='';
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
@@ -30,8 +30,9 @@ export class GeograficosComponent implements OnInit {
         console.log(datos)
         this.datos = datos[0];
         this.fronteras = datos.borders;
-        this.banderas = this.datos.flags.png;
-        this.geograficos = this.datos.region;
+        this.nombre = datos.region;
+        this.posicionEnElContinente = datos.subregion;
+      
 
       })
    
