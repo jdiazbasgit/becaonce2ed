@@ -1,17 +1,12 @@
+
+
 <div class="container">
 
-    <table>
-        <tr>
+    <h1 *ngFor="let banderas of datos?.flags">{{banderas}}</h1>
+    
+    <h1>{{datos?.name.flags}}</h1>
 
-            <h1>{{datos?.name.common}}</h1>
+    <img src={{banderas}}>
+    <img src={{datos.coatOfArms.png}}>
 
-            <td>
-
-                <img src={{banderas}}>
-            </td>
-            <td>
-                <img src={{datos.coatOfArms.png}}>
-            </td>
-        </tr>
-    </table>
 </div>

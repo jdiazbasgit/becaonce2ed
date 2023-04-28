@@ -30,9 +30,9 @@ export class BanderasComponent {
 
       .then((datos: any) => {
         console.log(datos)
-        this.datos = datos[0];
-        this.escudo = datos.coatOfArms.png;
-        this.banderas = datos.flags.png;
+        this.datos = datos[1];
+        this.escudo = this.datos.coatOfArms.png;
+        this.banderas = this.datos.flags.png;
        
       });
   }
