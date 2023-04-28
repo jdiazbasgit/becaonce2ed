@@ -1,10 +1,10 @@
 <div class="container">
-    Nombre nativo:<h1  *nFor="let generales of datos?.name.common"></h1><br>
-    Poblacion total:<br>
-    Region:<br>
-    Sub-Region:<br>
-    Capital:<br>
-    Area:<br>
-    Idiomas:<br>
+    Nombre nativo:<h2>{{datos?.name?.common}}</h2>
+    Poblacion total:{{datos?.population}}<br>
+    Region:{{datos?.region}} <br>
+    Sub-Region:{{datos?.region?.subregion}} <br>
+    Capital: {{datos?.capital}} <br>
+    Area: {{datos?.latlng?.area}} <br>
+    Idiomas: {{datos?.languages?.eng}} <br>
 
 </div>

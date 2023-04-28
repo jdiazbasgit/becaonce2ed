@@ -10,7 +10,7 @@ import { PaisesService } from '../paises.service';
 export class GeneralesComponent {
   paisEnRuta:string="";
   datos: any;
-  generales: Array<string> = [];
+  monedas: Array<any> = [];
 
   constructor(private rutaActiva:ActivatedRoute, private service: PaisesService){
     
@@ -18,11 +18,11 @@ export class GeneralesComponent {
    
     ngOnInit(): void {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
-      this.service.dameDatos("https://restcountries.com/v3.1/name/{name}?fullText=true")
-      .then((datos: any) =>{
-        console.log(datos);
+      this.service.dameDatos("https://restcountries.com/v3.1/name/name/" + this.paisEnRuta)
+      .suscribe((datos: any) =>{
+        
         this.datos = datos[0];
-        this.generales = datos.borders;
+        Object.keys(this.datos.currencies).forEach(moneda=>this.monedas.push(this.datos.currencies[moneda]))
       })
     }
   
