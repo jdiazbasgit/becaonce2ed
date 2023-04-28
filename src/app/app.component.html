@@ -1,6 +1,6 @@
 
-Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
-  <!--<option value="0">Selecciona continente....</option>-->
+<!--Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
+ <option value="0">Selecciona continente....</option>
   <option value="0">{{textoContinente | pipeSelect:3}}</option>
   <option value="europe">EUROPA</option>
   <option value="asia">ASIA</option>
@@ -9,7 +9,7 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
   <option value="oceania">OCEANIA</option>
 </select> Paises:
 <select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
-  <!--<option value="0">Selecciona pais....</option>-->
+ <option value="0">Selecciona pais....</option>
   <option value="0">{{textoPais | pipeSelect:3}}</option>
   <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
 </select><br>
@@ -36,4 +36,9 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
 
 
 <router-outlet></router-outlet>
-<app-pipe-personalizado></app-pipe-personalizado>
+-->
+
+
+<!--<app-pipe-personalizado></app-pipe-personalizado>-->
+
+<app-ejemplo-directiva></app-ejemplo-directiva>

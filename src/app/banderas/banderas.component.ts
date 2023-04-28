@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PaisesService } from '../paises.service';
 
 @Component({
   selector: 'app-banderas',
@@ -7,15 +8,29 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./banderas.component.css']
 })
 export class BanderasComponent {
-  paisEnRuta:string=""
+  paisEnRuta: string = ""
+  datos: any
+  rutaBandera: string = ""
+  rutaEscudo: String = ""
 
-  constructor(private rutaActiva:ActivatedRoute){
-    
+  constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
-    
-    
-    ngOnInit(): void {
-      this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
-    }
-  
+
+
+  ngOnInit(): void {
+    console.log("entro en on init")
+
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+    console.log("pais:" + this.paisEnRuta)
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
+      .then((datos: any) => {
+        console.log(datos)
+        this.datos = datos[0];
+        this.rutaBandera = this.datos.flags.png
+        this.rutaEscudo = this.datos.coatOfArms.png
+      })
+
+  }
+
 }
