@@ -12,10 +12,7 @@ export class GeneralesComponent {
   constructor(private rutaActiva:ActivatedRoute){
     
   }
-    ngDoCheck(): void {
-      this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
-    }
-    
+   
     ngOnInit(): void {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
     }

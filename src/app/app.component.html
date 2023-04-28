@@ -6,7 +6,7 @@ Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
   <option value="africa">AFRICA</option>
   <option value="oceania">OCEANIA</option>
 </select> Paises:
-<select [(ngModel)]="paisSeleccionado">
+<select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
   <option value="0">Selecciona pais....</option>
   <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
 </select><br>
