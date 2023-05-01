@@ -13,11 +13,13 @@ export class GeneralesComponent {
   monedas: Array<any> = [];
 
   constructor(private rutaActiva:ActivatedRoute, private service: PaisesService){
-    
+    this.paisEnRuta = this.rutaActiva.snapshot.params ['pais'];
   }
    
     ngOnInit(): void {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
+      
+      console.log("pais: " + this.paisEnRuta);
       this.service.dameDatos("https://restcountries.com/v3.1/name/name/" + this.paisEnRuta)
       .suscribe((datos: any) =>{
         
@@ -25,5 +27,4 @@ export class GeneralesComponent {
         Object.keys(this.datos.currencies).forEach(moneda=>this.monedas.push(this.datos.currencies[moneda]))
       })
     }
-  
 }

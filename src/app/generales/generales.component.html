@@ -6,5 +6,7 @@
     Capital: {{datos?.capital}} <br>
     Area: {{datos?.latlng?.area}} <br>
     Idiomas: {{datos?.languages?.eng}} <br>
+    <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}} </p>
+    <p *ngFor="let moneda of monedas">Simbolo: {{moneda.symbol}} </p>
 
 </div>
