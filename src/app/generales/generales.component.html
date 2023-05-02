@@ -1,13 +1,16 @@
 <div class="container">
 
-    <h1>{{ datos.name.common }}</h1>
-    <p> Poblacion total: {{datos.population}}</p>
-    <p> Region: {{datos.region}} </p>
-    <p> Sub-Region: {{datos.region.subregion}} </p>
-    <p> Capital: {{datos.capital}} </p>
-    <p> Area: {{datos.latlng.area}} </p>
-    <p> Idiomas: {{datos.languages.eng}} </p>
-    <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}} </p>
-    <p *ngFor="let moneda of monedas">Simbolo: {{moneda.symbol}} </p>
-    
+    <h2> {{datos?.name.common}} </h2>
+    <p>
+        Poblacion: {{datos?.population}} <br>
+        Longitud: {{datos?.latlng[1]}} <br>
+        Latitud: {{datos?.latlng[0]}} <br>
+        Capital: {{datos?.capital[0]}} <br>
+    </p>
+
+    <p *ngFor="let moneda of monedas">
+        Moneda: {{moneda.name}} <br>
+        Simbolo: {{moneda.symbol}} <br>
+    </p>
+        
 </div>
