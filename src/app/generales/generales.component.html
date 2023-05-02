@@ -1,12 +1,12 @@
 <div class="container">
 
-    Nombre nativo:<h2>{{datos?.name?.common}}</h2>
-    Poblacion total:{{datos?.population}}<br>
-    Region:{{datos?.region}} <br>
-    Sub-Region:{{datos?.region?.subregion}} <br>
-    Capital: {{datos?.capital}} <br>
-    Area: {{datos?.latlng?.area}} <br>
-    Idiomas: {{datos?.languages?.eng}} <br>
+    <h1>{{ datos.name.common }}</h1>
+    <p> Poblacion total: {{datos.population}}</p>
+    <p> Region: {{datos.region}} </p>
+    <p> Sub-Region: {{datos.region.subregion}} </p>
+    <p> Capital: {{datos.capital}} </p>
+    <p> Area: {{datos.latlng.area}} </p>
+    <p> Idiomas: {{datos.languages.eng}} </p>
     <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}} </p>
     <p *ngFor="let moneda of monedas">Simbolo: {{moneda.symbol}} </p>
     

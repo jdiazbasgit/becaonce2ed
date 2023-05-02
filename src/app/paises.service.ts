@@ -17,7 +17,7 @@ export class PaisesService {
         
       })
       .then(datos=>resolve(datos)).catch(error=>reject(error));
-    })
+    });
   }
 
 }

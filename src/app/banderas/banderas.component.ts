@@ -22,12 +22,13 @@ export class BanderasComponent {
       
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
       console.log("pais:"+ this.paisEnRuta)
-      this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta).then((datos: any)=>{
+      this.service.dameDatos("https://restcountries.com/v3.1/name/" + 
+      this.paisEnRuta).then((datos: any)=>{
         console.log(datos)
         this.datos = datos[0];
         this.rutaBandera = this.datos.flags.png;
         this.rutaEscudo = this.datos.coatOfArms.png;
-      })
+      });
     }
   
 }
