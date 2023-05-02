@@ -21,7 +21,7 @@ export class GeneralesComponent implements OnInit {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
       
       this.service.dameDatos("https://restcountries.com/v3.1/name/name/" + 
-      this.paisEnRuta).then((datos: any) =>{
+      this.paisEnRuta).subscribe((datos: any) =>{
         this.datos = datos[0];
         Object.keys(this.datos.currencies).forEach(moneda=>this.monedas
           .push(this.datos.currencies[moneda]))
