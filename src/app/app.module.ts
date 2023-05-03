@@ -9,7 +9,8 @@ import { GeneralesComponent } from './generales/generales.component';
 import { GeograficosComponent } from './geograficos/geograficos.component';
 import { BanderasComponent } from './banderas/banderas.component';
 import { FronterasComponent } from './fronteras/fronteras.component';
-import { NombreFrontera1Pipe } from './nombre-frontera1.pipe';
+import { NombreFrontera1Pipe } from './components/pipes/nombre-frontera1.pipe';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NombreFrontera1Pipe } from './nombre-frontera1.pipe';
     GeograficosComponent,
     BanderasComponent,
     FronterasComponent,
-    NombreFrontera1Pipe
+    NombreFrontera1Pipe,
+    
   ],
   imports: [
     BrowserModule,
