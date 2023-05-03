@@ -6,16 +6,17 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './banderas.component.html',
   styleUrls: ['./banderas.component.css']
 })
-export class BanderasComponent {
-  paisEnRuta:string=""
 
-  constructor(private rutaActiva:ActivatedRoute){
-    
+export class BanderasComponent {
+  paisEnRuta: string = ""
+
+  constructor(private rutaActiva: ActivatedRoute) {
+
   }
-    
-    
-    ngOnInit(): void {
-      this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
-    }
-  
+
+
+  ngOnInit(): void {
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+  }
+
 }
