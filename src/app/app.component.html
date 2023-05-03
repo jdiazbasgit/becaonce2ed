@@ -1,5 +1,5 @@
 
-<!--Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
+Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
  <option value="0">Selecciona continente....</option>
   <option value="0">{{textoContinente | pipeSelect:3}}</option>
   <option value="europe">EUROPA</option>
@@ -18,10 +18,11 @@
   <li><a routerLink="generales/{{paisSeleccionado}}">generales</a></li>
   <li><a routerLink="geograficos/{{paisSeleccionado}}">geograficos</a></li>
   <li><a routerLink="banderas/{{paisSeleccionado}}">banderas</a></li>
-  <li><a routerLink="fronteras/{{paisSeleccionado}}">fronteras</a></li>
+  <li><a routerLink="fronteras/{{paisSeleccionado|nombreFrontera}}">fronteras</a></li>
 
 </ul>
-<h1>el texto es: {{title}}</h1>
+
+<!--<h1>el texto es: {{title}}</h1>
 <h1>el texto en mayusculas es: {{title | uppercase}}</h1>
 <h1>el texto en minusculas  es: {{title | lowercase}}</h1>
 <h1>el texto partido  es: {{title | slice:10:20 | uppercase}}</h1>
@@ -39,6 +40,6 @@
 -->
 
 
-<!--<app-pipe-personalizado></app-pipe-personalizado>-->
+<app-pipe-personalizado></app-pipe-personalizado>
 
-<app-ejemplo-directiva></app-ejemplo-directiva>
+<!--<app-ejemplo-directiva></app-ejemplo-directiva>-->

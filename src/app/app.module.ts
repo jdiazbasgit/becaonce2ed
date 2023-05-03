@@ -15,6 +15,7 @@ import { PipeSelectPipe } from './pipe-select.pipe';
 import { MiDirectivaDirective } from './mi-directiva.directive';
 import { EjemploDirecTIVAComponent } from './ejemplo-direc-tiva/ejemplo-direc-tiva.component';
 import { DirectivaEventoDirective } from './directiva-evento.directive';
+import { NombreFronteraPipe } from './nombre-frontera.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DirectivaEventoDirective } from './directiva-evento.directive';
     PipeSelectPipe,
     MiDirectivaDirective,
     EjemploDirecTIVAComponent,
-    DirectivaEventoDirective
+    DirectivaEventoDirective,
+    NombreFronteraPipe
   ],
   imports: [
     BrowserModule,
