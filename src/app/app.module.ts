@@ -12,6 +12,7 @@ import { FronterasComponent } from './fronteras/fronteras.component';
 import { PruebasPipesComponent } from './pruebas-pipes/pruebas-pipes.component';
 import { PipeIdiomasPipe } from './pipe-idiomas.pipe';
 import { PipeColoresPipe } from './pipe-colores.pipe';
+import { PipeAcronimosPipe } from './pipe-acronimos.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PipeColoresPipe } from './pipe-colores.pipe';
     PipeIdiomasPipe,
     PruebasPipesComponent,
     PipeColoresPipe,
+    PipeAcronimosPipe,
   ],
   imports: [
     BrowserModule,

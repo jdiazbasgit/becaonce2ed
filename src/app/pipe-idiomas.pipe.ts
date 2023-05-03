@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PipeIdiomasPipe implements PipeTransform {
 
 transform(value: number, ...args: string[]): string {
+  console.log("entrando pipe numeros")
     if(args[0]!='')
     {
       if(args[0]=='ingles'){

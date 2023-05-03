@@ -18,7 +18,6 @@ export class GeneralesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("entro en on init generales")
-
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta)
     this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
@@ -31,6 +30,10 @@ export class GeneralesComponent implements OnInit {
         this.datosGenerales.push("Simbolo: "+ this.obtenerSimbolo())
         console.log(this.datosGenerales)
       })
+  }
+
+  recarga(): void {
+    this.ngOnInit()
   }
 
   obtenerMonedas():string {

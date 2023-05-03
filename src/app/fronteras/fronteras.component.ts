@@ -14,11 +14,11 @@ export class FronterasComponent implements OnInit {
   //@Input() pais:string | undefined="";
   paisEnRuta: string = ""
   datos: any;
-  flag: boolean = true;
   fronteras: Array<string> = []
+  fronterasAcronimos: Array<string> = []
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+    //this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
   ngOnInit(): void {
     console.log("entro en on init")
@@ -29,7 +29,24 @@ export class FronterasComponent implements OnInit {
       .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
-        this.fronteras = datos.borders;
+        console.log(datos[0].borders)
+        if (datos[0].borders != undefined){
+          this.fronteras = datos[0].borders
+
+          //***Lo sacamos al Pipe Acronimos */
+          //this.fronterasAcronimos = datos[0].borders
+          // this.fronterasAcronimos.forEach(acronimo => {
+          //   this.service.dameDatos("https://restcountries.com/v3.1/alpha/"+acronimo)
+          //     .then((datosPaisAcronimo: any) =>{
+          //       this.fronteras.push(datosPaisAcronimo[0].name.common)
+          //     }
+          //   )
+          //   }
+          // );
+        }
+        else{
+          this.fronteras = ["Este país no tiene fronteras declaradas"]
+        }
       })   
   }
 

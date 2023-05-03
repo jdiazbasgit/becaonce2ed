@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PaisesService } from './paises.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:string ;
-  continente:string="0";
+  title:string 
+  continente:string="0"
   paises:Array<string>=[]
   paisSeleccionado:string="0"
 
-  constructor(private service:PaisesService, private router:Router){
+  constructor(private service:PaisesService, private router:Router, private rutaActiva: ActivatedRoute){
     this.title="estamos en un curso de angular empezando"
   }
 
-  cambiarPais(){    
-    this.router.navigate(['generales/', this.paisSeleccionado])    
+  cambiarPais(){  
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl("generales/"+this.paisSeleccionado);
+    });
   }
 
   cargarPaises():void{
@@ -30,6 +32,5 @@ export class AppComponent {
       });
     })
   }
-
 
 }

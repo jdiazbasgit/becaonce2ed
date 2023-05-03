@@ -1,24 +1,27 @@
-Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
-  <option value="0">Selecciona continente....</option>
-  <option value="europe">EUROPA</option>
-  <option value="asia">ASIA</option>
-  <option value="americas">AMERICA</option>
-  <option value="africa">AFRICA</option>
-  <option value="oceania">OCEANIA</option>
-</select> Paises:
+<div class="container mt-5">
+  Continente: <select [(ngModel)]="continente" (change)="cargarPaises()">
+    <option value="0">Selecciona continente....</option>
+    <option value="europe">EUROPA</option>
+    <option value="asia">ASIA</option>
+    <option value="americas">AMERICA</option>
+    <option value="africa">AFRICA</option>
+    <option value="oceania">OCEANIA</option>
+  </select> Paises:
 
-<select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
-  <option value="0">Selecciona pais....</option>
-  <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
-</select><br>
+  <select [(ngModel)]="paisSeleccionado" (change)="cambiarPais()">
+    <option value="0">Selecciona pais....</option>
+    <option value="{{pais}}" *ngFor="let pais of paises">{{pais}}</option>
+  </select><br>
 
-<ul>
-  <li><a routerLink="generales/{{paisSeleccionado}}">generales</a></li>
-  <li><a routerLink="geograficos/{{paisSeleccionado}}">geograficos</a></li>
-  <li><a routerLink="banderas/{{paisSeleccionado}}">banderas</a></li>
-  <li><a routerLink="fronteras/{{paisSeleccionado}}">fronteras</a></li>
-</ul>
+  <ul>
+    <li><a routerLink="generales/{{paisSeleccionado}}">generales</a></li>
+    <li><a routerLink="geograficos/{{paisSeleccionado}}">geograficos</a></li>
+    <li><a routerLink="banderas/{{paisSeleccionado}}">banderas</a></li>
+    <li><a routerLink="fronteras/{{paisSeleccionado}}">fronteras</a></li>
+    <li><a routerLink="pruebaspipes/{{paisSeleccionado}}">pruebaspipes</a></li>
+  </ul>
 
 
-<router-outlet></router-outlet>
-<app-pruebas-pipes></app-pruebas-pipes>
+  <router-outlet></router-outlet>
+  <!-- <app-pruebas-pipes></app-pruebas-pipes> -->
+</div>
