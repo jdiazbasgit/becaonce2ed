@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./ejemplo-direc-tiva.component.css']
 })
 export class EjemploDirecTIVAComponent {
-
+aa:string="hola"
 }
