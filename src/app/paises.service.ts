@@ -1,3 +1,4 @@
+// paises.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -5,12 +6,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PaisesService {
+  constructor(private service: HttpClient) { }
 
-  constructor(private service:HttpClient) { }
-
-  dameDatos(url:string):any{
+  dameDatos(url: string): any {
     return this.service.get(url);
-  
   }
-
 }
