@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaisesService } from '../paises.service';
 
@@ -7,30 +7,21 @@ import { PaisesService } from '../paises.service';
   templateUrl: './banderas.component.html',
   styleUrls: ['./banderas.component.css']
 })
-export class BanderasComponent {
-  paisEnRuta: string = ""
-  datos: any
-  rutaBandera: string = ""
-  rutaEscudo: String = ""
+export class BanderasComponent implements OnInit {
+  paisSeleccionado: string = '';
+  banderaUrl: string = '';
+  escudoUrl: string = '';
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+    this.paisSeleccionado = this.rutaActiva.snapshot.params['pais'];
   }
-
 
   ngOnInit(): void {
-    console.log("entro en on init")
-
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
-    console.log("pais:" + this.paisEnRuta)
-    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
-      .then((datos: any) => {
-        console.log(datos)
-        this.datos = datos[0];
-        this.rutaBandera = this.datos.flags.png
-        this.rutaEscudo = this.datos.coatOfArms.png
-      })
-
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisSeleccionado)
+      .subscribe((datos: any) => {
+        const banderaUrl = datos[0]?.flags?.svg || '';
+        this.banderaUrl = banderaUrl;
+      });
   }
-
 }
+

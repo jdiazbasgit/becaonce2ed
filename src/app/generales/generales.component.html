@@ -1,1 +1,9 @@
-<p>generales works!</p>
+<div class="container">
+    <h1>{{ datos?.name?.common }}</h1>
+    <p>Población: {{ datos?.population }}</p>
+    <p>Longitud: {{ datos?.latlng[1] }}</p>
+    <p>Latitud: {{ datos?.latlng[0] }}</p>
+    <p>Capital: {{ datos?.capital[0] }}</p>
+    <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}}</p>
+    <p *ngFor="let moneda of monedas">Símbolo: {{moneda.symbol}}</p>
+  </div>

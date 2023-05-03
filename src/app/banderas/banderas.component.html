@@ -1,9 +1,7 @@
 <div class="container">
     
-    <h1 class="text-secondary">Bandera</h1>  
-    <img class="img-fluid tarjetabandera m-5 rounded" src={{rutaBandera}}>
-    
-    <h1 class="text-secondary">Escudo</h1>
-    <img class="img-fluid tarjetabandera m-5 rounded" src={{rutaEscudo}}>
+    <h1>Bandera y Escudo de {{ paisSeleccionado }}</h1>
+    <img [src]="banderaUrl" alt="Bandera de {{ paisSeleccionado }}" width="200">
+    <img [src]="escudoUrl" alt="Escudo de {{ paisSeleccionado }}" width="200">
 
 </div>

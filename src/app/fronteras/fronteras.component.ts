@@ -1,7 +1,6 @@
 
-import { DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PaisesService } from '../paises.service';
 
 @Component({
@@ -9,44 +8,38 @@ import { PaisesService } from '../paises.service';
   templateUrl: './fronteras.component.html',
   styleUrls: ['./fronteras.component.css']
 })
-export class FronterasComponent implements OnInit,OnChanges {
-
-  //@Input() pais:string | undefined="";
-  paisEnRuta: string = ""
+export class FronterasComponent implements OnInit {
+  paisEnRuta: string = "";
   datos: any;
   flag: boolean = true;
-  fronteras: Array<string> = []
-  
+  fronteras: Array<string> = [];
+  fronterasCompletas: Array<string> = [];
+
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
-  }
+
   ngOnInit(): void {
-    console.log("entro en on init")
+    console.log("entro en on init");
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
-    console.log("pais:" + this.paisEnRuta)
+    console.log("pais:" + this.paisEnRuta);
     this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
-      .then((datos: any) => {
-        console.log(datos)
+      .subscribe((datos: any) => {
+        console.log(datos);
         this.datos = datos[0];
-        this.fronteras = datos.borders;
-      })
-   
-
-   
+        this.fronteras = datos[0]?.borders || [];
+        this.obtenerNombresFronterasCompletos();
+      });
   }
 
+  obtenerNombresFronterasCompletos(): void {
+    this.fronterasCompletas = [];
+    this.fronteras.forEach((frontera: string) => {
+      this.service.dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
+        .subscribe((datos: any) => {
+          this.fronterasCompletas.push(datos[0]?.name?.common || frontera);
+        });
+    });
+  }
 }
-
-
-
-
-
-
-
-
-
-
