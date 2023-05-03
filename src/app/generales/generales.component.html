@@ -1,10 +1,33 @@
+<!-- generales.component.html -->
 <div class="container">
-    <h1>{{ datos?.name?.common }}</h1>
-    <p>Población: {{ datos?.population }}</p>
-    <p>Longitud: {{ datos?.latlng[1] }}</p>
-    <p>Latitud: {{ datos?.latlng[0] }}</p>
-    <p>Capital: {{ datos?.capital[0] }}</p>
-    <p *ngFor="let moneda of monedas">Moneda: {{moneda.name}}</p>
-    <p *ngFor="let moneda of monedas">Símbolo: {{moneda.symbol}}</p>
-  </div>
-  
+  <table class="table">
+    <tr>
+      <th>Nombre</th>
+      <td>{{ datos?.name?.common }}</td>
+    </tr>
+    <tr>
+      <th>Población</th>
+      <td>{{ datos?.population }}</td>
+    </tr>
+    <tr>
+      <th>Longitud</th>
+      <td>{{ datos?.latlng[1] }}</td>
+    </tr>
+    <tr>
+      <th>Latitud</th>
+      <td>{{ datos?.latlng[0] }}</td>
+    </tr>
+    <tr>
+      <th>Capital</th>
+      <td>{{ datos?.capital[0] }}</td>
+    </tr>
+    <tr *ngFor="let moneda of monedas">
+      <th>Moneda</th>
+      <td>{{ moneda.name }}</td>
+    </tr>
+    <tr *ngFor="let moneda of monedas">
+      <th>Símbolo</th>
+      <td>{{ moneda.symbol }}</td>
+    </tr>
+  </table>
+</div>
