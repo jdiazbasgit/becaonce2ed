@@ -1,7 +1,9 @@
 <div class="container">
     
         <h1 class="text-secondary">PAISES FRONTERIZOS</h1>
-      
-        <h1 class="m-5" *ngFor="let frontera of fronteras">{{frontera | pipeAcronimos}}</h1>
+      <div *ngFor="let frontera of fronteras | pipeAcronimos">
+        <h1 class="m-5">{{frontera}}</h1>
+      </div>
+        
    
 </div>

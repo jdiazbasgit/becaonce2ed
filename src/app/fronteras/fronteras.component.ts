@@ -16,6 +16,7 @@ export class FronterasComponent implements OnInit {
   datos: any;
   fronteras: Array<string> = []
   fronterasAcronimos: Array<string> = []
+  resuelto:boolean = false
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     //this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
