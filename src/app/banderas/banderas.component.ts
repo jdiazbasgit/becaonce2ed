@@ -19,7 +19,7 @@ export class BanderasComponent implements OnInit {
   ngOnInit(): void {
     this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisSeleccionado)
       .subscribe((datos: any) => {
-        const banderaUrl = datos[0]?.flags?.svg || '';
+        const banderaUrl = datos[0]?.flags.svg || '';
         this.banderaUrl = banderaUrl;
       });
   }

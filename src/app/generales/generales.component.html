@@ -2,23 +2,23 @@
   <table class="table">
     <tr>
       <th>Nombre</th>
-      <td>{{ datos?.name?.common }}</td>
+      <td>{{ datos.name.common }}</td>
     </tr>
     <tr>
       <th>Población</th>
-      <td>{{ datos?.population }}</td>
+      <td>{{ datos.population }}</td>
     </tr>
     <tr>
       <th>Longitud</th>
-      <td>{{ datos?.latlng[1] }}</td>
+      <td>{{ datos.latlng[1] }}</td>
     </tr>
     <tr>
       <th>Latitud</th>
-      <td>{{ datos?.latlng[0] }}</td>
+      <td>{{ datos.latlng[0] }}</td>
     </tr>
     <tr>
       <th>Capital</th>
-      <td>{{ datos?.capital[0] }}</td>
+      <td>{{ datos.capital[0] }}</td>
     </tr>
     <tr *ngFor="let moneda of monedas">
       <th>Moneda</th>
