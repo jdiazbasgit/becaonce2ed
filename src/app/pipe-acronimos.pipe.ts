@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { PaisesService } from './paises.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Pipe({
   name: 'pipeAcronimos'
 })
 export class PipeAcronimosPipe implements PipeTransform {
 
-  constructor(private service: PaisesService, private router:Router, private rutaActiva: ActivatedRoute) { }
+  constructor(private service: PaisesService) { }
 
   transform(value: string[], ...args: string[]): string[] {
     //console.log(value + " acronimo que llega al pipe")

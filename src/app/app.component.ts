@@ -19,7 +19,7 @@ export class AppComponent {
 
   cambiarPais(){  
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigateByUrl("/");
+      this.router.navigateByUrl("generales/"+this.paisSeleccionado);
     });
   }
 
