@@ -10,7 +10,7 @@ export class NombreFronteraPipe implements PipeTransform {
 
   transform(countryCode: string): Promise<string> {
     return this.http
-    .get<any>('https://restcountries.com/v3.1/alpha/${countryCode}')
+    .get<any>('https://restcountries.com/v3.1/alpha/')
     .pipe(map(response => response[0].name.common))
     .toPromise();
   }
