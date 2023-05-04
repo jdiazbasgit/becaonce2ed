@@ -18,6 +18,8 @@ export class GeneralesComponent implements OnInit {
   nombre:string='';
   capital:string='';
   poblacion: string='';
+  moneda: string='';
+  simbolo: string='';
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
@@ -31,9 +33,11 @@ export class GeneralesComponent implements OnInit {
       .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
-        this.fronteras = datos.borders;
+        this.fronteras =datos.borders;
         this.capital = datos.capital;
         this.poblacion = datos.population;
+        this.moneda = datos.currencies[1].name;
+        this.simbolo = datos.currencies[2].symbol;
  
       })
    

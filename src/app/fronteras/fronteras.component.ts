@@ -1,7 +1,5 @@
-
-import { DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Component } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PaisesService } from '../paises.service';
 
 @Component({
@@ -11,34 +9,35 @@ import { PaisesService } from '../paises.service';
 })
 export class FronterasComponent implements OnInit {
 
-  //@Input() pais:string | undefined="";
-  paisEnRuta: string = ""
+  paisEnRuta: string = "";
   datos: any;
-  flag: boolean = true;
-  fronteras: Array<string> = []
-  banderas: string = '';
-  
+  fronteras: Array<any> = [];
+
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
+
   ngOnInit(): void {
     console.log("entro en on init")
 
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
-    console.log("pais:" + this.paisEnRuta)
     this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
       .then((datos: any) => {
         console.log(datos)
         this.datos = datos[0];
-        this.fronteras = datos.borders;
-        this.banderas = this.datos.flags.png;
+        let promises = datos[0].borders.map((border: string) => {
+          return this.service.dameDatos("https://restcountries.com/v3.1/alpha/" + border)
+            .then((datos: any) => {
+              return datos[0].name.common;
+            })
+        });
+        Promise.all(promises).then((names) => {
+          this.fronteras = names;
+        });
       })
-   
-
-   
   }
 
 }
+
 
 
 
