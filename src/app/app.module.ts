@@ -12,6 +12,7 @@ import { FronterasComponent } from './fronteras/fronteras.component';
 import { PipePersonalizadoComponent } from './pipe-personalizado/pipe-personalizado.component';
 import { MiPipePipe } from './mi-pipe.pipe';
 import { PipeSelectPipe } from './pipe-select.pipe';
+import { NombreFronteraPipe } from './nombre-frontera.pipe';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PipeSelectPipe } from './pipe-select.pipe';
     FronterasComponent,
     PipePersonalizadoComponent,
     MiPipePipe,
-    PipeSelectPipe
+    PipeSelectPipe,
+    NombreFronteraPipe
   ],
   imports: [
     BrowserModule,
