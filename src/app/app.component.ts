@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PaisesService } from './paises.service';
+import { CountryService } from './countryService';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,21 @@ export class AppComponent {
   textoContinente:string="continente";
   textoPais:string="pais";
 
-  constructor(private service:PaisesService){
+  countryName: string="";
+
+  constructor(private service:PaisesService, private countryService: CountryService){
+  
     this.title="estamos en un CURSO de angular empezando"
     this.flag=false
+
+    const borderCode = 'USA';
+    this.countryService.getCountryNameByCode(borderCode)
+    .subscribe((response:any)=> {const country = response [0];
+    this.countryName = country.name.common;
+    
+  });
+
+
   }
 
   cambiarPais(){
@@ -36,6 +49,7 @@ export class AppComponent {
       });
     })
   }
+
 
 
 }
