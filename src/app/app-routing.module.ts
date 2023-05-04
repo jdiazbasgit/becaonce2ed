@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: 'generales/:pais', component: GeneralesComponent },
   {path: 'geograficos/:pais', component: GeograficosComponent },
   {path: 'banderas/:pais', component: BanderasComponent },
-  {path: 'fronteras/:pais', component: FronterasComponent }
+  {path: 'fronteras/:pais', component: FronterasComponent },
+  { path: 'pipes/:pais', component: FronterasComponent }
 ];
 
 @NgModule({
