@@ -1,5 +1,11 @@
-<div class="container">
+<!--<div class="container">
 
         <h1 *ngFor="let frontera of datos?.borders">{{frontera}}</h1>
    
-</div>
+</div>-->
+<ul>
+
+        <li *ngFor="let frontera of datos.borders">
+                {{ frontera | fronteras: paises }}
+        </li>
+</ul>

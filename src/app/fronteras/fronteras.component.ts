@@ -15,13 +15,24 @@ export class FronterasComponent implements OnInit {
   paisEnRuta: string = ""
   datos: any;
   flag: boolean = true;
-  fronteras: Array<string> = []
+  fronteras: Array<string> = [];
+  paises: any[]=[]
   
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
   ngOnInit(): void {
     console.log("entro en on init")
+    this.service.dameDatos("https://restcountries.com/v3.1/all").subscribe((paises: any [])=>{
+      this.paises = paises;
+    });
+    
+
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + 
+    this.paisEnRuta).subscribe((datos: any) =>{
+      console.log(datos);
+      this.fronteras = datos.borders;
+    })
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta)

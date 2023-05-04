@@ -14,10 +14,7 @@ export class GeneralesComponent implements OnInit {
   paisEnRuta: string = "";
   datos: any;
   monedas: Array<any> = [];
-  /*dirNombre: string = "";
-  dirPoblacion: string = "";
-  dirLongitud: string = "";
-  dirCapital: string = "";*/
+  
 
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
@@ -36,10 +33,7 @@ export class GeneralesComponent implements OnInit {
         
         this.datos = [0];
 
-        //this.dirNombre = this.datos.name.common;
-        //this.dirPoblacion = this.datos.population;
-        //this.dirLongitud = this.datos.latlng;
-        //this.dirCapital = this.datos.capital;
+       
 
         Object.keys(this.datos.curencies)
           .forEach(moneda => this.monedas.push(this.datos.currencies[moneda]))
