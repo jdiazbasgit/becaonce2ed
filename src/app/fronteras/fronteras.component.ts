@@ -3,7 +3,7 @@ import { DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PaisesService } from '../paises.service';
-import { GeneralesComponent } from '../generales/generales.component';
+
 
 @Component({
   selector: 'app-fronteras',
@@ -17,6 +17,7 @@ export class FronterasComponent implements OnInit {
   datos: any;
   flag: boolean = true;
   fronteras: Array<string> = []
+country: any;
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
