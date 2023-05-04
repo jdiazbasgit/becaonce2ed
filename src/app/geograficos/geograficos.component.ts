@@ -8,20 +8,22 @@ import { PaisesService } from '../paises.service';
   styleUrls: ['./geograficos.component.css']
 })
 export class GeograficosComponent {
-  paisEnRuta:string=""
-  datos:any;
+  paisEnRuta: string = ""
+  datos: any;
 
-  constructor(private rutaActiva:ActivatedRoute, private service: PaisesService){
+
+  constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
   }
-    
-    ngOnInit(): void {
-      this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
 
-      this.service.dameDatos("https://restcountries.com/v3.1/name/"+ 
-      this.paisEnRuta).then((datos:any)=>{
+  ngOnInit(): void {
+    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" +
+      this.paisEnRuta).subscribe((datos: any) => {
         this.datos = datos[0];
+        
       });
-    }
-  
+  }
+
 }

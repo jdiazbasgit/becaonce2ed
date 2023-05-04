@@ -9,9 +9,9 @@ import { PaisesService } from '../paises.service';
 })
 export class BanderasComponent {
   paisEnRuta:string=""
-  datos:any;
-  rutaBandera: string = "";
-  rutaEscudo: string ="";
+  datos: any;
+  //dirBandera: string = "";
+  //dirEscudo: string ="";
 
   constructor(private rutaActiva:ActivatedRoute, private service: PaisesService){
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
@@ -23,11 +23,11 @@ export class BanderasComponent {
       this.paisEnRuta=this.rutaActiva.snapshot.params['pais'];
       console.log("pais:"+ this.paisEnRuta)
       this.service.dameDatos("https://restcountries.com/v3.1/name/" + 
-      this.paisEnRuta).then((datos: any)=>{
+      this.paisEnRuta).subscribe((datos: any)=>{
         console.log(datos)
         this.datos = datos[0];
-        this.rutaBandera = this.datos.flags.png;
-        this.rutaEscudo = this.datos.coatOfArms.png;
+        //this.dirBandera = this.datos.flags.png;
+        //this.dirEscudo = this.datos.coatOfArms.png;
       });
     }
   
