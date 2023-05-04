@@ -1,7 +1,17 @@
 <div class="container">
-    <h1>{{ datos.name.common }}</h1>
-    <p>Región: {{ datos.region }}</p>
-    <p>Área: {{ datos.area }}</p>
-    <p>Comienzo de semana: {{ datos.startOfWeek}}</p>
-  </div>
-  
+  <h1>{{ datos.name.common }}</h1>
+  <table class="geography-table">
+    <tr>
+      <td>Región:</td>
+      <td>{{ datos.region }}</td>
+    </tr>
+    <tr>
+      <td>Área:</td>
+      <td>{{ datos.area }}</td>
+    </tr>
+    <tr>
+      <td>Comienzo de semana:</td>
+      <td>{{ datos.startOfWeek }}</td>
+    </tr>
+  </table>
+</div>

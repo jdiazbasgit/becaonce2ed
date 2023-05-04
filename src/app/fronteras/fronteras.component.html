@@ -1,6 +1,6 @@
-<!-- fronteras.component.html -->
 <div class="container">
-        <h1></h1>
-        <h1 *ngFor="let frontera of fronterasCompletas">{{ frontera }}</h1>
-      </div>
-      
+  <h1>Fronteras del país seleccionado</h1>
+  <ul class="fronteras-list">
+    <li *ngFor="let frontera of fronterasCompletas" class="frontera-item">{{ frontera }}</li>
+  </ul>
+</div>

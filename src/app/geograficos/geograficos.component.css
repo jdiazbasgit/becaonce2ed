@@ -1,0 +1,38 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .geography-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .geography-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .geography-table td:first-child {
+    text-align: right;
+    font-weight: bold;
+    color: #888;
+  }
+  
+  .geography-table td:last-child {
+    text-align: left;
+  }
+  
+  .geography-table tr:last-child td {
+    border-bottom: none;
+  }
+  
