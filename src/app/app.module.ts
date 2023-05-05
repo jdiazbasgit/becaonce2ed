@@ -9,12 +9,6 @@ import { GeneralesComponent } from './generales/generales.component';
 import { GeograficosComponent } from './geograficos/geograficos.component';
 import { BanderasComponent } from './banderas/banderas.component';
 import { FronterasComponent } from './fronteras/fronteras.component';
-import { PipePersonalizadoComponent } from './pipe-personalizado/pipe-personalizado.component';
-import { MiPipePipe } from './mi-pipe.pipe';
-import { PipeSelectPipe } from './pipe-select.pipe';
-import { NombreFronteraPipe } from './nombre-frontera.pipe';
-import { NombreFronteraComponent } from './nombre-frontera/nombre-frontera.component';
-
 
 @NgModule({
   declarations: [
@@ -23,11 +17,6 @@ import { NombreFronteraComponent } from './nombre-frontera/nombre-frontera.compo
     GeograficosComponent,
     BanderasComponent,
     FronterasComponent,
-    PipePersonalizadoComponent,
-    MiPipePipe,
-    PipeSelectPipe,
-    NombreFronteraPipe,
-    NombreFronteraComponent
   ],
 
   imports: [

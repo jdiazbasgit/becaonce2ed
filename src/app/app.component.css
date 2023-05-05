@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: brown;
+}
+
+h1 {
+    font-size: 24px;
+    color: aliceblue;
+    margin-bottom: 10px;
+}
+
+select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+  
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: nome;
+    border-radius: 8px;
+    background-color: blueviolet;
+    width: 100%;
+    max-width: 300px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: aqua;
+    font-weight: bold;
+}
+    

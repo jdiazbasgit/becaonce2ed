@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: brown;
+}
+
+h1 {
+    font-size: 24px;
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: blueviolet;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: aqua;
+    color: red;
+}
+
+tr:nth-child(even) {
+    background-color: blue;
+}
+
+tr:hover {
+    background-color: tomato;
+}

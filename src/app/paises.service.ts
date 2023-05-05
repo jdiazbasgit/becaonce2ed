@@ -6,18 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class PaisesService {
 
-  constructor(private service:HttpClient) { }
+  constructor(private service: HttpClient) { }
 
-  dameDatos(url:string):any{
+  dameDatos(url: string): any {
     //return this.service.get(url);
-    return new Promise((resolve,reject)=>{
-      fetch(url).then(response=>{
-        console.log(response)
-        return response.json()
-        
-      })
-      .then(datos=>resolve(datos)).catch(error=>reject(error));
-    })
+    return this.service.get(url);
   }
-
 }

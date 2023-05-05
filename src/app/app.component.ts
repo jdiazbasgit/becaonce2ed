@@ -7,35 +7,28 @@ import { PaisesService } from './paises.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title:string ;
-  edad:number=234;
-  fecha:Date= new Date()
-  flag:boolean;
-  continente:string="0";
-  paises:Array<string>=[]
-  paisSeleccionado:string="0"
-  textoContinente:string="continente";
-  textoPais:string="pais";
+  title: string;
 
-  constructor(private service:PaisesService){
-    this.title="estamos en un CURSO de angular empezando"
-    this.flag=false
+  flag: boolean;
+  continente: string = "0";
+  paises: Array<string> = [];
+  paisSeleccionado: string = "0";
+
+  constructor(private service: PaisesService) {
+    this.title = "estamos en un CURSO de angular empezando";
+    this.flag = false;
   }
 
-  cambiarPais(){
+  cambiarPais() { }
 
+  cargarPaises(): void {
+    this.flag = !this.flag;
+    this.service.dameDatos("https://restcountries.com/v3.1/region/" + this.continente)
+      .then((datos: any) => {
+        this.paises = [];
+        datos.forEach((pais: any) => {
+          this.paises.push(pais.name.common)
+        });
+      })
   }
-
-  cargarPaises():void{
-    this.flag=!this.flag;
-    this.service.dameDatos("https://restcountries.com/v3.1/region/"+this.continente)
-    .then((datos:any)=>{
-      this.paises=[];
-      datos.forEach((pais:any) => {
-        this.paises.push(pais.name.common)
-      });
-    })
-  }
-
-
 }

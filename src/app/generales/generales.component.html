@@ -1,10 +1,41 @@
-<div class = "container">
+<div class="container">
+  <table class="table">
+    <tr>
+      <th>NOMBRE</th>
+      <td>{{ datos?.name?.common }}</td>
+    </tr>
 
-  <h1>{{datos?.name?.common}}</h1>
-  <p>Poblacion: {{datos?.population}}</p>
-  <p>Longitud: {{datos?.latlng[1] }}</p>
-  <p>Latitud: {{datos?.latlng[0] }}</p>
-  <p>Capital: {{datos?.capital[0] }}</p>
-  <p *ngFor = "let moneda of monedas">Moneda: {{moneda.name}}</p>
-  <p *ngFor = "let moneda of monedas">Símbolo: {{moneda.symbol}}</p>
-</div> 
+    <tr>
+      <th>POBLACIÓN</th>
+      <td>{{ datos?.population }}</td>
+    </tr>
+
+    <tr>
+      <th>LONGITUD</th>
+      <td>{{ datos?.latlng[1] }}</td>
+    </tr>
+
+    <tr>
+      <th>LATITUD</th>
+      <td>{{ datos?.latlng[0] }}</td>
+    </tr>
+
+    <tr>
+      <th>CAPITAL</th>
+      <td>{{ datos?.capital[0] }}</td>
+    </tr>
+
+    <tr>
+    <tr *ngFor="let  moneda of monedas">
+      <th>MONEDA</th>
+      <td>{{ moneda.name }}</td>
+    </tr>
+
+    <tr>
+    <tr *ngFor="let  moneda of monedas">
+      <th>SÍMBOLO</th>
+      <td>{{ moneda.symbol }}</td>
+    </tr>
+    
+  </table>
+</div>

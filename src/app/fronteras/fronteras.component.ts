@@ -12,10 +12,11 @@ import { PaisesService } from '../paises.service';
 export class FronterasComponent implements OnInit {
 
   //@Input() pais:string | undefined="";
+
   paisEnRuta: string = "";
   datos: any;
   flag: boolean = true;
-  fronteras: Array<string> = []
+  fronteras: Array<string> = [];
   fronterasCompletas: Array<string> = [];
 
   constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
@@ -23,22 +24,30 @@ export class FronterasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("entro en on init")
+    console.log("entro en on init");
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta);
+
     this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisEnRuta)
       .subscribe((datos: any) => {
         console.log(datos);
+
         this.datos = datos[0];
         this.fronteras = datos[0]?.borders || [];
         this.obtenerNombresFroterasCompletos();
       });
-
-
-
   }
 
+  obtenerNombresFroterasCompletos(): void {
+    this.fronterasCompletas = [];
+    this.fronteras.forEach((frontera: string) => {
+      this.service.dameDatos("https://restcountries.com/v3.1/alpha/" + frontera)
+      .subscribe((datos: any) => {
+        this.fronterasCompletas.push(this.datos[0]?.name?.common || frontera);
+      });
+    });
+  }
 }
 
 
