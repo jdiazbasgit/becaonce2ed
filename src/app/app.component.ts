@@ -9,6 +9,7 @@ import { PaisesService } from './paises.service';
 export class AppComponent {
   title:string ;
   flag:boolean;
+  fecha:Date=new Date();
 
   constructor(private service:PaisesService){
     this.title="estamos en un curso de angular empezando"

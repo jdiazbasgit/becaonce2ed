@@ -9,7 +9,8 @@ import { UnoComponent } from './uno/uno.component';
 import { DosComponent } from './dos/dos.component';
 import { TresComponent } from './tres/tres.component';
 import { MenuComponent } from './menu/menu.component';
-import { LoginComponent } from './login/login.component';
+
+import { DirectivaEjemploDirective } from './directiva-ejemplo.directive';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,8 @@ import { LoginComponent } from './login/login.component';
     UnoComponent,
     DosComponent,
     TresComponent,
-    MenuComponent
-    LoginComponent
+    MenuComponent,
+    DirectivaEjemploDirective
   ],
   imports: [
     BrowserModule,
