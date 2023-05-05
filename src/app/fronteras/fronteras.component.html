@@ -1,9 +1,9 @@
 <div class="container">
     
-        <h1 class="text-secondary">PAISES FRONTERIZOS</h1>
+        <h1 class="text-secondary" [appDirectivaEjemplo]="'TEXTO INCRUSTADO POR DIRECTIVA'">PAISES FRONTERIZOS</h1>
       <div *ngFor="let frontera of fronteras | pipeAcronimos">
-        <h1 class="m-5">{{frontera}}</h1>
+        <h1 class="m-5">{{frontera | pipeColores:'background'}}</h1>
       </div>
-        
+        <!-- pipeColores es una prueba para cambiar France a Gabacholand -->
    
 </div>

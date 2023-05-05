@@ -13,6 +13,7 @@ import { PruebasPipesComponent } from './pruebas-pipes/pruebas-pipes.component';
 import { PipeIdiomasPipe } from './pipe-idiomas.pipe';
 import { PipeColoresPipe } from './pipe-colores.pipe';
 import { PipeAcronimosPipe } from './pipe-acronimos.pipe';
+import { DirectivaEjemploDirective } from './directiva-ejemplo.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PipeAcronimosPipe } from './pipe-acronimos.pipe';
     PruebasPipesComponent,
     PipeColoresPipe,
     PipeAcronimosPipe,
+    DirectivaEjemploDirective,
   ],
   imports: [
     BrowserModule,

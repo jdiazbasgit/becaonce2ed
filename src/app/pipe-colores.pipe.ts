@@ -23,6 +23,7 @@ export class PipeColoresPipe implements PipeTransform {
         case 'blanco': return 'bg-white'
         case 'negro': return 'bg-dark'
         case 'amarillo': return 'bg-warning'
+        case 'France': return 'Gabacholand'
       }
     }
     return value
