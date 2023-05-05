@@ -28,11 +28,11 @@ export class FronterasComponent implements OnInit {
     });
     
 
-    this.service.dameDatos("https://restcountries.com/v3.1/name/" + 
+   /* this.service.dameDatos("https://restcountries.com/v3.1/name/" + 
     this.paisEnRuta).subscribe((datos: any) =>{
       console.log(datos);
       this.fronteras = datos.borders;
-    })
+    })*/
 
     this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
     console.log("pais:" + this.paisEnRuta)
