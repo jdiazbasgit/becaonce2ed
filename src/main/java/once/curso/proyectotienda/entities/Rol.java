@@ -1,6 +1,5 @@
 package once.curso.proyectotienda.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +17,10 @@ public class Rol {
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(name = "ROL")
 	private String rol;
 	
+	@Override
+    public String toString() {
+        return "Rol{" + "id=" + id + ", rol=" + rol + '}';
+    }
 }
