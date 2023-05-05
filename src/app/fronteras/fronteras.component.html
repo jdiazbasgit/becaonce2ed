@@ -1,7 +1,11 @@
 <div class="container">
-        <h1></h1>
-      
-        <h1 *ngFor="let frontera of datos?.borders">{{frontera}}</h1>
+        <h2>Fronteras de {{ datos?.name?.common }}</h2>
+<ul>
+  <li *ngFor="let frontera of datos?.borders">
+    {{ frontera | nombrePais}}
+  </li>
+</ul>
+
    
 
 </div>
