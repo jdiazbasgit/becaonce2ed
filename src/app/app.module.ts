@@ -10,6 +10,7 @@ import { GeograficosComponent } from './geograficos/geograficos.component';
 import { BanderasComponent } from './banderas/banderas.component';
 import { FronterasComponent } from './fronteras/fronteras.component';
 import { NombreFrontera1Pipe } from './components/pipes/nombre-frontera1.pipe';
+import { DirectivaEjemploDirective } from './directiva-ejemplo.directive';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { NombreFrontera1Pipe } from './components/pipes/nombre-frontera1.pipe';
     BanderasComponent,
     FronterasComponent,
     NombreFrontera1Pipe,
+    DirectivaEjemploDirective,
     
   ],
   imports: [
