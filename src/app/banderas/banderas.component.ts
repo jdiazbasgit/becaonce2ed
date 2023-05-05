@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PaisesService } from '../paises.service';
 
 @Component({
   selector: 'app-banderas',
@@ -7,16 +8,22 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./banderas.component.css']
 })
 
-export class BanderasComponent {
-  paisEnRuta: string = ""
+export class BanderasComponent implements OnInit {
+  paisSeleccionado: string = "";
+  banderaUrl: string = "";
+  escudoUrl: string = "";
 
-  constructor(private rutaActiva: ActivatedRoute) {
-
+  constructor(private rutaActiva: ActivatedRoute, private service: PaisesService) {
+    this.paisSeleccionado = this.rutaActiva.snapshot.params['pais'];
   }
 
 
   ngOnInit(): void {
-    this.paisEnRuta = this.rutaActiva.snapshot.params['pais'];
+    this.service.dameDatos("https://restcountries.com/v3.1/name/" + this.paisSeleccionado) 
+    .subscribe((datos: any) => {
+      const banderaUrl = datos[0]?.flags?.svg || '';
+      this.banderaUrl = banderaUrl;
+    });
   }
 
 }
