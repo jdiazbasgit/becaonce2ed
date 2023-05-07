@@ -5,7 +5,7 @@
 </div>-->
 <ul>
 
-        <li *ngFor="let frontera of datos.borders">
+        <li *ngFor="let frontera of datos?.borders">
                 {{ frontera | fronteras: paises }}
         </li>
 </ul>

@@ -1,4 +1,3 @@
-
 import { DoCheck, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';

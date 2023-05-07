@@ -29,13 +29,9 @@ export class GeneralesComponent implements OnInit {
     
 
     this.service.dameDatos("https://restcountries.com/v3.1/name/" +
-      this.paisEnRuta).subscribe((datos: any) => {
-        
-        this.datos = [0];
-
-       
-
-        Object.keys(this.datos.curencies)
+      this.paisEnRuta).subscribe((datos: any) => {        
+        this.datos = datos[0];       
+        Object.keys(this.datos.currencies)
           .forEach(moneda => this.monedas.push(this.datos.currencies[moneda]))
 
       });
