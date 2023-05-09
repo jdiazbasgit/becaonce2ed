@@ -15,21 +15,16 @@ public class DocumentTypeService {
 	@Autowired
 	private DocumentTypeCRUDRepository documentTypeCRUDRepository;
 
-	public void dameTiposDeDocumentos() {
 
-		Iterable<DocumentType> dameTipoDeDocumentos = getDocumentTypeCRUDRepository().findAll();
-		for (DocumentType documentType : dameTipoDeDocumentos) {
-			System.out.println(documentType.getId());
-			System.out.println(documentType.getDescription());
-		}
-
+	public Iterable<DocumentType> getDocumentType(){
+		return getDocumentTypeCRUDRepository().findAll();
 	}
 
-	public <S extends DocumentType> S save(S entity) {
+	public  DocumentType save(DocumentType entity) {
 		return getDocumentTypeCRUDRepository().save(entity);
 	}
 
-	public <S extends DocumentType> Iterable<S> saveAll(Iterable<S> entities) {
+	public  Iterable<DocumentType> saveAll(Iterable<DocumentType> entities) {
 		return getDocumentTypeCRUDRepository().saveAll(entities);
 	}
 

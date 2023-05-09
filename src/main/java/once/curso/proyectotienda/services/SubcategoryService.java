@@ -14,53 +14,60 @@ import once.curso.proyectotienda.repositories.SubCategoryCRUDRepository;
 public class SubcategoryService {
 
 	@Autowired
-	private SubCategoryCRUDRepository subCategoryRepository;
+	private SubCategoryCRUDRepository subCategoryCRUDRepository;
 
 	public SubCategory save(SubCategory entity) {
-		return getSubCategoryRepository().save(entity);
+
+		return getSubCategoryCRUDRepository().save(entity);
 	}
 
-	public Iterable<SubCategory> saveAll(Iterable<SubCategory> entities) {
-		return getSubCategoryRepository().saveAll(entities);
+	public  Iterable<SubCategory> saveAll(Iterable<SubCategory> entities) {
+
+		return getSubCategoryCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<SubCategory> findById(Integer id) {
-		return getSubCategoryRepository().findById(id);
+
+		return getSubCategoryCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-		return getSubCategoryRepository().existsById(id);
+
+		return getSubCategoryCRUDRepository().existsById(id);
 	}
 
 	public Iterable<SubCategory> findAll() {
-		return getSubCategoryRepository().findAll();
+
+		return getSubCategoryCRUDRepository().findAll();
 	}
 
 	public Iterable<SubCategory> findAllById(Iterable<Integer> ids) {
-		return getSubCategoryRepository().findAllById(ids);
+
+		return getSubCategoryCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-		return getSubCategoryRepository().count();
+
+		return getSubCategoryCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getSubCategoryRepository().deleteById(id);
+		getSubCategoryCRUDRepository().deleteById(id);
 	}
 
 	public void delete(SubCategory entity) {
-		getSubCategoryRepository().deleteAll();
+		getSubCategoryCRUDRepository().deleteAll();
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getSubCategoryRepository().deleteAllById(ids);
+		getSubCategoryCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends SubCategory> entities) {
-		getSubCategoryRepository().deleteAll(entities);
+		getSubCategoryCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getSubCategoryRepository().deleteAll();
+		getSubCategoryCRUDRepository().deleteAll();
 	}
 }

@@ -1,4 +1,4 @@
-package once.curso.proyectotienda.restcontroller;
+package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
