@@ -40,6 +40,14 @@ public class ExistingProductTests{
 	}
 	
 	@Test
+	public void existsByIdExistingProduct() {
+		int numID = 3;
+		if (getExistingProductService().existsById(numID)==true){
+			/*bla bla*/
+		}
+	}
+	
+	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
 		existingProduct.setDescription("New World");
@@ -94,6 +102,8 @@ public class ExistingProductTests{
 	    if (existingProduct != null) {
 	    	getExistingProductService().delete(existingProduct);
 	    }
+	    
+	    
 	}
 	
 	@Test
