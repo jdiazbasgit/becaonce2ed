@@ -7,7 +7,7 @@ import { ProyectosService } from './proyectos.service';
 export class ProfileServiceextends extends ProyectosService {
 
   constructor(private http: HttpClient) {
-    super(HttpClient);
+    super(http);
   }
 
   url='https://localhost:8080/';
