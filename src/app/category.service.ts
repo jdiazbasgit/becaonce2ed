@@ -7,5 +7,7 @@ import { ProyectosService } from './servicios/proyectos.service';
 })
 export class categoryService extends ProyectosService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    super(http);
+  }
 }
