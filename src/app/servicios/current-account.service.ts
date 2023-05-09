@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CurrentAccountService extends ProyectosService {
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
+  super(http);
   }
 }

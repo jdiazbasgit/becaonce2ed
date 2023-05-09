@@ -7,5 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DescriptionService extends ProyectosService {
 
-  constructor(private httpClient: HttpClien) { }
+  constructor(private http: HttpClient) {
+    super(http);
+   }
 }
