@@ -9,7 +9,7 @@ import { ProyectosService } from './proyectos.service';
 export class ExistingproductService extends ProyectosService {
 
   constructor(private http: HttpClient) {
-    super(HttpClient);
+    super(http);
   }
 
   url='https://localhost:8080/';
