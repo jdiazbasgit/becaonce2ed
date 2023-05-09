@@ -11,9 +11,11 @@ export class ProyectosService {
   getDatos(url: string): Observable<any> {
     return this.httpClient.get(url);
   }
+
   saveOrUpdate(url:string, objeto:Object):Observable<any>{
     return this.httpClient.post(url,{body:objeto})
   }
+
   delete(url:string):void{
     this.httpClient.delete(url);
   }
