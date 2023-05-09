@@ -14,7 +14,9 @@ export class ExistingproductService extends ProyectosService {
 
   url='https://localhost:8080/';
 
-  findAll() {
-    return this.http.get(`${this.url}products`);
+  findAllExistingProducts() {
+    return this.http.request('GET', `${this.url}products`);
   }
+
+
 }
