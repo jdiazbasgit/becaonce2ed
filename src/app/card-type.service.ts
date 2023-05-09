@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 })
 export class CardTypeService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { } 
 }

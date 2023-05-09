@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 })
 export class CategoryService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { } 
 }
