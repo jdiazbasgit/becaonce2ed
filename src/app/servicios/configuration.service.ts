@@ -5,7 +5,7 @@ import { ProyectosService } from './proyectos.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService  extends ProyectosService {
+export class AwardFineService  extends ProyectosService {
 
   constructor(private http:HttpClient) {
     super(http);
