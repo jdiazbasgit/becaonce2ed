@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
+export class SubcategoryService {
 
   constructor(private httpClient: HttpClient) { } 
 }
