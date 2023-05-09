@@ -6,5 +6,5 @@ import { Injectable } from '@angular/core';
 })
 export class AwardsFinesTypeService {
 
-  constructor(private service:HttpClient) { }
+  constructor(private service: HttpClient) { }
 }
