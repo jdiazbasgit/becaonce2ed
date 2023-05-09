@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ProyectosService } from './proyectos.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends ProyectosService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super(http);
+   }
 }
