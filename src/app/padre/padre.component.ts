@@ -9,7 +9,7 @@ import { HijoComponent } from '../hijo/hijo.component';
 export class PadreComponent implements OnInit {
   salidaAlHijo: string;
   entradaDelHijo: string;
-  //@ViewChild(HijoComponent) hijo: any
+  @ViewChild(HijoComponent) hijo: any
 
   @Input() eventoDelHijo:string
   constructor() {
@@ -17,9 +17,13 @@ export class PadreComponent implements OnInit {
     this.salidaAlHijo = '';
     this.eventoDelHijo=""
   }
- // ngAfterViewInit(): void {
-    //this.entradaDelHijo=this.hijo?.mensajeAPapa
-  //}
+  
+  ngAfterViewInit(): void {
+  this.entradaDelHijo=this.hijo.mensajeAPapa
+ }
+ ngAfterViewChecked(){
+  this.entradaDelHijo=this.hijo?.mensajeAPapa
+ }
 
   
 
