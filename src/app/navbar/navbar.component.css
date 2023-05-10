@@ -1,20 +1,18 @@
 .navbar{
     background-color: rgb(59, 240, 134);
     height: 50px;
+    margin-top: 7rem;
+    display: flex;
 }
 
-nav{
-    padding-top: 15px;
-    margin-top: 120px;
-    margin-left: 30vw;
-    margin-right: 30vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;    
-    
-}
+nav{ 
+    margin: auto;
+    justify-content: space-between;     
+} 
 
 nav a{
+    font-size: large;
+    padding-left: 5rem;
     text-decoration: none;    
     color: azure;
     text-shadow: 2px 2px 4px #000000;
