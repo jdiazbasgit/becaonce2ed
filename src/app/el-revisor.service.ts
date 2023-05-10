@@ -10,7 +10,7 @@ export class ElRevisorService {
   constructor() { }
 
   logarse(){
-    this.logado=!this.logado
+    this.logado=true
   }
 
 }

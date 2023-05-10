@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   logado:boolean
+  cuentaElegida:boolean=false
 
   constructor(private elRevisor:ElRevisorService, private router:Router){
     this.logado=this.elRevisor.logado
+    this.cuentaElegida=this.elRevisor.cuentaElegida
   }
 
   logarse(){
@@ -25,6 +27,7 @@ export class HeaderComponent {
   }
 
   ngDoCheck(){
-    this.logado=this.elRevisor.logado   
+    this.logado=this.elRevisor.logado
+    this.cuentaElegida=this.elRevisor.cuentaElegida 
   } 
 }

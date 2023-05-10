@@ -1,6 +1,6 @@
-ul {
+ul{
     padding-top: 15px;
-    margin-top: 120px;
+    /* margin-top: 120px; */
     margin-left: 10vw;
     margin-right: 10vw;
     min-height: 100vh;    
@@ -9,4 +9,12 @@ ul {
 
 li{
     padding-bottom: 20px;
+}
+h1{
+    padding-top: 15px;
+    margin-top: 120px;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    /* min-height: 100vh;     */
+    list-style: none;
 }
