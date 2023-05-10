@@ -121,6 +121,12 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.26</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>6.0.3</version>
+			<type>pom.sha512</type>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
