@@ -1,0 +1,31 @@
+.form-login a {
+	padding: 8px 20px;
+	line-height: normal;
+}
+
+.login-form label {
+	color: #888;
+	font-weight: normal;
+}
+
+.login-form {
+	width: 280px;
+	padding: 20px;
+	left: auto;
+	right: 0;
+	font-size: 14px;
+}
+
+.login-form a {
+	padding: 0 !important;
+	color: #5c6ac4;
+	font-weight: normal;
+}
+
+.login-form a:hover{
+	text-decoration: underline;
+}
+
+.login-form .checkbox-inline {
+	margin-top: 10px;
+}
