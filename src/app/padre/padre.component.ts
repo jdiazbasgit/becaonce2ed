@@ -6,10 +6,10 @@ import { HijoComponent } from '../hijo/hijo.component';
   templateUrl: './padre.component.html',
   styleUrls: ['./padre.component.css'],
 })
-export class PadreComponent implements OnInit, AfterViewInit {
+export class PadreComponent implements OnInit {
   salidaAlHijo: string;
   entradaDelHijo: string;
-  @ViewChild(HijoComponent) hijo: any
+  //@ViewChild(HijoComponent) hijo: any
 
   @Input() eventoDelHijo:string
   constructor() {
@@ -17,9 +17,9 @@ export class PadreComponent implements OnInit, AfterViewInit {
     this.salidaAlHijo = '';
     this.eventoDelHijo=""
   }
-  ngAfterViewInit(): void {
-    this.entradaDelHijo=this.hijo?.mensajeAPapa
-  }
+ // ngAfterViewInit(): void {
+    //this.entradaDelHijo=this.hijo?.mensajeAPapa
+  //}
 
   
 
