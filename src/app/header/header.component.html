@@ -1,0 +1,10 @@
+<div class="header">
+    <img class="logo" src="assets/logo.png">
+    <h2 class="titulo">BANCOFO</h2>
+    <div>
+        <button *ngIf="!logado">Hazte Cliente</button>
+        <button *ngIf="!logado" (click)="logarse()">Acceso</button>
+        <h2 *ngIf="logado" >Hola Paco</h2>
+        <button *ngIf="logado" (click)="deslogarse()">Salir</button>
+    </div>
+</div>

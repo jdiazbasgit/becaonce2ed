@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+
+.header {
+    position: fixed;    
+    top: 0px;
+    width: 100vw;
+    background: linear-gradient(135deg, rgb(255, 255, 255), rgb(13, 206, 87));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+}
+
+.titulo{
+    font-size: 2em;
+    color: white;
+    font-family: 'Saira Stencil One', cursive;
+    text-shadow: 2px 2px 4px #000000;
+    text-decoration: underline;
+}
+
+.header button, h2{
+    margin-right: 2vw;
+}

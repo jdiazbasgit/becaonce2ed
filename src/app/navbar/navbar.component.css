@@ -1,0 +1,21 @@
+.navbar{
+    background-color: rgb(59, 240, 134);
+    height: 50px;
+}
+
+nav{
+    padding-top: 15px;
+    margin-top: 120px;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    
+}
+
+nav a{
+    text-decoration: none;    
+    color: azure;
+    text-shadow: 2px 2px 4px #000000;
+}

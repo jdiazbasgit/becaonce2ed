@@ -1,0 +1,7 @@
+*{
+    background-color: black;
+    color: aliceblue;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+}

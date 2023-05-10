@@ -1,0 +1,15 @@
+.contenedor{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('src/assets/fondoarbol.jpg') no-repeat;
+    background-size: cover;
+}
+.texto{
+    display: grid;
+    align-items: end;
+    padding: 30vh;
+    margin-right: 40vw;
+    justify-content: space-between;
+}
