@@ -16,7 +16,7 @@ constructor(private elRevisor:ElRevisorService, private router:Router){}
 elegirCuenta(numero:number){
   this.cccEnUso=this.ccc[numero]
   this.elRevisor.cuentaElegida=true
-  this.router.navigateByUrl("movimientos")
+  this.router.navigateByUrl("detallescuenta")
 }
 
 }

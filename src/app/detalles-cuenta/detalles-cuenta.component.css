@@ -3,10 +3,5 @@ ul {
     margin-top: 120px;
     margin-left: 10vw;
     margin-right: 10vw;
-    min-height: 100vh;    
-    list-style: none;
-}
-
-li{
-    padding-bottom: 20px;
+    min-height: 100vh;
 }

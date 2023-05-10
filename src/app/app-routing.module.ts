@@ -5,6 +5,7 @@ import { CuentasComponent } from './cuentas/cuentas.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { OperacionesComponent } from './operaciones/operaciones.component';
 import { ProductosComponent } from './productos/productos.component';
+import { DetallesCuentaComponent } from './detalles-cuenta/detalles-cuenta.component';
 
 const routes: Routes = [
   {path: 'landing', component: LandingPageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'movimientos', component: MovimientosComponent },
   {path: 'operar', component: OperacionesComponent },
   {path: 'productos', component: ProductosComponent },
+  {path: 'detallescuenta', component: DetallesCuentaComponent },
 ];
 
 @NgModule({
