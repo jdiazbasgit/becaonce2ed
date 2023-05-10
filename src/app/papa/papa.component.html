@@ -1,0 +1,5 @@
+Mensaje a hijo1:<input type="text" [(ngModel)]="mensajeAHijo1"><br>
+Mensaje a hijo2:<input type="text" [(ngModel)]="mensajeAHijo2"><br>
+<h1>El hijo 1 me dice: {{mensajeAPapaEventoHijo1}}</h1>
+<app-hijo1 [mensaje]="mensajeAHijo1" (eventoAComunicar)="realizarComunicacioConPapa($event)"></app-hijo1>
+<app-hijo2 [mensaje]="mensajeAHijo2"></app-hijo2>
