@@ -1,17 +1,20 @@
 <header class="bg-primary">
+
+  <div class="w-100 d-block text-center pt-3">
+    <div class="container-fluid">
+      <h4 class="pt-1 text-white">
+          <a class="navbar-brand mt-2 mt-lg-0" href="index.html">TIENDA</a>
+      </h4>
+    </div>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
-        <h5 class="pt-1">TIENDA</h5>
-      </a>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" routerLink="/home">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/products">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/product">Productos</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/offer">OFERTA</a></li>
         </ul>
-
         <div class="navbar-nav action-buttons ml-auto">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a routerLink="/login" class="btn p-2 btn-primary border-0">Mi cuenta</a></li>
@@ -27,7 +30,6 @@
 <main>
   <article>
     <div style="height: 100%;">
-
       <router-outlet></router-outlet>
     </div>
   </article>
