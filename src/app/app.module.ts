@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
