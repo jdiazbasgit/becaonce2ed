@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>Hola soy el Padre de todos</h1>
+    Saludo a Thor:<input type="text" [(ngModel)]="saludo">
+    <app-thor saludo="{{saludo}}">
+        <div class="container bg-success">
+            <h1>Hola soy Thor</h1>
+            <h1>Odin me dice:{{saludo}}</h1>
+        </div>
+    </app-thor>
+
+    <app-loki>
+        <div class="container bg-danger">
+            <h1>Hola soy Loki</h1>
+        </div>
+        <div trozo class="bg-warning">
+            <h1>Este contenido se llama trozo</h1>
+            <h1>El nombre ofical del pais es:{{nombrePais}}</h1>
+        </div>
+    </app-loki>
+</div>
