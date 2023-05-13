@@ -1,0 +1,127 @@
+.fondoBtnLogin{
+    background: linear-gradient(135deg, rgb(105, 196, 45), rgb(223, 255, 235));
+    height: 60px;
+}
+.btnLogin{
+    width: 100px;
+    height: 50px;
+    background: transparent;    
+    border: 2px solid rgb(15, 156, 39);
+    outline: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    color: whitesmoke;
+    font-weight: 500;
+    transition: .5s;
+    margin: 5px;
+}
+.btnLogin:hover{
+    background: whitesmoke;
+    color: green;
+}
+.contenedorLogin{
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: rgb(15, 156, 39, .2);
+    border: 2px solid rgb(15, 156, 39, .2);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.contenedorLogin .formularioLogin{
+    /* width: 100%; */
+    padding: 40px;
+}
+.formularioLogin h2{
+    font-size: 2em;
+    color: whitesmoke;
+    text-align: center;
+}
+.inputCasilla{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid rgb(44, 44, 44);
+    margin: 30px 0;
+}
+.inputCasilla label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: rgb(44, 44, 44);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.inputCasilla input:focus~label,.inputCasilla input:valid~label{
+    top: -5px;
+    opacity: .5;
+}
+
+.inputCasilla input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: rgb(44, 44, 44);
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+
+}
+.inputCasilla .iconito{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    top: 5px;
+}
+.recordar{
+    font-size: 0.8em;    
+    font-weight: 500;
+    text-align: end;
+}
+.recordar a{
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+}
+.recordar a:hover{
+    text-decoration: underline;
+}
+.btnSubmit{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background: green;    
+    border: 2px solid rgb(15, 156, 39);
+    outline: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    color: whitesmoke;
+    font-weight: 500;
+    transition: .5s;
+}
+.btnSubmit:hover{
+    background: whitesmoke;
+    color: green;
+}
+.loginARegisto{
+    font-size: 1em;
+    margin-top: 20px;
+    font-weight: 500;
+}
+.loginARegisto a{
+    text-decoration: none;
+    color: green;    
+    transition: .5s;
+}
+.loginARegisto a:hover{
+    text-decoration: underline;
+}
