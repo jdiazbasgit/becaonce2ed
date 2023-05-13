@@ -26,7 +26,7 @@
     background: rgb(15, 156, 39, .2);
     /* background: whitesmoke; */
     border: 2px solid rgb(15, 156, 39, .2);
-    /* border-radius: 10px; */
+    border-radius: 10px;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 30px whitesmoke;
     display: flex;
@@ -62,9 +62,9 @@
     transition: .5s;
 }
 .inputCasilla input:focus~label,.inputCasilla input:valid~label{
-    top: -3px;
-    opacity: 1;
-    font-size: 0.8em;
+    top: 9px;
+    opacity: .5;
+    font-size: 0.7em;
     background-color: whitesmoke;
     width: 180px;
     left: 0px;
