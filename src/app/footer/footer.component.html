@@ -1,141 +1,70 @@
-<div style="background-color:rgb(136, 107, 107) ">
-
-    <header class="mt-3 header">
-        <img class="mb-4" src="labios.png" alt="150" height="130">
-
-        <form class="text-end mb-4">
-            <div class="form-floating">
-                <input type="usuario" class="form-control" id="floatingInput" placeholder="usuario">
-                <label for="floatingInput">USUARIO</label>
-            </div>
-            <div class="form-floating">
-                <input type="Password" class="form-control" id="floatingInput" placeholder="Password">
-                <label for="floatingInput">PASSWORD</label>
-            </div>
-            <div class="checkbox mb-3">
-                <label for="">
-                    <input type="checkbox" value="remember-me">
-                    Remember me
-                </label>
-            </div>
-            <button class="w-100 btn-lg btn-light" type="submit">Sing in</button>
-            <p class="mt-5 mb-3 text-body-secondary"></p>
-        </form>
-
-        <div class="row">
+<footer class="py-2 text-light border-top" style="background-color:rgb(136, 107, 107) ">
+    <div class="row">
+        <div class="col-6 col-md-2 mb-sm-1">
+            <h6>SOBRE NOSOTROS</h6>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">ShopposH</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Tiendas ShopposH</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">bussiner</a>
+                </li>
 
 
-            <h1 class="text-white text-center pt-5">
-                SHOppOSH</h1>
-            <P class="text-white text-center">PRODUCTOS ACCESIBLES</P>
+            </ul>
+
         </div>
-    </header>
+        <div class="col-6 col-md-2 mb-3">
+            <h6>AYUDA</h6>
+            <ul class="nav flex-column">
 
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Envios</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Devoluciones</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Financiacion</a>
+                </li>
 
+            </ul>
 
-    <nav class="text-center " id="nav">
-        <button disabled onclick="dameHome()" id="b1" class="btn btn-outline-light">HOME
-        </button>
-        <button disabled onclick="dameProductos()" type="button" id="b2"
-            class="btn btn-outline-light">PRODUCTOS</button>
-        <button disabled type="button" id="b3" class="btn btn-outline-light">USUARIOS</button>
-        <button disabled onclick="damefIDELIDAD()" type="button" id="b4"
-            class="btn btn-outline-light">FIDELIDAD</button>
-    </nav>
-
-
-    <router-outlet>
-
-
-        <div id="info-box" data-info-chrome="Rendering in Chrome" data-info-safari="Rendering in Safari"
-            data-info-firefox="Rendering in Firefox" data-presentation-width="vw" data-presentation-heith="vh"
-            data-inspiration="" data-hidden-onLoad="false">
         </div>
+        <div class="col-6 col-md-2 mb-3">
+            <h6>DESCUBRE</h6>
+            <ul class="nav flex-column">
 
-    </router-outlet>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Catálagos</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Black Friday</a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a href="#" class="nav-link p-0 text-light">Navidad</a>
+                </li>
 
-    <footer class="py-2 text-light border-top">
-        <div class="row">
-            <div class="col-6 col-md-2 mb-sm-1">
-                <h6>SOBRE NOSOTROS</h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">ShopposH</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Tiendas ShopposH</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">bussiner</a>
-                    </li>
+            </ul>
 
-
-                </ul>
-
-            </div>
-            <div class="col-6 col-md-2 mb-3">
-                <h6>AYUDA</h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">FAQs</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Envio e Instalación</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Devoluciones</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Financiacion</a>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="col-6 col-md-2 mb-3">
-                <h6>DESCUBRE</h6>
-                <ul class="nav flex-column">
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">New In</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Catálagos</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Black Friday</a>
-                    </li>
-                    <li class="nav-item mb-2">
-                        <a href="#" class="nav-link p-0 text-light">Navidad</a>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="col-md-5 offset-md-1 mb-3">
-                <form>
-                    <h5>Suscripcion boletin informativo</h5>
-                    <p>Informacion mensual de nuestros productos y ofertas</p>
-                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                        <label for="newsletter1" class="visually-hidden">Email</label>
-                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                        <button class="btn btn-primary" type="button">Suscripcion</button>
-                    </div>
-                </form>
-            </div>
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-0 my-0 border-top">
-                <p>© 2023 PortalentoDigital, Inc. Derechos Reservados</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter"></use>
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram"></use>
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook"></use>
-                            </svg></a></li>
-                </ul>
-            </div>
         </div>
-    </footer>
-</div>
+        <div class="col-md-5 offset-md-1 mb-3">
+            <form>
+                <h5>Suscripcion boletin informativo</h5>
+                <p>Informacion mensual de nuestros productos y ofertas</p>
+                <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                    <label for="newsletter1" class="visually-hidden">Email</label>
+                    <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                    <button class="btn btn-primary" type="button">Suscripcion</button>
+                </div>
+            </form>
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-0 my-0 border-top">
+            <p>© 2023 PortalentoDigital, Inc. Derechos Reservados</p>
+
+        </div>
+    </div>
+</footer>
