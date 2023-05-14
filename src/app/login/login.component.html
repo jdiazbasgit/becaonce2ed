@@ -1,41 +1,69 @@
 <div class="fondoBtnLogin">
-    <button class="btnLogin">Acceso</button>
+    <button class="btnLogin" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
+        aria-expanded="false" aria-controls="zonaColapsableLogin">Acceso</button>
 </div>
-
-<div class="contenedorLogin">
-    <div class="formularioLogin">
-        <h2>BANCOFO</h2>
-        <form action="#" method="post" spellcheck="false">
-            <div class="inputCasilla">
-                <span class="iconito">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                     </svg>
-                </span>
-                <input type="text" required>
-                <label>Usuario</label>
+<div class="zonaColapsable collapse" id="zonaColapsableLogin">
+    <div class="cajaLoginInfo">
+        <span class="iconoCerrar" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
+                aria-expanded="false" aria-controls="zonaColapsableLogin">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M18 6l-12 12"></path>
+                    <path d="M6 6l12 12"></path>
+                 </svg>
+            </span>
+        <div class="contenedorLogin">            
+            <div class="formularioLogin">
+                <h2>BANCOFO</h2>
+                <form action="#" method="post" spellcheck="false">
+                    <div class="inputCasilla">
+                        <span class="iconito">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                            </svg>
+                        </span>
+                        <input type="text" required>
+                        <label>Usuario</label>
+                    </div>
+                    <div class="inputCasilla">
+                        <span class="iconito">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-key" width="24"
+                                height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z">
+                                </path>
+                                <path d="M15 9h.01"></path>
+                            </svg>
+                        </span>
+                        <input type="password" required>
+                        <label>Clave de acceso</label>
+                    </div>
+                    <div class="recordar">
+                        <a href="#">¿Olvidó su clave?</a>
+                    </div>
+                    <button type="submit" class="btnSubmit">Entrar</button>
+                    <div class="loginARegisto">
+                        <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
+                    </div>
+                </form>
             </div>
-            <div class="inputCasilla">
-                <span class="iconito">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-key" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0z"></path>
-                        <path d="M15 9h.01"></path>
-                     </svg>
-                </span>
-                <input type="password" required>
-                <label>Clave de acceso</label>
-            </div>
-            <div class="recordar">
-                <a href="#">¿Olvidó su clave?</a>
-            </div>
-            <button type="submit" class="btnSubmit">Entrar</button>
-            <div class="loginARegisto">
-                <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
-            </div>
-        </form>
+        </div>
+        <div class="infoLogin">
+            <div class="contenido">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"></path>
+                    <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                    <path d="M12 12l0 2.5"></path>
+                 </svg>
+                <p>Tus claves de acceso son secretas e intransferibles. No las compartas con nadie ni las proporciones a través de correo ni de SMS.</p>
+            </div>            
+        </div>
     </div>
-
 </div>

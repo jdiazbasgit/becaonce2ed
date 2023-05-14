@@ -1,47 +1,90 @@
 .fondoBtnLogin{
-    background: linear-gradient(135deg, rgb(105, 196, 45), rgb(223, 255, 235));
+    background: rgb(39, 160, 76);
     height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 .btnLogin{
     width: 100px;
     height: 50px;
-    background: transparent;    
-    border: 2px solid rgb(15, 156, 39);
-    outline: none;
-    /* border-radius: 4px; */
+    background: transparent;
+    background: rgb(39, 160, 76);
+    /* border: 2px solid rgb(15, 156, 39); */
+    border: none;
+    /* outline: none; */
+    border-radius: 5px;
     font-size: 1.1em;
     color: whitesmoke;
     font-weight: 500;
     transition: .5s;
-    margin: 5px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .btnLogin:hover{
     background: whitesmoke;
     color: green;
 }
-.contenedorLogin{
+.cajaLoginInfo{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px;
+}
+.cajaLoginInfo .contenedorLogin{
+    min-width: 400px;
+}
+.cajaLoginInfo .iconoCerrar{
     position: absolute;
-    width: 400px;
-    height: 440px;
-    background: rgb(15, 156, 39, .2);
-    /* background: whitesmoke; */
-    border: 2px solid rgb(15, 156, 39, .2);
-    border-radius: 10px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px whitesmoke;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    /* background: rgb(44, 44, 44); */
+    font-size: 2em;
+    color: rgb(36, 36, 36);
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+    opacity: .5;
+    transition: .5s;
 }
+.cajaLoginInfo .iconoCerrar:hover{
+    opacity: 1;
+}
+.contenedorLogin{
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: rgba(250, 255, 251, 0.1);
+    /* background: whitesmoke; */
+    /* border: 2px solid rgb(15, 156, 39, .2); */
+    border-radius: 5px;
+    backdrop-filter: blur(20px);
+    /* box-shadow: 0 0 10px rgb(104, 104, 104); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* right: 100px;
+    top: 100px; */
+    overflow: hidden;
+}
+
+
 .contenedorLogin .formularioLogin{
     /* width: 100%; */
     padding: 40px;
 }
 .formularioLogin h2{
     font-size: 2em;
-    color: whitesmoke;
+    color: green;
     text-align: center;
+    font-weight: 700;
 }
 .inputCasilla{
     position: relative;
@@ -49,6 +92,7 @@
     height: 50px;
     border-bottom: 2px solid rgb(44, 44, 44);
     margin: 30px 0;
+    border-radius: 5px;
 }
 .inputCasilla label{
     position: absolute;
@@ -65,10 +109,10 @@
     top: 9px;
     opacity: .5;
     font-size: 0.7em;
-    background-color: whitesmoke;
-    width: 180px;
+    /* background-color: whitesmoke; */
+    /* width: 180px; */
     left: 0px;
-    padding-left: 3px;
+    padding-left: 5px;
 }
 
 .inputCasilla input{
@@ -80,7 +124,8 @@
     font-size: 1em;
     color: rgb(44, 44, 44);
     font-weight: 600;
-    padding: 0 35px 0 5px;
+    padding: 10px 35px 0 5px;
+    border-radius: 5px;
 
 }
 .inputCasilla .iconito{
@@ -130,4 +175,14 @@
 }
 .loginARegisto a:hover{
     text-decoration: underline;
+}
+.infoLogin{
+    width: 400px;
+    height: 200px;
+    background: rgb(39, 160, 76);
+    margin: 20px 20px;  
+}
+.infoLogin .contenido{
+    margin: 20px 20px;
+    color: white;
 }
