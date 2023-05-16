@@ -2,6 +2,7 @@ package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -11,6 +12,8 @@ import once.curso.proyectotienda.repositories.RolCRUDRepository;
 @Service
 @Data
 public class RolService {
+	
+	@Autowired
 	public RolCRUDRepository rolesCRUDRepository;
 
 	public Rol save(Rol entity) {
