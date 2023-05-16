@@ -12,12 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee extends RepresentationModel<Employee> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
