@@ -1,31 +1,24 @@
 package once.curso.proyectobanco;
 
-<<<<<<< HEAD
-=======
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
->>>>>>> feature/develop-banco
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
->>>>>>> feature/develop-banco
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-<<<<<<< HEAD
-=======
 import lombok.Data;
 import once.curso.proyectobanco.entities.IdentificationType;
->>>>>>> feature/develop-banco
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.services.IdentificationTypeService;
