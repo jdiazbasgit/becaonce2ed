@@ -27,6 +27,8 @@ public class UserRestController {
 	@GetMapping("/users")
 	public List<User> dameUser(){
 		return (List<User>) getUserService().findAll();
+		
+		
 	}
 	
 	@GetMapping("/users{id}")

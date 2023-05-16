@@ -16,11 +16,8 @@ target/
 ### Node ###
 /node_modules
 
-<<<<<<< HEAD
+
 ###Miscellaneous ###
-=======
-### Miscellaneous
->>>>>>> 8c04dfde6f4b47cbd7051705ec3da086ea51666d
 /.angular/cache
 
 ### IntelliJ IDEA ###
