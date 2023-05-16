@@ -1,11 +1,43 @@
-<div class="fondoBtnLogin">
-    <button class="btnLogin" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
-        aria-expanded="false" aria-controls="zonaColapsableLogin">Acceso</button>
+<div class="cabecera">
+    <div class="logoCabecera">
+        <span><h1>B</h1><h4>ANCAIN</h4></span>
+    </div>
+    <div class="tiempoCabecera">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            15/05/2023 01:54
+          </button>          
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Maquina del Tiempo</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Menú de ajustes para acelerar el tiempo
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div *ngIf="!logado" class="fondoBtnLogin">
+        <button class="btnHazteCliente" >Hazte cliente</button>        
+        <button class="btnLogin" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
+            aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">Acceso</button>
+    </div>
+    <div *ngIf="logado" class="fondoBtnLogin">
+        <button class="btnHazteCliente">Hola {{usuario}}</button>        
+        <button class="btnLogin" type="button" (click)="deslogarse()">Salir</button>
+    </div>
 </div>
-<div class="zonaColapsable collapse" id="zonaColapsableLogin">
+<div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
     <div class="cajaLoginInfo">
         <span class="iconoCerrar" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
-                aria-expanded="false" aria-controls="zonaColapsableLogin">
+                aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M18 6l-12 12"></path>
@@ -14,7 +46,7 @@
             </span>
         <div class="contenedorLogin">            
             <div class="formularioLogin">
-                <h2>BANCOFO</h2>
+                <h2>Soy cliente</h2>
                 <form action="#" method="post" spellcheck="false">
                     <div class="inputCasilla">
                         <span class="iconito">
@@ -26,7 +58,7 @@
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                             </svg>
                         </span>
-                        <input type="text" required>
+                        <input type="text" required [(ngModel)]="inputUsuario" name="inputUsuario">
                         <label>Usuario</label>
                     </div>
                     <div class="inputCasilla">
@@ -41,13 +73,13 @@
                                 <path d="M15 9h.01"></path>
                             </svg>
                         </span>
-                        <input type="password" required>
+                        <input type="password" required [(ngModel)]="inputPassword" name="inputPassword">
                         <label>Clave de acceso</label>
                     </div>
                     <div class="recordar">
                         <a href="#">¿Olvidó su clave?</a>
                     </div>
-                    <button type="submit" class="btnSubmit">Entrar</button>
+                    <button type="submit" class="btnSubmit" (click)="logarse()">Entrar</button>
                     <div class="loginARegisto">
                         <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
                     </div>

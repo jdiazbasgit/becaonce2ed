@@ -1,21 +1,72 @@
-.fondoBtnLogin{
+.cabecera{
     background: rgb(39, 160, 76);
     height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.logoCabecera span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    user-select: none;
+}
+.logoCabecera h4{
+    font-size: 1.8em;
+    font-weight: 900;
+    text-decoration: underline;
+}
+.logoCabecera h1{
+    font-size: 2.8em;
+    font-weight: 700;
+    text-decoration: none;
+}
+.tiempoCabecera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: green;
+}
+.tiempoCabecera button{
+    font-size: 1.2em;
+    font-weight: 600;
+    background: white;
+    color: green;
+    border: none;
+    border-radius: 5px;
+}
+.tiempoCabecera .modal-content{
+    margin-top: 100px;
+    min-width: 500px;
+    min-height: 500px;
+    background: url('src/assets/clockFace.jpg') center;
+    border-radius: 500px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.tiempoCabecera .modal{
+    backdrop-filter: blur(20px) brightness(1.8);
+    overflow: hidden;
+}
+.fondoBtnLogin{
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
 .btnLogin{
     width: 100px;
-    height: 50px;
+    height: 60px;
     background: transparent;
-    background: rgb(39, 160, 76);
+    /* background: green; */
     /* border: 2px solid rgb(15, 156, 39); */
     border: none;
     /* outline: none; */
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-size: 1.1em;
-    color: whitesmoke;
+    color: white;
     font-weight: 500;
     transition: .5s;
     margin-right: 50px;
@@ -24,7 +75,33 @@
     align-items: center;
 }
 .btnLogin:hover{
-    background: whitesmoke;
+    background: white;
+    color: green;
+}
+.fondoBtnLogin .pulsado{
+    background: white;
+    color: green;
+}
+.btnHazteCliente{
+    width: 150px;
+    height: 60px;
+    background: transparent;
+    /* background: rgb(39, 160, 76); */
+    /* border: 2px solid rgb(15, 156, 39); */
+    border: none;
+    /* outline: none; */
+    /* border-radius: 5px; */
+    font-size: 1.1em;
+    color: gold;
+    font-weight: 500;
+    transition: .5s;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnHazteCliente:hover{
+    background: white;
     color: green;
 }
 .cajaLoginInfo{
@@ -43,7 +120,6 @@
     right: 0;
     width: 35px;
     height: 35px;
-    /* background: rgb(44, 44, 44); */
     font-size: 2em;
     color: rgb(36, 36, 36);
     display: flex;
@@ -77,14 +153,13 @@
 
 
 .contenedorLogin .formularioLogin{
-    /* width: 100%; */
     padding: 40px;
 }
 .formularioLogin h2{
     font-size: 2em;
     color: green;
     text-align: center;
-    font-weight: 700;
+    font-weight: 500;
 }
 .inputCasilla{
     position: relative;
