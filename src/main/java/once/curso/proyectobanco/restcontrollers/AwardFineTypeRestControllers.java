@@ -45,7 +45,7 @@ public class AwardFineTypeRestControllers {
 	}
 
 	@DeleteMapping(value = "/awrdFineType")
-	public AwardsFinesType deleteById(@RequestBody AwardsFinesType awardFineType) {
-		return getAwardFineTypeServices().save(awardFineType);
+	public void deleteById(@PathVariable int id) {
+		 getAwardFineTypeServices().deleteById(id);
 	}
 }
