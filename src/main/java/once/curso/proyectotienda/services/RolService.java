@@ -15,7 +15,7 @@ public class RolService {
 	
 	@Autowired
 	private RolCRUDRepository rolesCRUDRepository;
-
+	
 	public <S extends Rol> S save(S entity) {
 		// orden 5, prueba hecha
 		return getRolesCRUDRepository().save(entity);
