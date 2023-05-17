@@ -8,12 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "subcategories")
-public class SubCategory {
+public class SubCategory extends RepresentationModel<SubCategory> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
