@@ -17,11 +17,11 @@ public class TransactionsAwardsFineService {
 	private TransactionsAwardsFineRepository transactionsAwardsFineRepository;
 	
 	
-	public <S extends TransactionsAwardsFine> S save(S entity) {
+	public TransactionsAwardsFine save(TransactionsAwardsFine entity) {
 		return getTransactionsAwardsFineRepository().save(entity);
 	}
 
-	public <S extends TransactionsAwardsFine> Iterable<S> saveAll(Iterable<S> entities) {
+	public  Iterable<TransactionsAwardsFine> saveAll(Iterable<TransactionsAwardsFine> entities) {
 		return getTransactionsAwardsFineRepository().saveAll(entities);
 	}
 
