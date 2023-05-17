@@ -31,7 +31,7 @@ public class TransactionsAwardsFineResController {
 	
 	@GetMapping("/transactionsAwardsFineService")
 	
-	public CollectionModel<TransactionsAwardsFine> dameDato(){
+	public CollectionModel<TransactionsAwardsFine> findAll(){
 	Iterable<TransactionsAwardsFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll();
 	transactionsAwardsFine.forEach(t ->{
 		t.add( WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)

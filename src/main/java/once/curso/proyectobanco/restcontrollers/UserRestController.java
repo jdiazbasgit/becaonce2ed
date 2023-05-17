@@ -32,7 +32,7 @@ public class UserRestController {
 	
 	@GetMapping("/users")
 	
-	public CollectionModel<User> dameUser(){
+	public CollectionModel<User> findAll(){
 		  Iterable<User> users= getUserService().findAll();
 		  users.forEach(u->{
 			  u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
@@ -48,7 +48,7 @@ public class UserRestController {
 	User user= getUserService().findById(id).get();
 	 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
 			  .findById(user.getId())).withSelfRel());
-	return null;
+	return EntityModel.of(user);
 	}
 	
 	@PostMapping("/users")
