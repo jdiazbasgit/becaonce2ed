@@ -8,12 +8,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "awards_fines")
-public class AwardsFine {
+public class AwardsFine extends RepresentationModel<AwardsFine> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

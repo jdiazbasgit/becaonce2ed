@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,30 +23,43 @@ import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
 @RequestMapping
 @Data
 public class AwardsFinesConfigurationRestControllers {
-	
+
 	@Autowired
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
-	
+
 	@GetMapping(value = "/awardsFinesConfiguration/{id}")
-	public AwardsFinesConfiguration findById(@PathVariable Integer id) {
-		return getAwardsFinesConfigurationServices().findById(id).get();
+	public EntityModel<AwardsFinesConfiguration> getAwardsFinesConfigurationById(@PathVariable int id) {
+		AwardsFinesConfiguration awardsFinesConfiguration = getAwardsFinesConfigurationServices().findById(id).get();
+
+		awardsFinesConfiguration
+				.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
+						.getAwardsFinesConfigurationById(awardsFinesConfiguration.getId())).withSelfRel());
+
+		return EntityModel.of(awardsFinesConfiguration);
 	}
 
 	@GetMapping(value = "/AwardsFinesConfiguration")
-	public Iterable<AwardsFinesConfiguration> findAll(@PathVariable Integer id){
-		return getAwardsFinesConfigurationServices().findAll();
-	}
-	
+	public CollectionModel<AwardsFinesConfiguration> findAll() {
+		Iterable<AwardsFinesConfiguration> awardsFinesConfiguration = getAwardsFinesConfigurationServices().findAll();
+		awardsFinesConfiguration.forEach(c -> {
+			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
+					.getAwardsFinesConfigurationById(c.getId())).withSelfRel());
+		});
+
+		return CollectionModel.of(awardsFinesConfiguration);
+	};
+
 	@PostMapping(value = "/AwardsFinesConfiguration")
 	public AwardsFinesConfiguration save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}
-	
+
 	@PutMapping(value = "/AwardsFinesConfiguration")
-	public List<AwardsFinesConfiguration> saveAll(@RequestBody List<AwardsFinesConfiguration> AwardsFinesConfigurations){
+	public List<AwardsFinesConfiguration> saveAll(
+			@RequestBody List<AwardsFinesConfiguration> AwardsFinesConfigurations) {
 		return (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
 	}
-	
+
 	@DeleteMapping(value = "/AwardsFinesConfiguration/{id}")
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
