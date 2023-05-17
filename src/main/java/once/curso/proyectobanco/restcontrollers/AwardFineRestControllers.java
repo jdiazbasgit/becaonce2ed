@@ -46,9 +46,9 @@ public class AwardFineRestControllers {
 		return (List<AwardFine>) getAwardFineServices().saveAll(awardFine);
 	}
 
-	@DeleteMapping(value = "/awardFine")
-	public AwardFine deleteById(@RequestBody AwardFine awardFine) {
-		return getAwardFineServices().save(awardFine);
+	@DeleteMapping(value = "/awardFine/{id}")
+	public void deleteById(@PathVariable int id) {
+		 getAwardFineServices().deleteById(id);
 
 	}
 }

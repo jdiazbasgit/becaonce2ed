@@ -3,6 +3,10 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcAffordanceBuilderDsl;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,13 +29,21 @@ public class RolRestController {
 	private RolService rolService;
 
 	@GetMapping(value = "/rol/{id}")
-	public Rol findById(@PathVariable Integer id) {
-		return getRolService().findById(id).get();
+	public EntityModel<Rol> findById(@PathVariable int id) {
+		Rol rol=  getRolService().findById(id).get();
+		rol.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
+				.findById(rol.getId())).withSelfRel());
+		 return EntityModel.of(rol);
 	}
 
 	@GetMapping(value = "/roles")
-	public Iterable<Rol> findAll(@PathVariable Integer id) {
-		return getRolService().findAll();
+	public CollectionModel<Rol> findAll() {
+		 Iterable<Rol> roles= getRolService().findAll();
+		 roles.forEach(r->{
+			 r.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
+					 .findById(r.getId())).withSelfRel());
+		 });
+		 return CollectionModel.of(roles);
 	}
 
 	@PostMapping(value = "/roles")
