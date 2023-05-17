@@ -42,7 +42,7 @@ public class ProfileRestController {
 		  profiles.forEach(p->{
 			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class)
 					  .findById(p.getIdentificationType().getId())).withRel("identificationType"));
-			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestControllers.class)
+			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
 					  .findById(p.getUser().getId())).withRel("user"));
 			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class)
 					  .findById(p.getId())).withSelfRel());
