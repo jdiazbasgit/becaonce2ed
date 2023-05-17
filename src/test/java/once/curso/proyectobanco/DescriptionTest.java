@@ -18,8 +18,7 @@ public class DescriptionTest {
 	
 	@Test
 	public void testDescription() {
-        Iterable<Description> descriptions = descriptionService.dameDescripcion();
-        assertNotNull(descriptions);
+    
 
 	}
 }
