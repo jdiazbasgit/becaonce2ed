@@ -16,8 +16,12 @@ target/
 ### Node ###
 /node_modules
 
+<<<<<<< HEAD
 
 ###Miscellaneous ###
+=======
+### Miscellaneous
+>>>>>>> feature/develop-tienda
 /.angular/cache
 
 ### IntelliJ IDEA ###
@@ -38,3 +42,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Otros
+.angular/
+node_modules/
+

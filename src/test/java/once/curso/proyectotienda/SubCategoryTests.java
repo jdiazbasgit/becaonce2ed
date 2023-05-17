@@ -113,6 +113,6 @@ public class SubCategoryTests {
 		assertTrue(subcategoryService.existsById(sCategoryp.getId()));
 		
 		subcategoryService.delete(sCategoryp);
-		
+		//ronald
 	}
 }
