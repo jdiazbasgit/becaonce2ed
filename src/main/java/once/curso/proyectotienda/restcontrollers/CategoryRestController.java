@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.services.CategoryService;
 
 @RestController
@@ -36,6 +37,14 @@ public class CategoryRestController {
 	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
 	   return EntityModel.of(category);
    }
+   
+	@GetMapping("/categories/{id}")
+	public EntityModel<Category> findById(@PathVariable Integer id) {
+		Category category = getCategoryService().findById(id).get();
+		category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(category.getId())).withRel("category"));
+		category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(category.getId())).withSelfRel());
+		 return EntityModel.of(category);
+	}
 
 
 
