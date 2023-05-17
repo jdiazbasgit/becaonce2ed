@@ -3,6 +3,10 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +31,28 @@ public class TransactionsAwardsFineResController {
 	
 	@GetMapping("/transactionsAwardsFineService")
 	
-	public List<TransactionsAwardsFine> dameDato(){
-		return (List<TransactionsAwardsFine>) getTransactionsAwardsFineService().findAll();
+	public CollectionModel<TransactionsAwardsFine> dameDato(){
+	Iterable<TransactionsAwardsFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll();
+	transactionsAwardsFine.forEach(t ->{
+		t.add( WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
+			.findById(t.getTransaction().getId())).withRel("transaction"));
+		
+		t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+				.findById(t.getAwardsFineType().getId())).withRel("AwardsFineType"));
+		t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
+				.findById(t.getId())).withSelfRel());
+	});
+		return CollectionModel.of( transactionsAwardsFine);
 	}
 	
 	@GetMapping(value="/transactionsAwardsFineService/{id}")
 	
-	public TransactionsAwardsFine findById(@PathVariable Integer id){
-		return getTransactionsAwardsFineService().findById(id).get();
+	public EntityModel<TransactionsAwardsFine> findById(@PathVariable Integer id){
+		 TransactionsAwardsFine transactionsAwardsFine =getTransactionsAwardsFineService().findById(id).get();
+		 transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
+				.findById(transactionsAwardsFine.getId())).withSelfRel());
 			
-		
+		return EntityModel.of(transactionsAwardsFine);
 }
 	@PostMapping("/transactionsAwardsFineService")
 		
