@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,13 +28,21 @@ public class TypeAccountRestController {
 	private TypeAccountService typeAccountService;
 
 	@GetMapping(value = "/typeAccounts/{id}")
-	public TypeAccount findById(@PathVariable Integer id) {
-		return getTypeAccountService().findById(id).get();
+	public EntityModel<TypeAccount> findById (@PathVariable int id) {
+		 TypeAccount typeAccount=getTypeAccountService().findById(id).get();
+		 typeAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TypeAccountRestController.class).
+				 findById(typeAccount.getId())).withSelfRel());
+		 return EntityModel.of(typeAccount);
 	}
 
 	@GetMapping(value = "/typeAccounts")
-	public Iterable<TypeAccount> findAll(@PathVariable Integer id) {
-		return getTypeAccountService().findAll();
+	public CollectionModel<TypeAccount> findAll() {
+		 Iterable<TypeAccount> typeAccount=getTypeAccountService().findAll();
+		 typeAccount.forEach(t->{
+			 t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TypeAccountRestController.class).
+					 findAll()).withSelfRel());
+		 });
+		 return CollectionModel.of(typeAccount);
 	}
 	@PostMapping (value="/typeAccounts")
 	public TypeAccount save(@RequestBody TypeAccount typeAccount) {
