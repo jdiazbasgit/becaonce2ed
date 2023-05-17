@@ -19,6 +19,6 @@ public class Configuration extends RepresentationModel<Configuration>{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private int stockAlarm;
+	private int stockAlarm; 
 
 }
