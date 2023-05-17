@@ -32,7 +32,7 @@ public class FeeRestController {
 	@GetMapping(value = "/fees/{id}")
 	public EntityModel<Fee> findById(@PathVariable Integer id) {
 		Fee fee=  getFeeService().findById(id).get();
-		fee.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
+		fee.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class)
 				.findById(fee.getId())).withSelfRel());
 		 return EntityModel.of(fee);
 	}
