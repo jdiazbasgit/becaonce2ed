@@ -1,6 +1,9 @@
 package once.curso.proyectobanco.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,28 +16,41 @@ import lombok.Data;
 import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.services.CurrentAccountService;
 
-@RestController
 @Data
+@RestController
 @RequestMapping("/once")
 public class CurrentAccountRestController {
-	@Autowired
-	private CurrentAccountService currentAccountService;
-	
-	@GetMapping(value =" /currentAccounts/{id}")
-	public CurrentAccount findById(@PathVariable Integer id) {
-		return getCurrentAccountService().findById(id).get();
-	}
-	@GetMapping(value = "/currentAccounts")
-	public Iterable<CurrentAccount> CurrentAccountService(@PathVariable Integer id) {
-		return getCurrentAccountService().findAll();
-	}
-	@PostMapping(value = "/currentAccounts")
-	public CurrentAccount save(@RequestBody CurrentAccount currentAccount) {
-		return getCurrentAccountService().save(currentAccount);
-	}
-	@DeleteMapping(value="/currentAccounts")
-	public void deleteById(@PathVariable Integer id) {
-		getCurrentAccountService().deleteById(id);
-	}
-	
+    @Autowired
+    private CurrentAccountService currentAccountService;
+    
+    @GetMapping(value = "/currentAccounts/{id}")
+    public EntityModel<CurrentAccount> findById(@PathVariable Integer id) {
+        CurrentAccount currentAccount = currentAccountService.findById(id).get();
+        currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
+                .findById(currentAccount.getId())).withSelfRel());
+        return EntityModel.of(currentAccount);
+    }
+    
+    @GetMapping(value = "/currentAccounts")
+    public CollectionModel<CurrentAccount> findAll() {
+        Iterable<CurrentAccount> currentAccounts = currentAccountService.findAll();
+        currentAccounts.forEach(a -> {
+            a.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
+                    .findById(a.getId())).withRel("account"));
+        });
+        return CollectionModel.of(currentAccounts);
+    }
+    
+    @PostMapping(value = "/currentAccounts")
+    public EntityModel<CurrentAccount> save(@RequestBody CurrentAccount currentAccount) {
+        CurrentAccount savedAccount = currentAccountService.save(currentAccount);
+        savedAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
+                .findById(savedAccount.getId())).withSelfRel());
+        return EntityModel.of(savedAccount);
+    }
+    
+    @DeleteMapping(value = "/currentAccounts/{id}")
+    public void deleteById(@PathVariable Integer id) {
+        currentAccountService.deleteById(id);
+    }
 }
