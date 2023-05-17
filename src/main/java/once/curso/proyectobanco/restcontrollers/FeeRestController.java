@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Fee;
+import once.curso.proyectobanco.entities.Rol;
 import once.curso.proyectobanco.services.FeeService;
 
 @RestController
@@ -24,15 +28,25 @@ public class FeeRestController {
 
 	@Autowired
 	private FeeService feeService;
-
+	
 	@GetMapping(value = "/fees/{id}")
-	public Fee findById(@PathVariable Integer id) {
-		return getFeeService().findById(id).get();
+	public EntityModel<Fee> findById(@PathVariable Integer id) {
+		Fee fee=  getFeeService().findById(id).get();
+		fee.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
+				.findById(fee.getId())).withSelfRel());
+		 return EntityModel.of(fee);
 	}
 	
 	@GetMapping(value = "/fees")
-	public Iterable<Fee> findAll() {
-		return getFeeService().findAll();
+	public CollectionModel<Fee> findAll(){
+		Iterable<Fee> fees= getFeeService().findAll();
+		fees.forEach(f->{
+			f.add(WebMvcLinkBuilder.
+					linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class).
+							findById(f.getId())).withSelfRel());
+		});
+		 
+		 return CollectionModel.of(fees);
 	}
 	
 	@PatchMapping(value = "/fees")
