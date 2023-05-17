@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+/node_modules
 .apt_generated
 .classpath
 .factorypath
