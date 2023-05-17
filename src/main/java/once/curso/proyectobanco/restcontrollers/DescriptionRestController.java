@@ -1,6 +1,10 @@
 package once.curso.proyectobanco.restcontrollers;
 
+import org.hibernate.EntityMode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +27,24 @@ public class DescriptionRestController {
 	private DescriptionService descriptionService;
 	
 	@GetMapping(value =" /descriptions/{id}")
-	public Description findById(@PathVariable Integer id) {
-		return getDescriptionService().findById(id).get();
+	public EntityModel<Description> findById(@PathVariable int id) {
+		Description description= getDescriptionService().findById(id).get();
+		description.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DescriptionRestController.class)
+				.findById(description.getId())).withSelfRel());
+		 return EntityModel.of(description);
 	}
+	
+	
+	
 	@GetMapping(value = "/descriptions")
-	public Iterable<Description> findAll() {
-		return getDescriptionService().findAll();
-	}
+	public CollectionModel<Description> findAll() {
+		Iterable<Description> descriptions= getDescriptionService().findAll();
+		descriptions.forEach(d->{
+			  d.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DescriptionRestController.class)
+					  .findById(d.getId())).withRel("description"));
+		});
+		 return CollectionModel.of(descriptions);
+		 }
 	@PostMapping(value = "/descriptions")
 	public Description save(@RequestBody Description description) {
 		return getDescriptionService().save(description);

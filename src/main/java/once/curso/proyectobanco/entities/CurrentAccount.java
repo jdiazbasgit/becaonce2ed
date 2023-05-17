@@ -13,12 +13,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table (name="current_accounts")
-public class CurrentAccount {
+public class CurrentAccount extends RepresentationModel<CurrentAccount> {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
