@@ -28,7 +28,7 @@ public class RolRestController {
 	@Autowired
 	private RolService rolService;
 
-	@GetMapping(value = "/rol/{id}")
+	@GetMapping(value = "/roles/{id}")
 	public EntityModel<Rol> findById(@PathVariable int id) {
 		Rol rol=  getRolService().findById(id).get();
 		rol.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
