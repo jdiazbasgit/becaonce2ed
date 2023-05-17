@@ -34,9 +34,13 @@ public class CurrentAccountRestController {
     @GetMapping(value = "/currentAccounts")
     public CollectionModel<CurrentAccount> findAll() {
         Iterable<CurrentAccount> currentAccounts = currentAccountService.findAll();
-        currentAccounts.forEach(a -> {
+        currentAccounts.forEach(a -> {                                               
             a.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
-                    .findById(a.getId())).withRel("account"));
+                    .findById(a.getId())).withSelfRel());
+            a.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TypeAccountRestController.class)
+                    .findById(a.getId())).withRel("typeAccount"));
+            a.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class)
+                    .findById(a.getId())).withRel("fee"));
         });
         return CollectionModel.of(currentAccounts);
     }
