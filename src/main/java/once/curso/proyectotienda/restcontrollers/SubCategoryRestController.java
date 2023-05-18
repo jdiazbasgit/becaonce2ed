@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.SubcategoryService;
 
