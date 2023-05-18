@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import lombok.Data;
 import once.curso.proyectobanco.entities.TransactionsAwardsFine;
-import once.curso.proyectobanco.services.AwardFineTypeServices;
+import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 import once.curso.proyectobanco.services.TransactionService;
 import once.curso.proyectobanco.services.TransactionsAwardsFineService;
 
@@ -25,7 +25,7 @@ class TransactinsAwardsFineTests {
 	@Autowired
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	@Autowired
-	private AwardFineTypeServices awardsFineTypeServices;
+	private AwardsFinesTypeServices awardsFineTypeServices;
 	@Autowired
 	private TransactionService transactionService;
 
