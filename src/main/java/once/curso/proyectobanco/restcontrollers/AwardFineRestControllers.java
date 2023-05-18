@@ -29,12 +29,12 @@ public class AwardFineRestControllers {
 	private AwardsFinesServices awardFineServices;
 
 	@GetMapping(value = "/awardFine/{id}")
-	public EntityModel<AwardsFine> getAwardsFineById(@PathVariable int id) {
+	public EntityModel<AwardsFine> findById(@PathVariable int id) {
 		AwardsFine awardsFine = getAwardFineServices().findById(id).get();
 
 		awardsFine
 				.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class)
-						.getAwardsFineById(awardsFine.getId())).withSelfRel());
+						.findById(awardsFine.getId())).withSelfRel());
 
 		return EntityModel.of(awardsFine);
 	}
@@ -44,13 +44,13 @@ public class AwardFineRestControllers {
 		Iterable<AwardsFine> awardsFine = getAwardFineServices().findAll();
 		awardsFine.forEach(c -> {
 			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class)
-					.getAwardsFineById(c.getId())).withSelfRel());
+					.findById(c.getId())).withSelfRel());
 			
 			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
-					.getAwardsFinesConfigurationById(c.getId())).withRel("awardsFinesConfiguration"));
+					.findById(c.getId())).withRel("awardsFinesConfiguration"));
 			
 			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-					.getAwardsFinesTypeById(c.getId())).withRel("awardsFinesType"));
+					.findById(c.getId())).withRel("awardsFinesType"));
 		});
 		
 		return CollectionModel.of(awardsFine);

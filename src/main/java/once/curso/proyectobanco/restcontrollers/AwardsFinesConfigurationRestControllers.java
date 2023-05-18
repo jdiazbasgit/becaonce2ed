@@ -28,12 +28,12 @@ public class AwardsFinesConfigurationRestControllers {
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
 
 	@GetMapping(value = "/awardsFinesConfiguration/{id}")
-	public EntityModel<AwardsFinesConfiguration> getAwardsFinesConfigurationById(@PathVariable int id) {
+	public EntityModel<AwardsFinesConfiguration> findById(@PathVariable int id) {
 		AwardsFinesConfiguration awardsFinesConfiguration = getAwardsFinesConfigurationServices().findById(id).get();
 
 		awardsFinesConfiguration
 				.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
-						.getAwardsFinesConfigurationById(awardsFinesConfiguration.getId())).withSelfRel());
+						.findById(awardsFinesConfiguration.getId())).withSelfRel());
 
 		return EntityModel.of(awardsFinesConfiguration);
 	}
@@ -43,7 +43,7 @@ public class AwardsFinesConfigurationRestControllers {
 		Iterable<AwardsFinesConfiguration> awardsFinesConfiguration = getAwardsFinesConfigurationServices().findAll();
 		awardsFinesConfiguration.forEach(c -> {
 			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
-					.getAwardsFinesConfigurationById(c.getId())).withSelfRel());
+					.findById(c.getId())).withSelfRel());
 		});
 
 		return CollectionModel.of(awardsFinesConfiguration);

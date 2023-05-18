@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.entities.AwardsFinesType;
 import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 
@@ -29,12 +28,12 @@ public class AwardFineTypeRestControllers {
 	private AwardsFinesTypeServices awardFineTypeServices;
 
 	@GetMapping(value = "/awardsFinesTypes/{id}")
-	public EntityModel<AwardsFinesType> getAwardsFinesTypeById(@PathVariable int id) {
+	public EntityModel<AwardsFinesType> findById(@PathVariable int id) {
 		AwardsFinesType awardsFinesType = getAwardFineTypeServices().findById(id).get();
 
 			awardsFinesType
 					.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-							.getAwardsFinesTypeById(awardsFinesType.getId())).withSelfRel());
+							.findById(awardsFinesType.getId())).withSelfRel());
 		
 		return EntityModel.of(awardsFinesType);
 	}
@@ -44,7 +43,7 @@ public class AwardFineTypeRestControllers {
 		Iterable<AwardsFinesType> awardsFinesType = getAwardFineTypeServices().findAll();
 		awardsFinesType.forEach(c -> {
 			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-					.getAwardsFinesTypeById(c.getId())).withSelfRel());
+					.findById(c.getId())).withSelfRel());
 		});
 		
 		return CollectionModel.of(awardsFinesType);
@@ -64,4 +63,6 @@ public class AwardFineTypeRestControllers {
 	public void deleteById(@PathVariable int id) {
 		 getAwardFineTypeServices().deleteById(id);
 	}
+
+	
 }
