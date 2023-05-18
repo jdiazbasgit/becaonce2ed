@@ -3,6 +3,8 @@ package once.curso.ejemplojpa.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -42,6 +44,10 @@ public class ChildService {
 
 	public Iterable<Child> findAll() {
 		return getChildRepository().findAll();
+	}
+	
+	public Page<Child> findAll(Pageable pageable){
+		return getChildRepository().findAll(pageable);
 	}
 
 	public Iterable<Child> findAllById(Iterable<Integer> ids) {
