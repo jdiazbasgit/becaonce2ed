@@ -28,6 +28,7 @@ public class UserRestController {
 	private UserService userService;
 	
 	@GetMapping("/users")
+
 	public CollectionModel<User> dameUser(){
 		 Iterable<User> users = getUserService().findAll();
 		 users.forEach(u->{
@@ -35,6 +36,7 @@ public class UserRestController {
 			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
 		 });
 		 return CollectionModel.of(users);
+
 	}
 	
 	@GetMapping("/users{id}")
