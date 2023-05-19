@@ -40,40 +40,47 @@ public class ChildRestController {
 	@Autowired
 	private ChildService childService;
 
+	
 	@PostMapping("/children")
 	public Child save(@RequestBody Child child) {
 		return getChildService().save(child);
 	}
 
+//	@GetMapping("/children")
+//	public CollectionModel<Child> findAll() {
+//		Iterable<Child> children = getChildService().findAll();
+//		
+//		  children.forEach(c->{ c.add(WebMvcLinkBuilder.
+//		  linkTo(WebMvcLinkBuilder.methodOn(ChildRestController.class).
+//		  getChildrenById(c.getId())).withSelfRel()); });
+//		 
+//
+//		return CollectionModel.of(children);
+//	}
+
+	//defaultValue = String.valueOf(getChildService().count()
 	@GetMapping("/children")
-	public CollectionModel<Child> findAll() {
-		Iterable<Child> children = getChildService().findAll();
-		
-		  children.forEach(c->{ c.add(WebMvcLinkBuilder.
-		  linkTo(WebMvcLinkBuilder.methodOn(ChildRestController.class).
-		  getChildrenById(c.getId())).withSelfRel()); });
-		 
-
-		return CollectionModel.of(children);
-	}
-
-	@GetMapping("/childrenPaginado")
-	public PagedModel<EntityModel<Child>> findAllPaginado(@RequestParam int size, @RequestParam int page,
-			@RequestParam String sort) {
+	public PagedModel<EntityModel<Child>> findAllPaginado(@RequestParam (defaultValue = "1000")int size, @RequestParam (defaultValue = "0")int page,
+			@RequestParam (required = false)String sort) {
 		//Iterable<Child> children = getChildService().findAll();
-		StringTokenizer stringTokenizer= new StringTokenizer(sort,",");
-		Sort orden=Sort.by("a");
+		
+		Sort orden=Sort.by("id");
+		if (sort != null) {
+			orden=Sort.by(sort);		
+			StringTokenizer stringTokenizer= new StringTokenizer(sort,",");
+			
+			
+			String campo=stringTokenizer.nextToken();
+			String tipoOrden=stringTokenizer.nextToken();
+			
+			if(tipoOrden.equals("asc"))
+				orden=Sort.by(campo).ascending();
+			else
+				orden=Sort.by(campo).descending();
+		}
 		
 		
-		String campo=stringTokenizer.nextToken();
-		String tipoOrden=stringTokenizer.nextToken();
-		
-		if(tipoOrden.equals("asc"))
-			orden=Sort.by(campo).ascending();
-		else
-			orden=Sort.by(campo).descending();
-		
-		Pageable pageable=PageRequest.of(page, size,orden);
+		Pageable pageable=PageRequest.of(page,size,orden);
 		Page<Child> child=getChildService().findAll(pageable);
 		
 		/*
