@@ -3,6 +3,8 @@ package once.curso.proyectotienda.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -34,6 +36,10 @@ public class ExistingProductService {
 	public Iterable<ExistingProduct> findAll() {
 		return getExistingProductsCRUDRepository().findAll();
 	}
+	
+	public Page<ExistingProduct> findAll(Pageable pageable){
+		return getExistingProductsCRUDRepository().findAll(pageable);
+		}
 
 	public Iterable<ExistingProduct> findAllById(Iterable<Integer> ids) { //*
 		return getExistingProductsCRUDRepository().findAllById(ids);

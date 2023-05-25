@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import lombok.Data;
 import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.services.ExistingProductService;
-import once.curso.proyectotienda.services.SubcategoryService;
+import once.curso.proyectotienda.services.SubCategoryService;
 
 @SpringBootTest
 @Data
@@ -25,7 +25,7 @@ public class ExistingProductTests{
 	@Autowired
 	private ExistingProductService existingProductService;
 	@Autowired
-	private SubcategoryService subcategoriesService;
+	private SubCategoryService subcategoriesService;
 	
 	@Test
 	public void ExistingProduct() {

@@ -1,6 +1,9 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,17 +24,27 @@ public class DocumentTypeRestController {
 	@Autowired
 	private DocumentTypeService documentTypeService;
 
-	@GetMapping("/documents_types")
-	public Iterable<DocumentType> dameTipoDeDocumentos() {
-		return getDocumentTypeService().findAll();
+	@GetMapping("/documentsTypes")
+
+	public CollectionModel<DocumentType> findAll() {
+		Iterable<DocumentType> documentTypes = getDocumentTypeService().findAll();
+		documentTypes.forEach(d -> {
+			d.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getId()))
+					.withSelfRel());
+		
+		});
+		return CollectionModel.of(documentTypes);
 	}
 
-	@GetMapping(value = "/documents_types/{id}")
-	public DocumentType getDocumentTypes(@PathVariable int id) {
-		if (getDocumentTypeService().findById(id).isPresent())
+	@GetMapping(value = "/documentsTypes/{id}")
+	public EntityModel<DocumentType> findById(@PathVariable int id) {
+		DocumentType documentType = getDocumentTypeService().findById(id).get();
+		documentType.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getId()))
+				.withSelfRel());
 
-			return getDocumentTypeService().findById(id).get();
-		return null;
+		return EntityModel.of(documentType);
 	}
 
 	@PostMapping("/document_types")
