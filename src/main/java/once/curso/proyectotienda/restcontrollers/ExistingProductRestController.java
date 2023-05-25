@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.*;
 import once.curso.proyectotienda.entities.ExistingProduct;
+import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
@@ -39,18 +43,23 @@ public class ExistingProductRestController {
 
 	/* R READ ALL PRODUCTS */
 	@GetMapping("/products")
-	public List<ExistingProduct> getExistingProducts() {
-	    return (List<ExistingProduct>) getExistingProductService().findAll();
+	public CollectionModel<ExistingProduct> getExistingProducts() {
+		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
+		existingProduct.forEach(u->{
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategories().getId())).withRel("subcategory"));
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
+		 });
+		 return CollectionModel.of(existingProduct);
 	}
 	
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
-    public ResponseEntity<ExistingProduct> getExistingProductById(@PathVariable(value = "id") int existingProductId)
-        throws ResourceNotFoundException {
-		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
-          .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
-        return ResponseEntity.ok().body(existingProduct);
-    }
+	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
+		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(existingProduct.getSubcategories().getId())).withRel("subcategory"));
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(existingProduct.getId())).withSelfRel());
+		 return EntityModel.of(existingProduct);
+	}
 		
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 

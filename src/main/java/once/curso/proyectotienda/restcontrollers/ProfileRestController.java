@@ -6,6 +6,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Profile;
+import once.curso.proyectotienda.entities.SoldProduct;
+import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.ProfileService;
 
 @RestController
@@ -28,25 +33,35 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	/* C CREATE A PROFILE */
-	@PostMapping("/profiles/create")
+	@PostMapping("/profiles")
 	public Profile createProfile(@RequestBody Profile newProfile) {
 		return getProfileService().save(newProfile);
 	}
 	
 	/* R READ ALL PROFILE */
 	@GetMapping("/profiles")
-	public List<Profile> getProfile() {
-	    return (List<Profile>) profileService.findAll();
-	}
+	public CollectionModel<Profile> getProfile() {
+		Iterable<Profile> profile = getProfileService().findAll();
+		profile.forEach(s->{
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("User"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("Card Types"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstypes().getId())).withRel("Docoment Types"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
+		 });
+		 return CollectionModel.of(profile);
+	}	
 	
 	/* R READ A PROFILE */
 	@GetMapping("/profiles/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable(value = "id") int profileId)
-        throws ResourceNotFoundException {
-		Profile profile = getProfileService().findById(profileId)
-          .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + profileId));
-        return ResponseEntity.ok().body(profile);
-    }
+	public EntityModel<Profile> findById(@PathVariable int id) {
+		Profile profile = getProfileService().findById(id).get();
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("User"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("Card Types"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstypes().getId())).withRel("Documents Types"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
+		 return EntityModel.of(profile);
+	}
+
 		
 	/* U UPDATE A PROFILE */
 	@PutMapping("/profiles/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 

@@ -6,12 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Card_Type")
-public class CardType {
+@Table(name="Card_Types")
+public class CardType  extends RepresentationModel<CardType>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;

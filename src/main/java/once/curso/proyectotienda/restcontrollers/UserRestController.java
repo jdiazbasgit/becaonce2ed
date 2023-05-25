@@ -3,6 +3,9 @@ package once.curso.proyectotienda.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +20,7 @@ import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.UserService;
 
 @RestController
-@RequestMapping("/once")
+@RequestMapping("/api/v1/")
 @Data
 public class UserRestController {
 	
@@ -25,13 +28,22 @@ public class UserRestController {
 	private UserService userService;
 	
 	@GetMapping("/users")
-	public List<User> dameUser(){
-		return (List<User>) getUserService().findAll();
+	public CollectionModel<User> dameUser(){
+		 Iterable<User> users = getUserService().findAll();
+		 users.forEach(u->{
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getRol().getId())).withRel("rol"));
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
+		 });
+		 return CollectionModel.of(users);
+
 	}
 	
-	@GetMapping("/users{id}")
-	public User findById(@PathVariable Integer id) {
-		return getUserService().findById(id).get();
+	@GetMapping("/users/{id}")
+	public EntityModel<User> findById(@PathVariable Integer id) {
+		 User user = getUserService().findById(id).get();
+		 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(user.getRol().getId())).withRel("rol"));
+		 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(user.getId())).withSelfRel());
+		 return EntityModel.of(user);
 	}
 	
 	@GetMapping("/user")

@@ -1,6 +1,9 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +28,24 @@ public class CardTypeRestController {
 		return getCardTypeService().save(cardType);
 	}
 
+	@GetMapping("/cardTypes{id}")
+	public EntityModel<CardType> findById(@PathVariable int id) {
+		CardType cardType = getCardTypeService().findById(id).get();
+		cardType.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(cardType.getId()))
+				.withSelfRel());
+
+		return EntityModel.of(cardType);
+	}
+
 	@GetMapping("/cardTypes")
-	public Iterable<CardType> findAll() {
-		return getCardTypeService().findAll();
+	public CollectionModel<CardType> findAll() {
+		Iterable<CardType> cardTypes = getCardTypeService().findAll();
+		cardTypes.forEach(c -> {
+			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(c.getId()))
+					.withSelfRel());
+		});
+		return CollectionModel.of(cardTypes);
 	}
 
 	@DeleteMapping("/cardTypes/{id}")

@@ -1,16 +1,17 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.services.CategoryService;
 
 @RestController
@@ -21,18 +22,24 @@ public class CategoryRestController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@PostMapping("/categories")
-	public Category save(@RequestBody Category category) {
-		return getCategoryService().save(category);
-	}
-
 	@GetMapping("/categories")
-	public Iterable<Category> findAll() {
-		return getCategoryService().findAll();
+	public CollectionModel<Category> findAll(){
+		Iterable<Category> categories= getCategoryService().findAll();
+	categories.forEach(c->{
+		c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(c.getId())).withSelfRel());
+	});
+	return CollectionModel.of(categories);	
 	}
 
-	@DeleteMapping("/categories/{id}")
-	public void deleteById(@PathVariable int id) {
-		getCategoryService().deleteById(id);
-	}
+   @GetMapping("/categories/{id}")
+   public EntityModel<Category> findById(@PathVariable int id){
+	   Category category=getCategoryService().findById(id).get();
+	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
+	   return EntityModel.of(category);
+   }
+   
+	
+
+
+
 }

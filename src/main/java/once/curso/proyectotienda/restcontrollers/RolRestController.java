@@ -1,7 +1,13 @@
+
+
 package once.curso.proyectotienda.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
@@ -14,8 +20,20 @@ public class RolRestController {
 	@Autowired
 	private final RolService rolService;
 	
-	@GetMapping("/rol")
-	public Iterable<Rol> getRol() {
-	    return rolService.findAll();
+	@GetMapping("/roles")
+	public CollectionModel<Rol> findAll() {
+	    Iterable<Rol> roles= getRolService().findAll();
+	    roles.forEach(r->{
+	    	r.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(r.getId())).withSelfRel());
+	    });
+	    return CollectionModel.of(roles);
+	}
+	
+	@GetMapping("/roles/{id}")
+	public EntityModel<Rol> findById(@PathVariable int id) {
+		
+		Rol rol= getRolService().findById(id).get();
+		rol.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(rol.getId())).withSelfRel());
+		return EntityModel.of(rol);
 	}
 }

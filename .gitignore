@@ -13,6 +13,13 @@ target/
 .springBeans
 .sts4-cache
 
+### Node ###
+/node_modules
+
+
+### Miscellaneous
+/.angular/cache
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -31,3 +38,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Otros
+.angular/
+node_modules/
+
