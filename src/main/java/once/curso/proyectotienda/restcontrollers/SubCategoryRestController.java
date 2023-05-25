@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.SubcategoryService;
 
@@ -35,7 +34,7 @@ public class SubCategoryRestController {
 		return getSubcategoryService().findAll();
 	}
 	
-	@GetMapping("/subcategory")
+	@GetMapping("/subcategoryHateoas")
 	public CollectionModel<SubCategory> getSubCategory() {
 		Iterable<SubCategory> subCategory = getSubcategoryService().findAll();
 		subCategory.forEach(s->{
@@ -46,7 +45,7 @@ public class SubCategoryRestController {
 	}	
 	
 	@GetMapping("/subcategory/{id}")
-	public EntityModel<SubCategory> findById(@PathVariable Integer id) {
+	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId())).withRel("subcategory"));
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId())).withSelfRel());
