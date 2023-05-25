@@ -41,7 +41,7 @@ public class SoldProductRestController {
 	}	
 	
 	@GetMapping("/soldProducts/{id}")
-	public EntityModel<SoldProduct> findById(@PathVariable Integer id) {
+	public EntityModel<SoldProduct> findById(@PathVariable int id) {
 		SoldProduct soldProduct = getSoldProductService().findById(id).get();
 		soldProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(soldProduct.getExistingProduct().getId())).withRel("soldproduct"));
 		soldProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(soldProduct.getId())).withSelfRel());

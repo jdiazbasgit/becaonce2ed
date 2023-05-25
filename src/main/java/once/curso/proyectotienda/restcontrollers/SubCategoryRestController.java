@@ -34,7 +34,7 @@ public class SubCategoryRestController {
 		return getSubcategoryService().findAll();
 	}
 	
-	@GetMapping("/subcategory")
+	@GetMapping("/subcategoryHateoas")
 	public CollectionModel<SubCategory> getSubCategory() {
 		Iterable<SubCategory> subCategory = getSubcategoryService().findAll();
 		subCategory.forEach(s->{
@@ -45,7 +45,7 @@ public class SubCategoryRestController {
 	}	
 	
 	@GetMapping("/subcategory/{id}")
-	public EntityModel<SubCategory> findById(@PathVariable Integer id) {
+	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId())).withRel("subcategory"));
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId())).withSelfRel());

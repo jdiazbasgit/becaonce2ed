@@ -54,7 +54,7 @@ public class ExistingProductRestController {
 	
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
-	public EntityModel<ExistingProduct> findById(@PathVariable Integer id) {
+	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
 		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
 		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(existingProduct.getSubcategories().getId())).withRel("subcategory"));
 		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(existingProduct.getId())).withSelfRel());

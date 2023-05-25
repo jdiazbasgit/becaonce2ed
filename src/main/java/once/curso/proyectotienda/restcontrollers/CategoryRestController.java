@@ -38,13 +38,7 @@ public class CategoryRestController {
 	   return EntityModel.of(category);
    }
    
-	@GetMapping("/categories/{id}")
-	public EntityModel<Category> findById(@PathVariable Integer id) {
-		Category category = getCategoryService().findById(id).get();
-		category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(category.getId())).withRel("category"));
-		category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(category.getId())).withSelfRel());
-		 return EntityModel.of(category);
-	}
+	
 
 
 
