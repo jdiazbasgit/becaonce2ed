@@ -15,7 +15,6 @@ public class CardType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String description;
 
 }
