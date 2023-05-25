@@ -1,11 +1,18 @@
 package once.curso.proyectobanco.restcontrollers;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +21,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.TransactionsAwardsFine;
+import once.curso.proyectobanco.models.TransactionsAwardsFineAssember;
 import once.curso.proyectobanco.services.TransactionsAwardsFineService;
 
 @Data
@@ -26,23 +35,39 @@ import once.curso.proyectobanco.services.TransactionsAwardsFineService;
 public class TransactionsAwardsFineResController {
 	
 	@Autowired
+	private  TransactionsAwardsFineAssember  transactionsAwardsFineAssember;
+	
+	@Autowired
+	private PagedResourcesAssembler<TransactionsAwardsFine> pagedResourcesAssembler ;
+	
+	@Autowired
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	
 	
 	@GetMapping("/transactionsAwardsFineService")
 	
-	public CollectionModel<TransactionsAwardsFine> findAll(){
-	Iterable<TransactionsAwardsFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll();
-	transactionsAwardsFine.forEach(t ->{
-		t.add( WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
-			.findById(t.getTransaction().getId())).withRel("transaction"));
+	public PagedModel<EntityModel<TransactionsAwardsFine>> findAll( @RequestParam(defaultValue = "0")int size, @RequestParam(defaultValue = "0")int page,
+			@RequestParam(required = false)String sort){
 		
-		t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-				.findById(t.getAwardsFineType().getId())).withRel("AwardsFineType"));
-		t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
-				.findById(t.getId())).withSelfRel());
-	});
-		return CollectionModel.of( transactionsAwardsFine);
+		Sort orden = Sort.by("id");
+		if(sort !=null) {
+			orden=Sort.by(sort);
+			StringTokenizer stringTokenizer= new StringTokenizer(sort,",");
+			
+			String campo=stringTokenizer.nextToken();
+			String tipoOrden=stringTokenizer.nextToken();
+			
+			if(tipoOrden.equals("asc"))
+				orden=Sort.by(campo).ascending();
+			else
+				orden=Sort.by(campo).descending();
+		}
+		
+		Pageable pageable=PageRequest.of(page,size,orden);
+		Page<TransactionsAwardsFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll(pageable);
+	
+	
+		return getPagedResourcesAssembler().toModel(transactionsAwardsFine,getTransactionsAwardsFineAssember());
 	}
 	
 	@GetMapping(value="/transactionsAwardsFineService/{id}")

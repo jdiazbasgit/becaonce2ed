@@ -3,6 +3,8 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -33,8 +35,8 @@ public class TransactionsAwardsFineService {
 		return getTransactionsAwardsFineRepository().existsById(id);
 	}
 
-	public Iterable<TransactionsAwardsFine> findAll() {
-		return getTransactionsAwardsFineRepository().findAll();
+	public Page<TransactionsAwardsFine> findAll(Pageable pageable) {
+		return getTransactionsAwardsFineRepository().findAll(pageable);
 	}
 
 	public Iterable<TransactionsAwardsFine> findAllById(Iterable<Integer> ids) {
