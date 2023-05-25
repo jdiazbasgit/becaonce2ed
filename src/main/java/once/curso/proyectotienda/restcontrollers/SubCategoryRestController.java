@@ -32,7 +32,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 public class SubCategoryRestController {
 
 	@Autowired
-	private SubCategoryModelAssembler subcategoryModelAssembler;
+	private SubCategoryModelAssembler subCategoryModelAssembler;
 @Autowired
 	private  PagedResourcesAssembler<SubCategory> pagedResourcesAssembler;
 	
@@ -88,7 +88,7 @@ public class SubCategoryRestController {
 		   Pageable pageable=PageRequest.of(page,size,orden);
 		   Page<SubCategory> subcategory=getSubcategoryService().findAll(pageable);
 		   
-		   return getPagedResourcesAssembler().toModel(subcategory,getSubcategoryModelAssembler());
+		   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
 	   }
 	
 	
