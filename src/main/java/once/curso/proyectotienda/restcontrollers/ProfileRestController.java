@@ -43,9 +43,9 @@ public class ProfileRestController {
 	public CollectionModel<Profile> getProfile() {
 		Iterable<Profile> profile = getProfileService().findAll();
 		profile.forEach(s->{
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("User"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("Card Types"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstypes().getId())).withRel("Docoment Types"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("user"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("cardTypes"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstypes().getId())).withRel("docomentTypes"));
 			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
 		 });
 		 return CollectionModel.of(profile);
@@ -55,9 +55,9 @@ public class ProfileRestController {
 	@GetMapping("/profiles/{id}")
 	public EntityModel<Profile> findById(@PathVariable int id) {
 		Profile profile = getProfileService().findById(id).get();
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("User"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("Card Types"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstypes().getId())).withRel("Documents Types"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstypes().getId())).withRel("docomentTypes"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
 	}
