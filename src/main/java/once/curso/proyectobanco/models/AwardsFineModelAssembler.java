@@ -10,7 +10,7 @@ import once.curso.proyectobanco.entities.AwardsFine;
 import once.curso.proyectobanco.restcontrollers.AwardFineRestControllers;
 
 @Component
-public class AwardFineModelAssembler implements SimpleRepresentationModelAssembler<AwardsFine>{
+public class AwardsFineModelAssembler implements SimpleRepresentationModelAssembler<AwardsFine>{
 
 	@Override
 	public void addLinks(EntityModel<AwardsFine> awardsFine) {

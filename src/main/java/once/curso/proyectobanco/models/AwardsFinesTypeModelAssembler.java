@@ -10,7 +10,7 @@ import once.curso.proyectobanco.entities.AwardsFinesType;
 import once.curso.proyectobanco.restcontrollers.AwardFineTypeRestControllers;
 
 @Component
-public class AwardFineTypeModelAssembler implements SimpleRepresentationModelAssembler<AwardsFinesType>{
+public class AwardsFinesTypeModelAssembler implements SimpleRepresentationModelAssembler<AwardsFinesType>{
 
 	@Override
 	public void addLinks(EntityModel<AwardsFinesType> awardsFinesType) {
@@ -22,7 +22,13 @@ public class AwardFineTypeModelAssembler implements SimpleRepresentationModelAss
 	}
 
 	
-	public void addLinks(CollectionModel<EntityModel<AwardsFinesType>> awa) {
+	public void addLinks(CollectionModel<EntityModel<AwardsFinesType>> awardsFinesTypes) {
+		awardsFinesTypes.forEach(c ->{
+			c.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+							.findById(c.getContent().getId()))
+					.withSelfRel());
+		});
 		
 	}
 
