@@ -3,9 +3,12 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.entities.AwardsFinesType;
 import once.curso.proyectobanco.repositories.AwardFineTypeCRUDRepositories;
 
@@ -47,6 +50,12 @@ public class AwardsFinesTypeServices {
 
 		return getAwardFineTypeCRUDRepositories().findAll();
 	}
+	
+	public Page<AwardsFinesType> findAll(Pageable pageable) {
+
+		return getAwardFineTypeCRUDRepositories().findAll(pageable);
+	}
+		
 
 	public Iterable<AwardsFinesType> findAllById(Iterable<Integer> ids) {
 

@@ -21,9 +21,9 @@ public class AwardsFineModelAssembler implements SimpleRepresentationModelAssemb
 		
 	}
 
-	
-	public void addLinks(CollectionModel<EntityModel<AwardsFine>> awardFines) {
-		awardFines.forEach(c -> {
+	@Override
+	public void addLinks(CollectionModel<EntityModel<AwardsFine>> awardsFines) {
+		awardsFines.forEach(c -> {
 			c.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class)
 							.findById(c.getContent().getId()))
