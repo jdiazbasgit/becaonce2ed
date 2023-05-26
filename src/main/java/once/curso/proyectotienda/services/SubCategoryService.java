@@ -3,6 +3,8 @@ package once.curso.proyectotienda.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -11,7 +13,7 @@ import once.curso.proyectotienda.repositories.SubCategoryCRUDRepository;
 
 @Service
 @Data
-public class SubcategoryService {
+public class SubCategoryService {
 
 	@Autowired
 	private SubCategoryCRUDRepository subCategoryCRUDRepository;
@@ -35,6 +37,10 @@ public class SubcategoryService {
 
 		return getSubCategoryCRUDRepository().existsById(id);
 	}
+	
+	public Page<SubCategory> findAll(Pageable pageable){
+		return getSubCategoryCRUDRepository().findAll(pageable);
+		}
 
 	public Iterable<SubCategory> findAll() {
 

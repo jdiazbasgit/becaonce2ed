@@ -1,13 +1,19 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,18 +23,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Profile;
 import once.curso.proyectotienda.entities.SoldProduct;
-import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.model.ProfileModelAssembler;
+import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.ProfileService;
 
 @RestController
 @Data
 @RequestMapping({"/api/v1/"})
 public class ProfileRestController {
+	
+	@Autowired
+	private ProfileModelAssembler profileModelAssembler;
+
+	@Autowired
+	private  PagedResourcesAssembler<Profile> pagedResourcesAssembler;
+
 	@Autowired
 	private final ProfileService profileService;
 	
@@ -109,4 +124,26 @@ public class ProfileRestController {
 		return profileService.count();
     }
 	
+	@GetMapping("/profilesPaginado")
+	   public PagedModel<EntityModel<Profile>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+		   Sort orden=Sort.by("a");
+		   String campo=stringTokenizer.nextToken();
+		   String tipoOrden= stringTokenizer.nextToken();
+		   
+		   if(tipoOrden.equals("asc"))
+			   orden=Sort.by(campo).ascending();
+		   else 
+			   orden=Sort.by(campo).descending();
+		   
+		   Pageable pageable=PageRequest.of(page,size,orden);
+		   Page<Profile> profile=getProfileService().findAll(pageable);
+		   
+		   return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
+	   }
+
+	/*
+	 http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc
+	*/
+
 }
