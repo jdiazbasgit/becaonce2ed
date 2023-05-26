@@ -32,6 +32,12 @@ public class TransactionRestController {
 		Transaction transaction=getTransactionService().findById(id).get();
 			transaction.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class).
 					findById(transaction.getId())).withSelfRel());
+			transaction.add(WebMvcLinkBuilder.
+					linkTo(WebMvcLinkBuilder.methodOn(DescriptionRestController.class).findById(transaction.getDescription().getId()))
+					.withRel("description"));
+			transaction.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class).findById(transaction.getCurrentAccount().getId()))
+					.withRel("currentAccount"));
 		return EntityModel.of(transaction);
 	}
 
