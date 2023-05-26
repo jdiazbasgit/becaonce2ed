@@ -49,6 +49,9 @@ public class UserRestController {
 	
 	public PagedModel<EntityModel<User>> findAll (@RequestParam (defaultValue = "0")int size, @RequestParam (defaultValue = "0")int page,
 			@RequestParam (required = false)String sort){
+		if(size==0) {
+			size=(int) getUserService().count();
+		}
 		
 		Sort orden=Sort.by("id");
 		if (sort != null) {

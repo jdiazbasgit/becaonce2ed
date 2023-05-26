@@ -53,7 +53,10 @@ public class ConfigurationRestController {
 	
 	public PagedModel<EntityModel<Configuration>> findAll(@RequestParam(defaultValue = "0")int size,@RequestParam(defaultValue = "0")int page,
 			@RequestParam(required = false)String sort){
-		
+		if(size==0) {
+			size=(int) getConfigurationService().count();
+		}
+			
 		Sort orden=Sort.by("id");
 		if( sort !=null) {
 			orden=Sort.by(sort);
@@ -73,7 +76,11 @@ public class ConfigurationRestController {
 		Page<Configuration> configuration = getConfigurationService().findAll(pageable);
 					
 		 return getPagedResourcesAssemble().toModel(configuration,getConfigurationModelAssember());
+		 	 
 	}
+	
+	
+	
 	@PostMapping(value = "/configurations")
 	public Configuration save(@RequestBody Configuration configuration) {
 		return getConfigurationService().save(configuration);
