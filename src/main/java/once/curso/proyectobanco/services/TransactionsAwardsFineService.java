@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.entities.Configuration;
 import once.curso.proyectobanco.entities.TransactionsAwardsFine;
 import once.curso.proyectobanco.repositories.TransactionsAwardsFineRepository;
 
@@ -33,6 +34,10 @@ public class TransactionsAwardsFineService {
 
 	public boolean existsById(Integer id) {
 		return getTransactionsAwardsFineRepository().existsById(id);
+	}
+	
+	public Iterable<TransactionsAwardsFine> findAll() {
+		return getTransactionsAwardsFineRepository().findAll();
 	}
 
 	public Page<TransactionsAwardsFine> findAll(Pageable pageable) {

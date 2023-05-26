@@ -78,8 +78,8 @@ class TransactinsAwardsFineTests {
 
 	@Test
 	public void findAllById() {
-		List<TransactionsAwardsFine> datosCompletos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()
-				.findAll();
+		List<TransactionsAwardsFine> datosCompletos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService().findAll();
+	
 		List<Integer> idsCompletos = new ArrayList<Integer>();
 		datosCompletos.forEach(dc -> idsCompletos.add(dc.getId()));
 		List<TransactionsAwardsFine> datosNuevos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()
