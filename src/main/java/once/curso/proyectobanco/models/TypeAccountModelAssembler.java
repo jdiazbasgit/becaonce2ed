@@ -23,7 +23,7 @@ public class TypeAccountModelAssembler implements SimpleRepresentationModelAssem
 	public void addLinks(CollectionModel<EntityModel<TypeAccount>> typeAccount) {
 		typeAccount.forEach(t->{
 			 t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TypeAccountRestController.class).
-					 findAll()).withSelfRel());
+					 findById(t.getContent().getId())).withSelfRel());
 		});
 		
 	}
