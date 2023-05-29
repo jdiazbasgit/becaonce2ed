@@ -6,12 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table (name = "descriptions")
-public class Description {
+public class Description extends RepresentationModel<Description> {
 
 	@Id
 	@GeneratedValue (strategy=GenerationType.AUTO)

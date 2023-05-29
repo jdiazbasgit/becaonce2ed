@@ -1,6 +1,9 @@
 package once.curso.proyectobanco.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +24,23 @@ public class ConfigurationRestController {
 	private ConfigurationService configurationService;
 	
 	@GetMapping(value =" /configurations/{id}")
-	public Configuration findById(@PathVariable Integer id) {
-		return getConfigurationService().findById(id).get();
+	
+	public EntityModel< Configuration> findById(@PathVariable Integer id) {
+		Configuration configuration= getConfigurationService().findById(id).get();
+		configuration.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class)
+				.findById(configuration.getId())).withSelfRel());
+		
+		 return  EntityModel.of(configuration);
+		 
 	}
 	@GetMapping(value = "/configurations")
-	public Iterable<Configuration> findAll(@PathVariable Integer id) {
-		return getConfigurationService().findAll();
+	public CollectionModel<Configuration> findAll() {
+		 Iterable<Configuration> configuration= getConfigurationService().findAll();
+		 configuration.forEach(c->{
+			 c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class)
+						.findById(c.getId())).withSelfRel());
+					 });
+		 return CollectionModel.of(configuration);
 	}
 	@PostMapping(value = "/configurations")
 	public Configuration save(@RequestBody Configuration configuration) {

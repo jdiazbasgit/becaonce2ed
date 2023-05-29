@@ -69,4 +69,7 @@ public class TypeAccountService {
 	public void deleteAll() {
 		getTypeAccountCRUDRepository().deleteAll();
 	}
+	public Optional<TypeAccount> findByDescriptionEquals(String dato) {
+		return Optional.of(getTypeAccountCRUDRepository().findByDescriptionEquals(dato));
+	}
 }

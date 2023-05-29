@@ -1,8 +1,5 @@
 package once.curso.proyectobanco.entities;
 
-import java.util.Calendar;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,31 +7,28 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "awards_fines")
-public class AwardFine {
-	
+public class AwardsFine extends RepresentationModel<AwardsFine> {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_types_id")
-	private AwardsFinesType awardsFinesType;
+	private AwardsFinesType awardFineType;
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_configurations_id")
-	private AwardsFinesConfiguration awardsFinesConfiguration;
-
-	@Column(name = "time")
-	@Temporal(TemporalType.DATE)
-	private Calendar time;
+	private AwardsFinesConfiguration awardFineConfiguration;
+	
+	private int time;
 
 }

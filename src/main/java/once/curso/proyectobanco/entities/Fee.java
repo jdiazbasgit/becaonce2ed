@@ -7,21 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
 
 import lombok.Data;
 
 @Data
 @Entity
-
 @Table(name = "FEES")
 
-public class Fee {
+public class Fee extends RepresentationModel<Fee>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private double current;
-
-
 }
 

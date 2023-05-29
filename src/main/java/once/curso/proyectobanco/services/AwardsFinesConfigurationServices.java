@@ -11,20 +11,19 @@ import once.curso.proyectobanco.repositories.AwardFineConfigurationCRUDRepositor
 
 @Service
 @Data
-public class AwardFineConfigurationServices {
+public class AwardsFinesConfigurationServices {
 
 	@Autowired
 	private AwardFineConfigurationCRUDRepositories awardFineConfigurationCRUDRepositories;
 
 	public void damePremiosMultasConfiguraciones() {
 
-		Iterable<AwardsFinesConfiguration> awardsFinesConfigurations = getAwardFineConfigurationCRUDRepositories()
-				.findAll();
-		for (AwardsFinesConfiguration awardFineConfiguration : awardsFinesConfigurations) {
+		//Iterable<AwardsFinesConfiguration> awardsFinesConfigurations = getAwardFineConfigurationCRUDRepositories()
+			//	.findAll();
+		//for (AwardsFinesConfiguration awardFineConfiguration : awardsFinesConfigurations) {
 			//System.out.println(awardFineConfiguration.getCurrent());
 			//System.out.println(awardFineConfiguration.getDescription());
 		}
-	}
 
 	public <S extends AwardsFinesConfiguration> S save(S entity) {
 
