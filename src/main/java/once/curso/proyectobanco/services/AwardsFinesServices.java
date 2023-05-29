@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFine;
-import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.repositories.AwardFineCRUDRepositories;
 
 @Service

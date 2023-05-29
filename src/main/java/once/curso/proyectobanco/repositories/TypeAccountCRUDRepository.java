@@ -1,6 +1,5 @@
 package once.curso.proyectobanco.repositories;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import once.curso.proyectobanco.entities.TypeAccount;

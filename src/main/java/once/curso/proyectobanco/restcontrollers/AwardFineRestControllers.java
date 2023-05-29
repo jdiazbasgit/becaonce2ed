@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFine;
-import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
 import once.curso.proyectobanco.models.AwardsFineModelAssembler;
 import once.curso.proyectobanco.services.AwardsFinesServices;
 
@@ -33,10 +31,10 @@ import once.curso.proyectobanco.services.AwardsFinesServices;
 @RequestMapping("/once")
 @Data
 public class AwardFineRestControllers {
-	
+
 	@Autowired
 	private AwardsFineModelAssembler awardsFineModelAssembler;
-	
+
 	@Autowired
 	private PagedResourcesAssembler<AwardsFine> pagedResourcesAssembler;
 
@@ -47,9 +45,9 @@ public class AwardFineRestControllers {
 	public EntityModel<AwardsFine> findById(@PathVariable int id) {
 		AwardsFine awardsFine = getAwardFineServices().findById(id).get();
 
-		awardsFine
-				.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class)
-						.findById(awardsFine.getId())).withSelfRel());
+		awardsFine.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class).findById(awardsFine.getId()))
+				.withSelfRel());
 
 		return EntityModel.of(awardsFine);
 	}
@@ -71,37 +69,34 @@ public class AwardFineRestControllers {
 	 * 
 	 * return CollectionModel.of(awardsFine); }
 	 */
-	
-	
+
 	@GetMapping(value = "/awardFine")
-	
-	public PagedModel<EntityModel<AwardsFine>> findAll(@RequestParam(defaultValue = "0") int size, @RequestParam(defaultValue = "0")int page,
-			@RequestParam(required = false)String sort){
-		if(size==0) {
-			size=(int) getAwardFineServices().count();
+
+	public PagedModel<EntityModel<AwardsFine>> findAll(@RequestParam(defaultValue = "0") int size,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
+		if (size == 0) {
+			size = (int) getAwardFineServices().count();
 		}
-		
-		Sort orden=Sort.by("id");
-		if(sort !=null) {
-			orden=Sort.by(sort);
-			StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
-			
-			String campo=stringTokenizer.nextToken();
-			String tipoOrden=stringTokenizer.nextToken();
-			
-			if(tipoOrden.equals("asc"))
-				orden=Sort.by(campo).ascending();
-			else 
-				orden=Sort.by(campo).descending();
-			
+
+		Sort orden = Sort.by("id");
+		if (sort != null) {
+			orden = Sort.by(sort);
+			StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+
+			String campo = stringTokenizer.nextToken();
+			String tipoOrden = stringTokenizer.nextToken();
+
+			if (tipoOrden.equals("asc"))
+				orden = Sort.by(campo).ascending();
+			else
+				orden = Sort.by(campo).descending();
+
 		}
-		Pageable pageable=PageRequest.of(page, size, orden);
+		Pageable pageable = PageRequest.of(page, size, orden);
 		Page<AwardsFine> awardFine = getAwardFineServices().findAll(pageable);
-		
-		
+
 		return getPagedResourcesAssembler().toModel(awardFine, getAwardsFineModelAssembler());
 	}
-	
 
 	@PostMapping(value = "/awardFine")
 	public AwardsFine save(@RequestBody AwardsFine awardFine) {
@@ -114,7 +109,6 @@ public class AwardFineRestControllers {
 		return (List<AwardsFine>) getAwardFineServices().saveAll(awardFine);
 	}
 
-	
 	@DeleteMapping(value = "/awardFine/{id}")
 	public void deleteById(@PathVariable int id) {
 		getAwardFineServices().deleteById(id);
