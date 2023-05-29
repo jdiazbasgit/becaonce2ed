@@ -38,7 +38,7 @@ public class AwardFineRestControllers {
 	private AwardsFineModelAssembler awardsFineModelAssembler;
 	
 	@Autowired
-	private PagedResourcesAssembler<AwardsFineModelAssembler> pagedResourcesAssembler;
+	private PagedResourcesAssembler<AwardsFine> pagedResourcesAssembler;
 
 	@Autowired
 	private AwardsFinesServices awardFineServices;
