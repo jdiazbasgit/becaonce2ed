@@ -39,7 +39,7 @@ public class SoldProductRestController {
 	@Autowired
 	private SoldProductService soldProductService;
 
-	@PostMapping("/soldProducts")
+	@PostMapping("/soldProducts/create")
 	public SoldProduct save(@RequestBody SoldProduct soldProduct) {
 		return getSoldProductService().save(soldProduct);
 	}
@@ -80,9 +80,9 @@ public class SoldProductRestController {
 			   orden=Sort.by(campo).descending();
 		   
 		   Pageable pageable=PageRequest.of(page,size,orden);
-		   Page<SoldProduct> category=getSoldProductService().findAll(pageable);
+		   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
 		   
-		   return getPagedResourcesAssembler().toModel(category,getSoldProductModelAssembler());
+		   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
 	   }
 }
 
