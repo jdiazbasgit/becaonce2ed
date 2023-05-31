@@ -20,7 +20,7 @@ import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.UserService;
 
 @RestController
-@RequestMapping("/once")
+@RequestMapping("/api/v1/")
 @Data
 public class UserRestController {
 	
@@ -35,9 +35,10 @@ public class UserRestController {
 			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
 		 });
 		 return CollectionModel.of(users);
+
 	}
 	
-	@GetMapping("/users{id}")
+	@GetMapping("/users/{id}")
 	public EntityModel<User> findById(@PathVariable Integer id) {
 		 User user = getUserService().findById(id).get();
 		 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(user.getRol().getId())).withRel("rol"));
