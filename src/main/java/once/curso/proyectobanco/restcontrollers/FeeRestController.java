@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Fee;
-import once.curso.proyectobanco.entities.Rol;
 import once.curso.proyectobanco.services.FeeService;
 
 @RestController
