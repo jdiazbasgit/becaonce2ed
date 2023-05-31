@@ -5,9 +5,11 @@
 /tmp
 /out-tsc
 /bazel-out
+/bin
 
 # Node
 /node_modules
+.angular/
 npm-debug.log
 yarn-error.log
 
@@ -19,6 +21,9 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+/target
+.springBeans
+.factorypath
 
 # Visual Studio Code
 .vscode/*
