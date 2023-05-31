@@ -12,6 +12,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,8 @@ public class ConfigurationRestController {
 		 return  EntityModel.of(configuration);
 		 
 	}
+	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/configurations")
 	
 	public PagedModel<EntityModel<Configuration>> findAll(@RequestParam(defaultValue = "0")int size,@RequestParam(defaultValue = "0")int page,

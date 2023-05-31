@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +42,7 @@ public class TransactionsAwardsFineResController {
 	@Autowired
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/transactionsAwardsFineService")
 	
 	public PagedModel<EntityModel<TransactionsAwardsFine>> findAll( @RequestParam(defaultValue = "0")int size, @RequestParam(defaultValue = "0")int page,

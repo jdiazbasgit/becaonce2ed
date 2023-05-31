@@ -13,6 +13,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +44,7 @@ public class UserRestController {
 	@Autowired
 	private UserService userService;
 	
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/users")
 	
 	public PagedModel<EntityModel<User>> findAll (@RequestParam (defaultValue = "0")int size, @RequestParam (defaultValue = "0")int page,
