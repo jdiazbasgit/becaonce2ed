@@ -1,7 +1,5 @@
 package once.curso.proyectotienda.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,14 +10,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
-@Data
+@Data                     
 @Entity
 @Table(name="existing_products")
-public class ExistingProduct implements Serializable {
-
-    private static final long serialVersionUID = -1000119078147252957L;
+public class ExistingProduct extends RepresentationModel<ExistingProduct> {
     
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

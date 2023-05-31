@@ -17,14 +17,14 @@ import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.services.CardTypeService;
 import once.curso.proyectotienda.services.CategoryService;
-import once.curso.proyectotienda.services.SubcategoryService;
+import once.curso.proyectotienda.services.SubCategoryService;
 
 @Data
 @SpringBootTest
 public class SubCategoryTests {
 	
 	@Autowired
-	private SubcategoryService subcategoryService; 
+	private SubCategoryService subcategoryService; 
 	
 	@Autowired
 	private CategoryService categoryService;

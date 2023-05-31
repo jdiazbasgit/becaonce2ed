@@ -2,9 +2,19 @@ package once.curso.proyectotienda.restcontrollers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +23,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.*;
 import once.curso.proyectotienda.entities.ExistingProduct;
+import once.curso.proyectotienda.model.ExistingProductModelAssembler;
 import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
 @Data
 @RequestMapping({"/api/v1/"})
 public class ExistingProductRestController {
+	
+	@Autowired
+	private ExistingProductModelAssembler existingProductModelAssembler;
+@Autowired
+	private  PagedResourcesAssembler<ExistingProduct> pagedResourcesAssembler;
+	
 	@Autowired
 	private final ExistingProductService existingProductService;
 	
@@ -39,18 +57,23 @@ public class ExistingProductRestController {
 
 	/* R READ ALL PRODUCTS */
 	@GetMapping("/products")
-	public List<ExistingProduct> getExistingProducts() {
-	    return (List<ExistingProduct>) getExistingProductService().findAll();
+	public CollectionModel<ExistingProduct> getExistingProducts() {
+		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
+		existingProduct.forEach(u->{
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategories().getId())).withRel("subcategory"));
+			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
+		 });
+		 return CollectionModel.of(existingProduct);
 	}
 	
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
-    public ResponseEntity<ExistingProduct> getExistingProductById(@PathVariable(value = "id") int existingProductId)
-        throws ResourceNotFoundException {
-		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
-          .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
-        return ResponseEntity.ok().body(existingProduct);
-    }
+	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
+		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(existingProduct.getSubcategories().getId())).withRel("subcategory"));
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(existingProduct.getId())).withSelfRel());
+		 return EntityModel.of(existingProduct);
+	}
 		
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
@@ -83,6 +106,24 @@ public class ExistingProductRestController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
+	@GetMapping("/productsPaginado")
+	   public PagedModel<EntityModel<ExistingProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+		   Sort orden=Sort.by("a");
+		   String campo=stringTokenizer.nextToken();
+		   String tipoOrden= stringTokenizer.nextToken();
+		   
+		   if(tipoOrden.equals("asc"))
+			   orden=Sort.by(campo).ascending();
+		   else 
+			   orden=Sort.by(campo).descending();
+		   
+		   Pageable pageable=PageRequest.of(page,size,orden);
+		   Page<ExistingProduct> category=getExistingProductService().findAll(pageable);
+		   
+		   return getPagedResourcesAssembler().toModel(category,getExistingProductModelAssembler());
+	   }
 	
 	/* TOTAL PRODUCTS */
 	@GetMapping("/products/count")
