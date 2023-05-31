@@ -30,7 +30,7 @@ import once.curso.proyectotienda.repositories.SoldProductCRUDRepository;
 import once.curso.proyectotienda.repositories.SubCategoryCRUDRepository;
 import once.curso.proyectotienda.services.CategoryService;
 import once.curso.proyectotienda.services.ExistingProductService;
-import once.curso.proyectotienda.services.SubcategoryService;
+import once.curso.proyectotienda.services.SubCategoryService;
 
 @SpringBootTest
 @Data
@@ -58,7 +58,7 @@ public class CategoryTest {
 	
 	
 	@Autowired
-	private SubcategoryService subcategoryService;
+	private SubCategoryService subcategoryService;
 	
 	
 	@Autowired

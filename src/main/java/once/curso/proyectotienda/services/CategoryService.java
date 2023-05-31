@@ -3,6 +3,8 @@ package once.curso.proyectotienda.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -27,6 +29,10 @@ public class CategoryService {
 	public Category save(Category entity) {
 
 		return getCategoryCRUDRepository().save(entity);
+	}
+	
+	public Page<Category> findAll(Pageable pageable){
+		return getCategoryCRUDRepository().findAll(pageable);
 	}
 
 	public Optional<Category> findById(Integer id) {
