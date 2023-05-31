@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +26,7 @@ public class DocumentTypeRestController {
 	private DocumentTypeService documentTypeService;
 
 	@GetMapping("/documentsTypes")
-
+	@CrossOrigin(origins = "*")
 	public CollectionModel<DocumentType> findAll() {
 		Iterable<DocumentType> documentTypes = getDocumentTypeService().findAll();
 		documentTypes.forEach(d -> {
@@ -38,6 +39,7 @@ public class DocumentTypeRestController {
 	}
 
 	@GetMapping(value = "/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<DocumentType> findById(@PathVariable int id) {
 		DocumentType documentType = getDocumentTypeService().findById(id).get();
 		documentType.add(WebMvcLinkBuilder
@@ -48,11 +50,13 @@ public class DocumentTypeRestController {
 	}
 
 	@PostMapping("/document_types")
+	@CrossOrigin(origins = "*")
 	public DocumentType save(@RequestBody DocumentType documentType) {
 		return getDocumentTypeService().save(documentType);
 	}
 
 	@DeleteMapping("/document_types/{id}")
+	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable int id) {
 		getDocumentTypeService().deleteById(id);
 	}
