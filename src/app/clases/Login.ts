@@ -1,11 +1,11 @@
 
 class Login {
-user:string=""
-pwd:string=""
+usuario:string=""
+clave:string=""
 
     constructor(user:string,pwd:string){
-        this.user=user;
-        this.pwd=pwd;
+        this.usuario=user;
+        this.clave=pwd;
     }
 }
 export default Login;
