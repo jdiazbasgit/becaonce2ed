@@ -23,56 +23,54 @@ import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.model.CategoryModelAssembler;
 import once.curso.proyectotienda.services.CategoryService;
 
-
 @RestController
-@RequestMapping({"/api/v1/"})
+@RequestMapping({ "/api/v1/" })
 @Data
 public class CategoryRestController {
-	
+
 	@Autowired
 	private CategoryModelAssembler categoryModelAssembler;
-@Autowired
-	private  PagedResourcesAssembler<Category> pagedResourcesAssembler;
+	@Autowired
+	private PagedResourcesAssembler<Category> pagedResourcesAssembler;
 	@Autowired
 	private CategoryService categoryService;
-	
 
 	@GetMapping("/categories")
-	public CollectionModel<Category> findAll(){
-		Iterable<Category> categories= getCategoryService().findAll();
-	categories.forEach(c->{
-		c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(c.getId())).withSelfRel());
-	});
-	return CollectionModel.of(categories);	
+	public CollectionModel<Category> findAll() {
+		Iterable<Category> categories = getCategoryService().findAll();
+		categories.forEach(c -> {
+			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(c.getId()))
+					.withSelfRel());
+		});
+		return CollectionModel.of(categories);
 	}
 
-   @GetMapping("/categories/{id}")
-   public EntityModel<Category> findById(@PathVariable int id){
-	   Category category=getCategoryService().findById(id).get();
-	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
-	   return EntityModel.of(category);
-   }
-   
-   @GetMapping("/categoriesPaginado")
-   public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-	   Sort orden=Sort.by("a");
-	   String campo=stringTokenizer.nextToken();
-	   String tipoOrden= stringTokenizer.nextToken();
-	   
-	   if(tipoOrden.equals("asc"))
-		   orden=Sort.by(campo).ascending();
-	   else 
-		   orden=Sort.by(campo).descending();
-	   
-	   Pageable pageable=PageRequest.of(page,size,orden);
-	   Page<Category> category=getCategoryService().findAll(pageable);
-	   
-	   return getPagedResourcesAssembler().toModel(category,getCategoryModelAssembler());
-   }
-   
-	
+	@GetMapping("/categories/{id}")
+	public EntityModel<Category> findById(@PathVariable int id) {
+		Category category = getCategoryService().findById(id).get();
+		category.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId()))
+				.withSelfRel());
+		return EntityModel.of(category);
+	}
 
+	@GetMapping("/categoriesPaginado")
+	public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page,
+			@RequestParam String sort) {
+		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+		Sort orden = Sort.by("a");
+		String campo = stringTokenizer.nextToken();
+		String tipoOrden = stringTokenizer.nextToken();
 
+		if (tipoOrden.equals("asc"))
+			orden = Sort.by(campo).ascending();
+		else
+			orden = Sort.by(campo).descending();
+
+		Pageable pageable = PageRequest.of(page, size, orden);
+		Page<Category> category = getCategoryService().findAll(pageable);
+
+		return getPagedResourcesAssembler().toModel(category, getCategoryModelAssembler());
+	}
 
 }
