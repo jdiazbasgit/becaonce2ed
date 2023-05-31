@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -36,7 +37,7 @@ public class FeeRestController {
 				.findById(fee.getId())).withSelfRel());
 		 return EntityModel.of(fee);
 	}
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/fees")
 	public CollectionModel<Fee> findAll(){
 		Iterable<Fee> fees= getFeeService().findAll();

@@ -3,6 +3,8 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -39,6 +41,10 @@ public class DescriptionService {
 
 	public Iterable<Description> findAll() {
 		return getDescriptionCRUDRepository().findAll();
+	}
+	
+	public Page<Description> findAll(Pageable pageable){
+		return getDescriptionCRUDRepository().findAll(pageable);
 	}
 
 	public Iterable<Description> findAllById(Iterable<Integer> ids) {

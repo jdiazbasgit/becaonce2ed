@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.User;
-import once.curso.proyectobanco.repositories.UserRepository;
+import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 
 @Data
@@ -17,7 +17,7 @@ import once.curso.proyectobanco.repositories.UserRepository;
 public class UserService {
 	
 	@Autowired
-	private UserRepository repository;
+	private UserCRUDRepository repository;
 	
 	
 	public <S extends User> S save(S entity) {
