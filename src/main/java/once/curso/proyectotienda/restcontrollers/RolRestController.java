@@ -17,7 +17,7 @@ import once.curso.proyectotienda.services.RolService;
 
 @RestController
 @Data
-@RequestMapping("/v1/")
+@RequestMapping("/once")
 public class RolRestController {
 	@Autowired
 	private final RolService rolService;

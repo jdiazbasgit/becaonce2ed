@@ -25,7 +25,7 @@ import once.curso.proyectotienda.services.CategoryService;
 
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/once")
 @Data
 public class CategoryRestController {
 	

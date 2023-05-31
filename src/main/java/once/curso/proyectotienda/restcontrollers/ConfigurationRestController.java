@@ -17,7 +17,7 @@ import once.curso.proyectotienda.entities.Configuration;
 import once.curso.proyectotienda.services.ConfigurationService;
 
 @Data
-@RequestMapping("/v1/")
+@RequestMapping("/once")
 @RestController
 public class ConfigurationRestController {
 

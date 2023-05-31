@@ -18,7 +18,7 @@ import once.curso.proyectotienda.services.CardTypeService;
 
 @RestController
 @Data
-@RequestMapping("/v1/")
+@RequestMapping("/once")
 public class CardTypeRestController {
 	@Autowired
 	private CardTypeService cardTypeService;

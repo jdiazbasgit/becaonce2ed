@@ -20,7 +20,7 @@ import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.UserService;
 
 @RestController
-@RequestMapping("/v1/")
+@RequestMapping("/once")
 @Data
 public class UserRestController {
 	
