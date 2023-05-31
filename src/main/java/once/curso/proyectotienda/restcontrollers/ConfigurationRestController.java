@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class ConfigurationRestController {
 	private ConfigurationService configurationService;
 
 	@GetMapping("/configurations")
+	@CrossOrigin(origins = "*")
 	public CollectionModel<Configuration> findAll(){
 		Iterable<Configuration> configurations = getConfigurationService().findAll();
 		configurations.forEach(c -> {
@@ -34,8 +36,12 @@ public class ConfigurationRestController {
 		
 		return CollectionModel.of(configurations);
 	}
+	/*
+	 * http://localhost:8080/once/configurations
+	 */
 
 	@GetMapping(value = "configurations/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<Configuration> findById(@PathVariable int id) {
 		Configuration configurations = getConfigurationService().findById(id).get();
 		configurations.add(WebMvcLinkBuilder
@@ -44,14 +50,26 @@ public class ConfigurationRestController {
 
 		return EntityModel.of(configurations);
 	}
+	/*
+	 * http://localhost:8080/once/configurations/225
+	 */
 
-	@PostMapping("/Configurations")
+	@PostMapping("/configurations")
+	@CrossOrigin(origins = "*")
 	public Configuration save(@RequestBody Configuration configuration) {
 		return getConfigurationService().save(configuration);
 	}
+	/*
+	 * http://localhost:8080/once/configurations
+	 */
 
 	@DeleteMapping("/configurations/{id}")
+	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable int id) {
 		getConfigurationService().deleteById(id);
 	}
+	/*
+	 * http://localhost:8080/once/configurations/300
+	 */
+
 }
