@@ -17,6 +17,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,12 +54,14 @@ public class ExistingProductRestController {
 
 	/* C CREATE A PRODUCT */
 	@PostMapping("/products/create")
+	@CrossOrigin(origins ="*")
 	public ExistingProduct createExistingProduct(@RequestBody ExistingProduct newExistingProduct) {
 		return getExistingProductService().save(newExistingProduct);
 	}
 
 	/* R READ ALL PRODUCTS */
 	@GetMapping("/products")
+	@CrossOrigin(origins ="*")
 	public CollectionModel<ExistingProduct> getExistingProducts() {
 		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
 		existingProduct.forEach(u -> {
@@ -73,6 +76,7 @@ public class ExistingProductRestController {
 
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
+	@CrossOrigin(origins ="*")
 	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
 		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
 		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
@@ -84,7 +88,8 @@ public class ExistingProductRestController {
 	}
 
 	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@PutMapping("/products/update/{id}")
+	@CrossOrigin(origins ="*")// FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
 	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
@@ -103,7 +108,8 @@ public class ExistingProductRestController {
 	}
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/delete/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/products/delete/{id}")
+	@CrossOrigin(origins ="*")// FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
 	// @GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
@@ -118,6 +124,7 @@ public class ExistingProductRestController {
 	}
 
 	@GetMapping("/productsPaginado")
+	@CrossOrigin(origins ="*")
 	public PagedModel<EntityModel<ExistingProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
@@ -138,6 +145,7 @@ public class ExistingProductRestController {
 
 	/* TOTAL PRODUCTS */
 	@GetMapping("/products/count")
+	@CrossOrigin(origins ="*")
 	public long getExistingProductCount() {
 		return existingProductService.count();
 	}

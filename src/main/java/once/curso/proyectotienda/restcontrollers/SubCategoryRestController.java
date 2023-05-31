@@ -48,11 +48,13 @@ public class SubCategoryRestController {
 	}
 	
 	@GetMapping("/subcategory")
+	@CrossOrigin(origins ="*")
 	public Iterable<SubCategory> findAll(){
 		return getSubcategoryService().findAll();
 	}
 	
 	@GetMapping("/subcategoryHateoas")
+	@CrossOrigin(origins ="*")
 	public CollectionModel<SubCategory> getSubCategory() {
 		Iterable<SubCategory> subCategory = getSubcategoryService().findAll();
 		subCategory.forEach(s->{
@@ -63,6 +65,7 @@ public class SubCategoryRestController {
 	}	
 	
 	@GetMapping("/subcategory/{id}")
+	@CrossOrigin(origins ="*")
 	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId())).withRel("subcategory"));
@@ -71,11 +74,13 @@ public class SubCategoryRestController {
 	}
 	
 	@DeleteMapping("/subcategory/{id}")
+	@CrossOrigin(origins ="*")
 	public void deleteById(@PathVariable int id) {
 		getSubcategoryService().deleteById(id);
 	}
 	
 	@GetMapping("/subcategoryPaginado")
+	@CrossOrigin(origins ="*")
 	   public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 		   Sort orden=Sort.by("a");

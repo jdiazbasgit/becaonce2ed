@@ -55,6 +55,7 @@ public class CategoryRestController {
 	}
 
    @GetMapping("/categories/{id}")
+   @CrossOrigin(origins ="*")
    public EntityModel<Category> findById(@PathVariable int id){
 	   Category category=getCategoryService().findById(id).get();
 	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
@@ -62,6 +63,7 @@ public class CategoryRestController {
    }
    
    @GetMapping("/categoriesPaginado")
+   @CrossOrigin(origins ="*")
    public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 	   Sort orden=Sort.by("a");
