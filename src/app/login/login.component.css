@@ -1,0 +1,263 @@
+.cabecera{
+    background: rgb(39, 160, 76);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.logoCabecera span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    user-select: none;
+}
+.logoCabecera h4{
+    font-size: 1.8em;
+    font-weight: 900;
+    text-decoration: underline;
+}
+.logoCabecera h1{
+    font-size: 2.8em;
+    font-weight: 700;
+    text-decoration: none;
+}
+.tiempoCabecera{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: green;
+}
+.tiempoCabecera button{
+    font-size: 1.2em;
+    font-weight: 600;
+    background: white;
+    color: green;
+    border: none;
+    border-radius: 5px;
+}
+.tiempoCabecera .modal-content{
+    margin-top: 100px;
+    min-width: 500px;
+    min-height: 500px;
+    background: url('src/assets/clockFace.jpg') center;
+    border-radius: 500px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.tiempoCabecera .modal{
+    backdrop-filter: blur(20px) brightness(1.8);
+    overflow: hidden;
+}
+.fondoBtnLogin{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.btnLogin{
+    width: 100px;
+    height: 60px;
+    background: transparent;
+    /* background: green; */
+    /* border: 2px solid rgb(15, 156, 39); */
+    border: none;
+    /* outline: none; */
+    /* border-radius: 5px; */
+    font-size: 1.1em;
+    color: white;
+    font-weight: 500;
+    transition: .5s;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnLogin:hover{
+    background: white;
+    color: green;
+}
+.fondoBtnLogin .pulsado{
+    background: white;
+    color: green;
+}
+.btnHazteCliente{
+    width: 150px;
+    height: 60px;
+    background: transparent;
+    /* background: rgb(39, 160, 76); */
+    /* border: 2px solid rgb(15, 156, 39); */
+    border: none;
+    /* outline: none; */
+    /* border-radius: 5px; */
+    font-size: 1.1em;
+    color: gold;
+    font-weight: 500;
+    transition: .5s;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnHazteCliente:hover{
+    background: white;
+    color: green;
+}
+.cajaLoginInfo{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px;
+}
+.cajaLoginInfo .contenedorLogin{
+    min-width: 400px;
+}
+.cajaLoginInfo .iconoCerrar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    font-size: 2em;
+    color: rgb(36, 36, 36);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+    opacity: .5;
+    transition: .5s;
+}
+.cajaLoginInfo .iconoCerrar:hover{
+    opacity: 1;
+}
+.contenedorLogin{
+    position: relative;
+    width: 400px;
+    height: 440px;
+    background: rgba(250, 255, 251, 0.1);
+    /* background: whitesmoke; */
+    /* border: 2px solid rgb(15, 156, 39, .2); */
+    border-radius: 5px;
+    backdrop-filter: blur(20px);
+    /* box-shadow: 0 0 10px rgb(104, 104, 104); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* right: 100px;
+    top: 100px; */
+    overflow: hidden;
+}
+
+
+.contenedorLogin .formularioLogin{
+    padding: 40px;
+}
+.formularioLogin h2{
+    font-size: 2em;
+    color: green;
+    text-align: center;
+    font-weight: 500;
+}
+.inputCasilla{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid rgb(44, 44, 44);
+    margin: 30px 0;
+    border-radius: 5px;
+}
+.inputCasilla label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: rgb(44, 44, 44);
+    font-weight: 500;
+    pointer-events: none;
+    transition: .5s;
+}
+.inputCasilla input:focus~label,.inputCasilla input:valid~label{
+    top: 9px;
+    opacity: .5;
+    font-size: 0.7em;
+    /* background-color: whitesmoke; */
+    /* width: 180px; */
+    left: 0px;
+    padding-left: 5px;
+}
+
+.inputCasilla input{
+    width: 100%;
+    height: 100%;
+    background: whitesmoke;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: rgb(44, 44, 44);
+    font-weight: 600;
+    padding: 10px 35px 0 5px;
+    border-radius: 5px;
+
+}
+.inputCasilla .iconito{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    top: 5px;
+}
+.recordar{
+    font-size: 0.8em;    
+    font-weight: 500;
+    text-align: end;
+}
+.recordar a{
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+}
+.recordar a:hover{
+    text-decoration: underline;
+}
+.btnSubmit{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    background: green;    
+    border: 2px solid rgb(15, 156, 39);
+    outline: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    color: whitesmoke;
+    font-weight: 500;
+    transition: .5s;
+}
+.btnSubmit:hover{
+    background: whitesmoke;
+    color: green;
+}
+.loginARegisto{
+    font-size: 1em;
+    margin-top: 20px;
+    font-weight: 500;
+}
+.loginARegisto a{
+    text-decoration: none;
+    color: green;    
+    transition: .5s;
+}
+.loginARegisto a:hover{
+    text-decoration: underline;
+}
+.infoLogin{
+    width: 400px;
+    height: 200px;
+    background: rgb(39, 160, 76);
+    margin: 20px 20px;  
+}
+.infoLogin .contenido{
+    margin: 20px 20px;
+    color: white;
+}

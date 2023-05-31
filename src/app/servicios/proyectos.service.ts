@@ -11,7 +11,7 @@ export class ProyectosService {
   getDatos(url: string): Observable<any> {
     const headers = new HttpHeaders();
     headers.set('Authorization', sessionStorage['token']);
-    return this.httpClient.get(url,{headers:{'Authorization': sessionStorage['token']}});
+    return this.httpClient.get(url, {headers:{'Authorization': sessionStorage['token']}});
   }
   saveOrUpdate(url:string, objeto:Object):Observable<any>{
     return this.httpClient.post(url,{body:objeto})
