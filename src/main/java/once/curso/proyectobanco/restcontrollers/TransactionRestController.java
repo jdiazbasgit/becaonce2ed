@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,6 +47,7 @@ public class TransactionRestController {
 	private ProfileService profileService;
 
 	@GetMapping(value = "/transactions/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<Transaction> findById(@PathVariable int id) {
 		Transaction transaction = getTransactionService().findById(id).get();
 		transaction.add(WebMvcLinkBuilder
@@ -73,6 +75,7 @@ public class TransactionRestController {
 	 */
 
 	@GetMapping(value = "/transactions")
+	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<Transaction>>findAll(@RequestParam(defaultValue = "0") int size, 
 			@RequestParam (defaultValue = "0") int page,@RequestParam (required = false) String sort){
 		if (size==0) {
@@ -98,16 +101,19 @@ public class TransactionRestController {
 	}
 
 	@PostMapping(value = "/transactions")
+	@CrossOrigin(origins = "*")
 	public Transaction save(@RequestBody Transaction transaction) {
 		return getTransactionService().save(transaction);
 	}
 
 	@PutMapping(value = "/transactions")
+	@CrossOrigin(origins = "*")
 	public List<Transaction> saveAll(@RequestBody List<Transaction> transaction) {
 		return (List<Transaction>) getTransactionService().saveAll(transaction);
 	}
 
 	@DeleteMapping(value = "/transactions/{id}")
+	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}

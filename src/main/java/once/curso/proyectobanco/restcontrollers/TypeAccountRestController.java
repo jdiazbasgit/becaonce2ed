@@ -13,6 +13,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +44,7 @@ public class TypeAccountRestController {
 	private PagedResourcesAssembler<TypeAccount> pagedResourcesAssembler;
 
 	@GetMapping(value = "/typeAccounts/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<TypeAccount> findById(@PathVariable int id) {
 		TypeAccount typeAccount = getTypeAccountService().findById(id).get();
 		typeAccount.add(WebMvcLinkBuilder
@@ -61,7 +63,7 @@ public class TypeAccountRestController {
 	 */
 
 	@GetMapping(value = "/typeAccounts")
-
+	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<TypeAccount>> findAll(@RequestParam(defaultValue = "0") int size,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
 		if (size == 0) {
@@ -86,16 +88,19 @@ public class TypeAccountRestController {
 	}
 
 	@PostMapping(value = "/typeAccounts")
+	@CrossOrigin(origins = "*")
 	public TypeAccount save(@RequestBody TypeAccount typeAccount) {
 		return getTypeAccountService().save(typeAccount);
 	}
 
 	@PutMapping(value = "/typeAccounts")
+	@CrossOrigin(origins = "*")
 	public List<TypeAccount> saveAll(@RequestBody List<TypeAccount> typeAccount) {
 		return (List<TypeAccount>) getTypeAccountService().saveAll(typeAccount);
 	}
 
 	@DeleteMapping(value = "typeAccounts/{id}")
+	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getTypeAccountService().deleteById(id);
 	}
