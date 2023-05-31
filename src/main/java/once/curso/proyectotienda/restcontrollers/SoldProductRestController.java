@@ -27,7 +27,7 @@ import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController
-@RequestMapping({"/api/v1/"})
+@RequestMapping({"/v1/"})
 @Data
 public class SoldProductRestController {
 

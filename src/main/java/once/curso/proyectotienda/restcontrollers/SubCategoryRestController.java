@@ -28,7 +28,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 
 @RestController
 @Data
-@RequestMapping({"/api/v1/"})
+@RequestMapping({"/v1/"})
 public class SubCategoryRestController {
 
 	@Autowired

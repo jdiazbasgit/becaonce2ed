@@ -33,7 +33,7 @@ import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
 @Data
-@RequestMapping({"/api/v1/"})
+@RequestMapping({"/v1/"})
 public class ExistingProductRestController {
 	
 	@Autowired

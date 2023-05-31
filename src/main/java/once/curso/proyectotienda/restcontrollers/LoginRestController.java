@@ -21,7 +21,7 @@ import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.UserDetailLoginService;
 
 @Data
-//@RequestMapping("/once")
+//@RequestMapping({"/v1/"})
 @RestController
 public class LoginRestController {
 	

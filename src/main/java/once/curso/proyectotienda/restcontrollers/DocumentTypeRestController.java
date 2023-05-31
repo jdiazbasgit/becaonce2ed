@@ -17,7 +17,7 @@ import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.services.DocumentTypeService;
 
 @Data
-@RequestMapping("/once")
+@RequestMapping({"/v1/"})
 @RestController
 public class DocumentTypeRestController {
 
