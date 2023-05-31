@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import { LoginService } from '../servicios/login.service';
+import { FeeService } from '../servicios/fee.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   inputPassword: string = ""
   usuario: string = ""
 
-  constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService) {
+  constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService:FeeService) {
   }
 
   // logarse(){    
@@ -37,6 +38,14 @@ export class LoginComponent {
   // }
 
   logarse() {
+    this.feeService.getDatos("http://localhost:8080/once/fees")
+    .subscribe((datos: any) => {
+      console.log(datos)
+      datos._embedded.fees.forEach((element: any) => {
+        console.log(element.current)
+      });
+    })
+
     this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
       .subscribe((datos: any) => {
         console.log(datos.token)
