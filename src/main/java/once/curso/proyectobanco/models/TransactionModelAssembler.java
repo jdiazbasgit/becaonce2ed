@@ -4,12 +4,16 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.stereotype.Component;
 
+import lombok.Data;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.restcontrollers.CurrentAccountRestController;
 import once.curso.proyectobanco.restcontrollers.DescriptionRestController;
 import once.curso.proyectobanco.restcontrollers.TransactionRestController;
 
+@Data
+@Component
 public class TransactionModelAssembler implements SimpleRepresentationModelAssembler<Transaction> {
 
 	@Override
