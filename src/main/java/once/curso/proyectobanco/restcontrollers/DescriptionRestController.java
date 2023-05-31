@@ -1,6 +1,5 @@
 package once.curso.proyectobanco.restcontrollers;
 
-import org.hibernate.EntityMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;

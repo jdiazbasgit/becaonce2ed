@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import lombok.Data;
 import once.curso.proyectobanco.entities.TransactionsAwardsFine;
 import once.curso.proyectobanco.services.AwardsFinesTypeServices;
