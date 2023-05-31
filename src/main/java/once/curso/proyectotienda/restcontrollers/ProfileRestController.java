@@ -35,7 +35,7 @@ import once.curso.proyectotienda.services.ProfileService;
 
 @RestController
 @Data
-@RequestMapping({"/v1/"})
+@RequestMapping("/v1/")
 public class ProfileRestController {
 	
 	@Autowired
