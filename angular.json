@@ -25,17 +25,18 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
-          }, 
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"]
+          },
           "configurations": {
             "production": {
               "budgets": [
-                { 
+                {
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
@@ -99,6 +100,6 @@
     }
   },
   "cli": {
-    "analytics": "b082451a-4c14-405f-b781-d9d58498095d"
+    "analytics": "03e01b6a-4e08-49db-bdc4-e046a0881ec2"
   }
 }

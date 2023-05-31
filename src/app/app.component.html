@@ -1,1 +1,38 @@
-<app-nav></app-nav>
+<header class="bg-primary">
+  <div class="w-100 d-block text-center pt-3">
+    <div class="container-fluid">
+      <h2 class="pt-1 text-white">
+          <a class="navbar-brand mt-2 mt-lg-0" href="index.html">TIENDA ONLINE</a>
+      </h2>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" routerLink="">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/product">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/offer">OFERTA</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/productdata">Lista de productos</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="/profile">Lista de perfiles</a></li>
+        </ul>
+        <div class="navbar-nav action-buttons ml-auto">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a routerLink="/login" class="btn p-2 btn-primary border-0">Mi cuenta</a></li>
+            <li class="nav-item">&nbsp;</li>
+            <li class="nav-item"><a routerLink="/register" class="btn p-2 btn-primary border-0">Registrate</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <app-nav></app-nav>
+  <article>
+    <div style="min-height: 500px; height:100%;">
+      <router-outlet></router-outlet>
+    </div>
+  </article>
+</main>
