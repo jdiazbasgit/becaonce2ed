@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.security;
+package once.curso.proyectotienda.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import lombok.Data;
-import once.curso.proyectobanco.services.UserDetailLoginService;
+import once.curso.proyectotienda.services.UserDetailLoginService;
 
 @Data
 @Configuration

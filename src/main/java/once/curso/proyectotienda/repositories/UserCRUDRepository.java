@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.repositories;
+package once.curso.proyectotienda.repositories;
 
 
 import org.springframework.data.jpa.repository.Query;

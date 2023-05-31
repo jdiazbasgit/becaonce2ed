@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.restcontrollers;
+package once.curso.proyectotienda.restcontrollers;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -7,20 +7,18 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Data;
-import once.curso.proyectobanco.beans.Login;
-import once.curso.proyectobanco.dtos.UserDto;
-import once.curso.proyectobanco.entities.Rol;
-import once.curso.proyectobanco.entities.User;
-import once.curso.proyectobanco.services.UserDetailLoginService;
+import once.curso.proyectotienda.beans.Login;
+import once.curso.proyectotienda.dtos.UserDto;
+import once.curso.proyectotienda.entities.Rol;
+import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.services.UserDetailLoginService;
 
 @Data
 //@RequestMapping("/once")

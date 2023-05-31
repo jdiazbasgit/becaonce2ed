@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.beans;
+package once.curso.proyectotienda.beans;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.security;
+package once.curso.proyectotienda.security;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import io.jsonwebtoken.Claims;

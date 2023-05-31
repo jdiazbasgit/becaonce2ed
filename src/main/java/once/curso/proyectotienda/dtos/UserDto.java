@@ -1,9 +1,9 @@
-package once.curso.proyectobanco.dtos;
+package once.curso.proyectotienda.dtos;
 
 import java.util.Set;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.Rol;
+import once.curso.proyectotienda.entities.Rol;
 
 @Data
 public class UserDto {

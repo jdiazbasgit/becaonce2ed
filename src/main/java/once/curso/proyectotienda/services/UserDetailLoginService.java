@@ -1,4 +1,4 @@
-package once.curso.proyectobanco.services;
+package once.curso.proyectotienda.services;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.Rol;
-import once.curso.proyectobanco.entities.User;
-import once.curso.proyectobanco.repositories.UserCRUDRepository;
+import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.repositories.UserCRUDRepository;
 
 @Data
 @Service
