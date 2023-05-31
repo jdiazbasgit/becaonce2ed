@@ -6,30 +6,9 @@
       </h2>
     </div>
   </div>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" routerLink="">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/product">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/offer">OFERTA</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/productdata">Lista de productos</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/profile">Lista de perfiles</a></li>
-        </ul>
-        <div class="navbar-nav action-buttons ml-auto">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a routerLink="/login" class="btn p-2 btn-primary border-0">Mi cuenta</a></li>
-            <li class="nav-item">&nbsp;</li>
-            <li class="nav-item"><a routerLink="/register" class="btn p-2 btn-primary border-0">Registrate</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<main>
   <app-nav></app-nav>
+</header>
+<main>
   <article>
     <div style="min-height: 500px; height:100%;">
       <router-outlet></router-outlet>
