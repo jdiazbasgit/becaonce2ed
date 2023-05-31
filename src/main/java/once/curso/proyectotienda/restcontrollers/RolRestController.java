@@ -8,6 +8,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
@@ -15,6 +16,7 @@ import once.curso.proyectotienda.entities.Rol;
 import once.curso.proyectotienda.services.RolService;
 
 @RestController
+@RequestMapping("once")
 @Data
 public class RolRestController {
 	@Autowired

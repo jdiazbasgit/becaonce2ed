@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.services.UserService;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/once")
 @Data
 public class UserRestController {
 	
@@ -28,6 +29,7 @@ public class UserRestController {
 	private UserService userService;
 	
 	@GetMapping("/users")
+	@CrossOrigin(origins = "*")
 	public CollectionModel<User> dameUser(){
 		 Iterable<User> users = getUserService().findAll();
 		 users.forEach(u->{
@@ -39,6 +41,7 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/users/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<User> findById(@PathVariable Integer id) {
 		 User user = getUserService().findById(id).get();
 		 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(user.getRol().getId())).withRel("rol"));
@@ -47,21 +50,25 @@ public class UserRestController {
 	}
 	
 	@GetMapping("/user")
+	@CrossOrigin(origins = "*")
 	public Iterable<User> findAll(){
 		return getUserService().findAll();
 	}
 	
 	@PostMapping("/users")
+	@CrossOrigin(origins = "*")
 	public User save(@RequestBody User user) {
 		return getUserService().save(user);
 	}
 	
 	@PutMapping("/users")
+	@CrossOrigin(origins = "*")
 	public List<User> saveAll (@RequestBody List<User> users){
 		return (List<User>) getUserService().saveAll(users);
 	}
 	
 	@DeleteMapping("/user/{id}")
+	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable int id) {
 		getUserService().deleteById(id);
 	}
