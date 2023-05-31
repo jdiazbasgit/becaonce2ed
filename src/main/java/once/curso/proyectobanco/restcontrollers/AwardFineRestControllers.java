@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,8 @@ public class AwardFineRestControllers {
 	private AwardsFinesServices awardFineServices;
 
 	@GetMapping(value = "/awardFine/{id}")
+	@CrossOrigin(origins = "*")
+	
 	public EntityModel<AwardsFine> findById(@PathVariable int id) {
 		AwardsFine awardsFine = getAwardFineServices().findById(id).get();
 
@@ -71,6 +74,7 @@ public class AwardFineRestControllers {
 	 */
 
 	@GetMapping(value = "/awardFine")
+	@CrossOrigin(origins = "*")
 
 	public PagedModel<EntityModel<AwardsFine>> findAll(@RequestParam(defaultValue = "0") int size,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
@@ -99,17 +103,23 @@ public class AwardFineRestControllers {
 	}
 
 	@PostMapping(value = "/awardFine")
+	@CrossOrigin(origins = "*")
+	
 	public AwardsFine save(@RequestBody AwardsFine awardFine) {
 		return getAwardFineServices().save(awardFine);
 
 	}
 
 	@PutMapping(value = "/awardFine")
+	@CrossOrigin(origins = "*")
+	
 	public List<AwardsFine> saveAll(@RequestBody List<AwardsFine> awardFine) {
 		return (List<AwardsFine>) getAwardFineServices().saveAll(awardFine);
 	}
 
 	@DeleteMapping(value = "/awardFine/{id}")
+	@CrossOrigin(origins = "*")
+
 	public void deleteById(@PathVariable int id) {
 		getAwardFineServices().deleteById(id);
 

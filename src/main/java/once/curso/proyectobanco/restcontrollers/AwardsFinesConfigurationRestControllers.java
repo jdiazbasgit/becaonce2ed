@@ -1,6 +1,5 @@
 package once.curso.proyectobanco.restcontrollers;
 
-
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -13,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +29,13 @@ import once.curso.proyectobanco.models.AwardsFinesConfigurationModelAssembler;
 import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
 
 @RestController
-@RequestMapping
+@RequestMapping("/once")
 @Data
 public class AwardsFinesConfigurationRestControllers {
-	
+
 	@Autowired
 	private AwardsFinesConfigurationModelAssembler awardsFinesConfigurationModelAssembler;
-	
+
 	@Autowired
 	private PagedResourcesAssembler<AwardsFinesConfiguration> PagedResourcesAssembler;
 
@@ -43,6 +43,8 @@ public class AwardsFinesConfigurationRestControllers {
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
 
 	@GetMapping(value = "/awardsFinesConfiguration/{id}")
+	@CrossOrigin(origins = "*")
+
 	public EntityModel<AwardsFinesConfiguration> findById(@PathVariable int id) {
 		AwardsFinesConfiguration awardsFinesConfiguration = getAwardsFinesConfigurationServices().findById(id).get();
 
@@ -54,45 +56,54 @@ public class AwardsFinesConfigurationRestControllers {
 	}
 
 	@GetMapping(value = "/AwardsFinesConfiguration")
-	
-	public PagedModel<EntityModel<AwardsFinesConfiguration>> findAll(@RequestParam(defaultValue = "0") int size, @RequestParam(defaultValue = "0")int page,
-			@RequestParam(required = false)String sort){
-		if(size==0) {
-			size=(int) getAwardsFinesConfigurationServices().count();
+	@CrossOrigin(origins = "*")
+
+	public PagedModel<EntityModel<AwardsFinesConfiguration>> findAll(@RequestParam(defaultValue = "0") int size,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
+		if (size == 0) {
+			size = (int) getAwardsFinesConfigurationServices().count();
 		}
-		
-		Sort orden=Sort.by("id");
-		if(sort !=null) {
-			orden=Sort.by(sort);
-			StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
-			
-			String campo=stringTokenizer.nextToken();
-			String tipoOrden=stringTokenizer.nextToken();
-			
-			if(tipoOrden.equals("asc"))
-				orden=Sort.by(campo).ascending();
-			else 
-				orden=Sort.by(campo).descending();
-			
+
+		Sort orden = Sort.by("id");
+		if (sort != null) {
+			orden = Sort.by(sort);
+			StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+
+			String campo = stringTokenizer.nextToken();
+			String tipoOrden = stringTokenizer.nextToken();
+
+			if (tipoOrden.equals("asc"))
+				orden = Sort.by(campo).ascending();
+			else
+				orden = Sort.by(campo).descending();
+
 		}
-		Pageable pageable=PageRequest.of(page, size, orden);
-		Page<AwardsFinesConfiguration> awardsFinesConfiguration = getAwardsFinesConfigurationServices().findAll(pageable);
-		
-		return getPagedResourcesAssembler().toModel(awardsFinesConfiguration, getAwardsFinesConfigurationModelAssembler());
+		Pageable pageable = PageRequest.of(page, size, orden);
+		Page<AwardsFinesConfiguration> awardsFinesConfiguration = getAwardsFinesConfigurationServices()
+				.findAll(pageable);
+
+		return getPagedResourcesAssembler().toModel(awardsFinesConfiguration,
+				getAwardsFinesConfigurationModelAssembler());
 	}
 
 	@PostMapping(value = "/AwardsFinesConfiguration")
+	@CrossOrigin(origins = "*")
+
 	public AwardsFinesConfiguration save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}
 
 	@PutMapping(value = "/AwardsFinesConfiguration")
+	@CrossOrigin(origins = "*")
+
 	public List<AwardsFinesConfiguration> saveAll(
 			@RequestBody List<AwardsFinesConfiguration> AwardsFinesConfigurations) {
 		return (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
 	}
 
 	@DeleteMapping(value = "/AwardsFinesConfiguration/{id}")
+	@CrossOrigin(origins = "*")
+
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}
