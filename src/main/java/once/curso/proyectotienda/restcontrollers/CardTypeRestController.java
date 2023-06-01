@@ -41,8 +41,13 @@ public class CardTypeRestController {
 	@Autowired
 	private CardTypeService cardTypeService;
 
+<<<<<<< HEAD
 	@CrossOrigin(origins = "*")
 	@PostMapping("/cardTypes/create")
+=======
+	@PostMapping("/cardTypes")
+	@CrossOrigin(origins ="*")
+>>>>>>> feature/develop-tienda
 	public CardType save(@RequestBody CardType cardType) {
 		return getCardTypeService().save(cardType);
 	}

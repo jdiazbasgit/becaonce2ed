@@ -12,19 +12,27 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.model.CategoryModelAssembler;
 import once.curso.proyectotienda.services.CategoryService;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping({ "/api/v1/" })
+=======
+@RequestMapping("/once")
+>>>>>>> feature/develop-tienda
 @Data
 public class CategoryRestController {
 
@@ -35,7 +43,11 @@ public class CategoryRestController {
 	@Autowired
 	private CategoryService categoryService;
 
+	
+	
+	
 	@GetMapping("/categories")
+<<<<<<< HEAD
 	public CollectionModel<Category> findAll() {
 		Iterable<Category> categories = getCategoryService().findAll();
 		categories.forEach(c -> {
@@ -53,6 +65,45 @@ public class CategoryRestController {
 				.withSelfRel());
 		return EntityModel.of(category);
 	}
+=======
+	@CrossOrigin(origins ="*")
+	public CollectionModel<Category> findAll(){
+		Iterable<Category> categories= getCategoryService().findAll();
+	categories.forEach(c->{
+		c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(c.getId())).withSelfRel());
+	});
+	return CollectionModel.of(categories);	
+	}
+
+   @GetMapping("/categories/{id}")
+   @CrossOrigin(origins ="*")
+   public EntityModel<Category> findById(@PathVariable int id){
+	   Category category=getCategoryService().findById(id).get();
+	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
+	   return EntityModel.of(category);
+   }
+   
+   @GetMapping("/categoriesPaginado")
+   @CrossOrigin(origins ="*")
+   public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+	   Sort orden=Sort.by("a");
+	   String campo=stringTokenizer.nextToken();
+	   String tipoOrden= stringTokenizer.nextToken();
+	   
+	   if(tipoOrden.equals("asc"))
+		   orden=Sort.by(campo).ascending();
+	   else 
+		   orden=Sort.by(campo).descending();
+	   
+	   Pageable pageable=PageRequest.of(page,size,orden);
+	   Page<Category> category=getCategoryService().findAll(pageable);
+	   
+	   return getPagedResourcesAssembler().toModel(category,getCategoryModelAssembler());
+   }
+   
+	
+>>>>>>> feature/develop-tienda
 
 	@GetMapping("/categoriesPaginado")
 	public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page,
