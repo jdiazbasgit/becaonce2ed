@@ -17,7 +17,7 @@ enviar(){
 this.service.identificar("http://localhost:8080/login",this.user,this.pwd)
 .subscribe((datos:any)=>{
   console.log(datos.token)
-  sessionStorage['token']=datos.token;
+  sessionStorage['token']=datos.token+"a";
   this.feeService.getDatos("http://localhost:8080/once/fees")
   .subscribe((datos:any)=>{
     console.log(datos)
