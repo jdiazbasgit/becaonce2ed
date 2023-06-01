@@ -1,7 +1,8 @@
-<div class="cabecera">
+<div class="cabecera texto-primario fondo-secundario">
     <div class="logoCabecera">
         <span><h1>B</h1><h4>ANCAIN</h4></span>
     </div>
+    <span>prueba de texto</span>
     <div class="tiempoCabecera">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             15/05/2023 01:54
@@ -24,6 +25,12 @@
             </div>
           </div>
     </div>
+    <div>
+        <button class="button-success" type="button" (click)="getFees()">get fees</button>
+    </div>
+    <div>
+        <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
+    </div>
     <div *ngIf="!logado" class="fondoBtnLogin">
         <button class="btnHazteCliente" >Hazte cliente</button>        
         <button class="btnLogin" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
@@ -35,7 +42,7 @@
     </div>
 </div>
 <div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
-    <div class="cajaLoginInfo">
+    <div class="cajaLoginInfo fondo-primario">
         <span class="iconoCerrar" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
                 aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

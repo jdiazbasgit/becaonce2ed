@@ -14,73 +14,57 @@ export class LoginComponent {
   inputPassword: string = ""
   usuario: string = ""
 
-  constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService:FeeService) {
+  constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService) {
   }
 
-  // logarse(){    
-  //   this.http.getDatos('https://restcountries.com/v3.1/name/spain')
-  //   .subscribe((datos: any) => {
-  //     let userM = datos[0].name.common
-  //     let passM = datos[0].capital;
-  //     console.log(userM+passM)
-  //     if (this.inputUsuario == userM && this.inputPassword == passM){
-  //       this.logado=true
-  //       this.usuario=userM
-  //     }
-  //     else {
-  //       this.limpiarFormulario()      
-  //       let cont = this.elementRef.nativeElement.querySelector('.contenido')
-  //       cont.innerHTML = "Aqui pondremos mensaje error de autenticación y se restablece al cerrar el collapse"
-  //       cont.classList.add('bg-danger')
-  //     }
-  //     }
-  //   )    
-  // }
+
+  getFees() {
+    console.log("Sacando Fees con token: " + sessionStorage['token'])
+    this.feeService.getDatos("http://localhost:8080/once/fees")
+      .subscribe((datos: any) => {
+        console.log(datos)
+        datos._embedded.fees.forEach((element: any) => {
+          console.log(element.current)
+        });
+      })
+  }
+
+  meterTokenfalso(){
+    sessionStorage['token'] = "EsteEsUnTokenFalso"
+    console.log("token: " + sessionStorage['token'])
+  }
 
   logarse() {
-    this.feeService.getDatos("http://localhost:8080/once/fees")
-    .subscribe((datos: any) => {
-      console.log(datos)
-      datos._embedded.fees.forEach((element: any) => {
-        console.log(element.current)
-      });
-    })
-
     this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
       .subscribe((datos: any) => {
-        console.log(datos.token)
+        //console.log(datos.token)
         console.log(datos)
-        if(datos.token == null){
+        if (datos.token == null) {
           this.limpiarFormulario()
           let cont = this.elementRef.nativeElement.querySelector('.contenido')
           cont.innerHTML = "Aqui pondremos mensaje error de autenticación y se restablece al cerrar el collapse"
           cont.classList.add('bg-danger')
         }
-        if(datos.token != null){
+        if (datos.token != null) {
           console.log("acceso correcto")
           let userM = this.inputUsuario
-          let passM = this.inputPassword;
-          this.logado=true
+          let passM = this.inputPassword
+          this.usuario = this.inputUsuario
+          this.logado = true
           console.log(userM + passM)
           sessionStorage['token'] = datos.token;
           let cont = this.elementRef.nativeElement.querySelector('.contenido')
-            cont.innerHTML = "Bienvenido"
-            cont.classList.add('bg-success')
-          // this.feeService.getDatos("http://localhost:8080/once/fees")
-          //   .subscribe((datos: any) => {
-          //     console.log(datos)
-          //     datos._embedded.fees.forEach((element: any) => {
-          //       console.log(element.current)
-          //     });
-          //   })
+          cont.innerHTML = "Bienvenido"
+          cont.classList.add('bg-success')
           console.log(datos.token)
         }
-        
+
       }
       )
   }
   deslogarse() {
     this.logado = false
+    sessionStorage['token'] = null;
   }
   limpiarFormulario() {
     this.inputUsuario = ""
