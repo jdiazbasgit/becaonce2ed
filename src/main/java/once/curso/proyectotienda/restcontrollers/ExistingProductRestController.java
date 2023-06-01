@@ -1,7 +1,6 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -35,11 +34,7 @@ import once.curso.proyectotienda.services.ExistingProductService;
 
 @RestController
 @Data
-<<<<<<< HEAD
 @RequestMapping("/once")
-=======
-@RequestMapping({ "/once" })
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 public class ExistingProductRestController {
 
 	@Autowired
@@ -92,8 +87,8 @@ public class ExistingProductRestController {
 	}
 
 	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/update/{id}")
-	@CrossOrigin(origins ="*")// FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@CrossOrigin(origins ="*")
 	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
@@ -112,8 +107,8 @@ public class ExistingProductRestController {
 	}
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/delete/{id}")
-	@CrossOrigin(origins ="*")// FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/products/delete/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@CrossOrigin(origins ="*")
 	// @GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)

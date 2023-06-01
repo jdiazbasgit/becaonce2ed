@@ -29,11 +29,7 @@ import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController
-<<<<<<< HEAD
 @RequestMapping("/once")
-=======
-@RequestMapping({"/once"})
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 @Data
 public class SoldProductRestController {
 
@@ -54,15 +50,13 @@ public class SoldProductRestController {
 	}
 	
 	@GetMapping("/soldProducts")
-<<<<<<< HEAD
+	@CrossOrigin(origins ="*")
 	public Iterable<SoldProduct> findAll(){
 		return getSoldProductService().findAll();
 	}
 	
 	@GetMapping("/soldProducts")
-=======
 	@CrossOrigin(origins ="*")
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 	public CollectionModel<SoldProduct> getSoldProduct() {
 		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
 		soldProduct.forEach(s->{
@@ -88,32 +82,14 @@ public class SoldProductRestController {
 	}
 	
 	@GetMapping("/soldProductsPaginado")
-<<<<<<< HEAD
-   public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-	  StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-   Sort orden=Sort.by("a");
-   String campo=stringTokenizer.nextToken();
-   String tipoOrden= stringTokenizer.nextToken();
-   
-   if(tipoOrden.equals("asc"))
-		   orden=Sort.by(campo).ascending();
-	   else 
-		   orden=Sort.by(campo).descending();
-	   
-	   Pageable pageable=PageRequest.of(page,size,orden);
-	   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
-	   
-	   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
-   }
-=======
 	@CrossOrigin(origins ="*")
-	   public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		   Sort orden=Sort.by("a");
-		   String campo=stringTokenizer.nextToken();
-		   String tipoOrden= stringTokenizer.nextToken();
-		   
-		   if(tipoOrden.equals("asc"))
+		  Sort orden=Sort.by("a");
+	   String campo=stringTokenizer.nextToken();
+	   String tipoOrden= stringTokenizer.nextToken();
+	   
+	   if(tipoOrden.equals("asc"))
 			   orden=Sort.by(campo).ascending();
 		   else 
 			   orden=Sort.by(campo).descending();
@@ -123,7 +99,6 @@ public class SoldProductRestController {
 		   
 		   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
 	   }
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 }
 
 /*http://localhost:8080/api/v1/soldProductsPaginado?size=2&page=0&sort=id,asc*/

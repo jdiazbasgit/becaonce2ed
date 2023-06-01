@@ -29,11 +29,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 
 @RestController
 @Data
-<<<<<<< HEAD
 @RequestMapping("/once")
-=======
-@RequestMapping({"/once"})
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 public class SubCategoryRestController {
 
 	@Autowired
@@ -84,7 +80,7 @@ public class SubCategoryRestController {
 	}
 	
 	@GetMapping("/subcategoryPaginado")
-<<<<<<< HEAD
+	@CrossOrigin(origins ="*")
 	public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 	   Sort orden=Sort.by("a");
@@ -101,25 +97,6 @@ public class SubCategoryRestController {
 	   
 	   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
 	}
-=======
-	@CrossOrigin(origins ="*")
-	   public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		   Sort orden=Sort.by("a");
-		   String campo=stringTokenizer.nextToken();
-		   String tipoOrden= stringTokenizer.nextToken();
-		   
-		   if(tipoOrden.equals("asc"))
-			   orden=Sort.by(campo).ascending();
-		   else 
-			   orden=Sort.by(campo).descending();
-		   
-		   Pageable pageable=PageRequest.of(page,size,orden);
-		   Page<SubCategory> subcategory=getSubcategoryService().findAll(pageable);
-		   
-		   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
-	   }
->>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 	
 	
 	
