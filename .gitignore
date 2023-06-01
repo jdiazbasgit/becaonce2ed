@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/target/*
 
 # Node
 /node_modules
@@ -19,6 +20,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+.springBeans
 
 # Visual Studio Code
 .vscode/*
@@ -36,7 +38,10 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+/target/*
 
 # System files
 .DS_Store
 Thumbs.db
+
+

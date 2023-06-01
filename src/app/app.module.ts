@@ -11,9 +11,8 @@ import { ProductComponent } from './product/product.component';
 import { OfferComponent } from './offer/offer.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { ProfileDataComponent } from './profile-data/profile-data.component';
-import { ProfileEditComponent } from './profile-edit/profile-edit.component';
-import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -22,21 +21,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ProfileComponent,
     ProductComponent,
     NavComponent,
-    LoginComponent,
-    ProfileComponent,
-    ProductComponent,
     OfferComponent,
     ProductDataComponent,
     ProductEditComponent,
-    ProfileDataComponent,
-    ProfileEditComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    ModalModule.forRoot()
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

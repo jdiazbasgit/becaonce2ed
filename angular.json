@@ -30,9 +30,16 @@
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
+<<<<<<< HEAD
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
+=======
+              "./node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+            ]
+          }, 
+>>>>>>> feature/front/proyectos-tienda
           "configurations": {
             "production": {
               "budgets": [
