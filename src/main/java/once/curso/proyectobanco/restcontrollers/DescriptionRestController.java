@@ -2,7 +2,6 @@ package once.curso.proyectobanco.restcontrollers;
 
 import java.util.StringTokenizer;
 
-import org.hibernate.EntityMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,10 +22,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.Configuration;
 import once.curso.proyectobanco.entities.Description;
 import once.curso.proyectobanco.models.DescriptionModelAssembler;
-import once.curso.proyectobanco.services.ConfigurationService;
 import once.curso.proyectobanco.services.DescriptionService;
 
 @RestController
