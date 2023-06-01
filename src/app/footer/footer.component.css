@@ -26,6 +26,9 @@
   .footer-bottom {
     text-align: center;
   }
+  li {
+    list-style: none;
+  }
 
   
   
