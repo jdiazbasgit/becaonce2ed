@@ -12,3 +12,22 @@
    .fondo{
     background: url('src/assets/prueba.jpg');
    }
+
+   .texto-primario{
+    color: white;
+}
+.texto-secundario{
+    background:rgb(39, 160, 76);
+}
+.texto-resaltado{
+    color: green;
+}
+.fondo-primario{
+    background:rgb(222, 253, 232);
+}
+.fondo-secundario{
+    background:rgb(39, 160, 76);
+}
+.fondo-resaltado{
+    color: green;
+}
