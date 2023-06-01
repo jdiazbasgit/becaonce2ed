@@ -1,37 +1,50 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NavComponent } from './nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
-import { NavComponent } from './nav/nav.component';
+
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
-=======
+
 import { FooterComponent } from './footer/footer.component';
->>>>>>> feature/front/proyectos-tienda-jccb
+
+import { ProfileComponent } from './profile/profile.component';
+import { ProductComponent } from './product/product.component';
+import { OfferComponent } from './offer/offer.component';
+import { ProductDataComponent } from './product-data/product-data.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-<<<<<<< HEAD
-    NavComponent
+    
+    NavComponent,
     AppComponent,
     HeaderComponent,
-    LoginComponent
-=======
+    LoginComponent, 
+    ProfileComponent,
+    ProductComponent,
+    NavComponent,
+    OfferComponent,
+    ProductDataComponent,
+    ProductEditComponent,
+    HeaderComponent,
     FooterComponent
->>>>>>> feature/front/proyectos-tienda-jccb
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+
+}
