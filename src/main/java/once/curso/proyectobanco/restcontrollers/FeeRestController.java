@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,12 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Fee;
+
 import once.curso.proyectobanco.models.FeeModelAssembler;
+
 import once.curso.proyectobanco.services.FeeService;
 
 @RestController
 @Data
 @RequestMapping("/once")
+@CrossOrigin(origins = "*")
 public class FeeRestController {
 	
 	@Autowired
@@ -49,19 +53,7 @@ public class FeeRestController {
 				.findById(fee.getId())).withSelfRel());
 		 return EntityModel.of(fee);
 	}
-	
-//	@GetMapping(value = "/fees")
-//	public CollectionModel<Fee> findAll(){
-//		Iterable<Fee> fees= getFeeService().findAll();
-//		fees.forEach(f->{
-//			f.add(WebMvcLinkBuilder.
-//					linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class).
-//							findById(f.getId())).withSelfRel());
-//		});
-//		 
-//		 return CollectionModel.of(fees);
-//	}
-	
+
 	@GetMapping(value = "/fees")
 	public PagedModel<EntityModel<Fee>> findAll(@RequestParam (defaultValue = "0") int size, @RequestParam (defaultValue = "0") int page, @RequestParam (required = false) String sort){
 		if (size == 0) {

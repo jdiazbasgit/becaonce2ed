@@ -3,70 +3,78 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.CurrentAccount;
+import once.curso.proyectobanco.entities.Description;
 import once.curso.proyectobanco.repositories.CurrentAccountCRUDRepository;
 
 @Data
 @Service
 public class CurrentAccountService {
 	@Autowired
-	private CurrentAccountCRUDRepository accountCRUDRepository;
+	private CurrentAccountCRUDRepository currentAccountCRUDRepository;
 	
 	public Iterable<CurrentAccount>dameCuentas() {
-		return getAccountCRUDRepository().findAll();
+		return getCurrentAccountCRUDRepository().findAll();
 	
 	}
 
 	public <S extends CurrentAccount> S save(S entity) {
-		return getAccountCRUDRepository().save(entity);
+		return getCurrentAccountCRUDRepository().save(entity);
 		
 	}
 
 	public <S extends CurrentAccount> Iterable<S> saveAll(Iterable<S> entities) {
-		return getAccountCRUDRepository().saveAll(entities);
+		return getCurrentAccountCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<CurrentAccount> findById(Integer id) {
-		return getAccountCRUDRepository().findById(id);
+		return getCurrentAccountCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-		return getAccountCRUDRepository().existsById(id);
+		return getCurrentAccountCRUDRepository().existsById(id);
 	}
 
 	public Iterable<CurrentAccount> findAll() {
-		return getAccountCRUDRepository().findAll();
+		return getCurrentAccountCRUDRepository().findAll();
 	}
+		
+		public Page<CurrentAccount> findAll(Pageable pageable){
+			return getCurrentAccountCRUDRepository().findAll(pageable);
+		}
+	
 
 	public Iterable<CurrentAccount> findAllById(Iterable<Integer> ids) {
-		return getAccountCRUDRepository().findAllById(ids);
+		return getCurrentAccountCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-		return getAccountCRUDRepository().count();
+		return getCurrentAccountCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getAccountCRUDRepository().deleteById(id);
+		getCurrentAccountCRUDRepository().deleteById(id);
 	}
 
 	public void delete(CurrentAccount entity) {
-		getAccountCRUDRepository().delete(entity);
+		getCurrentAccountCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getAccountCRUDRepository().deleteAllById(ids);
+		getCurrentAccountCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends CurrentAccount> entities) {
-		getAccountCRUDRepository().deleteAll(entities);;
+		getCurrentAccountCRUDRepository().deleteAll(entities);;
 	}
 
 	public void deleteAll() {
-		getAccountCRUDRepository().deleteAll();
+		getCurrentAccountCRUDRepository().deleteAll();
 	}
 
 

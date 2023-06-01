@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Profile;
+
 import once.curso.proyectobanco.models.ProfileModelAssembler;
+
 import once.curso.proyectobanco.services.ProfileService;
 
 @RestController
@@ -53,19 +55,6 @@ public class ProfileRestController {
 	return EntityModel.of(profile);
 	}
 	
-//	@GetMapping("/profiles")	
-//	public CollectionModel<Profile> findAll(){
-//		  Iterable<Profile> profiles= getProfileService().findAll();
-//		  profiles.forEach(p->{
-//			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class)
-//					  .findById(p.getIdentificationType().getId())).withRel("identificationType"));
-//			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
-//					  .findById(p.getUser().getId())).withRel("user"));
-//			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class)
-//					  .findById(p.getId())).withSelfRel());
-//		  });
-//		  return CollectionModel.of(profiles);
-//	}
 		
 	@GetMapping(value = "/profiles")
 	public PagedModel<EntityModel<Profile>> findAll(@RequestParam (defaultValue = "0") int size, @RequestParam (defaultValue = "0") int page, @RequestParam (required = false) String sort){
