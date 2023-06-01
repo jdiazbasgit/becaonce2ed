@@ -69,7 +69,7 @@ public class CardTypeRestController {
 		return CollectionModel.of(cardTypes);
 	}
 
-	@GetMapping("/configurationsPaginado")
+	@GetMapping("/cardTypesPaginado")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<CardType>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {

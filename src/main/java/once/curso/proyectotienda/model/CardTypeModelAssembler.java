@@ -4,10 +4,11 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.stereotype.Component;
 
 import once.curso.proyectotienda.entities.CardType;
 import once.curso.proyectotienda.restcontrollers.CardTypeRestController;
-
+@Component
 public class CardTypeModelAssembler implements SimpleRepresentationModelAssembler<CardType> {
 
 	@Override
