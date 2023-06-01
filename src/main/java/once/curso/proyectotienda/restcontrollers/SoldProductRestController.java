@@ -12,6 +12,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,11 @@ import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/once")
+=======
+@RequestMapping({"/once"})
+>>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 @Data
 public class SoldProductRestController {
 
@@ -43,16 +48,21 @@ public class SoldProductRestController {
 	private SoldProductService soldProductService;
 
 	@PostMapping("/soldProducts/create")
+	@CrossOrigin(origins ="*")
 	public SoldProduct save(@RequestBody SoldProduct soldProduct) {
 		return getSoldProductService().save(soldProduct);
 	}
 	
 	@GetMapping("/soldProducts")
+<<<<<<< HEAD
 	public Iterable<SoldProduct> findAll(){
 		return getSoldProductService().findAll();
 	}
 	
 	@GetMapping("/soldProducts")
+=======
+	@CrossOrigin(origins ="*")
+>>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 	public CollectionModel<SoldProduct> getSoldProduct() {
 		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
 		soldProduct.forEach(s->{
@@ -63,6 +73,7 @@ public class SoldProductRestController {
 	}	
 	
 	@GetMapping("/soldProducts/{id}")
+	@CrossOrigin(origins ="*")
 	public EntityModel<SoldProduct> findById(@PathVariable int id) {
 		SoldProduct soldProduct = getSoldProductService().findById(id).get();
 		soldProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(soldProduct.getExistingProduct().getId())).withRel("soldproduct"));
@@ -71,11 +82,13 @@ public class SoldProductRestController {
 	}
 
 	@DeleteMapping("/soldProducts/{id}")
+	@CrossOrigin(origins ="*")
 	public void deleteById(@PathVariable int id) {
 		getSoldProductService().deleteById(id);
 	}
 	
 	@GetMapping("/soldProductsPaginado")
+<<<<<<< HEAD
    public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 	  StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
    Sort orden=Sort.by("a");
@@ -92,6 +105,25 @@ public class SoldProductRestController {
 	   
 	   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
    }
+=======
+	@CrossOrigin(origins ="*")
+	   public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+		   Sort orden=Sort.by("a");
+		   String campo=stringTokenizer.nextToken();
+		   String tipoOrden= stringTokenizer.nextToken();
+		   
+		   if(tipoOrden.equals("asc"))
+			   orden=Sort.by(campo).ascending();
+		   else 
+			   orden=Sort.by(campo).descending();
+		   
+		   Pageable pageable=PageRequest.of(page,size,orden);
+		   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
+		   
+		   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
+	   }
+>>>>>>> a1b236a92a1af5e74029e07ab10e9507526623d3
 }
 
 /*http://localhost:8080/api/v1/soldProductsPaginado?size=2&page=0&sort=id,asc*/
