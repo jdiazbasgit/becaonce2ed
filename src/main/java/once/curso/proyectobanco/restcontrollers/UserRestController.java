@@ -74,7 +74,7 @@ public class UserRestController {
 		return getPagedResourcesAssembler().toModel(user,getUserModelAssember());
 	}
 		
-		
+	@CrossOrigin(origins = "*")	
 	@GetMapping("/users/{id}")
 	public EntityModel<User> findById(@PathVariable Integer id) {
 	User user= getUserService().findById(id).get();
@@ -83,16 +83,19 @@ public class UserRestController {
 	return EntityModel.of(user);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/users")
 	public User save(@RequestBody User user){
 		return getUserService().save(user);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PutMapping("/users")
 	public List<User> saveAll(@RequestBody List<User> users){
 		return (List<User>) getUserService().saveAll(users);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/users/{id}")
 	public void deleteById(@PathVariable int id) {
 		 getUserService().deleteById(id);

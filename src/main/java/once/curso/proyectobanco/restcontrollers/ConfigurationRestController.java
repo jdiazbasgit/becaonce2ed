@@ -40,6 +40,8 @@ public class ConfigurationRestController {
 	@Autowired
 	private  PagedResourcesAssembler<Configuration> pagedResourcesAssemble;
 	
+	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value =" /configurations/{id}")
 	
 	public EntityModel< Configuration> findById(@PathVariable Integer id) {
@@ -83,11 +85,13 @@ public class ConfigurationRestController {
 	}
 	
 	
-	
+	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/configurations")
 	public Configuration save(@RequestBody Configuration configuration) {
 		return getConfigurationService().save(configuration);
 	}
+	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping(value="/configurations")
 	public void deleteById(@PathVariable Integer id) {
 		getConfigurationService().deleteById(id);

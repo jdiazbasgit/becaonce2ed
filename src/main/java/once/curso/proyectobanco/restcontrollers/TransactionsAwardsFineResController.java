@@ -73,6 +73,7 @@ public class TransactionsAwardsFineResController {
 		return getPagedResourcesAssembler().toModel(transactionsAwardsFine,getTransactionsAwardsFineAssember());
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value="/transactionsAwardsFineService/{id}")
 	
 	public EntityModel<TransactionsAwardsFine> findById(@PathVariable Integer id){
@@ -82,6 +83,8 @@ public class TransactionsAwardsFineResController {
 			
 		return EntityModel.of(transactionsAwardsFine);
 }
+	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/transactionsAwardsFineService")
 		
 	public TransactionsAwardsFine save(@RequestBody TransactionsAwardsFine transactionsAwardsFine) {
@@ -89,11 +92,15 @@ public class TransactionsAwardsFineResController {
 	
 	}
 	
+	
+	@CrossOrigin(origins = "*")
 	@PutMapping(value="/transactionsAwardsFineService")
 	public List<TransactionsAwardsFine> saveAll(@RequestBody List<TransactionsAwardsFine> transactionsAwardsFines){
 		return (List<TransactionsAwardsFine>)getTransactionsAwardsFineService().saveAll(transactionsAwardsFines);
 	}
 	
+	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/transactionsAwardsFineService")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionsAwardsFineService().deleteById(id);
