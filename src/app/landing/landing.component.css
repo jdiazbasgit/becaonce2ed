@@ -1,0 +1,14 @@
+
+    .green-background {
+      background-color: rgb(55, 163, 55);
+      color: rgb(255, 255, 255);
+    }
+
+  .image-container {
+    background-image: url('src/assets/prueba.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+   .fondo{
+    background: url('src/assets/prueba.jpg');
+   }
