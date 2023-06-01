@@ -28,9 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Profile;
-import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.model.ProfileModelAssembler;
-import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.ProfileService;
 
 @RestController
@@ -48,7 +46,7 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	/* C CREATE A PROFILE */
-	@PostMapping("/profiles")
+	@PostMapping("/profiles/create")
 	public Profile createProfile(@RequestBody Profile newProfile) {
 		return getProfileService().save(newProfile);
 	}
