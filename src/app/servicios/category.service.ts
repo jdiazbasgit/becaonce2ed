@@ -5,9 +5,9 @@ import { ProyectosService } from './proyectos.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SubcategoryService extends ProyectosService {
+export class CategoryService extends ProyectosService {
 
   constructor(private http: HttpClient) {
     super(http);
-   } 
+   }
 }

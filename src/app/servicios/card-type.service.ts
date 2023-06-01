@@ -5,9 +5,12 @@ import { ProyectosService } from './proyectos.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SubcategoryService extends ProyectosService {
+export class CardTypeService extends ProyectosService{
 
-  constructor(private http: HttpClient) {
+  constructor(private http:HttpClient) {
     super(http);
-   } 
+    
+  
+    
+  }
 }

@@ -9,5 +9,5 @@ export class UserService extends ProyectosService {
 
   constructor(private http: HttpClient) {
     super(http);
-   }
+   } 
 }
