@@ -1,0 +1,31 @@
+.green-background {
+    background-color: rgb(55, 163, 55);
+    color: rgb(255, 255, 255);
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-column {
+    flex: 1 0 30%;
+    margin-bottom: 20px;
+  }
+  
+  .social-media {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .social-media li {
+  
+    margin-right: 10px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+  }
+
+  
+  
