@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class RolRestController {
 	private final RolService rolService;
 	
 	@GetMapping("/roles")
+	@CrossOrigin(origins = "*")
 	public CollectionModel<Rol> findAll() {
 	    Iterable<Rol> roles= getRolService().findAll();
 	    roles.forEach(r->{
@@ -32,6 +34,7 @@ public class RolRestController {
 	}
 	
 	@GetMapping("/roles/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<Rol> findById(@PathVariable int id) {
 		
 		Rol rol= getRolService().findById(id).get();
