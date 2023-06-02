@@ -10,9 +10,11 @@
     background-position: center;
   }
    .fondo{
-    background: url('src/assets/prueba.jpg');
+    background-image: url('src/assets/prueba3.jpg');
    }
-
+   .fondo2{
+    background-image: url('src/assets/prueba2.jpg');
+   }
    .texto-primario{
     color: white;
 }
@@ -31,3 +33,130 @@
 .fondo-resaltado{
     color: green;
 }
+
+.movimiento-objeto {
+    animation-name: movimiento;
+    animation-duration: 3s;
+    animation-timing-function:linear;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes movimiento {
+    0% {
+      transform: translateX(0px);
+    }
+    50% {
+      transform: translateX(100px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .movimiento-objeto1 {
+    background-image: url('src/assets/prueba3.jpg');
+    background-size: cover;
+    border-radius: 20px;
+    width: 400px;
+    height: 200px;
+    background-position: center;
+  }
+
+  .movimiento-online {
+    background-image: url('src/assets/online.jpg');
+    background-size: cover;
+    border-radius: 20px;
+    width: 400px;
+    height: 200px;
+    background-position: center;
+  }
+  .mobile {
+    width: 300px;
+    height: 200px;
+    background-image:url('src/assets/prueba2.jpg');
+    border-radius: 20px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .screen {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 
+  .button {
+    width: 20px;
+    height: 10px;
+    background-image:url('src/assets/prueba2.jpg');
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+  }
+ .button {
+    width: 20px;
+    height: 10px;
+    background-image:url('src/assets/prueba2.jpg');
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+  }
+
+  .button.left {
+    left: 10px;
+  }
+
+  .button.right {
+    right: 10px;
+  }
+
+  .logo {
+    font-family: Arial, sans-serif;
+    font-size: 64px;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  #logoText {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .logo:hover #logoText {
+    background-color: #000000;
+  }
+  
+  .logo:hover {
+    color: #ff0000;
+  }
+  
+  .percentage {
+    font-family: Arial, sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    color: #ffffff;
+   
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+  }
+  #number {
+    font-size: 48px;
+    color: #ffffff;
+  }
+  
