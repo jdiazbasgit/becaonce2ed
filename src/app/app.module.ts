@@ -11,7 +11,6 @@ import { ProductComponent } from './product/product.component';
 import { OfferComponent } from './offer/offer.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 

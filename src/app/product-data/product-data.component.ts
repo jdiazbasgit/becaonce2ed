@@ -20,7 +20,7 @@ export class ProductDataComponent {
     { id: 2, image:'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif', description: 'botellas de cervezas 2', price: 14.66, stock: 20, subcategories_id:1},
     { id: 3, image:'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif', description: 'botellas de cervezas 3', price: 20.99, stock: 45, subcategories_id:2}
   ];
-  
+
   constructor(private router: Router, private modalService: BsModalService) {
     this.filteredData = this.data;
     if(this.data.length>0){
