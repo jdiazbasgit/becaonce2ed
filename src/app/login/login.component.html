@@ -1,57 +1,73 @@
+<div class="modalConectando oculto" id="modalConectando">
+    <div class="contenedorModal mx-auto mt-5">
+        <div class="d-flex align-items-center">
+            <strong>Loading...</strong>
+            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        </div>
+    </div>
+</div>
 <div class="cabecera texto-primario fondo-secundario">
     <div class="logoCabecera">
-        <span><h1>B</h1><h4>ANC</h4><h1>S</h1><h4>ERTA</h4></span>
+        <span>
+            <h1>B</h1>
+            <h4>ANC</h4>
+            <h1>S</h1>
+            <h4>ERTA</h4>
+        </span>
     </div>
-    <span>prueba de texto</span>
     <div class="tiempoCabecera texto-resaltado">
-        <button type="button" class="btn texto-primario fondo-secundario" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn texto-primario fondo-secundario" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
             15/05/2023 01:54
-          </button>          
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Maquina del Tiempo</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Maquina del Tiempo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Menú de ajustes para acelerar el tiempo
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  Menú de ajustes para acelerar el tiempo
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
     </div>
-    <div>
+    <!-- <div>
         <button class="button-success" type="button" (click)="getFees()">get fees</button>
     </div>
     <div>
         <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
-    </div>
+    </div> -->
     <div *ngIf="!logado" class="fondoBtnLogin">
-        <button class="btnHazteCliente" >Hazte cliente</button>        
-        <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
-            aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">Acceso</button>
+        <button class="btnHazteCliente">Hazte cliente</button>
+        <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
+            data-bs-target="#zonaColapsableLogin" aria-expanded="false" aria-controls="zonaColapsableLogin"
+            (click)="colorearBotonLoginAlPulsar()">Acceso</button>
     </div>
     <div *ngIf="logado" class="fondoBtnLogin">
-        <button class="btnHazteCliente">Hola {{usuario}}</button>        
-        <button class="btnLogin" type="button" (click)="deslogarse()">Salir</button>
+        <button class="btnHazteCliente">Hola {{usuario}}</button>
+        <button class="btnLogin texto-primario" type="button" (click)="deslogarse()">Salir</button>
     </div>
 </div>
 <div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
     <div class="cajaLoginInfo fondo-primario">
         <span class="iconoCerrar" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
-                aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M18 6l-12 12"></path>
-                    <path d="M6 6l12 12"></path>
-                 </svg>
-            </span>
-        <div class="contenedorLogin">            
+            aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M18 6l-12 12"></path>
+                <path d="M6 6l12 12"></path>
+            </svg>
+        </span>
+        <div class="contenedorLogin">
             <div class="formularioLogin">
                 <h2>Soy cliente</h2>
                 <form action="#" method="post" spellcheck="false">
@@ -65,7 +81,7 @@
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                             </svg>
                         </span>
-                        <input type="text" required [(ngModel)]="inputUsuario" name="inputUsuario">
+                        <input type="text" required [(ngModel)]="inputUsuario" name="inputUsuario" id="inputU">
                         <label>Usuario</label>
                     </div>
                     <div class="inputCasilla">
@@ -80,7 +96,7 @@
                                 <path d="M15 9h.01"></path>
                             </svg>
                         </span>
-                        <input type="password" required [(ngModel)]="inputPassword" name="inputPassword">
+                        <input type="password" required [(ngModel)]="inputPassword" name="inputPassword" id="inputP">
                         <label>Clave de acceso</label>
                     </div>
                     <div class="recordar">
@@ -95,14 +111,44 @@
         </div>
         <div class="infoLogin">
             <div class="contenido">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"></path>
-                    <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                    <path d="M12 12l0 2.5"></path>
-                 </svg>
-                <p>Tus claves de acceso son secretas e intransferibles. No las compartas con nadie ni las proporciones a través de correo ni de SMS.</p>
-            </div>            
+                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger sinBorde">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-exclamation"
+                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M15 21h-8a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 1.734 1.002"></path>
+                        <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+                        <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+                        <path d="M19 16v3"></path>
+                        <path d="M19 22v.01"></path>
+                    </svg>
+                    <p class="mt-2">El Usuario o la Clave son incorrectos</p>
+                </div>
+                <ng-template #mensaje>
+                    <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-shield-lock mx-2" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3">
+                            </path>
+                            <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                            <path d="M12 12l0 2.5"></path>
+                        </svg>Tus claves de acceso son secretas e intransferibles</p>
+                    <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-spy mx-2" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 11h18"></path>
+                            <path d="M5 11v-4a3 3 0 0 1 3 -3h8a3 3 0 0 1 3 3v4"></path>
+                            <path d="M7 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                            <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                            <path d="M10 17h4"></path>
+                        </svg>No las compartas con nadie ni las proporciones a través de correo o de SMS</p>
+                </ng-template>
+            </div>
         </div>
     </div>
 </div>

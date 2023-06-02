@@ -13,6 +13,7 @@ export class LoginComponent {
   inputUsuario: string = ""
   inputPassword: string = ""
   usuario: string = ""
+  claveErronea: boolean = false
 
   constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService) {
   }
@@ -35,15 +36,20 @@ export class LoginComponent {
   }
 
   logarse() {
+    let cont = this.elementRef.nativeElement.querySelector('#modalConectando')
+    cont.classList.remove('oculto')
+    setTimeout(() => {
     this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
       .subscribe((datos: any) => {
-        //console.log(datos.token)
         console.log(datos)
         if (datos.token == null) {
           this.limpiarFormulario()
-          let cont = this.elementRef.nativeElement.querySelector('.contenido')
-          cont.innerHTML = "Aqui pondremos mensaje error de autenticación y se restablece al cerrar el collapse"
-          cont.classList.add('bg-danger')
+          // let cont = this.elementRef.nativeElement.querySelector('.contenido')
+          // cont.innerHTML = "El Usuario o la Clave son incorrectos"
+          // cont.classList.add('bg-danger')
+          this.elementRef.nativeElement.querySelector('#inputP').blur()
+          this.elementRef.nativeElement.querySelector('#inputU').blur()
+          this.claveErronea = true
         }
         if (datos.token != null) {
           console.log("acceso correcto")
@@ -61,6 +67,9 @@ export class LoginComponent {
 
       }
       )
+      cont.classList.add('oculto')
+    },3000)
+    
   }
   deslogarse() {
     this.logado = false
@@ -73,13 +82,12 @@ export class LoginComponent {
   colorearBotonLoginAlPulsar() {
     this.limpiarFormulario()
     let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
-    // console.log("hola!")
     if (btnLogin.classList.contains('collapsed')) {
       btnLogin.classList.remove('pulsado');
-      // console.log("hola2!")
     }
     else {
       btnLogin.classList.add('pulsado');
+      this.claveErronea = false
     }
   }
 }
