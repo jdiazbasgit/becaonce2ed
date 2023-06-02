@@ -1,10 +1,10 @@
 <div class="cabecera texto-primario fondo-secundario">
     <div class="logoCabecera">
-        <span><h1>B</h1><h4>ANCAIN</h4></span>
+        <span><h1>B</h1><h4>ANC</h4><h1>S</h1><h4>ERTA</h4></span>
     </div>
     <span>prueba de texto</span>
-    <div class="tiempoCabecera">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="tiempoCabecera texto-resaltado">
+        <button type="button" class="btn texto-primario fondo-secundario" data-bs-toggle="modal" data-bs-target="#exampleModal">
             15/05/2023 01:54
           </button>          
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,7 +33,7 @@
     </div>
     <div *ngIf="!logado" class="fondoBtnLogin">
         <button class="btnHazteCliente" >Hazte cliente</button>        
-        <button class="btnLogin" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
+        <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse" data-bs-target="#zonaColapsableLogin"
             aria-expanded="false" aria-controls="zonaColapsableLogin" (click)="colorearBotonLoginAlPulsar()">Acceso</button>
     </div>
     <div *ngIf="logado" class="fondoBtnLogin">

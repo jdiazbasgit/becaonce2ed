@@ -27,13 +27,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: green;
+    /* color: green; */
 }
 .tiempoCabecera button{
     font-size: 1.2em;
     font-weight: 600;
-    background: white;
-    color: green;
+    /* background: white;
+    color: green; */
     border: none;
     border-radius: 5px;
 }
@@ -66,7 +66,7 @@
     /* outline: none; */
     /* border-radius: 5px; */
     font-size: 1.1em;
-    color: white;
+    /* color: white; */
     font-weight: 500;
     transition: .5s;
     margin-right: 50px;
@@ -182,7 +182,7 @@
 }
 .inputCasilla input:focus~label,.inputCasilla input:valid~label{
     top: 9px;
-    opacity: .5;
+    opacity: .0;
     font-size: 0.7em;
     /* background-color: whitesmoke; */
     /* width: 180px; */
