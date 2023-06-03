@@ -30,46 +30,46 @@ export class LoginComponent {
       })
   }
 
-  meterTokenfalso(){
+  meterTokenfalso() {
     sessionStorage['token'] = "EsteEsUnTokenFalso"
     console.log("token: " + sessionStorage['token'])
   }
 
-  logarse() {
+  logarse() {    
     let cont = this.elementRef.nativeElement.querySelector('#modalConectando')
     cont.classList.remove('oculto')
     setTimeout(() => {
-    this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
-      .subscribe((datos: any) => {
-        console.log(datos)
-        if (datos.token == null) {
-          this.limpiarFormulario()
-          // let cont = this.elementRef.nativeElement.querySelector('.contenido')
-          // cont.innerHTML = "El Usuario o la Clave son incorrectos"
-          // cont.classList.add('bg-danger')
-          this.elementRef.nativeElement.querySelector('#inputP').blur()
-          this.elementRef.nativeElement.querySelector('#inputU').blur()
-          this.claveErronea = true
-        }
-        if (datos.token != null) {
-          console.log("acceso correcto")
-          let userM = this.inputUsuario
-          let passM = this.inputPassword
-          this.usuario = this.inputUsuario
-          this.logado = true
-          console.log(userM + passM)
-          sessionStorage['token'] = datos.token;
-          let cont = this.elementRef.nativeElement.querySelector('.contenido')
-          cont.innerHTML = "Bienvenido"
-          cont.classList.add('bg-success')
-          console.log(datos.token)
-        }
+      this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
+        .subscribe((datos: any) => {
+          console.log(datos)
+          if (datos.token == null) {
+            this.limpiarFormulario()
+            // let cont = this.elementRef.nativeElement.querySelector('.contenido')
+            // cont.innerHTML = "El Usuario o la Clave son incorrectos"
+            // cont.classList.add('bg-danger')
+            this.elementRef.nativeElement.querySelector('#inputP').blur()
+            this.elementRef.nativeElement.querySelector('#inputU').blur()
+            this.mensajeClaveErronea()
+          }
+          if (datos.token != null) {
+            console.log("acceso correcto")
+            let userM = this.inputUsuario
+            let passM = this.inputPassword
+            this.usuario = this.inputUsuario
+            this.logado = true
+            console.log(userM + passM)
+            sessionStorage['token'] = datos.token;
+            let cont = this.elementRef.nativeElement.querySelector('.contenido')
+            cont.innerHTML = "Bienvenido"
+            cont.classList.add('bg-success')
+            console.log(datos.token)
+          }
 
-      }
-      )
+        }
+        )
       cont.classList.add('oculto')
-    },3000)
-    
+    }, 3000)
+
   }
   deslogarse() {
     this.logado = false
@@ -89,5 +89,11 @@ export class LoginComponent {
       btnLogin.classList.add('pulsado');
       this.claveErronea = false
     }
+  }
+  mensajeClaveErronea() {
+    this.claveErronea = true
+    setTimeout(() => {
+      this.claveErronea = false
+    }, 3000);
   }
 }

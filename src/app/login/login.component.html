@@ -102,7 +102,10 @@
                     <div class="recordar">
                         <a href="#">¿Olvidó su clave?</a>
                     </div>
-                    <button type="submit" class="btnSubmit" (click)="logarse()">Entrar</button>
+                    <button type="submit" class="btnSubmit" (click)="logarse()"data-bs-toggle="modal" data-bs-target="#exampleModal2">Entrar</button>
+                    <div class="modal" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        
+                    </div>
                     <div class="loginARegisto">
                         <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
                     </div>
@@ -111,8 +114,8 @@
         </div>
         <div class="infoLogin">
             <div class="contenido">
-                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger sinBorde">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-exclamation"
+                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger">                    
+                    <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-exclamation mx-2"
                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -121,8 +124,7 @@
                         <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
                         <path d="M19 16v3"></path>
                         <path d="M19 22v.01"></path>
-                    </svg>
-                    <p class="mt-2">El Usuario o la Clave son incorrectos</p>
+                    </svg>El Usuario o la Clave son incorrectos</p>
                 </div>
                 <ng-template #mensaje>
                     <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"
