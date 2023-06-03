@@ -12,6 +12,7 @@ import once.curso.proyectobanco.restcontrollers.FeeRestController;
 @Component
 public class FeeModelAssembler implements SimpleRepresentationModelAssembler<Fee>{
 
+	
 	@Override
 	public void addLinks(EntityModel<Fee> fee) {
 		fee.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class).findById(fee.getContent().getId())).withSelfRel());		

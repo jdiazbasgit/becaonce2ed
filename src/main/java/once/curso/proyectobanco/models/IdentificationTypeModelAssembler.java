@@ -12,6 +12,7 @@ import once.curso.proyectobanco.restcontrollers.IdentificationTypeRestController
 @Component
 public class IdentificationTypeModelAssembler implements SimpleRepresentationModelAssembler<IdentificationType>{
 
+	
 	@Override
 	public void addLinks(EntityModel<IdentificationType> identificationType) {
 		identificationType.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class).findById(identificationType.getContent().getId())).withSelfRel());		

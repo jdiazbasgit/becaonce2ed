@@ -14,6 +14,7 @@ import once.curso.proyectobanco.restcontrollers.UserRestController;
 @Component
 public class ProfileModelAssembler implements SimpleRepresentationModelAssembler<Profile>{
 
+	
 	@Override
 	public void addLinks(EntityModel<Profile> profile) {
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class)
