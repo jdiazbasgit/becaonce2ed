@@ -19,7 +19,6 @@ public class SoldProductService {
 	private SoldProductCRUDRepository soldProductCRUDRepository;
 
 	public Iterable<SoldProduct> getSoldproduct() {
-
 		return getSoldProductCRUDRepository().findAll();
 	}
 

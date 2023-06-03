@@ -28,7 +28,6 @@ public class UserRestController {
 	private UserService userService;
 	
 	@GetMapping("/users")
-
 	public CollectionModel<User> dameUser(){
 		 Iterable<User> users = getUserService().findAll();
 		 users.forEach(u->{
@@ -39,7 +38,7 @@ public class UserRestController {
 
 	}
 	
-	@GetMapping("/users{id}")
+	@GetMapping("/users/{id}")
 	public EntityModel<User> findById(@PathVariable Integer id) {
 		 User user = getUserService().findById(id).get();
 		 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(user.getRol().getId())).withRel("rol"));

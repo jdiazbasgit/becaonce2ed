@@ -12,20 +12,24 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Category;
+import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.model.CategoryModelAssembler;
 import once.curso.proyectotienda.services.CategoryService;
 
 
 @RestController
-@RequestMapping({"/api/v1/"})
+@RequestMapping("/once")
 @Data
 public class CategoryRestController {
 	
@@ -37,7 +41,11 @@ public class CategoryRestController {
 	private CategoryService categoryService;
 	
 
+	
+	
+	
 	@GetMapping("/categories")
+	@CrossOrigin(origins ="*")
 	public CollectionModel<Category> findAll(){
 		Iterable<Category> categories= getCategoryService().findAll();
 	categories.forEach(c->{
@@ -47,6 +55,7 @@ public class CategoryRestController {
 	}
 
    @GetMapping("/categories/{id}")
+   @CrossOrigin(origins ="*")
    public EntityModel<Category> findById(@PathVariable int id){
 	   Category category=getCategoryService().findById(id).get();
 	   category.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(category.getId())).withSelfRel());
@@ -54,6 +63,7 @@ public class CategoryRestController {
    }
    
    @GetMapping("/categoriesPaginado")
+   @CrossOrigin(origins ="*")
    public PagedModel<EntityModel<Category>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 	   Sort orden=Sort.by("a");
