@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import once.curso.proyectobanco.services.IdentificationTypeService;
 @RestController
 @Data
 @RequestMapping("/once")
+@CrossOrigin(origins = "*")
 public class IdentificationTypeRestController {
 	
 	@Autowired
@@ -49,18 +51,6 @@ public class IdentificationTypeRestController {
 				.findById(identificationType.getId())).withSelfRel());
 		 return EntityModel.of(identificationType);
 	}
-	
-//	@GetMapping(value = "/identificationsTypes")
-//	public CollectionModel<IdentificationType> findAll(){
-//		Iterable<IdentificationType> identificationsTypes= getIdentificationTypeService().findAll();
-//		identificationsTypes.forEach(i->{
-//			i.add(WebMvcLinkBuilder.
-//					linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class).
-//							findById(i.getId())).withSelfRel());
-//		});
-//		 
-//		 return CollectionModel.of(identificationsTypes);
-//	}
 	
 	@GetMapping(value = "/identificationTypes")
 	public PagedModel<EntityModel<IdentificationType>> findAll(@RequestParam (defaultValue = "0") int size, @RequestParam (defaultValue = "0") int page, @RequestParam (required = false) String sort){

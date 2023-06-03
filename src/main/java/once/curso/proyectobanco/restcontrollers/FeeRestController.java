@@ -53,6 +53,7 @@ public class FeeRestController {
 				.findById(fee.getId())).withSelfRel());
 		 return EntityModel.of(fee);
 	}
+	
 
 	@GetMapping(value = "/fees")
 	public PagedModel<EntityModel<Fee>> findAll(@RequestParam (defaultValue = "0") int size, @RequestParam (defaultValue = "0") int page, @RequestParam (required = false) String sort){
