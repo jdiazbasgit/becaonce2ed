@@ -302,7 +302,11 @@
 .contenido .sinBorde {
     border-radius: 0px;
 }
-
+.bloqueado{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 .oculto{
     display: none;
     opacity: 0;

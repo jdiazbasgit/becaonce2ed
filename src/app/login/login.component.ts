@@ -35,9 +35,15 @@ export class LoginComponent {
     console.log("token: " + sessionStorage['token'])
   }
 
-  logarse() {    
-    let cont = this.elementRef.nativeElement.querySelector('#modalConectando')
-    cont.classList.remove('oculto')
+  logarse() {
+    let body = document.body;
+
+    //body.classList.add("bloqueado");
+    //body.style.overflow = "hidden";
+    body.setAttribute("style","overflow: hidden")
+
+    let modalConectando = this.elementRef.nativeElement.querySelector('#modalConectando')
+    modalConectando.classList.remove('oculto')
     setTimeout(() => {
       this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
         .subscribe((datos: any) => {
@@ -67,7 +73,9 @@ export class LoginComponent {
 
         }
         )
-      cont.classList.add('oculto')
+      modalConectando.classList.add('oculto')
+      //body.classList.remove("bloqueado");
+      body.removeAttribute("style")
     }, 3000)
 
   }

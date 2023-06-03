@@ -102,10 +102,7 @@
                     <div class="recordar">
                         <a href="#">¿Olvidó su clave?</a>
                     </div>
-                    <button type="submit" class="btnSubmit" (click)="logarse()"data-bs-toggle="modal" data-bs-target="#exampleModal2">Entrar</button>
-                    <div class="modal" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        
-                    </div>
+                    <button type="submit" class="btnSubmit" (click)="logarse()">Entrar</button>
                     <div class="loginARegisto">
                         <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
                     </div>
@@ -124,7 +121,7 @@
                         <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
                         <path d="M19 16v3"></path>
                         <path d="M19 22v.01"></path>
-                    </svg>El Usuario o la Clave son incorrectos</p>
+                    </svg>El Usuario o la Clave introducidos son incorrectos</p>
                 </div>
                 <ng-template #mensaje>
                     <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"
