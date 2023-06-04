@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDataComponent } from './product-data/product-data.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProductDataComponent } from './product-data/product-data.component';
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
