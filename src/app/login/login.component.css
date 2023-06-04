@@ -55,7 +55,8 @@
 }
 
 .tiempoCabecera .modal {
-    backdrop-filter: blur(20px) brightness(1.8);
+    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(20px) brightness(1.8); */
     overflow: hidden;
 }
 
