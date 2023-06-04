@@ -55,7 +55,7 @@ public class SoldProductRestController {
 		return getSoldProductService().findAll();
 	}
 	
-	@GetMapping("/soldProducts")
+	@GetMapping("/soldProducts/all")
 	@CrossOrigin(origins ="*")
 	public CollectionModel<SoldProduct> getSoldProduct() {
 		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
@@ -75,7 +75,7 @@ public class SoldProductRestController {
 		 return EntityModel.of(soldProduct);
 	}
 
-	@DeleteMapping("/soldProducts/{id}")
+	@DeleteMapping("/soldProducts/delete/{id}")
 	@CrossOrigin(origins ="*")
 	public void deleteById(@PathVariable int id) {
 		getSoldProductService().deleteById(id);
@@ -90,10 +90,9 @@ public class SoldProductRestController {
 	   String tipoOrden= stringTokenizer.nextToken();
 	   
 	   if(tipoOrden.equals("asc"))
-			   orden=Sort.by(campo).ascending();
-		   else 
-			   orden=Sort.by(campo).descending();
-		   
+		   orden=Sort.by(campo).ascending();
+	   else 
+		   orden=Sort.by(campo).descending();
 		   Pageable pageable=PageRequest.of(page,size,orden);
 		   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
 		   

@@ -39,6 +39,7 @@ public class ExistingProductRestController {
 
 	@Autowired
 	private ExistingProductModelAssembler existingProductModelAssembler;
+	
 	@Autowired
 	private PagedResourcesAssembler<ExistingProduct> pagedResourcesAssembler;
 
@@ -88,8 +89,8 @@ public class ExistingProductRestController {
 
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
-	@CrossOrigin(origins ="*")
 	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
+	@CrossOrigin(origins ="*")
 	// SPRING BOOT APP
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {

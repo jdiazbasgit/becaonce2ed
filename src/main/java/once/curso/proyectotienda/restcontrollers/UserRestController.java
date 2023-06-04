@@ -34,8 +34,8 @@ public class UserRestController {
 			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getRol().getId())).withRel("rol"));
 			 u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId())).withSelfRel());
 		 });
+	
 		 return CollectionModel.of(users);
-
 	}
 	
 	@GetMapping("/users/{id}")
