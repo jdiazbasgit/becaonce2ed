@@ -53,7 +53,7 @@
     }
   }
 
-  .movimiento-objeto1 {
+  .imangen-prueba3 {
     background-image: url('src/assets/prueba3.jpg');
     background-size: cover;
     border-radius: 20px;
@@ -62,12 +62,21 @@
     background-position: center;
   }
 
-  .movimiento-online {
+  .imagen-online {
     background-image: url('src/assets/online.jpg');
     background-size: cover;
     border-radius: 20px;
     width: 400px;
     height: 200px;
+    background-position: center;
+  }
+
+  .imagen-felices {
+    background-image: url('src/assets/felices.jpg');
+    background-size: cover;
+    border-radius: 20px;
+    width: 800px;
+    height: 390px;
     background-position: center;
   }
   .mobile {
@@ -158,5 +167,9 @@
   #number {
     font-size: 48px;
     color: #ffffff;
+  }
+  #letra {
+    font-size: 20px;
+    color:green;
   }
   
