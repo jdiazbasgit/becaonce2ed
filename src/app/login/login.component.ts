@@ -63,7 +63,7 @@ export class LoginComponent {
         .pipe(
           catchError(error => {
             console.log(error)
-            if (error.status == 0) {
+            if (error.status === 0 || error.status === 404) {
               //console.log("cucu")
               this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde")
             }
@@ -149,6 +149,10 @@ export class LoginComponent {
     .subscribe({
       next: (response) => {
         console.log("status ok:"+response.status)
+        console.log(response)
+        response._embedded.fees.forEach((element: any) => {
+          console.log(element.current)
+        });
       }, 
       error: (error:any) =>{
         console.log("status ko:"+error.status)
