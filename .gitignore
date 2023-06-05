@@ -14,12 +14,6 @@ target/
 .springBeans
 .sts4-cache
 
-### Node ###
-/node_modules
-
-
-### Miscellaneous
-/.angular/cache
 
 ### IntelliJ IDEA ###
 .idea
@@ -41,6 +35,6 @@ build/
 .vscode/
 
 ### Otros
-.angular/
+.angular/cache
 node_modules/
 
