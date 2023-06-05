@@ -6,17 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './componentes/header/header.component';
 import { LoginComponent } from './login/login.component';
 
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './componentes/profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { OfferComponent } from './offer/offer.component';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { ProductDataComponent } from './product-data/product-data.component';
@@ -24,8 +24,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { CategoryComponent } from './category/category.component';
-import { SubcategoryComponent } from './subcategory/subcategory.component';
+import { CategoryComponent } from './componentes/category/category.component';
+import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
+import { DocumentTypeComponent } from './componentes/document-type/document-type.component';
+import { UserComponent } from './componentes/user/user.component';
+import { RolComponent } from './componentes/rol/rol.component';
+import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
+import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
+import { CardTypeComponent } from './componentes/card-type/card-type.component';
+import { ConfigurationComponent } from './componentes/configuration/configuration.component';
 
 
 
@@ -44,7 +51,14 @@ import { SubcategoryComponent } from './subcategory/subcategory.component';
     HeaderComponent,
     FooterComponent,
     CategoryComponent,
-    SubcategoryComponent
+    SubcategoryComponent,
+    DocumentTypeComponent,
+    UserComponent,
+    RolComponent,
+    SoldProductComponent,
+    ExistingProductComponent,
+    CardTypeComponent,
+    ConfigurationComponent
 
   ],
   imports: [
