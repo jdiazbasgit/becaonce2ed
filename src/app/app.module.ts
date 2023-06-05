@@ -14,7 +14,7 @@ import { OfferComponent } from './offer/offer.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+// import { MatToolbarModule } from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     
@@ -37,7 +37,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    // MatToolbarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
