@@ -24,6 +24,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { CategoryComponent } from './category/category.component';
+import { SubcategoryComponent } from './subcategory/subcategory.component';
 
 
 
@@ -40,7 +42,9 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     OfferComponent,
     ProductDataComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CategoryComponent,
+    SubcategoryComponent
 
   ],
   imports: [
