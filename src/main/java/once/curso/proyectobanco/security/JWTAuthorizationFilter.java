@@ -1,6 +1,7 @@
 package once.curso.proyectobanco.security;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -31,13 +32,23 @@ public class JWTAuthorizationFilter implements Filter {
 				Claims claims=validateToken((HttpServletRequest) request);
 				if(claims.get("roles") !=null)  {
 					setUpSpringAuthentication(claims);
+					
+					System.out.println("autenticado:"+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+					
+					
+					
 				}
 				else {
 					SecurityContextHolder.clearContext();
+					System.out.println("autenticado:"+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+
 				}
 			}
 			else {
+				
+
 				SecurityContextHolder.clearContext();
+				System.out.println("autenticado:"+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -2,6 +2,8 @@ package once.curso.proyectobanco.restcontrollers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -39,13 +41,14 @@ public class FeeRestController {
 	}
 	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/fees")
-	public CollectionModel<Fee> findAll(){
+	public CollectionModel<Fee> findAll(HttpServletResponse response){
 		Iterable<Fee> fees= getFeeService().findAll();
 		fees.forEach(f->{
 			f.add(WebMvcLinkBuilder.
 					linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class).
 							findById(f.getId())).withSelfRel());
 		});
+		//response.setHeader("Access-Control-Allow-Origin", "*");
 		 
 		 return CollectionModel.of(fees);
 	}
