@@ -5,20 +5,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+
+import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+
+import { FooterComponent } from './footer/footer.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { OfferComponent } from './offer/offer.component';
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
+    
+    NavComponent,
     AppComponent,
-    LoginComponent,
+    HeaderComponent,
+    LoginComponent, 
     ProfileComponent,
     ProductComponent,
     NavComponent,
@@ -27,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
     ProductEditComponent,
     HeaderComponent,
     FooterComponent
+
   ],
   imports: [
     BrowserModule,
