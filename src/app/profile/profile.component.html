@@ -1,60 +1,69 @@
 <div class="container mt-3">
+  <div class="mat-elevation-z8">
     <h2>Lista de perfiles</h2>
     <button type="button" class="btn btn-primary d-md-block me-2 mt-2 mb-2 rounded-0" >Añadir nuevo usuario</button>
     <!--<input type="text" [(ngModel)]="searchText" (input)="filterData()" placeholder="Buscar por descripción" class="w-100">-->
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <!--<th (click)="sortData('id')">Nº</th>
-          <th>Foto</th>
-          <th (click)="sortData('description')">Descripción</th>
-          <th (click)="sortData('price')">Importe</th>
-          <th (click)="sortData('stock')">Existencia</th>
-          <th (click)="sortData('subcategories_id')">SubCategoria</th>
-          <th></th>
-          <th></th>-->
-          <th>Nº</th>
-          <th>Foto</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Identificación</th>
-          <th>Teléfono</th>
-          <th>T. crédito</th>
-          <th>Dirección</th>
-          <th>Email</th>
-          <th>Provincia</th>
-          <th>Nº Usuario</th>
-          <th>Nº T. Crédito</th>
-          <th>Nº T. Documento</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-          <td class="align-middle"></td>
-        </tr>
-        <!--<tr *ngFor="let item of filteredData">
-          <td  class="align-middle">{{ item.id }}</td>
-          <td  class="align-middle"><img src="{{ item.image }}" alt="Imagen" width="15" height="15"></td>
-          <td  class="align-middle">{{ item.description }}</td>
-          <td  class="align-middle">{{ item.price }}</td>
-          <td  class="align-middle">{{ item.stock }}</td>
-          <td  class="align-middle">{{ item.subcategories_id }}</td>
-          <td  class="align-middle"><button class="btn btn-success rounded-0">Editar</button></td>
-          <td  class="align-middle"><button class="btn btn-danger rounded-0">Eliminar</button></td>
-          <td  class="align-middle"></td>
-        </tr>-->
-      </tbody>
+
+    <table mat-table [dataSource]="dataSource" class="w-100">
+      <ng-container matColumnDef="position" >
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element" > {{element.position}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef> Foto </th>
+        <td mat-cell *matCellDef="let element"> {{element.photo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="identification">
+        <th mat-header-cell *matHeaderCellDef> Identificación </th>
+        <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="creditcard">
+        <th mat-header-cell *matHeaderCellDef> Tarjeta crédito </th>
+        <td mat-cell *matCellDef="let element"> {{element.creditcard}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="province">
+        <th mat-header-cell *matHeaderCellDef> Provincia </th>
+        <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nuser">
+        <th mat-header-cell *matHeaderCellDef> Nº. Usuario </th>
+        <td mat-cell *matCellDef="let element"> {{element.nuser}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ncreditcard">
+        <th mat-header-cell *matHeaderCellDef> Nº Tarjeta Crédito </th>
+        <td mat-cell *matCellDef="let element"> {{element.ncreditcard}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ndocument">
+        <th mat-header-cell *matHeaderCellDef> Nº Documento </th>
+        <td mat-cell *matCellDef="let element"> {{element.ndocument}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
   </div>

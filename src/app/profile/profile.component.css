@@ -1,0 +1,9 @@
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid #cecece;
+    border-top: 1px solid #cecece;
+    cursor: pointer;
+}
+  
+.mat-mdc-row:hover .mat-mdc-cell {
+    background-color: #cecece;
+}
