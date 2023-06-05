@@ -14,8 +14,17 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProductComponent } from './product/product.component';
 import { OfferComponent } from './offer/offer.component';
+
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { ProductDataComponent } from './product-data/product-data.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+
 
 
 @NgModule({
@@ -30,7 +39,6 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     NavComponent,
     OfferComponent,
     ProductDataComponent,
-    ProductEditComponent,
     HeaderComponent,
     FooterComponent
 
@@ -39,7 +47,10 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
