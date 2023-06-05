@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary d-md-block me-2 mt-2 mb-2 rounded-0" >Añadir nuevo usuario</button>
     <!--<input type="text" [(ngModel)]="searchText" (input)="filterData()" placeholder="Buscar por descripción" class="w-100">-->
 
-    <!--<table mat-table [dataSource]="dataSource" class="w-100">
+    <table mat-table [dataSource]="dataSource" class="w-100">
       <ng-container matColumnDef="position" >
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element" > {{element.position}} </td>
@@ -62,8 +62,8 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>-->
+    </table>
 
-    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>-->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
   </div>
   </div>

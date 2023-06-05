@@ -13,7 +13,6 @@ export class ProfileServiceextends extends ProyectosService {
   url='https://localhost:8080/';
 
   findAllProfile() {
-    return this.http.request('GET', `${this.url}profile`);
+    return this.http.request('GET', `${this.url}/profiles`);
   }
-
 }

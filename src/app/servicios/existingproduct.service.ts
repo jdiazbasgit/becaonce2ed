@@ -7,7 +7,6 @@ import { ProyectosService } from './proyectos.service';
 })
 
 export class ExistingproductService extends ProyectosService {
-
   constructor(private http: HttpClient) {
     super(http);
   }
@@ -15,8 +14,6 @@ export class ExistingproductService extends ProyectosService {
   url='https://localhost:8080/';
 
   findAllExistingProducts() {
-    return this.http.request('GET', `${this.url}products`);
+    return this.http.request('GET', `${this.url}/products`);
   }
-
-
 }
