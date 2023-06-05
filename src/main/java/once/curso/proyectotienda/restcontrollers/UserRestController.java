@@ -1,8 +1,13 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -20,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.Rol;
 import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.model.UserModelAssembler;
 import once.curso.proyectotienda.services.UserService;
@@ -37,7 +41,7 @@ public class UserRestController {
 	private PagedResourcesAssembler<User> pagedResourcesAssembler;
 	
 	@Autowired
-	private UserModelAssembler userMvodelAssembler;
+	private UserModelAssembler userModelAssembler;
 	
 	@GetMapping("/users")
 	@CrossOrigin(origins = "*")
@@ -84,9 +88,23 @@ public class UserRestController {
 		getUserService().deleteById(id);
 	}
 	
-	public PagedModel<EntityModel<Rol>> findAllPaginado(@RequestParam int size, 
+	public PagedModel<EntityModel<User>> findAllPaginado(@RequestParam int size, 
 			@RequestParam int page, @RequestParam String sort){
 		
-		return null;
+		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+		Sort orden = Sort.by("a");
+		String campo = stringTokenizer.nextToken();
+		String tipoOrden = stringTokenizer.nextToken();
+		
+		if (tipoOrden.equals("asc")) {
+			orden = Sort.by(campo).ascending();
+		} else {
+			orden = Sort.by(campo).descending();
+		}
+		
+		Pageable pageable = PageRequest.of(page, size, orden);
+		Page<User> user = getUserService().findAll(pageable);
+		
+		return getPagedResourcesAssembler().toModel(user, getUserModelAssembler());
 	}
 }
