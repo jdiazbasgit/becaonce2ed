@@ -4,7 +4,6 @@ import { LoginService } from '../servicios/login.service';
 import { FeeService } from '../servicios/fee.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-login',
