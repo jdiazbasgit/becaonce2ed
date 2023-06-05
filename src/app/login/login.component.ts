@@ -18,7 +18,7 @@ export class LoginComponent {
   usuario: string = ""
   claveErronea: boolean = false
   mensajeClave: String = ""
-  contadorTemporizadorDeInactividad: number = 20000
+  contadorTemporizadorDeInactividad: number = 30000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
 
@@ -43,7 +43,7 @@ export class LoginComponent {
       //this.contadorTemporizadorDeInactividad = 8000
       clearTimeout(this.temporizadorDeInactividad)
       this.temporizadorDeInactividad = setTimeout(() => {
-        console.log("Ajá!")
+        console.log("deslogado por inactividad!!")
         this.sinActividad = true
         this.deslogarse()
       }, this.contadorTemporizadorDeInactividad)
@@ -114,7 +114,7 @@ export class LoginComponent {
       //   return throwError(err);
       // }) 
 
-    }, 0)
+    }, 1000)
 
 
   }
