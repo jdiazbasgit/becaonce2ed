@@ -3,8 +3,10 @@ package once.curso.proyectotienda.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,10 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectotienda.entities.Rol;
 import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.model.UserModelAssembler;
 import once.curso.proyectotienda.services.UserService;
 
 @RestController
@@ -27,6 +32,12 @@ public class UserRestController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PagedResourcesAssembler<User> pagedResourcesAssembler;
+	
+	@Autowired
+	private UserModelAssembler userMvodelAssembler;
 	
 	@GetMapping("/users")
 	@CrossOrigin(origins = "*")
@@ -71,5 +82,11 @@ public class UserRestController {
 	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable int id) {
 		getUserService().deleteById(id);
+	}
+	
+	public PagedModel<EntityModel<Rol>> findAllPaginado(@RequestParam int size, 
+			@RequestParam int page, @RequestParam String sort){
+		
+		return null;
 	}
 }
