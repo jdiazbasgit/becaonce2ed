@@ -24,9 +24,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { ProductDataComponent } from './product-data/product-data.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { CategoryComponent } from './category/category.component';
+import { CategoryComponent } from './componentes/category/category.component';
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { DocumentTypeComponent } from './componentes/document-type/document-type.component';
+import { UserComponent } from './componentes/user/user.component';
+import { RolComponent } from './componentes/rol/rol.component';
+import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
+import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
+import { CardTypeComponent } from './componentes/card-type/card-type.component';
+import { ConfigurationComponent } from './componentes/configuration/configuration.component';
 
 
 
@@ -46,7 +52,13 @@ import { DocumentTypeComponent } from './componentes/document-type/document-type
     FooterComponent,
     CategoryComponent,
     SubcategoryComponent,
-    DocumentTypeComponent
+    DocumentTypeComponent,
+    UserComponent,
+    RolComponent,
+    SoldProductComponent,
+    ExistingProductComponent,
+    CardTypeComponent,
+    ConfigurationComponent
 
   ],
   imports: [
