@@ -1,2 +1,4 @@
-<app-login></app-login>
-<app-navbar></app-navbar>
+<header class="mb-5">
+    <app-login></app-login>
+    <app-navbar *ngIf="logado"></app-navbar>
+</header>

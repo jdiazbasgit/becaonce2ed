@@ -1,4 +1,4 @@
-.cabecera{
+.cabecera {
     /* background: rgb(39, 160, 76); */
     height: 60px;
     display: flex;
@@ -6,38 +6,45 @@
     align-items: center;
     /* color: white; */
 }
-.logoCabecera span{
+
+.logoCabecera span {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 30px;
     user-select: none;
+    cursor: pointer;
 }
-.logoCabecera h4{
+
+.logoCabecera h4 {
     font-size: 1.8em;
     font-weight: 900;
     text-decoration: underline;
 }
-.logoCabecera h1{
+
+.logoCabecera h1 {
     font-size: 2.8em;
     font-weight: 700;
     text-decoration: none;
 }
-.tiempoCabecera{
+
+.tiempoCabecera {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: green;
+    /* color: green; */
 }
-.tiempoCabecera button{
+
+.tiempoCabecera button {
     font-size: 1.2em;
     font-weight: 600;
-    background: white;
-    color: green;
+    /* background: white;
+    color: green; */
     border: none;
     border-radius: 5px;
 }
-.tiempoCabecera .modal-content{
+
+.tiempoCabecera .modal-content {
     margin-top: 100px;
     min-width: 500px;
     min-height: 500px;
@@ -47,16 +54,20 @@
     justify-content: center;
     align-items: center;
 }
-.tiempoCabecera .modal{
-    backdrop-filter: blur(20px) brightness(1.8);
+
+.tiempoCabecera .modal {
+    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(20px) brightness(1.8); */
     overflow: hidden;
 }
-.fondoBtnLogin{
+
+.fondoBtnLogin {
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.btnLogin{
+
+.btnLogin {
     width: 100px;
     height: 60px;
     background: transparent;
@@ -66,7 +77,7 @@
     /* outline: none; */
     /* border-radius: 5px; */
     font-size: 1.1em;
-    color: white;
+    /* color: white; */
     font-weight: 500;
     transition: .5s;
     margin-right: 50px;
@@ -74,15 +85,18 @@
     justify-content: center;
     align-items: center;
 }
-.btnLogin:hover{
+
+.btnLogin:hover {
     background: white;
     color: green;
 }
-.fondoBtnLogin .pulsado{
+
+.fondoBtnLogin .pulsado {
     background: white;
     color: green;
 }
-.btnHazteCliente{
+
+.btnHazteCliente {
     width: 150px;
     height: 60px;
     background: transparent;
@@ -100,21 +114,25 @@
     justify-content: center;
     align-items: center;
 }
-.btnHazteCliente:hover{
+
+.btnHazteCliente:hover {
     background: white;
     color: green;
 }
-.cajaLoginInfo{
+
+.cajaLoginInfo {
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
     margin: 20px 20px;
 }
-.cajaLoginInfo .contenedorLogin{
+
+.cajaLoginInfo .contenedorLogin {
     min-width: 400px;
 }
-.cajaLoginInfo .iconoCerrar{
+
+.cajaLoginInfo .iconoCerrar {
     position: absolute;
     top: 0;
     right: 0;
@@ -130,10 +148,12 @@
     opacity: .5;
     transition: .5s;
 }
-.cajaLoginInfo .iconoCerrar:hover{
+
+.cajaLoginInfo .iconoCerrar:hover {
     opacity: 1;
 }
-.contenedorLogin{
+
+.contenedorLogin {
     position: relative;
     width: 400px;
     height: 440px;
@@ -152,16 +172,18 @@
 }
 
 
-.contenedorLogin .formularioLogin{
+.contenedorLogin .formularioLogin {
     padding: 40px;
 }
-.formularioLogin h2{
+
+.formularioLogin h2 {
     font-size: 2em;
     color: green;
     text-align: center;
     font-weight: 500;
 }
-.inputCasilla{
+
+.inputCasilla {
     position: relative;
     width: 100%;
     height: 50px;
@@ -169,7 +191,8 @@
     margin: 30px 0;
     border-radius: 5px;
 }
-.inputCasilla label{
+
+.inputCasilla label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -180,9 +203,11 @@
     pointer-events: none;
     transition: .5s;
 }
-.inputCasilla input:focus~label,.inputCasilla input:valid~label{
+
+.inputCasilla input:focus~label,
+.inputCasilla input:valid~label {
     top: 9px;
-    opacity: .5;
+    opacity: .0;
     font-size: 0.7em;
     /* background-color: whitesmoke; */
     /* width: 180px; */
@@ -190,7 +215,7 @@
     padding-left: 5px;
 }
 
-.inputCasilla input{
+.inputCasilla input {
     width: 100%;
     height: 100%;
     background: whitesmoke;
@@ -203,29 +228,34 @@
     border-radius: 5px;
 
 }
-.inputCasilla .iconito{
+
+.inputCasilla .iconito {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
     top: 5px;
 }
-.recordar{
-    font-size: 0.8em;    
+
+.recordar {
+    font-size: 0.8em;
     font-weight: 500;
     text-align: end;
 }
-.recordar a{
+
+.recordar a {
     text-decoration: none;
     color: rgb(44, 44, 44);
 }
-.recordar a:hover{
+
+.recordar a:hover {
     text-decoration: underline;
 }
-.btnSubmit{
+
+.btnSubmit {
     margin-top: 20px;
     width: 100%;
     height: 40px;
-    background: green;    
+    background: green;
     border: 2px solid rgb(15, 156, 39);
     outline: none;
     border-radius: 4px;
@@ -234,30 +264,72 @@
     font-weight: 500;
     transition: .5s;
 }
-.btnSubmit:hover{
+
+.btnSubmit:hover {
     background: whitesmoke;
     color: green;
 }
-.loginARegisto{
+
+.loginARegisto {
     font-size: 1em;
     margin-top: 20px;
     font-weight: 500;
 }
-.loginARegisto a{
+
+.loginARegisto a {
     text-decoration: none;
-    color: green;    
+    color: green;
     transition: .5s;
 }
-.loginARegisto a:hover{
+
+.loginARegisto a:hover {
     text-decoration: underline;
 }
-.infoLogin{
+
+.infoLogin {
     width: 400px;
     height: 200px;
     background: rgb(39, 160, 76);
-    margin: 20px 20px;  
+    margin: 20px 20px;
 }
-.infoLogin .contenido{
+
+.infoLogin .contenido {
     margin: 20px 20px;
     color: white;
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenido .sinBorde {
+    border-radius: 0px;
+}
+.bloqueado{
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+.oculto{
+    display: none;
+    opacity: 0;
+}
+.modalConectando {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.486);
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+    /* border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9); */
+    overflow: hidden;
+}
+.contenedorModal{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.9);    
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
 }

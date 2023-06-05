@@ -1,4 +1,4 @@
-{
+ {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
@@ -25,14 +25,15 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.js",
+              "./node_modules/jquery/dist/jquery.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
-          },
+          }, 
           "configurations": {
             "production": {
               "budgets": [
@@ -100,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "03e01b6a-4e08-49db-bdc4-e046a0881ec2"
   }
 }

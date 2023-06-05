@@ -2,7 +2,7 @@
     color: white;
 }
 .texto-secundario{
-    background:rgb(39, 160, 76);
+    color:rgb(39, 160, 76);
 }
 .texto-resaltado{
     color: green;
@@ -14,5 +14,24 @@
     background:rgb(39, 160, 76);
 }
 .fondo-resaltado{
-    color: green;
+    background: green;
 }
+
+/* .texto-primario{
+    color: rgb(224, 172, 0);
+}
+.texto-secundario{
+    color:rgb(255, 252, 96);
+}
+.texto-resaltado{
+    color: rgb(255, 255, 255);
+}
+.fondo-primario{
+    background:rgb(0, 0, 0);
+}
+.fondo-secundario{
+    background:rgb(70, 70, 70);
+}
+.fondo-resaltado{
+    background: rgb(187, 187, 187);
+} */
