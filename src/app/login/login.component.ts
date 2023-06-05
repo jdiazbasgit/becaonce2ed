@@ -74,6 +74,7 @@ export class LoginComponent {
         )
         .subscribe((datos: any) => {
           console.log(datos)
+          let delay: number = 0
           if (datos.token == null) {
             this.limpiarFormulario()
             // let cont = this.elementRef.nativeElement.querySelector('.contenido')
@@ -97,10 +98,13 @@ export class LoginComponent {
             cont.innerHTML = "Bienvenido"
             cont.classList.add('bg-success')
             console.log(datos.token)
+            delay = 1000
           }
-          modalConectando.classList.add('oculto')
+          setTimeout(() => {
+            modalConectando.classList.add('oculto')
           //body.classList.remove("bloqueado");
           body.removeAttribute("style")
+          }, delay);   
 
         }
         )
