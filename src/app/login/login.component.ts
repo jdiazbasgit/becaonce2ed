@@ -4,7 +4,6 @@ import { LoginService } from '../servicios/login.service';
 import { FeeService } from '../servicios/fee.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
-import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -63,7 +62,7 @@ export class LoginComponent {
         .pipe(
           catchError(error => {
             console.log(error)
-            if (error.status === 0 || error.status===404) {
+            if (error.status === 0 || error.status === 404) {
               //console.log("cucu")
               this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde")
             }
@@ -149,23 +148,21 @@ export class LoginComponent {
     .subscribe({
       next: (response) => {
         console.log("status ok:"+response.status)
+        console.log(response)
+        response._embedded.fees.forEach((element: any) => {
+          console.log(element.current)
+        });
       }, 
       error: (error:any) =>{
         console.log("status ko:"+error.status)
       }
     })
-    /*.pipe(
-      catchError(error => {
-        console.log(error)
-        console.log("status:"+error.status)
-        return "";
-      })
-    ).subscribe((datos: any) => {
-        console.log(datos)
-        datos._embedded.fees.forEach((element: any) => {
-          console.log(element.current)
-        });
-      })*/
+      // .subscribe((datos: any) => {
+      //   console.log(datos)
+      //   datos._embedded.fees.forEach((element: any) => {
+      //     console.log(element.current)
+      //   });
+      // })
   }
 
   meterTokenfalso() {
