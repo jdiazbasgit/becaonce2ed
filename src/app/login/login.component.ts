@@ -146,12 +146,20 @@ export class LoginComponent {
   getFees() {
     console.log("Sacando Fees con token: " + sessionStorage['token'])
     this.feeService.getDatos("http://localhost:8080/once/fees")
-      .subscribe((datos: any) => {
-        console.log(datos)
-        datos._embedded.fees.forEach((element: any) => {
-          console.log(element.current)
-        });
-      })
+    .subscribe({
+      next: (response) => {
+        console.log("status ok:"+response.status)
+      }, 
+      error: (error:any) =>{
+        console.log("status ko:"+error.status)
+      }
+    })
+      // .subscribe((datos: any) => {
+      //   console.log(datos)
+      //   datos._embedded.fees.forEach((element: any) => {
+      //     console.log(element.current)
+      //   });
+      // })
   }
 
   meterTokenfalso() {
