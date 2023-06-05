@@ -27,7 +27,7 @@ import once.curso.proyectotienda.model.RolModelAssembler;
 import once.curso.proyectotienda.services.RolService;
 
 @RestController
-@RequestMapping("once")
+@RequestMapping("/once")
 @Data
 public class RolRestController {
 	
@@ -59,6 +59,8 @@ public class RolRestController {
 		return EntityModel.of(rol);
 	}
 	
+	@GetMapping("/rolesPaginado")
+	   @CrossOrigin(origins ="*")
 	public PagedModel<EntityModel<Rol>> finAllPaginado(@RequestParam int size, 
 			@RequestParam int page, @RequestParam String sort){
 		

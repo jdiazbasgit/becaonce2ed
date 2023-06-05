@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import lombok.Data;
 import once.curso.proyectotienda.services.UserDetailLoginService;
 
+@SuppressWarnings("deprecation")
 @Data
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {

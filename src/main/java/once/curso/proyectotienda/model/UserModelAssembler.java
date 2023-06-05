@@ -4,10 +4,12 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.SimpleRepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.stereotype.Component;
 
 import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.restcontrollers.UserRestController;
 
+@Component
 public class UserModelAssembler implements SimpleRepresentationModelAssembler<User> {
 
 	@Override
