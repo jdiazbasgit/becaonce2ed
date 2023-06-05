@@ -1,13 +1,16 @@
 <div class="modalConectando oculto" id="modalConectando">
     <div class="contenedorModal mx-auto mt-5">
-        <div class="d-flex align-items-center">
-            <strong>Loading...</strong>
-            <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+        <div class="align-items-center">
+            <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div>
+            <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
+                <strong>Loading...</strong>
+                <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
+            </div>
         </div>
     </div>
 </div>
 <div class="cabecera texto-primario fondo-secundario">
-    <div class="logoCabecera">
+    <div class="logoCabecera" routerLink="landing">
         <span>
             <h1>B</h1>
             <h4>ANC</h4>
@@ -20,7 +23,8 @@
             data-bs-target="#exampleModal">
             15/05/2023 01:54
         </button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+            data-bs-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -38,12 +42,12 @@
             </div>
         </div>
     </div>
-    <!-- <div>
+    <div>
         <button class="button-success" type="button" (click)="getFees()">get fees</button>
     </div>
     <div>
         <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
-    </div> -->
+    </div>
     <div *ngIf="!logado" class="fondoBtnLogin">
         <button class="btnHazteCliente">Hazte cliente</button>
         <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
@@ -111,17 +115,18 @@
         </div>
         <div class="infoLogin">
             <div class="contenido">
-                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger">                    
-                    <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-exclamation mx-2"
-                        width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M15 21h-8a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 1.734 1.002"></path>
-                        <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
-                        <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
-                        <path d="M19 16v3"></path>
-                        <path d="M19 22v.01"></path>
-                    </svg>El Usuario o la Clave introducidos no son correctos</p>
+                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger">
+                    <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-lock-exclamation mx-2" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M15 21h-8a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2h10a2 2 0 0 1 1.734 1.002"></path>
+                            <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+                            <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+                            <path d="M19 16v3"></path>
+                            <path d="M19 22v.01"></path>
+                        </svg>{{mensajeClave}}</p>
                 </div>
                 <ng-template #mensaje>
                     <p class="mt-2"><svg xmlns="http://www.w3.org/2000/svg"

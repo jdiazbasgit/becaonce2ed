@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  logado:boolean = false
+
+  ngDoCheck(){
+    if (sessionStorage['token'] != null && this.logado == false)
+    this.logado = true
+    if (sessionStorage['token'] == null && this.logado == true)
+    this.logado = false
+  }
+
 }
