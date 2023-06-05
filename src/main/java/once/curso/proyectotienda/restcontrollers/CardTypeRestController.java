@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ public class CardTypeRestController {
 	private CardTypeService cardTypeService;
 
 	@PostMapping("/cardTypes")
+	@CrossOrigin(origins ="*")
 	public CardType save(@RequestBody CardType cardType) {
 		return getCardTypeService().save(cardType);
 	}
