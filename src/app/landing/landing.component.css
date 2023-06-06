@@ -1,20 +1,6 @@
 
-    .green-background {
-      background-color: rgb(55, 163, 55);
-      color: rgb(255, 255, 255);
-    }
+   
 
-  .image-container {
-    background-image: url('src/assets/prueba.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-   .fondo{
-    background-image: url('src/assets/prueba3.jpg');
-   }
-   .fondo2{
-    background-image: url('src/assets/prueba2.jpg');
-   }
    .texto-primario{
     color: white;
 }
@@ -34,33 +20,6 @@
     color: green;
 }
 
-  .imangen-pareja {
-    background-image: url('src/assets/prueba3.jpg');
-    background-size: cover;
-    border-radius: 20px;
-    width: 400px;
-    height: 250px;
-    background-position: center;
-  }
-
-  .imagen-online {
-    background-image: url('src/assets/online.jpg');
-    background-size: cover;
-    border-radius: 20px;
-    width: 400px;
-    height: 200px;
-    background-position: center;
-  }
-
-  .imagen-felices {
-    background-image: url('src/assets/felices.jpg');
-    background-size: cover;
-    border-radius: 20px;
-    width: 700px;
-    height: 450px;
-    background-position: center;
-
-  }
 
   
   .porcentage {
@@ -84,102 +43,4 @@
     color:green;
   }
 
-  .di-div{
-  background-color: #F1F1F1;
- border: #F1F1F1;
- margin: -13px;
  
-}
-
-
-.mobile {
-  width: 300px;
-  height: 200px;
-  background-image:url('src/assets/prueba2.jpg');
-  border-radius: 20px;
-  position: relative;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.screen {
-  width: 8%;
-  height: 8%;
-  background-color: white;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.button {
-  width: 20px;
-  height: 10px;
-  background-image:url('src/assets/prueba2.jpg');
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-}
-.button {
-  width: 20px;
-  height: 10px;
-  background-image:url('src/assets/prueba2.jpg');
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-}
-
-.button.left {
-  left: 10px;
-}
-
-.button.right {
-  right: 10px;
-}
-
-.logo {
-  font-family: Arial, sans-serif;
-  font-size: 64px;
-  font-weight: bold;
-  color: #000000;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-}
-
-#logoText {
-  background-color: #ff0000;
-  color: #ffffff;
-  padding: 8px;
-  border-radius: 4px;
-}
-
-.logo:hover #logoText {
-  background-color: #000000;
-}
-
-.logo:hover {
-  color: #ff0000;
-}
-
-.movimiento-objeto {
-  animation-name: movimiento;
-  animation-duration: 3s;
-  animation-timing-function:linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes movimiento {
-  0% {
-    transform: translateX(0px);
-  }
-  50% {
-    transform: translateX(100px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
