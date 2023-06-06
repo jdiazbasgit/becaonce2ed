@@ -1,19 +1,33 @@
-  <nav class="navbar navbar-default">
-    <ul class="nav navbar-nav">
-      <li >
-        <a routerLink="movimientos">Movimientos</a>
-      </li>
-      <li >
-        <a  routerLink="operaciones">Transferencias</a>
-      </li>
-      <li >
-        <a  routerLink="productos">Productos Asociados</a>
-      </li>
-      <li >
-        <a  routerLink="detalles">Ajustes de la Cuenta</a>
-      </li>
-      <li >
-        <a  routerLink="detalles">Cambiar de Cuenta</a>
-      </li>
-    </ul>
-  </nav>
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="movimientos">Movimientos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="operaciones">Transferencias</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="productos">Productos Asociados</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="detalles">Ajustes de la Cuenta</a>
+  </li>
+  <li class="nav-item">
+
+    <div class="btn-group">
+      <button type="button" class="btn btn-success w-100">Cambiar de Cuenta</button>
+
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only"></span>
+      </button>
+
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Cuenta #1</a></li>
+        <li><a href="#">Cuenta #2</a></li>
+        <li><a href="#">Cuenta #3</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Cuenta #4</a></li>
+      </ul>
+    </div>
+  </li>
+</ul>
