@@ -18,13 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MatTableModule } from '@angular/material/table';
  
 import { MatPaginatorModule } from '@angular/material/paginator';
-
-import { ProductDataComponent } from './product-data/product-data.component';
-import { ProductEditComponent } from './product-edit/product-edit.component';
-
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // import { MatToolbarModule } from '@angular/material/toolbar';
-
 @NgModule({
   declarations: [
     
@@ -36,7 +31,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ProductComponent,
     NavComponent,
     OfferComponent,
-    ProductDataComponent,
     HeaderComponent,
     FooterComponent
 
@@ -47,13 +41,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-<<<<<<< HEAD
-    // MatToolbarModule
-
-=======
+   // MatToolbarModule,
     MatTableModule,
-    MatPaginatorModule,
->>>>>>> feature/front/proyectos-tienda
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
