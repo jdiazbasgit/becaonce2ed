@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProfileComponent implements AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'photo', 'lastname', 'identification', 'creditcard', 'email', 'province', 'nuser', 'ncreditcard', 'ndocument'];
-  dataSource = new MatTableDataSource<PeriodicElement>();
+  //dataSource = new MatTableDataSource<PeriodicElement>();
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -18,11 +18,11 @@ export class ProfileComponent implements AfterViewInit {
   constructor(private http: HttpClient) {}
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.getData();
+    //this.dataSource.paginator = this.paginator;
+    //this.getData();
   }
-
-  getData() {
+}
+  /*getData() {
     const jwtToken = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoxLCJyb2wiOiJBRE1JTklTVFJBRE9SIiwibGlua3MiOltdfV0sImlhdCI6MTY4NTgyNTc1OX0.vmIdUJmsUW8gy7RfSlZiARNhDwpyU8lWnNVIpKFTuMxvZ-iOmyqHSfceTMo5RrrzsZr_e-C3TKebVG9RBNxWOA'; //localStorage.getItem('token');
     console.log("Sacando profile con token: " + jwtToken)
 
@@ -56,7 +56,7 @@ export interface PeriodicElement {
   nuser: number;
   ncreditcard: number;
   ndocument: number;
-}
+}*/
 
 
 

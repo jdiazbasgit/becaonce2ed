@@ -1,49 +1,53 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './componentes/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-
-import { FooterComponent } from './footer/footer.component';
-
-import { ProfileComponent } from './profile/profile.component';
-import { ProductComponent } from './product/product.component';
-import { OfferComponent } from './offer/offer.component';
-
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { ProfileComponent } from './componentes/profile/profile.component';
+import { ProductComponent } from './componentes/product/product.component';
+import { OfferComponent } from './componentes/offer/offer.component';
+import { HeaderComponent } from './componentes/header/header.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
-import { ProductDataComponent } from './product-data/product-data.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { ProductDataComponent } from './product-data/product-data.component';
-import { ProductEditComponent } from './product-edit/product-edit.component';
 import { EjemploComponent } from './ejemplo/ejemplo.component';
-
-
+import { CardTypeComponent } from './componentes/card-type/card-type.component';
+import { CategoryComponent } from './componentes/category/category.component';
+import { ConfigurationComponent } from './componentes/configuration/configuration.component';
+import { DocumentTypeComponent } from './componentes/document-type/document-type.component';
+import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
+import { RolComponent } from './componentes/rol/rol.component';
+import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
+import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
+import { UserComponent } from './componentes/user/user.component';
+import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
 
 @NgModule({
   declarations: [
-    
     NavComponent,
     AppComponent,
     HeaderComponent,
-    LoginComponent, 
+    LoginComponent,
     ProfileComponent,
     ProductComponent,
-    NavComponent,
     OfferComponent,
-    ProductDataComponent,
-    HeaderComponent,
     FooterComponent,
-    EjemploComponent
-   
+    CategoryComponent,
+    SubcategoryComponent,
+    DocumentTypeComponent,
+    UserComponent,
+    RolComponent,
+    SoldProductComponent,
+    ExistingProductComponent,
+    CardTypeComponent,
+    ConfigurationComponent,
+    EjemploComponent,
+    ModalDocumentTypesComponent
 
   ],
   imports: [
@@ -53,7 +57,7 @@ import { EjemploComponent } from './ejemplo/ejemplo.component';
     HttpClientModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatPaginatorModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
