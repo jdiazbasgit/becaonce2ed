@@ -12,12 +12,19 @@ export class ProyectosService {
     return this.httpClient.get(url);
   }
 
-  saveOrUpdate(url:string, objeto:Object):Observable<any>{
-    return this.httpClient.post(url,{body:objeto})
+  saveOrUpdate(url:string, objeto:any):Observable<any>{
+    console.log("objeto:"+objeto)
+    return this.httpClient.post(url,objeto)
   }
 
-  delete(url:string):void{
-    this.httpClient.delete(url);
+  delete(url:string):Observable<any>{
+    return this.httpClient.delete(url);
+  }
+
+  ifExist(url:string):Observable<any>{
+  
+    return this.httpClient.post(url,"");
+
   }
 
 }
