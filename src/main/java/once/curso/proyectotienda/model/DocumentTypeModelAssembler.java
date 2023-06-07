@@ -8,12 +8,14 @@ import org.springframework.stereotype.Component;
 
 import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.restcontrollers.DocumentTypeRestController;
+
 @Component
 public class DocumentTypeModelAssembler implements SimpleRepresentationModelAssembler<DocumentType> {
 
 	@Override
 	public void addLinks(EntityModel<DocumentType> documentType) {
-		documentType.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class)
+		documentType.add(WebMvcLinkBuilder.linkTo(
+				WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class)
 				.findById(documentType.getContent().getId())).withSelfRel());
 	}
 
