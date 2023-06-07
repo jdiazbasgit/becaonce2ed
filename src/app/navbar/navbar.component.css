@@ -1,0 +1,61 @@
+nav {
+    background-color: #333;
+    padding: 10px;
+    display: flex;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  nav ul li a:hover {
+    background-color: #555;
+  }
+
+  #cambiar-cuenta{
+    float: right;
+  }
+
+  /*.container {
+    position: relative;
+    width: 100%;
+    height: 100px; Ajusta la altura según tus necesidades 
+  }
+  
+  .cambiar-cuenta {
+    position: absolute;
+    right: 0; Mueve el botón hacia la derecha 
+  }*/
+
+  .texto-primario{
+    color: white;
+}
+.texto-secundario{
+    background:rgb(39, 160, 76);
+}
+.texto-resaltado{
+    color: green;
+}
+.fondo-primario{
+    background:rgb(222, 253, 232);
+}
+.fondo-secundario{
+    background:rgb(39, 160, 76);
+}
+.fondo-resaltado{
+    color: green;
+}
