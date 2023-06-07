@@ -78,8 +78,8 @@ public class IdentificationTypeRestController {
 	}
 	
 	@PostMapping("/identificationsTypes")
-	public IdentificationType save(@RequestBody IdentificationType identificationType) {
-		return getIdentificationTypeService().save(identificationType);
+	public boolean save(@RequestBody IdentificationType identificationType) {
+		return getIdentificationTypeService().existsById(getIdentificationTypeService().save(identificationType).getId());
 	}
 	
 	@PutMapping("/identificationsTypes")
@@ -90,5 +90,10 @@ public class IdentificationTypeRestController {
 	@DeleteMapping("/identificationsTypes/{id}")
 	public void deleteById(@PathVariable int id) {
 		getIdentificationTypeService().deleteById(id);
-	}	
+	}
+	
+	@PostMapping("/identificationsTypes/{id}")
+	public boolean existsById(@PathVariable int id) {
+		return getIdentificationTypeService().existsById(id);
+	}
 }

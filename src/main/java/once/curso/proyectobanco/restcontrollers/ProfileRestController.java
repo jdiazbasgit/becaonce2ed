@@ -85,8 +85,8 @@ public class ProfileRestController {
 
 	
 	@PostMapping("/profiles")
-	public Profile save(@RequestBody Profile profile) {
-		return getProfileService().save(profile);
+	public boolean save(@RequestBody Profile profile) {
+		return getProfileService().existsById(getProfileService().save(profile).getId());
 	}
 	
 	@PutMapping("/profiles")
