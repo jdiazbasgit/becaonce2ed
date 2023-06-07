@@ -86,15 +86,33 @@ public class DocumentTypeRestController {
 	}
 	
 
-	@PostMapping("/document_types")
+	@PostMapping("/documentsTypes")
 	@CrossOrigin(origins = "*")
-	public DocumentType save(@RequestBody DocumentType documentType) {
-		return getDocumentTypeService().save(documentType);
+	public boolean save(@RequestBody DocumentType documentType) {
+		 	
+		return existById(getDocumentTypeService().save(documentType).getId());
 	}
 
-	@DeleteMapping("/document_types/{id}")
+	@DeleteMapping("/documentsTypes/{id}")
 	@CrossOrigin(origins = "*")
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getDocumentTypeService().deleteById(id);
+		return getDocumentTypeService().existsById(id);
+	}
+	
+	@PostMapping("/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getDocumentTypeService().existsById(id);
 	}
 }
+
+
+ 
+
+
+
+
+
+
+
