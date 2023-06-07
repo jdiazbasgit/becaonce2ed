@@ -86,8 +86,13 @@ public class FeeRestController {
 	}
 	
 	@PostMapping("/fees")
-	public Fee save(@RequestBody Fee fee) {
-		return getFeeService().save(fee);
+	public boolean save(@RequestBody Fee fee) {
+		//Fee f = getFeeService().save(fee);
+		//EntityModel<Fee> f2 = findById(f.getId());
+		
+		//return findById(f.getId());
+		//return findById((getFeeService().save(fee)).getId()).getContent();
+		return getFeeService().existsById(getFeeService().save(fee).getId());
 	}
 	
 	@PutMapping("/fees")
@@ -98,5 +103,10 @@ public class FeeRestController {
 	@DeleteMapping("/fees/{id}")
 	public void deleteById(@PathVariable int id) {
 		getFeeService().deleteById(id);
-	}	
+	}
+	
+	@PostMapping("/fees/{id}")
+	public boolean existsById(@PathVariable int id) {
+		return getFeeService().existsById(id);
+	}
 }
