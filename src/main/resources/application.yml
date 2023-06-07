@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /feature-develop-tienda-dlg
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
