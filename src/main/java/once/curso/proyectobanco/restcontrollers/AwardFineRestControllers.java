@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFine;
+
 import once.curso.proyectobanco.models.AwardsFineModelAssembler;
 import once.curso.proyectobanco.services.AwardsFinesServices;
 
