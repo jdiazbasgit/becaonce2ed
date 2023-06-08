@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\Users\UsuarioM\Documents\cursoOnce\modulo2\ejercicios\becaonce2ed\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-2444398812.index
-1954629152.index
-3197673464.index
-1274705102.index
-4157934706.index
-2638609661.index
