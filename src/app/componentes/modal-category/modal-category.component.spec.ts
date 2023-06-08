@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DocumentTypeComponent } from './document-type.component';
+import { ModalCategoryComponent } from './modal-category.component';
 
-describe('DocumentTypeComponent', () => {
-  let component: DocumentTypeComponent;
-  let fixture: ComponentFixture<DocumentTypeComponent>;
+describe('ModalCategoryComponent', () => {
+  let component: ModalCategoryComponent;
+  let fixture: ComponentFixture<ModalCategoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DocumentTypeComponent ]
+      declarations: [ ModalCategoryComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DocumentTypeComponent);
+    fixture = TestBed.createComponent(ModalCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

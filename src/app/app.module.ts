@@ -15,17 +15,17 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { EjemploComponent } from './ejemplo/ejemplo.component';
+import { DocumentTypesComponent } from './document-types/document-types.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { CategoryComponent } from './componentes/category/category.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
-import { DocumentTypeComponent } from './componentes/document-type/document-type.component';
 import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
 import { RolComponent } from './componentes/rol/rol.component';
 import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
+import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 
 @NgModule({
   declarations: [
@@ -39,15 +39,15 @@ import { ModalDocumentTypesComponent } from './componentes/modal-document-types/
     FooterComponent,
     CategoryComponent,
     SubcategoryComponent,
-    DocumentTypeComponent,
+    DocumentTypesComponent,
     UserComponent,
     RolComponent,
     SoldProductComponent,
     ExistingProductComponent,
     CardTypeComponent,
     ConfigurationComponent,
-    EjemploComponent,
-    ModalDocumentTypesComponent
+    ModalDocumentTypesComponent,
+    ModalCategoryComponent
 
   ],
   imports: [
