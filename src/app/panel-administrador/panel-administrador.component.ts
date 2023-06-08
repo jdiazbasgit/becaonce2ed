@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import Fee from '../beans/Fee';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -13,10 +14,14 @@ export class PanelAdministradorComponent {
   mostrarTabla: boolean = false
   cabecerasTabla: string[] = []
   datosBrutos: any[] = []
-  jsonParaEnviar: any[] = []
+
+  propiedadesLocales: string[] = []
+  linksForaneos: string[] = []
+  //jsonParaEnviar: any[] = []
+  mostrarGrabador: boolean = false
 
 
-  constructor(private service: ProyectosService) {
+  constructor(private service: ProyectosService, private elementRef: ElementRef) {
 
   }
 
@@ -71,6 +76,9 @@ export class PanelAdministradorComponent {
           cabeceras.splice(cabeceras.length - 1) // aka sin _links
           console.log(cabeceras)
 
+          this.propiedadesLocales = cabeceras
+          this.linksForaneos = links
+
           links.forEach((link: string) => {
             if (link !== "self")
               cabeceras.push(link)
@@ -83,6 +91,7 @@ export class PanelAdministradorComponent {
           response._embedded[tablas[0]].forEach((element: any) => {
             console.log(element)
           });
+          this.mostrarGrabador = true
         },
         error: (error: any) => {
           console.log("status ko:" + error.status)
@@ -90,19 +99,33 @@ export class PanelAdministradorComponent {
       })
   }
 
-  duplicarUltimoDato() {
+  grabarEntrada() {
     // console.log(this.datosBrutos[0])
     // this.datosBrutos[0][0] = 0
     // this.datosBrutos[0][1] = 0.7
     // console.log(this.datosBrutos[0])
+    let inputsGrabar:string[] = []
+    console.log(this.propiedadesLocales)
+    console.log(this.cabecerasTabla)
+    console.log(this.linksForaneos)
+    for (let index = 0; index < this.cabecerasTabla.length; index++) {
+      if (index < this.propiedadesLocales.length-this.linksForaneos.length+1){
+        inputsGrabar.push(this.elementRef.nativeElement.querySelector('#input'+index).value)
+      }
+      else
+      inputsGrabar.push(this.cabecerasTabla[index]+"/"+this.elementRef.nativeElement.querySelector('#input'+index).value)      
+    }
+    //this.elementRef.nativeElement.querySelector('#input')
+    console.log(inputsGrabar)
+    
 
-    var z = this.construirJson(this.cabecerasTabla, this.datosBrutos[0]);
-
+    // var z = this.construirJson(this.cabecerasTabla, this.datosBrutos[0]);
+    let jsonParaEnviar = this.construirJson(this.cabecerasTabla, inputsGrabar);
     //var json = JSON.stringify(z);
 
-    console.log(z);
-    z.id = 0
-    z.current = 0.50
+    console.log(jsonParaEnviar);
+    // z.id = 0
+    // z.current = 0.50
     //console.log(json);
     // console.log(this.cabecerasTabla[0])
     // console.log(this.cabecerasTabla)
@@ -117,14 +140,16 @@ export class PanelAdministradorComponent {
     // });
     //pulido = {"id": "0", "current": "0.98"}
     // console.log(pulido)
-    this.service.saveOrUpdate("http://localhost:8080/once/fees", z)
+    this.service.saveOrUpdate("http://localhost:8080/once/"+this.tablaAConsultar, jsonParaEnviar)
       .subscribe((dato: boolean) => {
         if (dato) {
           console.log("Grabacion realizada correctamente")
         }
         else
           console.log("La grabación no se ha realizado")
+        this.consultarTabla(this.tablaAConsultar)
       })
+      
   }
 
 
