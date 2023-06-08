@@ -44,7 +44,7 @@ import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-ca
     UserComponent,
     RolComponent,
     SoldProductComponent,
-    ExistingProductComponent,
+    ExistingProductComponent, 
     CardTypeComponent,
     ConfigurationComponent,
     EjemploComponent,

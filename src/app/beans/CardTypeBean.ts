@@ -1,9 +1,9 @@
 class CardTypeBean{
 id:number
-description: string
-constructor(id:number, description:string){
+cardType: string
+constructor(id:number, cardType:string){
     this.id=id;
-    this.description=description;
+    this.cardType=cardType;
 }
 
 }

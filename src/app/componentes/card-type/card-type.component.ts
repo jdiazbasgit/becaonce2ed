@@ -1,26 +1,27 @@
 import { AfterViewInit,Component, Input, OnInit, ViewChild  } from '@angular/core';
-import { CardTypeService } from '../servicios/document-type.service';
-import { ModalCardTypeComponent } from '../componentes/modal-document-types/modal-document-types.component';
+import { CardTypeService } from '../../servicios/card-type.service';
+import { ModalCardTypesComponent } from '../modal-card-types/modal-card-types.component';
+
 @Component({
   selector: 'app-card-type',
   templateUrl: './card-type.component.html',
   styleUrls: ['./card-type.component.css']
 })
 export class CardTypeComponent implements OnInit{
-  @ViewChild(ModalDocumentTypesComponent) modal: any
+  @ViewChild(ModalCardTypesComponent) modal: any
   id: number = 0
   titulo: string;
-  descripciones: any[];
+  cardTypes: any[];
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
-  constructor(private service: DocumentTypeService) {
+  constructor(private service: CardTypeService) {
     this.titulo = "TIPOS DE DESCRIPCIONES"
-    this.descripciones = [];
+    this.cardTypes = [];
   }
 
   eliminar(id: any) {
     if (confirm("¿Esta seguro de borrar el tipo de documento?")) {
-      this.service.delete("http://localhost:8080/once/documentsTypes/" + id)
+      this.service.delete("http://localhost:8080/once/cardTypes/" + id)
         .subscribe((dato: boolean) => {
           if (!dato) {
             this.mensaje = "Se ha borrado correctamente"
@@ -42,10 +43,10 @@ export class CardTypeComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.descripciones = []
-    this.service.getDatos("http://localhost:8080/once/documentsTypes")
+    this.cardTypes = []
+    this.service.getDatos("http://localhost:8080/once/cardTypes")
       .subscribe((datos: any) => {
-        this.descripciones = datos._embedded.documentTypes;
+        this.cardTypes = datos._embedded.cardTypes;
       })
   }
 
