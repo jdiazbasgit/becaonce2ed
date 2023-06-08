@@ -95,9 +95,15 @@ public class UserRestController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@DeleteMapping("/users/{id}")
-	public void deleteById(@PathVariable int id) {
+	@DeleteMapping(value="/users/{id}")
+	public boolean deleteById(@PathVariable int id) {
 		 getUserService().deleteById(id);
+		 return getUserService().existsById(id);
 	}
 	
+	@CrossOrigin(origins = "*")
+	@PostMapping(value="/users/{id}")
+	public boolean existsById(@PathVariable Integer id) { 
+		 return getUserService().existsById(id);
+	}
 }

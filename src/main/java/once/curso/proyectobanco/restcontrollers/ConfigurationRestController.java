@@ -91,12 +91,17 @@ public class ConfigurationRestController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@DeleteMapping(value="/configurations")
-	public void deleteById(@PathVariable Integer id) {
+	@DeleteMapping(value="/configurations/{id}")
+	public boolean deleteById(@PathVariable Integer id) {
 		getConfigurationService().deleteById(id);
+		return getConfigurationService().existsById(id);
 	}
 	
-	
+	@CrossOrigin(origins = "*")
+	@PostMapping(value="/configurations/{id}")
+	public boolean existsById(@PathVariable Integer id) {
+		return getConfigurationService().existsById(id);
+	}
 	
 
 }

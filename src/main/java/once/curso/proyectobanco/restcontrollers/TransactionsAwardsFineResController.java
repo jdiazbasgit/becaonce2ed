@@ -101,11 +101,17 @@ public class TransactionsAwardsFineResController {
 	
 	
 	@CrossOrigin(origins = "*")
-	@DeleteMapping("/transactionsAwardsFineService")
-	public void deleteById(@PathVariable Integer id) {
+	@DeleteMapping(value="/transactionsAwardsFineService/{id}")
+	public boolean deleteById(@PathVariable Integer id) {
 		getTransactionsAwardsFineService().deleteById(id);
+		return getTransactionsAwardsFineService().existsById(id);
 	}
-
+	
+	@CrossOrigin(origins="*")
+	@PostMapping(value="/transactionsAwardsFineService/{id}")
+	public boolean existsById(@PathVariable Integer id) {
+		return getTransactionsAwardsFineService().existsById(id);
+	}
 
 
 	
