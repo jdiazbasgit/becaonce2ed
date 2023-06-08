@@ -1,48 +1,33 @@
-<h1><p>Consultando tabla {{ tablaAConsultar }} </p></h1>
-<select class="form-select" aria-label="Default select example" #select (change)="elegirTabla(select.value)">
+<h1><p>Una tabla para gobernarlos a todos!</p></h1>
+<select class="form-select" aria-label="Default select example" #select (change)="consultarTabla(select.value)">
     <option selected>Open this select menu</option>
-    <option value="AwardsFine">AwardsFine</option>
-    <option value="AwardsFinesConfiguration">AwardsFinesConfiguration</option>
-    <option value="AwardFinesType">AwardFinesType</option>
-    <option value="Configuration">Configuration</option>
-    <option value="CurrentAccount">CurrentAccount</option>
-    <option value="Description">Description</option>
+    <option value="awardsFines">AwardsFine</option>
+    <option value="awardsFinesConfigurations">AwardsFinesConfiguration</option>
+    <option value="awardFinesTypes">AwardFinesType</option>
+    <option value="configurations">Configuration</option>
+    <option value="currentAccounts">CurrentAccount</option>
+    <option value="descriptions">Description</option>
     <option value="fees">Fee</option>
-    <option value="IdentificationType">IdentificationType</option>
-    <option value="Profile">Profile</option>
-    <option value="Rol">Rol</option>
-    <option value="Transaction">Transaction</option>
-    <option value="TransactionsAwardsFine">TransactionsAwardsFine</option>
-    <option value="TypeAccount">TypeAccount</option>
-    <option value="User">User</option>    
+    <option value="identificationTypes">IdentificationType</option>
+    <option value="profiles">Profile</option>
+    <option value="roles">Rol</option>
+    <option value="transactions">Transaction</option>
+    <option value="transactionsAwardsFines">TransactionsAwardsFine</option>
+    <option value="typeAccounts">TypeAccount</option>
+    <option value="users">User</option>    
   </select>
-
+  <h2>{{ tablaAConsultar }} </h2>
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col"*ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      <tr *ngFor="let dato of datosBrutos">
+        <td *ngFor="let lineaDato of dato">{{lineaDato}}</td>
     </tbody>
   </table>
+  <div>
+    <button class="button-success" type="button" (click)="duplicarUltimoDato()">duplicar un dato de prueba</button>
+</div>
