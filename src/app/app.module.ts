@@ -26,6 +26,7 @@ import { SoldProductComponent } from './componentes/sold-product/sold-product.co
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
+import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ModalDocumentTypesComponent } from './componentes/modal-document-types/
     CardTypeComponent,
     ConfigurationComponent,
     EjemploComponent,
-    ModalDocumentTypesComponent
+    ModalDocumentTypesComponent,
+    ModalRolComponent,
 
   ],
   imports: [

@@ -1,0 +1,30 @@
+<!--The Modal-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal Header-->
+            <div class="modal-header justify-content-center">
+                <h4 class="modal-title">Alta Tipo De Rol</h4>
+            </div>
+
+            <!-- Modal Body-->
+            <div class="modal-body text-center">
+                <label for="rol">Rol:
+                    <input type="text" name="rol"
+                    [(ngModel)]="rol" value="{{rolPlaceholder}}"><br>
+                </label>
+                <button type="button" class="button" (click)="grabar()">GRABAR</button>
+            </div>
+
+            <div class="text-center">
+                <h1>{{mensaje}}</h1>
+            </div>
+
+            <!--Modal Footer-->
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
