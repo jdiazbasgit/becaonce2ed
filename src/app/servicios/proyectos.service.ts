@@ -16,8 +16,8 @@ export class ProyectosService {
   saveOrUpdate(url:string, objeto:Object):Observable<any>{
     return this.httpClient.post(url,{body:objeto})
   }
-  delete(url:string):void{
-    this.httpClient.delete(url);
+  delete(url:string):Observable<any>{
+    return this.httpClient.delete(url);
   }
 
 }

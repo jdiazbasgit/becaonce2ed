@@ -28,6 +28,9 @@ import { TransactionComponent } from './componentes/transaction/transaction.comp
 import { TransactionsAwardsFineComponent } from './componentes/transactions-awards-fine/transactions-awards-fine.component';
 import { TypeAccountComponent } from './componentes/type-account/type-account.component';
 import { UserComponent } from './componentes/user/user.component';
+import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
+import { ModalTransactionsAwardsFineComponent } from './componentes/modal-transactions-awards-fine/modal-transactions-awards-fine.component';
+import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { UserComponent } from './componentes/user/user.component';
     TransactionComponent,
     TransactionsAwardsFineComponent,
     TypeAccountComponent,
-    UserComponent
+    UserComponent,
+    ModalUserComponent,
+    ModalTransactionsAwardsFineComponent,
+    ModalConfigurationComponent
   ],
   imports: [
     BrowserModule,
