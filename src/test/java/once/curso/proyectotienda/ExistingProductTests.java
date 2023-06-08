@@ -40,6 +40,14 @@ public class ExistingProductTests{
 	}
 	
 	@Test
+	public void existsByIdExistingProduct() {
+		int numID = 3;
+		if (getExistingProductService().existsById(numID)==true){
+			/*bla bla*/
+		}
+	}
+	
+	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
 		existingProduct.setDescription("New World");
@@ -49,7 +57,7 @@ public class ExistingProductTests{
         byte[] imgInBytes = new byte[(int) file.length()];		
 		existingProduct.setImage(imgInBytes);
 			
-	    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+	    existingProduct.setSubcategory(getSubcategoriesService().findById(3).get());
 	
 		getExistingProductService().save(existingProduct);
 		
@@ -81,7 +89,7 @@ public class ExistingProductTests{
 			File file = new File(filename);
 	        byte[] imgInBytes = new byte[(int) file.length()];		
 			existingProduct.setImage(imgInBytes);
-		    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+		    existingProduct.setSubcategory(getSubcategoriesService().findById(3).get());
 		    
 		    getExistingProductService().save(existingProduct);
 		}
@@ -94,6 +102,8 @@ public class ExistingProductTests{
 	    if (existingProduct != null) {
 	    	getExistingProductService().delete(existingProduct);
 	    }
+	    
+	    
 	}
 	
 	@Test

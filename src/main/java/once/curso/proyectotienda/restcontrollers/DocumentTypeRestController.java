@@ -34,10 +34,10 @@ public class DocumentTypeRestController {
 
 	@Autowired
 	private DocumentTypeService documentTypeService;
-	
+
 	@Autowired
 	private PagedResourcesAssembler<DocumentType> pagedResourcesAssembler;
-	
+
 	@Autowired
 	private DocumentTypeModelAssembler documentTypeModelAssembler;
 
@@ -49,7 +49,7 @@ public class DocumentTypeRestController {
 			d.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getId()))
 					.withSelfRel());
-		
+
 		});
 		return CollectionModel.of(documentTypes);
 	}
@@ -64,7 +64,7 @@ public class DocumentTypeRestController {
 
 		return EntityModel.of(documentType);
 	}
-	
+
 	@GetMapping("/documentsTypesPaginado")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<DocumentType>> findAllPaginado(@RequestParam int size, @RequestParam int page,
@@ -84,12 +84,10 @@ public class DocumentTypeRestController {
 
 		return getPagedResourcesAssembler().toModel(documentType, getDocumentTypeModelAssembler());
 	}
-	
 
 	@PostMapping("/documentsTypes")
 	@CrossOrigin(origins = "*")
 	public boolean save(@RequestBody DocumentType documentType) {
-		 	
 		return existById(getDocumentTypeService().save(documentType).getId());
 	}
 
@@ -99,20 +97,10 @@ public class DocumentTypeRestController {
 		getDocumentTypeService().deleteById(id);
 		return getDocumentTypeService().existsById(id);
 	}
-	
+
 	@PostMapping("/documentsTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existById(@PathVariable int id) {
 		return getDocumentTypeService().existsById(id);
 	}
 }
-
-
- 
-
-
-
-
-
-
-
