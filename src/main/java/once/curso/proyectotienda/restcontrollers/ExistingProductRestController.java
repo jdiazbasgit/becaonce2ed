@@ -90,8 +90,9 @@ public class ExistingProductRestController {
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
 	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	@CrossOrigin(origins ="*")
 	// SPRING BOOT APP
+	@CrossOrigin(origins ="*")
+	
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
