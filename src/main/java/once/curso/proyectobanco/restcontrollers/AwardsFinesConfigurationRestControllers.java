@@ -31,6 +31,7 @@ import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
 @RestController
 @RequestMapping("/once")
 @Data
+@CrossOrigin(origins = "*")
 public class AwardsFinesConfigurationRestControllers {
 
 	@Autowired
@@ -89,8 +90,8 @@ public class AwardsFinesConfigurationRestControllers {
 	@PostMapping(value = "/AwardsFinesConfiguration")
 	@CrossOrigin(origins = "*")
 
-	public AwardsFinesConfiguration save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
-		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
+	public boolean save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
+		return getAwardsFinesConfigurationServices().existsById(getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration).getId());
 	}
 
 	@PutMapping(value = "/AwardsFinesConfiguration")
@@ -106,5 +107,10 @@ public class AwardsFinesConfigurationRestControllers {
 
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
+	}
+	
+	@PostMapping("/AwardsFinesConfiguration/{id}")
+	public boolean existsById(@PathVariable int id) {
+		return getAwardsFinesConfigurationServices().existsById(id);
 	}
 }

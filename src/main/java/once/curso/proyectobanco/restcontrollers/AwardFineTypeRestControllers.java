@@ -31,6 +31,7 @@ import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 @RestController
 @RequestMapping("/once")
 @Data
+@CrossOrigin(origins = "*")
 public class AwardFineTypeRestControllers {
 	
 	@Autowired
@@ -87,9 +88,9 @@ public class AwardFineTypeRestControllers {
 	@PostMapping(value = "/awardsFinesTypes")
 	@CrossOrigin(origins = "*")
 	
-	public AwardsFinesType save(@RequestBody AwardsFinesType awardFineType) {
-		return getAwardFineTypeServices().save(awardFineType);
-	}
+	public boolean save(@RequestBody AwardsFinesType awardFineType) {
+		return getAwardFineTypeServices().existsById(getAwardFineTypeServices().save(awardFineType).getId());	
+		}
 
 	@PutMapping(value = "/awardsFinesTypes")
 	@CrossOrigin(origins = "*")
@@ -103,5 +104,10 @@ public class AwardFineTypeRestControllers {
 
 	public void deleteById(@PathVariable int id) {
 		getAwardFineTypeServices().deleteById(id);
+	}
+	
+	@PostMapping("/awrdFineType/{id}")
+	public boolean existsById(@PathVariable int id) {
+		return getAwardFineTypeServices().existsById(id);
 	}
 }
