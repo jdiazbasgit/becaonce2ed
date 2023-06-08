@@ -12,13 +12,13 @@ export class RolComponent implements OnInit{
   @ViewChild(ModalRolComponent) modal: any
   id : number = 0;
   titulo: string;
-  roles: any[];
+  roles: any[] = [];
   mensaje: string = "";
   @Input() eventoDeHijo: string = ""
-  
+  //comprobar roles su inicializador
   constructor(private service: RolesService){
     this.titulo = "Tipos de Roles"
-    this.roles: [];
+    this.roles;
   }
 
   eliminar(id: any){
