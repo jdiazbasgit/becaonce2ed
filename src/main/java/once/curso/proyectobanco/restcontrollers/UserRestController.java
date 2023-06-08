@@ -77,8 +77,12 @@ public class UserRestController {
 	@GetMapping("/users/{id}")
 	public EntityModel<User> findById(@PathVariable Integer id) {
 	User user= getUserService().findById(id).get();
-	 user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
-			  .findById(user.getId())).withSelfRel());
+	user.add(WebMvcLinkBuilder
+			.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
+					.findById(user.getRol().getId())).withRel("rol"));
+			user.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+							.findById(user.getId())).withSelfRel());
 	return EntityModel.of(user);
 	}
 	
