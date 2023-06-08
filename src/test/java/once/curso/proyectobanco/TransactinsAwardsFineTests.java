@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import lombok.Data;
 import once.curso.proyectobanco.entities.TransactionsAwardsFine;
-import once.curso.proyectobanco.services.AwardFineTypeServices;
+import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 import once.curso.proyectobanco.services.TransactionService;
 import once.curso.proyectobanco.services.TransactionsAwardsFineService;
 
@@ -25,7 +25,7 @@ class TransactinsAwardsFineTests {
 	@Autowired
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	@Autowired
-	private AwardFineTypeServices awardsFineTypeServices;
+	private AwardsFinesTypeServices awardsFineTypeServices;
 	@Autowired
 	private TransactionService transactionService;
 
@@ -78,8 +78,8 @@ class TransactinsAwardsFineTests {
 
 	@Test
 	public void findAllById() {
-		List<TransactionsAwardsFine> datosCompletos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()
-				.findAll();
+		List<TransactionsAwardsFine> datosCompletos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService().findAll();
+	
 		List<Integer> idsCompletos = new ArrayList<Integer>();
 		datosCompletos.forEach(dc -> idsCompletos.add(dc.getId()));
 		List<TransactionsAwardsFine> datosNuevos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()

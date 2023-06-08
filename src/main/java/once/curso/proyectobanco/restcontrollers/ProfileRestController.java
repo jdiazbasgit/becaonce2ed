@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,15 +27,29 @@ public class ProfileRestController {
 	@Autowired
 	private ProfileService profileService;
 
-@GetMapping(value = "/profiles/{id}")
-	public Profile findById(@PathVariable Integer id) {
-		return getProfileService().findById(id).get();
+	@GetMapping("/profiles/{id}")
+	public EntityModel<Profile> findById(@PathVariable Integer id) {
+	Profile profile= getProfileService().findById(id).get();
+	profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class)
+			  .findById(profile.getId())).withSelfRel());
+	return EntityModel.of(profile);
 	}
 	
-	@GetMapping(value = "/profiles")
-	public Iterable<Profile> findAll() {
-		return getProfileService().findAll();
+	@GetMapping("/profiles")	
+	public CollectionModel<Profile> findAll(){
+		  Iterable<Profile> profiles= getProfileService().findAll();
+		  profiles.forEach(p->{
+			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class)
+					  .findById(p.getIdentificationType().getId())).withRel("identificationType"));
+			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+					  .findById(p.getUser().getId())).withRel("user"));
+			  p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class)
+					  .findById(p.getId())).withSelfRel());
+		  });
+		  return CollectionModel.of(profiles);
 	}
+		
+
 	
 	@PostMapping("/profiles")
 	public Profile save(@RequestBody Profile profile) {

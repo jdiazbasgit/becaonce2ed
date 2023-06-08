@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +27,25 @@ public class IdentificationTypeRestController {
 	@Autowired
 	private IdentificationTypeService identificationTypeService;
 
-@GetMapping(value = "/identificationsTypes/{id}")
-	public IdentificationType findById(@PathVariable Integer id) {
-		return getIdentificationTypeService().findById(id).get();
+
+	@GetMapping(value = "/identificationsTypes/{id}")
+	public EntityModel<IdentificationType> findById(@PathVariable Integer id) {
+		IdentificationType identificationType=  getIdentificationTypeService().findById(id).get();
+		identificationType.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class)
+				.findById(identificationType.getId())).withSelfRel());
+		 return EntityModel.of(identificationType);
 	}
 	
 	@GetMapping(value = "/identificationsTypes")
-	public Iterable<IdentificationType> findAll() {
-		return getIdentificationTypeService().findAll();
+	public CollectionModel<IdentificationType> findAll(){
+		Iterable<IdentificationType> identificationsTypes= getIdentificationTypeService().findAll();
+		identificationsTypes.forEach(i->{
+			i.add(WebMvcLinkBuilder.
+					linkTo(WebMvcLinkBuilder.methodOn(IdentificationTypeRestController.class).
+							findById(i.getId())).withSelfRel());
+		});
+		 
+		 return CollectionModel.of(identificationsTypes);
 	}
 	
 	@PostMapping("/identificationsTypes")

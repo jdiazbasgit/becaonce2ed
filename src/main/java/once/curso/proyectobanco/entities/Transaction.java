@@ -12,12 +12,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table (name="transactions")
-public class Transaction {
+public class Transaction extends RepresentationModel<Transaction> {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)

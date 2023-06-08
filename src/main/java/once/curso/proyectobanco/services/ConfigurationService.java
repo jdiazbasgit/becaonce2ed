@@ -3,7 +3,8 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -41,7 +42,11 @@ public class ConfigurationService {
 	public Iterable<Configuration> findAll() {
 		return getConfigurationCRUDRepository().findAll();
 	}
-
+	
+	public Page<Configuration> findAll(Pageable pageable) {
+		return getConfigurationCRUDRepository().findAll(pageable);
+	}
+	
 	public Iterable<Configuration> findAllById(Iterable<Integer> ids) {
 		return getConfigurationCRUDRepository().findAllById(ids);
 	}

@@ -3,6 +3,9 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.AwardsFinesType;
-import once.curso.proyectobanco.services.AwardFineTypeServices;
+import once.curso.proyectobanco.services.AwardsFinesTypeServices;
 
 @RestController
 @RequestMapping("/once")
@@ -22,16 +25,28 @@ import once.curso.proyectobanco.services.AwardFineTypeServices;
 public class AwardFineTypeRestControllers {
 
 	@Autowired
-	private AwardFineTypeServices awardFineTypeServices;
+	private AwardsFinesTypeServices awardFineTypeServices;
 
 	@GetMapping(value = "/awardsFinesTypes/{id}")
-	public AwardsFinesType findById(@PathVariable Integer id) {
-		return getAwardFineTypeServices().findById(id).get();
+	public EntityModel<AwardsFinesType> findById(@PathVariable int id) {
+		AwardsFinesType awardsFinesType = getAwardFineTypeServices().findById(id).get();
+
+			awardsFinesType
+					.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+							.findById(awardsFinesType.getId())).withSelfRel());
+		
+		return EntityModel.of(awardsFinesType);
 	}
 
 	@GetMapping(value = "/awardsFinesTypes")
-	public Iterable<AwardsFinesType> findAll(@PathVariable Integer id) {
-		return getAwardFineTypeServices().findAll();
+	public CollectionModel<AwardsFinesType> findAll() {
+		Iterable<AwardsFinesType> awardsFinesType = getAwardFineTypeServices().findAll();
+		awardsFinesType.forEach(c -> {
+			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+					.findById(c.getId())).withSelfRel());
+		});
+		
+		return CollectionModel.of(awardsFinesType);
 	}
 
 	@PostMapping(value = "/awardsFinesTypes")
@@ -45,7 +60,9 @@ public class AwardFineTypeRestControllers {
 	}
 
 	@DeleteMapping(value = "/awrdFineType")
-	public AwardsFinesType deleteById(@RequestBody AwardsFinesType awardFineType) {
-		return getAwardFineTypeServices().save(awardFineType);
+	public void deleteById(@PathVariable int id) {
+		 getAwardFineTypeServices().deleteById(id);
 	}
+
+	
 }
