@@ -12,6 +12,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 
 @RestController
 @Data
-@RequestMapping({"/api/v1/"})
+@RequestMapping({"/once"})
 public class SubCategoryRestController {
 
 	@Autowired
@@ -40,17 +41,15 @@ public class SubCategoryRestController {
 	@Autowired
 	private SubCategoryService subcategoryService;
 	
-	@PostMapping("/subcategory/create")
-	public SubCategory save(@RequestBody SubCategory subCategory) {
-		return getSubcategoryService().save(subCategory);
-	}
-	
+
 	@GetMapping("/subcategory")
+	@CrossOrigin(origins ="*")
 	public Iterable<SubCategory> findAll(){
 		return getSubcategoryService().findAll();
 	}
 	
 	@GetMapping("/subcategoryHateoas")
+	@CrossOrigin(origins ="*")
 	public CollectionModel<SubCategory> getSubCategory() {
 		Iterable<SubCategory> subCategory = getSubcategoryService().findAll();
 		subCategory.forEach(s->{
@@ -61,6 +60,7 @@ public class SubCategoryRestController {
 	}	
 	
 	@GetMapping("/subcategory/{id}")
+	@CrossOrigin(origins ="*")
 	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId())).withRel("subcategory"));
@@ -68,12 +68,8 @@ public class SubCategoryRestController {
 		 return EntityModel.of(subCategory);
 	}
 	
-	@DeleteMapping("/subcategory/{id}")
-	public void deleteById(@PathVariable int id) {
-		getSubcategoryService().deleteById(id);
-	}
-	
 	@GetMapping("/subcategoryPaginado")
+	@CrossOrigin(origins ="*")
 	   public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 		   Sort orden=Sort.by("a");
@@ -91,7 +87,25 @@ public class SubCategoryRestController {
 		   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
 	   }
 	
+	@PostMapping("/subcategory")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody SubCategory subCategory) {
+		 	
+		return existById(getSubcategoryService().save(subCategory).getId());
+	}
+
+	@DeleteMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getSubcategoryService().deleteById(id);
+		return getSubcategoryService().existsById(id);
+	}
 	
+	@PostMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getSubcategoryService().existsById(id);
+	}
 	
 	
 	
