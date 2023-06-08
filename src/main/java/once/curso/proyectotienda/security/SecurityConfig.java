@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import lombok.Data;
 import once.curso.proyectotienda.services.UserDetailLoginService;
 
+@SuppressWarnings("deprecation")
 @Data
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,7 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 		http.authorizeHttpRequests().antMatchers("/login").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/documentsTypes/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/documentsTypes").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/cardTypes").permitAll();
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
 		http.cors();
