@@ -3,7 +3,10 @@ package once.curso.proyectotienda.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import lombok.Data;
 import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.repositories.DocumentTypeCRUDRepository;
@@ -38,8 +41,14 @@ public class DocumentTypeService {
 
 	public Iterable<DocumentType> findAll() {
 		return getDocumentTypeCRUDRepository().findAll();
+		
 	}
 
+	public Page<DocumentType> findAll(Pageable pageable){
+		return getDocumentTypeCRUDRepository().findAll(pageable);
+	}
+	
+	
 	public Iterable<DocumentType> findAllById(Iterable<Integer> ids) {
 		return getDocumentTypeCRUDRepository().findAllById(ids);
 

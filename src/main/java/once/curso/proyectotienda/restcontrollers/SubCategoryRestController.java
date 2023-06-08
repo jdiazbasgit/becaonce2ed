@@ -41,12 +41,7 @@ public class SubCategoryRestController {
 	@Autowired
 	private SubCategoryService subcategoryService;
 	
-	@PostMapping("/subcategory/create")
-	@CrossOrigin(origins ="*")
-	public SubCategory save(@RequestBody SubCategory subCategory) {
-		return getSubcategoryService().save(subCategory);
-	}
-	
+
 	@GetMapping("/subcategory")
 	@CrossOrigin(origins ="*")
 	public Iterable<SubCategory> findAll(){
@@ -73,12 +68,6 @@ public class SubCategoryRestController {
 		 return EntityModel.of(subCategory);
 	}
 	
-	@DeleteMapping("/subcategory/{id}")
-	@CrossOrigin(origins ="*")
-	public void deleteById(@PathVariable int id) {
-		getSubcategoryService().deleteById(id);
-	}
-	
 	@GetMapping("/subcategoryPaginado")
 	@CrossOrigin(origins ="*")
 	public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
@@ -98,7 +87,25 @@ public class SubCategoryRestController {
 	   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
 	}
 	
+	@PostMapping("/subcategory")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody SubCategory subCategory) {
+		 	
+		return existById(getSubcategoryService().save(subCategory).getId());
+	}
+
+	@DeleteMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getSubcategoryService().deleteById(id);
+		return getSubcategoryService().existsById(id);
+	}
 	
+	@PostMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getSubcategoryService().existsById(id);
+	}
 	
 	
 	
