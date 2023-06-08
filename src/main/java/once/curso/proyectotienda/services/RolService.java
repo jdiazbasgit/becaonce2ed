@@ -3,6 +3,8 @@ package once.curso.proyectotienda.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -12,10 +14,10 @@ import once.curso.proyectotienda.repositories.RolCRUDRepository;
 @Service
 @Data
 public class RolService {
-	
+
 	@Autowired
 	private RolCRUDRepository rolesCRUDRepository;
-	
+
 	public <S extends Rol> S save(S entity) {
 		// orden 5, prueba hecha
 		return getRolesCRUDRepository().save(entity);
@@ -50,6 +52,10 @@ public class RolService {
 	public Iterable<Rol> findAllById(Iterable<Integer> ids) {
 		// orden 3
 		return getRolesCRUDRepository().findAllById(ids);
+	}
+
+	public Page<Rol> findAll(Pageable pageable) {
+		return getRolesCRUDRepository().findAll(pageable);
 	}
 
 	public long count() {

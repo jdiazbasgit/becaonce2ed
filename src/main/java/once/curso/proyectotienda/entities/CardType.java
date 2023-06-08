@@ -19,4 +19,4 @@ public class CardType  extends RepresentationModel<CardType>{
 	private int id;
 	private String description;
 
-}
+} 
