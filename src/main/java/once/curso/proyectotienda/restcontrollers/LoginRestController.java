@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,36 +30,34 @@ public class LoginRestController {
 	
 	@PostMapping("/login")
 	@CrossOrigin(origins = "*")
-	public ResponseEntity<UserDto> verLogin(@RequestBody Login login) {
-	    UserDto userDto = new UserDto();
-
-	    User user = userDetailLoginService.getUser(login.getUsuario());
-	    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(5);
-
-	    if (user != null && encoder.matches(login.getClave(), user.getPassword())) {
-	        userDto.setUser(user.getUser());
-	        Set<Rol> roles = new HashSet<>();
-	        roles.add(user.getRol());
-	        userDto.setRoles(roles);
-	        userDto.setToken(getToken(user.getUser(), roles));
-	        return ResponseEntity.ok(userDto);
-	    } else {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-	    }
+	public UserDto verLogin(@RequestBody Login login) {
+		UserDto userDto= new UserDto();
+		//login= new Login();
+		//login.setUsuario("PEPE");
+		//login.setClave("1234");
+		User user=getUserDetailLoginService().getUser(login.getUsuario());
+		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder(5);
+		
+		if (user!=null) {
+			if (encoder.matches(login.getClave(), user.getPassword())) {
+				userDto.setUser(user.getUser());
+				Set<Rol> roles = new HashSet<Rol>();
+				roles.add(user.getRol());
+				userDto.setRoles(roles);
+				userDto.setToken(getToken(user.getUser(), roles));
+			} 
+		}
+		return userDto;
 	}
 
 	private String getToken(String user, Set<Rol> roles) {
-	    String securityKey = "onceBanco";
-	    String token = Jwts.builder()
-	            .setId(securityKey)
-	            .setSubject(user)
-	            .claim("roles", roles)
-	            .setIssuedAt(new Date(System.currentTimeMillis()))
-	            .setExpiration(new Date(System.currentTimeMillis() + 60000))
-	            .signWith(SignatureAlgorithm.HS512, securityKey.getBytes())
-	            .compact();
-
-	    return "Bearer " + token;
+		String securityKey="onceBanco";
+		String token=Jwts.builder().setId(securityKey).setSubject(user).claim("roles", roles)
+				.setIssuedAt(new Date(System.currentTimeMillis()))
+				//.setExpiration(new Date(System.currentTimeMillis()+60000))
+				.signWith(SignatureAlgorithm.HS512, securityKey.getBytes()).compact();
+				
+		return "Bearer "+token;
 	}
 
 }
