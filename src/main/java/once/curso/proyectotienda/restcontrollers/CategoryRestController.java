@@ -13,6 +13,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,7 +81,25 @@ public class CategoryRestController {
 	   
 	   return getPagedResourcesAssembler().toModel(category,getCategoryModelAssembler());
    }
-   
+   @PostMapping("/documentsTypes")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody Category category) {
+		 	
+		return existById(getCategoryService().save(category).getId());
+	}
+
+	@DeleteMapping("/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getCategoryService().deleteById(id);
+		return getCategoryService().existsById(id);
+	}
+	
+	@PostMapping("/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getCategoryService().existsById(id);
+	}
 	
 
 

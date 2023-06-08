@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.model.SubCategoryModelAssembler;
 import once.curso.proyectotienda.services.SubCategoryService;
@@ -41,12 +42,7 @@ public class SubCategoryRestController {
 	@Autowired
 	private SubCategoryService subcategoryService;
 	
-	@PostMapping("/subcategory/create")
-	@CrossOrigin(origins ="*")
-	public SubCategory save(@RequestBody SubCategory subCategory) {
-		return getSubcategoryService().save(subCategory);
-	}
-	
+
 	@GetMapping("/subcategory")
 	@CrossOrigin(origins ="*")
 	public Iterable<SubCategory> findAll(){
@@ -73,12 +69,6 @@ public class SubCategoryRestController {
 		 return EntityModel.of(subCategory);
 	}
 	
-	@DeleteMapping("/subcategory/{id}")
-	@CrossOrigin(origins ="*")
-	public void deleteById(@PathVariable int id) {
-		getSubcategoryService().deleteById(id);
-	}
-	
 	@GetMapping("/subcategoryPaginado")
 	@CrossOrigin(origins ="*")
 	   public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
@@ -98,7 +88,25 @@ public class SubCategoryRestController {
 		   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
 	   }
 	
+	@PostMapping("/documentsTypes")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody SubCategory subCategory) {
+		 	
+		return existById(getSubcategoryService().save(subCategory).getId());
+	}
+
+	@DeleteMapping("/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getSubcategoryService().deleteById(id);
+		return getSubcategoryService().existsById(id);
+	}
 	
+	@PostMapping("/documentsTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getSubcategoryService().existsById(id);
+	}
 	
 	
 	
