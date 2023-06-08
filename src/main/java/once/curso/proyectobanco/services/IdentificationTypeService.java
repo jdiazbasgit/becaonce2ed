@@ -3,6 +3,8 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -34,6 +36,10 @@ public class IdentificationTypeService {
 
 	public Iterable<IdentificationType> findAll() {
 		return getIdentificationTypeCRUDRepository().findAll();
+	}
+	
+	public Page<IdentificationType> findAll(Pageable pageable) {
+		return getIdentificationTypeCRUDRepository().findAll(pageable);
 	}
 
 	public Iterable<IdentificationType> findAllById(Iterable<Integer> ids) {
