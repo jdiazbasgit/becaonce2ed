@@ -24,19 +24,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.SoldProduct;
+import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.SoldProductService;
 
 @RestController
-@RequestMapping({"/once"})
+@RequestMapping("/once")
 @Data
 public class SoldProductRestController {
 
 	
 	@Autowired
 	private SoldProductModelAssembler soldProductModelAssembler;
-@Autowired
+
+	@Autowired
 	private  PagedResourcesAssembler<SoldProduct> pagedResourcesAssembler;
+	
 	@Autowired
 	private SoldProductService soldProductService;
 
@@ -47,6 +50,12 @@ public class SoldProductRestController {
 	}
 	
 	@GetMapping("/soldProducts")
+	@CrossOrigin(origins ="*")
+	public Iterable<SoldProduct> findAll(){
+		return getSoldProductService().findAll();
+	}
+	
+	@GetMapping("/soldProducts/all")
 	@CrossOrigin(origins ="*")
 	public CollectionModel<SoldProduct> getSoldProduct() {
 		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
@@ -66,7 +75,7 @@ public class SoldProductRestController {
 		 return EntityModel.of(soldProduct);
 	}
 
-	@DeleteMapping("/soldProducts/{id}")
+	@DeleteMapping("/soldProducts/delete/{id}")
 	@CrossOrigin(origins ="*")
 	public void deleteById(@PathVariable int id) {
 		getSoldProductService().deleteById(id);
@@ -74,17 +83,16 @@ public class SoldProductRestController {
 	
 	@GetMapping("/soldProductsPaginado")
 	@CrossOrigin(origins ="*")
-	   public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		   Sort orden=Sort.by("a");
-		   String campo=stringTokenizer.nextToken();
-		   String tipoOrden= stringTokenizer.nextToken();
-		   
-		   if(tipoOrden.equals("asc"))
-			   orden=Sort.by(campo).ascending();
-		   else 
-			   orden=Sort.by(campo).descending();
-		   
+		  Sort orden=Sort.by("a");
+	   String campo=stringTokenizer.nextToken();
+	   String tipoOrden= stringTokenizer.nextToken();
+	   
+	   if(tipoOrden.equals("asc"))
+		   orden=Sort.by(campo).ascending();
+	   else 
+		   orden=Sort.by(campo).descending();
 		   Pageable pageable=PageRequest.of(page,size,orden);
 		   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
 		   

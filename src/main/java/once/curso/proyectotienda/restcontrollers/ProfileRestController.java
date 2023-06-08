@@ -16,6 +16,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,14 +29,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.Profile;
-import once.curso.proyectotienda.entities.SoldProduct;
 import once.curso.proyectotienda.model.ProfileModelAssembler;
-import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.ProfileService;
 
 @RestController
 @Data
-@RequestMapping({"/api/v1/"})
+@RequestMapping("/once")
 public class ProfileRestController {
 	
 	@Autowired
@@ -48,31 +47,38 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	/* C CREATE A PROFILE */
-	@PostMapping("/profiles")
+	@PostMapping("/profiles/create")
+	@CrossOrigin(origins = "*")
 	public Profile createProfile(@RequestBody Profile newProfile) {
 		return getProfileService().save(newProfile);
 	}
 	
 	/* R READ ALL PROFILE */
 	@GetMapping("/profiles")
+	@CrossOrigin(origins = "*")
 	public CollectionModel<Profile> getProfile() {
 		Iterable<Profile> profile = getProfileService().findAll();
 		profile.forEach(s->{
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("user"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("cardTypes"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstypes().getId())).withRel("docomentTypes"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
+			 s.add(WebMvcLinkBuilder
+					 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("user"));
+			 s.add(WebMvcLinkBuilder
+					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("cardTypes"));
+			 s.add(WebMvcLinkBuilder
+					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstype().getId())).withRel("docomentTypes"));
+			 s.add(WebMvcLinkBuilder
+					 .linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
 		 });
 		 return CollectionModel.of(profile);
 	}	
 	
 	/* R READ A PROFILE */
 	@GetMapping("/profiles/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<Profile> findById(@PathVariable int id) {
 		Profile profile = getProfileService().findById(id).get();
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstypes().getId())).withRel("docomentTypes"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
 	}
@@ -81,6 +87,7 @@ public class ProfileRestController {
 	/* U UPDATE A PROFILE */
 	@PutMapping("/profiles/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
 	//@GetMapping("/profiles/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<Profile> updateProfile(@PathVariable(value = "id") int profileId, @RequestBody Profile profileDetails) 
 			throws ResourceNotFoundException {
 		Profile profile = getProfileService().findById(profileId)
@@ -99,7 +106,7 @@ public class ProfileRestController {
 		profile.setImage(profileDetails.getImage());
 		profile.setUsers(profileDetails.getUsers());
 		profile.setCardstypes(profileDetails.getCardstypes());
-		profile.setDocumentstypes(profileDetails.getDocumentstypes());
+		profile.setDocumentstype(profileDetails.getDocumentstype());
 	    final Profile updateProfile = getProfileService().save(profile);
 	    return ResponseEntity.ok(updateProfile);
 	}
@@ -107,6 +114,7 @@ public class ProfileRestController {
 	/* D DELETE A PROFILES */
 	@DeleteMapping("/profiles/delete/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
 	//@GetMapping("/profiles/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	@CrossOrigin(origins = "*")
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int profileId) 
 			throws ResourceNotFoundException {
 		Profile profile = getProfileService().findById(profileId)
@@ -120,18 +128,20 @@ public class ProfileRestController {
 	
 	/* TOTAL PROFILES */
 	@GetMapping("/profiles/count")
+	@CrossOrigin(origins = "*")
 	public long getprofileCount() {
 		return profileService.count();
     }
 	
 	@GetMapping("/profilesPaginado")
-	   public PagedModel<EntityModel<Profile>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	@CrossOrigin(origins = "*")
+	public PagedModel<EntityModel<Profile>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		   Sort orden=Sort.by("a");
-		   String campo=stringTokenizer.nextToken();
-		   String tipoOrden= stringTokenizer.nextToken();
-		   
-		   if(tipoOrden.equals("asc"))
+	   Sort orden=Sort.by("a");
+	   String campo=stringTokenizer.nextToken();
+	   String tipoOrden= stringTokenizer.nextToken();
+	   
+	   if(tipoOrden.equals("asc"))
 			   orden=Sort.by(campo).ascending();
 		   else 
 			   orden=Sort.by(campo).descending();
@@ -140,7 +150,7 @@ public class ProfileRestController {
 		   Page<Profile> profile=getProfileService().findAll(pageable);
 		   
 		   return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
-	   }
+	 }
 
 	/*
 	 http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc

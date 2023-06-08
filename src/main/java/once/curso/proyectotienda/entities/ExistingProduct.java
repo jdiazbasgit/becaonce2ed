@@ -33,5 +33,5 @@ public class ExistingProduct extends RepresentationModel<ExistingProduct> {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="subcategories_id")
-	private SubCategory subcategories;
+	private SubCategory subcategory;
 }

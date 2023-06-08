@@ -43,7 +43,6 @@ public class SubCategoryService {
 		}
 
 	public Iterable<SubCategory> findAll() {
-
 		return getSubCategoryCRUDRepository().findAll();
 	}
 

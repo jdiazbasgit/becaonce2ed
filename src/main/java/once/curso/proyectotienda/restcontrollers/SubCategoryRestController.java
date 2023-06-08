@@ -29,7 +29,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 
 @RestController
 @Data
-@RequestMapping({"/once"})
+@RequestMapping("/once")
 public class SubCategoryRestController {
 
 	@Autowired
@@ -41,12 +41,7 @@ public class SubCategoryRestController {
 	@Autowired
 	private SubCategoryService subcategoryService;
 	
-	@PostMapping("/subcategory/create")
-	@CrossOrigin(origins ="*")
-	public SubCategory save(@RequestBody SubCategory subCategory) {
-		return getSubcategoryService().save(subCategory);
-	}
-	
+
 	@GetMapping("/subcategory")
 	@CrossOrigin(origins ="*")
 	public Iterable<SubCategory> findAll(){
@@ -73,32 +68,44 @@ public class SubCategoryRestController {
 		 return EntityModel.of(subCategory);
 	}
 	
-	@DeleteMapping("/subcategory/{id}")
-	@CrossOrigin(origins ="*")
-	public void deleteById(@PathVariable int id) {
-		getSubcategoryService().deleteById(id);
-	}
-	
 	@GetMapping("/subcategoryPaginado")
 	@CrossOrigin(origins ="*")
-	   public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		   Sort orden=Sort.by("a");
-		   String campo=stringTokenizer.nextToken();
-		   String tipoOrden= stringTokenizer.nextToken();
-		   
-		   if(tipoOrden.equals("asc"))
-			   orden=Sort.by(campo).ascending();
-		   else 
-			   orden=Sort.by(campo).descending();
-		   
-		   Pageable pageable=PageRequest.of(page,size,orden);
-		   Page<SubCategory> subcategory=getSubcategoryService().findAll(pageable);
-		   
-		   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
-	   }
+	public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+	   Sort orden=Sort.by("a");
+	   String campo=stringTokenizer.nextToken();
+	   String tipoOrden= stringTokenizer.nextToken();
+	   
+	   if(tipoOrden.equals("asc"))
+		   orden=Sort.by(campo).ascending();
+	   else 
+		   orden=Sort.by(campo).descending();
+	   
+	   Pageable pageable=PageRequest.of(page,size,orden);
+	   Page<SubCategory> subcategory=getSubcategoryService().findAll(pageable);
+	   
+	   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
+	}
 	
+	@PostMapping("/subcategory")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody SubCategory subCategory) {
+		 	
+		return existById(getSubcategoryService().save(subCategory).getId());
+	}
+
+	@DeleteMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getSubcategoryService().deleteById(id);
+		return getSubcategoryService().existsById(id);
+	}
 	
+	@PostMapping("/subcategory/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getSubcategoryService().existsById(id);
+	}
 	
 	
 	

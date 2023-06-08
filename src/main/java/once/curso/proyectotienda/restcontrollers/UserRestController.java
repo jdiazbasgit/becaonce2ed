@@ -55,7 +55,6 @@ public class UserRestController {
 					.withSelfRel());
 		});
 		return CollectionModel.of(users);
-
 	}
 
 	@GetMapping("/users/{id}")

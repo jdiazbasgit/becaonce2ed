@@ -21,11 +21,8 @@ public class User extends RepresentationModel<User>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
 	private String user;
-	
 	private String password;
-	
 	private boolean enabled;
 	
 	@JoinColumn(name="roles_id")

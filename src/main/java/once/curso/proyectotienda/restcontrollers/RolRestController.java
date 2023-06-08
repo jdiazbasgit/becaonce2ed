@@ -27,8 +27,8 @@ import once.curso.proyectotienda.model.RolModelAssembler;
 import once.curso.proyectotienda.services.RolService;
 
 @RestController
-@RequestMapping("/once")
 @Data
+@RequestMapping("/once")
 public class RolRestController {
 	
 	@Autowired

@@ -29,7 +29,7 @@ import once.curso.proyectotienda.services.CardTypeService;
 
 @RestController
 @Data
-@RequestMapping({ "/once" })
+@RequestMapping("/once")
 public class CardTypeRestController {
 
 	
