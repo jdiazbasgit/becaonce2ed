@@ -57,7 +57,7 @@ public class ExistingProductTests{
         byte[] imgInBytes = new byte[(int) file.length()];		
 		existingProduct.setImage(imgInBytes);
 			
-	    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+	    existingProduct.setSubcategory(getSubcategoriesService().findById(3).get());
 	
 		getExistingProductService().save(existingProduct);
 		
@@ -89,7 +89,7 @@ public class ExistingProductTests{
 			File file = new File(filename);
 	        byte[] imgInBytes = new byte[(int) file.length()];		
 			existingProduct.setImage(imgInBytes);
-		    existingProduct.setSubcategories(getSubcategoriesService().findById(3).get());
+		    existingProduct.setSubcategory(getSubcategoriesService().findById(3).get());
 		    
 		    getExistingProductService().save(existingProduct);
 		}
