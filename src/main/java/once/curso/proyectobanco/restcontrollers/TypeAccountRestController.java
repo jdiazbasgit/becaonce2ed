@@ -89,8 +89,8 @@ public class TypeAccountRestController {
 
 	@PostMapping(value = "/typeAccounts")
 	@CrossOrigin(origins = "*")
-	public TypeAccount save(@RequestBody TypeAccount typeAccount) {
-		return getTypeAccountService().save(typeAccount);
+	public boolean save(@RequestBody TypeAccount typeAccount) {
+		return getTypeAccountService().existsById(getTypeAccountService().save(typeAccount).getId());
 	}
 
 	@PutMapping(value = "/typeAccounts")
@@ -104,4 +104,9 @@ public class TypeAccountRestController {
 	public void deleteById(@PathVariable Integer id) {
 		getTypeAccountService().deleteById(id);
 	}
+	@GetMapping(value = "/typeAccounts/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existsById(@PathVariable int id) {
+		return getTypeAccountService().existsById(id);
+		}
 }

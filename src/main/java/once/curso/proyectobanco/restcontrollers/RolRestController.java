@@ -85,8 +85,8 @@ public class RolRestController {
 
 	@PostMapping(value = "/roles")
 	@CrossOrigin(origins = "*")
-	public Rol save(@RequestBody Rol rol) {
-		return getRolService().save(rol);
+	public boolean save(@RequestBody Rol rol) {
+		return getRolService().existsById(getRolService().save(rol).getId());
 	}
 	@PutMapping(value="/roles")
 	@CrossOrigin(origins = "*")
@@ -97,5 +97,10 @@ public class RolRestController {
 	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getRolService().deleteById(id);
+	}
+	@PostMapping(value="/roles/{id]")
+	@CrossOrigin(origins="*")
+	public boolean existById(@PathVariable int id) {
+		return getRolService().existsById(id);
 	}
 }

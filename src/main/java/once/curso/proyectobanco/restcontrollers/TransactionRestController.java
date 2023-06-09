@@ -102,8 +102,8 @@ public class TransactionRestController {
 
 	@PostMapping(value = "/transactions")
 	@CrossOrigin(origins = "*")
-	public Transaction save(@RequestBody Transaction transaction) {
-		return getTransactionService().save(transaction);
+	public boolean save(@RequestBody Transaction transaction) {
+		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
 	}
 
 	@PutMapping(value = "/transactions")
@@ -116,5 +116,11 @@ public class TransactionRestController {
 	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
+	}
+	@GetMapping(value = "/transactions/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existsById(@PathVariable int id) {
+		return getTransactionService().existsById(id);
+	
 	}
 }
