@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { DocumentTypeService } from '../servicios/document-type.service';
-import { ModalDocumentTypesComponent } from '../componentes/modal-document-types/modal-document-types.component';
+import { DocumentTypeService } from '../../servicios/document-type.service';
+import { ModalDocumentTypesComponent } from '../../componentes/modal-document-types/modal-document-types.component';
 
 @Component({
   selector: 'app-document-types',
