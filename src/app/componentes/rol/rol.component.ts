@@ -44,7 +44,7 @@ export class RolComponent implements OnInit{
     this.roles = []
     this.service.getDatos("http://localhost:8080/8080/once/roles")
     .subscribe((datos: any) => {
-      this.roles = datos._embedded.docuementTypes;
+      this.roles = datos._embedded.roles;
     })
   }
   modificar(rol: any){
