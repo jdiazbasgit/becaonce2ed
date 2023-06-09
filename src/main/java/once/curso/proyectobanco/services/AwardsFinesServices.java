@@ -3,10 +3,12 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardFine;
+import once.curso.proyectobanco.entities.AwardsFine;
 import once.curso.proyectobanco.repositories.AwardFineCRUDRepositories;
 
 @Service
@@ -18,25 +20,25 @@ public class AwardsFinesServices {
 
 	public void dameTipoPremiosMultas() {
 
-		Iterable<AwardFine> TipoPremiosMultas = getAwardFineCRUDRepositories().findAll();
-		for (AwardFine awardFine : TipoPremiosMultas) {
-			// System.out.println(awardFine.getAwrdFineType());
-			// System.out.println(awardFine.getAwardFieConfiguration());
-			// System.out.println(awardFine.getTime());
-		}
+		// Iterable<AwardsFine> TipoPremiosMultas =
+		// getAwardFineCRUDRepositories().findAll();
+		// for (AwardsFine awardFine : TipoPremiosMultas) {
+		// System.out.println(awardFine.getAwrdFineType());
+		// System.out.println(awardFine.getAwardFieConfiguration());
+		// System.out.println(awardFine.getTime());
 	}
 
-	public <S extends AwardFine> S save(S entity) {
+	public <S extends AwardsFine> S save(S entity) {
 
 		return getAwardFineCRUDRepositories().save(entity);
 	}
 
-	public <S extends AwardFine> Iterable<S> saveAll(Iterable<S> entities) {
+	public <S extends AwardsFine> Iterable<S> saveAll(Iterable<S> entities) {
 
 		return getAwardFineCRUDRepositories().saveAll(entities);
 	}
 
-	public Optional<AwardFine> findById(Integer id) {
+	public Optional<AwardsFine> findById(Integer id) {
 
 		return getAwardFineCRUDRepositories().findById(id);
 	}
@@ -46,12 +48,17 @@ public class AwardsFinesServices {
 		return getAwardFineCRUDRepositories().existsById(id);
 	}
 
-	public Iterable<AwardFine> findAll() {
+	public Iterable<AwardsFine> findAll() {
 
 		return getAwardFineCRUDRepositories().findAll();
 	}
+	
+	public Page<AwardsFine> findAll(Pageable pageable) {
 
-	public Iterable<AwardFine> findAllById(Iterable<Integer> ids) {
+		return getAwardFineCRUDRepositories().findAll(pageable);
+	}
+
+	public Iterable<AwardsFine> findAllById(Iterable<Integer> ids) {
 
 		return getAwardFineCRUDRepositories().findAllById(ids);
 	}
@@ -66,7 +73,7 @@ public class AwardsFinesServices {
 
 	}
 
-	public void delete(AwardFine entity) {
+	public void delete(AwardsFine entity) {
 		getAwardFineCRUDRepositories().delete(entity);
 
 	}
@@ -76,7 +83,7 @@ public class AwardsFinesServices {
 
 	}
 
-	public void deleteAll(Iterable<? extends AwardFine> entities) {
+	public void deleteAll(Iterable<? extends AwardsFine> entities) {
 		getAwardFineCRUDRepositories().deleteAll(entities);
 
 	}
@@ -85,4 +92,5 @@ public class AwardsFinesServices {
 		getAwardFineCRUDRepositories().deleteAll();
 
 	}
+
 }

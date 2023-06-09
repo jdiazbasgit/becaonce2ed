@@ -3,11 +3,13 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.User;
-import once.curso.proyectobanco.repositories.UserRepository;
+import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 
 @Data
@@ -15,7 +17,7 @@ import once.curso.proyectobanco.repositories.UserRepository;
 public class UserService {
 	
 	@Autowired
-	private UserRepository repository;
+	private UserCRUDRepository repository;
 	
 	
 	public <S extends User> S save(S entity) {
@@ -37,6 +39,11 @@ public class UserService {
 	public Iterable<User> findAll() {
 		return getRepository().findAll();
 	}
+	
+	public Page<User> findAll(Pageable pageable) {
+		return getRepository().findAll(pageable);
+	}
+
 
 	public Iterable<User> findAllById(Iterable<Integer> ids) {
 		return getRepository().findAllById(ids);
