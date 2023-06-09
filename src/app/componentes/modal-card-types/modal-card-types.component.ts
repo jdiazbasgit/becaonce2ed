@@ -13,7 +13,7 @@ export class ModalCardTypesComponent implements DoCheck {
   mensaje: string = "";
   cardType:string=""
   fin: boolean = false
-  cardTypePlaceHolder: string = ""
+  descripcionPlaceHolder: string = ""
   @Output() eventoAComunicar = new EventEmitter();
   constructor(private service: CardTypeService) {
     this.descripcion = "";
@@ -26,7 +26,7 @@ export class ModalCardTypesComponent implements DoCheck {
         .subscribe((datos: any) => {
           this.fin = true
           //  if (this.descripcion !== datos.description)
-          this.cardTypePlaceHolder = datos.description;
+          this.descripcionPlaceHolder = datos.description;
 
         })
     }
@@ -38,11 +38,11 @@ export class ModalCardTypesComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/cardTypes", new CardTypeBean(this.id, this.cardTypePlaceHolder))
+      this.service.saveOrUpdate("http://localhost:8080/once/cardTypes", new CardTypeBean(this.id, this.descripcionPlaceHolder))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"
-            this.cardTypePlaceHolder = ""
+            this.descripcion = ""
           }
           else
             this.mensaje = "La grabación no se ha realizado"
