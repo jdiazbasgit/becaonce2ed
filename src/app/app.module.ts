@@ -15,7 +15,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { DocumentTypesComponent } from './document-types/document-types.component';
+import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { CategoryComponent } from './componentes/category/category.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
@@ -25,6 +25,7 @@ import { SoldProductComponent } from './componentes/sold-product/sold-product.co
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
+import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-card-types.component';
 import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 
 @NgModule({
@@ -43,9 +44,10 @@ import { ModalCategoryComponent } from './componentes/modal-category/modal-categ
     UserComponent,
     RolComponent,
     SoldProductComponent,
-    ExistingProductComponent,
+    ExistingProductComponent, 
     CardTypeComponent,
     ConfigurationComponent,
+    ModalCardTypesComponent,
     ModalDocumentTypesComponent,
     ModalCategoryComponent
 
@@ -56,6 +58,7 @@ import { ModalCategoryComponent } from './componentes/modal-category/modal-categ
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
+   // MatToolbarModule,
     MatTableModule,
     MatPaginatorModule
   ],
