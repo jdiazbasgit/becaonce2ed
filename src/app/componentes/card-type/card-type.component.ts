@@ -1,6 +1,6 @@
 import { AfterViewInit,Component, Input, OnInit, ViewChild  } from '@angular/core';
 import { CardTypeService } from '../../servicios/card-type.service';
-import { ModalCardTypesComponent } from '../modal-card-types/modal-card-types.component';
+import { ModalCardTypesComponent } from '../../componentes/modal-card-types/modal-card-types.component';
 
 @Component({
   selector: 'app-card-type',
@@ -11,12 +11,12 @@ export class CardTypeComponent implements OnInit{
   @ViewChild(ModalCardTypesComponent) modal: any
   id: number = 0
   titulo: string;
-  cardTypes: any[];
+  tarjetas: any[];
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: CardTypeService) {
-    this.titulo = "TIPOS DE DESCRIPCIONES"
-    this.cardTypes = [];
+    this.titulo = "TARJETAS DESCRIPCIONES"
+    this.tarjetas = [];
   }
 
   eliminar(id: any) {
@@ -43,16 +43,16 @@ export class CardTypeComponent implements OnInit{
 
   ngOnInit(): void {
 
-    this.cardTypes = []
+    this.tarjetas = []
     this.service.getDatos("http://localhost:8080/once/cardTypes")
       .subscribe((datos: any) => {
-        this.cardTypes = datos._embedded.cardTypes;
+        this.tarjetas = datos._embedded.cardTypes;
       })
   }
 
-  modificar(descripcion: any) {
+  modificar(tarjeta: any) {
     this.mensaje = ""
-    let ruta = descripcion._links.self.href
+    let ruta = tarjeta._links.self.href
     this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
     // console.log(this.id )
 
