@@ -1,13 +1,13 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { DocumentTypeService } from '../servicios/document-type.service';
-import { ModalDocumentTypesComponent } from '../componentes/modal-document-types/modal-document-types.component';
+import { DocumentTypeService } from '../../servicios/document-type.service';
+import { ModalDocumentTypesComponent } from '../../componentes/modal-document-types/modal-document-types.component';
 
 @Component({
-  selector: 'app-ejemplo',
-  templateUrl: './ejemplo.component.html',
-  styleUrls: ['./ejemplo.component.css']
+  selector: 'app-document-types',
+  templateUrl: './document-types.component.html',
+  styleUrls: ['./document-types.component.css']
 })
-export class EjemploComponent implements OnInit {
+export class DocumentTypesComponent implements OnInit {
 
   @ViewChild(ModalDocumentTypesComponent) modal: any
   id: number = 0
