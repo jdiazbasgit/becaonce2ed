@@ -16,7 +16,7 @@ export class DocumentTypesComponent implements OnInit {
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: DocumentTypeService) {
-    this.titulo = "TIPOS DE DESCRIPCIONES"
+    this.titulo = "DOCUMENTOS DESCRIPCIONES"
     this.descripciones = [];
   }
 
