@@ -14,7 +14,6 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import { EjemploComponent } from './ejemplo/ejemplo.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { CategoryComponent } from './componentes/category/category.component';

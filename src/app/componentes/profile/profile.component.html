@@ -1,8 +1,8 @@
 <div class="container mt-3">
-  <div class="mat-elevation-z8">
+<!--  <div class="mat-elevation-z8">
     <h2>Lista de perfiles</h2>
     <button type="button" class="btn btn-primary d-md-block me-2 mt-2 mb-2 rounded-0" >Añadir nuevo usuario</button>
-    <!--<input type="text" [(ngModel)]="searchText" (input)="filterData()" placeholder="Buscar por descripción" class="w-100">-->
+    <input type="text" [(ngModel)]="searchText" (input)="filterData()" placeholder="Buscar por descripción" class="w-100">
 
     <table mat-table [dataSource]="dataSource" class="w-100">
       <ng-container matColumnDef="position" >
@@ -65,5 +65,34 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
-  </div>
+  </div>-->
+
+
+  <div>
+    <h1 class="text-center">{{titulo}}</h1>
+    <h1 class="text-center">{{mensaje}}</h1>
+    <table class="table table-stripped table-bordered">
+        <tr>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">ACCIONES</th>
+        </tr>
+        <tr *ngFor="let descripcion of descripciones">
+            <td class="text-center">{{descripcion.description}}</td>
+            <td class="text-center">
+                <a href="#" (click)="modificar(descripcion)" data-bs-toggle="modal" data-bs-target="#myModal"><i
+                        class="bi bi-pencil-fill"></i>
+                </a>
+                <a href="#" (click)="eliminar(descripcion._links.self.href.substring(descripcion._links.self.href.lastIndexOf('/')+1))">
+                    <i class="bi bi-trash3-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </table>
+    <div class="text-center"><button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
+            data-bs-target="#myModal">ALTA</button></div>
+    <app-modal-document-types (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-document-types>
+</div>
+
+
+
   </div>
