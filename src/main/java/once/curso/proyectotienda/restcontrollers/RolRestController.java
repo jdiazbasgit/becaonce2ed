@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import org.springframework.web.bind.annotation.RequestParam;
 >>>>>>> d948ed6aa77cb085113937622d3f188123f6755b
+=======
+import org.springframework.web.bind.annotation.RequestParam;
+>>>>>>> 58657b5f91bc3486533233994fed931e78f63a98
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
@@ -30,7 +34,6 @@ import once.curso.proyectotienda.model.RolModelAssembler;
 import once.curso.proyectotienda.services.RolService;
 
 @RestController
-@RequestMapping("/once")
 @Data
 @RequestMapping("/once")
 public class RolRestController {

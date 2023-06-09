@@ -44,5 +44,5 @@ public class Profile extends RepresentationModel<Profile>{
 	
 	@ManyToOne
 	@JoinColumn (name="Document_Types_Id")
-	private DocumentType documentstypes;
+	private DocumentType documentstype;
 }

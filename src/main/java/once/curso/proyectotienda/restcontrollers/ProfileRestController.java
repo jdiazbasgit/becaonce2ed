@@ -64,7 +64,7 @@ public class ProfileRestController {
 			 s.add(WebMvcLinkBuilder
 					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("cardTypes"));
 			 s.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstypes().getId())).withRel("docomentTypes"));
+					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstype().getId())).withRel("docomentTypes"));
 			 s.add(WebMvcLinkBuilder
 					 .linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
 		 });
@@ -78,7 +78,7 @@ public class ProfileRestController {
 		Profile profile = getProfileService().findById(id).get();
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstypes().getId())).withRel("docomentTypes"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
 	}
@@ -106,7 +106,7 @@ public class ProfileRestController {
 		profile.setImage(profileDetails.getImage());
 		profile.setUsers(profileDetails.getUsers());
 		profile.setCardstypes(profileDetails.getCardstypes());
-		profile.setDocumentstypes(profileDetails.getDocumentstypes());
+		profile.setDocumentstype(profileDetails.getDocumentstype());
 	    final Profile updateProfile = getProfileService().save(profile);
 	    return ResponseEntity.ok(updateProfile);
 	}

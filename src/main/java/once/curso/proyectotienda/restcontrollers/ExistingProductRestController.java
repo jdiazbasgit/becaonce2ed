@@ -66,7 +66,7 @@ public class ExistingProductRestController {
 		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
 		existingProduct.forEach(u -> {
 			u.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategories().getId()))
+					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategory().getId()))
 					.withRel("subcategory"));
 			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
 					.withSelfRel());
@@ -80,7 +80,7 @@ public class ExistingProductRestController {
 	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
 		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
 		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
-				.findById(existingProduct.getSubcategories().getId())).withRel("subcategory"));
+				.findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
 		existingProduct.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(existingProduct.getId()))
 				.withSelfRel());
@@ -90,8 +90,9 @@ public class ExistingProductRestController {
 	/* U UPDATE A PRODUCT */
 	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
 	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	@CrossOrigin(origins ="*")
 	// SPRING BOOT APP
+	@CrossOrigin(origins ="*")
+	
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
@@ -101,7 +102,7 @@ public class ExistingProductRestController {
 		existingProduct.setPrice(existingProductDetails.getPrice());
 		existingProduct.setImage(existingProductDetails.getImage());
 		existingProduct.setStock(existingProductDetails.getStock());
-		existingProduct.setSubcategories(existingProductDetails.getSubcategories());
+		existingProduct.setSubcategory(existingProductDetails.getSubcategory());
 
 		final ExistingProduct updateExistingProduct = getExistingProductService().save(existingProduct);
 		return ResponseEntity.ok(updateExistingProduct);
