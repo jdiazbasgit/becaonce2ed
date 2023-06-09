@@ -19,6 +19,8 @@ export class PanelAdministradorComponent {
   linksForaneos: string[] = []
   //jsonParaEnviar: any[] = []
   mostrarGrabador: boolean = false
+  datosDeUnaSolaLinea: string[] = []
+  nuevaEntrada: boolean = false
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -104,20 +106,20 @@ export class PanelAdministradorComponent {
     // this.datosBrutos[0][0] = 0
     // this.datosBrutos[0][1] = 0.7
     // console.log(this.datosBrutos[0])
-    let inputsGrabar:string[] = []
+    let inputsGrabar: string[] = []
     console.log(this.propiedadesLocales)
     console.log(this.cabecerasTabla)
     console.log(this.linksForaneos)
     for (let index = 0; index < this.cabecerasTabla.length; index++) {
-      if (index < this.propiedadesLocales.length-this.linksForaneos.length+1){
-        inputsGrabar.push(this.elementRef.nativeElement.querySelector('#input'+index).value)
+      if (index < this.propiedadesLocales.length - this.linksForaneos.length + 1) {
+        inputsGrabar.push(this.elementRef.nativeElement.querySelector('#input' + index).value)
       }
       else
-      inputsGrabar.push(this.cabecerasTabla[index]+"/"+this.elementRef.nativeElement.querySelector('#input'+index).value)      
+        inputsGrabar.push(this.cabecerasTabla[index] + "/" + this.elementRef.nativeElement.querySelector('#input' + index).value)
     }
     //this.elementRef.nativeElement.querySelector('#input')
     console.log(inputsGrabar)
-    
+
 
     // var z = this.construirJson(this.cabecerasTabla, this.datosBrutos[0]);
     let jsonParaEnviar = this.construirJson(this.cabecerasTabla, inputsGrabar);
@@ -140,7 +142,7 @@ export class PanelAdministradorComponent {
     // });
     //pulido = {"id": "0", "current": "0.98"}
     // console.log(pulido)
-    this.service.saveOrUpdate("http://localhost:8080/once/"+this.tablaAConsultar, jsonParaEnviar)
+    this.service.saveOrUpdate("http://localhost:8080/once/" + this.tablaAConsultar, jsonParaEnviar)
       .subscribe((dato: boolean) => {
         if (dato) {
           console.log("Grabacion realizada correctamente")
@@ -149,17 +151,43 @@ export class PanelAdministradorComponent {
           console.log("La grabación no se ha realizado")
         this.consultarTabla(this.tablaAConsultar)
       })
-      
+
   }
 
 
   construirJson(claves: string[], valores: any[]): any {
-    let objeto: any = {};    
+    let objeto: any = {};
     for (let i = 0; i < claves.length; i++) {
       let clave = claves[i];
       let valor = valores[i];
       objeto[clave] = valor;
-    }    
+    }
     return objeto;
+  }
+
+  cargarDatosDeLinea(numero: number, nuevo: boolean) {
+    if (nuevo) {
+      this.nuevaEntrada = true
+      this.datosDeUnaSolaLinea = []
+    }
+    else {
+      this.datosDeUnaSolaLinea = this.datosBrutos[numero]
+      this.nuevaEntrada = false
+    }      
+  }
+
+  borrarLinea(id:number){
+    console.log(this.datosBrutos[id][0])
+    if (confirm("¿Esta seguro de borrar el tipo de documento?")) {
+      this.service.delete("http://localhost:8080/once/"+ this.tablaAConsultar +"/"+ this.datosBrutos[id][0])
+        .subscribe((dato: boolean) => {
+          if (!dato) {
+            this.consultarTabla(this.tablaAConsultar)
+            alert("borrado")
+          }
+          else
+            alert("no borrado")
+        })
+    }
   }
 }
