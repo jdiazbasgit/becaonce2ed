@@ -49,7 +49,7 @@ export class AwardsFineComponent implements OnInit {
     this.descripciones = []
     this.service.getDatos("http://localhost:8080/once/awardFine/")
       .subscribe((datos: any) => {
-        this.descripciones = datos._embedded.documentsTypes;
+        this.descripciones = datos._embedded.awardsFines;
       })
   }
 
@@ -57,6 +57,6 @@ export class AwardsFineComponent implements OnInit {
     this.mensaje = ""
     let ruta = descripcion.links.self.href
     this.modal.id = parseInt(ruta.subscribe(ruta.lastIndexOf("/") + 1))
-    //console.log(this.id)
+    console.log(this.id)
   }
 }
