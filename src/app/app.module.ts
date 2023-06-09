@@ -51,7 +51,7 @@ import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal
     ModalCardTypesComponent,
     ModalDocumentTypesComponent,
     ModalCategoryComponent,
-    ModalSubcategoryComponent
+    
 
   ],
   imports: [
