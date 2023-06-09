@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.IdentificationType;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
 
