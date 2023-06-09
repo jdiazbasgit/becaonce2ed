@@ -38,7 +38,7 @@ export class ModalCardTypesComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/cardTypes", new CardTypeBean(this.id, this.descripcionPlaceHolder))
+      this.service.saveOrUpdate("http://localhost:8080/once/cardTypes", new CardTypeBean(this.id, this.descripcion))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"
