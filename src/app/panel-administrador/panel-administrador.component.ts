@@ -1,7 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
-import Fee from '../beans/Fee';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -21,6 +19,7 @@ export class PanelAdministradorComponent {
   mostrarGrabador: boolean = false
   datosDeUnaSolaLinea: string[] = []
   nuevaEntrada: boolean = false
+  url: string = "http://localhost:8080/once/"
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -31,11 +30,10 @@ export class PanelAdministradorComponent {
     this.datosBrutos = []
     this.tablaAConsultar = nombre
     this.mostrarTabla = true
-    console.log("Sacando Fees con token: " + sessionStorage['token'])
-    this.service.getDatos("http://localhost:8080/once/" + nombre)
+    this.service.getDatos(this.url + nombre)
       .subscribe({
         next: (response) => {
-          console.log("status ok:" + response.status)
+          console.log("status ok:" + response.subscribeStatus)
           console.log(response)
 
           let tablas = Object.keys(response._embedded) //aka profiles
@@ -49,7 +47,6 @@ export class PanelAdministradorComponent {
           // })
           let links = Object.keys(response._embedded[tablas[0]][0]._links)
           console.log(links)
-
 
 
           for (let index = 0; index < tamanoDatos; index++) {
@@ -94,6 +91,15 @@ export class PanelAdministradorComponent {
             console.log(element)
           });
           this.mostrarGrabador = true
+
+          //**
+          this.service.getDatos(this.url + "mappingFKDescriptions")
+          .subscribe({
+            next: (response2) => {
+              console.log("status ok:" + response2.status)
+              console.log(response2)
+            }})
+          //**
         },
         error: (error: any) => {
           console.log("status ko:" + error.status)
@@ -142,7 +148,7 @@ export class PanelAdministradorComponent {
     // });
     //pulido = {"id": "0", "current": "0.98"}
     // console.log(pulido)
-    this.service.saveOrUpdate("http://localhost:8080/once/" + this.tablaAConsultar, jsonParaEnviar)
+    this.service.saveOrUpdate(this.url + this.tablaAConsultar, jsonParaEnviar)
       .subscribe((dato: boolean) => {
         if (dato) {
           console.log("Grabacion realizada correctamente")
@@ -179,7 +185,7 @@ export class PanelAdministradorComponent {
   borrarLinea(id:number){
     console.log(this.datosBrutos[id][0])
     if (confirm("¿Esta seguro de borrar el tipo de documento?")) {
-      this.service.delete("http://localhost:8080/once/"+ this.tablaAConsultar +"/"+ this.datosBrutos[id][0])
+      this.service.delete(this.url + this.tablaAConsultar +"/"+ this.datosBrutos[id][0])
         .subscribe((dato: boolean) => {
           if (!dato) {
             this.consultarTabla(this.tablaAConsultar)
