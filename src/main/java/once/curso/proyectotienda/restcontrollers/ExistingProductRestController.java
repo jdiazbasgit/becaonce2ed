@@ -53,7 +53,7 @@ public class ExistingProductRestController {
 	 */
 
 	/* C CREATE A PRODUCT */
-	@PostMapping("/products/create")
+	@PostMapping("/products")
 	@CrossOrigin(origins ="*")
 	public ExistingProduct createExistingProduct(@RequestBody ExistingProduct newExistingProduct) {
 		return getExistingProductService().save(newExistingProduct);
@@ -109,7 +109,7 @@ public class ExistingProductRestController {
 	}
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/delete/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/products/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
 	@CrossOrigin(origins ="*")
 	// @GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
