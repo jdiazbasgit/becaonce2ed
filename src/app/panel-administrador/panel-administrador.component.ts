@@ -15,11 +15,14 @@ export class PanelAdministradorComponent {
 
   propiedadesLocales: string[] = []
   linksForaneos: string[] = []
+  linksForaneosTabla: string[] = []
   //jsonParaEnviar: any[] = []
   mostrarGrabador: boolean = false
   datosDeUnaSolaLinea: string[] = []
   nuevaEntrada: boolean = false
   url: string = "http://localhost:8080/once/"
+  mappingNombres: string[] = []
+  linkForaneoAka: string[] = []
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -28,6 +31,8 @@ export class PanelAdministradorComponent {
 
   consultarTabla(nombre: string) {
     this.datosBrutos = []
+    this.mappingNombres = []
+    this.linksForaneosTabla = []
     this.tablaAConsultar = nombre
     this.mostrarTabla = true
     this.service.getDatos(this.url + nombre)
@@ -48,7 +53,8 @@ export class PanelAdministradorComponent {
           let links = Object.keys(response._embedded[tablas[0]][0]._links)
           console.log(links)
 
-
+          
+          let unaVuelta:boolean = true
           for (let index = 0; index < tamanoDatos; index++) {
             let linkself = response._embedded[tablas[0]][index]._links.self.href
             let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
@@ -63,10 +69,17 @@ export class PanelAdministradorComponent {
                 //console.log(response._embedded[tablas[0]][index]._links[linkForaneo])
                 let hrefLink = response._embedded[tablas[0]][index]._links[linkForaneo].href
                 let idLink = parseInt(hrefLink.substring(hrefLink.lastIndexOf("/") + 1))
+                console.log("cucuuuuu " + idLink)
+                console.log("cucuuuuu " + hrefLink)
                 filaDatos.push(idLink)
+                if(unaVuelta){
+                  let enPartes = hrefLink.split("/");
+                  this.linksForaneosTabla.push(enPartes[enPartes.length - 2])     
+                }
+                
               }
             });
-
+            unaVuelta = false
             this.datosBrutos.push(filaDatos)
           }
           console.log(this.datosBrutos)
@@ -79,9 +92,50 @@ export class PanelAdministradorComponent {
           this.linksForaneos = links
 
           links.forEach((link: string) => {
-            if (link !== "self")
+            if (link !== "self") {
               cabeceras.push(link)
+              console.log("cucuuuuu " + link)
+              this.mappingNombres.push(link)
+            }
+
           })
+
+          if (this.mappingNombres.length >= 1) {
+            this.service.getDatos(this.url + "mappingFKDescriptions")
+              .subscribe({
+                next: (mapping) => {
+                  console.log("status ok:" + mapping.status)
+                  console.log(mapping)
+
+                  mapping.forEach((mapped: any) => {
+                    if (this.linksForaneosTabla.includes(mapped.table)) {
+                      
+                      console.log(mapped.table)
+                      this.service.getDatos(this.url + mapped.table)
+                        .subscribe({
+                          next: (t) => {
+                            this.linkForaneoAka.push(t._embedded[mapped.table])
+                            console.log(t._embedded.users[0])
+                            //console.log(table[mapped.description])
+                          },
+                        })
+                      console.log(this.linkForaneoAka + "guayy")
+                    }
+
+
+
+                    //this.mappingNombres.push(mapped)
+                  });
+
+                  this.mappingNombres.forEach((mn: any) => {
+                    console.log("guuuuu " + mn)
+                  })
+                }
+              })
+          }
+
+
+
 
           this.cabecerasTabla = cabeceras
           console.log(cabeceras)
@@ -93,12 +147,7 @@ export class PanelAdministradorComponent {
           this.mostrarGrabador = true
 
           //**
-          this.service.getDatos(this.url + "mappingFKDescriptions")
-          .subscribe({
-            next: (response2) => {
-              console.log("status ok:" + response2.status)
-              console.log(response2)
-            }})
+
           //**
         },
         error: (error: any) => {
@@ -179,13 +228,13 @@ export class PanelAdministradorComponent {
     else {
       this.datosDeUnaSolaLinea = this.datosBrutos[numero]
       this.nuevaEntrada = false
-    }      
+    }
   }
 
-  borrarLinea(id:number){
+  borrarLinea(id: number) {
     console.log(this.datosBrutos[id][0])
     if (confirm("¿Esta seguro de borrar el tipo de documento?")) {
-      this.service.delete(this.url + this.tablaAConsultar +"/"+ this.datosBrutos[id][0])
+      this.service.delete(this.url + this.tablaAConsultar + "/" + this.datosBrutos[id][0])
         .subscribe((dato: boolean) => {
           if (!dato) {
             this.consultarTabla(this.tablaAConsultar)

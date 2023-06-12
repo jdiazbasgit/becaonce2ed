@@ -24,12 +24,12 @@
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
-        <th class="bg-success text-white" scope="col" *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
+        <th [ngClass]="{'d-none':cabecera == 'id'}" class="bg-success text-white" scope="col" *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
-        <td *ngFor="let lineaDato of dato">{{lineaDato}}</td>
+        <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">{{lineaDato}}</td>
         <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button' class="icon icon-tabler icon-tabler-edit"
             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
             stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -76,13 +76,13 @@
           <div>
             <div class="mb-3 mt-3">
               <div *ngFor="let cabecera of cabecerasTabla, let i = index">
-                <label class="form-label">{{cabecera}}</label>
+                <label [ngClass]="{'d-none':cabecera == 'id'}" class="form-label d-none">{{cabecera}}</label>
                 <div *ngIf="datosDeUnaSolaLinea[i] != undefined && i==0, else elseBlock">
-                  <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i" disabled>
+                  <input type="text" class="form-control d-none" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i" disabled>
                 </div>
                 <ng-template #elseBlock>
                   <div *ngIf="i == 0, else resto">
-                    <input type="text" class="form-control" value="0" [id]="'input'+i" disabled>
+                    <input type="text" class="form-control d-none" value="0" [id]="'input'+i" disabled>
                   </div>
                   <ng-template #resto>
                     <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
