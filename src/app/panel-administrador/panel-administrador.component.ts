@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
+import { concatMap, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -53,8 +54,8 @@ export class PanelAdministradorComponent {
           let links = Object.keys(response._embedded[tablas[0]][0]._links)
           console.log(links)
 
-          
-          let unaVuelta:boolean = true
+
+          let unaVuelta: boolean = true
           for (let index = 0; index < tamanoDatos; index++) {
             let linkself = response._embedded[tablas[0]][index]._links.self.href
             let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
@@ -72,11 +73,11 @@ export class PanelAdministradorComponent {
                 console.log("cucuuuuu " + idLink)
                 console.log("cucuuuuu " + hrefLink)
                 filaDatos.push(idLink)
-                if(unaVuelta){
+                if (unaVuelta) {
                   let enPartes = hrefLink.split("/");
-                  this.linksForaneosTabla.push(enPartes[enPartes.length - 2])     
+                  this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
                 }
-                
+
               }
             });
             unaVuelta = false
@@ -109,7 +110,7 @@ export class PanelAdministradorComponent {
 
                   mapping.forEach((mapped: any) => {
                     if (this.linksForaneosTabla.includes(mapped.table)) {
-                      
+
                       console.log(mapped.table)
                       this.service.getDatos(this.url + mapped.table)
                         .subscribe({
@@ -155,6 +156,36 @@ export class PanelAdministradorComponent {
         }
       })
   }
+
+  /*ejemplo*/
+  fetchData(): void {
+    let countries
+    this.service
+      .getDatos('URL_PRIMERA_LLAMADA')
+      .pipe(
+        concatMap((acronyms: string[]) => {
+          const observables: any = acronyms.map((acronym: string) =>
+            this.service.getDatos('URL/' + acronym)
+          );
+
+          return forkJoin([observables]);
+        }),
+        concatMap((countryNames: string[]) => {
+          const observables: any = countryNames.map((countryName: string) =>
+            this.service.getDatos('URL2/' + countryName)
+          );
+
+          return forkJoin(observables);
+        })
+      )
+      .subscribe((capitals: string[]) => {
+        countries = capitals;
+
+        // Puedes hacer cualquier otra operación con las capitales obtenidas
+        console.log(countries);
+      });
+  }
+
 
   grabarEntrada() {
     // console.log(this.datosBrutos[0])
@@ -236,6 +267,7 @@ export class PanelAdministradorComponent {
     if (confirm("¿Esta seguro de borrar el tipo de documento?")) {
       this.service.delete(this.url + this.tablaAConsultar + "/" + this.datosBrutos[id][0])
         .subscribe((dato: boolean) => {
+          console.log(dato)
           if (!dato) {
             this.consultarTabla(this.tablaAConsultar)
             alert("borrado")
