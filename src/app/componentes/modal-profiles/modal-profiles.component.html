@@ -3,17 +3,22 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
-
             <!-- Modal Header -->
-            <div class="modal-header justify-content-center"> 
+            <div class="modal-header justify-content-center">
                 <h4 class="modal-title ">ALTA DE TIPO DE DOCUMENTO</h4>
-
             </div>
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <label for="descripcion">Descripcion:</label><input type="text" name="descripcion"
-                    [(ngModel)]="descripcion" value="{{descripcionPlaceHolder}}"><br>
+                <label for="photo">Foto:</label><input type="text" name="imagen" [(ngModel)]="photo" value="{{photoPlaceHolder}}"><br>
+                <label for="name">Nombre:</label><input type="text" name="nombre" [(ngModel)]="name" value="{{namePlaceHolder}}"><br>
+                <label for="lastname">Apellido:</label><input type="text" name="apellido" [(ngModel)]="lastname" value="{{lastnamePlaceHolder}}"><br>
+                <label for="identification">DNI/NIF/NIE:</label><input type="text" name="identificacion" [(ngModel)]="identification" value="{{identificationPlaceHolder}}"><br>
+                <label for="city">Provincia:</label><input type="text" name="provincia" [(ngModel)]="city" value="{{cityPlaceHolder}}"><br>
+                <label for="country">País:</label><input type="text" name="pais" [(ngModel)]="country" value="{{countryPlaceHolder}}"><br>
+                <label for="email">Email:</label><input type="text" name="email" [(ngModel)]="email" value="{{emailPlaceHolder}}"><br>
+                <label for="phone">Teléfono:</label><input type="text" name="telefono" [(ngModel)]="phone" value="{{phonePlaceHolder}}"><br>
+                <label for="creditcard">Tarjeta credito:</label><input type="text" name="tarjetacredito" [(ngModel)]="creditcard" value="{{creditcardPlaceHolder}}"><br>
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>
             <div class="text-center">
