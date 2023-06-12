@@ -4,7 +4,7 @@ class SubcategoryBean{
     constructor(id:number, description:string){
         this.id=id;
         this.description=description;
-        this.
+        
     }
 }
 export default SubcategoryBean;
