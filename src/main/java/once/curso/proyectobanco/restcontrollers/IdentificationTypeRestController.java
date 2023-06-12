@@ -88,8 +88,9 @@ public class IdentificationTypeRestController {
 	}
 
 	@DeleteMapping("/identificationsTypes/{id}")
-	public void deleteById(@PathVariable int id) {
-		getIdentificationTypeService().deleteById(id);
+	public boolean deleteById(@PathVariable int id) {
+		 getIdentificationTypeService().deleteById(id);
+		return getIdentificationTypeService().existsById(id);
 	}
 	
 	@PostMapping("/identificationsTypes/{id}")
