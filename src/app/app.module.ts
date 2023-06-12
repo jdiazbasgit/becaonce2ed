@@ -23,6 +23,7 @@ import { SoldProductComponent } from './componentes/sold-product/sold-product.co
 import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
+import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ConfigurationComponent } from './componentes/configuration/configuratio
     SoldProductComponent,
     ExistingProductComponent,
     CardTypeComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ModalConfigurationComponent
 
   ],
   imports: [
