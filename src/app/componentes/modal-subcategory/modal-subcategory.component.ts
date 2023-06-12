@@ -25,7 +25,7 @@ export class ModalSubcategoryComponent implements DoCheck {
   ngDoCheck(): void {
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
-      this.service.getDatos("http://localhost:8080/once/subcategory/" + this.id)
+      this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
         .subscribe((datos: any) => {
           this.fin = true
           //  if (this.descripcion !== datos.description)
@@ -43,7 +43,7 @@ export class ModalSubcategoryComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/subcategory", new SubcategoryBean(this.id, this.descripcion))
+      this.service.saveOrUpdate("http://localhost:8080/once/subcategories", new SubcategoryBean(this.id, this.descripcion))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"

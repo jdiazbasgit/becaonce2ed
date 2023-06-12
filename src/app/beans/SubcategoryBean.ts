@@ -1,5 +1,3 @@
-
-
 class SubcategoryBean{
     id:number
     description:string

@@ -3,8 +3,8 @@
     <h1 class="text-center">{{mensaje}}</h1>
     <table class="table table-stripped table-bordered">
         <tr>
-            <th class="text-center">CATEGORIAS</th>
-            <th class="text-center">ACCIONES</th>
+            <th class="text-center">DESCRIPCION</th>
+            <th class="text-center">SUBCATEGORIAS</th>           
         </tr>
         <tr *ngFor="let subcategory of subcategories">
             <td class="text-center">{{subcategory.description}}</td>
@@ -20,5 +20,5 @@
     </table>
     <div class="text-center"><button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
             data-bs-target="#myModal">ALTA</button></div>
-    <app-modal-category (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-category>
+    <app-modal-subcategory (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-subcategory>
 </div>

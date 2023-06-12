@@ -4,7 +4,7 @@ import { ModalSubcategoryComponent } from "../modal-subcategory/modal-subcategor
 
 
 @Component({
-  selector: 'app-category',
+  selector: 'app-subcategory',
   templateUrl: './subcategory.component.html',
   styleUrls: ['./subcategory.component.css']
 })
@@ -23,7 +23,7 @@ export class SubcategoryComponent implements OnInit {
 
   eliminar(id: any) {
     if (confirm("¿Esta seguro de borrar esta subcategoria?")) {
-      this.service.delete("http://localhost:8080/once/subcategory/" + id)
+      this.service.delete("http://localhost:8080/once/subcategories/" + id)
         .subscribe((dato: boolean) => {
           if (!dato) {
             this.mensaje = "Se ha borrado correctamente"
@@ -46,9 +46,9 @@ export class SubcategoryComponent implements OnInit {
   ngOnInit(): void {
 
     this.subcategories = []
-    this.service.getDatos("http://localhost:8080/once/subcategory")
+    this.service.getDatos("http://localhost:8080/once/subcategories")
       .subscribe((datos: any) => {
-        this.subcategories = datos._embedded.categories;
+        this.subcategories = datos._embedded.subCategories;
       })
   }
 
