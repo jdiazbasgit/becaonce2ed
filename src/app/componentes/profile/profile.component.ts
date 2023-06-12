@@ -48,8 +48,8 @@ export class ProfileComponent implements OnInit {
   realizarComunicacion(event: any) {
     //this.eventoDelHijo=event.salida
     this.mensaje = ""
-    if (event.salida === "OK")
-      this.ngOnInit();
+    /*if (event.salida === "OK")
+      this.ngOnInit();*/
   }
 
   modificar(position: any) {
