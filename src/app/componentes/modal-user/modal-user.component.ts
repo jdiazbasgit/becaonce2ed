@@ -1,4 +1,5 @@
 import { Component, DoCheck, EventEmitter, Output } from '@angular/core';
+import UserBeans from 'src/app/beans/UserBeans';
 import { UserService } from 'src/app/servicios/user.service';
 
 @Component({
@@ -36,7 +37,7 @@ export class ModalUserComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/user", new  (this.id, this.descripcion))
+      this.service.saveOrUpdate("http://localhost:8080/once/user", new UserBeans (this.id, this.descripcion))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"

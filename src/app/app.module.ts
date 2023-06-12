@@ -31,6 +31,7 @@ import { UserComponent } from './componentes/user/user.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
 import { ModalTransactionsAwardsFineComponent } from './componentes/modal-transactions-awards-fine/modal-transactions-awards-fine.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
+import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
 
 @NgModule({
   declarations: [
@@ -61,13 +62,15 @@ import { ModalConfigurationComponent } from './componentes/modal-configuration/m
     UserComponent,
     ModalUserComponent,
     ModalTransactionsAwardsFineComponent,
-    ModalConfigurationComponent
+    ModalConfigurationComponent,
+    HazteClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
 
   ],
   providers: [],

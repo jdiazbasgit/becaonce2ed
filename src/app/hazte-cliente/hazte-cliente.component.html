@@ -1,0 +1,35 @@
+<div class="container">
+    <form>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Introduce tu Nombre" id="nombre" [(ngModel)]="nombre"
+            required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" [(ngModel)]="apellidos"
+            required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Documento de Identidad" id="documentodeidentidad"
+            [(ngModel)]="documentodeidentidad" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Introduce tu Email" id="email" [(ngModel)]="email"
+            required>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Introduce Numero de telefono" id="telefono"
+            [(ngModel)]="telefono" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
