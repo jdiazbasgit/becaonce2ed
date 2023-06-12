@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
 
   @Input() eventoDelHijo: string = ""
 
-    constructor(private service: ProfileService) {
+  constructor(private service: ProfileService) {
     this.titulo = "Lista de perfiles"
     this.elements = [];
   }
