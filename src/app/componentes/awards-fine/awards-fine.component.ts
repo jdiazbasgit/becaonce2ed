@@ -16,9 +16,9 @@ export class AwardsFineComponent implements OnInit {
   descripciones: any[];
   mensaje: string = ""
 
-  @Input() evetoDeHijo: string = ""
+  @Input() eventoDeHijo: string = ""
   constructor(private service: ProyectosService) {
-    this.titulo = "TIPO DE PREMIOS Y MULTAS"
+    this.titulo = "PREMIOS Y MULTAS"
     this.descripciones = [];
   }
 
@@ -34,11 +34,10 @@ export class AwardsFineComponent implements OnInit {
             this.mensaje = "El registro no se ha borrado"
         })
     }
-
   }
 
   realizarComunicacion(event: any) {
-    //this.evetoDeHijo = event.salida
+    //this.eventoDeHijo = event.salida
     this.mensaje = ""
     if (event.salida === "OK")
       this.ngOnInit();
