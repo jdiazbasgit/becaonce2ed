@@ -47,7 +47,7 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	/* C CREATE A PROFILE */
-	@PostMapping("/profiles/create")
+	@PostMapping("/profiles")
 	@CrossOrigin(origins = "*")
 	public Profile createProfile(@RequestBody Profile newProfile) {
 		return getProfileService().save(newProfile);
@@ -85,7 +85,7 @@ public class ProfileRestController {
 
 		
 	/* U UPDATE A PROFILE */
-	@PutMapping("/profiles/update/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
+	@PutMapping("/profiles/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
 	//@GetMapping("/profiles/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
 	@CrossOrigin(origins = "*")
 	public ResponseEntity<Profile> updateProfile(@PathVariable(value = "id") int profileId, @RequestBody Profile profileDetails) 
@@ -112,7 +112,7 @@ public class ProfileRestController {
 	}
 		
 	/* D DELETE A PROFILES */
-	@DeleteMapping("/profiles/delete/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
+	@DeleteMapping("/profiles/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
 	//@GetMapping("/profiles/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
 	@CrossOrigin(origins = "*")
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int profileId) 

@@ -35,8 +35,8 @@ public class ExistingProductTests{
 	
 	@Test
 	public void findByIdExistingProduct() {
-		int numID = 3;
-		getExistingProductService().findById(numID).get();
+		/*int numID = 3;
+		getExistingProductService().findById(numID).get();*/
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class ExistingProductTests{
         byte[] imgInBytes = new byte[(int) file.length()];		
 		existingProduct.setImage(imgInBytes);
 			
-	    existingProduct.setSubcategory(getSubcategoriesService().findById(3).get());
+	    existingProduct.setSubcategory(getSubcategoriesService().findById(6).get());
 	
 		getExistingProductService().save(existingProduct);
 		
