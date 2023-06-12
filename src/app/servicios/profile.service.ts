@@ -7,7 +7,6 @@ import { ProyectosService } from './proyectos.service';
 })
 
 export class ProfileService extends ProyectosService {
-
   constructor(private http: HttpClient) {
     super(http);
   }
