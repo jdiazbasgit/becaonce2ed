@@ -11,29 +11,39 @@ export class ModalDocumentTypesComponent implements DoCheck {
   descripcion: string
   mensaje: string = "";
   fin: boolean = false
-  descripcionPlaceHolder:string=""
-  @Output() eventoAComunicar=new EventEmitter();
+  descripcionPlaceHolder: string = ""
+  nomAccion: string = "";
+  @Output() eventoAComunicar = new EventEmitter();
+  titulo: string = "";
   constructor(private service: DocumentTypeService) {
     this.descripcion = "";
   }
- 
-  
+
+
   ngDoCheck(): void {
+    if (this.id === 0) {
+      this.titulo = "Alta"
+    } else {
+      this.titulo = "modificacion"
+    }
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/documentsTypes/" + this.id)
         .subscribe((datos: any) => {
           this.fin = true
           //  if (this.descripcion !== datos.description)
-            this.descripcionPlaceHolder= datos.description;
-          
+          this.descripcionPlaceHolder = datos.description;
+
         })
     }
   }
 
-  realizarComunicacion(){
-    this.id=0;
-    this.eventoAComunicar.emit({salida:"OK"})
+  realizarComunicacion() {
+    this.id = 0;
+    this.descripcion = "";
+    this.descripcionPlaceHolder = "";
+    this.fin = false;
+    this.eventoAComunicar.emit({ salida: "OK" })
   }
 
   grabar() {
