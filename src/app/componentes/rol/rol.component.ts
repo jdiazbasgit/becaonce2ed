@@ -42,9 +42,9 @@ export class RolComponent implements OnInit{
 
   ngOnInit(): void {
     this.roles = []
-    this.service.getDatos("http://localhost:8080/8080/once/roles")
+    this.service.getDatos("http://localhost:8080/once/roles")
     .subscribe((datos: any) => {
-      this.roles = datos._embedded.roles;
+      this.roles = datos._embedded.rols;
     })
   }
   modificar(rol: any){
