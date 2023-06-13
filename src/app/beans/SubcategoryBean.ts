@@ -1,12 +1,12 @@
 class SubcategoryBean{
     id:number
     description:string
-    categoria:string
+    category:string
     
     constructor(id:number, description:string, categoria:string){
         this.id=id;
         this.description=description;
-        this.categoria=categoria;
+        this.category=categoria;
         
     }
 }

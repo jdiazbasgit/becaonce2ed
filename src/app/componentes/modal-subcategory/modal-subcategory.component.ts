@@ -47,7 +47,7 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.id = 0;
     this.eventoAComunicar.emit({ salida: "OK" });
   }
-
+  
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
