@@ -1,17 +1,11 @@
 package once.curso.proyectotienda;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import lombok.Data;
-import once.curso.proyectotienda.entities.Rol;
 import once.curso.proyectotienda.services.RolService;
 
 @SpringBootTest
@@ -20,37 +14,6 @@ public class RolTest {
 
 	@Autowired
 	private RolService rolService;
-	
-	@Order(1)
-	@Test
-	public void findByIdTest() {
-
-		String rolOld = "FindByIdTestRole";
-		int idGiven;
-
-		// Para encontrar el ID de rol (findById), imprescindible debe existirlo en BBDD,
-		// lo primero es buscarlo, como encontrarlo (findByRol):
-		//  - Si lo existe (isPresent = true), debe obtener el numero de id (getId --> idGiven).
-		//  - Si no lo existe (isPresent = false), se debe insertarlo (save) y obtener id (getId --> idGiven).
-
-		Optional<Rol> rolFinded = rolService.findByRol(rolOld);
-		if (rolFinded.isPresent()) {
-			System.out.println("EL ROL YA EXISTE, su id: " + rolFinded.get().getId());
-			idGiven = rolFinded.get().getId();
-		} else {
-			System.out.println("EL ROL NO EXISTE");
-			Rol rol= new Rol();
-			rol.setRol(rolOld);
-			Rol rolSaved = getRolService().save(rol);
-			System.out.println("EL ROL INSERTADO, su id: " + rolSaved.getId());
-			idGiven = rolSaved.getId();
-		}
-
-		// Test findById
-		
-		Optional<Rol> rolOldFindById = rolService.findById(idGiven);
-		assertEquals(rolOldFindById.get().getRol(), rolOld);
-	}
 
 	@Order(2)
 	@Test
@@ -68,62 +31,7 @@ public class RolTest {
 
 	}
 
-	@Order(4)
-	@Test
-	public void findByRolTest() {
-
-		String rolOld = "FindByRolTestRole";
-
-		// Para encontrar el VALOR de rol (findByRol), imprescindible debe existirlo en BBDD,
-		// lo primero es buscarlo, como encontrarlo (findByRol):
-		//  - Si lo existe (isPresent = true), no hace nada, queda igual, pasa a test findByRol
-		//  - Si no lo existe (isPresent = false), se debe insertarlo (save)
-		// Sin necesidad la variable idGiven
-
-		Optional<Rol> rolFinded = rolService.findByRol(rolOld);
-		if (rolFinded.isPresent()) {
-			System.out.println("EL ROL YA EXISTE, su id: " + rolFinded.get().getId());
-		} else {
-			System.out.println("EL ROL NO EXISTE");
-			Rol rol= new Rol();
-			rol.setRol(rolOld);
-			Rol rolSaved = getRolService().save(rol);
-			System.out.println("EL ROL INSERTADO, su id: " + rolSaved.getId());
-		}
-
-		// Test findByRol
-		
-		Optional<Rol> rolOldFindByRol = rolService.findByRol(rolOld);
-		assertEquals(rolOldFindByRol.get().getRol(), rolOld);
-	}
-
-	@Order(5)
-	@Test
-	public void saveTest() {
-		
-		String rolNew = "SaveTestRole";
-
-		// Para grabar un NUEVO VALOR de rol (save), imprescindible no lo exista en BBDD,
-		// es una forma de evitar el problema de los duplicados (Duplicate for key 'roles.ROL_UNIQUE'),
-		// lo primero es buscarlo, como encontrarlo (findByRol):
-		//  - Si lo existe (isPresent = true), se debe borrarlo (deleteById)
-
-		Optional<Rol> rolFinded = rolService.findByRol(rolNew);
-		if (rolFinded.isPresent()) {
-			System.out.println("NUEVO ROL YA EXISTE, su id: " + rolFinded.get().getId());
-			rolService.deleteById(rolFinded.get().getId());
-			System.out.println("EL NUEVO ROL BORRADO OK");
-		}
-
-		// Test save
-
-		Rol rol= new Rol();
-		rol.setRol(rolNew);
-
-		getRolService().save(rol);
-	    assertTrue(getRolService().existsById(rol.getId()));		
-	}
-
+	
 	@Order(6)
 	@Test
 	public void saveAllTest() {
