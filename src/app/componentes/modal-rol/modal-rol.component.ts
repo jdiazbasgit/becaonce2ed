@@ -4,8 +4,7 @@ import { RolesService } from 'src/app/servicios/roles.service';
 
 @Component({
   selector: 'app-modal-rol',
-  templateUrl: './modal-rol.component.html',
-  styleUrls: ['./modal-rol.component.css']
+  templateUrl: './modal-rol.component.html'
 })
 export class ModalRolComponent implements DoCheck{
   
@@ -13,7 +12,7 @@ export class ModalRolComponent implements DoCheck{
   rol: string;
   mensaje: string = "";
   fin: boolean = false;
-  rolPlaceholder: string = "";
+  rolPlaceHolder: string = "";
   @Output() eventoAComunicar = new EventEmitter();
   constructor (private service: RolesService){
     this.rol = "";
@@ -25,7 +24,7 @@ export class ModalRolComponent implements DoCheck{
       this.service.getDatos("http://localhost:8080/once/roles" + this.id)
       .subscribe((datos: any)=> {
         this.fin = true;
-        this.rolPlaceholder = datos.rol;
+        this.rolPlaceHolder = datos.rol;
       })
     }
   }
@@ -38,7 +37,7 @@ export class ModalRolComponent implements DoCheck{
   grabar(){
     this.fin = false;
     if (this.rol.trim()!== ""){
-      this.service.saveOrUpdate("http://localhost:8080/once/rol", new RolBean(this.id, this.rol))
+      this.service.saveOrUpdate("http://localhost:8080/once/roles", new RolBean(this.id, this.rol))
       .subscribe((dato: boolean)=> {
         if(dato){
           this.mensaje = "Grabacion realizada correctamente"

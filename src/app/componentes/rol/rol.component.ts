@@ -4,8 +4,7 @@ import { RolesService } from 'src/app/servicios/roles.service';
 
 @Component({
   selector: 'app-rol',
-  templateUrl: './rol.component.html',
-  styleUrls: ['./rol.component.css']
+  templateUrl: './rol.component.html'
 })
 export class RolComponent implements OnInit{
 
@@ -14,8 +13,7 @@ export class RolComponent implements OnInit{
   titulo: string;
   roles: any[] = [];
   mensaje: string = "";
-  @Input() eventoDeHijo: string = ""
-  //comprobar roles su inicializador
+  @Input() eventoDelHijo: string = ""
   constructor(private service: RolesService){
     this.titulo = "Tipos de Roles"
     this.roles;
@@ -49,7 +47,7 @@ export class RolComponent implements OnInit{
   }
   modificar(rol: any){
     this.mensaje = ""
-    let ruta = rol._link.sel.href
+    let ruta = rol._links.self.href
     this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
   }
 
