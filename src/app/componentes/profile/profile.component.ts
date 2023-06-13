@@ -52,9 +52,9 @@ export class ProfileComponent implements OnInit {
       this.ngOnInit();*/
   }
 
-  modificar(position: any) {
+  modificar(element: any) {
     this.mensaje = ""
-    let ruta = position._links.self.href
+    let ruta = element._links.self.href
     this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
     // console.log(this.id )
   }
