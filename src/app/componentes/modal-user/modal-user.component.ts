@@ -30,7 +30,7 @@ export class ModalUserComponent implements DoCheck{
     }
   }
 
-  realiszarComunicacion(){
+  realizarComunicacion(){
     this.id = 0;
     this.eventoAComunicar.emit({salida:"OK"})
   }
