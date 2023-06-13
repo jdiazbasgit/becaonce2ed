@@ -14,6 +14,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,7 @@ public class DescriptionRestController {
 	@Autowired 
 	private DescriptionModelAssembler descriptionModelAssembler;
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value =" /descriptions/{id}")
 	public EntityModel<Description> findById(@PathVariable int id) {
 		Description description= getDescriptionService().findById(id).get();
@@ -49,12 +51,13 @@ public class DescriptionRestController {
 		 return EntityModel.of(description);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/descriptions")
 	public Description save(@RequestBody Description description) {
 		return getDescriptionService().save(description);
 	}
 	
-	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/descriptions")
 	public CollectionModel<Description> findAll() {
 		Iterable<Description> descriptions= getDescriptionService().findAll();
@@ -65,6 +68,7 @@ public class DescriptionRestController {
 		 return CollectionModel.of(descriptions);
 		 }
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping(value = "/descriptionsPaginado")
 	public PagedModel<EntityModel<Description>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
 		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
@@ -85,9 +89,17 @@ public class DescriptionRestController {
 		return getPagedResourcesAssembler().toModel(description,getDescriptionModelAssembler());
 	}
 	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping(value="/description/{id}")
-	public void deleteById(@PathVariable Integer id) {
+	public boolean deleteById(@PathVariable Integer id) {
 		getDescriptionService().deleteById(id);
+		return getDescriptionService().existsById(id);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping(value="/description/{id}")
+	public boolean existsById(@PathVariable Integer id) {
+		return getDescriptionService().existsById(id);
 	}
 	
 }
