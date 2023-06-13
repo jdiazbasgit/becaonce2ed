@@ -12,18 +12,22 @@ export class ModalSubcategoryComponent implements DoCheck {
   descripcion: string
   mensaje: string = "";
   fin: boolean = false
-  subcategory:string=""
-  subcategoryPlaceHolder:string=""
-  subcategory_id:string=""
-  @Output() eventoAComunicar=new EventEmitter();
- 
+  subcategory: string = ""
+  subcategoryPlaceHolder: string = ""
+  subcategory_id: string = ""
+  categoria: number = 0
+  categorias: Array<any>
+  @Output() eventoAComunicar = new EventEmitter();
+
   constructor(private service: SubcategoryService) {
     this.descripcion = "";
-    this.subcategory_id="";
+    this.subcategory_id = "";
+    this.categorias = []
   }
 
   ngDoCheck(): void {
     if (this.id !== 0 && !this.fin) {
+      this.categoria = this.id;
       console.log("id entrada: " + this.id);
       this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
         .subscribe((datos: any) => {
@@ -31,7 +35,12 @@ export class ModalSubcategoryComponent implements DoCheck {
           // if (this.descripcion !== datos.description)
           this.subcategoryPlaceHolder = datos.description;
         });
+
     }
+    this.service.getDatos("http://localhost:8080/once/categories")
+      .subscribe((datos: any) => {
+        this.categorias = datos._embedded.categories
+      });
   }
 
   realizarComunicacion() {
@@ -42,7 +51,8 @@ export class ModalSubcategoryComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/subcategories", new SubcategoryBean(this.id, this.descripcion, this.subcategory_id))
+      this.service.saveOrUpdate("http://localhost:8080/once/subcategories",
+        new SubcategoryBean(this.id, this.descripcion, "http://localhost:8080/once/categories" + this.categoria))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabación realizada correctamente";
