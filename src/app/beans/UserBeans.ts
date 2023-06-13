@@ -1,9 +1,16 @@
 class UserBeans {
-    id!: number;
-    description!: string; 
-    constructor(id:number,description:string){
+    id!: number ;
+	user!: String;
+	password!:String;
+    enabled!: boolean;
+
+	
+
+    constructor(id:number,user: String,password:String , enabled: boolean){
         this.id;
-        this.description;
+        this.user;
+        this.password;
+        this.enabled;
 
     }
 }export default UserBeans;

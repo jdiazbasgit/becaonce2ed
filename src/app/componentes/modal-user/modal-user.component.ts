@@ -8,11 +8,14 @@ import { UserService } from 'src/app/servicios/user.service';
   styleUrls: ['./modal-user.component.css']
 })
 export class ModalUserComponent implements DoCheck {
-  id :number=0
-  descripcion :string= "";
-  mensaje : string= "";
-  fin: boolean=false
-  descripcionPlaceHolder:string=""; 
+  id: number = 0;
+  descripcion: string = "";
+  mensaje: string = "";
+  fin: boolean = false;
+  descripcionPlaceHolder: string = "";
+  user: string = ""; 
+  password: string = ""; 
+  enabled: boolean = false; 
   @Output() eventoAComunicar = new EventEmitter();
   constructor(private service : UserService){
     this.descripcion ="";
@@ -21,7 +24,7 @@ export class ModalUserComponent implements DoCheck {
   ngDoCheck(): void {
     if(this.id !== 0 && !this.fin){
       console.log("id entrada :"+ this.id)
-      this.service.getDatos("http//localhost:8080/once/users"+ this.id)
+      this.service.getDatos("http://localhost:8080/once/users"+ this.id)
       .subscribe((datos:any)=>{
         this.fin = true
         this.descripcionPlaceHolder = datos.descripcion;
@@ -37,7 +40,7 @@ export class ModalUserComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/user", new UserBeans (this.id, this.descripcion))
+      this.service.saveOrUpdate("http://localhost:8080/once/user", new UserBeans (this.id,this.user,this.password , this.enabled))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"
