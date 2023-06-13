@@ -33,6 +33,9 @@ export class ModalCardTypesComponent implements DoCheck {
   }
   realizarComunicacion() {
     this.id = 0;
+    this.descripcion="";
+    this.descripcionPlaceHolder="";
+    this.fin=false;
     this.eventoAComunicar.emit({ salida: "OK" })
   }
   grabar() {
