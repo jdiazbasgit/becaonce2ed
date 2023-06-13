@@ -14,12 +14,19 @@ export class ModalConfigurationComponent implements DoCheck {
   mensaje: string = "";
   fin: boolean = false
   stockAlarmPlaceHolder:string=""
+  nomAccion: string = "";
   @Output() eventoAComunicar=new EventEmitter();
+  titulo:string="";
   constructor(private service: ConfigurationService) {
     this.stockAlarm = "";
   }
 
   ngDoCheck(): void {
+    if(this.id===0){
+      this.titulo ="Alta"
+    } else {
+      this.titulo = "modificacion"
+    }
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/configurations/" + this.id)
@@ -32,6 +39,9 @@ export class ModalConfigurationComponent implements DoCheck {
 
   realizarComunicacion(){
     this.id=0;
+    this.stockAlarm = "";
+    this.stockAlarmPlaceHolder = "";
+    this.fin = false;
     this.eventoAComunicar.emit({salida:"OK"})
   }
 

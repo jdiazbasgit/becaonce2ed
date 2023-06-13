@@ -17,7 +17,7 @@ export class ConfigurationComponent implements OnInit {
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: ConfigurationService) {
-    this.titulo = "STOCK ALARM"
+    this.titulo = ""
     this.alarmados = [];
   }
 
@@ -42,6 +42,12 @@ export class ConfigurationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.id===0){
+      this.titulo ="Alta"
+    } else {
+      this.titulo = "modificacion"
+    }
+  
     this.alarmados = []
     this.service.getDatos("http://localhost:8080/once/configurations")
       .subscribe((datos: any) => {
