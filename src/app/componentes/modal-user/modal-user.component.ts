@@ -38,7 +38,7 @@ export class ModalUserComponent implements DoCheck{
   grabar(){
     this.fin = false;
     if(this.usuario.trim() !== ""){
-      this.service.saveOrUpdate("http://localhost:8080/once/users", new UserBean(this.id, this.usuario, this.))
+      this.service.saveOrUpdate("http://localhost:8080/once/users", new UserBean(this.id, this.usuario))
       .subscribe((dato: boolean) => {
         if(dato){
           this.mensaje = "grabacion realizada corerectamente"
