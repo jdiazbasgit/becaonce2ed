@@ -30,6 +30,15 @@ public class MappingFKDescriptionRestController {
 //				.findById(fee.getId())).withSelfRel());
 //		 return EntityModel.of(fee);
 //	}
+	@GetMapping(value = "/showTables")
+	public void showTables() {
+		try {
+			getMappingFKDescriptionService().showTables();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 
 	@GetMapping(value = "/mappingFKDescriptions")
@@ -37,7 +46,7 @@ public class MappingFKDescriptionRestController {
 		return getMappingFKDescriptionService().findAll();
 	}
 	
-	@PostMapping(value = "/mappingFKDescriptions")
+	@GetMapping(value = "/getTables")
 	public List<String> getTableNames() {
 		return getMappingFKDescriptionService().getTableNames();
 	}

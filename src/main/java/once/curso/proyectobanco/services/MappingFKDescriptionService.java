@@ -1,14 +1,18 @@
 package once.curso.proyectobanco.services;
 
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.metadata.ClassMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.metadata.TableMetaDataProvider;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -27,6 +31,24 @@ public class MappingFKDescriptionService {
 	
 	@Autowired
 	private EntityManager entityManager;
+	
+    @Autowired
+    protected DataSource dataSource;
+
+    public void showTables() throws Exception {
+        DatabaseMetaData metaData = dataSource.getConnection().getMetaData();
+//        ResultSet esquemas = metaData.getSchemas();
+//        while (esquemas.next()) {
+//        	System.out.println(esquemas.toString());
+//        }
+        
+        ResultSet tables = metaData.getTables(null, "banco", null, new String[] { "TABLE" });
+        while (tables.next()) {
+            String tableName=tables.getString("TABLE_NAME");
+            System.out.println(tableName);
+        }
+    }
+	
 	
 	public List<String> getTableNames() {
         List<String> tableNames = new ArrayList<>();
