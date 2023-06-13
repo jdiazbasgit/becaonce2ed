@@ -1,1 +1,24 @@
-<p>awards-fines-type works!</p>
+<div class="container">
+    <h1 class="text-center">{{titulo}}</h1>
+    <h1 class="text-center">{{mensaje}}</h1>
+    <table class="table table-stripped table-bordered">
+        <tr>
+            <th class="text-center">DESCRIPTION</th>
+        </tr>
+        <tr *ngFor="let descripcion of descripciones">
+            <td class="text-center">{{descripcion._links.description.href.substring(descripcion._links.description.href.lastIndexOf('/')+1}}</td>
+            <td class="text-center">
+                <a href="#" (click)="modificar(descripcion)" data-bs-toggle="modal" data-bs-target="#myModal">
+
+                </a>
+                <a href="#" (click)="eliminar(descripcion._links.self.href.substring)>
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
