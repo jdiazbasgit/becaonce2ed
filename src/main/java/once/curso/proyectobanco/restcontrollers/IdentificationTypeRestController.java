@@ -52,7 +52,7 @@ public class IdentificationTypeRestController {
 		 return EntityModel.of(identificationType);
 	}
 	
-	@GetMapping(value = "/identificationTypes")
+	@GetMapping(value = "/identificationsTypes")
 	public PagedModel<EntityModel<IdentificationType>> findAll(@RequestParam (defaultValue = "0") int size, @RequestParam (defaultValue = "0") int page, @RequestParam (required = false) String sort){
 		if (size == 0) {
 			size = (int) getIdentificationTypeService().count();
