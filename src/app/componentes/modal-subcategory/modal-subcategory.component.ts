@@ -34,13 +34,13 @@ export class ModalSubcategoryComponent implements DoCheck {
           this.fin = true;
           // if (this.descripcion !== datos.description)
           this.subcategoryPlaceHolder = datos.description;
+          this.service.getDatos("http://localhost:8080/once/categories")
+          .subscribe((datos: any) => {
+            this.categorias = datos._embedded.categories
+          });
         });
 
     }
-    this.service.getDatos("http://localhost:8080/once/categories")
-      .subscribe((datos: any) => {
-        this.categorias = datos._embedded.categories
-      });
   }
 
   realizarComunicacion() {
@@ -52,7 +52,7 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
       this.service.saveOrUpdate("http://localhost:8080/once/subcategories",
-        new SubcategoryBean(this.id, this.descripcion, "http://localhost:8080/once/categories" + this.categoria))
+        new SubcategoryBean(this.id, this.descripcion, "http://localhost:8080/once/categories/" + this.categoria))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabación realizada correctamente";
