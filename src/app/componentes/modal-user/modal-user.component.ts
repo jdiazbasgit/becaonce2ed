@@ -16,6 +16,7 @@ export class ModalUserComponent implements DoCheck{
   rol_Id: string = "";
   rol: number = 0;
   roles: Array<any>;
+  subtitulo: string="";
   @Output() eventoAComunicar = new EventEmitter();
   password: string="";
   enabled: string= "";
@@ -27,6 +28,11 @@ export class ModalUserComponent implements DoCheck{
   }
 
   ngDoCheck(): void {
+    if(this.id === 0){
+      this.subtitulo="ALTA";
+    }else{
+      this.subtitulo="MODIFICACION";
+    }
     if(this.id !== 0 && !this.fin){
       this.rol = this.id;
       console.log("id entrada:" + this.id)
@@ -40,6 +46,9 @@ export class ModalUserComponent implements DoCheck{
 
   realizarComunicacion(){
     this.id = 0;
+    this.usuarioPlaceHolder="";
+    
+    this.fin=false;
     this.eventoAComunicar.emit({salida:"OK"})
   }
 

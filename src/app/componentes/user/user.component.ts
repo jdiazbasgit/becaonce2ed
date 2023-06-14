@@ -40,7 +40,7 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void {
     this.usuarios = [];
-    this.service.getDatos("http://localhost:8080/once/users").
+    this.service.getDatos("http://localhost:8080/once/usersPaginado?page=0&size=2&sort=id,asc").
     subscribe((datos: any)=>{
       this.usuarios = datos._embedded.users
     })
@@ -48,7 +48,7 @@ export class UserComponent implements OnInit{
 
   modificar(usuario: any){
     this.mensaje = "";
-    let ruta = usuario._link.self.href
+    let ruta = usuario._links.self.href
     this.modal.id= parseInt(ruta.substring(ruta.lastIndexOf("/") +1))
   }
 

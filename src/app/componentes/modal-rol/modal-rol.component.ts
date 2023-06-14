@@ -13,15 +13,21 @@ export class ModalRolComponent implements DoCheck{
   mensaje: string = "";
   fin: boolean = false;
   rolPlaceHolder: string = "";
+  subtitulo: string="";
   @Output() eventoAComunicar = new EventEmitter();
   constructor (private service: RolesService){
     this.rol = "";
   }
 
   ngDoCheck(): void {
+    if(this.id===0){
+      this.subtitulo="ALTA"
+    }else{
+      this.subtitulo="MODIFICACION"
+    }
     if(this.id !== 0 && !this.fin){
       console.log("id entrada:" + this.id)
-      this.service.getDatos("http://localhost:8080/once/roles" + this.id)
+      this.service.getDatos("http://localhost:8080/once/roles/" + this.id)
       .subscribe((datos: any)=> {
         this.fin = true;
         this.rolPlaceHolder = datos.rol;
@@ -31,6 +37,9 @@ export class ModalRolComponent implements DoCheck{
 
   realizarComunicacion(){
     this.id = 0;
+    this.rol="";
+    this.rolPlaceHolder="";
+    this.fin=false;
     this.eventoAComunicar.emit({salida:"OK"})
   }
 

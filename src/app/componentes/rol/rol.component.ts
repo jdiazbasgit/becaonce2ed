@@ -11,12 +11,12 @@ export class RolComponent implements OnInit{
   @ViewChild(ModalRolComponent) modal: any
   id : number = 0;
   titulo: string;
-  roles: any[] = [];
+  roles: any[];
   mensaje: string = "";
   @Input() eventoDelHijo: string = ""
   constructor(private service: RolesService){
     this.titulo = "Tipos de Roles"
-    this.roles;
+    this.roles = [];
   }
 
   eliminar(id: any){
@@ -48,7 +48,7 @@ export class RolComponent implements OnInit{
   modificar(rol: any){
     this.mensaje = ""
     let ruta = rol._links.self.href
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
+    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1))
   }
 
 }
