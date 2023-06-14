@@ -1,8 +1,8 @@
 package once.curso.proyectobanco.restcontrollers;
 
 
+import java.util.List;
 import java.util.StringTokenizer;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,12 +27,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Description;
+import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.models.DescriptionModelAssembler;
 import once.curso.proyectobanco.services.DescriptionService;
 
 @RestController
 @Data
 @RequestMapping("/once")
+@CrossOrigin(origins = "*")
 public class DescriptionRestController {
 	@Autowired
 	private DescriptionService descriptionService;
@@ -42,7 +45,6 @@ public class DescriptionRestController {
 	@Autowired 
 	private DescriptionModelAssembler descriptionModelAssembler;
 	
-	@CrossOrigin(origins = "*")
 	@GetMapping(value =" /descriptions/{id}")
 	public EntityModel<Description> findById(@PathVariable int id) {
 		Description description= getDescriptionService().findById(id).get();
@@ -51,14 +53,13 @@ public class DescriptionRestController {
 		 return EntityModel.of(description);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@PostMapping(value = "/descriptions")
-	public Description save(@RequestBody Description description) {
-		return getDescriptionService().save(description);
+	public boolean save(@RequestBody Description description) {
+		return getDescriptionService().existsById(getDescriptionService().save(description).getId());
 	}
 	
-	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/descriptions")
+	/*@GetMapping(value = "/descriptions")
+>>>>>>> feature/develop-banco-di
 	public CollectionModel<Description> findAll() {
 		Iterable<Description> descriptions= getDescriptionService().findAll();
 		descriptions.forEach(d->{
@@ -66,11 +67,10 @@ public class DescriptionRestController {
 					  .findById(d.getId())).withRel("description"));
 		});
 		 return CollectionModel.of(descriptions);
-		 }
+		 }*/
 	
-	@CrossOrigin(origins = "*")
-	@GetMapping(value = "/descriptionsPaginado")
-	public PagedModel<EntityModel<Description>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
+	@GetMapping(value = "/descriptions")
+	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue="0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
 		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 		Sort orden = Sort.by("a");
 		
@@ -89,17 +89,25 @@ public class DescriptionRestController {
 		return getPagedResourcesAssembler().toModel(description,getDescriptionModelAssembler());
 	}
 	
-	@CrossOrigin(origins = "*")
 	@DeleteMapping(value="/description/{id}")
 	public boolean deleteById(@PathVariable Integer id) {
 		getDescriptionService().deleteById(id);
 		return getDescriptionService().existsById(id);
 	}
 	
-	@CrossOrigin(origins = "*")
+	
 	@PostMapping(value="/description/{id}")
 	public boolean existsById(@PathVariable Integer id) {
 		return getDescriptionService().existsById(id);
 	}
 	
+	@PutMapping("/descriptions")
+	public List <Description> saveAll(@RequestBody List<Description> descriptions) {
+		return (List<Description>) getDescriptionService().saveAll(descriptions);
+	}
+	
+	@PostMapping("/descriptions/{id}")
+	public boolean existsById(@PathVariable int id) {
+		return getDescriptionService().existsById(id);
+	}
 }
