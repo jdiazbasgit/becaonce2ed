@@ -13,8 +13,8 @@ export class ProyectosService {
     headers.set('Authorization', sessionStorage['token']);
     return this.httpClient.get(url, {headers:{'Authorization': sessionStorage['token']}});
   }
-  saveOrUpdate(url:string, objeto:Object):Observable<any>{
-    return this.httpClient.post(url,{body:objeto})
+  saveOrUpdate(url:string, objeto:any):Observable<any>{
+    return this.httpClient.post(url,objeto)
   }
   delete(url:string):Observable<any>{
     return this.httpClient.delete(url);

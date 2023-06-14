@@ -32,6 +32,7 @@ import { ModalUserComponent } from './componentes/modal-user/modal-user.componen
 import { ModalTransactionsAwardsFineComponent } from './componentes/modal-transactions-awards-fine/modal-transactions-awards-fine.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
 import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
+import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
     ModalUserComponent,
     ModalTransactionsAwardsFineComponent,
     ModalConfigurationComponent,
-    HazteClienteComponent
+    HazteClienteComponent,
+    PanelAdministradorComponent
   ],
   imports: [
     BrowserModule,
