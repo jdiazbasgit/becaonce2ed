@@ -104,7 +104,7 @@ public class TypeAccountRestController {
 	public void deleteById(@PathVariable Integer id) {
 		getTypeAccountService().deleteById(id);
 	}
-	@GetMapping(value = "/typeAccounts/{id}")
+	@PostMapping(value = "/typeAccounts/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existsById(@PathVariable int id) {
 		return getTypeAccountService().existsById(id);

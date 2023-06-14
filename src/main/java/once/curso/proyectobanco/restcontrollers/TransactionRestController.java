@@ -117,7 +117,7 @@ public class TransactionRestController {
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}
-	@GetMapping(value = "/transactions/{id}")
+	@PostMapping(value = "/transactions/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existsById(@PathVariable int id) {
 		return getTransactionService().existsById(id);

@@ -98,7 +98,7 @@ public class RolRestController {
 	public void deleteById(@PathVariable Integer id) {
 		getRolService().deleteById(id);
 	}
-	@PostMapping(value="/roles/{id]")
+	@PostMapping(value="/roles/{id}")
 	@CrossOrigin(origins="*")
 	public boolean existById(@PathVariable int id) {
 		return getRolService().existsById(id);
