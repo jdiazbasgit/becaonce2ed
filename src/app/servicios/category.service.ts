@@ -7,6 +7,7 @@ import { ProyectosService } from './proyectos.service';
 })
 export class CategoryService extends ProyectosService {
 
+
   constructor(private http: HttpClient) {
     super(http);
    }

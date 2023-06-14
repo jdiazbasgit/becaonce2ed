@@ -1,9 +1,9 @@
 class CategoryBean{
     id:number
-    category:string
-    constructor(id:number, category:string){
+    description:string
+    constructor(id:number, description:string){
         this.id=id;
-        this.category=category;
+        this.description=description;
     }
 }
 export default CategoryBean;

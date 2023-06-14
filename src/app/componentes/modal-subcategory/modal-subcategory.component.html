@@ -4,14 +4,20 @@
 
             <!-- Modal Header -->
             <div class="modal-header justify-content-center"> 
-                <h4 class="modal-title ">ALTA DE TIPO DE CATEGORIA</h4>
+                <h4 class="modal-title ">ALTA DE TIPO DE SUBCATEGORIA</h4>
 
             </div>
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <label for="descripcion">Categoria:</label><input type="text" name="descripcion"
-                    [(ngModel)]="descripcion" value="{{categoryPlaceHolder}}"><br>
+                <label for="descripcion">Subcategoria:</label><input type="text" name="descripcion"
+                    [(ngModel)]="descripcion" value="{{subcategoryPlaceHolder}}"><br>
+                    <label for="categoria">Categoria:</label><select [(ngModel)]="categoria">
+                        <option value="0">Selecciona categoria...</option>
+                        <option *ngFor="let cat of categorias" value="{{cat._links.self.href.substring(cat._links.self.href.lastIndexOf('/')+1)}}">
+                            {{cat.description}}
+                        </option>
+                    </select>
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>
             <div class="text-center">
