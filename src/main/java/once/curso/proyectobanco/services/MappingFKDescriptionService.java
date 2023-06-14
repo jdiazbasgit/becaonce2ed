@@ -35,7 +35,7 @@ public class MappingFKDescriptionService {
     @Autowired
     protected DataSource dataSource;
 
-    public void showTables() throws Exception {
+    public List<String> showTables() throws Exception {
         DatabaseMetaData metaData = dataSource.getConnection().getMetaData();
 //        ResultSet esquemas = metaData.getSchemas();
 //        while (esquemas.next()) {
@@ -47,6 +47,7 @@ public class MappingFKDescriptionService {
             String tableName=tables.getString("TABLE_NAME");
             System.out.println(tableName);
         }
+        return (List<String>) tables;
     }
 	
 	

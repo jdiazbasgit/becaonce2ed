@@ -31,13 +31,14 @@ public class MappingFKDescriptionRestController {
 //		 return EntityModel.of(fee);
 //	}
 	@GetMapping(value = "/showTables")
-	public void showTables() {
+	public List<String> showTables() {
 		try {
-			getMappingFKDescriptionService().showTables();
+			return getMappingFKDescriptionService().showTables();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 
