@@ -28,7 +28,7 @@ export class LoginComponent {
   ngOnInit(){
     //remover despues de hacer pruebas***{
     this.ModoPruebaMeterTokenValidoYampliarInactividad();
-    this.router.navigateByUrl("paneladministrador")
+    //this.router.navigateByUrl("paneladministrador")
     //****}
   }
 
