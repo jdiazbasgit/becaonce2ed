@@ -55,6 +55,7 @@ export class ModalProfilesComponent implements DoCheck {
   realizarComunicacion(){
     this.id=0;
     this.eventoAComunicar.emit({salida:"OK"})
+    this.fin = false;
 
     this.name=""
     this.photo=""
@@ -93,5 +94,20 @@ export class ModalProfilesComponent implements DoCheck {
     this.phone=""
     this.address=""
     this.postalcode=""
+  }
+
+  resetFields() {
+    this.fin = false;
+    this.name = "";
+    this.photo = "";
+    this.lastname = "";
+    this.identification = "";
+    this.creditcard = "";
+    this.email = "";
+    this.city = "";
+    this.country = "";
+    this.phone = "";
+    this.address = "";
+    this.postalcode = "";
   }
 }
