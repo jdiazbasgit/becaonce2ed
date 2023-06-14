@@ -45,7 +45,7 @@ public class CurrentAccountRestController {
 	@Autowired
 	private PagedResourcesAssembler<CurrentAccount> PagedResourcesAssembler;
 
-	@GetMapping(value = "/currentAccounts/{id}")
+	@GetMapping(value = "/currentsAccounts/{id}")
     public EntityModel<CurrentAccount> findById(@PathVariable Integer id) {
         CurrentAccount currentAccount = currentAccountService.findById(id).get();
         currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
@@ -54,7 +54,7 @@ public class CurrentAccountRestController {
 	}
         
 	@GetMapping(value = "/currentAccounts")
-    public PagedModel<EntityModel<CurrentAccount>> findAll(@RequestParam int size,@RequestParam int page,@RequestParam String sort){
+    public PagedModel<EntityModel<CurrentAccount>> findAll(@RequestParam (defaultValue="0")int size,@RequestParam (defaultValue="0")int page,@RequestParam (required = false)String sort){
     	StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
     	Sort orden = Sort.by("a");
     	
