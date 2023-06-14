@@ -4,29 +4,30 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header justify-content-center">
-                <h4 class="modal-title ">ALTA DE PERFIL</h4>
+            <div class="modal-header justify-content-left">
+                <h5 class="modal-title ">PERFIL</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <label for="photo">Foto:</label><input type="text" name="imagen" [(ngModel)]="photo" value="{{photo}}"><br>
-                <label for="name">Nombre:</label><input type="text" name="nombre" [(ngModel)]="name" value="{{name}}"><br>
-                <label for="lastname">Apellido:</label><input type="text" name="apellido" [(ngModel)]="lastname" value="{{lastname}}"><br>
-                <label for="identification">DNI/NIF/NIE:</label><input type="text" name="identificacion" [(ngModel)]="identification" value="{{identification}}"><br>
-                <label for="city">Provincia:</label><input type="text" name="provincia" [(ngModel)]="city" value="{{city}}"><br>
-                <label for="country">País:</label><input type="text" name="pais" [(ngModel)]="country" value="{{country}}"><br>
-                <label for="email">Email:</label><input type="text" name="email" [(ngModel)]="email" value="{{email}}"><br>
-                <label for="phone">Teléfono:</label><input type="text" name="telefono" [(ngModel)]="phone" value="{{phone}}"><br>
-                <label for="creditcard">Tarjeta credito:</label><input type="text" name="tarjetacredito" [(ngModel)]="creditcard" value="{{creditcard}}"><br>
+                <img src="{{ photo }}" class="m-3"><br>
+                <label for="name">Nombre:</label><input type="text" name="nombre" [(ngModel)]="name" value="{{ name }}"><br>
+                <label for="lastname">Apellido:</label><input type="text" name="apellido" [(ngModel)]="lastname" value="{{ lastname }}"><br>
+                <label for="identification">DNI/NIF/NIE:</label><input type="text" name="identificacion" [(ngModel)]="identification" value="{{ identification }}"><br>
+                <label for="city">Provincia:</label><input type="text" name="provincia" [(ngModel)]="city" value="{{ city }}"><br>
+                <label for="country">País:</label><input type="text" name="pais" [(ngModel)]="country" value="{{ country }}"><br>
+                <label for="email">Email:</label><input type="text" name="email" [(ngModel)]="email" value="{{ email }}"><br>
+                <label for="phone">Teléfono:</label><input type="text" name="telefono" [(ngModel)]="phone" value="{{ phone }}"><br>
+                <label for="creditcard">Tarjeta credito:</label><input type="text" name="tarjetacredito" [(ngModel)]="creditcard" value="{{ creditcard }}"><br>
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>
             <div class="text-center">
-                <h1 >{{mensaje}}</h1>
+                <h1>{{ mensaje }}</h1>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()" aria-label="Close">Cerrar</button>
             </div>
 
         </div>
