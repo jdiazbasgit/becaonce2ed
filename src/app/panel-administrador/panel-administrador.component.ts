@@ -116,26 +116,26 @@ export class PanelAdministradorComponent {
 
                   let i: number = 0
                   mapping.forEach((mapped: any, index: number) => {
-                    console.log(this.linksForaneosTabla)
-                    console.log(mapped.table)
-                    console.log(this.cabecerasTabla)
-                    console.log(this.mappingNombres[index])
-                    console.log(index)
+                    // console.log(this.linksForaneosTabla)
+                    // console.log(mapped.table)
+                    // console.log(this.cabecerasTabla)
+                    // console.log(this.mappingNombres[index])
+                    // console.log(index)
                     if (this.linksForaneosTabla.includes(mapped.table)) {
                       let indiceEnCabecera = this.cabecerasTabla.indexOf(this.mappingNombres[i])
-                      console.log(this.cabecerasTabla)
-                      console.log(indiceEnCabecera)
-                      console.log(this.mappingNombres[index])
-                      console.log(this.datosBrutos)
+                      // console.log(this.cabecerasTabla)
+                      // console.log(indiceEnCabecera)
+                      // console.log(this.mappingNombres[index])
+                      // console.log(this.datosBrutos)
                       i++
                       //console.log(this.datosBrutos[index][indiceEnCabecera])
                       this.datosBrutos.forEach((dato: any, index2: number) => {
                         this.service.getDatos(this.url + mapped.table + "/" + dato[indiceEnCabecera]).pipe(delay(0))
                           .subscribe({
                             next: (datosAMostrar) => {
-                              console.log(datosAMostrar)
-                              console.log(mapped.description)
-                              console.log(datosAMostrar[mapped.description])
+                              // console.log(datosAMostrar)
+                              // console.log(mapped.description)
+                              // console.log(datosAMostrar[mapped.description])
                               //this.linkForaneoAka.push(t._embedded[mapped.table])
                               //console.log(t._embedded.users[0])
                               //console.log(table[mapped.description])
