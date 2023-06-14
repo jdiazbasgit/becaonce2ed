@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.Rol;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
