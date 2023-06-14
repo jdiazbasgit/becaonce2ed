@@ -44,7 +44,7 @@ public class AwardFineRestControllers {
 	@Autowired
 	private AwardsFinesServices awardFineServices;
 
-	@GetMapping(value = "/awardFine/{id}")
+	@GetMapping(value = "/awardsFines/{id}")
 	@CrossOrigin(origins = "*")
 	
 	public EntityModel<AwardsFine> findById(@PathVariable int id) {
@@ -53,6 +53,12 @@ public class AwardFineRestControllers {
 		awardsFine.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class).findById(awardsFine.getId()))
 				.withSelfRel());
+		
+		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+				.findById(awardsFine.getAwardFineType().getId())).withRel("awardFineType"));
+		
+		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
+				.findById(awardsFine.getAwardFineConfiguration().getId())).withRel("awardFineConfiguration"));
 
 		return EntityModel.of(awardsFine);
 	}
@@ -75,7 +81,7 @@ public class AwardFineRestControllers {
 	 * return CollectionModel.of(awardsFine); }
 	 */
 
-	@GetMapping(value = "/awardFine")
+	@GetMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 
 	public PagedModel<EntityModel<AwardsFine>> findAll(@RequestParam(defaultValue = "0") int size,
@@ -104,7 +110,7 @@ public class AwardFineRestControllers {
 		return getPagedResourcesAssembler().toModel(awardFine, getAwardsFineModelAssembler());
 	}
 
-	@PostMapping(value = "/awardFine")
+	@PostMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 	
 	public boolean save(@RequestBody AwardsFine awardFine) {
@@ -112,21 +118,21 @@ public class AwardFineRestControllers {
 
 	}
 
-	@PutMapping(value = "/awardFine")
+	@PutMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 	
 	public List<AwardsFine> saveAll(@RequestBody List<AwardsFine> awardFine) {
 		return (List<AwardsFine>) getAwardFineServices().saveAll(awardFine);
 	}
 
-	@DeleteMapping(value = "/awardFine/{id}")
+	@DeleteMapping(value = "/awardsFines/{id}")
 
 	public void deleteById(@PathVariable int id) {
 		getAwardFineServices().deleteById(id);
 
 	}
 	
-	@PostMapping("/awardFine/{id}")
+	@PostMapping("/awardsFines/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getAwardFineServices().existsById(id);
 	}

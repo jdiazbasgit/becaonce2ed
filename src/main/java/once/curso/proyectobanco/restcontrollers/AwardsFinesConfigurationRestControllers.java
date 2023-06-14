@@ -43,7 +43,7 @@ public class AwardsFinesConfigurationRestControllers {
 	@Autowired
 	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
 
-	@GetMapping(value = "/awardsFinesConfiguration/{id}")
+	@GetMapping(value = "/awardsFinesConfigurations/{id}")
 	@CrossOrigin(origins = "*")
 
 	public EntityModel<AwardsFinesConfiguration> findById(@PathVariable int id) {
@@ -56,7 +56,7 @@ public class AwardsFinesConfigurationRestControllers {
 		return EntityModel.of(awardsFinesConfiguration);
 	}
 
-	@GetMapping(value = "/AwardsFinesConfiguration")
+	@GetMapping(value = "/AwardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public PagedModel<EntityModel<AwardsFinesConfiguration>> findAll(@RequestParam(defaultValue = "0") int size,
@@ -87,14 +87,14 @@ public class AwardsFinesConfigurationRestControllers {
 				getAwardsFinesConfigurationModelAssembler());
 	}
 
-	@PostMapping(value = "/AwardsFinesConfiguration")
+	@PostMapping(value = "/AwardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public boolean save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().existsById(getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration).getId());
 	}
 
-	@PutMapping(value = "/AwardsFinesConfiguration")
+	@PutMapping(value = "/AwardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public List<AwardsFinesConfiguration> saveAll(
@@ -102,14 +102,14 @@ public class AwardsFinesConfigurationRestControllers {
 		return (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
 	}
 
-	@DeleteMapping(value = "/AwardsFinesConfiguration/{id}")
+	@DeleteMapping(value = "/AwardsFinesConfigurations/{id}")
 	@CrossOrigin(origins = "*")
 
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}
 	
-	@PostMapping("/AwardsFinesConfiguration/{id}")
+	@PostMapping("/AwardsFinesConfigurations/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getAwardsFinesConfigurationServices().existsById(id);
 	}

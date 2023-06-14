@@ -99,14 +99,14 @@ public class AwardFineTypeRestControllers {
 		return (List<AwardsFinesType>) getAwardFineTypeServices().saveAll(awardFineTypes);
 	}
 
-	@DeleteMapping(value = "/awrdFineType")
+	@DeleteMapping(value = "/awrdsFinesTypes")
 	@CrossOrigin(origins = "*")
 
 	public void deleteById(@PathVariable int id) {
 		getAwardFineTypeServices().deleteById(id);
 	}
 	
-	@PostMapping("/awrdFineType/{id}")
+	@PostMapping("/awrdsFinesTypes/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getAwardFineTypeServices().existsById(id);
 	}
