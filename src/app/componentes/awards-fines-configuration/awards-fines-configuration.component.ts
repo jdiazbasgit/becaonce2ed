@@ -24,7 +24,7 @@ export class AwardsFinesConfigurationComponent implements OnInit{
 
   eliminar(id: any){
     if (confirm("Esta seguro de borrar el tipo de documento")){
-      this.service.delete("http://localhost:8080/once/AwardsFinesConfiguration/" + id)
+      this.service.delete("http://localhost:8080/once/AwardsFinesConfigurations/" + id)
       .subscribe((dato: boolean) => {
         if (!dato) {
           this.mensaje = "Se ha borrado correctamente"
@@ -46,7 +46,7 @@ export class AwardsFinesConfigurationComponent implements OnInit{
   ngOnInit(): void {
     
     this.descripciones = []
-    this.service.getDatos("http://localhost:8080/once/AwardsFinesConfiguration/")
+    this.service.getDatos("http://localhost:8080/once/AwardsFinesConfigurations/")
     .subscribe((datos: any) => {
       this.descripciones = datos._embedded.AwardsFinesConfiguration;
     })
