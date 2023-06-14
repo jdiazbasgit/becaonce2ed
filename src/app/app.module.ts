@@ -28,7 +28,11 @@ import { TransactionComponent } from './componentes/transaction/transaction.comp
 import { TransactionsAwardsFineComponent } from './componentes/transactions-awards-fine/transactions-awards-fine.component';
 import { TypeAccountComponent } from './componentes/type-account/type-account.component';
 import { UserComponent } from './componentes/user/user.component';
+<<<<<<< HEAD
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
+=======
+import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-awards-fine.component';
+>>>>>>> feature/front/proyectos-banco-mrg
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import { PanelAdministradorComponent } from './panel-administrador/panel-adminis
     TransactionsAwardsFineComponent,
     TypeAccountComponent,
     UserComponent,
+<<<<<<< HEAD
     PanelAdministradorComponent
+=======
+    ModalAwardsFineComponent
+>>>>>>> feature/front/proyectos-banco-mrg
   ],
   imports: [
     BrowserModule,
