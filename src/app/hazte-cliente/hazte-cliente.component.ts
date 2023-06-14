@@ -16,8 +16,9 @@ export class HazteClienteComponent {
   documentodeidentidad: string;
   telefono: string;
   email: string;
-  identificationType:Array<any>;
-  user:Array<any>;
+  emailBaseDeDatos:Array<any>
+  services: any;
+ 
 
 
   constructor(private profilServices:ProfileService) {
@@ -26,12 +27,29 @@ export class HazteClienteComponent {
     this.documentodeidentidad = "";
     this.telefono = "";
     this.email = "";
-    this.identificationType=[];
-    this.user=[];
+    this.emailBaseDeDatos=[]
+    
 
   }
-  identificatioType =  data._embedded.profiles[0]._links.identificationType()
+  sacarEmail(){
+    this.emailBaseDeDatos=[]
+    this.services.getDatos("http://localhost:8080/once/profiles")
+    .subscribe((datos:any)=>{
+      console.log(datos)
+      for (let index = 0; index < datos.length; index++) {
+        console.log(datos[index]._embedded.profiles.email)
+        
+      }
+    })
+
+    
+  }
+
+
+
   guardaDatos (){
+    
+
     this.profilServices.saveOrUpdate("http://localhost:8080/once/profiles","")
     const clienteGuardado={
     name:this.nombre,
