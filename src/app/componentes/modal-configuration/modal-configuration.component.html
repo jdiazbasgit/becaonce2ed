@@ -1,0 +1,33 @@
+<!-- The Modal -->
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-center"> 
+                <h4 class="modal-title ">CONFIGURACIÓN</h4>
+            </div>
+
+            <div class="modal-header justify-content-center"> 
+                <h5 class="text-center">Nombre accion: {{titulo}}</h5>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body text-center">
+                <label for="stockAlarm">Stock Alarm:</label><input type="text" name="stockAlarm"
+                    [(ngModel)]="stockAlarm" value="{{stockAlarmPlaceHolder}}"><br>
+                <button type="button" class="button" (click)="grabar()">GRABAR</button>
+            </div>
+
+            <div class="text-center">
+                <h1 >{{mensaje}}</h1>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
