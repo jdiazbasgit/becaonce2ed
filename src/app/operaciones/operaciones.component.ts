@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ProyectosService } from '../servicios/proyectos.service';
 
 @Component({
   selector: 'app-operaciones',
@@ -10,46 +10,43 @@ export class OperacionesComponent {
   monto: number = 0;
   saldo: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private service: ProyectosService) {
+
+  }
 
   realizarDeposito() {
-    if (this.monto <= 0) {
-      alert('El monto del depósito debe ser mayor que cero');
-      return;
+    // this.saldo += this.monto;
+    // this.monto = 0;
+
+    let jsonParaEnviar = {
+      "date": "2022-12-31T23:00:00.000+00:00",
+      "current": this.monto,
+      "description": "descriptions/1",
+      "currentAccount": "currentAccounts/1",
     }
 
-    this.http.post('/once/transactions', { amount: this.monto })
-      .subscribe(
-        () => {
-          this.saldo += this.monto;
-          this.monto = 0;
-        },
-        error => {
-          alert('Error al realizar el depósito');
+    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          console.log("Grabacion realizada correctamente")
         }
-      );
+        else
+          console.log("La grabación no se ha realizado")
+       
+      })
   }
-
   realizarRetiro() {
-    if (this.monto <= 0) {
-      alert('El monto del retiro debe ser mayor que cero');
-      return;
-    }
-
     if (this.monto > this.saldo) {
       alert('Saldo insuficiente');
-      return;
+    } else {
+      this.saldo -= this.monto;
+      this.monto = 0;
     }
-
-    this.http.post('/once/transactions', { amount: -this.monto })
-      .subscribe(
-        () => {
-          this.saldo -= this.monto;
-          this.monto = 0;
-        },
-        error => {
-          alert('Error al realizar el retiro');
-        }
-      );
   }
 }
+    
+
+
+
+
+
