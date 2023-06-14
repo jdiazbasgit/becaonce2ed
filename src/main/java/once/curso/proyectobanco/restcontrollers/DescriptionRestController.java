@@ -58,8 +58,8 @@ public class DescriptionRestController {
 		return getDescriptionService().existsById(getDescriptionService().save(description).getId());
 	}
 	
-	
 	/*@GetMapping(value = "/descriptions")
+>>>>>>> feature/develop-banco-di
 	public CollectionModel<Description> findAll() {
 		Iterable<Description> descriptions= getDescriptionService().findAll();
 		descriptions.forEach(d->{
@@ -70,7 +70,11 @@ public class DescriptionRestController {
 		 }*/
 	
 	@GetMapping(value = "/descriptions")
+<<<<<<< HEAD
 	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue = "0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
+=======
+	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue="0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
+>>>>>>> c35da00c751c5aeb198a210f3d0339f3d64b0438
 		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 		Sort orden = Sort.by("a");
 		
@@ -90,8 +94,15 @@ public class DescriptionRestController {
 	}
 	
 	@DeleteMapping(value="/description/{id}")
-	public void deleteById(@PathVariable Integer id) {
+	public boolean deleteById(@PathVariable Integer id) {
 		getDescriptionService().deleteById(id);
+		return getDescriptionService().existsById(id);
+	}
+	
+	
+	@PostMapping(value="/description/{id}")
+	public boolean existsById(@PathVariable Integer id) {
+		return getDescriptionService().existsById(id);
 	}
 	
 	@PutMapping("/descriptions")

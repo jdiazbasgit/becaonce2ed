@@ -43,7 +43,7 @@ public class TransactionsAwardsFineResController {
 	private TransactionsAwardsFineService transactionsAwardsFineService;
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping("/transactionsAwardsFineService")
+	@GetMapping("/transactionsAwardsFines")
 	
 	public PagedModel<EntityModel<TransactionsAwardsFine>> findAll( @RequestParam(defaultValue = "0")int size, @RequestParam(defaultValue = "0")int page,
 			@RequestParam(required = false)String sort){
@@ -74,7 +74,7 @@ public class TransactionsAwardsFineResController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@GetMapping(value="/transactionsAwardsFineService/{id}")
+	@GetMapping(value="/transactionsAwardsFines/{id}")
 	
 	public EntityModel<TransactionsAwardsFine> findById(@PathVariable Integer id){
 		 TransactionsAwardsFine transactionsAwardsFine =getTransactionsAwardsFineService().findById(id).get();
@@ -85,7 +85,7 @@ public class TransactionsAwardsFineResController {
 }
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping("/transactionsAwardsFineService")
+	@PostMapping("/transactionsAwardsFines")
 		
 	public TransactionsAwardsFine save(@RequestBody TransactionsAwardsFine transactionsAwardsFine) {
 		return getTransactionsAwardsFineService().save(transactionsAwardsFine);
@@ -94,21 +94,21 @@ public class TransactionsAwardsFineResController {
 	
 	
 	@CrossOrigin(origins = "*")
-	@PutMapping(value="/transactionsAwardsFineService")
+	@PutMapping(value="/transactionsAwardsFines")
 	public List<TransactionsAwardsFine> saveAll(@RequestBody List<TransactionsAwardsFine> transactionsAwardsFines){
 		return (List<TransactionsAwardsFine>)getTransactionsAwardsFineService().saveAll(transactionsAwardsFines);
 	}
 	
 	
 	@CrossOrigin(origins = "*")
-	@DeleteMapping(value="/transactionsAwardsFineService/{id}")
+	@DeleteMapping(value="/transactionsAwardsFines/{id}")
 	public boolean deleteById(@PathVariable Integer id) {
 		getTransactionsAwardsFineService().deleteById(id);
 		return getTransactionsAwardsFineService().existsById(id);
 	}
 	
 	@CrossOrigin(origins="*")
-	@PostMapping(value="/transactionsAwardsFineService/{id}")
+	@PostMapping(value="/transactionsAwardsFines/{id}")
 	public boolean existsById(@PathVariable Integer id) {
 		return getTransactionsAwardsFineService().existsById(id);
 	}
