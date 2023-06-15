@@ -10,16 +10,19 @@ export class OperacionesComponent {
   monto: number = 0;
   saldo: number = 0;
 
+
   constructor(private service: ProyectosService) {
 
   }
 
   realizarDeposito() {
-    // this.saldo += this.monto;
-    // this.monto = 0;
+    this.saldo += this.monto;
+
+    let currentDate = new Date();
+
 
     let jsonParaEnviar = {
-      "date": "2022-12-31T23:00:00.000+00:00",
+      "date": currentDate.toISOString(),
       "current": this.monto,
       "description": "descriptions/1",
       "currentAccount": "currentAccounts/1",
@@ -32,19 +35,35 @@ export class OperacionesComponent {
         }
         else
           console.log("La grabación no se ha realizado")
-       
+
       })
+    this.monto = 0;
   }
   realizarRetiro() {
-    if (this.monto > this.saldo) {
-      alert('Saldo insuficiente');
-    } else {
-      this.saldo -= this.monto;
-      this.monto = 0;
+    this.saldo -= this.monto;
+    let currentDate = new Date();
+
+
+    let jsonParaEnviar = {
+      "date": currentDate.toISOString(),
+      "current": "-"+this.monto,
+      "description": "descriptions/1",
+      "currentAccount": "currentAccounts/1",
     }
+
+    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          console.log("Grabacion realizada correctamente")
+        }
+        else
+          console.log("La grabación no se ha realizado")
+
+      })
+      this.monto = 0;
   }
 }
-    
+
 
 
 
