@@ -5,16 +5,12 @@
 
             <!-- Modal Header -->
             <div class="modal-header justify-content-center"> 
-                <h4 class="modal-title ">CONFIGURACIÓN</h4>
-            </div>
-
-            <div class="modal-header justify-content-center"> 
-                <h5 class="text-center">Nombre accion: {{titulo}}</h5>
+                <h4 class="modal-title ">{{tipoAccion}} STOCK</h4>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <label for="stockAlarm">Stock Alarm:</label><input type="text" name="stockAlarm"
+                <label for="stockAlarm">Stock Alarm: </label><input type="text" name="stockAlarm"
                     [(ngModel)]="stockAlarm" value="{{stockAlarmPlaceHolder}}"><br>
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>

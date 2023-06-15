@@ -14,18 +14,17 @@ export class ModalConfigurationComponent implements DoCheck {
   mensaje: string = "";
   fin: boolean = false
   stockAlarmPlaceHolder:string=""
-  nomAccion: string = "";
+  tipoAccion:string="";
   @Output() eventoAComunicar=new EventEmitter();
-  titulo:string="";
   constructor(private service: ConfigurationService) {
     this.stockAlarm = "";
   }
 
   ngDoCheck(): void {
     if(this.id===0){
-      this.titulo ="Alta"
+      this.tipoAccion ="ALTA"
     } else {
-      this.titulo = "modificacion"
+      this.tipoAccion = "MODIFICACIÓN"
     }
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
