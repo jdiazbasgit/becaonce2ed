@@ -28,10 +28,6 @@ export class ExistingProductComponent implements OnInit {
     this.getData();
   }
 
-  /*ngAfterViewInit() {
-    this.getData();
-  }*/
-
   getData() {
     this.service.getDatos("http://localhost:8080/once/products")
       .subscribe({
@@ -46,6 +42,14 @@ export class ExistingProductComponent implements OnInit {
           console.error('Error al obtener los datos:', error);
         }
       })
+  }
+
+  getImage(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes;
+    }
+
+    return 'assets/placeholder-image.jpg';
   }
 
  /* getImage(imageBytes: string): string {
@@ -66,7 +70,7 @@ export class ExistingProductComponent implements OnInit {
     return 'assets/placeholder-image.jpg';
   }*/
 
-  getImage(imageBytes: string): string {
+  //getImage(imageBytes: string): string {
     /*if (imageBytes) {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -76,10 +80,8 @@ export class ExistingProductComponent implements OnInit {
       return result
     }*/
 
-    return 'assets/placeholder-image.jpg';
-  }
-
-
+    //return 'assets/placeholder-image.jpg';
+  //}
 
   abrirModal(mode: 'add' | 'edit', element?: any) {
     this.modalMode = mode;

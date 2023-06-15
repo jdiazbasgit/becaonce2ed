@@ -48,12 +48,12 @@ export class ModalExistingProductsComponent { //implements DoCheck {
     $('#myModal').modal('hide');
   }
 
-  getImage(image: string): string {
-    if (image) {
-      const decodedImage = atob(image);
-      return 'data:image/jpeg;base64,' + decodedImage;
+  getImage(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes;
     }
-    return '';
+
+    return 'assets/placeholder-image.jpg';
   }
 
   grabar() {
