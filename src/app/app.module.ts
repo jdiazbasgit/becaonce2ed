@@ -29,6 +29,7 @@ import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-ca
 import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
+import { ImagenComponent } from './imagen/imagen.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ModalConfigurationComponent } from './componentes/modal-configuration/m
     ModalDocumentTypesComponent,
     ModalCategoryComponent,
     ModalSubcategoryComponent,
-    ModalConfigurationComponent
+    ModalConfigurationComponent,
+    ImagenComponent
   ],
   imports: [
     BrowserModule,
