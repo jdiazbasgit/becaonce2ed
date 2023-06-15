@@ -28,11 +28,13 @@ import { TransactionComponent } from './componentes/transaction/transaction.comp
 import { TransactionsAwardsFineComponent } from './componentes/transactions-awards-fine/transactions-awards-fine.component';
 import { TypeAccountComponent } from './componentes/type-account/type-account.component';
 import { UserComponent } from './componentes/user/user.component';
-<<<<<<< HEAD
+import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
+import { ModalTransactionsAwardsFineComponent } from './componentes/modal-transactions-awards-fine/modal-transactions-awards-fine.component';
+import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
+import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
-=======
 import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-awards-fine.component';
->>>>>>> feature/front/proyectos-banco-mrg
+
 
 @NgModule({
   declarations: [
@@ -61,17 +63,20 @@ import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-
     TransactionsAwardsFineComponent,
     TypeAccountComponent,
     UserComponent,
-<<<<<<< HEAD
-    PanelAdministradorComponent
-=======
-    ModalAwardsFineComponent
->>>>>>> feature/front/proyectos-banco-mrg
+    ModalUserComponent,
+    ModalTransactionsAwardsFineComponent,
+    ModalConfigurationComponent,
+    HazteClienteComponent,
+    PanelAdministradorComponent,
+    ModalAwardsFineComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
 
   ],
   providers: [],
