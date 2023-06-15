@@ -1,3 +1,54 @@
+<div class="container mt-3">
+  <h1 class="text-center mb-5">{{ title }}</h1>
+    <table class="table table-stripped table-bordered w-100">
+      <th> Imagen </th>
+      <th> Descripción </th>
+      <th> Precio de venta </th>
+      <th> Existencias </th>
+      <th> Acciones </th>
+
+      <tr *ngFor="let element of elements">
+        <td><img [src]="getImage(element.image)" alt="{{ element.description }}"></td>
+        <td> {{ element.description }} </td>
+        <td> {{ element.price }} </td>
+        <td> {{ element.stock }} </td>
+
+        <td class="text-center">
+          <a (click)="abrirModal('edit', element)"><i class="bi bi-pencil-fill"></i></a>
+          <a (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
+        </td>
+      </tr>
+    </table>
+
+    <!--<app-modal-document-types (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-document-types>
+    <h5 class="text-center">{{mensaje}}</h5>-->
+    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label=""></mat-paginator>-->
+
+    <div class="w-100 text-center">
+      <button type="button" class="btn btn-primary" (click)="abrirModal('add')">Añadir nuevo producto</button>
+    </div>
+    <app-modal-existing-products #modal></app-modal-existing-products>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--<div class="mat-elevation-z8">
     <h2>Lista de productos</h2>
     <button type="button" class="btn btn-primary d-md-block me-2 mt-2 mb-2 rounded-0" >Añadir nuevo usuario</button>
@@ -42,36 +93,4 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
   </div>-->
-
-
-
-<div class="container mt-3">
-  <h1 class="text-center">{{ title }}</h1>
-
-  <button type="button" class="btn btn-primary d-md-block me-2 mt-3 mb-3" (click)="abrirModal('add')">Añadir nuevo producto</button>
-
-    <table class="table table-stripped table-bordered w-100">
-      <th> Imagen </th>
-      <th> Descripción </th>
-      <th> Precio de venta </th>
-      <th> Existencias </th>
-      <th> Acciones </th>
-      
-      <tr *ngFor="let element of elements">
-        <td><img [src]="getImage(element.image)" alt="{{ element.description }}"></td>
-        <td> {{ element.description }} </td>
-        <td> {{ element.price }} </td>
-        <td> {{ element.stock }} </td>
-
-        <td class="text-center">
-          <a (click)="abrirModal('edit', element)"><i class="bi bi-pencil-fill"></i></a>
-          <a (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
-        </td>
-      </tr>
-    </table>
-
-    <!--<app-modal-document-types (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-document-types>
-    <h5 class="text-center">{{mensaje}}</h5>-->
-    <app-modal-existing-products #modal></app-modal-existing-products>
-  </div>
 

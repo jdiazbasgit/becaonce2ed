@@ -23,7 +23,8 @@ export class ModalExistingProductsComponent { //implements DoCheck {
   total: string = "0";
 
   @Output() eventoAComunicar = new EventEmitter();
-  
+  id!: number;
+
 
   constructor(private service: ExistingProductService) {}
 
@@ -43,7 +44,8 @@ export class ModalExistingProductsComponent { //implements DoCheck {
 
   realizarComunicacion() {
     //this.id = 0;
-    this.eventoAComunicar.emit({ salida: "OK" });
+    //this.eventoAComunicar.emit({ salida: "OK" });
+    $('#myModal').modal('hide');
   }
 
   getImage(image: string): string {
@@ -55,6 +57,23 @@ export class ModalExistingProductsComponent { //implements DoCheck {
   }
 
   grabar() {
+    /*if (this.description.trim() !== "") {
+      const existingProduct = new ExistingProductBean(this.id, this.image, this.description, this.price, this.stock);
+      this.service.saveOrUpdate("http://localhost:8080/once/products", existingProduct)
+        .subscribe((dato: boolean) => {
+          if (dato) {
+            this.mensaje = "Grabación realizada correctamente";
+            this.description = "";
+            this.price = "";
+            this.stock = "";
+          } else {
+            this.mensaje = "La grabación no se ha realizado";
+          }
+        });
+    } else {
+      this.mensaje = "Debes introducir un valor";
+    }*/
+
     //this.fin = false;
    /* if (this.description.trim() !== "") {
       const existingProduct = new ExistingProductBean(this.id, this.image, this.description, this.price, this.stock);

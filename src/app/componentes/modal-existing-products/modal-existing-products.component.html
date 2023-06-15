@@ -6,35 +6,35 @@
 
             <!-- Modal Header -->
             <div class="modal-header justify-content-left">
-                <h5 class="modal-title ">Productos</h5>
+                <h5 class="modal-title ">Datos del producto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <img [src]="getImage(image)" [alt]="description" style="width:250px; height:250px;" class="m-3"><br>
-        
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Descripción</span>
+                <img [src]="getImage(image)" [alt]="description" style="width:250px; height:250px;" class="mb-3"><br>
+
+                <div class="input-group mb-2">
+                    <span class="input-group-text" style="width:135px" id="basic-addon1">Descripción</span>
                     <input type="text" class="form-control" aria-label="Descripción" aria-describedby="Descripción" [(ngModel)]="description" [value]="description">
                 </div>
 
-                <div class="input-group mb-3">
+                <div class="input-group mb-2">
+                    <span class="input-group-text" id="basic-addon1" style="width:135px">Precio de venta</span>
                     <input type="text" class="form-control text-right" aria-label="Euro precio de venta (con coma y dos decimales)" [(ngModel)]="price" [value]="price">
                     <span class="input-group-text">€</span>
-                    <span class="input-group-text">0,00</span>
                 </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Existencias</span>
+                <div class="input-group mb-2">
+                    <span class="input-group-text" id="basic-addon1" style="width:135px">Existencias</span>
                     <input type="text" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock">
                 </div>
 
                 <div class="mb-3">
-                    <p class="fw-bold h4 d-block" style="color:#424242">Total {{ total }}&euro;</p>
-                </div>
+                  <p class="fw-bold h4 d-block text-end" style="color:#4e4e4e">Total {{ total }}</p>
+              </div>
             </div>
-            
+
             <div class="text-center">
                 <h1>{{ mensaje }}</h1>
             </div>

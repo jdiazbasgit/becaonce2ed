@@ -1,9 +1,7 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
-
-declare var atob: any;
 
 @Component({
   selector: 'app-existing-product',
@@ -11,7 +9,7 @@ declare var atob: any;
   styleUrls: ['./existing-product.component.css']
 })
 
-export class ExistingProductComponent implements AfterViewInit {
+export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
   modal: ModalExistingProductsComponent | undefined;
 
@@ -20,15 +18,19 @@ export class ExistingProductComponent implements AfterViewInit {
   elements: any[] = [];
   modalMode: 'add' | 'edit' = 'add';
   modalData: any = {};
-  
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   constructor(private service: ExistingProductService) { }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.getData();
   }
+
+  /*ngAfterViewInit() {
+    this.getData();
+  }*/
 
   getData() {
     this.service.getDatos("http://localhost:8080/once/products")
@@ -46,13 +48,38 @@ export class ExistingProductComponent implements AfterViewInit {
       })
   }
 
-  getImage(image: string): string {
-    if (image) {
-      const decodedImage = atob(image);
+ /* getImage(imageBytes: string): string {
+    if (imageBytes) {*/
+      /*const decodedImage = atob(image);
       return 'data:image/jpeg;base64,' + decodedImage;
+
+      const imageBlob = new Blob([imageBytes], { type: 'image/jpeg' });
+      return URL.createObjectURL(imageBlob);*/
+
+
+     /* const reader = new FileReader()
+      reader.onload = (e) => imageBytes
+      reader.readAsDataURL(new Blob([imageBytes]));
+
     }
+
+    return 'assets/placeholder-image.jpg';
+  }*/
+
+  getImage(imageBytes: string): string {
+    /*if (imageBytes) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const result = reader.result as string;
+      };
+
+      return result
+    }*/
+
     return 'assets/placeholder-image.jpg';
   }
+
+
 
   abrirModal(mode: 'add' | 'edit', element?: any) {
     this.modalMode = mode;
@@ -72,11 +99,28 @@ export class ExistingProductComponent implements AfterViewInit {
         this.modal.description=element.description
         this.modal.price=element.price
         this.modal.stock=element.stock
-        this.modal.total=(element.price*element.stock).toString()
+        this.modal.total=new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format((element.price*element.stock)).toString()
       }
       this.modal.openModal();
     }
   }
+
+  /*setImage(image: string): string {
+
+    const blob = new Blob([image], { type: 'image/jpeg' });
+    return URL.createObjectURL(blob);
+
+
+    if (image) {
+      const decodedImage = atob(image);
+      return 'data:image/jpeg;base64,' + decodedImage;
+
+      const blob = new Blob([image]);
+      return URL.createObjectURL(blob);
+    }
+
+    return 'assets/placeholder-image.jpg';
+  }*/
 
   eliminar(Id: string) {
     console.log('Eliminar elemento:', Id);
