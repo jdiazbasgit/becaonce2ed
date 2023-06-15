@@ -36,6 +36,7 @@ import { PanelAdministradorComponent } from './panel-administrador/panel-adminis
 import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-awards-fine.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,8 @@ import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
 
+    PanelAdministradorComponent,
+    ModalAwardsFineComponent,
   ],
   imports: [
     BrowserModule,
