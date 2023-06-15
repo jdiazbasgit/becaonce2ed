@@ -70,11 +70,7 @@ public class DescriptionRestController {
 		 }*/
 	
 	@GetMapping(value = "/descriptions")
-<<<<<<< HEAD
-	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue = "0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
-=======
 	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue="0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
->>>>>>> c35da00c751c5aeb198a210f3d0339f3d64b0438
 		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
 		Sort orden = Sort.by("a");
 		
