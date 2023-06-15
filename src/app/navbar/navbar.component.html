@@ -1,69 +1,36 @@
-<div class="texto-secundario">
-  <nav class="navbar navbar-expand-sm bg-white">
-    <div class="container-fluid">
-      <ul class="navbar-nav ml-auto w-100">
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="movimientos">Movimientos</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="operaciones">Transferencias</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="productos">Productos Asociados</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="detalles">Ajustes de la Cuenta</a>
+  </li>
+  <li class="nav-item">
 
-        <li class="nav-item">
-          <a class="nav fondo-secundario active" routerLink="movimientos">Movimientos</a>
-        </li>
+    <div class="btn-group">
+      <button type="button" class="btn btn-success w-100">Cambiar de Cuenta</button>
 
-        <li class="nav-item">
-          <a class="nav fondo-secundario" routerLink="operaciones">Transferencias</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav fondo-secundario" routerLink="productos">Productos Asociados</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav fondo-secundario" routerLink="detalles">Ajustes de la Cuenta</a>
-        </li>
-
-        <div class="btn-group">
-          <button type="button" class="btn btn-danger">CAMBIAR DE CUENTA</button>
-
-          <button type="button" class="btn btn-danger bropdown-toggle
-          data-toggle=dropdown">
+      <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span>
-        <span class="sr-only">Desplegar menú</span>
+        <span class="sr-only"></span>
       </button>
 
-      <!-- <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Cuenta 1</a></li>
-        <li><a href="#">Cuenta 2</a></li>
-        <li><a href="#">Cuenta 3</a></li>
-      </ul> -->
-        </div>
-
-        <!-- <li class="nav-item dropdown">
-          <a class="nav fondo-secundario dropdown-toggle row justify-content-end" href="#" role="button"
-            data-bs-toggle="dropdown" id="cambiar-cuenta">CAMBIAR DE CUENTA</a> -->
-            <ul class="dropdown-menu" role="menu" id="cambiar-cuenta-menu">
-              <li><a class="dropdown-item" href="#">Cuenta 1</a></li>
-              <li><a class="dropdown-item" href="#">Cuenta 2</a></li>
-              <li><a class="dropdown-item" href="#">Cuenta 3</a></li>
-            </ul>  
-        <!-- </li> -->
-
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#">Cuenta #1</a></li>
+        <li><a href="#">Cuenta #2</a></li>
+        <li><a href="#">Cuenta #3</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Cuenta #4</a></li>
       </ul>
     </div>
-  </nav>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function(){
-    var cambiarCuentaBtn = document.getElementById('cambiar-cuenta');
-    var cambiarCuentaMenu = document.getElementById('cambiar-cuenta-menu');
-
-    cambiarCuentaBtn.addEventListener('click', function(event){
-      event.stopPropagation();
-      cambiarCuentaMenu.classList.toggle('show');
-    });
-
-    document.addEventListener('click', function(event){
-      if (!cambiarCuentaMenu.contains(event.target)){
-        cambiarCuentaMenu.classList.remove('show');
-      }
-    });
-    });
-</script>
+  </li>
+</ul>
+<app-awards-fine></app-awards-fine>
+<!-- <app-awards-fines-configuration></app-awards-fines-configuration>
+<app-awards-fines-type></app-awards-fines-type> -->
