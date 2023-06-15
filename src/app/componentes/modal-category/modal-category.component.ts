@@ -15,12 +15,25 @@ export class ModalCategoryComponent implements DoCheck {
   category:string=""
   categoryPlaceHolder:string=""
   @Output() eventoAComunicar=new EventEmitter();
+  subtitulo: string = ""
+ 
+ 
+ 
   constructor(private service: CategoryService) {
     this.descripcion = "";
+    
   }
  
   
   ngDoCheck(): void {
+    if (this.id === 0) {
+      this.subtitulo = "ALTA"
+    } else {
+      this.subtitulo = "MODIFICACION"
+    }
+
+
+
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/categories/" + this.id)
@@ -34,7 +47,11 @@ export class ModalCategoryComponent implements DoCheck {
   }
 
   realizarComunicacion(){
-    this.id=0;
+
+    this.id = 0;
+    this.category = "";
+    this.categoryPlaceHolder = "";
+    this.fin = false;
     this.eventoAComunicar.emit({salida:"OK"})
   }
 
