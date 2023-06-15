@@ -10,9 +10,13 @@
 
             <!-- Modal Body -->
             <div class="modal-body text-center">
-                <label for="usuario">Usuario</label>
+                <label for="usuario">Usuario: </label>
                 <input type="text" name="usuario" [(ngModel)]="usuario" value="{{usuarioPlaceHolder}}"><br>
-                <label for="rol">rol:</label>
+                <label for="usuario">Contraseña: </label>
+                <input type="text" name="Contraseña" [(ngModel)]="contraseña" value="{{contraseñaPlaceHolder}}"><br>
+                <label for="usuario">Habilitar: </label>
+                <input type="text" name="Habilitar" [(ngModel)]="Habilitar" value="{{habilitadoPlaceHolder}}">
+                <label for="rol">Roles: </label>
                 <select [(ngModel)]="rol">
                     <option value="0">Seleccione rol...</option>
                     <option *ngFor="let fun of roles" value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/')+1)}}">{{fun.rol}}</option>

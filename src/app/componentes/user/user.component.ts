@@ -12,11 +12,17 @@ export class UserComponent implements OnInit{
   id: number = 0;
   titulo: string;
   usuarios: any[];
+  claves: any[];
+  habilitados: any[];
+  roles: any[];
   mensaje: string = "";
   @Input() eventoDelHijo: string = ""
     constructor(private service: UserService){
     this.titulo = "Tipos de Usuarios"
     this.usuarios = [];
+    this.claves = [];
+    this.habilitados = [];
+    this.roles = [];
   }
 
   eliminar(id: any){
@@ -40,6 +46,9 @@ export class UserComponent implements OnInit{
 
   ngOnInit(): void {
     this.usuarios = [];
+    this.claves = [];
+    this.habilitados = [];
+    this.roles = [];
     this.service.getDatos("http://localhost:8080/once/usersPaginado?page=0&size=2&sort=id,asc").
     subscribe((datos: any)=>{
       this.usuarios = datos._embedded.users
