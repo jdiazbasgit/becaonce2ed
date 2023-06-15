@@ -101,8 +101,9 @@ public class FeeRestController {
 	}
 
 	@DeleteMapping("/fees/{id}")
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getFeeService().deleteById(id);
+		return getFeeService().existsById(id);
 	}
 	
 	@PostMapping("/fees/{id}")
