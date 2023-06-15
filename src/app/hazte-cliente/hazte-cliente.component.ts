@@ -19,10 +19,12 @@ export class HazteClienteComponent {
   email: string;
   emailBaseDeDatos:string
   telefonoBaseDatos:string
+  usuario:string
+  clave:string
  
 
 
-  constructor(private profilServices:ProfileService, private services:ProyectosService) {
+  constructor(private profilServices:ProfileService,private services:ProyectosService) {
     this.nombre = "";
     this.apellidos = "";
     this.documentodeidentidad = "";
@@ -30,38 +32,47 @@ export class HazteClienteComponent {
     this.email = "";
     this.emailBaseDeDatos=""
     this.telefonoBaseDatos=""
+    this.usuario=""
+    this.clave=""
     
 
   }
 
   ngOnInit(){
-    this.sacarEmail()
+    this.comprobarDatos()
   }
-  sacarEmail(){
+  comprobarDatos(){
+    this.usuario=""
+    this.clave=""
     this.emailBaseDeDatos=""
     this.telefonoBaseDatos=""
     this.services.getDatos("http://localhost:8080/once/profiles")
     .subscribe((datos:any)=>{
       console.log(datos)
       console.log(datos._embedded.profiles.length)
-      for (let index = 0; index < datos._embedded.profiles.length; index++) {
-        //console.log(datos._embedded.profiles[index].email)
-        console.log(index)
-        this.emailBaseDeDatos=datos._embedded.profiles[index].email
-        this.telefonoBaseDatos=datos._embedded.profiles[index].phone
+
+      datos._embedded.profiles.forEach((profile:any) => {
+        console.log(profile.email)
+        console.log(profile)
+        this.emailBaseDeDatos=profile.email
+        this.telefonoBaseDatos=profile.phone
         console.log(this.telefonoBaseDatos)
-      console.log(this.emailBaseDeDatos + " estoy aqui")
+     // console.log(this.emailBaseDeDatos + " estoy aqui")
       if (this.emailBaseDeDatos==this.email ) {
-        console.log("ya existe") 
+        console.log("el email ya existe") 
       }
       if (this.telefonoBaseDatos==this.telefono) {
         console.log("el numero ya existe")
-        
-      }
      
       }
-      this.guardaDatos()
-      
+        
+      });
+       
+    })
+    this.services.getDatos("http://localhost:8080/once/users")
+    .subscribe((datos:any)=>{
+      console.log(datos + "usuario")
+      console.log(datos._embedded.users.user)
     })
 
     
