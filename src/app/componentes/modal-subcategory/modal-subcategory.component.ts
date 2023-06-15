@@ -15,29 +15,33 @@ export class ModalSubcategoryComponent implements DoCheck {
   subcategory: string = ""
   subcategoryPlaceHolder: string = ""
   subcategory_id: string = ""
-  categoria: number = 0
+  categoria: string = "0"
   categorias: Array<any>
   @Output() eventoAComunicar = new EventEmitter();
+  antiguoId: number = this.id
 
   constructor(private service: SubcategoryService) {
     this.descripcion = "";
     this.subcategory_id = "";
     this.categorias = []
   }
-
+  ngOnInit(): void {
+    this.service.getDatos("http://localhost:8080/once/categories")
+      .subscribe((datos: any) => {
+        this.categorias = datos._embedded.categories
+      });
+  }
   ngDoCheck(): void {
-    if (this.id !== 0 && !this.fin) {
-      this.categoria = this.id;
+   
+    if (this.id !== this.antiguoId && this.id >0) {
+      this.antiguoId= this.id
+
       console.log("id entrada: " + this.id);
       this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
         .subscribe((datos: any) => {
-          this.fin = true;
-          // if (this.descripcion !== datos.description)
+          this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
           this.subcategoryPlaceHolder = datos.description;
-          this.service.getDatos("http://localhost:8080/once/categories")
-          .subscribe((datos: any) => {
-            this.categorias = datos._embedded.categories
-          });
+          console.log("categoria " + this.categoria)
         });
 
     }
@@ -47,7 +51,7 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.id = 0;
     this.eventoAComunicar.emit({ salida: "OK" });
   }
-  
+
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
