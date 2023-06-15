@@ -29,7 +29,25 @@
     </thead>
     <tbody>
       <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
-        <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">{{lineaDato}}</td>
+        <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">
+        <div *ngIf="dato.length - selectsIdyDescr.length -1 >= x, else foraneas">
+          {{lineaDato}}
+        </div>
+        <ng-template #foraneas>
+            <select class="form-select" aria-label="Default select example">
+              <ng-container *ngFor="let opcionSelec of selectsIdyDescr[x - dato.length + selectsIdyDescr.length]">
+                <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
+                  <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                </ng-container>
+                <ng-template #restoOptions>
+                  <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                </ng-template>                
+              </ng-container>
+            </select>
+        </ng-template>
+        
+          
+        </td>
         <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button' class="icon icon-tabler icon-tabler-edit"
             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
             stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
@@ -77,15 +95,47 @@
             <div class="mb-3 mt-3">
               <div *ngFor="let cabecera of cabecerasTabla, let i = index">
                 <label [ngClass]="{'d-none':cabecera == 'id'}" class="form-label d-none">{{cabecera}}</label>
-                <div *ngIf="datosDeUnaSolaLinea[i] != undefined && i==0, else elseBlock">
+                <div *ngIf="!nuevaEntrada && i==0, else elseBlock">
                   <input type="text" class="form-control d-none" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i" disabled>
                 </div>
                 <ng-template #elseBlock>
-                  <div *ngIf="i == 0, else resto">
+                  <div *ngIf="nuevaEntrada && i == 0, else resto">
                     <input type="text" class="form-control d-none" value="0" [id]="'input'+i" disabled>
                   </div>
                   <ng-template #resto>
-                    <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
+                    <!-- <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i"> -->
+
+                    <div *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && !nuevaEntrada, else foraneasInp">
+                      <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
+                    </div>
+                    <ng-template #foraneasInp>
+                        <select class="form-select" aria-label="Default select example" [id]="'input'+i">
+                          <ng-container *ngFor="let opcionSelec of selectsIdyDescr[i - datosDeUnaSolaLinea.length + selectsIdyDescr.length]">
+                            <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInp">
+                              <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                            </ng-container>
+                            <ng-template #restoOptionsInp>
+                              <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                            </ng-template>                
+                          </ng-container>
+                        </select>
+                    </ng-template>
+                    <!-- <div *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && nuevaEntrada, else foraneasInpEnBlanco">
+                      <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
+                    </div>
+                    <ng-template #foraneasInpEnBlanco>
+                        <select class="form-select" aria-label="Default select example" [id]="'input'+i">
+                          <ng-container *ngFor="let opcionSelec of selectsIdyDescr[i - datosDeUnaSolaLinea.length + selectsIdyDescr.length]">
+                            <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInpEnBlanco">
+                              <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                            </ng-container>
+                            <ng-template #restoOptionsInpEnBlanco>
+                              <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                            </ng-template>                
+                          </ng-container>
+                        </select>
+                    </ng-template> -->
+
                   </ng-template>
                 </ng-template>
               </div>

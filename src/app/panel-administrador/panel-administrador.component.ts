@@ -24,6 +24,7 @@ export class PanelAdministradorComponent {
   url: string = "http://localhost:8080/once/"
   mappingNombres: string[] = []
   linkForaneoAka: string[] = []
+  selectsIdyDescr: any[] = []
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -37,6 +38,7 @@ export class PanelAdministradorComponent {
     this.linkForaneoAka = []
     this.tablaAConsultar = nombre
     this.mostrarTabla = true
+    this.selectsIdyDescr = []
     this.service.getDatos(this.url + nombre)
       .subscribe({
         next: (response) => {
@@ -129,21 +131,46 @@ export class PanelAdministradorComponent {
                       // console.log(this.datosBrutos)
                       i++
                       //console.log(this.datosBrutos[index][indiceEnCabecera])
+
+                      //
+                      this.service.getDatos(this.url + mapped.table).subscribe({
+                        next: (tablaForaneaCompleta) => {
+                          console.log(tablaForaneaCompleta)
+                          let entradaIdyDescricion: string[] = []
+                          let grupoIdyDescripciones: any = []
+                          console.log(mapped.table)
+                          let embeddedNext = Object.keys(tablaForaneaCompleta._embedded)
+                          console.log(embeddedNext)
+                          console.log(tablaForaneaCompleta._embedded[embeddedNext[0]])
+                          tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
+                            let lineaId = fila._links.self.href
+                            let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
+                            entradaIdyDescricion.push(numeroId)
+                            entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
+                            grupoIdyDescripciones.push(entradaIdyDescricion)
+                            entradaIdyDescricion = []                            
+                          })
+                          this.selectsIdyDescr.push(grupoIdyDescripciones)
+                          console.log(this.selectsIdyDescr)
+
+                        }
+
+                      })
+
+
+                      //*******Cambia el dato resuelto directamente en el array de datosBrutos*********//
+                      
+                      /*
                       this.datosBrutos.forEach((dato: any, index2: number) => {
                         this.service.getDatos(this.url + mapped.table + "/" + dato[indiceEnCabecera]).pipe(delay(0))
                           .subscribe({
-                            next: (datosAMostrar) => {
-                              // console.log(datosAMostrar)
-                              // console.log(mapped.description)
-                              // console.log(datosAMostrar[mapped.description])
-                              //this.linkForaneoAka.push(t._embedded[mapped.table])
-                              //console.log(t._embedded.users[0])
-                              //console.log(table[mapped.description])
-                              //console.log(this.linkForaneoAka)
+                            next: (datosAMostrar) => {                              
                               this.datosBrutos[index2][indiceEnCabecera] = datosAMostrar[(mapped.description).toLowerCase()]
                             }
                           })
-                      });
+                      })
+                      */
+                      //*************************************************************************** */
 
                       //console.log(this.linkForaneoAka)
                     }
