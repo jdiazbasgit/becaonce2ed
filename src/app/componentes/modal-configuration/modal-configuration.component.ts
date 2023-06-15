@@ -26,6 +26,7 @@ export class ModalConfigurationComponent implements DoCheck {
     } else {
       this.tipoAccion = "MODIFICACIÓN"
     }
+
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/configurations/" + this.id)
