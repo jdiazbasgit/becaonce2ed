@@ -1,37 +1,28 @@
-<div class="container">
-  <form>
-   <!-- <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Introduce tu Nombre" id="nombre" [(ngModel)]="nombre"
-          required>
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Apellidos" id="apellidos" [(ngModel)]="apellidos" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Documento de Identidad" id="documentodeidentidad"
-          [(ngModel)]="documentodeidentidad" required>
-      </div>
-    </div>-->
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Introduce tu Email" id="email" [(ngModel)]="email"
-          required>
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Introduce Numero de telefono" id="telefono"
-          [(ngModel)]="telefono" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-      </div>
-      <button (click)="comprobarDatos()">comprobar</button>
-    </div>
+<div>
+  <h1>Hazte Cliente</h1>
+  
+  <form (submit)="guardaDatos()">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" [(ngModel)]="nombre" required>
+    
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" [(ngModel)]="apellidos" required>
+    
+    <label for="documentodeidentidad">Documento de Identidad:</label>
+    <input type="text" id="documentodeidentidad" [(ngModel)]="documentodeidentidad" required>
+    
+    <label for="telefono">Teléfono:</label>
+    <input type="text" id="telefono" [(ngModel)]="telefono" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="email" required>
 
-
+    <label for="tipoDeDocumento">Tipo de Documento:</label>
+    <input type="text" id="tipoDeDocumento" [(ngModel)]="tipoDeDocumento" required>
+    
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" [(ngModel)]="usuario" required>
+    
+    <button type="submit">Guardar</button>
   </form>
-
 </div>
