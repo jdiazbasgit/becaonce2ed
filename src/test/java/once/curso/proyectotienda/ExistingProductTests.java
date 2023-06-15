@@ -50,7 +50,7 @@ public class ExistingProductTests{
 	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
-		existingProduct.setDescription("New World");
+		existingProduct.setDescription("Caja de boligrafos");
 		existingProduct.setPrice(74.99);
 		existingProduct.setStock(10);
 		File file = new File(filename);
