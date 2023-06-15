@@ -45,7 +45,7 @@ public class CurrentAccountRestController {
 	@Autowired
 	private PagedResourcesAssembler<CurrentAccount> PagedResourcesAssembler;
 
-	@GetMapping(value = "/currentAccounts/{id}")
+	@GetMapping(value = "/currentsAccounts/{id}")
     public EntityModel<CurrentAccount> findById(@PathVariable Integer id) {
         CurrentAccount currentAccount = currentAccountService.findById(id).get();
         currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
