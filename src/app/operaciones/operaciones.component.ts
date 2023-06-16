@@ -12,7 +12,6 @@ export class OperacionesComponent {
 
 
   constructor(private service: ProyectosService) {
-
   }
 
   realizarDeposito() {
