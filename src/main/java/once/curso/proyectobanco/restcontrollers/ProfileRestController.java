@@ -95,8 +95,9 @@ public class ProfileRestController {
 	}
 
 	@DeleteMapping("/profiles/{id}")
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getProfileService().deleteById(id);
+		return getProfileService().existsById(id);
 	}
 	
 	@PostMapping("/profiles/{id}")

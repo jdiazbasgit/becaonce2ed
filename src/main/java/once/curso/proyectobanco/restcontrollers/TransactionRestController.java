@@ -26,12 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.Data;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.models.TransactionModelAssembler;
-import once.curso.proyectobanco.services.ProfileService;
 import once.curso.proyectobanco.services.TransactionService;
 
 @RestController
 @Data
 @RequestMapping("/once")
+@CrossOrigin(origins = "*")
 public class TransactionRestController {
 
 	@Autowired
@@ -43,8 +43,6 @@ public class TransactionRestController {
 	@Autowired
 	private PagedResourcesAssembler<Transaction> pagedResourcesAssembler;
 
-	@Autowired
-	private ProfileService profileService;
 
 	@GetMapping(value = "/transactions/{id}")
 	@CrossOrigin(origins = "*")
@@ -75,7 +73,6 @@ public class TransactionRestController {
 	 */
 
 	@GetMapping(value = "/transactions")
-	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<Transaction>>findAll(@RequestParam(defaultValue = "0") int size, 
 			@RequestParam (defaultValue = "0") int page,@RequestParam (required = false) String sort){
 		if (size==0) {
@@ -101,26 +98,21 @@ public class TransactionRestController {
 	}
 
 	@PostMapping(value = "/transactions")
-	@CrossOrigin(origins = "*")
 	public boolean save(@RequestBody Transaction transaction) {
 		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
 	}
 
 	@PutMapping(value = "/transactions")
-	@CrossOrigin(origins = "*")
 	public List<Transaction> saveAll(@RequestBody List<Transaction> transaction) {
 		return (List<Transaction>) getTransactionService().saveAll(transaction);
 	}
 
 	@DeleteMapping(value = "/transactions/{id}")
-	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}
 	@PostMapping(value = "/transactions/{id}")
-	@CrossOrigin(origins = "*")
 	public boolean existsById(@PathVariable int id) {
-		return getTransactionService().existsById(id);
-	
+		return getTransactionService().existsById(id);	
 	}
 }

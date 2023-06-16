@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "FEES")
+@Table(name = "fees")
 
 public class Fee extends RepresentationModel<Fee>{
 

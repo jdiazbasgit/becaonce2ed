@@ -43,7 +43,7 @@ public class TypeAccountRestController {
 	@Autowired
 	private PagedResourcesAssembler<TypeAccount> pagedResourcesAssembler;
 
-	@GetMapping(value = "/typeAccounts/{id}")
+	@GetMapping(value = "/typesAccounts/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<TypeAccount> findById(@PathVariable int id) {
 		TypeAccount typeAccount = getTypeAccountService().findById(id).get();
@@ -62,7 +62,7 @@ public class TypeAccountRestController {
 	 * CollectionModel.of(typeAccount); }
 	 */
 
-	@GetMapping(value = "/typeAccounts")
+	@GetMapping(value = "/typesAccounts")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<TypeAccount>> findAll(@RequestParam(defaultValue = "0") int size,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
@@ -87,24 +87,24 @@ public class TypeAccountRestController {
 
 	}
 
-	@PostMapping(value = "/typeAccounts")
+	@PostMapping(value = "/typesAccounts")
 	@CrossOrigin(origins = "*")
 	public boolean save(@RequestBody TypeAccount typeAccount) {
 		return getTypeAccountService().existsById(getTypeAccountService().save(typeAccount).getId());
 	}
 
-	@PutMapping(value = "/typeAccounts")
+	@PutMapping(value = "/typesAccounts")
 	@CrossOrigin(origins = "*")
 	public List<TypeAccount> saveAll(@RequestBody List<TypeAccount> typeAccount) {
 		return (List<TypeAccount>) getTypeAccountService().saveAll(typeAccount);
 	}
 
-	@DeleteMapping(value = "typeAccounts/{id}")
+	@DeleteMapping(value = "typesAccounts/{id}")
 	@CrossOrigin(origins = "*")
 	public void deleteById(@PathVariable Integer id) {
 		getTypeAccountService().deleteById(id);
 	}
-	@PostMapping(value = "/typeAccounts/{id}")
+	@PostMapping(value = "/typesAccounts/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existsById(@PathVariable int id) {
 		return getTypeAccountService().existsById(id);

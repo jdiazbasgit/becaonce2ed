@@ -71,17 +71,34 @@ public class DescriptionRestController {
 	
 	@GetMapping(value = "/descriptions")
 	public PagedModel<EntityModel<Description>> findAll(@RequestParam (defaultValue="0")int size, @RequestParam (defaultValue="0")int page, @RequestParam (required=false)String sort){
-		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		Sort orden = Sort.by("a");
+//		StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
+//		Sort orden = Sort.by("a");
+//		
+//		String campo=stringTokenizer.nextToken();
+//		String tipoOrden=stringTokenizer.nextToken();
+//		
+//		if(tipoOrden.contentEquals("asc"))
+//			orden=Sort.by(campo).ascending();
+//		else
+//		
+//			orden=Sort.by(campo).descending();
 		
-		String campo=stringTokenizer.nextToken();
-		String tipoOrden=stringTokenizer.nextToken();
-		
-		if(tipoOrden.contentEquals("asc"))
-			orden=Sort.by(campo).ascending();
-		else
-		
-			orden=Sort.by(campo).descending();
+		if (size == 0) {
+			size = (int) getDescriptionService().count();
+		}
+		Sort orden = Sort.by("id");	
+		if (sort != null) {
+			orden = Sort.by(sort);
+			StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
+			String campo = stringTokenizer.nextToken();
+			String tipoOrden = stringTokenizer.nextToken();
+			if (tipoOrden.contentEquals("asc")) {
+				orden = Sort.by(campo).ascending();
+			}
+			else {
+				orden = Sort.by(campo).descending();
+			}
+		}
 		
 		Pageable pageable = PageRequest.of(page, size,orden);
 		Page<Description> description=getDescriptionService().findAll(pageable); 

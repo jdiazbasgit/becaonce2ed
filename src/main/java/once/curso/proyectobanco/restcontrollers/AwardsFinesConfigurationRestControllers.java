@@ -56,7 +56,7 @@ public class AwardsFinesConfigurationRestControllers {
 		return EntityModel.of(awardsFinesConfiguration);
 	}
 
-	@GetMapping(value = "/AwardsFinesConfigurations")
+	@GetMapping(value = "/awardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public PagedModel<EntityModel<AwardsFinesConfiguration>> findAll(@RequestParam(defaultValue = "0") int size,
@@ -87,14 +87,14 @@ public class AwardsFinesConfigurationRestControllers {
 				getAwardsFinesConfigurationModelAssembler());
 	}
 
-	@PostMapping(value = "/AwardsFinesConfigurations")
+	@PostMapping(value = "/awardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public boolean save(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().existsById(getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration).getId());
 	}
 
-	@PutMapping(value = "/AwardsFinesConfigurations")
+	@PutMapping(value = "/awardsFinesConfigurations")
 	@CrossOrigin(origins = "*")
 
 	public List<AwardsFinesConfiguration> saveAll(
@@ -102,14 +102,14 @@ public class AwardsFinesConfigurationRestControllers {
 		return (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
 	}
 
-	@DeleteMapping(value = "/AwardsFinesConfigurations/{id}")
+	@DeleteMapping(value = "/awardsFinesConfigurations/{id}")
 	@CrossOrigin(origins = "*")
 
 	public AwardsFinesConfiguration deleteById(@RequestBody AwardsFinesConfiguration AwardsFinesConfiguration) {
 		return getAwardsFinesConfigurationServices().save(AwardsFinesConfiguration);
 	}
 	
-	@PostMapping("/AwardsFinesConfigurations/{id}")
+	@PostMapping("/awardsFinesConfigurations/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getAwardsFinesConfigurationServices().existsById(id);
 	}
