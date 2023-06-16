@@ -24,34 +24,50 @@
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
-        <th [ngClass]="{'d-none':cabecera == 'id'}" class="bg-success text-white" scope="col" *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
+        <th [ngClass]="{'d-none':cabecera == 'id'}" class="bg-success text-white" scope="col"
+          *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
         <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">
-        <div *ngIf="dato.length - selectsIdyDescr.length -1 >= x, else foraneas">
-          {{lineaDato}}
-        </div>
-        <ng-template #foraneas>
+          <div *ngIf="dato.length - selectsIdyDescr.length -1 >= x, else foraneas">
+            {{lineaDato}}
+          </div>
+
+          <!-- <ng-template #foraneas>
             <select class="form-select" aria-label="Default select example">
+              <ng-container *ngFor="let opcionSelec of jsonForaneas[mappingNombres[x - dato.length + selectsIdyDescr.length][0]]">
+                <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
+                  <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                </ng-container>
+                <h1>{{opcionSelec[0]}}{{opcionSelec[1]}}{{opcionSelec}}</h1>
+                <ng-template #restoOptions>
+                  <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                </ng-template>
+              </ng-container>
+            </select>
+          </ng-template> -->
+
+          <ng-template #foraneas>
+            <select class="form-select" aria-label="Default select example" disabled>
               <ng-container *ngFor="let opcionSelec of selectsIdyDescr[x - dato.length + selectsIdyDescr.length]">
                 <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
                   <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                 </ng-container>
                 <ng-template #restoOptions>
                   <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                </ng-template>                
+                </ng-template>
               </ng-container>
             </select>
-        </ng-template>
-        
-          
+          </ng-template>
+
+
         </td>
-        <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button' class="icon icon-tabler icon-tabler-edit"
-            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-            stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-            (click)="cargarDatosDeLinea(i,false)">
+        <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button'
+            class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+            stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop" (click)="cargarDatosDeLinea(i,false)">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
             <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
@@ -72,13 +88,15 @@
   <!-- Button trigger modal -->
   <button *ngIf="mostrarGrabador" type="button" class="btn btn-success" data-bs-toggle="modal"
     data-bs-target="#staticBackdrop" (click)="cargarDatosDeLinea(0,true)">
-    Nuevo<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-plus ms-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    Nuevo<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-plus ms-1" width="24"
+      height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+      stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
       <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
       <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
       <path d="M12 11l0 6"></path>
       <path d="M9 14l6 0"></path>
-   </svg>
+    </svg>
   </button>
 
   <!-- Modal -->
@@ -96,7 +114,8 @@
               <div *ngFor="let cabecera of cabecerasTabla, let i = index">
                 <label [ngClass]="{'d-none':cabecera == 'id'}" class="form-label d-none">{{cabecera}}</label>
                 <div *ngIf="!nuevaEntrada && i==0, else elseBlock">
-                  <input type="text" class="form-control d-none" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i" disabled>
+                  <input type="text" class="form-control d-none" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i"
+                    disabled>
                 </div>
                 <ng-template #elseBlock>
                   <div *ngIf="nuevaEntrada && i == 0, else resto">
@@ -104,28 +123,34 @@
                   </div>
                   <ng-template #resto>
                     <!-- <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i"> -->
-
                     <div *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && !nuevaEntrada, else foraneasInp">
                       <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
                     </div>
+                    
                     <ng-template #foraneasInp>
+                      <ng-container *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 < i && !nuevaEntrada">
                         <select class="form-select" aria-label="Default select example" [id]="'input'+i">
+                          <h2>cabeceras: {{cabecerasTabla.length}}, selects: {{selectsIdyDescr.length}}, ronda: {{i}}, valor: {{datosDeUnaSolaLinea[i]}}</h2>
                           <ng-container *ngFor="let opcionSelec of selectsIdyDescr[i - datosDeUnaSolaLinea.length + selectsIdyDescr.length]">
                             <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInp">
                               <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                             </ng-container>
                             <ng-template #restoOptionsInp>
                               <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                            </ng-template>                
+                            </ng-template>
                           </ng-container>
                         </select>
+                      </ng-container>                      
                     </ng-template>
-                    <!-- <div *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && nuevaEntrada, else foraneasInpEnBlanco">
+
+                    <div *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && nuevaEntrada, else foraneasInpEnBlanco">
                       <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
                     </div>
+
                     <ng-template #foraneasInpEnBlanco>
+                      <ng-container *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 < i && nuevaEntrada">
                         <select class="form-select" aria-label="Default select example" [id]="'input'+i">
-                          <ng-container *ngFor="let opcionSelec of selectsIdyDescr[i - datosDeUnaSolaLinea.length + selectsIdyDescr.length]">
+                          <ng-container *ngFor="let opcionSelec of selectsIdyDescr[i - cabecerasTabla.length + selectsIdyDescr.length]">
                             <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInpEnBlanco">
                               <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                             </ng-container>
@@ -134,7 +159,8 @@
                             </ng-template>                
                           </ng-container>
                         </select>
-                    </ng-template> -->
+                      </ng-container>                        
+                    </ng-template>
 
                   </ng-template>
                 </ng-template>
@@ -143,7 +169,8 @@
           </div>
           <div class="modal-footer">
             <div>
-            <button class="btn btn-success" type="button" data-bs-dismiss="modal" (click)="grabarEntrada()">grabarEntrada</button>
+              <button class="btn btn-success" type="button" data-bs-dismiss="modal"
+                (click)="grabarEntrada()">grabarEntrada</button>
             </div>
             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
           </div>

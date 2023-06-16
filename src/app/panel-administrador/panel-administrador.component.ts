@@ -25,6 +25,7 @@ export class PanelAdministradorComponent {
   mappingNombres: string[] = []
   linkForaneoAka: string[] = []
   selectsIdyDescr: any[] = []
+  jsonForaneas: { [key: string]: any } = {}
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -39,6 +40,7 @@ export class PanelAdministradorComponent {
     this.tablaAConsultar = nombre
     this.mostrarTabla = true
     this.selectsIdyDescr = []
+    this.jsonForaneas = {}
     this.service.getDatos(this.url + nombre)
       .subscribe({
         next: (response) => {
@@ -99,12 +101,11 @@ export class PanelAdministradorComponent {
           links.forEach((link: string) => {
             if (link !== "self") {
               cabeceras.push(link)
-              //console.log("cucuuuuu " + link)
               this.mappingNombres.push(link)
             }
 
           })
-
+          console.log(this.mappingNombres)
           this.cabecerasTabla = cabeceras
           console.log(cabeceras)
           //console.log("ATENCION" + this.mappingNombres)
@@ -114,7 +115,9 @@ export class PanelAdministradorComponent {
               .subscribe({
                 next: (mapping) => {
                   //console.log("status ok:" + mapping.status)
-                  //console.log("tablamappings: "+mapping)
+                  //console.log("tablamappings: "+mapping)               
+                  //let jsonForaneas: { [key: string]: any } = {}
+
 
                   let i: number = 0
                   mapping.forEach((mapped: any, index: number) => {
@@ -124,7 +127,8 @@ export class PanelAdministradorComponent {
                     // console.log(this.mappingNombres[index])
                     // console.log(index)
                     if (this.linksForaneosTabla.includes(mapped.table)) {
-                      let indiceEnCabecera = this.cabecerasTabla.indexOf(this.mappingNombres[i])
+                      this.jsonForaneas[mapped.table] = []
+
                       // console.log(this.cabecerasTabla)
                       // console.log(indiceEnCabecera)
                       // console.log(this.mappingNombres[index])
@@ -148,19 +152,21 @@ export class PanelAdministradorComponent {
                             entradaIdyDescricion.push(numeroId)
                             entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
                             grupoIdyDescripciones.push(entradaIdyDescricion)
-                            entradaIdyDescricion = []                            
+                            entradaIdyDescricion = []
                           })
                           this.selectsIdyDescr.push(grupoIdyDescripciones)
                           console.log(this.selectsIdyDescr)
 
+                          this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
                         }
 
                       })
 
 
                       //*******Cambia el dato resuelto directamente en el array de datosBrutos*********//
-                      
+
                       /*
+                      let indiceEnCabecera = this.cabecerasTabla.indexOf(this.mappingNombres[i])
                       this.datosBrutos.forEach((dato: any, index2: number) => {
                         this.service.getDatos(this.url + mapped.table + "/" + dato[indiceEnCabecera]).pipe(delay(0))
                           .subscribe({
@@ -179,7 +185,7 @@ export class PanelAdministradorComponent {
 
                     //this.mappingNombres.push(mapped)
                   })
-                  // console.log(this.datosBrutos)
+                  console.log(this.jsonForaneas)
 
                   // this.mappingNombres.forEach((mn: any) => {
                   //   //console.log("guuuuu " + mn)
