@@ -1,6 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
-import { Observable, async, concat, concatMap, delay, forkJoin } from 'rxjs';
+import { Observable, concat, concatMap, delay, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -93,11 +93,11 @@ export class PanelAdministradorComponent {
             this.datosBrutos.push(filaDatos)
           }
           //console.log(this.datosBrutos)
-          console.log(this.linksForaneosTabla)
+          //console.log(this.linksForaneosTabla)
 
           cabeceras.unshift("id")
           cabeceras.splice(cabeceras.length - 1) // aka sin _links
-          console.log(cabeceras)
+          //console.log(cabeceras)
 
           this.propiedadesLocales = cabeceras
           this.linksForaneos = links
@@ -109,9 +109,9 @@ export class PanelAdministradorComponent {
             }
 
           })
-          console.log(this.mappingNombres)
+          //console.log(this.mappingNombres)
           this.cabecerasTabla = cabeceras
-          console.log(cabeceras)
+          //console.log(cabeceras)
           //console.log("ATENCION" + this.mappingNombres)
 
           if (this.mappingNombres.length >= 1) {
@@ -122,9 +122,9 @@ export class PanelAdministradorComponent {
                   //console.log("tablamappings: "+mapping)               
                   //let jsonForaneas: { [key: string]: any } = {}
 
-                  //let urlsAConsultarEnOrden: string[]
+
                   let i: number = 0
-                  mapping.forEach(async (mapped: any, index: number) => {
+                  mapping.forEach((mapped: any, index: number) => {
                     // console.log(this.linksForaneosTabla)
                     // console.log(mapped.table)
                     // console.log(this.cabecerasTabla)
@@ -132,7 +132,6 @@ export class PanelAdministradorComponent {
                     // console.log(index)
                     if (this.linksForaneosTabla.includes(mapped.table)) {
                       this.jsonForaneas[mapped.table] = []
-                      //urlsAConsultarEnOrden.push(this.url + mapped.table)
 
                       // console.log(this.cabecerasTabla)
                       // console.log(indiceEnCabecera)
@@ -141,23 +140,16 @@ export class PanelAdministradorComponent {
                       i++
                       //console.log(this.datosBrutos[index][indiceEnCabecera])
 
-
-                     
-
-
-
-
                       //
-                      await this.service.getDatos(this.url + mapped.table).toPromise()
-                      .then((tablaForaneaCompleta) => {
-                          console.log(tablaForaneaCompleta)
+                      this.service.getDatos(this.url + mapped.table).subscribe({
+                        next: (tablaForaneaCompleta) => {
+                          //console.log(tablaForaneaCompleta)
                           let entradaIdyDescricion: string[] = []
                           let grupoIdyDescripciones: any = []
-                          console.log(mapped.table)
+                          //console.log(mapped.table)
                           let embeddedNext = Object.keys(tablaForaneaCompleta._embedded)
-                          console.log(embeddedNext)
-                          console.log(tablaForaneaCompleta._embedded[embeddedNext[0]])
-                          
+                          //console.log(embeddedNext)
+                          //console.log(tablaForaneaCompleta._embedded[embeddedNext[0]])
                           tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
                             let lineaId = fila._links.self.href
                             let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
@@ -171,15 +163,15 @@ export class PanelAdministradorComponent {
                             //   this.selectsIdyDescr.push(this.jsonForaneas[link][0])
                             // })
                           })
-                          this.selectsIdyDescr.push(grupoIdyDescripciones)
+                          //this.selectsIdyDescr.push(grupoIdyDescripciones)
 
 
-                          // this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
+                          this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
                           // this.linksForaneosTabla.forEach(link => {
                           //   this.selectsIdyDescr.push(this.jsonForaneas[link][0])
                           // })
-                          console.log(this.selectsIdyDescr)
-                          console.log(this.selectsIdyDescr)
+                          //console.log(this.selectsIdyDescr)
+                          //console.log(this.jsonForaneas)
 
 
                           // entradaIdyDescricion = []
@@ -190,9 +182,9 @@ export class PanelAdministradorComponent {
                           //   grupoIdyDescripciones.push(entradaIdyDescricion)                            
                           // })
                           // this.selectsIdyDescr.push(grupoIdyDescripciones)
-                        })
+                        }
 
-                      
+                      })
 
                       // this.jsonForaneas[mapped.table] = [this.grupoIdyDescripciones]
                       // this.linksForaneosTabla.forEach(link => {
@@ -222,6 +214,7 @@ export class PanelAdministradorComponent {
 
                     //this.mappingNombres.push(mapped)
                   })
+                  //console.log(this.selectsIdyDescr)
                   console.log(this.jsonForaneas)
 
                   // this.mappingNombres.forEach((mn: any) => {
@@ -349,7 +342,3 @@ export class PanelAdministradorComponent {
     }
   }
 }
-function tablaForaneaCompleta(value: any) {
-  throw new Error('Function not implemented.');
-}
-
