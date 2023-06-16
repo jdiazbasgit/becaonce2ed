@@ -21,6 +21,10 @@
     <option value="users">User</option>
   </select>
   <h2>{{ tablaAConsultar }} </h2>
+  <!-- <h2>{{ linksForaneosTabla[0] }} </h2>
+  <h2>{{ linksForaneosTabla[1] }}</h2>
+  <h2>{{ linksForaneosTabla[2] }}</h2>
+  <h2>{{linksForaneosTabla.length}}</h2> -->
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
@@ -31,27 +35,32 @@
     <tbody>
       <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
         <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">
-          <div *ngIf="dato.length - selectsIdyDescr.length -1 >= x, else foraneas">
+          <div *ngIf="dato.length - mappingNombres.length -1 >= x, else foraneas">
             {{lineaDato}}
           </div>
 
           <!-- <ng-template #foraneas>
             <select class="form-select" aria-label="Default select example">
-              <ng-container *ngFor="let opcionSelec of jsonForaneas[mappingNombres[x - dato.length + selectsIdyDescr.length][0]]">
-                <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
-                  <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+              jsonForaneas[linksForaneosTabla[0]][0][0][0] = 1
+              jsonForaneas[linksForaneosTabla[0]][0][0][1] = NIF
+              jsonForaneas[linksForaneosTabla[0]][0][1][1] = CIF
+              <option value="0">{{jsonForaneas[linksForaneosTabla[1]][0][1][1]}}</option>
+              <option value="0">{{jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]][0]}}</option>
+              <ng-container *ngFor="let opcionSelec of jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]], let j = index">
+                <ng-container *ngIf="dato[x] == opcionSelec[j][0], else restoOptions">
+                  <option selected value={{opcionSelec[j][0]}}>{{opcionSelec[j][1]}}</option>
                 </ng-container>
-                <h1>{{opcionSelec[0]}}{{opcionSelec[1]}}{{opcionSelec}}</h1>
                 <ng-template #restoOptions>
-                  <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                  <option value={{opcionSelec[j][0]}}>{{opcionSelec[j][1]}}</option>
                 </ng-template>
               </ng-container>
+
             </select>
           </ng-template> -->
 
           <ng-template #foraneas>
             <select class="form-select" aria-label="Default select example" disabled>
-              <ng-container *ngFor="let opcionSelec of selectsIdyDescr[x - dato.length + selectsIdyDescr.length]">
+              <ng-container *ngFor="let opcionSelec of selectsIdyDescr[x - dato.length + linksForaneosTabla.length]">
                 <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
                   <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                 </ng-container>
