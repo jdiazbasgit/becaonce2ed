@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.CurrentAccount;
-import once.curso.proyectobanco.entities.Description;
 import once.curso.proyectobanco.repositories.CurrentAccountCRUDRepository;
 
 @Data

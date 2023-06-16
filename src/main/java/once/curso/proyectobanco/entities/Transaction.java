@@ -35,8 +35,8 @@ public class Transaction extends RepresentationModel<Transaction> {
 	private Description description;
 	
 	@ManyToOne
-	@JoinColumn (name="current_accounts_id")
-			private CurrentAccount currentAccount;
+	@JoinColumn (name="currents_accounts_id")
+	private CurrentAccount currentAccount;
 
 			
 	

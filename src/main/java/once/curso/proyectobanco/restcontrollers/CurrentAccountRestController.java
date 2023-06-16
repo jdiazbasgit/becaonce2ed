@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PagedResourcesAssembler;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -26,8 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.CurrentAccount;
-import once.curso.proyectobanco.entities.Description;
-import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.models.CurrentAccountModelAssembler;
 import once.curso.proyectobanco.services.CurrentAccountService;
 
@@ -43,28 +40,51 @@ public class CurrentAccountRestController {
 	private CurrentAccountModelAssembler currentAccountModelAssembler;
 
 	@Autowired
-	private PagedResourcesAssembler<CurrentAccount> PagedResourcesAssembler;
+	private PagedResourcesAssembler<CurrentAccount> pagedResourcesAssembler;
 
-	@GetMapping(value = "/currentAccounts/{id}")
+	@GetMapping(value = "/currentsAccounts/{id}")
     public EntityModel<CurrentAccount> findById(@PathVariable Integer id) {
-        CurrentAccount currentAccount = currentAccountService.findById(id).get();
+        CurrentAccount currentAccount = getCurrentAccountService().findById(id).get();
+        currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(FeeRestController.class)
+				  .findById(currentAccount.getFee().getId())).withRel("fee"));
+		currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TypeAccountRestController.class)
+				  .findById(currentAccount.getTypeAccount().getId())).withRel("typeAccount"));
+		currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+				  .findById(currentAccount.getUser().getId())).withRel("user"));
         currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
                 .findById(currentAccount.getId())).withSelfRel());
         return EntityModel.of(currentAccount);
 	}
         
-	@GetMapping(value = "/currentAccounts")
+	@GetMapping(value = "/currentsAccounts")
     public PagedModel<EntityModel<CurrentAccount>> findAll(@RequestParam (defaultValue="0")int size,@RequestParam (defaultValue="0")int page,@RequestParam (required=false)String sort){
-    	StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
-    	Sort orden = Sort.by("a");
-    	
-    	String campo = stringTokenizer.nextToken();
-    	String tipoOrden = stringTokenizer.nextToken();
-    	
-    	if(tipoOrden.contentEquals("asc"))
-    		orden = Sort.by(campo).ascending();
-    	else
-    		orden = Sort.by(campo).descending();
+//    	StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
+//    	Sort orden = Sort.by("a");
+//    	
+//    	String campo = stringTokenizer.nextToken();
+//    	String tipoOrden = stringTokenizer.nextToken();
+//    	
+//    	if(tipoOrden.contentEquals("asc"))
+//    		orden = Sort.by(campo).ascending();
+//    	else
+//    		orden = Sort.by(campo).descending();
+		
+		if (size == 0) {
+			size = (int) getCurrentAccountService().count();
+		}
+		Sort orden = Sort.by("id");	
+		if (sort != null) {
+			orden = Sort.by(sort);
+			StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
+			String campo = stringTokenizer.nextToken();
+			String tipoOrden = stringTokenizer.nextToken();
+			if (tipoOrden.contentEquals("asc")) {
+				orden = Sort.by(campo).ascending();
+			}
+			else {
+				orden = Sort.by(campo).descending();
+			}
+		}
     	
     	Pageable pageable = PageRequest.of(page, size,orden);
     	Page<CurrentAccount> currentAccount = getCurrentAccountService().findAll(pageable);
@@ -99,22 +119,23 @@ public class CurrentAccountRestController {
 		return EntityModel.of(savedAccount);
 	}*/
 	
-	@PostMapping(value = "/currentAccounts")
+	@PostMapping(value = "/currentsAccounts")
 	public boolean save(@RequestBody CurrentAccount currentAccount) {
 		return getCurrentAccountService().existsById(getCurrentAccountService().save(currentAccount).getId());
 	}
 
-	@DeleteMapping(value = "/currentAccounts/{id}")
-	public void deleteById(@PathVariable Integer id) {
-		currentAccountService.deleteById(id);
+	@DeleteMapping(value = "/currentsAccounts/{id}")
+	public boolean deleteById(@PathVariable Integer id) {
+		getCurrentAccountService().deleteById(id);
+		return getCurrentAccountService().existsById(id);
 	}
 	
-	@PutMapping("/profiles")
+	@PutMapping("/currentsAccounts")
 	public List <CurrentAccount> saveAll(@RequestBody List<CurrentAccount> currentAccounts) {
 		return (List<CurrentAccount>) getCurrentAccountService().saveAll(currentAccounts);
 	}
 	
-	@PostMapping("/curentAccounts/{id}")
+	@PostMapping("/currentsAccounts/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getCurrentAccountService().existsById(id);
 	}

@@ -78,6 +78,10 @@ public class TransactionsAwardsFineResController {
 	
 	public EntityModel<TransactionsAwardsFine> findById(@PathVariable Integer id){
 		 TransactionsAwardsFine transactionsAwardsFine =getTransactionsAwardsFineService().findById(id).get();
+		 transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
+				  .findById(transactionsAwardsFine.getTransaction().getId())).withRel("transaction"));
+		transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+				  .findById(transactionsAwardsFine.getAwardsFineType().getId())).withRel("awardsFineType"));
 		 transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
 				.findById(transactionsAwardsFine.getId())).withSelfRel());
 			

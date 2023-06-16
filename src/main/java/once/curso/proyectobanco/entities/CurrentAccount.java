@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name="current_accounts")
+@Table (name="currents_accounts")
 public class CurrentAccount extends RepresentationModel<CurrentAccount> {
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
@@ -35,7 +35,7 @@ public class CurrentAccount extends RepresentationModel<CurrentAccount> {
 	private Fee fee;
 	
 	@ManyToOne
-	@JoinColumn (name="type_accounts_id")
+	@JoinColumn (name="types_accounts_id")
 	private TypeAccount typeAccount;
 	
 	@ManyToOne
