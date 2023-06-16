@@ -3,25 +3,30 @@
   
   <form (submit)="guardaDatos()">
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" [(ngModel)]="nombre" required>
+    <input type="text" id="nombre" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}">
     
     <label for="apellidos">Apellidos:</label>
-    <input type="text" id="apellidos" [(ngModel)]="apellidos" required>
+    <input type="text" id="apellidos" [(ngModel)]="secondName" required [ngModelOptions]="{standalone: true}">
     
     <label for="documentodeidentidad">Documento de Identidad:</label>
-    <input type="text" id="documentodeidentidad" [(ngModel)]="documentodeidentidad" required>
+    <input type="text" id="documentodeidentidad" [(ngModel)]="identification" required [ngModelOptions]="{standalone: true}">
     
     <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" [(ngModel)]="telefono" required>
+    <input type="text" id="telefono" [(ngModel)]="phone" required [ngModelOptions]="{standalone: true}">
     
     <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="email" required>
+    <input type="email" id="email" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
 
     <label for="tipoDeDocumento">Tipo de Documento:</label>
-    <input type="text" id="tipoDeDocumento" [(ngModel)]="tipoDeDocumento" required>
+    <select [(ngModel)]="identificationType" [ngModelOptions]="{standalone: true}" name="identificationType">
+      <option value="0">Seleccion Tipo de Identificador....</option>
+      <option value="identificationType._links.self.href.substring(identificationType._links.self.href.lastIndexOf('/')+1)"
+       *ngFor="let identificationType of identificationTypes">{{identificationType.description}}</option>
+
+    </select>
     
     <label for="usuario">Usuario:</label>
-    <input type="text" id="usuario" [(ngModel)]="usuario" required>
+    <input type="text" id="usuario" [(ngModel)]="user" required [ngModelOptions]="{standalone: true}">
     
     <button type="submit">Guardar</button>
   </form>

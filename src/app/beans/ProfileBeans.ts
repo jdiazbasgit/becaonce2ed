@@ -1,21 +1,27 @@
 class ProfileBeans {
-  name!: string;
-  second_name!: string;
+  name: string;
+  secondName: string;
   identification!: string;
-  phone!: string;
-  email!: string;
-  identificationType!: string;
-  user!: string;
+  phone: string;
+  image:Array<number>
+  email: string;
+  identificationType: string;
+  user: string;
+  password:string
+  
 
 
-  constructor(name: string, second_name: string, identification: string, phone: string, email: string, identificationType: string, user: string) {
-    this.name;
-    this.second_name;
-    this.identification;
-    this.phone;
-    this.email;
-    this.identificationType;
-    this.user;
+  constructor(name: string, secondName: string, identification: string, phone: string, email: string, identificationType: string, user: string,image:Array<number>,password:string) {
+    this.name=name;
+    this.secondName=secondName
+    this.identification=identification
+    this.phone=phone
+    this.email=email
+    this.identificationType=identificationType
+    this.user=user
+    this.image=image
+    this.password=password
 
   }
 }
+export default ProfileBeans;

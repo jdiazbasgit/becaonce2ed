@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UrlHandlingStrategy } from '@angular/router';
 import { ProfileService } from '../servicios/profile.service';
-import { ProyectosService } from '../servicios/proyectos.service';
+import ProfileBeans from '../beans/ProfileBeans';
+import { IdentificationTypeService } from '../servicios/identification-type.service';
+import IdentificationTypeBean from '../beans/IdentificationTypeBean';
+
+
 
 @Component({
   selector: 'app-hazte-cliente',
@@ -11,37 +15,49 @@ import { ProyectosService } from '../servicios/proyectos.service';
 })
 
 
-export class HazteClienteComponent {
-  nombre: string;
-  apellidos: string;
-  documentodeidentidad: string;
-  telefono: string;
+export class HazteClienteComponent  implements OnInit{
+  name: string;
+  secondName: string;
+  identification: string;
+  phone: string;
+  image:Array<number>
   email: string;
+  identificationType: string;
+  user: string;
+  password:string
+ // identificationType:string
+  identificationTypes:Array<any>
+   urlIdentificationTypes="http://localhost:8080/once/identificationsTypes"
   emailBaseDeDatos: string
   telefonoBaseDatos: string
   usuarioBaseDatos: string
   clave: string
-  usuario: string
-  tipoDeDocumento:string
 
-
-
-  constructor(private profilServices: ProfileService, private services: ProyectosService) {
-    this.nombre = "";
-    this.apellidos = "";
-    this.documentodeidentidad = "";
-    this.telefono = "";
+  constructor(private profilServices: ProfileService,private identificationTypeServices: IdentificationTypeService) {
+    this.name = "";
+    this.secondName = "";
+    this.identification = "";
+    this.phone = "";
     this.email = "";
     this.emailBaseDeDatos = ""
     this.telefonoBaseDatos = ""
     this.usuarioBaseDatos = ""
     this.clave = ""
-    this.usuario=""
-    this.tipoDeDocumento=""
+    this.user=""
+    this.identificationType=""
+    this.image=[]
+    this.password=""
+    this.identificationTypes=[]
 
   }
 
   ngOnInit() {
+    this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos:any)=>{
+      this.identificationTypes=datos._embedded.identificationTypes
+      console.log("identificadores : "+ this.identificationTypes)
+
+    
+    })
     this.comprobarDatos();
   }
 
@@ -51,7 +67,7 @@ export class HazteClienteComponent {
     this.emailBaseDeDatos = '';
     this.telefonoBaseDatos = '';
 
-    this.services.getDatos("http://localhost:8080/once/profiles")
+    this.profilServices.getDatos("http://localhost:8080/once/profiles")
       .subscribe((datos: any) => {
         console.log(datos);
         console.log(datos._embedded.profiles.length);
@@ -66,22 +82,23 @@ export class HazteClienteComponent {
           if (this.emailBaseDeDatos == this.email) {
             console.log("El email ya existe");
           }
-          if (this.telefonoBaseDatos == this.telefono) {
+          if (this.telefonoBaseDatos == this.phone) {
             console.log("El número ya existe");
           }
         });
       });
 
-    this.services.getDatos("http://localhost:8080/once/users")
+    this.profilServices.getDatos("http://localhost:8080/once/users")
       .subscribe((datos: any) => {
         console.log(datos);
         console.log(datos._embedded.users);
 
         datos._embedded.users.forEach((users: any) => {
           this.usuarioBaseDatos = users.user;
-          console.log(`${this.usuarioBaseDatos} este es el cliente`);
+          console.log(this.usuarioBaseDatos +" este es el cliente");
+          this.clave = users.password;
 
-          if (this.usuarioBaseDatos == this.usuario) {
+          if (this.usuarioBaseDatos == this.user) {
             
           }
         });
@@ -92,20 +109,8 @@ export class HazteClienteComponent {
 
 
     this.profilServices.saveOrUpdate("http://localhost:8080/once/profiles",
-    new ProfileBeans(this.nombre,this.apellidos,this.documentodeidentidad,this.telefono,this.email,this.tipoDeDocumento,this.usuario))
-    const clienteGuardado = {
-      name: this.nombre,
-      second_name: this.apellidos,
-     identification: this.documentodeidentidad,
-      phone: this.telefono,
-      email: this.email,
-      identificationType:this.tipoDeDocumento
-      ,user:this.usuario
-      
-
-
-
-    };
+    new ProfileBeans(this.name,this.secondName,this.identification,this.phone,this.email,this.identificationType,this.user,this.image,this.password))
+   
   }
 
 }
