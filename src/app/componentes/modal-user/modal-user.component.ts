@@ -10,19 +10,23 @@ export class ModalUserComponent implements DoCheck{
   
   id : number = 0;
   usuario: string;
+  password: string = "";
+  enabled: string = "";
   mensaje: string = "";
   fin: boolean = false;
   usuarioPlaceHolder: string = "";
+  contraseñaPlaceHolder: string = "";
+  habilitadoPlaceHolder: string = "";
+  rolPlaceHolder: string = "";
   rol_Id: string = "";
   rol: number = 0;
   roles: Array<any>;
   subtitulo: string="";
   @Output() eventoAComunicar = new EventEmitter();
-  password: string="";
-  enabled: string= "";
-
   constructor(private service: UserService){
     this.usuario = "";
+    this.password = "";
+    this.enabled = "";
     this.rol_Id = "";
     this.roles = [];
   }
@@ -40,6 +44,9 @@ export class ModalUserComponent implements DoCheck{
       .subscribe((datos: any)=>{
         this.fin = true
         this.usuarioPlaceHolder = datos.user;
+        this.contraseñaPlaceHolder = datos.password;
+        this.habilitadoPlaceHolder = datos.enabled;
+        this.rolPlaceHolder = datos.rol;
       })
     }
   }
@@ -47,8 +54,11 @@ export class ModalUserComponent implements DoCheck{
   realizarComunicacion(){
     this.id = 0;
     this.usuarioPlaceHolder="";
-    
+    this.contraseñaPlaceHolder="";
+    this.habilitadoPlaceHolder=""
+    this.rolPlaceHolder=""
     this.fin=false;
+    
     this.eventoAComunicar.emit({salida:"OK"})
   }
 
