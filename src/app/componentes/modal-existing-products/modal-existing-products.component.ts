@@ -11,68 +11,61 @@ declare var atob: any;
   styleUrls: ['./modal-existing-products.component.css']
 })
 
-export class ModalExistingProductsComponent { //implements DoCheck {
-  //id: number = 0;
-  descripcion: string = "";
-  mensaje: string = ""
-  //fin: boolean = false
-  image: string =""
+export class ModalExistingProductsComponent {
+  id: string = ""
+  image: string = ""
   description: string = ""
   price: string = ""
   stock: string = ""
-  total: string = "0";
+  total: string = "0"
 
   @Output() eventoAComunicar = new EventEmitter();
-  id!: number;
-
+  message: string = ""
 
   constructor(private service: ExistingProductService) {}
 
-  /*ngDoCheck(): void {
-    if (this.id !== 0 && !this.fin) {
-      console.log("id entrada:" + this.id);
-      this.service.getDatos("http://localhost:8080/once/products/" + this.id)
-        .subscribe((datos: any) => {
-          this.fin = true;
-          this.image = datos.image;
-          this.description = datos.description;
-          this.price = datos.price;
-          this.stock = datos.stock;
-        });
-    }
-  }*/
-
-  realizarComunicacion() {
-    //this.id = 0;
-    //this.eventoAComunicar.emit({ salida: "OK" });
+  close() {
     $('#myModal').modal('hide');
   }
 
   getImage(imageBytes: string): string {
     if (imageBytes) {
-      return 'data:image/jpeg;base64,' + imageBytes;
+      return 'data:image/jpeg;base64,' + imageBytes
     }
 
-    return 'assets/placeholder-image.jpg';
+    return 'assets/placeholder-image.jpg'
   }
 
-  grabar() {
-    /*if (this.description.trim() !== "") {
-      const existingProduct = new ExistingProductBean(this.id, this.image, this.description, this.price, this.stock);
+  /*fileUpload(event: any) {
+    const file = event.target.files[0]
+    const blob = new Blob([file])
+    this.image = blob.toString()
+    $("#setImage").attr("src",this.image)
+    console.log(blob)
+  }*/
+
+  fileUpload(event: any) {
+    const file = event.target.files[0]
+    console.log(file)
+  }
+
+  saveData(Id: string) {
+    if (this.description.trim() !== "") {
+      const existingProduct = new ExistingProductBean(this.image, this.description, this.price, this.stock);
       this.service.saveOrUpdate("http://localhost:8080/once/products", existingProduct)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.mensaje = "Grabación realizada correctamente";
+            this.message = "Producto se ha añadido correctamente.";
             this.description = "";
             this.price = "";
             this.stock = "";
           } else {
-            this.mensaje = "La grabación no se ha realizado";
+            this.message = "Producto no se ha añadido.";
           }
         });
     } else {
-      this.mensaje = "Debes introducir un valor";
-    }*/
+      this.message = "Por favor, rellene todos los campos obligatorios";
+    }
 
     //this.fin = false;
    /* if (this.description.trim() !== "") {

@@ -25,7 +25,6 @@ import { SoldProductComponent } from './componentes/sold-product/sold-product.co
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
-import { CdkColumnDef } from '@angular/cdk/table';
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
 

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
@@ -22,6 +22,7 @@ export class ExistingProductComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
+
   constructor(private service: ExistingProductService) { }
 
   ngOnInit() {
@@ -35,11 +36,11 @@ export class ExistingProductComponent implements OnInit {
           if (response._embedded) {
             this.elements = response._embedded.existingProducts;
           } else {
-            console.error('La propiedad _embedded no existe en el JSON de respuesta.');
+            console.error('La propiedad _embedded no existe en el JSON.');
           }
         },
         error: (error: any) => {
-          console.error('Error al obtener los datos:', error);
+          console.error('Error al obtener los datos: ', error);
         }
       })
   }
@@ -83,7 +84,7 @@ export class ExistingProductComponent implements OnInit {
     //return 'assets/placeholder-image.jpg';
   //}
 
-  abrirModal(mode: 'add' | 'edit', element?: any) {
+  abrirModal(Id: string, mode: 'add' | 'edit', element?: any) {
     this.modalMode = mode;
     this.modalData = element ? { ...element } : {};
 
@@ -97,6 +98,7 @@ export class ExistingProductComponent implements OnInit {
       this.modal.total="0"
 
       if (element !== undefined && element !== null) {
+        this.modal.id = Id.toString()
         this.modal.image=element.image
         this.modal.description=element.description
         this.modal.price=element.price

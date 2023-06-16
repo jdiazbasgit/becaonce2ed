@@ -1,12 +1,10 @@
 class ExistingProductBean {
-  id: number;
   description: string;
   price: string;
   stock: string;
   image: string;
 
-  constructor(id: number, image: string, description: string, price: string, stock: string ) {
-    this.id = id;
+  constructor(image: string, description: string, price: string, stock: string ) {
     this.description = description;
     this.price = price;
     this.stock = stock;
