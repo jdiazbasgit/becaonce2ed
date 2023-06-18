@@ -25,6 +25,7 @@
   <h2>{{ linksForaneosTabla[1] }}</h2>
   <h2>{{ linksForaneosTabla[2] }}</h2>
   <h2>{{linksForaneosTabla.length}}</h2> -->
+  <button type="button" (click)="activarTabla()">activarTabla</button>
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
@@ -40,7 +41,7 @@
           </div>
 
           <ng-template #foraneas>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" disabled>
               <!-- jsonForaneas[linksForaneosTabla[0]][0][0][0] = 1
               jsonForaneas[linksForaneosTabla[0]][0][0][1] = NIF
               jsonForaneas[linksForaneosTabla[0]][0][1][1] = CIF
@@ -110,7 +111,7 @@
   </button>
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  <div *ngIf="mostrarTabla" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="false">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -142,7 +143,7 @@
                       <ng-container *ngIf="cabecerasTabla.length - linksForaneosTabla.length -1 < i && !nuevaEntrada">
                         <select class="form-select" aria-label="Default select example" [id]="'input'+i">
                           <ng-container
-                            *ngFor="let opcionSelec of jsonForaneas[linksForaneosTabla[i - datosDeUnaSolaLinea.length + linksForaneosTabla.length]][0]">
+                            *ngFor="let opcionSelec of jsonForaneas[linksForaneosTabla[i - cabecerasTabla.length + linksForaneosTabla.length]][0]">
                             <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInp">
                               <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                             </ng-container>

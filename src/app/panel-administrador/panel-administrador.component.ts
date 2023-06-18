@@ -32,6 +32,9 @@ export class PanelAdministradorComponent {
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
 
   }
+  activarTabla(){
+    this.mostrarTabla = true
+  }
 
 
   consultarTabla(nombre: string) {
@@ -40,7 +43,7 @@ export class PanelAdministradorComponent {
     this.linksForaneosTabla = []
     this.linkForaneoAka = []
     this.tablaAConsultar = nombre
-    this.mostrarTabla = true
+    this.mostrarTabla = false
     this.selectsIdyDescr = []
     this.jsonForaneas = {}
     //this.grupoIdyDescripciones = []
