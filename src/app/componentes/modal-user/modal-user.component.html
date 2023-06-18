@@ -11,16 +11,22 @@
             <!-- Modal Body -->
             <div class="modal-body text-center">
                 <label for="usuario">Usuario: </label>
-                <input type="text" name="usuario" [(ngModel)]="usuario" value="{{usuarioPlaceHolder}}"><br>
+                <input type="text" name="usuario" [(ngModel)]="usuario" value="{{usuarioPlaceHolder}}"><br><br>
+
                 <label for="contraseña">Contraseña: </label>
-                <input type="text" name="Contraseña" [(ngModel)]="contraseña" value="{{contraseñaPlaceHolder}}"><br>
+                <input type="text" name="contraseña" [(ngModel)]="password" value="{{passwordPlaceHolder}}"><br><br>
+
                 <label for="habilitar">Habilitar: </label>
-                <input type="text" name="Habilitar" [(ngModel)]="habilitar" value="{{habilitadoPlaceHolder}}">
+                <input type="text" name="habilitar" [(ngModel)]="enabled" value="{{enabledPlaceHolder}}"><br><br>
+
                 <label for="rol">Roles: </label>
                 <select [(ngModel)]="rol">
                     <option value="0">Seleccione rol...</option>
-                    <option *ngFor="let fun of roles" value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/')+1)}}">{{fun.rol}}</option>
-                </select>
+                    <option *ngFor="let fun of roles"
+                        value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/')+1)}}">{{fun.rol}}
+                    </option>
+                </select><br><br>
+
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>
             <div class="text-center">
@@ -29,7 +35,8 @@
 
             <!-- Modal Footer -->
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">CERRAR</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="realizarComunicacion()">CERRAR</button>
             </div>
 
         </div>

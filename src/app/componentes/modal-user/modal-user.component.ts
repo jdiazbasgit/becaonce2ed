@@ -15,8 +15,8 @@ export class ModalUserComponent implements DoCheck{
   mensaje: string = "";
   fin: boolean = false;
   usuarioPlaceHolder: string = "";
-  contraseñaPlaceHolder: string = "";
-  habilitadoPlaceHolder: string = "";
+  passwordPlaceHolder: string = "";
+  enabledPlaceHolder: string = "";
   rolPlaceHolder: string = "";
   rol_Id: string = "";
   rol: number = 0;
@@ -44,8 +44,8 @@ export class ModalUserComponent implements DoCheck{
       .subscribe((datos: any)=>{
         this.fin = true
         this.usuarioPlaceHolder = datos.user;
-        this.contraseñaPlaceHolder = datos.password;
-        this.habilitadoPlaceHolder = datos.enabled;
+        this.passwordPlaceHolder = datos.password;
+        this.enabledPlaceHolder = datos.enabled;
         this.rolPlaceHolder = datos.rol;
       })
     }
@@ -54,8 +54,8 @@ export class ModalUserComponent implements DoCheck{
   realizarComunicacion(){
     this.id = 0;
     this.usuarioPlaceHolder="";
-    this.contraseñaPlaceHolder="";
-    this.habilitadoPlaceHolder=""
+    this.passwordPlaceHolder="";
+    this.enabledPlaceHolder=""
     this.rolPlaceHolder=""
     this.fin=false;
     

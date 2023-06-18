@@ -1,21 +1,4 @@
-<div class="login-form">
-    <div class="form-group">
-        <label>Usuario o email</label>
-        <input type="text" class="form-control" required="required">
-    </div>
-    <div class="form-group">
-        <div class="clearfix">
-            <label>Contraseña</label>
-            <a href="#" class="float-right text-muted"></a>
-        </div>
-        <input type="password" class="form-control" required="required">
-        Recordame
-    </div>
-    <button class="btn btn-primary btn-block w-100" value="Login">Me conecto</button>
-    <a href="#" class="float-right text-muted">He olvidado mi contraseña</a>
-</div>
-<!--===============================================-->
-<!--<div class="modalConectando oculto" id="modalConectando">
+<div class="modalConectando oculto" id="modalConectando">
     <div class="contenedorModal mx-auto mt-5">
         <div class="align-items-center">
             <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div>
@@ -28,7 +11,6 @@
 </div>
 
 <div class="tiempoCabecera texto-resaltado">
-    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
         data-bs-backdrop="false">
         <div class="modal-dialog">
@@ -53,7 +35,7 @@
     <button class="button-success" type="button" (click)="getFees()">get fees</button>
 </div>
 <div>
-    <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
+    <button class="button-success" type="button" (click)="errorDeToken()">meter token falso</button>
 </div>
 <div *ngIf="!logado">
     <button class="btnHazteCliente">Hazte cliente</button>
@@ -63,7 +45,7 @@
 </div>
 <div *ngIf="logado">
     <button class="btnHazteCliente">Hola {{usuario}}</button>
-    <button class="btnLogin texto-primario" type="button" (click)="deslogarse()">Salir</button>
+    <button class="btnLogin texto-primario" type="button" (click)="cerrarSesion()">Salir</button>
 </div>
 
 <div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
@@ -93,7 +75,7 @@
         </div>
         <div class="infoLogin">
             <div class="contenido">
-                <div *ngIf="claveErronea; else mensaje" class="alert alert-danger">
+                <div *ngIf="cladveIncorrecta; else mensaje" class="alert alert-danger">
                     <p class="mt-2">
                         {{mensajeClave}}</p>
                 </div>
@@ -105,4 +87,4 @@
             </div>
         </div>
     </div>
-</div>-->
+</div>

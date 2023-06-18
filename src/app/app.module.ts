@@ -28,6 +28,7 @@ import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
 import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ModalUserComponent } from './componentes/modal-user/modal-user.componen
     ModalDocumentTypesComponent,
     ModalRolComponent,
     ModalUserComponent,
+    ModalLoginComponent,
 
   ],
   imports: [
