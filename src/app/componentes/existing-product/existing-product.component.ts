@@ -12,18 +12,15 @@ import { ModalExistingProductsComponent } from '../modal-existing-products/modal
 export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
   modal: ModalExistingProductsComponent | undefined;
-
   title = "Lista de productos"
   columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
   elements: any[] = [];
   modalMode: 'add' | 'edit' = 'add';
-  modalData: any = {};
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
-
-  constructor(private service: ExistingProductService) { }
+  constructor(private service: ExistingProductService) {}
 
   ngOnInit() {
     this.getData();
@@ -53,78 +50,32 @@ export class ExistingProductComponent implements OnInit {
     return 'assets/placeholder-image.jpg';
   }
 
- /* getImage(imageBytes: string): string {
-    if (imageBytes) {*/
-      /*const decodedImage = atob(image);
-      return 'data:image/jpeg;base64,' + decodedImage;
-
-      const imageBlob = new Blob([imageBytes], { type: 'image/jpeg' });
-      return URL.createObjectURL(imageBlob);*/
-
-
-     /* const reader = new FileReader()
-      reader.onload = (e) => imageBytes
-      reader.readAsDataURL(new Blob([imageBytes]));
-
-    }
-
-    return 'assets/placeholder-image.jpg';
-  }*/
-
-  //getImage(imageBytes: string): string {
-    /*if (imageBytes) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = reader.result as string;
-      };
-
-      return result
-    }*/
-
-    //return 'assets/placeholder-image.jpg';
-  //}
-
-  abrirModal(Id: string, mode: 'add' | 'edit', element?: any) {
-    this.modalMode = mode;
-    this.modalData = element ? { ...element } : {};
-
-    console.log('Modificar elemento:', element);
-
-    if (this.modal) {
-      this.modal.image=""
-      this.modal.description=""
-      this.modal.price=""
-      this.modal.stock=""
-      this.modal.total="0"
-
-      if (element !== undefined && element !== null) {
-        this.modal.id = Id.toString()
-        this.modal.image=element.image
-        this.modal.description=element.description
-        this.modal.price=element.price
-        this.modal.stock=element.stock
-        this.modal.total=new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format((element.price*element.stock)).toString()
-      }
-      this.modal.openModal();
-    }
+  getFormat(amount: number): string {
+    const formattedAmount = amount.toLocaleString('es-ES', {
+      style: 'currency',
+      currency: 'EUR'
+    });
+  
+    return formattedAmount;
   }
 
-  /*setImage(image: string): string {
-
-    const blob = new Blob([image], { type: 'image/jpeg' });
-    return URL.createObjectURL(blob);
-
-
-    if (image) {
-      const decodedImage = atob(image);
-      return 'data:image/jpeg;base64,' + decodedImage;
-
-      const blob = new Blob([image]);
-      return URL.createObjectURL(blob);
+  abrirModal(id: string, mode: 'add' | 'edit', element?: any) {
+    this.modalMode = mode;
+  
+    if (this.modal) {
+      this.modal.image = '';
+      this.modal.description = '';
+      this.modal.saleprice = '';
+      this.modal.stock = '';
+      this.modal.total = '0';
+  
+      if (element !== undefined && element !== null && element !== '') {
+        this.modal.openModal(id, element);
+      } else {
+        this.modal.openModal('','');
+      }
     }
-
-    return 'assets/placeholder-image.jpg';
-  }*/
+  }
 
   eliminar(Id: string) {
     console.log('Eliminar elemento:', Id);
@@ -146,68 +97,3 @@ export class ExistingProductComponent implements OnInit {
     }
   }
 }
-
-
-
-
-/*import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
-import { ExistingProductService } from '../../servicios/existingproduct.service';
-
-@Component({
-  selector: 'app-existing-product',
-  templateUrl: './existing-product.component.html',
-  styleUrls: ['./existing-product.component.css']
-})
-
-export class ExistingProductComponent implements OnInit {
-  @ViewChild(ModalExistingProductsComponent) modal: any
-  id: number = 0
-  titulo: string
-  mensaje: string = ""
-
-  elements: any[]
-
-  @Input() eventoDelHijo: string = ""
-
-    constructor(private service: ExistingProductService) {
-    this.titulo = "Lista de productos"
-    this.elements = [];
-  }
-
-  ngOnInit(): void {
-    this.elements = []
-    this.service.getDatos("http://localhost:8080/once/products")
-      .subscribe((datos: any) => {
-        this.elements = datos._embedded.existingProducts;
-      })
-  }
-
-  eliminar(id: any) {
-    if (confirm("¿Esta seguro de borrar el perfil?")) {
-      this.service.delete("http://localhost:8080/once/products/"+id)
-      .subscribe((dato: boolean) => {
-        if (!dato) {
-          this.mensaje = "Se ha borrado correctamente"
-          this.ngOnInit();
-        }
-        else
-          this.mensaje = "El registro no se ha borrado"
-      })
-    }
-  }
-
-  realizarComunicacion(event: any) {
-    this.mensaje = ""
-    if (event.salida === "OK")
-      this.ngOnInit();
-  }
-
-  modificar(position: any) {
-    this.mensaje = ""
-    let ruta = position._links.self.href
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
-  }
-}*/
-
-
