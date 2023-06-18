@@ -5,6 +5,7 @@ import { ProfileService } from '../servicios/profile.service';
 import ProfileBeans from '../beans/ProfileBeans';
 import { IdentificationTypeService } from '../servicios/identification-type.service';
 import IdentificationTypeBean from '../beans/IdentificationTypeBean';
+import { RolService } from '../servicios/rol.service';
 
 
 
@@ -25,15 +26,16 @@ export class HazteClienteComponent  implements OnInit{
   identificationType: string;
   user: string;
   password:string
- // identificationType:string
   identificationTypes:Array<any>
    urlIdentificationTypes="http://localhost:8080/once/identificationsTypes"
   emailBaseDeDatos: string
   telefonoBaseDatos: string
   usuarioBaseDatos: string
   clave: string
+  
 
-  constructor(private profilServices: ProfileService,private identificationTypeServices: IdentificationTypeService) {
+  constructor(private profilServices: ProfileService,private identificationTypeServices: IdentificationTypeService,
+    private rolservice : RolService) {
     this.name = "";
     this.secondName = "";
     this.identification = "";
@@ -66,6 +68,13 @@ export class HazteClienteComponent  implements OnInit{
     this.clave = '';
     this.emailBaseDeDatos = '';
     this.telefonoBaseDatos = '';
+
+    this.rolservice.getDatos("http://localhost:8080/once/roles").subscribe((datos: any)=>{
+      console.log(datos);
+      console.log(datos._embedded.rols);
+      
+
+    })
 
     this.profilServices.getDatos("http://localhost:8080/once/profiles")
       .subscribe((datos: any) => {
@@ -103,6 +112,7 @@ export class HazteClienteComponent  implements OnInit{
           }
         });
       });
+    
   }
 
   guardaDatos() {
@@ -110,8 +120,13 @@ export class HazteClienteComponent  implements OnInit{
 
     this.profilServices.saveOrUpdate("http://localhost:8080/once/profiles",
     new ProfileBeans(this.name,this.secondName,this.identification,this.phone,this.email,this.identificationType,this.user,this.image,this.password))
-   
+    .subscribe((dato: boolean) => {
+      if (dato) {
+        console.log( "Grabacion realizada correctamente");
+      } else {
+        console.log("La grabación no se ha realizado");
+      }
+    });
   }
 
 }
-

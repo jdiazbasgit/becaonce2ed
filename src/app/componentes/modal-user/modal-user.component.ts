@@ -16,6 +16,7 @@ export class ModalUserComponent implements DoCheck {
   user: string = ""; 
   password: string = ""; 
   enabled: boolean = false; 
+  rol:number=0;
   @Output() eventoAComunicar = new EventEmitter();
   constructor(private service : UserService){
     this.descripcion ="";
@@ -40,7 +41,7 @@ export class ModalUserComponent implements DoCheck {
   grabar() {
     this.fin = false;
     if (this.descripcion.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/user", new UserBeans (this.id,this.user,this.password , this.enabled))
+      this.service.saveOrUpdate("http://localhost:8080/once/users", new UserBeans (this.id,this.user,this.password , this.enabled,this.rol))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"

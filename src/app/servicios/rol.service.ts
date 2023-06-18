@@ -5,6 +5,9 @@ import { ProyectosService } from './proyectos.service';
   providedIn: 'root'
 })
 export class RolService extends ProyectosService {
+  getRoleById(arg0: number) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient) {
     super(http);
