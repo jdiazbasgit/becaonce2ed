@@ -32,12 +32,133 @@ export class PanelAdministradorComponent {
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
 
   }
-  activarTabla(){
+  activarTabla() {
     this.mostrarTabla = true
   }
 
 
   consultarTabla(nombre: string) {
+    this.datosBrutos = []
+    this.mappingNombres = []
+    this.linksForaneosTabla = []
+    this.linkForaneoAka = []
+    this.tablaAConsultar = nombre
+    this.mostrarTabla = false
+    this.selectsIdyDescr = []
+    this.jsonForaneas = {}
+    //this.grupoIdyDescripciones = []
+    this.service.getDatos(this.url + nombre)
+      .subscribe({
+        next: (response) => {
+       
+          let tablas = Object.keys(response._embedded) //aka profiles
+          let cabeceras = Object.keys(response._embedded[tablas[0]][0]) //aka profiles[0]
+          let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length //aka profiles 0,1,2,3...
+          let links = Object.keys(response._embedded[tablas[0]][0]._links)
+        
+
+          let unaVuelta: boolean = true
+          for (let index = 0; index < tamanoDatos; index++) {
+            let linkself = response._embedded[tablas[0]][index]._links.self.href
+            let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
+            let filaDatos: any = []
+            filaDatos.push(id)
+            cabeceras.forEach(cabecera => {
+              if (cabecera !== "_links")
+                filaDatos.push(response._embedded[tablas[0]][index][cabecera])
+            });
+            links.forEach(linkForaneo => {
+              if (linkForaneo !== "self") {
+                  let hrefLink = response._embedded[tablas[0]][index]._links[linkForaneo].href
+                let idLink = parseInt(hrefLink.substring(hrefLink.lastIndexOf("/") + 1))
+         
+                filaDatos.push(idLink)
+                if (unaVuelta) {
+                  let enPartes = hrefLink.split("/");
+                  if (enPartes[enPartes.length - 2] !== nombre)
+                    this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
+                }
+
+              }
+            });
+            unaVuelta = false
+            this.datosBrutos.push(filaDatos)
+          }
+         
+          cabeceras.unshift("id")
+          cabeceras.splice(cabeceras.length - 1) // aka sin _links
+        
+
+          this.propiedadesLocales = cabeceras
+          this.linksForaneos = links
+
+          links.forEach((link: string) => {
+            if (link !== "self") {
+              cabeceras.push(link)
+              this.mappingNombres.push(link)
+            }
+
+          })
+         
+          this.cabecerasTabla = cabeceras
+        
+          if (this.mappingNombres.length >= 1) {
+            this.service.getDatos(this.url + "mappingFKDescriptions").pipe(delay(0))
+              .subscribe({
+                next: (mapping) => {
+               
+                  let i: number = 0
+                  mapping.forEach((mapped: any, index: number) => {
+                   if (this.linksForaneosTabla.includes(mapped.table)) {
+                      this.jsonForaneas[mapped.table] = []
+
+                      i++
+                      this.service.getDatos(this.url + mapped.table).subscribe({
+                        next: (tablaForaneaCompleta) => {
+                          let entradaIdyDescricion: string[] = []
+                          let grupoIdyDescripciones: any = []
+                          let embeddedNext = Object.keys(tablaForaneaCompleta._embedded)
+                          tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
+                            let lineaId = fila._links.self.href
+                            let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
+                            entradaIdyDescricion.push(numeroId)
+                            entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
+                            grupoIdyDescripciones.push(entradaIdyDescricion)
+                            entradaIdyDescricion = []
+
+
+                          })
+
+
+
+                          this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
+
+                        }
+
+                      })
+
+
+                    }
+
+                  })
+                  console.log(this.jsonForaneas)
+
+
+                }
+              })
+          }
+
+
+          this.mostrarGrabador = true
+
+
+        },
+        error: (error: any) => {
+          console.log("status ko:" + error.status)
+        }
+      })
+  }
+  consultarTablaSincrona(nombre: string) {
     this.datosBrutos = []
     this.mappingNombres = []
     this.linksForaneosTabla = []
@@ -248,6 +369,7 @@ export class PanelAdministradorComponent {
         }
       })
   }
+
 
 
   grabarEntrada() {
