@@ -7,6 +7,8 @@ import { OfferComponent } from './componentes/offer/offer.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
 import { CategoryComponent } from './componentes/category/category.component';
 import { UserComponent } from './componentes/user/user.component';
+import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
+import { RolComponent } from './componentes/rol/rol.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: 'offer', component: OfferComponent },
   {path: 'conf', component:ConfigurationComponent },
   {path: 'categorias', component: CategoryComponent },
+  {path: 'subcategorias', component: SubcategoryComponent },
+  {path: 'roles', component: RolComponent },
   {path: 'usuarios', component: UserComponent }
 ];
 
