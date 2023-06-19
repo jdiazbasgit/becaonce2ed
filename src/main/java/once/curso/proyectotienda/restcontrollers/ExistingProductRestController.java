@@ -66,9 +66,9 @@ public class ExistingProductRestController {
 		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
 		existingProduct.forEach(u -> {
 			u.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategory().getId()))
+					.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
 					.withRel("subcategory"));
-			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
+			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
 					.withSelfRel());
 		});
 		return CollectionModel.of(existingProduct);
