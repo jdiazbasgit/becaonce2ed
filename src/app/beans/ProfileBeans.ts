@@ -1,7 +1,7 @@
 class ProfileBeans {
   name: string;
   secondName: string;
-  identification!: string;
+  identification: string;
   phone: string;
   image:Array<number>
   email: string;

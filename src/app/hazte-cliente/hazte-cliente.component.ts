@@ -17,6 +17,7 @@ import { RolService } from '../servicios/rol.service';
 
 
 export class HazteClienteComponent  implements OnInit{
+  mostrarFormulario = false;
   name: string;
   secondName: string;
   identification: string;
@@ -32,6 +33,12 @@ export class HazteClienteComponent  implements OnInit{
   telefonoBaseDatos: string
   usuarioBaseDatos: string
   clave: string
+  abrirFormulario() {
+    this.mostrarFormulario = true;
+  }
+  cerrarFormulario() {
+    this.mostrarFormulario = false;
+  }
   
 
   constructor(private profilServices: ProfileService,private identificationTypeServices: IdentificationTypeService,
@@ -127,6 +134,7 @@ export class HazteClienteComponent  implements OnInit{
         console.log("La grabación no se ha realizado");
       }
     });
+    this.cerrarFormulario();
   }
 
 }

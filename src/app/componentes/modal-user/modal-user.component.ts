@@ -16,7 +16,7 @@ export class ModalUserComponent implements DoCheck {
   user: string = ""; 
   password: string = ""; 
   enabled: boolean = false; 
-  rol:number=0;
+  rol:string="";
   @Output() eventoAComunicar = new EventEmitter();
   constructor(private service : UserService){
     this.descripcion ="";
