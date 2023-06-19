@@ -55,20 +55,20 @@ export class ExistingProductComponent implements OnInit {
       style: 'currency',
       currency: 'EUR'
     });
-  
+
     return formattedAmount;
   }
 
   abrirModal(id: string, mode: 'add' | 'edit', element?: any) {
     this.modalMode = mode;
-  
+
     if (this.modal) {
       this.modal.image = '';
       this.modal.description = '';
       this.modal.saleprice = '';
       this.modal.stock = '';
       this.modal.total = '0';
-  
+
       if (element !== undefined && element !== null && element !== '') {
         this.modal.openModal(id, element);
       } else {
