@@ -1,7 +1,6 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ExistingProductService } from '../../servicios/existingproduct.service';
 import ExistingProductBean from '../../beans/ExistingProductBean';
-
 
 @Component({
   selector: 'app-modal-existing-products',
@@ -42,7 +41,7 @@ export class ModalExistingProductsComponent {
   }
 
   selectImage() {
-    const fileInput = document.querySelector('#file-input') as HTMLImageElement;
+    const fileInput = document.querySelector('#file-input') as  HTMLImageElement
     if (fileInput) {
       fileInput.click();
     }
@@ -55,7 +54,7 @@ export class ModalExistingProductsComponent {
       reader.onload = (e) => {
         const imageContent = reader.result;
         this.selectedImage = file;
-        const imgElement = document.querySelector('#setImage') as HTMLImageElement;
+        const imgElement = document.querySelector('#setImage') as HTMLImageElement
         if (imgElement) {
           imgElement.src = imageContent as string;
         }
@@ -64,7 +63,7 @@ export class ModalExistingProductsComponent {
     }
   }
 
-  saveData(id: string) {
+  saveData() {
     if (this.selectedImage) {
       this.image = this.selectedImage.toString()
     }
@@ -77,20 +76,16 @@ export class ModalExistingProductsComponent {
           this.message = 'Producto se ha añadido correctamente.'
           this.description = ''
           this.price = ''
-          this.saleprice=''
+          this.saleprice = ''
           this.stock = ''
-          this.selectedImage = null;
+          this.selectedImage = null
         } else {
-          this.message = 'Producto no se ha añadido.';
+          this.message = 'Producto no se ha añadido.'
         }
       });
-
-    /*} else {
-      this.message = 'Por favor, rellene todos los campos obligatorios'
-    }*/
   }
 
-  openModal(id: string, data: any) {
+  openModal(id: string, data: any, ) {
     if (data!=''){
       this.id = id
       this.image = data.image
@@ -107,21 +102,7 @@ export class ModalExistingProductsComponent {
       this.saleprice=''
       this.stock=''
       this.total='0'
+      this.subcategory =''
     }
-
-
-   /* $('#myModal').modal('show')
   }
-
-  close() {
-    $('#myModal').modal('hide');
-  }*/
-
-  //document.querySelector('#myModal')?.classList.remove("d-none")
-
-}
-
-close() {
-  //document.querySelector('#hide')?.classList.add("d-none")
-}
 }

@@ -11,11 +11,11 @@ import { ModalExistingProductsComponent } from '../modal-existing-products/modal
 
 export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
-  modal: ModalExistingProductsComponent | undefined;
+  modal: ModalExistingProductsComponent | undefined
+  
   title = "Lista de productos"
   columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
   elements: any[] = [];
-  modalMode: 'add' | 'edit' = 'add';
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -59,8 +59,11 @@ export class ExistingProductComponent implements OnInit {
     return formattedAmount;
   }
 
-  abrirModal(id: string, mode: 'add' | 'edit', element?: any) {
-    this.modalMode = mode;
+  abrirModal(id: string, element?: any) {
+    const modalElement = document.querySelector('#myModal');
+    if (modalElement) {
+      modalElement.dispatchEvent(new Event('click'));
+    }
 
     if (this.modal) {
       this.modal.image = '';
