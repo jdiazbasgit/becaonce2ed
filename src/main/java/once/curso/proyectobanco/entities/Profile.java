@@ -13,7 +13,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import lombok.Data;
 
-@Data
+ @Data
 @Entity
 @Table(name = "profiles")
 public class Profile extends RepresentationModel<Profile>{

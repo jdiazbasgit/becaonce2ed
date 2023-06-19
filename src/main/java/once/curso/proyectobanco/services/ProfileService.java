@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.databind.Module.SetupContext;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Profile;
+import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
+import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 @Service
 @Data
@@ -18,6 +23,9 @@ public class ProfileService {
 	@Autowired
 	private ProfileCRUDRepository profileCRUDRepository;
 
+	@Autowired
+	private UserCRUDRepository repository;
+	
 	public <S extends Profile> S save(S entity) {
 		return getProfileCRUDRepository().save(entity);
 	}
@@ -69,4 +77,12 @@ public class ProfileService {
 	public void deleteAll() {
 		getProfileCRUDRepository().deleteAll();
 	}
+	
+	@Transactional
+	 public Profile saveProfile(Profile profile) {
+		profile.setUser(getRepository().save());
+		
+		 
+	        return getProfileCRUDRepository().save(profile);
+	    }
 }
