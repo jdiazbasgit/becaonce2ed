@@ -23,7 +23,7 @@
                 <select [(ngModel)]="rol">
                     <option value="0">Seleccione rol...</option>
                     <option *ngFor="let fun of roles"
-                        value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/')+1)}}">{{fun.rol}}
+                        value="{{fun._links.rol.href.substring(fun._links.rol.href.lastIndexOf('/')+1)}}">{{fun.description}}
                     </option>
                 </select><br><br>
 
