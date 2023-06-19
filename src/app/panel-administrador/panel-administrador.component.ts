@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
-import { Observable, concat, concatMap, delay, forkJoin } from 'rxjs';
+import { Observable, ObservableInput, concat, concatMap, delay, finalize, forkJoin, map } from 'rxjs';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -24,11 +25,19 @@ export class PanelAdministradorComponent {
   url: string = "http://localhost:8080/once/"
   mappingNombres: string[] = []
   linkForaneoAka: string[] = []
+  selectsIdyDescr: any[] = []
+  jsonForaneas: { [key: string]: any } = {}
+  //grupoIdyDescripciones: string[] = []
+  mostrarLoading: boolean = false
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
 
   }
+  activarTabla() {
+    this.mostrarTabla = true
+  }
+
 
   consultarTabla(nombre: string) {
     this.datosBrutos = []
@@ -36,7 +45,121 @@ export class PanelAdministradorComponent {
     this.linksForaneosTabla = []
     this.linkForaneoAka = []
     this.tablaAConsultar = nombre
-    this.mostrarTabla = true
+    this.mostrarTabla = false
+    this.mostrarGrabador = false
+    this.mostrarLoading = true
+    this.selectsIdyDescr = []
+    this.jsonForaneas = {}
+    this.service.getDatos(this.url + nombre)
+      .subscribe({
+        next: (response) => {
+          let tablas = Object.keys(response._embedded)
+          let cabeceras = Object.keys(response._embedded[tablas[0]][0])
+          let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length
+          let links = Object.keys(response._embedded[tablas[0]][0]._links)
+          let unaVuelta: boolean = true
+          for (let index = 0; index < tamanoDatos; index++) {
+            let linkself = response._embedded[tablas[0]][index]._links.self.href
+            let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
+            let filaDatos: any = []
+            filaDatos.push(id)
+            cabeceras.forEach(cabecera => {
+              if (cabecera !== "_links")
+                filaDatos.push(response._embedded[tablas[0]][index][cabecera])
+            })
+            links.forEach(linkForaneo => {
+              if (linkForaneo !== "self") {
+                let hrefLink = response._embedded[tablas[0]][index]._links[linkForaneo].href
+                let idLink = parseInt(hrefLink.substring(hrefLink.lastIndexOf("/") + 1))
+                filaDatos.push(idLink)
+                if (unaVuelta) {
+                  let enPartes = hrefLink.split("/");                  
+                  if (enPartes[enPartes.length - 2] !== nombre)
+                    this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
+                }
+              }
+            })
+            unaVuelta = false
+            this.datosBrutos.push(filaDatos)
+          }
+          cabeceras.unshift("id")
+          cabeceras.splice(cabeceras.length - 1)
+          this.propiedadesLocales = cabeceras
+          this.linksForaneos = links
+          links.forEach((link: string) => {
+            if (link !== "self") {
+              cabeceras.push(link)
+              this.mappingNombres.push(link)
+            }
+          })
+          this.cabecerasTabla = cabeceras
+          if (this.mappingNombres.length >= 1) {
+            this.service.getDatos(this.url + "mappingFKDescriptions")
+              .subscribe({
+                next: (mapping) => {
+                  let i: number = 0
+                  let observablesMapping: Observable<any>[] = []
+                  mapping.forEach((mapped: any) => {
+                    if (this.linksForaneosTabla.includes(mapped.table)) {
+                      this.jsonForaneas[mapped.table] = []
+                      i++
+
+                      console.log(this.linksForaneosTabla)
+                      let observable = this.service.getDatos(this.url + mapped.table)
+                      observablesMapping.push(
+                        observable.pipe(
+                          map((tablaForaneaCompleta) => {
+                            let entradaIdyDescricion: string[] = [];
+                            let grupoIdyDescripciones: any = [];
+                            let embeddedNext = Object.keys(tablaForaneaCompleta._embedded);
+  
+                            tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
+                              let lineaId = fila._links.self.href
+                              let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
+                              entradaIdyDescricion.push(numeroId)
+                              entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
+                              grupoIdyDescripciones.push(entradaIdyDescricion)
+                              entradaIdyDescricion = []
+                            });
+  
+                            this.jsonForaneas[mapped.table] = [grupoIdyDescripciones];
+                          })
+                        )
+                      )                      
+                    }
+                  })
+                  forkJoin(observablesMapping).subscribe(() => {
+                  console.log(this.jsonForaneas);
+                  this.mostrarTabla = true
+                  this.mostrarGrabador = true
+                  this.mostrarLoading = false
+                })
+                }
+              })
+          }
+          else{
+            this.mostrarTabla = true
+            this.mostrarGrabador = true
+            this.mostrarLoading = false
+          }          
+        },
+        error: (error: any) => {
+          console.log("status ko:" + error.status)
+        }
+      })
+  }
+
+
+  consultarTablaSincrona(nombre: string) {
+    this.datosBrutos = []
+    this.mappingNombres = []
+    this.linksForaneosTabla = []
+    this.linkForaneoAka = []
+    this.tablaAConsultar = nombre
+    this.mostrarTabla = false
+    this.selectsIdyDescr = []
+    this.jsonForaneas = {}
+    //this.grupoIdyDescripciones = []
     this.service.getDatos(this.url + nombre)
       .subscribe({
         next: (response) => {
@@ -65,7 +188,7 @@ export class PanelAdministradorComponent {
             cabeceras.forEach(cabecera => {
               if (cabecera !== "_links")
                 filaDatos.push(response._embedded[tablas[0]][index][cabecera])
-            });
+            })
             links.forEach(linkForaneo => {
               if (linkForaneo !== "self") {
                 //console.log(response._embedded[tablas[0]][index]._links[linkForaneo])
@@ -76,20 +199,21 @@ export class PanelAdministradorComponent {
                 filaDatos.push(idLink)
                 if (unaVuelta) {
                   let enPartes = hrefLink.split("/");
-                  this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
+                  if (enPartes[enPartes.length - 2] !== nombre)
+                    this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
                 }
 
               }
-            });
+            })
             unaVuelta = false
             this.datosBrutos.push(filaDatos)
           }
           //console.log(this.datosBrutos)
-          console.log(this.linksForaneosTabla)
+          //console.log(this.linksForaneosTabla)
 
           cabeceras.unshift("id")
           cabeceras.splice(cabeceras.length - 1) // aka sin _links
-          console.log(cabeceras)
+          //console.log(cabeceras)
 
           this.propiedadesLocales = cabeceras
           this.linksForaneos = links
@@ -97,14 +221,13 @@ export class PanelAdministradorComponent {
           links.forEach((link: string) => {
             if (link !== "self") {
               cabeceras.push(link)
-              //console.log("cucuuuuu " + link)
               this.mappingNombres.push(link)
             }
 
           })
-
+          //console.log(this.mappingNombres)
           this.cabecerasTabla = cabeceras
-          console.log(cabeceras)
+          //console.log(cabeceras)
           //console.log("ATENCION" + this.mappingNombres)
 
           if (this.mappingNombres.length >= 1) {
@@ -112,38 +235,93 @@ export class PanelAdministradorComponent {
               .subscribe({
                 next: (mapping) => {
                   //console.log("status ok:" + mapping.status)
-                  //console.log("tablamappings: "+mapping)
+                  //console.log("tablamappings: "+mapping)               
+                  //let jsonForaneas: { [key: string]: any } = {}
+
 
                   let i: number = 0
                   mapping.forEach((mapped: any, index: number) => {
-                    console.log(this.linksForaneosTabla)
-                    console.log(mapped.table)
-                    console.log(this.cabecerasTabla)
-                    console.log(this.mappingNombres[index])
-                    console.log(index)
+                    // console.log(this.linksForaneosTabla)
+                    // console.log(mapped.table)
+                    // console.log(this.cabecerasTabla)
+                    // console.log(this.mappingNombres[index])
+                    // console.log(index)
                     if (this.linksForaneosTabla.includes(mapped.table)) {
-                      let indiceEnCabecera = this.cabecerasTabla.indexOf(this.mappingNombres[i])
-                      console.log(this.cabecerasTabla)
-                      console.log(indiceEnCabecera)
-                      console.log(this.mappingNombres[index])
-                      console.log(this.datosBrutos)
+                      this.jsonForaneas[mapped.table] = []
+
+                      // console.log(this.cabecerasTabla)
+                      // console.log(indiceEnCabecera)
+                      // console.log(this.mappingNombres[index])
+                      // console.log(this.datosBrutos)
                       i++
                       //console.log(this.datosBrutos[index][indiceEnCabecera])
+
+                      //
+                      this.service.getDatos(this.url + mapped.table).subscribe({
+                        next: (tablaForaneaCompleta) => {
+                          //console.log(tablaForaneaCompleta)
+                          let entradaIdyDescricion: string[] = []
+                          let grupoIdyDescripciones: any = []
+                          //console.log(mapped.table)
+                          let embeddedNext = Object.keys(tablaForaneaCompleta._embedded)
+                          //console.log(embeddedNext)
+                          //console.log(tablaForaneaCompleta._embedded[embeddedNext[0]])
+                          tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
+                            let lineaId = fila._links.self.href
+                            let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
+                            entradaIdyDescricion.push(numeroId)
+                            entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
+                            grupoIdyDescripciones.push(entradaIdyDescricion)
+                            entradaIdyDescricion = []
+
+                            // this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
+                            // this.linksForaneosTabla.forEach(link => {
+                            //   this.selectsIdyDescr.push(this.jsonForaneas[link][0])
+                            // })
+                          })
+                          //this.selectsIdyDescr.push(grupoIdyDescripciones)
+
+
+                          this.jsonForaneas[mapped.table] = [grupoIdyDescripciones]
+                          // this.linksForaneosTabla.forEach(link => {
+                          //   this.selectsIdyDescr.push(this.jsonForaneas[link][0])
+                          // })
+                          //console.log(this.selectsIdyDescr)
+                          //console.log(this.jsonForaneas)
+
+
+                          // entradaIdyDescricion = []
+                          // grupoIdyDescripciones = []
+                          // this.jsonForaneas[mapped.table][0].forEach((linea: any) => {
+                          //   entradaIdyDescricion.push(linea[0])
+                          //   entradaIdyDescricion.push(linea[1])
+                          //   grupoIdyDescripciones.push(entradaIdyDescricion)                            
+                          // })
+                          // this.selectsIdyDescr.push(grupoIdyDescripciones)
+                        }
+
+                      })
+
+                      // this.jsonForaneas[mapped.table] = [this.grupoIdyDescripciones]
+                      // this.linksForaneosTabla.forEach(link => {
+                      //   this.selectsIdyDescr.push(this.jsonForaneas[link][0])
+                      // }) 
+                      // console.log(this.selectsIdyDescr)
+
+                      //*******Cambia el dato resuelto directamente en el array de datosBrutos*********//
+
+                      /*
+                      let indiceEnCabecera = this.cabecerasTabla.indexOf(this.mappingNombres[i])
                       this.datosBrutos.forEach((dato: any, index2: number) => {
                         this.service.getDatos(this.url + mapped.table + "/" + dato[indiceEnCabecera]).pipe(delay(0))
                           .subscribe({
-                            next: (datosAMostrar) => {
-                              console.log(datosAMostrar)
-                              console.log(mapped.description)
-                              console.log(datosAMostrar[mapped.description])
-                              //this.linkForaneoAka.push(t._embedded[mapped.table])
-                              //console.log(t._embedded.users[0])
-                              //console.log(table[mapped.description])
-                              //console.log(this.linkForaneoAka)
+                            next: (datosAMostrar) => {                              
                               this.datosBrutos[index2][indiceEnCabecera] = datosAMostrar[(mapped.description).toLowerCase()]
                             }
                           })
-                      });
+                      })
+                      */
+                      //*************************************************************************** */
 
                       //console.log(this.linkForaneoAka)
                     }
@@ -152,7 +330,8 @@ export class PanelAdministradorComponent {
 
                     //this.mappingNombres.push(mapped)
                   })
-                  // console.log(this.datosBrutos)
+                  //console.log(this.selectsIdyDescr)
+                  console.log(this.jsonForaneas)
 
                   // this.mappingNombres.forEach((mn: any) => {
                   //   //console.log("guuuuu " + mn)
@@ -182,6 +361,7 @@ export class PanelAdministradorComponent {
         }
       })
   }
+
 
 
   grabarEntrada() {
