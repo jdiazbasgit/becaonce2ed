@@ -17,7 +17,7 @@ export class LoginComponent {
   usuario: string = ""
   claveErronea: boolean = false
   mensajeClave: String = ""
-  contadorTemporizadorDeInactividad: number = 60000
+  contadorTemporizadorDeInactividad: number = 180000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
 
@@ -28,7 +28,7 @@ export class LoginComponent {
   ngOnInit(){
     //remover despues de hacer pruebas***{
     this.ModoPruebaMeterTokenValidoYampliarInactividad();
-    this.router.navigateByUrl("paneladministrador")
+    //this.router.navigateByUrl("paneladministrador")
     //****}
   }
 
@@ -37,7 +37,7 @@ export class LoginComponent {
       this.logado = true
       this.usuario = sessionStorage['user']
     }
-    if (!this.logado && this.router.url != "/landing") {
+    if (!this.logado && this.router.url != "/landing" && this.router.url != "/haztecliente") {
       this.router.navigateByUrl("landing")
     }
     if (!this.sinActividad && this.logado){

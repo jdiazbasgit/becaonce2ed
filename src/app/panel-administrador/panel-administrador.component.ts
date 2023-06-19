@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import { Observable, ObservableInput, concat, concatMap, delay, finalize, forkJoin, map } from 'rxjs';
+import { tick } from '@angular/core/testing';
 
 @Component({
   selector: 'app-panel-administrador',
@@ -27,6 +28,7 @@ export class PanelAdministradorComponent {
   selectsIdyDescr: any[] = []
   jsonForaneas: { [key: string]: any } = {}
   //grupoIdyDescripciones: string[] = []
+  mostrarLoading: boolean = false
 
 
   constructor(private service: ProyectosService, private elementRef: ElementRef) {
@@ -44,15 +46,16 @@ export class PanelAdministradorComponent {
     this.linkForaneoAka = []
     this.tablaAConsultar = nombre
     this.mostrarTabla = false
+    this.mostrarGrabador = false
+    this.mostrarLoading = true
     this.selectsIdyDescr = []
     this.jsonForaneas = {}
-    //this.grupoIdyDescripciones = []
     this.service.getDatos(this.url + nombre)
       .subscribe({
         next: (response) => {
-          let tablas = Object.keys(response._embedded) //aka profiles
-          let cabeceras = Object.keys(response._embedded[tablas[0]][0]) //aka profiles[0]
-          let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length //aka profiles 0,1,2,3...
+          let tablas = Object.keys(response._embedded)
+          let cabeceras = Object.keys(response._embedded[tablas[0]][0])
+          let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length
           let links = Object.keys(response._embedded[tablas[0]][0]._links)
           let unaVuelta: boolean = true
           for (let index = 0; index < tamanoDatos; index++) {
@@ -80,7 +83,7 @@ export class PanelAdministradorComponent {
             this.datosBrutos.push(filaDatos)
           }
           cabeceras.unshift("id")
-          cabeceras.splice(cabeceras.length - 1) // aka sin _links
+          cabeceras.splice(cabeceras.length - 1)
           this.propiedadesLocales = cabeceras
           this.linksForaneos = links
           links.forEach((link: string) => {
@@ -91,16 +94,17 @@ export class PanelAdministradorComponent {
           })
           this.cabecerasTabla = cabeceras
           if (this.mappingNombres.length >= 1) {
-            this.service.getDatos(this.url + "mappingFKDescriptions").pipe(delay(0))
+            this.service.getDatos(this.url + "mappingFKDescriptions")
               .subscribe({
                 next: (mapping) => {
                   let i: number = 0
                   let observablesMapping: Observable<any>[] = []
-                  mapping.forEach((mapped: any, index: number) => {
+                  mapping.forEach((mapped: any) => {
                     if (this.linksForaneosTabla.includes(mapped.table)) {
                       this.jsonForaneas[mapped.table] = []
                       i++
 
+                      console.log(this.linksForaneosTabla)
                       let observable = this.service.getDatos(this.url + mapped.table)
                       observablesMapping.push(
                         observable.pipe(
@@ -127,14 +131,17 @@ export class PanelAdministradorComponent {
                   forkJoin(observablesMapping).subscribe(() => {
                   console.log(this.jsonForaneas);
                   this.mostrarTabla = true
-                });
+                  this.mostrarGrabador = true
+                  this.mostrarLoading = false
+                })
                 }
               })
           }
           else{
             this.mostrarTabla = true
-          }
-          this.mostrarGrabador = true
+            this.mostrarGrabador = true
+            this.mostrarLoading = false
+          }          
         },
         error: (error: any) => {
           console.log("status ko:" + error.status)

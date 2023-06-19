@@ -25,7 +25,23 @@
   <h2>{{ linksForaneosTabla[1] }}</h2>
   <h2>{{ linksForaneosTabla[2] }}</h2>
   <h2>{{linksForaneosTabla.length}}</h2> -->
-  <button type="button" (click)="activarTabla()">activarTabla</button>
+  <!-- <button type="button" (click)="activarTabla()">activarTabla</button> -->
+
+
+  <div *ngIf="mostrarLoading">
+    <div class="mx-auto mt-5">
+      <div class="align-items-center">
+        <!-- <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div> -->
+        <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
+          <strong>Loading...</strong>
+          <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover">
     <thead>
       <tr>
@@ -111,8 +127,8 @@
   </button>
 
   <!-- Modal -->
-  <div *ngIf="mostrarTabla" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="false">
+  <div *ngIf="mostrarTabla" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="false">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
