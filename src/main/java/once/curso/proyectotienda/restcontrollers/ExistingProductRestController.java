@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.*;
+import once.curso.proyectotienda.entities.DocumentType;
 import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.model.ExistingProductModelAssembler;
 import once.curso.proyectotienda.services.ExistingProductService;
@@ -88,15 +89,14 @@ public class ExistingProductRestController {
 	}
 
 	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
-	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
+	@PutMapping("/products/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	// @GetMapping("/products/{id}") //NO FUNCIONA Junit text pero FUNCIONA
 	// SPRING BOOT APP
 	@CrossOrigin(origins ="*")
-	
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
-		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
-				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
+		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId).get();
+				//.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
 
 		existingProduct.setDescription(existingProductDetails.getDescription());
 		existingProduct.setPrice(existingProductDetails.getPrice());

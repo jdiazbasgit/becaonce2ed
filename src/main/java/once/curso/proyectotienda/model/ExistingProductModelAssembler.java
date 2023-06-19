@@ -17,15 +17,17 @@ public class ExistingProductModelAssembler implements SimpleRepresentationModelA
 				.findById(existingProduct.getContent().getId())).withSelfRel());
 	}
 
-@Override
-public void addLinks(CollectionModel<EntityModel<ExistingProduct>> existingProduct) {
-	existingProduct.forEach(e ->{
-		e.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController. class)
-				.findById(e.getContent().getId())).withSelfRel());
+	@Override
+	public void addLinks(CollectionModel<EntityModel<ExistingProduct>> existingProduct) {
+		existingProduct.forEach(e ->{
+			e.add(WebMvcLinkBuilder.linkTo(
+					WebMvcLinkBuilder.methodOn(ExistingProductRestController. class)
+					.findById(e.getContent().getId()))
+					.withSelfRel());
+			
+		});
 		
-	});
-	
-}
+	}
 
 }
 
