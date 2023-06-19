@@ -11,10 +11,12 @@ export class ModalCardTypesComponent implements DoCheck {
   id: number = 0
   descripcion: string
   mensaje: string = "";
-  cardType:string=""
+  cardType: string = ""
   fin: boolean = false
   descripcionPlaceHolder: string = ""
+  nomAccion: string = "";
   @Output() eventoAComunicar = new EventEmitter();
+  titulo: string = "";
   constructor(private service: CardTypeService) {
     this.descripcion = "";
 
@@ -33,6 +35,9 @@ export class ModalCardTypesComponent implements DoCheck {
   }
   realizarComunicacion() {
     this.id = 0;
+    this.descripcion = "";
+    this.descripcionPlaceHolder = "";
+    this.fin = false;
     this.eventoAComunicar.emit({ salida: "OK" })
   }
   grabar() {

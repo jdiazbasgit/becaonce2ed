@@ -9,10 +9,12 @@
         <tr *ngFor="let descripcion of descripciones">
             <td class="text-center">{{descripcion.description}}</td>
             <td class="text-center">
-                <a href="#" (click)="modificar(descripcion)" data-bs-toggle="modal" data-bs-target="#myModal"><i
-                        class="bi bi-pencil-fill"></i>
+                <a href="#" (click)="modificar(descripcion)" data-bs-toggle="modal" data-bs-target="#myModal"
+                    name="nomAccion" tipodeaccion="update"><i class="bi bi-pencil-fill"></i>
                 </a>
-                <a href="#" (click)="eliminar(descripcion._links.self.href.substring(descripcion._links.self.href.lastIndexOf('/')+1))">
+                <a href="#"
+                    (click)="eliminar(descripcion._links.self.href.substring(descripcion._links.self.href.lastIndexOf('/')+1))"
+                    name="nomAccion" tipodeaccion="delete">
                     <i class="bi bi-trash3-fill"></i>
                 </a>
             </td>
@@ -20,5 +22,6 @@
     </table>
     <div class="text-center"><button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
             data-bs-target="#myModal">ALTA</button></div>
-    <app-modal-document-types (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-document-types>
+    <app-modal-document-types (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"
+        etiqueta=""></app-modal-document-types>
 </div>
