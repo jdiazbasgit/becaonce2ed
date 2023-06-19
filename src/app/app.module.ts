@@ -30,6 +30,9 @@ import { ModalCategoryComponent } from './componentes/modal-category/modal-categ
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
 import { ImagenComponent } from './imagen/imagen.component';
+import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
+import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,12 @@ import { ImagenComponent } from './imagen/imagen.component';
     ModalCategoryComponent,
     ModalSubcategoryComponent,
     ModalConfigurationComponent,
-    ImagenComponent
+    ImagenComponent,
+    ModalDocumentTypesComponent,
+    ModalRolComponent,
+    ModalUserComponent,
+    ModalLoginComponent,
+
   ],
   imports: [
     BrowserModule,

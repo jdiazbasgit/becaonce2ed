@@ -1,16 +1,90 @@
-<div class="login-form">
-    <div class="form-group">
-        <label>Usuario o email</label>
-        <input type="text" class="form-control" required="required">
-    </div>
-    <div class="form-group">
-        <div class="clearfix">
-            <label>Contraseña</label>
-            <a href="#" class="float-right text-muted"></a>
+<div class="modalConectando oculto" id="modalConectando">
+    <div class="contenedorModal mx-auto mt-5">
+        <div class="align-items-center">
+            <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div>
+            <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
+                <strong>Loading...</strong>
+                <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
+            </div>
         </div>
-        <input type="password" class="form-control" required="required">
-        Recordame
     </div>
-    <button class="btn btn-primary btn-block w-100" value="Login">Me conecto</button>
-    <a href="#" class="float-right text-muted">He olvidado mi contraseña</a>
+</div>
+
+<div class="tiempoCabecera texto-resaltado">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        data-bs-backdrop="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Maquina del Tiempo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Menú de ajustes para acelerar el tiempo
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button class="button-success" type="button" (click)="getFees()">get fees</button>
+</div>
+<div>
+    <button class="button-success" type="button" (click)="errorDeToken()">meter token falso</button>
+</div>
+<div *ngIf="!logado">
+    <button class="btnHazteCliente">Hazte cliente</button>
+    <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
+        data-bs-target="#zonaColapsableLogin" aria-expanded="false" aria-controls="zonaColapsableLogin"
+        (click)="colorearBotonLoginAlPulsar()">Acceso</button>
+</div>
+<div *ngIf="logado">
+    <button class="btnHazteCliente">Hola {{usuario}}</button>
+    <button class="btnLogin texto-primario" type="button" (click)="cerrarSesion()">Salir</button>
+</div>
+
+<div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
+    <div class="cajaLoginInfo fondo-primario">
+
+        <div class="contenedorLogin">
+            <div class="formularioLogin">
+                <h2>Soy cliente</h2>
+                <form action="#" method="post" spellcheck="false">
+                    <div class="inputCasilla">
+                        <input type="text" required [(ngModel)]="inputUsuario" name="inputUsuario" id="inputU">
+                        <label>Usuario</label>
+                    </div>
+                    <div class="inputCasilla">
+                        <input type="password" required [(ngModel)]="inputPassword" name="inputPassword" id="inputP">
+                        <label>Clave de acceso</label>
+                    </div>
+                    <div class="recordar">
+                        <a href="#">¿Olvidó su clave?</a>
+                    </div>
+                    <button type="submit" class="btnSubmit" (click)="logarse()">Entrar</button>
+                    <div class="loginARegisto">
+                        <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="infoLogin">
+            <div class="contenido">
+                <div *ngIf="cladveIncorrecta; else mensaje" class="alert alert-danger">
+                    <p class="mt-2">
+                        {{mensajeClave}}</p>
+                </div>
+                <ng-template #mensaje>
+                    <p class="mt-2">
+                        Tus claves de acceso son secretas e intransferibles</p>
+                    <p class="mt-2">No las compartas con nadie ni las proporciones a través de correo o de SMS</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
 </div>
