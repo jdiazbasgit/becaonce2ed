@@ -9,6 +9,8 @@ import { CategoryComponent } from './componentes/category/category.component';
 import { UserComponent } from './componentes/user/user.component';
 import { SubcategoryComponent } from './componentes/subcategory/subcategory.component';
 import { RolComponent } from './componentes/rol/rol.component';
+import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
+import { CardTypeComponent } from './componentes/card-type/card-type.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'categorias', component: CategoryComponent },
   {path: 'subcategorias', component: SubcategoryComponent },
   {path: 'roles', component: RolComponent },
+  {path: 'tipoDocumentos', component: DocumentTypesComponent },
+  {path: 'tipoTarjetas', component: CardTypeComponent },
   {path: 'usuarios', component: UserComponent }
 ];
 
