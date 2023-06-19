@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 
 @Component({
@@ -9,11 +9,13 @@ import { ProyectosService } from '../servicios/proyectos.service';
 export class OperacionesComponent {
   monto: number = 0;
   saldo: number = 0;
+  id: number = 0;
+  
 
 
   constructor(private service: ProyectosService) {
-
   }
+ 
 
   realizarDeposito() {
     this.saldo += this.monto;
@@ -46,7 +48,7 @@ export class OperacionesComponent {
 
     let jsonParaEnviar = {
       "date": currentDate.toISOString(),
-      "current": "-"+this.monto,
+      "current": "-" + this.monto,
       "description": "descriptions/1",
       "currentAccount": "currentAccounts/1",
     }
@@ -60,8 +62,9 @@ export class OperacionesComponent {
           console.log("La grabación no se ha realizado")
 
       })
-      this.monto = 0;
+    this.monto = 0;
   }
+  
 }
 
 

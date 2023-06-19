@@ -1,12 +1,20 @@
-<div>
-    <h2>Operaciones</h2>
-    
-    <label for="monto">Importe:</label>
-    <input type="number" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
-    
-    <button (click)="realizarDeposito()">Ingresar</button>
-    <button (click)="realizarRetiro()">Retirar</button>
-    
-    <p>Última operación: {{ monto }}</p>
-    <p>Saldo actual: {{ saldo }}</p>
+
+<div class="container">
+  <div class="text-center">
+      <h2>Ingresos o Retiros</h2>
+      
+      <div class="form-group">
+          <label for="monto">Importe:</label>
+          <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
+      </div>
+      
+      <div class="btn-group">
+          <button class="btn btn-success" (click)="realizarDeposito()">Ingresar</button>
+          <button class="btn btn-success" (click)="realizarRetiro()">Retirar</button>
+      </div>
+      
+      <p>Última operación: {{ monto }}</p>
+      <p>Saldo actual: {{ saldo }}</p>
   </div>
+</div>
+
