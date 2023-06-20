@@ -11,6 +11,7 @@ import { SubcategoryComponent } from './componentes/subcategory/subcategory.comp
 import { RolComponent } from './componentes/rol/rol.component';
 import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent },
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'roles', component: RolComponent },
   {path: 'tipoDocumentos', component: DocumentTypesComponent },
   {path: 'tipoTarjetas', component: CardTypeComponent },
-  {path: 'usuarios', component: UserComponent }
+  {path: 'usuarios', component: UserComponent },
+  {path: 'home', component: HomeComponent }
 ];
 
 @NgModule({
