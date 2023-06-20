@@ -7,6 +7,7 @@ import { OperacionesComponent } from './operaciones/operaciones.component';
 import { DetallesCuentaComponent } from './detalles-cuenta/detalles-cuenta.component';
 import { ProductosComponent } from './productos/productos.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
+import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
 
 const routes: Routes = [
   {path:`landing`, component:LandingComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:`operaciones`, component:OperacionesComponent},
   {path:`detalles`, component:DetallesCuentaComponent},
   {path:`productos`, component:ProductosComponent},
-  {path:`paneladministrador`, component:PanelAdministradorComponent}
+  {path:`paneladministrador`, component:PanelAdministradorComponent},
+  {path:`haztecliente`, component:HazteClienteComponent}
 ];
 
 @NgModule({

@@ -52,7 +52,7 @@
         <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
     </div> -->
     <div *ngIf="!logado" class="fondoBtnLogin">
-        <button class="btnHazteCliente">Hazte cliente</button>
+        <button class="btnHazteCliente" routerLink="haztecliente">Hazte cliente</button>
         <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
             data-bs-target="#zonaColapsableLogin" aria-expanded="false" aria-controls="zonaColapsableLogin"
             (click)="colorearBotonLoginAlPulsar()">Acceso</button>
