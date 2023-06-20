@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { DocumentTypeService } from 'src/app/servicios/document-type.service';
 import { LoginService } from 'src/app/servicios/login.service';
-import { ProyectosService } from 'src/app/servicios/proyectos.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +14,14 @@ import { ProyectosService } from 'src/app/servicios/proyectos.service';
 export class LoginComponent {
 
   logado: boolean = false;
-  inputUsuario: string = "";
+  inputUser: string = "";
   inputPassword: string = "";
-  usuario: string = "";
-  cladveIncorrecta: boolean = false;//claveErronea
-  mensajeClave: String = "";
-  contadorTemporizadorDeInactividad: number = 30000;
-  sessionTimeoutTimer: any;//temporizadorDeInactividad
-  sinActividad: boolean = false;
+  user: string = "";
+  incorrectKey: boolean = false;//claveErronea
+  keyMessage: String = "";//mensajeClave
+  counterAfkTimer: number = 30000;//contadortemporizador de inactividad
+  afkTimer: any;//temporizadorDeInactividad notActive incorrectKey keyMessage
+  notActive: boolean = false;//sin actividad
 
   constructor(private elementRef: ElementRef, private loginService: LoginService, private documentType: DocumentTypeService, private router: Router) {
 
@@ -31,18 +30,18 @@ export class LoginComponent {
   ngDoCheck() {
     if (sessionStorage.getItem('token') && !this.logado) {
       this.logado = true;
-      this.usuario = sessionStorage.getItem('user') ?? '';
+      this.user = sessionStorage.getItem('user') ?? '';
     }
-    if (!this.logado && this.router.url !== "/landing") {
-      this.router.navigateByUrl("landing");
+    if (!this.logado && this.router.url !== "/home") {
+      this.router.navigateByUrl("home");
     }
-    if (!this.sinActividad && this.logado) {
-      clearTimeout(this.sessionTimeoutTimer);
-      this.sessionTimeoutTimer = setTimeout(() => {
+    if (!this.notActive && this.logado) {
+      clearTimeout(this.afkTimer);
+      this.afkTimer = setTimeout(() => {
         console.log("Cerrado por inactividad!!");
-        this.sinActividad = true;
-        this.cerrarSesion();
-      }, this.contadorTemporizadorDeInactividad);
+        this.notActive = true;
+        this.closeSession();
+      }, this.counterAfkTimer);
     }
   }
   logarse() {
@@ -51,7 +50,7 @@ export class LoginComponent {
     let modalConectando = this.elementRef.nativeElement.querySelector('#modalConectando');
     modalConectando.classList.remove('oculto');
     setTimeout(() => {
-      this.loginService.identificar("http://localhost:8080/login", this.inputUsuario, this.inputPassword)
+      this.loginService.identificar("http://localhost:8080/login", this.inputUser, this.inputPassword)
         .pipe(
           catchError(error => {
             console.log(error);
@@ -73,12 +72,12 @@ export class LoginComponent {
           }
           if (datos.token != null) {
             console.log("acceso correcto");
-            let userM = this.inputUsuario;
+            let userM = this.inputUser;
             let passM = this.inputPassword;
             sessionStorage.setItem('user', datos.user);
             console.log(userM + passM);
             sessionStorage.setItem('token', datos.token);
-            this.sinActividad = false;
+            this.notActive = false;
             let cont = this.elementRef.nativeElement.querySelector('.contenido');
             cont.innerHTML = "Bienvenido";
             cont.classList.add('bg-success');
@@ -93,31 +92,31 @@ export class LoginComponent {
     }, 1000)
   }
 
-  cerrarSesion() {
-    sessionStorage.clear()
-    this.logado = false
+  closeSession() {
+    sessionStorage.clear();
+    this.logado = false;
   }
   
   limpiarFormulario() {
-    this.inputUsuario = ""
-    this.inputPassword = ""
+    this.inputUser = "";
+    this.inputPassword = "";
   }
 
   colorearBotonLoginAlPulsar() {
-    this.limpiarFormulario()
+    this.limpiarFormulario();
     let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
     if (btnLogin.classList.contains('collapsed')) {
       btnLogin.classList.remove('pulsado');
     }
     else {
       btnLogin.classList.add('pulsado');
-      this.cladveIncorrecta = false
+      this.incorrectKey = false;
     }
   }
 
   mensajeClaveErronea(mensaje: String) {
-    this.cladveIncorrecta = true
-    this.mensajeClave = mensaje
+    this.incorrectKey = true;
+    this.keyMessage = mensaje;
   }
 
   getFees() {
@@ -140,7 +139,7 @@ export class LoginComponent {
   
   errorDeToken() {
     sessionStorage.setItem('token', 'error de token');
-    console.log("token: " + sessionStorage.getItem('token'))
+    console.log("token: " + sessionStorage.getItem('token'));
   }
 
 }

@@ -33,6 +33,7 @@ import { ImagenComponent } from './imagen/imagen.component';
 import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
 import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ModalLoginComponent } from './componentes/modal-login/modal-login.compo
     ModalRolComponent,
     ModalUserComponent,
     ModalLoginComponent,
+    HomeComponent,
 
   ],
   imports: [
