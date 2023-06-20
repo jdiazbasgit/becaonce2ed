@@ -32,7 +32,7 @@ class TransactinsAwardsFineTests {
 	@Test
 	public void saveTransactionsAwardsFine() {
 		TransactionsAwardsFine transactionsAwardsFine = new TransactionsAwardsFine();
-		transactionsAwardsFine.setAwardsFineType(getAwardsFineTypeServices().findById(1).get());
+		transactionsAwardsFine.setAwardFineType(getAwardsFineTypeServices().findById(1).get());
 		transactionsAwardsFine.setTransaction(getTransactionService().findById(1).get());
 		getTransactionsAwardsFineService().save(transactionsAwardsFine);
 
@@ -54,12 +54,12 @@ class TransactinsAwardsFineTests {
 		List<TransactionsAwardsFine> transactinsAwardsFines = new ArrayList<>();
 
 		TransactionsAwardsFine transactionawardsFine1 = new TransactionsAwardsFine();
-		transactionawardsFine1.setAwardsFineType(awardsFineTypeServices.findById(2).get());
+		transactionawardsFine1.setAwardFineType(awardsFineTypeServices.findById(2).get());
 		transactionawardsFine1.setTransaction(transactionService.findById(2).get());
 		transactinsAwardsFines.add(transactionawardsFine1);
 
 		TransactionsAwardsFine transactionsAwardsFine2 = new TransactionsAwardsFine();
-		transactionsAwardsFine2.setAwardsFineType(awardsFineTypeServices.findById(3).get());
+		transactionsAwardsFine2.setAwardFineType(awardsFineTypeServices.findById(3).get());
 		transactionsAwardsFine2.setTransaction(transactionService.findById(3).get());
 		transactinsAwardsFines.add(transactionsAwardsFine2);
 
