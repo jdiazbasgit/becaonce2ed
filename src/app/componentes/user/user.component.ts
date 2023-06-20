@@ -3,12 +3,7 @@ import { ModalUserComponent } from '../modal-user/modal-user.component';
 import { UserService } from 'src/app/servicios/users.service';
 import { forkJoin } from 'rxjs';
 
-export interface Usuario{
-  user: string;
-  password: string;
-  enabled: boolean;
-  rol: any;
-}
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
@@ -58,27 +53,25 @@ export class UserComponent implements OnInit{
     this.roles = [];
     this.service.getDatos("http://localhost:8080/once/usersPaginado?page=0&size=2&sort=id,asc").
     subscribe((datos: any)=>{
-      //this.usuarios = datos._embedded.users
+      this.usuarios = datos._embedded.users
       //this.claves = this.usuarios.map((usuario: any) => usuario.password);
       //this.habilitados = this.usuarios.map((usuario: any) => usuario.enabled);
       //this.roles = this.usuarios.map((usuario:any) => usuario._links.rol.href);
-      const usuarios = datos._embedded.users;
+      /*const usuarios = datos._embedded.users;
       const rolesRequests = usuarios.map((usuario: any)=>this.service.getRole(usuario._links.rol.href));
 
       forkJoin<any[]>(rolesRequests).subscribe((roles: any[])=>{
         this.usuarios = usuarios.map((usuario: any, index: number)=> ({
-          console.log(usuario);
-          console.log(roles[index]);
-          return{
+          
           ...usuario,
-          rol: roles[index]}
+          rol: roles[index]
         }));
 
-        this.claves = this.usuarios.map((usuario: Usuario)=> usuario.password);
-        this.habilitados = this.usuarios.map((usuario: Usuario)=> usuario.enabled)
-        this.roles = this.usuarios.map((usuario: Usuario)=> usuario.rol)
+        this.claves = this.usuarios.map((usuario: any)=> usuario.password);
+        this.habilitados = this.usuarios.map((usuario: any)=> usuario.enabled)
+        this.roles = this.usuarios.map((usuario: any)=> usuario.rol)
 
-      });
+      });*/
 
     });
   }
