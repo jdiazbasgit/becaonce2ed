@@ -39,7 +39,7 @@ export class UserComponent implements OnInit{
   }
 
   realizarComunicacion(event: any){
-    this.mensaje = ""
+    this.mensaje = "";
     if(event.salida === "OK")
     this.ngOnInit();
   }
@@ -52,7 +52,8 @@ export class UserComponent implements OnInit{
     this.service.getDatos("http://localhost:8080/once/usersPaginado?page=0&size=2&sort=id,asc").
     subscribe((datos: any)=>{
       this.usuarios = datos._embedded.users
-    })
+      this.roles = datos._embedded.users._links.rol;
+    });
   }
 
   modificar(usuario: any){
