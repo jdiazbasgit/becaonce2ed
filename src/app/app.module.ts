@@ -75,7 +75,7 @@ import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-
 
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
-   
+ 
  
   ],
   imports: [
