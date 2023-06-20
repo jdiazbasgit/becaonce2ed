@@ -27,8 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.*;
-import once.curso.proyectotienda.entities.DocumentType;
+import lombok.Data;
 import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.model.ExistingProductModelAssembler;
 import once.curso.proyectotienda.services.ExistingProductService;
@@ -89,9 +88,8 @@ public class ExistingProductRestController {
 	}
 
 	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
-	// @GetMapping("/products/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	// SPRING BOOT APP
+	@PutMapping("/products/{id}") //SPRING BOOT APP 
+	// @GetMapping("/products/{id}") //Junit text
 	@CrossOrigin(origins ="*")
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
@@ -109,10 +107,9 @@ public class ExistingProductRestController {
 	}
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/products/{id}") //SPRING BOOT APP
 	@CrossOrigin(origins ="*")
-	// @GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	// SPRING BOOT APP
+	//@GetMapping("/products/delete/{id}") //Junit text
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
 			throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
