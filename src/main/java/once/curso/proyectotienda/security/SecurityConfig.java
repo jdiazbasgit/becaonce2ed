@@ -26,10 +26,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests().antMatchers("/once/documentsTypes/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/documentsTypes").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/cardTypes").permitAll();
-		http.authorizeHttpRequests().antMatchers("/once/users/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/usersPaginado").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/roles/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/roles").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/configurations/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/configurations").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/users").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/categories/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/categories").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/subcategories/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/subcategories").permitAll();
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
 		http.cors();
