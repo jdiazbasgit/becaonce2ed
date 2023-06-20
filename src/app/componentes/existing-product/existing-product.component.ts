@@ -68,7 +68,7 @@ export class ExistingProductComponent implements OnInit {
     if (this.modal) {
       this.modal.image = '';
       this.modal.description = '';
-      this.modal.saleprice = '';
+      this.modal.price = '';
       this.modal.stock = '';
       this.modal.total = '0';
 
