@@ -1,33 +1,52 @@
-<div>
+<div class="container">
   <h1>Hazte Cliente</h1>
-  
   <form (submit)="guardaDatos()">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}">
-    
-    <label for="apellidos">Apellidos:</label>
-    <input type="text" id="apellidos" [(ngModel)]="secondName" required [ngModelOptions]="{standalone: true}">
-    
-    <label for="documentodeidentidad">Documento de Identidad:</label>
-    <input type="text" id="documentodeidentidad" [(ngModel)]="identification" required [ngModelOptions]="{standalone: true}">
-    
-    <label for="telefono">Teléfono:</label>
-    <input type="text" id="telefono" [(ngModel)]="phone" required [ngModelOptions]="{standalone: true}">
-    
-    <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
-
-    <label for="tipoDeDocumento">Tipo de Documento:</label>
-    <select [(ngModel)]="identificationType" [ngModelOptions]="{standalone: true}" name="identificationType">
-      <option value="0">Seleccion Tipo de Identificador....</option>
-      <option value="identificationType._links.self.href.substring(identificationType._links.self.href.lastIndexOf('/')+1)"
-       *ngFor="let identificationType of identificationTypes">{{identificationType.description}}</option>
-
-    </select>
-    
-    <label for="usuario">Usuario:</label>
-    <input type="text" id="usuario" [(ngModel)]="user" required [ngModelOptions]="{standalone: true}">
-    
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="name" required
+          [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" class="form-control" id="apellidos" [(ngModel)]="secondName" required
+          [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="col-md4 mb-3">
+        <label for="telefono">Teléfono:</label>
+        <input type="text" class="form-control" id="telefono" [(ngModel)]="phone" required
+          [ngModelOptions]="{standalone: true}">
+      </div>
+    </div><br>
+    <div class="form-row">
+      <div class="col">
+        <label for="documentodeidentidad">Documento de Identidad:</label>
+        <input type="text" class="form-control" id="documentodeidentidad" [(ngModel)]="identification" required
+          [ngModelOptions]="{standalone: true}">
+      </div>
+      
+    </div><br>
+    <div class="form-row">
+      <div class="col">
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="col">
+        <label for="tipoDeDocumento">Tipo de Documento:</label>
+        <select [(ngModel)]="identificationType" [ngModelOptions]="{standalone: true}" name="identificationType">
+          <option value="0">Seleccion Tipo de Identificador....</option>
+          <option
+            value="identificationType._links.self.href.substring(identificationType._links.self.href.lastIndexOf('/')+1)"
+            *ngFor="let identificationType of identificationTypes">{{identificationType.description}}</option>
+        </select>
+      </div><br>
+      <div class="form-row">
+        <div class="col">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" [(ngModel)]="user" required [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+    </div>
     <button type="submit">Guardar</button>
   </form>
 </div>

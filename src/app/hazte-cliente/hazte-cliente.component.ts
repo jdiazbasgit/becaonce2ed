@@ -107,7 +107,7 @@ export class HazteClienteComponent  implements OnInit{
           console.log(this.usuarioBaseDatos +" este es el cliente");
           this.clave = users.password;
 
-          if (this.usuarioBaseDatos == this.user) {
+          if (this.usuarioBaseDatos === this.user) {
             
           }
         });
