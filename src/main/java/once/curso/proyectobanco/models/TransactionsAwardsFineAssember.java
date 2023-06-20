@@ -22,7 +22,7 @@ public class TransactionsAwardsFineAssember implements SimpleRepresentationModel
 		transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
 				  .findById(transactionsAwardsFine.getContent().getTransaction().getId())).withRel("transaction"));
 		transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-				  .findById(transactionsAwardsFine.getContent().getAwardsFineType().getId())).withRel("awardFineType"));
+				  .findById(transactionsAwardsFine.getContent().getAwardFineType().getId())).withRel("awardFineType"));
 		transactionsAwardsFine.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
 						.findById(transactionsAwardsFine.getContent().getId()))
@@ -36,7 +36,7 @@ public class TransactionsAwardsFineAssember implements SimpleRepresentationModel
 			t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
 					  .findById(t.getContent().getTransaction().getId())).withRel("transaction"));
 			  t.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-					  .findById(t.getContent().getAwardsFineType().getId())).withRel("awardFineType"));
+					  .findById(t.getContent().getAwardFineType().getId())).withRel("awardFineType"));
 			t.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
 							.findById(t.getContent().getId()))

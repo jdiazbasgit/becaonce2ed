@@ -27,5 +27,5 @@ public class TransactionsAwardsFine extends RepresentationModel<TransactionsAwar
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_types_id")
-	private AwardsFinesType awardsFineType;
+	private AwardsFinesType awardFineType;
 }
