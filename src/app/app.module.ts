@@ -59,23 +59,23 @@ import { HomeComponent } from './componentes/home/home.component';
     ModalCategoryComponent,
     ModalSubcategoryComponent,
     ModalConfigurationComponent,
-
     ModalDocumentTypesComponent,
     ModalRolComponent,
     ModalUserComponent,
     ModalLoginComponent,
     HomeComponent
-
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
+  imports:[
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
    // MatToolbarModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserModule,
+    AppRoutingModule,
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
