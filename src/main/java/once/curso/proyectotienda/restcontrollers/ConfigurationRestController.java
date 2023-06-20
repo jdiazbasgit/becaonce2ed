@@ -84,7 +84,7 @@ public class ConfigurationRestController {
 		return getPagedResourcesAssembler().toModel(configuration, getConfigurationModelAssembler());
 	}
 
-	@PostMapping("/Configurations/create")
+	@PostMapping("/configurations")
 	@CrossOrigin(origins = "*")
 	public Configuration save(@RequestBody Configuration configuration) {
 		return getConfigurationService().save(configuration);
@@ -92,7 +92,13 @@ public class ConfigurationRestController {
 
 	@DeleteMapping("/configurations/{id}")
 	@CrossOrigin(origins = "*")
-	public void deleteById(@PathVariable int id) {
-		getConfigurationService().deleteById(id);
+	public boolean deleteById(@PathVariable int id) {
+		try {
+			getConfigurationService().deleteById(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
