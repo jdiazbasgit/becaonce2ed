@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ExistingProductService } from '../../servicios/existingproduct.service';
 import ExistingProductBean from '../../beans/ExistingProductBean';
 
@@ -13,7 +13,6 @@ export class ModalExistingProductsComponent {
   image: string = ""
   description: string = ""
   price: string = ""
-  saleprice: string = ""
   stock: string = ""
   total: string = "0"
   subcategory: string=''
@@ -30,15 +29,6 @@ export class ModalExistingProductsComponent {
     }
     return 'assets/placeholder-image.jpg';
   }
-
-  /*getFormatterEuro(amount: number): string {
-    const formattedEuro = amount.toLocaleString('es-ES', {
-      style: 'currency',
-      currency: 'EUR'
-    });
-
-    return formattedEuro;
-  }*/
 
   getFormatterDolar(amount: number): string{
     const formatterDolar = amount.toLocaleString('en-US', {
@@ -77,9 +67,10 @@ export class ModalExistingProductsComponent {
       this.image = this.selectedImage.toString()
     }
 
-    //this.price = this.getFormatterDolar(parseFloat(this.price))
+    const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.')
+    this.price = priceValue.toString()
 
-    const existingProduct = new ExistingProductBean(this.image, this.description, this.price, this.stock, this.subcategory);
+    const existingProduct = new ExistingProductBean(this.image, this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento el numero 6
 
     this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
       .subscribe((dato: boolean) => {
@@ -87,7 +78,6 @@ export class ModalExistingProductsComponent {
           this.message = 'Producto añadido correctamente.'
           this.description = ''
           this.price = ''
-          this.saleprice = ''
           this.stock = ''
           this.selectedImage = null
         } else {
@@ -101,8 +91,7 @@ export class ModalExistingProductsComponent {
       this.id = id
       this.image = data.image
       this.description = data.description
-      this.saleprice = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price)
-      this.price = data.price
+      this.price = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price)
       this.stock = data.stock
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock)
       this.subcategory = data._links.subcategory.href
@@ -110,7 +99,6 @@ export class ModalExistingProductsComponent {
       this.image=''
       this.description=''
       this.price=''
-      this.saleprice=''
       this.stock=''
       this.total='0'
       this.subcategory =''
