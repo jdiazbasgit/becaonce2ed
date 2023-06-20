@@ -2,7 +2,7 @@ class ExistingProductBean {
   description: string;
   price: string;
   stock: string;
-  image: string;
+  image: string | null = null;
   subcategory: string;
 
   constructor(image: string, description: string, price: string, stock: string, subcategory: string ) {
