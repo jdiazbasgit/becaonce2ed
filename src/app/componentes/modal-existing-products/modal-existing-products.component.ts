@@ -31,13 +31,22 @@ export class ModalExistingProductsComponent {
     return 'assets/placeholder-image.jpg';
   }
 
-  getFormat(amount: number): string {
-    const formattedAmount = amount.toLocaleString('es-ES', {
+  /*getFormatterEuro(amount: number): string {
+    const formattedEuro = amount.toLocaleString('es-ES', {
       style: 'currency',
       currency: 'EUR'
     });
 
-    return formattedAmount;
+    return formattedEuro;
+  }*/
+
+  getFormatterDolar(amount: number): string{
+    const formatterDolar = amount.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    });
+
+    return formatterDolar;
   }
 
   selectImage() {
@@ -68,12 +77,14 @@ export class ModalExistingProductsComponent {
       this.image = this.selectedImage.toString()
     }
 
+    //this.price = this.getFormatterDolar(parseFloat(this.price))
+
     const existingProduct = new ExistingProductBean(this.image, this.description, this.price, this.stock, this.subcategory);
 
     this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
       .subscribe((dato: boolean) => {
         if (dato) {
-          this.message = 'Producto se ha añadido correctamente.'
+          this.message = 'Producto añadido correctamente.'
           this.description = ''
           this.price = ''
           this.saleprice = ''
@@ -85,7 +96,7 @@ export class ModalExistingProductsComponent {
       });
   }
 
-  openModal(id: string, data: any, ) {
+  openModal(id: string, data: any) {
     if (data!=''){
       this.id = id
       this.image = data.image

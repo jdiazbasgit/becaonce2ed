@@ -12,7 +12,7 @@ import { ModalExistingProductsComponent } from '../modal-existing-products/modal
 export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
   modal: ModalExistingProductsComponent | undefined
-  
+
   title = "Lista de productos"
   columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
   elements: any[] = [];
@@ -50,13 +50,13 @@ export class ExistingProductComponent implements OnInit {
     return 'assets/placeholder-image.jpg';
   }
 
-  getFormat(amount: number): string {
-    const formattedAmount = amount.toLocaleString('es-ES', {
+  getFormatterEuro(amount: number): string {
+    const formattedEuro = amount.toLocaleString('es-ES', {
       style: 'currency',
       currency: 'EUR'
     });
 
-    return formattedAmount;
+    return formattedEuro;
   }
 
   abrirModal(id: string, element?: any) {
