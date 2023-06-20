@@ -30,15 +30,6 @@ export class ModalExistingProductsComponent {
     return 'assets/placeholder-image.jpg';
   }
 
-  getFormatterDolar(amount: number): string{
-    const formatterDolar = amount.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    });
-
-    return formatterDolar;
-  }
-
   selectImage() {
     const fileInput = document.querySelector('#file-input') as  HTMLImageElement
     if (fileInput) {
