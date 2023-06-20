@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +22,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 @SpringBootTest
 @Data
 public class ExistingProductTests{
-	private String filename = "calzocillos.jpg";
+	private String filename = "src/main/resources/calzocillos.jpg";
 	@Autowired
 	private ExistingProductService existingProductService;
 	@Autowired
@@ -50,12 +51,21 @@ public class ExistingProductTests{
 	@Test
 	public void AddExistingProduct() {
 		ExistingProduct existingProduct = new ExistingProduct();
-		existingProduct.setDescription("Caja de boligrafos");
+		existingProduct.setDescription("Caja de boligrafos negro");
 		existingProduct.setPrice(74.99);
 		existingProduct.setStock(10);
-		File file = new File(filename);
-        byte[] imgInBytes = new byte[(int) file.length()];		
-		existingProduct.setImage(imgInBytes);
+		
+		try {
+			FileInputStream file = new FileInputStream(filename);
+			byte[] b= new byte[file.available()];
+			file.read(b);
+			file.close();
+			existingProduct.setImage(b);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 			
 	    existingProduct.setSubcategory(getSubcategoriesService().findById(6).get());
 	
