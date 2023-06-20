@@ -20,6 +20,8 @@ export class LoginComponent {
   contadorTemporizadorDeInactividad: number = 180000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
+  collapseLogin: boolean = false
+  collapseHazteCliente: boolean = false
 
   constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService, private router: Router) {
   
@@ -134,13 +136,28 @@ export class LoginComponent {
   }
   colorearBotonLoginAlPulsar() {
     this.limpiarFormulario()
-    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
-    if (btnLogin.classList.contains('collapsed')) {
-      btnLogin.classList.remove('pulsado');
-    }
-    else {
+    let zonaLogin = this.elementRef.nativeElement.querySelector('#zonaColapsableLogin');
+    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin')
+    if (zonaLogin.classList.contains('show')) {
       btnLogin.classList.add('pulsado');
       this.claveErronea = false
+      this.collapseLogin = true 
+    }
+    else {      
+      btnLogin.classList.remove('pulsado');
+      this.collapseLogin = false
+    }
+  }
+  colorearBotonHazteClienteAlPulsar() {
+    let zonaHazteCliente = this.elementRef.nativeElement.querySelector('#zonaColapsableHazteCliente')
+    let btnHazteCliente = this.elementRef.nativeElement.querySelector('.btnHazteCliente')
+    if (zonaHazteCliente.classList.contains('show')) {
+      btnHazteCliente.classList.add('pulsado');
+      this.collapseHazteCliente = true
+    }
+    else {      
+      btnHazteCliente.classList.remove('pulsado');
+      this.collapseHazteCliente = false
     }
   }
   mensajeClaveErronea(mensaje: String) {
