@@ -3,6 +3,8 @@ package once.curso.proyectobanco.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
@@ -49,6 +51,11 @@ public class AwardsFinesServices {
 	public Iterable<AwardsFine> findAll() {
 
 		return getAwardFineCRUDRepositories().findAll();
+	}
+	
+	public Page<AwardsFine> findAll(Pageable pageable) {
+
+		return getAwardFineCRUDRepositories().findAll(pageable);
 	}
 
 	public Iterable<AwardsFine> findAllById(Iterable<Integer> ids) {

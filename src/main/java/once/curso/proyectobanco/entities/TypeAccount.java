@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @Entity
 
-@Table(name = "TYPE_ACCOUNTS")
+@Table(name = "types_accounts")
 public class TypeAccount extends RepresentationModel<TypeAccount>{
 
 	@Id
