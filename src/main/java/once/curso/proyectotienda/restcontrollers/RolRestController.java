@@ -15,8 +15,11 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -63,7 +66,6 @@ public class RolRestController {
 	   @CrossOrigin(origins ="*")
 	public PagedModel<EntityModel<Rol>> finAllPaginado(@RequestParam int size, 
 			@RequestParam int page, @RequestParam String sort){
-		
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
 		Sort orden = Sort.by("a");
 		String campo = stringTokenizer.nextToken();
@@ -79,5 +81,24 @@ public class RolRestController {
 		Page<Rol> rol = getRolService().findAll(pageable);
 		
 		return getPagedResourcesAssembler().toModel(rol, getRolModelAssembler());
+	}
+	
+	@PostMapping("/roles")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody Rol rol) {
+		return existById(getRolService().save(rol).getId());
+	}
+	
+	@DeleteMapping("/roles/{id}")
+	@CrossOrigin(origins =  "*")
+	public boolean deleteById(@PathVariable int id) {
+		getRolService().deleteById(id);;
+		return getRolService().existsById(id);
+	}
+	
+	@PostMapping("/roles/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getRolService().existsById(id);
 	}
 }
