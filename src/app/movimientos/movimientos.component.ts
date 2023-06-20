@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionService } from '../servicios/transaction.service';
-
+import { ProyectosService } from '../servicios/proyectos.service';
 
 @Component({
   selector: 'app-movimientos',
@@ -9,19 +8,37 @@ import { TransactionService } from '../servicios/transaction.service';
 })
 export class MovimientosComponent implements OnInit {
   operaciones: any[] = [];
+  cuentasCorrientes: any[] = [];
+  urlTransaction: string = "http://localhost:8080/once/transactions";
 
-  constructor(private transactionService: TransactionService) {}
+  constructor(private proyectosService: ProyectosService) {}
 
   ngOnInit(): void {
     this.obtenerMovimientos();
   }
 
-  urlTransaction:string="http://localhost:8080/once/transactions"
   obtenerMovimientos() {
-    this.transactionService.getDatos(this.urlTransaction).subscribe(
+    this.proyectosService.getDatos(this.urlTransaction).subscribe(
       (datos: any) => {
         this.operaciones = datos._embedded.transactions;
+        this.obtenerCuentasCorrientes();
       }
     );
+  }
+
+  obtenerCuentasCorrientes() {
+    this.proyectosService.getDatos(this.urlTransaction).subscribe(
+      (cuentas: any) => {
+        this.cuentasCorrientes = cuentas._embedded.currentAccounts;
+        this.vincularMovimientosCuentasCorrientes();
+      }
+    );
+  }
+
+  vincularMovimientosCuentasCorrientes() {
+    this.operaciones.forEach((movimiento: any) => {
+      const cuentaCorriente = this.cuentasCorrientes.find((cuenta: any) => cuenta.id === movimiento.cuentaCorrienteId);
+      movimiento.cuentaCorriente = cuentaCorriente;
+    });
   }
 }
