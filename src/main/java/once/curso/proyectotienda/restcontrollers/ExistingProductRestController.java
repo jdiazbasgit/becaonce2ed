@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.*;
+import lombok.Data;
 import once.curso.proyectotienda.entities.ExistingProduct;
 import once.curso.proyectotienda.model.ExistingProductModelAssembler;
 import once.curso.proyectotienda.services.ExistingProductService;
@@ -66,9 +66,9 @@ public class ExistingProductRestController {
 		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
 		existingProduct.forEach(u -> {
 			u.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getSubcategory().getId()))
+					.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
 					.withRel("subcategory"));
-			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
+			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
 					.withSelfRel());
 		});
 		return CollectionModel.of(existingProduct);
@@ -88,15 +88,13 @@ public class ExistingProductRestController {
 	}
 
 	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/update/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
-	// @GetMapping("/products/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	// SPRING BOOT APP
+	@PutMapping("/products/{id}") //SPRING BOOT APP 
+	// @GetMapping("/products/{id}") //Junit text
 	@CrossOrigin(origins ="*")
-	
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
-		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
-				.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
+		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId).get();
+				//.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
 
 		existingProduct.setDescription(existingProductDetails.getDescription());
 		existingProduct.setPrice(existingProductDetails.getPrice());
@@ -109,10 +107,9 @@ public class ExistingProductRestController {
 	}
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/{id}") // FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/products/{id}") //SPRING BOOT APP
 	@CrossOrigin(origins ="*")
-	// @GetMapping("/products/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA
-	// SPRING BOOT APP
+	//@GetMapping("/products/delete/{id}") //Junit text
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
 			throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
