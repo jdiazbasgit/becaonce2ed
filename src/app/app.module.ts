@@ -29,6 +29,9 @@ import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-ca
 import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
+import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
+import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
+import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
@@ -55,6 +58,10 @@ import { HomeComponent } from './componentes/home/home.component';
     ModalCategoryComponent,
     ModalSubcategoryComponent,
     ModalConfigurationComponent,
+    ModalDocumentTypesComponent,
+    ModalRolComponent,
+    ModalUserComponent,
+    ModalLoginComponent,
     HomeComponent
   ],
   imports: [

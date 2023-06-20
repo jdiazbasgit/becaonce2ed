@@ -19,6 +19,9 @@ export class ModalSubcategoryComponent implements DoCheck {
   categorias: Array<any>
   @Output() eventoAComunicar = new EventEmitter();
   antiguoId: number = this.id
+  subtitulo: string = ""
+
+
 
   constructor(private service: SubcategoryService) {
     this.descripcion = "";
@@ -32,9 +35,15 @@ export class ModalSubcategoryComponent implements DoCheck {
       });
   }
   ngDoCheck(): void {
-   
-    if (this.id !== this.antiguoId && this.id >0) {
-      this.antiguoId= this.id
+
+    if (this.id === 0) {
+      this.subtitulo = "ALTA"
+    } else {
+      this.subtitulo = "MODIFICACION"
+    }
+
+    if (this.id !== this.antiguoId && this.id > 0) {
+      this.antiguoId = this.id
 
       console.log("id entrada: " + this.id);
       this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
@@ -49,6 +58,9 @@ export class ModalSubcategoryComponent implements DoCheck {
 
   realizarComunicacion() {
     this.id = 0;
+    this.subcategory = "";
+    this.subcategoryPlaceHolder = "";
+    this.fin = false;
     this.eventoAComunicar.emit({ salida: "OK" });
   }
 

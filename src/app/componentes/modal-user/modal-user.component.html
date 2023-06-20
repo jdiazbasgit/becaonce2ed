@@ -1,0 +1,44 @@
+<!-- The Modal -->
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header justify-content-center">
+                <h4 class="modal-title">{{subtitulo}} USUARIO</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body text-center">
+                <label for="usuario">Usuario: </label>
+                <input type="text" name="usuario" [(ngModel)]="usuario" value="{{usuarioPlaceHolder}}"><br><br>
+
+                <label for="contraseña">Contraseña: </label>
+                <input type="text" name="contraseña" [(ngModel)]="password" value="{{passwordPlaceHolder}}"><br><br>
+
+                <label for="habilitar">Habilitar: </label>
+                <input type="text" name="habilitar" [(ngModel)]="enabled" value="{{enabledPlaceHolder}}"><br><br>
+
+                <label for="rol">Roles: </label>
+                <select [(ngModel)]="rol">
+                    <option value="0">Seleccione rol...</option>
+                    <option *ngFor="let fun of roles"
+                        value="{{fun._links.rol.href.substring(fun._links.rol.href.lastIndexOf('/')+1)}}">{{fun.description}}
+                    </option>
+                </select><br><br>
+
+                <button type="button" class="button" (click)="grabar()">GRABAR</button>
+            </div>
+            <div class="text-center">
+                <h1>{{mensaje}}</h1>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="realizarComunicacion()">CERRAR</button>
+            </div>
+
+        </div>
+    </div>
+</div>
