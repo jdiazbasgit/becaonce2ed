@@ -1,7 +1,7 @@
 class ConfigurationBean{
     id:number
-    stockAlarm:string
-    constructor(id:number, stockAlarm:string){
+    stockAlarm:number
+    constructor(id:number, stockAlarm:number){
         this.id=id;
         this.stockAlarm=stockAlarm; 
     }
