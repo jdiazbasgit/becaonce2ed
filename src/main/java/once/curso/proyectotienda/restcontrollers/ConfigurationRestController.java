@@ -101,4 +101,11 @@ public class ConfigurationRestController {
 			return false;
 		}
 	}
+	
+	@GetMapping("/configurations/count")
+	@CrossOrigin(origins = "*")
+	public long getConfigurationCount() {
+		return configurationService.count();
+    }
+
 }
