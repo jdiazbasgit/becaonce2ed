@@ -52,31 +52,12 @@
         <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
     </div> -->
     <div *ngIf="!logado" class="fondoBtnLogin">
-        <button *ngIf="!collapseHazteCliente && !collapseLogin" class="btnHazteCliente" type="button"
-            data-bs-toggle="collapse" data-bs-target="#zonaColapsableHazteCliente" aria-expanded="false"
+        <button class="btnHazteCliente" type="button" data-bs-toggle="collapse"
+            data-bs-target="#zonaColapsableHazteCliente" aria-expanded="false"
             aria-controls="zonaColapsableHazteCliente" (click)="colorearBotonHazteClienteAlPulsar()">Hazte
             cliente</button>
-
-        <button *ngIf="collapseHazteCliente && !collapseLogin" class="btnHazteCliente" type="button"
-            data-bs-toggle="collapse" data-bs-target="#zonaColapsableHazteCliente" aria-expanded="false"
-            aria-controls="zonaColapsableHazteCliente" (click)="colorearBotonHazteClienteAlPulsar()">Hazte
-            cliente</button>
-
-        <button *ngIf="!collapseHazteCliente && collapseLogin" class="btnHazteCliente" type="button"
-            data-bs-toggle="collapse" data-bs-target=".zonaColapsable" aria-expanded="false"
-            aria-controls="zonaColapsableHazteCliente" (click)="colorearBotonHazteClienteAlPulsar()">Hazte
-            cliente</button>
-
-        <button *ngIf="!collapseLogin && !collapseHazteCliente" class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
+        <button class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
             data-bs-target="#zonaColapsableLogin" aria-expanded="false" aria-controls="zonaColapsableLogin"
-            (click)="colorearBotonLoginAlPulsar()">Acceso</button>
-
-        <button *ngIf="collapseLogin && !collapseHazteCliente" class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
-            data-bs-target="#zonaColapsableLogin" aria-expanded="false" aria-controls="zonaColapsableLogin"
-            (click)="colorearBotonLoginAlPulsar()">Acceso</button>
-
-        <button *ngIf="!collapseLogin && collapseHazteCliente" class="btnLogin texto-primario" type="button" data-bs-toggle="collapse"
-            data-bs-target=".zonaColapsable" aria-expanded="false" aria-controls="zonaColapsableLogin"
             (click)="colorearBotonLoginAlPulsar()">Acceso</button>
 
     </div>
@@ -87,9 +68,7 @@
 </div>
 
 <div id="zonaColapsableHazteCliente" class="collapse zonaColapsable">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <app-hazte-cliente></app-hazte-cliente>
 </div>
 <div *ngIf="!logado" class="zonaColapsable collapse" id="zonaColapsableLogin">
     <div class="cajaLoginInfo fondo-primario">
@@ -140,7 +119,9 @@
                     </div>
                     <button type="submit" class="btnSubmit" (click)="logarse()">Entrar</button>
                     <div class="loginARegisto">
-                        <p>¿Aún no eres cliente? <a href="#">Hazte Cliente</a></p>
+                        <p>¿Aún no eres cliente? <a role="button" data-bs-toggle="collapse"
+                            data-bs-target=".zonaColapsable" aria-expanded="false"
+                            aria-controls="zonaColapsableHazteCliente" (click)="colorearBotonHazteClienteAlPulsar()">Hazte Cliente</a></p>                        
                     </div>
                 </form>
             </div>
