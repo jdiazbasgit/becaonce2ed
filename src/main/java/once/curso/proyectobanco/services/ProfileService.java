@@ -1,5 +1,7 @@
 package once.curso.proyectobanco.services;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class ProfileService {
 	private ProfileCRUDRepository profileCRUDRepository;
 
 	@Autowired
-	private UserCRUDRepository repository;
+	private UserCRUDRepository userCRUDRepository;
 	
 	public <S extends Profile> S save(S entity) {
 		return getProfileCRUDRepository().save(entity);
@@ -79,10 +81,9 @@ public class ProfileService {
 	}
 	
 	@Transactional
-	 public Profile saveProfile(Profile profile) {
-		profile.setUser(getRepository().save());
-		
-		 
-	        return getProfileCRUDRepository().save(profile);
-	    }
+	 public Profile saveProfile(Profile profile,User user) {
+	        getUserCRUDRepository().save(user); 
+	        profile.setUser(user);
+	        return getProfileCRUDRepository().save(profile); 
+	   }
 }

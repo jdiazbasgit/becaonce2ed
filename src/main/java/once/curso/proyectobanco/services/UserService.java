@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.User;
+import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
 import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 
@@ -17,60 +18,69 @@ import once.curso.proyectobanco.repositories.UserCRUDRepository;
 public class UserService {
 	
 	@Autowired
-	private UserCRUDRepository repository;
+	private UserCRUDRepository userCRUDRepository ;
 	
+	@Autowired
+	private ProfileCRUDRepository profileCRUDRepository;
+	
+	public User saveUser(User user) {
+		 getUserCRUDRepository().save(user);
+		 getProfileCRUDRepository();
+		
+		return user;
+	}
 	
 	public <S extends User> S save(S entity) {
-		return getRepository().save(entity);
+		return getUserCRUDRepository().save(entity);
 	}
 
 	public <S extends User> Iterable<S> saveAll(Iterable<S> entities) {
-		return getRepository().saveAll(entities);
+		return getUserCRUDRepository().saveAll(entities);
 	}
 
 	public Optional<User> findById(Integer id) {
-		return getRepository().findById(id);
+		return getUserCRUDRepository().findById(id);
 	}
 
 	public boolean existsById(Integer id) {
-		return getRepository().existsById(id);
+		return getUserCRUDRepository().existsById(id);
 	}
 
 	public Iterable<User> findAll() {
-		return getRepository().findAll();
+		return getUserCRUDRepository().findAll();
 	}
 	
 	public Page<User> findAll(Pageable pageable) {
-		return getRepository().findAll(pageable);
+		return getUserCRUDRepository().findAll(pageable);
 	}
 
 
 	public Iterable<User> findAllById(Iterable<Integer> ids) {
-		return getRepository().findAllById(ids);
+		return getUserCRUDRepository().findAllById(ids);
 	}
 
 	public long count() {
-		return getRepository().count();
+		return getUserCRUDRepository().count();
 	}
 
 	public void deleteById(Integer id) {
-		getRepository().deleteById(id);
+		getUserCRUDRepository().deleteById(id);
 	}
 
 	public void delete(User entity) {
-		getRepository().delete(entity);
+		getUserCRUDRepository().delete(entity);
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		getRepository().deleteAllById(ids);
+		getUserCRUDRepository().deleteAllById(ids);
 	}
 
 	public void deleteAll(Iterable<? extends User> entities) {
-		getRepository().deleteAll(entities);
+		getUserCRUDRepository().deleteAll(entities);
 	}
 
 	public void deleteAll() {
-		getRepository().deleteAll();
+		getUserCRUDRepository().deleteAll();
 	}
 
 
