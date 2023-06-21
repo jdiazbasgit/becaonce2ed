@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ExistingProductService } from '../../servicios/existingproduct.service';
 import ExistingProductBean from '../../beans/ExistingProductBean';
 
@@ -20,37 +20,44 @@ export class ModalExistingProductsComponent {
 
   selectedImage: Blob | null = null
 
+  @Output() eventoExistingProduct = new EventEmitter()
+
   constructor(private service: ExistingProductService) {}
 
   getImage(imageBytes: string): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
-      return 'data:image/jpeg;base64,' + imageBytes;
+      return 'data:image/jpeg;base64,' + imageBytes
     }
-    return 'assets/placeholder-image.jpg';
+    return 'assets/placeholder-image.jpg'
   }
 
   selectImage() {
     const fileInput = document.querySelector('#file-input') as  HTMLImageElement
     if (fileInput) {
-      fileInput.click();
+      fileInput.click()
     }
   }
 
   fileUpload(event: any) {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (e) => {
-        const imageContent = reader.result;
-        this.selectedImage = file;
+        const imageContent = reader.result
+        this.selectedImage = file
         const imgElement = document.querySelector('#setImage') as HTMLImageElement
         if (imgElement) {
           imgElement.src = imageContent as string;
         }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
     }
+  }
+
+  stockChange(event: Event, price: any, stock: any) {
+    const priceValue = price.replace(/[^\d,]/g, '').replace(',', '.')
+    this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(priceValue * stock)
   }
 
   saveData() {
@@ -61,12 +68,14 @@ export class ModalExistingProductsComponent {
     const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.')
     this.price = priceValue.toString()
 
-    const existingProduct = new ExistingProductBean(this.image, this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento el numero 6
+    const existingProduct = new ExistingProductBean(this.id, this.image, this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento el numero 6
 
     this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
       .subscribe((dato: boolean) => {
         if (dato) {
-          this.message = 'Producto añadido correctamente.'
+          this.id=''
+          this.image=''
+          this.message = ''
           this.description = ''
           this.price = ''
           this.stock = ''
@@ -87,6 +96,7 @@ export class ModalExistingProductsComponent {
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock)
       this.subcategory = data._links.subcategory.href
     } else {
+      this.id=''
       this.image=''
       this.description=''
       this.price=''
@@ -94,5 +104,9 @@ export class ModalExistingProductsComponent {
       this.total='0'
       this.subcategory =''
     }
+  }
+
+  cerrar(){
+    this.eventoExistingProduct.emit({salida:"OK"})
   }
 }

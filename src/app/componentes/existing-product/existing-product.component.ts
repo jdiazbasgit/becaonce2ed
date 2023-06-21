@@ -14,16 +14,21 @@ export class ExistingProductComponent implements OnInit {
   modal: ModalExistingProductsComponent | undefined
 
   title = "Lista de productos"
-  columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
-  elements: any[] = [];
+  columns: string[] = ['image', 'description', 'price', 'stock', 'actions']
+  elements: any[] = []
+  message: string | undefined
 
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  paginator!: MatPaginator
 
   constructor(private service: ExistingProductService) {}
 
   ngOnInit() {
-    this.getData();
+    this.getData()
+  }
+
+  refreshData(event: any){
+    this.getData()
   }
 
   getData() {
@@ -33,21 +38,20 @@ export class ExistingProductComponent implements OnInit {
           if (response._embedded) {
             this.elements = response._embedded.existingProducts;
           } else {
-            console.error('La propiedad _embedded no existe en el JSON.');
+            console.error('La propiedad _embedded no existe en el JSON.')
           }
         },
         error: (error: any) => {
-          console.error('Error al obtener los datos: ', error);
+          console.error('Error al obtener los datos: ', error)
         }
       })
   }
 
   getImage(imageBytes: string): string {
     if (imageBytes) {
-      return 'data:image/jpeg;base64,' + imageBytes;
+      return 'data:image/jpeg;base64,' + imageBytes
     }
-
-    return 'assets/placeholder-image.jpg';
+    return 'assets/placeholder-image.jpg'
   }
 
   getFormatterEuro(amount: number): string {
@@ -60,43 +64,38 @@ export class ExistingProductComponent implements OnInit {
   }
 
   abrirModal(id: string, element?: any) {
-    const modalElement = document.querySelector('#myModal');
+   /* const modalElement = document.querySelector('#myModal')
     if (modalElement) {
-      modalElement.dispatchEvent(new Event('click'));
-    }
+      modalElement.dispatchEvent(new Event('click'))
+    }*/
 
     if (this.modal) {
-      this.modal.image = '';
-      this.modal.description = '';
-      this.modal.price = '';
-      this.modal.stock = '';
-      this.modal.total = '0';
+      this.modal.image = ''
+      this.modal.description = ''
+      this.modal.price = ''
+      this.modal.stock = ''
+      this.modal.total = '0'
+      this.message=''
 
       if (element !== undefined && element !== null && element !== '') {
-        this.modal.openModal(id, element);
+        this.modal.openModal(id, element)
       } else {
-        this.modal.openModal('','');
+        this.modal.openModal('','')
       }
     }
   }
 
-  eliminar(Id: string) {
-    console.log('Eliminar elemento:', Id);
-
-    if (confirm("¿Esta seguro de eliminar el producto? "+Id)) {
-      this.service.delete(Id)
-        .subscribe({
-          next: (response: any) => {
-            if (response._embedded) {
-              this.elements = response._embedded.existingProducts; // Actualizar
-            } else {
-              console.error('Producto eliminado correctamente.');
-            }
-          },
-          error: (error: any) => {
-            console.error('Error al obtener los datos:', error);
-          }
-        });
+  eliminar(id: string) {
+    if (confirm("¿Esta seguro de eliminar el producto?")) {
+      this.service.delete("http://localhost:8080/once/products/" + id)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          this.message = 'Producto eliminado correctamente.'
+          this.ngOnInit()
+        }
+        else
+          this.message ='Producto no se ha eliminado'
+      })
     }
   }
 }

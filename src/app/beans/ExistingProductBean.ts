@@ -1,18 +1,20 @@
 class ExistingProductBean {
-  description: string;
-  price: string;
-  stock: string;
-  image: string | null = null;
-  subcategory: string;
+  id: string
+  description: string
+  price: string
+  stock: string
+  image: string | null = null
+  subcategory: string
 
-  constructor(image: string, description: string, price: string, stock: string, subcategory: string ) {
-    this.description = description;
-    this.price = price;
-    this.stock = stock;
-    this.image = image;
-    this.subcategory = subcategory;
+  constructor(id: string, image: string, description: string, price: string, stock: string, subcategory: string ) {
+    this.id = id
+    this.description = description
+    this.price = price
+    this.stock = stock
+    this.image = image
+    this.subcategory = subcategory
   }
 }
 
-export default ExistingProductBean;
+export default ExistingProductBean
 

@@ -22,7 +22,7 @@
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text spw-3" id="basic-addon1">Existencias</span>
-                <input type="text" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock">
+                <input type="text" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock" (input)="stockChange($event, price, stock)">
             </div>
             <div class="mb-3 mt-3">
                 <p class="fw-bold h4 d-block text-end" style="color:#4e4e4e">Total {{ total }}</p>
@@ -34,10 +34,10 @@
             <div class="modal-footer">
             <div class="d-grid gap-2 d-md-block">
                 <button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal">Cerrar</button>
-                <button class="btn btn-primary" type="button" (click)="saveData()">Aceptar</button>
+                <button class="btn btn-primary" type="button" (click)="saveData()" data-bs-dismiss="modal">Aceptar</button>
             </div>
             </div>
       </div>
     </div>
 </div>
-  
+
