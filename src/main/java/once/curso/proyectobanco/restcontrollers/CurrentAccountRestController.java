@@ -15,6 +15,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.beans.UserName;
 import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.models.CurrentAccountModelAssembler;
 import once.curso.proyectobanco.services.CurrentAccountService;
@@ -54,6 +56,12 @@ public class CurrentAccountRestController {
         currentAccount.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
                 .findById(currentAccount.getId())).withSelfRel());
         return EntityModel.of(currentAccount);
+	}
+	
+	@PatchMapping(value = "/currentsAccounts")
+	
+	public List<CurrentAccount> getCurrentAccountsByUser( @RequestBody UserName  userName){
+	return getCurrentAccountService().getCurrentAccountsByUser(userName.getUserName());	
 	}
         
 	@GetMapping(value = "/currentsAccounts")
