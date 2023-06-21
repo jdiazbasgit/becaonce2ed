@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		http.authorizeHttpRequests().antMatchers("/haztecliente").permitAll();
 		http.authorizeHttpRequests().antMatchers("/login").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/*/*").permitAll();
