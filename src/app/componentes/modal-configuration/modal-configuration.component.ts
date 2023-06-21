@@ -42,6 +42,7 @@ export class ModalConfigurationComponent implements DoCheck {
     this.stockAlarm = "";
     this.stockAlarmPlaceHolder = "";
     this.fin = false;
+    this.mensaje = "";
     this.eventoAComunicar.emit({salida:"OK"})
   }
 
