@@ -197,7 +197,17 @@ export class LoginComponent {
   
   }
 
-
+  ModoPruebaMeterTokenValidoYampliarInactividad() {
+    this.contadorTemporizadorDeInactividad += 10000000
+    sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
+    sessionStorage['user'] = "PEPE"
+    sessionStorage['rol'] = "ROLE_ADMIN"
+    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.contadorTemporizadorDeInactividad + "ms" +
+      "\ntoken: " + sessionStorage['token'] +
+      "\nuser: " + sessionStorage['user'] +
+      "\nrol: " + sessionStorage['rol']
+    )
+  }
 
   // getFees() {
   //   console.log("Sacando Fees con token: " + sessionStorage['token'])
@@ -223,19 +233,9 @@ export class LoginComponent {
   //   })
   // }
 
-  meterTokenfalso() {
-    sessionStorage['token'] = "EsteEsUnTokenFalso"
-    console.log("token: " + sessionStorage['token'])
-  }
-  ModoPruebaMeterTokenValidoYampliarInactividad() {
-    this.contadorTemporizadorDeInactividad += 10000000
-    sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
-    sessionStorage['user'] = "PEPE"
-    sessionStorage['rol'] = "ROLE_ADMIN"
-    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.contadorTemporizadorDeInactividad + "ms" +
-      "\ntoken: " + sessionStorage['token'] +
-      "\nuser: " + sessionStorage['user'] +
-      "\nrol: " + sessionStorage['rol']
-    )
-  }
+  // meterTokenfalso() {
+  //   sessionStorage['token'] = "EsteEsUnTokenFalso"
+  //   console.log("token: " + sessionStorage['token'])
+  // }
+
 }
