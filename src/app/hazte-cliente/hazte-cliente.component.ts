@@ -6,6 +6,8 @@ import ProfileBeans from '../beans/ProfileBeans';
 import { IdentificationTypeService } from '../servicios/identification-type.service';
 import IdentificationTypeBean from '../beans/IdentificationTypeBean';
 import { RolService } from '../servicios/rol.service';
+import UserBeans from '../beans/UserBeans';
+import { UserService } from '../servicios/user.service';
 
 
 
@@ -28,6 +30,8 @@ export class HazteClienteComponent  implements OnInit{
   password:string
   identificationTypes:Array<any>
    urlIdentificationTypes="http://localhost:8080/once/identificationsTypes"
+   urlProfile="http://localhost:8080/once/profiles"
+   urlRol="http://localhost:8080/once/roles"
   emailBaseDeDatos: string
   telefonoBaseDatos: string
   usuarioBaseDatos: string
@@ -35,7 +39,7 @@ export class HazteClienteComponent  implements OnInit{
   
 
   constructor(private profilServices: ProfileService,private identificationTypeServices: IdentificationTypeService,
-    private rolservice : RolService) {
+    private rolservice : RolService, private userService:UserService ) {
     this.name = "";
     this.secondName = "";
     this.identification = "";
@@ -62,6 +66,7 @@ export class HazteClienteComponent  implements OnInit{
     })
     this.comprobarDatos();
   }
+  
 
   comprobarDatos() {
     this.usuarioBaseDatos = '';
@@ -69,14 +74,16 @@ export class HazteClienteComponent  implements OnInit{
     this.emailBaseDeDatos = '';
     this.telefonoBaseDatos = '';
 
-    this.rolservice.getDatos("http://localhost:8080/once/roles").subscribe((datos: any)=>{
+    this.rolservice.getDatos(this.urlRol).subscribe((datos: any)=>{
       console.log(datos);
       console.log(datos._embedded.rols);
       
 
     })
 
-    this.profilServices.getDatos("http://localhost:8080/once/profiles")
+    
+
+    this.profilServices.getDatos( this.urlProfile)
       .subscribe((datos: any) => {
         console.log(datos);
         console.log(datos._embedded.profiles.length);
@@ -97,7 +104,7 @@ export class HazteClienteComponent  implements OnInit{
         });
       });
 
-    this.profilServices.getDatos("http://localhost:8080/once/users")
+    this.profilServices.getDatos(this.urlRol)
       .subscribe((datos: any) => {
         console.log(datos);
         console.log(datos._embedded.users);
@@ -112,13 +119,15 @@ export class HazteClienteComponent  implements OnInit{
           }
         });
       });
+
+      
     
   }
 
   guardaDatos() {
 
 
-    this.profilServices.saveOrUpdate("http://localhost:8080/once/profiles",
+    this.profilServices.saveOrUpdate(this.urlProfile,
     new ProfileBeans(this.name,this.secondName,this.identification,this.phone,this.email,this.identificationType,this.user,this.image,this.password))
     .subscribe((dato: boolean) => {
       if (dato) {
