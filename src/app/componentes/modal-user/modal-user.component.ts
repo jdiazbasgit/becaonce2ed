@@ -49,7 +49,7 @@ export class ModalUserComponent implements DoCheck{
       this.antiguoId = this.id;
 
       console.log("id entrada:" + this.id)
-      this.service.getDatos("http://localhost:8080/once/users" + this.id)
+      this.service.getDatos("http://localhost:8080/once/users/" + this.id)
       .subscribe((datos: any)=>{
         this.rol = datos._links.rol.href.substring(datos._links.rol.href.lastIndexOf('/') +1);//revisarsi esta mal los this de superior
         this.usuarioPlaceHolder = datos.user;
@@ -64,9 +64,10 @@ export class ModalUserComponent implements DoCheck{
     this.id = 0;
     this.usuarioPlaceHolder="";
     this.passwordPlaceHolder="";
-    this.enabledPlaceHolder=""
-    this.rolPlaceHolder=""
+    this.enabledPlaceHolder="";
+    this.rolPlaceHolder="";
     this.fin=false;
+    this.mensaje="";
     
     this.eventoAComunicar.emit({salida:"OK"})
   }
@@ -75,10 +76,10 @@ export class ModalUserComponent implements DoCheck{
     this.fin = false;
     if(this.usuario.trim() !== ""){
       this.service.saveOrUpdate("http://localhost:8080/once/users", 
-      new UserBean(this.id, this.usuario, this.password, this.enabled,"http://localhost:8080/once/roles"+ this.rol ))
+      new UserBean(this.id, this.usuario, this.password, this.enabled,"http://localhost:8080/once/roles/"+ this.rol ))
       .subscribe((dato: boolean) => {
         if(dato){
-          this.mensaje = "grabacion realizada corerectamente"
+          this.mensaje = "grabacion realizada correctamente"
           this.usuario = ""
         }else
           this.mensaje = "la grabacion no se ha realizado"

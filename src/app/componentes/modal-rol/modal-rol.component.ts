@@ -14,6 +14,7 @@ export class ModalRolComponent implements DoCheck{
   fin: boolean = false;
   rolPlaceHolder: string = "";
   subtitulo: string="";
+  contador: number =0;
   @Output() eventoAComunicar = new EventEmitter();
   constructor (private service: RolesService){
     this.rol = "";
@@ -33,6 +34,8 @@ export class ModalRolComponent implements DoCheck{
         this.rolPlaceHolder = datos.rol;
       })
     }
+
+    
   }
 
   realizarComunicacion(){
@@ -40,6 +43,7 @@ export class ModalRolComponent implements DoCheck{
     this.rol="";
     this.rolPlaceHolder="";
     this.fin=false;
+    this.mensaje="";
     this.eventoAComunicar.emit({salida:"OK"})
   }
 
