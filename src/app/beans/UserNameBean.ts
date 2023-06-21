@@ -4,4 +4,6 @@ class UserNameBean{
     constructor(userName:string){
         this.userName=userName
     }
+
 }
+export default UserNameBean
