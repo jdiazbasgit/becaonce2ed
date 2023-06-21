@@ -29,6 +29,7 @@ import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-ca
 import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
+//import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
@@ -69,7 +70,7 @@ import { HomeComponent } from './componentes/home/home.component';
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-   // MatToolbarModule,
+   //MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
     BrowserModule,
@@ -81,6 +82,5 @@ import { HomeComponent } from './componentes/home/home.component';
   bootstrap: [AppComponent]
 })
 
-export class AppModule {
-
-}
+export class AppModule {}
+//export class TuModuloModule { }
