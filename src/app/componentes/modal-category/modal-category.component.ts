@@ -52,7 +52,9 @@ export class ModalCategoryComponent implements DoCheck {
     this.category = "";
     this.categoryPlaceHolder = "";
     this.fin = false;
+    this.mensaje ="";
     this.eventoAComunicar.emit({salida:"OK"})
+    
   }
 
   grabar() {

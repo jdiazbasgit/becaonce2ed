@@ -62,6 +62,7 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.subcategoryPlaceHolder = "";
     this.fin = false;
     this.eventoAComunicar.emit({ salida: "OK" });
+    this.mensaje ="";
   }
 
   grabar() {
