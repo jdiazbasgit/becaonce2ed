@@ -22,6 +22,7 @@ export class ModalUserComponent implements DoCheck{
   rol: number = 0;
   roles: Array<any>;
   subtitulo: string="";
+  antiguoId: number = this.id;
   @Output() eventoAComunicar = new EventEmitter();
   constructor(private service: UserService){
     this.usuario = "";
@@ -31,18 +32,26 @@ export class ModalUserComponent implements DoCheck{
     this.roles = [];
   }
 
+  ngOnInit(): void {
+    this.service.getDatos("http://localhost:8080/once/roles")
+      .subscribe((datos: any) => {
+        this.roles = datos._embedded.rols
+      });
+  }
+
   ngDoCheck(): void {
     if(this.id === 0){
       this.subtitulo="ALTA";
     }else{
       this.subtitulo="MODIFICACION";
     }
-    if(this.id !== 0 && !this.fin){
-      this.rol = this.id;
+    if(this.id !== this.antiguoId && this.id > 0){
+      this.antiguoId = this.id;
+
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/users" + this.id)
       .subscribe((datos: any)=>{
-        this.fin = true
+        this.rol = datos._links.rol.href.substring(datos._links.rol.href.lastIndexOf('/') +1);//revisarsi esta mal los this de superior
         this.usuarioPlaceHolder = datos.user;
         this.passwordPlaceHolder = datos.password;
         this.enabledPlaceHolder = datos.enabled;
@@ -65,7 +74,8 @@ export class ModalUserComponent implements DoCheck{
   grabar(){
     this.fin = false;
     if(this.usuario.trim() !== ""){
-      this.service.saveOrUpdate("http://localhost:8080/once/users", new UserBean(this.id, this.usuario, this.password, this.enabled,"http://localhost:8080/once/roles"+ this.rol ))
+      this.service.saveOrUpdate("http://localhost:8080/once/users", 
+      new UserBean(this.id, this.usuario, this.password, this.enabled,"http://localhost:8080/once/roles"+ this.rol ))
       .subscribe((dato: boolean) => {
         if(dato){
           this.mensaje = "grabacion realizada corerectamente"

@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   
 })
 export class HeaderComponent {
+  logado: boolean = false;
 
+  ngDoCheck(){
+    if(sessionStorage.getItem('token') && !this.logado){
+      this.logado = true;
+    }
+    if(!sessionStorage.getItem('token') && this.logado){
+      this.logado = false;
+    }
+  }
 }
