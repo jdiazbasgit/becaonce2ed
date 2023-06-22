@@ -12,6 +12,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Profile;
-
+import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.models.ProfileModelAssembler;
-
+import once.curso.proyectobanco.repositories.IdentificationTypeCRUDRepository;
+import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
+import once.curso.proyectobanco.repositories.RolCRUDRepository;
+import once.curso.proyectobanco.repositories.UserCRUDRepository;
 import once.curso.proyectobanco.services.ProfileService;
 
 @RestController
@@ -44,6 +48,18 @@ public class ProfileRestController {
 	
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private ProfileCRUDRepository profileCRUDRepository;
+
+	@Autowired
+	private UserCRUDRepository userCRUDRepository;
+	
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+	
+	@Autowired
+	private IdentificationTypeCRUDRepository identificationTypeCRUDRepository;
 
 	@GetMapping("/profiles/{id}")
 	public EntityModel<Profile> findById(@PathVariable Integer id) {
@@ -103,6 +119,30 @@ public class ProfileRestController {
 	@PostMapping("/profiles/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getProfileService().existsById(id);
+	}
+	
+	@PostMapping()
+	public Profile crearProfile(@RequestBody Profile crearProfile) {
+		
+		    Profile profileNew = new Profile();
+		    profileNew.setName(crearProfile.getName());
+		    profileNew.setSecondName(crearProfile.getSecondName());
+		    profileNew.setIdentification(crearProfile.getIdentification());
+		    profileNew.setEmail(crearProfile.getEmail());
+		    profileNew.setPhone(crearProfile.getPhone());
+		    profileNew.setImage(crearProfile.getImagen());
+			profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(identificationTypeCRUDRepository).get()));
+		   
+
+		    User userNuevo = new User();
+		    userNuevo.setUser(crearProfile.getUser());
+		    userNuevo.setEnabled(false);
+		    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(password));
+		    userNuevo.setRol(rolCRUDRepository.findById(2).get());
+		    profileNew.setUser(userCRUDRepository.save(userNuevo));
+
+		    return profileCRUDRepository.save(profileNew);
+		
 	}
 	
 	
