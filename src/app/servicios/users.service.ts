@@ -11,7 +11,5 @@ export class UserService extends ProyectosService {
   constructor(private http: HttpClient) { 
     super (http);
   }
-  getRole(rolUrl:string): Observable<any>{
-    return this.getDatos(rolUrl);
-  }
+  
 }

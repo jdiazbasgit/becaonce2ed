@@ -10,11 +10,15 @@
             <th class="text-center">ROL</th>
             <th class="text-center">ACCIONES</th>
         </tr>
-        <tr *ngFor="let usuario of usuarios, let clave of claves, let habilitado of habilitados, let rol of roles">
+
+        <tr *ngFor="let usuario of usuarios; let rolesUrls of roles">
             <td class="text-center">{{usuario.user}}</td>
-            <td class="text-center">{{clave.password}}</td>
-            <td class="text-center">{{habilitado.enabled}}</td>
-            <td class="text-center" *ngFor="let rol of roles">{{rol.rol}}</td>
+            <td class="text-center">{{usuario.password}}</td>
+            <td class="text-center">{{usuario.enabled}}</td>
+            <td class="text-center" *ngFor="let rolUrl of roles | keyvalue">
+                <span [attr.data-rol]="rolUrl.key">{{ rolUrl.value.rol }}</span>
+              </td>
+            
             <td class="text-center">
                 <a href="#" (click)="modificar(usuario)" data-bs-toggle="modal" data-bs-target="#myModal">
                     <i class="bi bi-pencil-fill"></i> </a>
@@ -23,6 +27,7 @@
                     <i class="bi bi-trash3-fill"></i> </a>
             </td>
         </tr>
+
     </table>
 
     <div class="text-center">
