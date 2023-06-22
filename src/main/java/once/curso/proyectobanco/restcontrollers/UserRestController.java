@@ -15,6 +15,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.beans.UserName;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.models.UserModelAssember;
 import once.curso.proyectobanco.services.UserService;
@@ -109,5 +111,15 @@ public class UserRestController {
 	@PostMapping(value="/users/{id}")
 	public boolean existsById(@PathVariable Integer id) { 
 		 return getUserService().existsById(id);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PatchMapping("/users")
+	public boolean loadUserByUsername(@RequestBody UserName username) {
+		if(getUserService().loadUserByUsername(username.getUserName()) != null)
+			return true;
+		return false;
+					
+		
 	}
 }

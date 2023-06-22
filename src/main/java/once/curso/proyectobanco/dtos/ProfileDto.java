@@ -17,4 +17,21 @@ public class ProfileDto {
 	private String user;
 	private String password;
 	
+	
+	public ProfileDto(String name, String secondName, String identification, String email, String phone, byte[] imagen,
+			int identificationType, String user, String password) {
+		super();
+		this.name = name;
+		this.secondName = secondName;
+		this.identification = identification;
+		this.email = email;
+		this.phone = phone;
+		this.imagen = imagen;
+		this.identificationType = identificationType;
+		this.user = user;
+		this.password = password;
+	}
+	
+	
+    
 }

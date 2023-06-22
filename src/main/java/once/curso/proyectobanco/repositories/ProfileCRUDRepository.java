@@ -10,4 +10,6 @@ import once.curso.proyectobanco.entities.User;
 public interface ProfileCRUDRepository extends PagingAndSortingRepository<Profile, Integer> {
 
 	
+
+	
 }

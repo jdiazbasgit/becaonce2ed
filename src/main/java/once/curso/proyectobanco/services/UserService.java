@@ -5,11 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.entities.Rol;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
+import once.curso.proyectobanco.repositories.RolCRUDRepository;
 import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 
@@ -23,12 +26,10 @@ public class UserService {
 	@Autowired
 	private ProfileCRUDRepository profileCRUDRepository;
 	
-	public User saveUser(User user) {
-		 getUserCRUDRepository().save(user);
-		 getProfileCRUDRepository();
-		
-		return user;
-	}
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+	
+
 	
 	public <S extends User> S save(S entity) {
 		return getUserCRUDRepository().save(entity);
@@ -81,6 +82,10 @@ public class UserService {
 
 	public void deleteAll() {
 		getUserCRUDRepository().deleteAll();
+	}
+	
+	public User loadUserByUsername(String username) {
+		return getUserCRUDRepository().loadUserByUsername(username);
 	}
 
 

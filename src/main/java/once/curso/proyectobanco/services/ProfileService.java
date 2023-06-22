@@ -1,32 +1,40 @@
 package once.curso.proyectobanco.services;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.fasterxml.jackson.databind.Module.SetupContext;
 
 import lombok.Data;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
+import once.curso.proyectobanco.repositories.IdentificationTypeCRUDRepository;
 import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
+import once.curso.proyectobanco.repositories.RolCRUDRepository;
 import once.curso.proyectobanco.repositories.UserCRUDRepository;
 
 @Service
 @Data
 public class ProfileService {
+	
+	
 
 	@Autowired
 	private ProfileCRUDRepository profileCRUDRepository;
 
 	@Autowired
 	private UserCRUDRepository userCRUDRepository;
+	
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+	
+	@Autowired
+	private IdentificationTypeCRUDRepository identificationTypeCRUDRepository;
 	
 	public <S extends Profile> S save(S entity) {
 		return getProfileCRUDRepository().save(entity);
@@ -79,11 +87,27 @@ public class ProfileService {
 	public void deleteAll() {
 		getProfileCRUDRepository().deleteAll();
 	}
-	
+
 	@Transactional
-	 public Profile saveProfile(Profile profile,User user) {
-	        getUserCRUDRepository().save(user); 
-	        profile.setUser(user);
-	        return getProfileCRUDRepository().save(profile); 
-	   }
+	public Profile crearProfile(String name, String secondName, String identification, String email, String phone, byte[] imagen,
+			int identificationType, String user, String password) {
+		Profile profileNew= new Profile();
+		profileNew.setName(name);
+		profileNew.setSecondName(secondName);
+		profileNew.setIdentification(identification);
+		profileNew.setEmail(email);
+		profileNew.setPhone(phone);
+		profileNew.setImage(imagen);
+		profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(identificationType).get()));
+		User userNuevo = new User();
+		userNuevo.setUser(user);
+		userNuevo.setEnabled(false);
+		userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(password));
+		userNuevo.setRol(getRolCRUDRepository().findById(2).get());
+		profileNew.setUser(getUserCRUDRepository().save(userNuevo));
+				
+				return getProfileCRUDRepository().save(profileNew);
+		
+	}
+	   
 }
