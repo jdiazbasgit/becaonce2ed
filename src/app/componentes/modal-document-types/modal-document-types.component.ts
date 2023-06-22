@@ -43,6 +43,7 @@ export class ModalDocumentTypesComponent implements DoCheck {
     this.descripcion = "";
     this.descripcionPlaceHolder = "";
     this.fin = false;
+    this.mensaje = "";
     this.eventoAComunicar.emit({ salida: "OK" })
   }
 
