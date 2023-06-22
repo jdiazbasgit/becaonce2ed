@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core'
 import { ExistingProductService } from '../../servicios/existingproduct.service'
 import ExistingProductBean from '../../beans/ExistingProductBean'
@@ -11,7 +10,7 @@ import ExistingProductBean from '../../beans/ExistingProductBean'
 
 export class ModalExistingProductsComponent {
   id: string = ""
-  image: string = ""
+  image: string | null = null
   description: string = ""
   price: string = ""
   stock: string = ""
@@ -19,54 +18,46 @@ export class ModalExistingProductsComponent {
   subcategory: string = ''
   message: string = ""
 
-  base64Data: any;
-  retrieveResonse: any;
-
-  selectedImage: Blob | null = null
+  imageContent: string = ""
+  selectedImage: File | null = null
 
   @Output() eventoExistingProduct = new EventEmitter()
 
-  constructor(private service: ExistingProductService, private httpClient: HttpClient) { }
+  constructor(private service: ExistingProductService) { }
 
-  /*getImage(imageBytes: string): string {
+  getImage(imageBytes: string | null): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes
     }
     return 'assets/placeholder-image.jpg'
-  }*/
-
-  getImage(imageBytes: any): any {
-    this.httpClient.get('http://localhost:8080/image/get/' + imageBytes)
-      .subscribe(
-        res => {
-          this.retrieveResonse = res
-          this.base64Data = this.retrieveResonse.picByte
-          return 'data:image/jpeg;base64,' + this.base64Data
-        }
-      )
   }
 
   selectImage() {
-    const fileInput = document.querySelector('#file-input') as HTMLImageElement
+    const fileInput = document.querySelector('#file-input') as HTMLInputElement
     if (fileInput) {
       fileInput.click()
     }
   }
 
   fileUpload(event: any) {
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
       reader.onload = (e) => {
-        const imageContent = reader.result
-        this.selectedImage = file
-        const imgElement = document.querySelector('#setImage') as HTMLImageElement
-        if (imgElement) {
-          imgElement.src = imageContent as string;
+        this.imageContent = reader.result as string;
+        const base64Match = this.imageContent.match(/^data:image\/[a-z]+;base64,([\s\S]+)/i);
+  
+        if (base64Match && base64Match.length > 1) {
+          this.imageContent = base64Match[1];
+          const imgElement = document.querySelector('#setImage') as HTMLImageElement;
+          if (imgElement) {
+            imgElement.src = this.getImage(this.imageContent);
+          }
         }
       };
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
+      file.close;
     }
   }
 
@@ -76,20 +67,20 @@ export class ModalExistingProductsComponent {
   }
 
   saveData() {
-    if (this.selectedImage) {
-      this.image = this.selectedImage.toString()
+    if (this.imageContent) {
+      this.image = this.imageContent.toString()
     }
 
     const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.')
     this.price = priceValue.toString()
 
-    const existingProduct = new ExistingProductBean(this.id, this.image, this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento el numero 6
+    const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento con el numero 6
 
     this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
       .subscribe((dato: boolean) => {
         if (dato) {
           this.id = ''
-          this.image = ''
+          this.image = null
           this.message = ''
           this.description = ''
           this.price = ''
@@ -112,7 +103,7 @@ export class ModalExistingProductsComponent {
       this.subcategory = data._links.subcategory.href
     } else {
       this.id = ''
-      this.image = ''
+      this.image = null
       this.description = ''
       this.price = ''
       this.stock = ''
