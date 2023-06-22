@@ -18,7 +18,7 @@ export class UserComponent implements OnInit{
   usuarios: any[];
   claves: any[];
   habilitados: any[];
-  rolesUrls: any[];
+  rol: any[];
   mensaje: string = "";
   roles: any[];
   @Input() eventoDelHijo: string = "";
@@ -28,7 +28,7 @@ export class UserComponent implements OnInit{
     this.usuarios = [];
     this.claves = [];
     this.habilitados = [];
-    this.rolesUrls = [];
+    this.rol = [];
     this.roles = [];
   }
 
@@ -58,31 +58,11 @@ export class UserComponent implements OnInit{
       .subscribe((datos: any) => {
         this.usuarios = datos._embedded.users;
       });
-      this.rolesService.getRoles().subscribe((roles: any[])=> {
+      this.rolesService.getDatos("http://localhost:8080/once/roles").subscribe((roles: any)=> {
         console.log(roles);
-        this.rolesUrls = roles.map((rol: any) => rol.links?.self?.href)
-        this.roles = roles;
+        this.roles = roles._embedded.rols;
       });
   }
-
-  // getRoles(usuario: any): string[] {
-  //   return usuario.roles.map((rolUrl: string) => {
-  //     const rolId = rolUrl.substring(rolUrl.lastIndexOf('/') + 1);
-  //     const rol = this.roles.find((r: any) => r.links.self.href.includes(rolId));
-  //     return rol ? rol.rol : '';
-  //   });
-  // }
-
-  // obtenerNombreRol(rolUrl:string):string{
-  //   const rolId = rolUrl.substring(rolUrl.lastIndexOf('/')+1);
-  //   const rolIndex = this.rolesUrls.findIndex((url: string)=> url.includes(rolId));
-  //   if(rolIndex !== -1){
-  //     const rol = this.roles[rolIndex];
-  //     return rol.rols;
-  //   }
-  //   return '';
-  // }
-  
 
   modificar(usuario: any){
     this.mensaje = "";

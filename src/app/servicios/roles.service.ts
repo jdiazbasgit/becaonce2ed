@@ -13,22 +13,4 @@ export class RolesService extends ProyectosService {
     super(http);
   }
 
-  getRoles(): Observable<any[]>{
-    return this.getDatos("http://localhost:8080/once/roles").pipe(
-      map((data: any) => {
-        if(Array.isArray(data)){
-          return data;
-        }else if(data?._embedded?.rols){
-          return data._embedded.rols;
-        }else{
-          return [];
-        }
-      })
-    );
-  }
-
-  getRole(rolUrl:string): Observable<any>{
-    return this.getDatos(rolUrl);
-  }
-
 }
