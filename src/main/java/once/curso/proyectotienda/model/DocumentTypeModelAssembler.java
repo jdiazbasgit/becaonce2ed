@@ -15,8 +15,8 @@ public class DocumentTypeModelAssembler implements SimpleRepresentationModelAsse
 	@Override
 	public void addLinks(EntityModel<DocumentType> documentType) {
 		documentType.add(WebMvcLinkBuilder.linkTo(
-				WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class)
-				.findById(documentType.getContent().getId())).withSelfRel());
+				WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getContent().getId()))
+				.withSelfRel());
 	}
 
 	@Override

@@ -38,13 +38,16 @@ public class ConfigurationService {
 		return getConfigurationCRUDRepository().existsById(id);
 	}
 
+	public Iterable<Configuration> findAll() {
+		return getConfigurationCRUDRepository().findAll();
+	}
+
 	public Page<Configuration> findAll(Pageable pageable){
 		return getConfigurationCRUDRepository().findAll(pageable);
 	}
 
 	public Iterable<Configuration> findAllById(Iterable<Integer> ids) {
 		return getConfigurationCRUDRepository().findAllById(ids);
-
 	}
 
 	public long count() {
@@ -69,10 +72,6 @@ public class ConfigurationService {
 
 	public void deleteAll() {
 		getConfigurationCRUDRepository().deleteAll();
-	}
-
-	public Iterable<Configuration> findAll() {
-		return getConfigurationCRUDRepository().findAll();
 	}
 
 }
