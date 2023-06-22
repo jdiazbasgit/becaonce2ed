@@ -32,6 +32,7 @@ export class HazteClienteComponent  implements OnInit{
    urlIdentificationTypes="http://localhost:8080/once/identificationsTypes"
    urlProfile="http://localhost:8080/once/profiles"
    urlRol="http://localhost:8080/once/roles"
+   urlUsers="http://localhost:8080/once/users"
   emailBaseDeDatos: string
   telefonoBaseDatos: string
   usuarioBaseDatos: string
@@ -104,7 +105,7 @@ export class HazteClienteComponent  implements OnInit{
         });
       });
 
-    this.profilServices.getDatos(this.urlRol)
+    this.profilServices.getDatos(this.urlUsers)
       .subscribe((datos: any) => {
         console.log(datos);
         console.log(datos._embedded.users);
@@ -114,7 +115,7 @@ export class HazteClienteComponent  implements OnInit{
           console.log(this.usuarioBaseDatos +" este es el cliente");
           this.clave = users.password;
 
-          if (this.usuarioBaseDatos === this.user) {
+          if (this.usuarioBaseDatos == this.user) {
             
           }
         });
