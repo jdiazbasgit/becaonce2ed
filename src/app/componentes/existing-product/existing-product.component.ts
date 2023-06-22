@@ -1,7 +1,7 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
-import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
+import { Component, ViewChild, OnInit } from '@angular/core'
+import { MatPaginator } from '@angular/material/paginator'
+import { ExistingProductService } from 'src/app/servicios/existingproduct.service'
+import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component'
 
 @Component({
   selector: 'app-existing-product',

@@ -22,7 +22,7 @@
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text spw-3" id="basic-addon1">Existencias</span>
-                <input type="text" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock" (input)="stockChange($event, price, stock)">
+                <input type="text" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock" (input)="stockChange(price, stock)">
             </div>
             <div class="mb-3 mt-3">
                 <p class="fw-bold h4 d-block text-end" style="color:#4e4e4e">Total {{ total }}</p>

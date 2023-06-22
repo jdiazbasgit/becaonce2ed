@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { ExistingProductService } from '../../servicios/existingproduct.service';
-import ExistingProductBean from '../../beans/ExistingProductBean';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Output } from '@angular/core'
+import { ExistingProductService } from '../../servicios/existingproduct.service'
+import ExistingProductBean from '../../beans/ExistingProductBean'
 
 @Component({
   selector: 'app-modal-existing-products',
@@ -15,25 +16,39 @@ export class ModalExistingProductsComponent {
   price: string = ""
   stock: string = ""
   total: string = "0"
-  subcategory: string=''
+  subcategory: string = ''
   message: string = ""
+
+  base64Data: any;
+  retrieveResonse: any;
 
   selectedImage: Blob | null = null
 
   @Output() eventoExistingProduct = new EventEmitter()
 
-  constructor(private service: ExistingProductService) {}
+  constructor(private service: ExistingProductService, private httpClient: HttpClient) { }
 
-  getImage(imageBytes: string): string {
+  /*getImage(imageBytes: string): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes
     }
     return 'assets/placeholder-image.jpg'
+  }*/
+
+  getImage(imageBytes: any): any {
+    this.httpClient.get('http://localhost:8080/image/get/' + imageBytes)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res
+          this.base64Data = this.retrieveResonse.picByte
+          return 'data:image/jpeg;base64,' + this.base64Data
+        }
+      )
   }
 
   selectImage() {
-    const fileInput = document.querySelector('#file-input') as  HTMLImageElement
+    const fileInput = document.querySelector('#file-input') as HTMLImageElement
     if (fileInput) {
       fileInput.click()
     }
@@ -55,7 +70,7 @@ export class ModalExistingProductsComponent {
     }
   }
 
-  stockChange(event: Event, price: any, stock: any) {
+  stockChange(price: any, stock: any) {
     const priceValue = price.replace(/[^\d,]/g, '').replace(',', '.')
     this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(priceValue * stock)
   }
@@ -73,8 +88,8 @@ export class ModalExistingProductsComponent {
     this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
       .subscribe((dato: boolean) => {
         if (dato) {
-          this.id=''
-          this.image=''
+          this.id = ''
+          this.image = ''
           this.message = ''
           this.description = ''
           this.price = ''
@@ -87,7 +102,7 @@ export class ModalExistingProductsComponent {
   }
 
   openModal(id: string, data: any) {
-    if (data!=''){
+    if (data != '') {
       this.id = id
       this.image = data.image
       this.description = data.description
@@ -96,17 +111,17 @@ export class ModalExistingProductsComponent {
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock)
       this.subcategory = data._links.subcategory.href
     } else {
-      this.id=''
-      this.image=''
-      this.description=''
-      this.price=''
-      this.stock=''
-      this.total='0'
-      this.subcategory =''
+      this.id = ''
+      this.image = ''
+      this.description = ''
+      this.price = ''
+      this.stock = ''
+      this.total = '0'
+      this.subcategory = ''
     }
   }
 
-  cerrar(){
-    this.eventoExistingProduct.emit({salida:"OK"})
+  cerrar() {
+    this.eventoExistingProduct.emit({ salida: "OK" })
   }
 }
