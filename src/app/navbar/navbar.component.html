@@ -1,18 +1,14 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" style=" color: gold; margin-right: 20px;" href="#" role="button">Mi Área
-
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+    <a class="navbar-brand" style="color: gold; margin-right: 20px;" href="#" role="button" (click)="toggleMenu()">Mi Área
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
       </svg>
-
     </a>
   </div>
 
-  <div class="container-fluid justify-content-center">
+  <div class="container-fluid justify-content-center" id="navbarOptions" [style.display]="menuVisible ? 'block' : 'none'">
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link" routerLink="detalles">Estado de la Cuenta</a>
@@ -30,7 +26,6 @@
         <a class="nav-link a" routerLink="detalles">Ajustes de la Cuenta</a>
       </li>
     </ul>
-
   </div>
 </nav>
 
