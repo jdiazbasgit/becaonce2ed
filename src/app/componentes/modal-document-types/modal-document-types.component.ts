@@ -1,20 +1,21 @@
-import { AfterContentChecked, Component, DoCheck, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Output } from '@angular/core';
 import { DocumentTypeService } from '../../servicios/document-type.service';
 import DocumentTypeBean from '../../beans/DocumentTypeBean'
+
 @Component({
   selector: 'app-modal-document-types',
   templateUrl: './modal-document-types.component.html',
   styleUrls: ['./modal-document-types.component.css']
 })
 export class ModalDocumentTypesComponent implements DoCheck {
+
   id: number = 0
   descripcion: string
   mensaje: string = "";
   fin: boolean = false
   descripcionPlaceHolder: string = ""
-  nomAccion: string = "";
+  tipoAccion:string="";
   @Output() eventoAComunicar = new EventEmitter();
-  titulo: string = "";
   constructor(private service: DocumentTypeService) {
     this.descripcion = "";
   }
@@ -22,18 +23,16 @@ export class ModalDocumentTypesComponent implements DoCheck {
 
   ngDoCheck(): void {
     if (this.id === 0) {
-      this.titulo = "Alta"
+      this.tipoAccion = "ALTA"
     } else {
-      this.titulo = "modificacion"
+      this.tipoAccion = "MODIFICACIÓN"
     }
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
       this.service.getDatos("http://localhost:8080/once/documentsTypes/" + this.id)
         .subscribe((datos: any) => {
           this.fin = true
-          //  if (this.descripcion !== datos.description)
           this.descripcionPlaceHolder = datos.description;
-
         })
     }
   }

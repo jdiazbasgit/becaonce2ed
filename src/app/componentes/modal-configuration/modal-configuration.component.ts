@@ -48,7 +48,6 @@ export class ModalConfigurationComponent implements DoCheck {
 
   grabar() {
     this.fin = false;
-//    if (this.stockAlarm.trim() !== "") {
       if (this.stockAlarm !== 0) {
         this.service.saveOrUpdate("http://localhost:8080/once/configurations", new ConfigurationBean(this.id, this.stockAlarm))
         .subscribe((dato: boolean) => {

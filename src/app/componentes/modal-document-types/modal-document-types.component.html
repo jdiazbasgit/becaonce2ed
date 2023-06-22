@@ -1,13 +1,11 @@
-
 <!-- The Modal -->
-<div class="modal" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Modal Header -->
             <div class="modal-header justify-content-center"> 
-                <h4 class="modal-title ">ALTA DE TIPO DE DOCUMENTO</h4>
-
+                <h4 class="modal-title ">{{tipoAccion}} TIPO DE DOCUMENTO</h4>
             </div>
 
             <!-- Modal body -->
@@ -16,9 +14,11 @@
                     [(ngModel)]="descripcion" value="{{descripcionPlaceHolder}}"><br>
                 <button type="button" class="button" (click)="grabar()">GRABAR</button>
             </div>
+
             <div class="text-center">
                 <h1 >{{mensaje}}</h1>
             </div>
+            
             <!-- Modal footer -->
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
