@@ -1,20 +1,73 @@
-<ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="movimientos">Movimientos</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="operaciones">Transferencias</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="productos">Productos Asociados</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="detalles">Ajustes de la Cuenta</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="detalles">Estado de la Cuenta</a>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" style=" color: gold; margin-right: 20px;" href="#" role="button">MI ÁREA
+      
+      <svg class="svg-icon" viewBox="0 0 40 40">
+        <path d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,
+        0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,
+        0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,
+        0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,
+        17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,
+        0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"></path>
+      </svg>
+
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 526 526"><rect width="256" height="256" fill="none"/>
+        <path d="M79,47.5l49,27.6,49-27.6L131.9,22.2a7.8,7.8,0,0,0-7.8,0Z" opacity="0.2"/><path d="M176,209V153.9l48-27v50.4a8.1,8.1,0,0,1-4.1,7Z" opacity="0.2"/>
+        <path d="M80,209V153.9l-48-27v50.4a8.1,8.1,0,0,0,4.1,7Z" opacity="0.2"/>
+        <path d="M224,177.3V78.7a8.1,8.1,0,0,0-4.1-7l-88-49.5a7.8,7.8,0,0,0-7.8,0l-88,49.5a8.1,8.1,0,0,0-4.1,7v98.6a8.1,8.1,0,0,0,4.1,7l88,49.5a7.8,7.8,0,0,0,7.8,
+        0l88-49.5A8.1,8.1,0,0,0,224,177.3Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        <polyline points="222.9 74.6 128.9 128 33.1 74.6" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        <line x1="128.9" y1="128" x2="128" y2="234.8" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        <polyline points="177 47.5 128 75.1 79 47.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        <polyline points="176 209 176 153.9 224 126.9" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+        <polyline points="80 209 80 153.9 32 126.9" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg> -->
+
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 526 526">
+        <rect width="256" height="256" fill="none" />
+        <path d="M79,47.5l49,27.6,49-27.6L131.9,22.2a7.8,7.8,0,0,0-7.8,0Z" opacity="0.2" stroke="blue" />
+        <path d="M176,209V153.9l48-27v50.4a8.1,8.1,0,0,1-4.1,7Z" opacity="0.2" stroke="blue" />
+        <path d="M80,209V153.9l-48-27v50.4a8.1,8.1,0,0,0,4.1,7Z" opacity="0.2" stroke="blue" />
+        <path d="M224,177.3V78.7a8.1,8.1,0,0,0-4.1-7l-88-49.5a7.8,7.8,0,0,0-7.8,0l-88,49.5a8.1,8.1,0,0,0-4.1,7v98.6a8.1,8.1,0,0,0,4.1,7l88,49.5a7.8,7.8,0,0,0,7.8,
+        0l88-49.5A8.1,8.1,0,0,0,224,177.3Z" fill="none" stroke="blue" stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="16" />
+        <polyline points="222.9 74.6 128.9 128 33.1 74.6" fill="none" stroke="blue" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="16" />
+        <line x1="128.9" y1="128" x2="128" y2="234.8" fill="none" stroke="blue" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="16" />
+        <polyline points="177 47.5 128 75.1 79 47.5" fill="none" stroke="blue" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="16" />
+        <polyline points="176 209 176 153.9 224 126.9" fill="none" stroke="blue" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="16" />
+        <polyline points="80 209 80 153.9 32 126.9" fill="none" stroke="blue" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="16" />
+      </svg> -->
+
+    </a>
+  </div>
+
+  <div class="container-fluid justify-content-center">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="detalles">Estado de la Cuenta</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="movimientos">Movimientos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="operaciones">Transferencias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="productos">Productos Asociados</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link a" routerLink="detalles">Ajustes de la Cuenta</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+
 
 <!-- <app-awards-fine></app-awards-fine> -->
 <!-- <app-awards-fines-configuration></app-awards-fines-configuration>

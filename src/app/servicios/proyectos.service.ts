@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import UserNameBean from '../beans/UserNameBean';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ export class ProyectosService {
   }
   delete(url:string):Observable<any>{
     return this.httpClient.delete(url);
+  }
+  patch(url:string,user:UserNameBean):Observable<any>{
+    return this.httpClient.patch(url,user);
   }
 
 }
