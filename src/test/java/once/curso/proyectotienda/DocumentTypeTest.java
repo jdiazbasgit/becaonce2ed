@@ -83,7 +83,7 @@ public class DocumentTypeTest {
 		assertNotNull(getDocumentTypeService().findById(documentTypeId));
 	}
 
-	@Test
+	/*@Test
 	public void count() {
 
 		List<DocumentType> documentTypes = new ArrayList<DocumentType>();
@@ -95,11 +95,33 @@ public class DocumentTypeTest {
 		documentTypeB.setDescription("pruebaB");
 		documentTypes.add(documentTypeB);
 
-		long cantidad = getDocumentTypeService().count();
+		int cantidad = (int) getDocumentTypeService().count();
 		assertEquals(cantidad, 8);
-		// documentTypes.forEach(documentType ->
-		// documentTypeService.deleteById(documentType.getId()));
+		 documentTypes.forEach(documentType ->
+		 documentTypeService.deleteById(documentType.getId()));
 
+	}*/
+	@Test
+	public void count() {
+	    int cantidadAlEmpezar = (int) getDocumentTypeService().count();
+	    
+	    List<DocumentType> documentTypes = new ArrayList<DocumentType>();
+	    DocumentType documentTypeA = new DocumentType();
+	    documentTypeA.setDescription("pruebaA");
+	    documentTypes.add(documentTypeA);
+
+	    DocumentType documentTypeB = new DocumentType();
+	    documentTypeB.setDescription("pruebaB");
+	    documentTypes.add(documentTypeB);
+
+	    getDocumentTypeService().saveAll(documentTypes);
+	    
+	    int cantidadActual = (int) getDocumentTypeService().count();
+	    int cantidadEsperada = cantidadAlEmpezar + documentTypes.size();
+	    
+	    assertEquals(cantidadActual, cantidadEsperada);
+	    
+	    documentTypes.forEach(documentType -> getDocumentTypeService().delete(documentType));
 	}
 
 	@Test
@@ -126,7 +148,7 @@ public class DocumentTypeTest {
 		assertNotNull(getDocumentTypeService().findById(documentType.getId()));
 
 		getDocumentTypeService().delete(dTypeRecuperado);
-		// assertNotNull(getDocumentTypeService().findById(documentType.getId()));
+		 assertNotNull(getDocumentTypeService().findById(documentType.getId()));
 
 	}
 
