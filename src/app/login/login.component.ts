@@ -30,7 +30,8 @@ export class LoginComponent {
   ngOnInit() {
     //remover despues de hacer pruebas***{
     this.ModoPruebaMeterTokenValidoYampliarInactividad();
-    this.router.navigateByUrl("paneladministrador")
+    //this.router.navigateByUrl("paneladministrador")
+    this.router.navigateByUrl("cuentas")
     //****}
   }
 
@@ -103,6 +104,7 @@ export class LoginComponent {
             cont.innerHTML = "Bienvenido"
             cont.classList.add('bg-success')
             console.log(datos.token)
+            this.router.navigateByUrl("cuentas")
             delay = 1000
           }
           setTimeout(() => {

@@ -1,1 +1,16 @@
-<p>cuentas works!</p>
+<div class="container">
+    <div class="bg-white">
+        <div class="my-4 p-5 border-bottom texto-secundario shadow">
+            <h1>Bienvenido {{usuario}}</h1>
+            <p>Lorem ipsum...</p>
+          </div>
+    </div>
+    <div class="my-4 p-5 border-bottom fondo-primario shadow">
+        <h2 class="texto-resaltado">Tus cuentas:</h2>
+        <h3 *ngFor="let cuenta of cuentas">{{cuenta.number}}</h3>
+
+    </div>
+
+
+
+</div>
