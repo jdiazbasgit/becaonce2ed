@@ -14,7 +14,9 @@ export class ConfigurationComponent implements OnInit {
   id: number = 0
   titulo: string;
   alarmados: any[];
+  contador: number = 0;
   mensaje: string = ""
+  mensajeAlta: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: ConfigurationService) {
     this.titulo = "CONFIGURACION - STOCK"
@@ -43,9 +45,20 @@ export class ConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
     this.alarmados = []
+    
     this.service.getDatos("http://localhost:8080/once/configurations")
       .subscribe((datos: any) => {
         this.alarmados = datos._embedded.configurations;
+      })
+
+    this.service.getDatos("http://localhost:8080/once/configurations/count")
+      .subscribe((contador: number) => {
+        this.contador = contador;
+        if (contador>0) {
+          this.mensajeAlta = "Botón DESACTIVADO"
+        }
+        else
+          this.mensajeAlta = "Botón ACTIVADO"
       })
   }
 

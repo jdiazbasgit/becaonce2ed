@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { DocumentTypeService } from '../../servicios/document-type.service';
 import { ModalDocumentTypesComponent } from '../../componentes/modal-document-types/modal-document-types.component';
 
@@ -36,7 +36,6 @@ export class DocumentTypesComponent implements OnInit {
 
 
   realizarComunicacion(event: any) {
-    //this.eventoDelHijo=event.salida
     this.mensaje = ""
     if (event.salida === "OK")
       this.ngOnInit();
@@ -55,8 +54,6 @@ export class DocumentTypesComponent implements OnInit {
     this.mensaje = ""
     let ruta = descripcion._links.self.href
     this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
-    // console.log(this.id )
-
   }
 
 }

@@ -10,14 +10,14 @@ import ConfigurationBean from '../../beans/ConfigurationBean';
 export class ModalConfigurationComponent implements DoCheck {
 
   id: number = 0
-  stockAlarm: string
+  stockAlarm: number
   mensaje: string = "";
   fin: boolean = false
   stockAlarmPlaceHolder:string=""
   tipoAccion:string="";
   @Output() eventoAComunicar=new EventEmitter();
   constructor(private service: ConfigurationService) {
-    this.stockAlarm = "";
+    this.stockAlarm = 0;
   }
 
   ngDoCheck(): void {
@@ -39,7 +39,7 @@ export class ModalConfigurationComponent implements DoCheck {
 
   realizarComunicacion(){
     this.id=0;
-    this.stockAlarm = "";
+    this.stockAlarm = 0;
     this.stockAlarmPlaceHolder = "";
     this.fin = false;
     this.mensaje = "";
@@ -48,17 +48,17 @@ export class ModalConfigurationComponent implements DoCheck {
 
   grabar() {
     this.fin = false;
-    if (this.stockAlarm.trim() !== "") {
-      this.service.saveOrUpdate("http://localhost:8080/once/configurations", new ConfigurationBean(this.id, this.stockAlarm))
+      if (this.stockAlarm !== 0) {
+        this.service.saveOrUpdate("http://localhost:8080/once/configurations", new ConfigurationBean(this.id, this.stockAlarm))
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"
-            this.stockAlarm = ""
+            this.stockAlarm = 0
           }
           else
             this.mensaje = "La grabación no se ha realizado"
         })
-    }
+      }
     else
       this.mensaje = "Debes introducir un valor"
   }
