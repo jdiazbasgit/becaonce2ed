@@ -10,10 +10,10 @@
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <label for="descripcion">Subcategoria:</label><input type="text" name="descripcion"
-                    [(ngModel)]="descripcion" value="{{subcategoryPlaceHolder}}"><br>
+                <label for="descripcion">Subcategoria:<input type="text" name="descripcion"
+                    [(ngModel)]="descripcion" value="{{subcategoryPlaceHolder}}"></label><br>
                     <label for="categoria">Categoria:</label>
-                    <select [(ngModel)]="categoria">
+                    <select [(ngModel)]="categoria" name="categoria">
                         <option value="0">Selecciona categoria...</option>
                         <option *ngFor="let cat of categorias" value="{{cat._links.self.href.substring(cat._links.self.href.lastIndexOf('/')+1)}}">
                             {{cat.description}}
