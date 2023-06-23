@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.dtos.ProfileDto;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.models.ProfileModelAssembler;
@@ -121,27 +122,10 @@ public class ProfileRestController {
 		return getProfileService().existsById(id);
 	}
 	
-	@PostMapping()
-	public Profile crearProfile(@RequestBody Profile crearProfile) {
+	@PostMapping("/profile")
+	public Profile crearProfile(@RequestBody ProfileDto profileDto) {
 		
-		    Profile profileNew = new Profile();
-		    profileNew.setName(crearProfile.getName());
-		    profileNew.setSecondName(crearProfile.getSecondName());
-		    profileNew.setIdentification(crearProfile.getIdentification());
-		    profileNew.setEmail(crearProfile.getEmail());
-		    profileNew.setPhone(crearProfile.getPhone());
-		    profileNew.setImage(crearProfile.getImagen());
-			profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(identificationTypeCRUDRepository).get()));
-		   
-
-		    User userNuevo = new User();
-		    userNuevo.setUser(crearProfile.getUser());
-		    userNuevo.setEnabled(false);
-		    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(password));
-		    userNuevo.setRol(rolCRUDRepository.findById(2).get());
-		    profileNew.setUser(userCRUDRepository.save(userNuevo));
-
-		    return profileCRUDRepository.save(profileNew);
+		    return getProfileService().crearProfile(profileDto);
 		
 	}
 	

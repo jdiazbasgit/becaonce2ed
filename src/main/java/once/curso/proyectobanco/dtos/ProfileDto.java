@@ -12,13 +12,13 @@ public class ProfileDto {
 	private String identification;
 	private String email;
 	private String phone;
-	private byte[] imagen;
+	private byte[] image;
 	private int identificationType;
 	private String user;
 	private String password;
 	
 	
-	public ProfileDto(String name, String secondName, String identification, String email, String phone, byte[] imagen,
+	public ProfileDto(String name, String secondName, String identification, String email, String phone, byte[] image,
 			int identificationType, String user, String password) {
 		super();
 		this.name = name;
@@ -26,7 +26,7 @@ public class ProfileDto {
 		this.identification = identification;
 		this.email = email;
 		this.phone = phone;
-		this.imagen = imagen;
+		this.image = image;
 		this.identificationType = identificationType;
 		this.user = user;
 		this.password = password;

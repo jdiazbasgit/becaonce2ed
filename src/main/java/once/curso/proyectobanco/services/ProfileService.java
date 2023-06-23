@@ -2,15 +2,21 @@ package once.curso.proyectobanco.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
+import once.curso.proyectobanco.dtos.ProfileDto;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.repositories.IdentificationTypeCRUDRepository;
@@ -22,20 +28,24 @@ import once.curso.proyectobanco.repositories.UserCRUDRepository;
 @Data
 public class ProfileService {
 	
+	@Autowired
+	private EntityManager entityManager;
 	
+	@Autowired
+	private DataSource dataSource;
 
 	@Autowired
 	private ProfileCRUDRepository profileCRUDRepository;
 
 	@Autowired
 	private UserCRUDRepository userCRUDRepository;
-	
+
 	@Autowired
 	private RolCRUDRepository rolCRUDRepository;
-	
+
 	@Autowired
 	private IdentificationTypeCRUDRepository identificationTypeCRUDRepository;
-	
+
 	public <S extends Profile> S save(S entity) {
 		return getProfileCRUDRepository().save(entity);
 	}
@@ -55,7 +65,7 @@ public class ProfileService {
 	public Iterable<Profile> findAll() {
 		return getProfileCRUDRepository().findAll();
 	}
-	
+
 	public Page<Profile> findAll(Pageable pageable) {
 		return getProfileCRUDRepository().findAll(pageable);
 	}
@@ -88,26 +98,29 @@ public class ProfileService {
 		getProfileCRUDRepository().deleteAll();
 	}
 
-	@Transactional
-	public Profile crearProfile(String name, String secondName, String identification, String email, String phone, byte[] imagen,
-			int identificationType, String user, String password) {
-		Profile profileNew= new Profile();
-		profileNew.setName(name);
-		profileNew.setSecondName(secondName);
-		profileNew.setIdentification(identification);
-		profileNew.setEmail(email);
-		profileNew.setPhone(phone);
-		profileNew.setImage(imagen);
-		profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(identificationType).get()));
-		User userNuevo = new User();
-		userNuevo.setUser(user);
-		userNuevo.setEnabled(false);
-		userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(password));
-		userNuevo.setRol(getRolCRUDRepository().findById(2).get());
-		profileNew.setUser(getUserCRUDRepository().save(userNuevo));
-				
-				return getProfileCRUDRepository().save(profileNew);
+	@Transactional(readOnly = true)
+	public Profile crearProfile(ProfileDto profileDto  ) {
+			Profile profileNew = new Profile();
+			profileNew.setName(profileDto.getName());
+			profileNew.setSecondName(profileDto.getSecondName());
+			profileNew.setIdentification(profileDto.getIdentification());
+			profileNew.setEmail(profileDto.getEmail());
+			profileNew.setPhone(profileDto.getPhone());
+			profileNew.setImage(profileDto.getImage());
+			profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(profileDto.getIdentificationType()).get()));
+			User userNuevo = new User();
+			userNuevo.setUser(profileDto.getUser());
+			userNuevo.setEnabled(false);
+			userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
+			userNuevo.setRol(getRolCRUDRepository().findById(2).get());
+			profileNew.setUser(getUserCRUDRepository().save(userNuevo));
+			
+			Profile p= getProfileCRUDRepository().save(profileNew);
+			getEntityManager().getTransaction().commit();
+			return p;
+					
 		
+
 	}
-	   
+
 }
