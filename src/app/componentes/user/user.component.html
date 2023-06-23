@@ -11,13 +11,11 @@
             <th class="text-center">ACCIONES</th>
         </tr>
 
-        <tr *ngFor="let usuario of usuarios; let fun of roles" value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/') +1)}}">
+        <tr *ngFor="let usuario of usuarios; let fun of roles" value="fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/') +1)">
             <td class="text-center">{{usuario.user}}</td>
             <td class="text-center">{{usuario.password}}</td>
             <td class="text-center">{{usuario.enabled}}</td>
-            <td class="text-center">
-                    {{fun.rol}}
-            </td>
+            <td class="text-center">{{fun.rol}}</td>
 
             <td class="text-center">
                 <a href="#" (click)="modificar(usuario)" data-bs-toggle="modal" data-bs-target="#myModal">
