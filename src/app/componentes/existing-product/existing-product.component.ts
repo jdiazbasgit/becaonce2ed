@@ -1,17 +1,21 @@
-import { Component, ViewChild, OnInit } from '@angular/core'
-import { MatPaginator } from '@angular/material/paginator'
-import { ExistingProductService } from 'src/app/servicios/existingproduct.service'
-import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component'
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
+import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
+import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-existing-product',
   templateUrl: './existing-product.component.html',
-  styleUrls: ['./existing-product.component.css']
+  styleUrls: ['./existing-product.component.css'],
+  imports: [
+    MatDialogModule
+  ],
 })
 
 export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
-  modal: ModalExistingProductsComponent | undefined
+  //modal: ModalExistingProductsComponent | undefined
 
   title = "Lista de productos"
   columns: string[] = ['image', 'description', 'price', 'stock', 'actions']
@@ -21,7 +25,7 @@ export class ExistingProductComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator
 
-  constructor(private service: ExistingProductService) {}
+  constructor(private service: ExistingProductService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.getData()
@@ -63,12 +67,7 @@ export class ExistingProductComponent implements OnInit {
     return formattedEuro;
   }
 
-  abrirModal(id: string, element?: any) {
-   /* const modalElement = document.querySelector('#myModal')
-    if (modalElement) {
-      modalElement.dispatchEvent(new Event('click'))
-    }*/
-
+  /*abrirModal(id: string, element?: any) {
     if (this.modal) {
       this.modal.image = ''
       this.modal.description = ''
@@ -83,7 +82,24 @@ export class ExistingProductComponent implements OnInit {
         this.modal.openModal('','')
       }
     }
+  }*/
+
+  openDialog(id: string, element?: any) {
+    const dialogRef = this.dialog.open(ModalExistingProductsComponent, {
+      width: '500px',
+      data: {
+        id: id,
+        element: element
+      }
+    });
+
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      console.log(result);
+      this.getData();
+    });
   }
+
 
   eliminar(id: string) {
     if (confirm("¿Esta seguro de eliminar el producto?")) {
