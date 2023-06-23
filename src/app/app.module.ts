@@ -37,6 +37,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import {MatInputModule} from '@angular/material/input';
     MatInputModule,
     BrowserModule,
     AppRoutingModule,
+    MatRadioModule
 
     
   ],

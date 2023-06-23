@@ -14,11 +14,14 @@ export class UserComponent implements OnInit{
 
   @ViewChild(ModalUserComponent,) modal: any
   id: number = 0;
+  userPlaceHolder: string = "";
   titulo: string;
   usuarios: any[];
   claves: any[];
   habilitados: any[];
+  enabledArray:boolean [] = [];
   rol: any[];
+  data:any;
   mensaje: string = "";
   roles: any[];
   @Input() eventoDelHijo: string = "";
@@ -30,6 +33,7 @@ export class UserComponent implements OnInit{
     this.habilitados = [];
     this.rol = [];
     this.roles = [];
+    this.enabledArray = this.data._embedded.users.map((user:any) => user.enabled);
   }
 
   eliminar(id: any){
@@ -62,6 +66,14 @@ export class UserComponent implements OnInit{
         console.log(roles);
         this.roles = roles._embedded.rols;
       });
+  }
+  ngDocheck(): void {
+    console.log("ide entrada: " + this.id)
+    this.service.getDatos("http:localhost:8080/once/users/" + this.id)
+    .subscribe((datos: any) => {
+      this.rol = datos._links.rol.href.substring(datos._links.rol.href.lastIndexOf('/') + 1);
+      this.userPlaceHolder = datos.rol
+    })
   }
 
   modificar(usuario: any){
