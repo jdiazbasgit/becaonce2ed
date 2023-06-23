@@ -53,7 +53,7 @@ public class ConfigurationRestController {
 		return CollectionModel.of(configurations);
 	}
 
-	@GetMapping(value = "configurations/{id}")
+	@GetMapping(value = "/configurations/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<Configuration> findById(@PathVariable int id) {
 		Configuration configurations = getConfigurationService().findById(id).get();
@@ -101,4 +101,17 @@ public class ConfigurationRestController {
 			return false;
 		}
 	}
+	
+ 	@PostMapping("/configurations/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getConfigurationService().existsById(id);
+	}
+
+	@GetMapping("/configurations/count")
+	@CrossOrigin(origins = "*")
+	public long getConfigurationCount() {
+		return configurationService.count();
+    }
+
 }
