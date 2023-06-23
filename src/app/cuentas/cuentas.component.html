@@ -1,13 +1,50 @@
 <div class="container">
-    <div class="bg-white">
-        <div class="my-4 p-5 border-bottom texto-secundario shadow">
-            <h1>Bienvenido {{usuario}}</h1>
-            <p>Lorem ipsum...</p>
-          </div>
+
+    <div class="my-4 p-5 border-bottom texto-secundario shadow">
+        <h1>Bienvenido {{usuario}}</h1>
+        <p>Lorem ipsum...</p>
     </div>
-    <div class="my-4 p-5 border-bottom fondo-primario shadow">
-        <h2 class="texto-resaltado">Tus cuentas:</h2>
-        <h3 *ngFor="let cuenta of cuentas">{{cuenta.number}}</h3>
+    <table class="my-4 border-bottom fondo-primario texto-resaltado shadow">
+        <tr>
+            <td>
+                <div class="mt-4 ms-5">
+                   <h2>Saldo total disponible:</h2>
+                </div>
+                <div class="ms-5">
+                    <h5>SALDO TOTAL</h5>
+                 </div>
+            </td>
+            <td>
+                <img src="assets/boveda.png" class="w-50 float-end">
+            </td>
+        </tr>
+    </table>
+
+    <div class="my-4 p-5 border-bottom shadow">
+        <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
+        <div *ngFor="let cuenta of cuentas" class="mt-4 border-bottom ms-5">
+            <div class="d-flex justify-content-between texto-resaltado">
+                <h5>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
+                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                            <path d="M3 6l0 13"></path>
+                            <path d="M12 6l0 13"></path>
+                            <path d="M21 6l0 13"></path>
+                        </svg>{{cuenta.number}}
+                    </p>
+                </h5>
+                <div>
+                    SALDO DE LA CUENTA
+                </div>
+            </div>
+            <div class="d-flex justify-content-between texto-secundario mb-3">
+                <h6 class="ms-4">{{cuenta.typeAccount.description}}</h6>
+            </div>
+        </div>
 
     </div>
 

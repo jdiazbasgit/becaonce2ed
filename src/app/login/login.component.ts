@@ -17,7 +17,7 @@ export class LoginComponent {
   usuario: string = ""
   claveErronea: boolean = false
   mensajeClave: String = ""
-  contadorTemporizadorDeInactividad: number = 180000
+  contadorTemporizadorDeInactividad: number = 300000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
   collapseLoginAbierto: boolean = false
@@ -29,10 +29,11 @@ export class LoginComponent {
 
   ngOnInit() {
     //remover despues de hacer pruebas***{
-    this.ModoPruebaMeterTokenValidoYampliarInactividad();
+    //this.ModoPruebaMeterTokenValidoYampliarInactividad();
     //this.router.navigateByUrl("paneladministrador")
-    this.router.navigateByUrl("cuentas")
+    //this.router.navigateByUrl("cuentas")
     //****}
+    //this.deslogarse()
   }
 
   ngDoCheck() {
@@ -40,7 +41,7 @@ export class LoginComponent {
       this.logado = true
       this.usuario = sessionStorage['user']
     }
-    if (!this.logado && this.router.url != "/landing" && this.router.url != "/haztecliente") {
+    if (!this.logado && this.router.url != "/landing") {
       this.router.navigateByUrl("landing")
     }
     if (!this.sinActividad && this.logado) {
@@ -202,8 +203,8 @@ export class LoginComponent {
   ModoPruebaMeterTokenValidoYampliarInactividad() {
     this.contadorTemporizadorDeInactividad += 10000000
     sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
-    sessionStorage['user'] = "PEPE"
-    sessionStorage['rol'] = "ROLE_ADMIN"
+    sessionStorage['user'] = "BOTIN"
+    sessionStorage['rol'] = "ROLE_USER"
     console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.contadorTemporizadorDeInactividad + "ms" +
       "\ntoken: " + sessionStorage['token'] +
       "\nuser: " + sessionStorage['user'] +

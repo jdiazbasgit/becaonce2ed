@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor(private router:Router){}
 
   ngOnInit(): void {
-    this.router.navigateByUrl("landing")
+    //this.router.navigateByUrl("landing")
   }
-  title = 'front-proyectos';
+  title = 'BankInsert';
 }
