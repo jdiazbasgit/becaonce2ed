@@ -49,7 +49,6 @@ public class DocumentTypeRestController {
 			d.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getId()))
 					.withSelfRel());
-
 		});
 		return CollectionModel.of(documentTypes);
 	}
@@ -98,9 +97,21 @@ public class DocumentTypeRestController {
 		return getDocumentTypeService().existsById(id);
 	}
 
+	
+	
+	
+	
+	
 	@PostMapping("/documentsTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existById(@PathVariable int id) {
 		return getDocumentTypeService().existsById(id);
 	}
+	
+	@GetMapping("/documentsTypes/count")
+	@CrossOrigin(origins = "*")
+	public long getDocumentTypeCount() {
+		return documentTypeService.count();
+    }
+
 }
