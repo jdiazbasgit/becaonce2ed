@@ -38,6 +38,7 @@ export class ModalSubcategoryComponent implements DoCheck {
 
     if (this.id === 0) {
       this.subtitulo = "ALTA"
+      this.categoria = "0"
     } else {
       this.subtitulo = "MODIFICACION"
     }
