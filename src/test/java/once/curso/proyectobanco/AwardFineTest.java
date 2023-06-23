@@ -1,6 +1,7 @@
 package once.curso.proyectobanco;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,14 @@ public class AwardFineTest {
 		borrarLosObjetos.add(awardsFines.get(2).getId());
 
 		getAwardsFinesServices().deleteAllById(borrarLosObjetos);
-		assertNotEquals(awardsFines.size(), 0);
+		
+		awardsFines = (List<AwardsFine>) getAwardsFinesServices().findAll();
+		assertTrue(awardsFines.isEmpty());
 
+		List<AwardsFine> datosRecuperados = (List<AwardsFine>) getAwardsFinesServices().findAll();
+		
+		for (AwardsFine award : datosRecuperados) {
+			System.out.println(award.toString());
+		}
 	}
 }
