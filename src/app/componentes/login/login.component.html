@@ -1,11 +1,11 @@
 <div *ngIf="!logado" class="d-flex justify-content-end align-items-center">
-    <button mat-button> INGRESAR </button>
-    <button mat-button> REGISTRARSE </button>
+    <button mat-button (click)="onPress()"> INGRESAR </button>
+    <button mat-button routerLink="resgiter()"> REGISTRARSE (llamado de pagina pendiente)</button>
 </div>
 
 <div *ngIf="logado" class="d-flex justify-content-end align-items-center">
-    <button mat-button> Bienvenido/a </button>
-    <button mat-button> SALIR </button>
+    <button mat-button> Bienvenido/a {{user}} </button>
+    <button mat-button (click)="closeSession()"> SALIR </button>
 </div>
 <div *ngIf="logado" class="d-flex justify-content-end align-items-center">
     <form class="example-form">

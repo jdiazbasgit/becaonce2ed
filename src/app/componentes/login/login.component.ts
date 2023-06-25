@@ -13,10 +13,6 @@ import { LoginService } from 'src/app/servicios/login.service';
   
 })
 
-
-
-
-
 export class LoginComponent {
 
   logado: boolean = false;
@@ -108,7 +104,7 @@ export class LoginComponent {
     this.inputPassword = "";
   }
 
-  colorearBotonLoginAlPulsar() {
+  onPress() {//colorearBotonLoginAlPulsar
     this.limpiarFormulario();
     let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
     if (btnLogin.classList.contains('collapsed')) {
