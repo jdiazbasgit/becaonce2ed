@@ -70,14 +70,6 @@ export class ModalExistingProductsComponent {
       this.message = 'Por favor, introduzca descripción.';
     } else {
 
-      if(this.stock.trim()==''){
-        this.stock='0';
-      }
-
-      if(this.price.trim()==''){
-        this.price='0';
-      }
-
       if (this.imageContent) {
         this.image = this.imageContent.toString();
       }
@@ -90,16 +82,16 @@ export class ModalExistingProductsComponent {
       this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.id = '';
+            /*this.id = '';
             this.image = null;
             this.message = '';
             this.description = '';
             this.price = '';
-            this.stock = '';
-            this.message = '';
-            this.eventoExistingProduct.emit({ salida: "OK" });
+            this.stock = '';*/
+            this.message = '¡El producto ha sido guardado correctamente!';
+            //this.eventoExistingProduct.emit({ salida: "OK" });
           } else {
-            this.message = 'Producto no se ha añadido.';
+            this.message = 'Error al guardar el producto.';
           }
         });
       }
@@ -125,8 +117,7 @@ export class ModalExistingProductsComponent {
     }
   }
 
-
-  closeModal() {
+  closeModal(): void {
     this.eventoExistingProduct.emit({ salida: "OK" });
   }
 }
