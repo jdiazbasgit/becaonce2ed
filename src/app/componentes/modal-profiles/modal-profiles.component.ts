@@ -107,9 +107,9 @@ export class ModalProfilesComponent {
       this.city = data.city;
       this.country = data.country;
       this.phone = data.phone;
-      this.user_id = data.user;
-      this.documentstype_id = data.docomentTypes;
-      this.cardtype_id = data.cardTypes;
+      this.user_id = data._links.user;
+      this.documentstype_id = data._links.docomentTypes;
+      this.cardtype_id = data._links.cardTypes;
     } else {
       this.id = '';
       this.image = '';
