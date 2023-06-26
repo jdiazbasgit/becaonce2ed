@@ -7,10 +7,7 @@ import { MatDialog, MatDialogModule} from '@angular/material/dialog';
 @Component({
   selector: 'app-existing-product',
   templateUrl: './existing-product.component.html',
-  styleUrls: ['./existing-product.component.css'],
-  imports: [
-    MatDialogModule
-  ],
+  styleUrls: ['./existing-product.component.css']
 })
 
 export class ExistingProductComponent implements OnInit {
