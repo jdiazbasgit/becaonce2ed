@@ -1,35 +1,60 @@
+<div class="modal" id="myModalProfile">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-left">
+        <h5 class="modal-title ">Datos de perfiles</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-<!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header justify-content-left">
-                <h5 class="modal-title ">PERFIL</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body text-center">
-                <img [src]="getImage(image)" [alt]="name" class="rounded mb-3 img-size" id="setImage"><br>
-                <label for="name">Nombre:</label><input type="text" name="nombre" [(ngModel)]="name" value="{{ name }}"><br>
-                <label for="lastname">Apellido:</label><input type="text" name="apellido" [(ngModel)]="lastname" value="{{ lastname }}"><br>
-                <label for="identification">DNI/NIF/NIE:</label><input type="text" name="identificacion" [(ngModel)]="identification" value="{{ identification }}"><br>
-                <label for="city">Provincia:</label><input type="text" name="provincia" [(ngModel)]="city" value="{{ city }}"><br>
-                <label for="country">País:</label><input type="text" name="pais" [(ngModel)]="country" value="{{ country }}"><br>
-                <label for="email">Email:</label><input type="text" name="email" [(ngModel)]="email" value="{{ email }}"><br>
-                <label for="phone">Teléfono:</label><input type="text" name="telefono" [(ngModel)]="phone" value="{{ phone }}"><br>
-                <label for="creditcard">Tarjeta credito:</label><input type="text" name="tarjetacredito" [(ngModel)]="creditcard" value="{{ creditcard }}"><br>
-                <!--<button type="button" class="button" (click)="grabar()">GRABAR</button>-->
-            </div>
-            <div class="text-center">
-                <h1>{{ mensaje }}</h1>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer justify-content-center">
-                <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()" aria-label="Close">Cerrar</button>-->
-            </div>
-
+      <div class="modal-body text-center">
+        <div class="mb-3">
+          <img [src]="getImage(image)" [alt]="first_name" class="rounded mb-3 img-size" id="setImage"><br>
+          <label for="file-input" class="text-primary text-decoration-none">Editar imagen</label>
+          <input type="file" (change)="fileUpload($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
         </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Nombre</span>
+          <input type="text" class="form-control" aria-label="Nombre" aria-describedby="Nombre" [(ngModel)]="first_name" [value]="first_name">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Apellido</span>
+          <input type="text" class="form-control" aria-label="Apellido" [(ngModel)]="last_name" [value]="last_name">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">DNI/NIF/NIE</span>
+          <input type="text" class="form-control" aria-label="Identificacion" aria-describedby="Identificacion" [(ngModel)]="identification" [value]="identification">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Provincia</span>
+          <input type="text" class="form-control" aria-label="Provincia" aria-describedby="Provincia" [(ngModel)]="city" [value]="city">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">País</span>
+          <input type="text" class="form-control" aria-label="Pais" aria-describedby="Pais" [(ngModel)]="country" [value]="country">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Email</span>
+          <input type="text" class="form-control" aria-label="Email" aria-describedby="Email" [(ngModel)]="email" [value]="email">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Teléfono</span>
+          <input type="text" class="form-control" aria-label="Telefono" aria-describedby="Telefono" [(ngModel)]="phone" [value]="phone">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Tarjeta credito</span>
+          <input type="text" class="form-control" aria-label="Tarjeta credito" aria-describedby="Tarjeta credito" [(ngModel)]="credit_card" [value]="credit_card">
+        </div>
+      </div>
+      <div class="text-center">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal"
+            (click)="closeModal();">Cerrar</button>
+          <button class="btn btn-primary" type="button" (click)="saveData();">Guardar</button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

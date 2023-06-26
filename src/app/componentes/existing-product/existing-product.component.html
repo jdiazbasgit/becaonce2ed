@@ -14,8 +14,8 @@
         <td> {{ element.stock }} </td>
 
         <td>
-          <a (click)="abrirModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)" data-bs-toggle="modal" data-bs-target="#myModal"><i class="bi bi-pencil-fill"></i></a>
-          <a class="wbtn" (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
+          <a href="" (click)="abrirModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)" data-bs-toggle="modal" data-bs-target="#myModalProduct"><i class="bi bi-pencil-fill"></i></a>
+          <a href="" class="wbtn" (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
         </td>
       </tr>
     </table>
@@ -25,7 +25,7 @@
 
     <div class="w-100 text-center">
       <div class="text-primary mb-3" role="alert">{{ message }}</div>
-      <button type="button" class="btn btn-primary" (click)="abrirModal('','')" data-bs-toggle="modal" data-bs-target="#myModal">Añadir nuevo producto</button>
+      <button type="button" class="btn btn-primary" (click)="abrirModal('','')" data-bs-toggle="modal" data-bs-target="#myModalProduct">Añadir nuevo producto</button>
     </div>
 
     <app-modal-existing-products #modal (eventoExistingProduct)="refreshData($event)"></app-modal-existing-products>

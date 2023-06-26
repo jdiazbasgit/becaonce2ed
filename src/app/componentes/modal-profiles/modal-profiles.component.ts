@@ -1,4 +1,4 @@
-import { Component, DoCheck, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import ProfileBean from '../../beans/ProfileBean';
 import { ProfileService } from 'src/app/servicios/profile.service';
 
@@ -8,25 +8,29 @@ import { ProfileService } from 'src/app/servicios/profile.service';
   templateUrl: './modal-profiles.component.html',
   styleUrls: ['./modal-profiles.component.css']
 })
+
 export class ModalProfilesComponent {
   id: string = "";
-  name: string = ""
   image: string = '';
-  lastname: string = ""
-  identification: string = ""
-  creditcard: string = ""
-  email: string = ""
-  city: string = ""
-  country: string = ""
-  phone: string = ""
-  address: string = ""
-  postalcode: string = ""
+  first_name: string = "";
+  last_name: string = "";
+  identification: string = "";
+  credit_card: string = "";
+  email: string = "";
+  city: string = "";
+  country: string = "";
+  phone: string = "";
+  address: string = "";
+  postal_code: string = "";
 
-  mensaje: string = ""
+  message: string = "";
 
   imageContent: string = "";
 
-  @Output() eventoAComunicar=new EventEmitter()
+  @Output() eventoProfile = new EventEmitter();
+  user_id: string = '';
+  documentstype_id: string = '';
+  cardtype_id: string = '';
 
   constructor(private service: ProfileService) {}
 
@@ -35,7 +39,7 @@ export class ModalProfilesComponent {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes;
     }
-    return 'assets/placeholder-image.jpg';
+    return 'assets/placeholder-image-profile.jpg';
   }
 
   selectImage() {
@@ -74,16 +78,16 @@ export class ModalProfilesComponent {
       if (this.imageContent) {
         this.image = this.imageContent.toString();
       }
-      
-      const profile = new ProfileBean(this.id, this.image, this.name, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode);//, this.subcategory || 'http://localhost:8080/once/xxxx/6');
+
+      const profile = new ProfileBean(this.id, this.image, this.first_name, this.last_name, this.identification, this.credit_card, this.email, this.city, this.country, this.phone, this.address, this.postal_code, this.user_id, this.documentstype_id, this.cardtype_id);
 
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
-            //this.message = '¡El producto ha sido guardado correctamente!';
+            this.message = '¡El perfil ha sido guardado correctamente!';
             //this.eventoExistingProduct.emit({ salida: "OK" });
           } else {
-            //this.message = 'Error al guardar el producto.';
+            this.message = 'Error al guardar el perfil.';
           }
         });
       }
@@ -94,28 +98,38 @@ export class ModalProfilesComponent {
       this.id = id;
       this.image = data.image;
       this.identification = data.identification;
-      this.name = data.name;
-      this.lastname = data.second_name;
+      this.first_name = data.name;
+      this.last_name = data.second_name;
       this.address = data.address;
-      this.postalcode = data.postal_code;
-      this.creditcard = data.credit_card;
+      this.postal_code = data.postal_code;
+      this.credit_card = data.credit_card;
       this.email = data.email;
       this.city = data.city;
       this.country = data.country;
       this.phone = data.phone;
+      this.user_id = data.user;
+      this.documentstype_id = data.docomentTypes;
+      this.cardtype_id = data.cardTypes;
     } else {
       this.id = '';
       this.image = '';
-      this.name='';
-      this.lastname='';
-      this.identification='';
-      this.creditcard='';
-      this.email='';
-      this.city='';
-      this.country='';
-      this.phone='';
-      this.address='';
-      this.postalcode='';
+      this.identification = '';
+      this.first_name = '';
+      this.last_name = '';
+      this.credit_card = '';
+      this.address = '';
+      this.postal_code = '';
+      this.email = '';
+      this.city = '';
+      this.country = '';
+      this.phone = '';
+      this.user_id = '';
+      this.documentstype_id = '';
+      this.cardtype_id = '';
     }
+  }
+
+  closeModal(): void {
+    this.eventoProfile.emit({ salida: "OK" });
   }
 }

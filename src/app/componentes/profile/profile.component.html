@@ -1,45 +1,43 @@
-<div class="container mt-3">
-  <h1 class="text-center">{{titulo}}</h1>
+  <div class="container mt-3">
+    <h1 class="text-center mb-5">{{ title }}</h1>
 
-  <!--<button type="button" class="btn btn-primary d-md-block me-2 mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#myModal">Añadir nuevo usuario</button>-->
-  <button type="button" class="btn btn-primary d-md-block me-2 mt-3 mb-3" (click)="abrirModal()">Añadir nuevo usuario</button>
-    <table class="table table-stripped table-bordered w-100">
-      <th> Foto </th>
-      <th> Identificación </th>
-      <th> Nombre </th>
-      <th> Apellido </th>
-      <th> Dirección </th>
-      <th> C. Postal </th>
-      <th> Provincia </th>
-      <th> País </th>
-      <th> Email </th>
-      <th> Teléfono </th>
-      <th> Tarjeta crédito </th>
+      <table class="table table-stripped table-bordered w-100">
+        <th> Foto </th>
+        <th> Identificación </th>
+        <th> Nombre </th>
+        <th> Apellido </th>
+        <th> Dirección </th>
+        <th> C. Postal </th>
+        <th> Provincia </th>
+        <th> País </th>
+        <th> Email </th>
+        <th> Teléfono </th>
+        <th> Tarjeta crédito </th>
 
-      <tr *ngFor="let element of elements">
-        <td><img src="{{ element.photo }}"> </td>
-        <td> {{ element.identification }} </td>
-        <td> {{ element.name }} </td>
-        <td> {{ element.last_name }} </td>
-        <td> {{ element.address }} </td>
-        <td> {{ element.postal_code }} </td>
-        <td> {{ element.city }} </td>
-        <td> {{ element.country }} </td>
-        <td> {{ element.email }} </td>
-        <td> {{ element.phone }} </td>
-        <td> {{ element.credit_card }} </td>
+        <tr *ngFor="let element of elements">
+          <td><img [src]="getImage(element.image)" alt="{{ element.name + ' ' + element.last_name }}"></td>
+          <td> {{ element.identification }} </td>
+          <td> {{ element.name }} </td>
+          <td> {{ element.second_name }} </td>
+          <td> {{ element.address }} </td>
+          <td> {{ element.postal_code }} </td>
+          <td> {{ element.city }} </td>
+          <td> {{ element.country }} </td>
+          <td> {{ element.email }} </td>
+          <td> {{ element.phone }} </td>
+          <td> {{ element.credit_card }} </td>
 
-        <td class="text-center">
-          <a href="#" (click)="modificar(element)" data-bs-toggle="modal" data-bs-target="#myModal"><i
-                  class="bi bi-pencil-fill"></i>
-          </a>
-          <a href="#" (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))">
-              <i class="bi bi-trash3-fill"></i>
-          </a>
-        </td>
-      </tr>
-    </table>
-    <app-modal-profiles (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-profiles>
+          <td>
+            <a href="" (click)="abrirModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)" data-bs-toggle="modal" data-bs-target="#myModalProfile"><i class="bi bi-pencil-fill"></i></a>
+            <a href="" class="wbtn" (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
+          </td>
+        </tr>
+      </table>
 
-    <h5 class="text-center">{{ mensaje }}</h5>
-  </div>
+      <div class="w-100 text-center">
+        <div class="text-primary mb-3" role="alert">{{ message }}</div>
+        <button type="button" class="btn btn-primary" (click)="abrirModal('','')" data-bs-toggle="modal" data-bs-target="#myModalProfile">Añadir nuevo producto</button>
+      </div>
+
+      <app-modal-profiles #modal (eventoProfiles)="refreshData($event)"></app-modal-profiles>
+    </div>

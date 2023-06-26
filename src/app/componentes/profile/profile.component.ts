@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { ModalProfilesComponent } from '../modal-profiles/modal-profiles.component';
 import { ProfileService } from '../../servicios/profile.service';
-import { Modal } from 'bootstrap';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-profile',
@@ -10,75 +10,86 @@ import { Modal } from 'bootstrap';
 })
 
 export class ProfileComponent implements OnInit {
-  @ViewChild(ModalProfilesComponent) modal: any
+  @ViewChild(ModalProfilesComponent, { static: false })
+  modal: ModalProfilesComponent | undefined
 
-  id: number = 0
-  titulo: string
-  mensaje: string = ""
+  title = "Lista de perfiles";
+  columns: string[] = ['name', 'second_name', 'identification', 'credit_card', 'address', 'postal_code', 'country', 'email', 'city', 'phone', 'image'];
+  elements: any[] = [];
+  message: string = "";
 
-  elements: any[]
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator
 
-  @Input() eventoDelHijo: string = ""
+  constructor(private service: ProfileService) {}
 
-  constructor(private service: ProfileService) {
-    this.titulo = "Lista de perfiles"
-    this.elements = []
+  ngOnInit() {
+    this.getData();
   }
 
-  ngOnInit(): void {
-    this.elements = []
+  refreshData(event: any){
+    this.getData();
+  }
+
+  getData() {
     this.service.getDatos("http://localhost:8080/once/profiles")
-      .subscribe((datos: any) => {
-        this.elements = datos._embedded.profiles
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.elements = response._embedded.profiles;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
+        }
       })
   }
 
-  ngAfterViewInit() {
+  getImage(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes;
+    }
+    return 'assets/placeholder-image-profile.jpg';
+  }
+
+  abrirModal(id: string, element?: any) {
     if (this.modal) {
-      const modalElement = this.modal.nativeElement;
-      if (modalElement) {
-        const myModal = new Modal(modalElement);
-        myModal.show();
+      this.modal.image = '';
+      this.modal.identification = '';
+      this.modal.first_name = '';
+      this.modal.last_name = '';
+      this.modal.credit_card = '';
+      this.modal.address = '';
+      this.modal.postal_code = '';
+      this.modal.country = '';
+      this.modal.email = '';
+      this.modal.city = '';
+      this.modal.phone = '';
+      this.modal.image = '';
+
+      //this.modal.message = ''
+
+      if (element !== undefined && element !== null && element !== '') {
+        this.modal.openModal(id, element);
+      } else {
+        this.modal.openModal('','');
       }
     }
   }
 
-  eliminar(id: any) {
-    if (confirm("¿Esta seguro de borrar el perfil?")) {
-      this.service.delete("http://localhost:8080/once/profiles/"+id)
+  eliminar(id: string) {
+    if (confirm("¿Esta seguro de eliminar el producto?")) {
+      this.service.delete("http://localhost:8080/once/profiles/" + id)
       .subscribe((dato: boolean) => {
-        if (!dato) {
-          this.mensaje = "Se ha borrado correctamente"
+        if (dato) {
+          this.message = 'Perfil eliminado correctamente.';
           this.ngOnInit();
         }
         else
-          this.mensaje = "El registro no se ha borrado"
+          this.message ='Perfil no se ha eliminado';
       })
     }
   }
-
-  realizarComunicacion(event: any) {
-    //this.eventoDelHijo=event.salida
-    this.mensaje = ""
-    /*if (event.salida === "OK")
-      this.ngOnInit();*/
-  }
-
-  modificar(element: any) {
-    this.mensaje = ""
-    let ruta = element._links.self.href
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
-    // console.log(this.id )
-  }
-
-  abrirModal() {
-    const modalElement = this.modal?.nativeElement;
-    if (modalElement) {
-      const myModal = new Modal(modalElement);
-      myModal.show();
-    }
-  }
 }
-
-
-//https://plnkr.co/edit/?open=app%2Fapp.component.ts&preview

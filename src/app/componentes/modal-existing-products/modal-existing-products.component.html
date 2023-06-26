@@ -1,4 +1,4 @@
-<div class="modal" id="myModal">
+<div class="modal" id="myModalProduct">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header justify-content-left">
@@ -12,16 +12,16 @@
                 <input type="file" (change)="fileUpload($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text spw-3" id="basic-addon1">Descripción</span>
+                <span class="input-group-text spw-3">Descripción</span>
                 <input type="text" class="form-control" aria-label="Descripción" aria-describedby="Descripción" [(ngModel)]="description" [value]="description">
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text spw-3" id="basic-addon1">Precio de venta</span>
+                <span class="input-group-text spw-3">Precio de venta</span>
                 <input type="decimal" class="form-control text-right" aria-label="Euro precio de venta (con coma y dos decimales)" [(ngModel)]="price" [value]="price" (input)="stockChange(price, stock)">
                 <span class="input-group-text">€</span>
             </div>
             <div class="input-group mb-2">
-                <span class="input-group-text spw-3" id="basic-addon1">Existencias</span>
+                <span class="input-group-text spw-3">Existencias</span>
                 <input type="number" class="form-control" aria-label="Existencias" aria-describedby="Existencias" [(ngModel)]="stock" [value]="stock" (input)="stockChange(price, stock)">
             </div>
             <div class="mb-3 mt-3">
