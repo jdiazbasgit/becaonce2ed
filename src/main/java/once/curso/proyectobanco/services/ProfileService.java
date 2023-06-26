@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
 import once.curso.proyectobanco.dtos.ProfileDto;
+import once.curso.proyectobanco.dtos.ProfileUserDto;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.repositories.IdentificationTypeCRUDRepository;
@@ -97,8 +98,14 @@ public class ProfileService {
 	public void deleteAll() {
 		getProfileCRUDRepository().deleteAll();
 	}
+	
+	public ProfileUserDto getProfileUserDto(String user,String phone,String email) {
+		
+		return getProfileCRUDRepository().getProfileUserDto(user, phone, email);
+		
+	}
 
-	@Transactional(readOnly = true)
+	@Transactional
 	public Profile crearProfile(ProfileDto profileDto  ) {
 			Profile profileNew = new Profile();
 			profileNew.setName(profileDto.getName());
@@ -108,16 +115,16 @@ public class ProfileService {
 			profileNew.setPhone(profileDto.getPhone());
 			profileNew.setImage(profileDto.getImage());
 			profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(profileDto.getIdentificationType()).get()));
-			User userNuevo = new User();
-			userNuevo.setUser(profileDto.getUser());
-			userNuevo.setEnabled(false);
-			userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
-			userNuevo.setRol(getRolCRUDRepository().findById(2).get());
-			profileNew.setUser(getUserCRUDRepository().save(userNuevo));
-			
-			Profile p= getProfileCRUDRepository().save(profileNew);
-			getEntityManager().getTransaction().commit();
-			return p;
+			 User userNuevo = new User();
+			    userNuevo.setUser(profileDto.getUser());
+			    userNuevo.setEnabled(false);
+			    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
+			    userNuevo.setRol(getRolCRUDRepository().findById(2).get());
+
+			    profileNew.setUser(getUserCRUDRepository().save(userNuevo));
+			    Profile p = getProfileCRUDRepository().save(profileNew);
+
+			    return p;
 					
 		
 

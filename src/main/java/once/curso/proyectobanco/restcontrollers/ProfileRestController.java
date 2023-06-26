@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.dtos.ProfileDto;
+import once.curso.proyectobanco.dtos.ProfileUserDto;
+import once.curso.proyectobanco.dtos.ProfileUserDtoString;
 import once.curso.proyectobanco.entities.Profile;
 import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.models.ProfileModelAssembler;
@@ -99,6 +102,11 @@ public class ProfileRestController {
 		 
 		 return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
 	}
+	
+	@PatchMapping("/profiles/comprobar")
+	public ProfileUserDto getProfileUserDto(@RequestBody ProfileUserDtoString profileUserDtoString ) {
+		return getProfileService().getProfileUserDto(profileUserDtoString.getUser(),profileUserDtoString.getPhone(), profileUserDtoString.getEmail());
+	}
 
 	
 	@PostMapping("/profiles")
@@ -122,12 +130,14 @@ public class ProfileRestController {
 		return getProfileService().existsById(id);
 	}
 	
-	@PostMapping("/profile")
+	@PatchMapping("/profile")
 	public Profile crearProfile(@RequestBody ProfileDto profileDto) {
 		
 		    return getProfileService().crearProfile(profileDto);
 		
 	}
+	
+	
 	
 	
 }
