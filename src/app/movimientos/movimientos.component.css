@@ -1,18 +1,12 @@
 .table-container {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 20px;
 }
 
-.table-container h2 {
-  font-size: 2em;
-  color: green;
-  text-align: center;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
 .table-container table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
 }
 
