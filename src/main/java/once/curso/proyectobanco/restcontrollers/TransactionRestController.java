@@ -15,6 +15,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -43,7 +44,6 @@ public class TransactionRestController {
 	@Autowired
 	private PagedResourcesAssembler<Transaction> pagedResourcesAssembler;
 
-
 	@GetMapping(value = "/transactions/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<Transaction> findById(@PathVariable int id) {
@@ -71,30 +71,33 @@ public class TransactionRestController {
 	 * findById(t.getCurrentAccount().getId())) .withRel("currentAccount")); });
 	 * return CollectionModel.of(transaction); }
 	 */
+	@PatchMapping(value = "/transactions")
+	public List<Transaction> getTransactionsByCurrentAccount(Transaction transaction) {
+		return getTransactionService().getTransactionsByCurrentAccount(transaction.getCurrentAccount().getId());
+	}
 
 	@GetMapping(value = "/transactions")
-	public PagedModel<EntityModel<Transaction>>findAll(@RequestParam(defaultValue = "0") int size, 
-			@RequestParam (defaultValue = "0") int page,@RequestParam (required = false) String sort){
-		if (size==0) {
-			size=(int)getTransactionService().count();
+	public PagedModel<EntityModel<Transaction>> findAll(@RequestParam(defaultValue = "0") int size,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
+		if (size == 0) {
+			size = (int) getTransactionService().count();
 		}
-		Sort orden= Sort.by("id");
-		if (sort !=null) {
-			orden= Sort.by(sort);
-			StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
-			String campo= stringTokenizer.nextToken();
-			String tipoOrden=stringTokenizer.nextToken();
+		Sort orden = Sort.by("id");
+		if (sort != null) {
+			orden = Sort.by(sort);
+			StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+			String campo = stringTokenizer.nextToken();
+			String tipoOrden = stringTokenizer.nextToken();
 			if (tipoOrden.contentEquals("asc")) {
-				orden=Sort.by(campo).ascending();
-			}
-			else {
-				orden= Sort.by(campo).descending();
+				orden = Sort.by(campo).ascending();
+			} else {
+				orden = Sort.by(campo).descending();
 			}
 		}
 		Pageable pageable = PageRequest.of(page, size, orden);
-		Page<Transaction> transaction=getTransactionService().findAll(pageable);
+		Page<Transaction> transaction = getTransactionService().findAll(pageable);
 		return getPagedResourcesAssembler().toModel(transaction, getTransactionModelAssembler());
-				
+
 	}
 
 	@PostMapping(value = "/transactions")
@@ -111,8 +114,9 @@ public class TransactionRestController {
 	public void deleteById(@PathVariable Integer id) {
 		getTransactionService().deleteById(id);
 	}
+
 	@PostMapping(value = "/transactions/{id}")
 	public boolean existsById(@PathVariable int id) {
-		return getTransactionService().existsById(id);	
+		return getTransactionService().existsById(id);
 	}
 }
