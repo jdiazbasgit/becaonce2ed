@@ -68,7 +68,8 @@ public class ExistingProductRestController {
 			u.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
 					.withRel("subcategory"));
-			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
+			u.add(WebMvcLinkBuilder
+					.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
 					.withSelfRel());
 		});
 		return CollectionModel.of(existingProduct);

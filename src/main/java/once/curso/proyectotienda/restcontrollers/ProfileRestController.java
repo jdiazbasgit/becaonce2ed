@@ -46,6 +46,12 @@ public class ProfileRestController {
 	@Autowired
 	private final ProfileService profileService;
 	
+	
+	
+	
+	
+	
+	
 	/* C CREATE A PROFILE */
 	@PostMapping("/profiles")
 	@CrossOrigin(origins = "*")
@@ -60,13 +66,17 @@ public class ProfileRestController {
 		Iterable<Profile> profile = getProfileService().findAll();
 		profile.forEach(s->{
 			 s.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId())).withRel("user"));
+					 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getUsers().getId()))
+					 .withRel("user"));
 			 s.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId())).withRel("cardTypes"));
+					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(s.getCardstypes().getId()))
+					 .withRel("cardTypes"));
 			 s.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstype().getId())).withRel("docomentTypes"));
+					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(s.getDocumentstype().getId()))
+					 .withRel("docomentTypes"));
 			 s.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId())).withSelfRel());
+					 .linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getId()))
+					 .withSelfRel());
 		 });
 		 return CollectionModel.of(profile);
 	}	
@@ -76,10 +86,14 @@ public class ProfileRestController {
 	@CrossOrigin(origins = "*")
 	public EntityModel<Profile> findById(@PathVariable int id) {
 		Profile profile = getProfileService().findById(id).get();
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+				.findById(profile.getUsers().getId())).withRel("user"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class)
+				.findById(profile.getUsers().getId())).withRel("cardTypes"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class)
+				.findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
+		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+				.findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
 	}
 
@@ -90,8 +104,8 @@ public class ProfileRestController {
 	@CrossOrigin(origins = "*")
 	public ResponseEntity<Profile> updateProfile(@PathVariable(value = "id") int profileId, @RequestBody Profile profileDetails) 
 			throws ResourceNotFoundException {
-		Profile profile = getProfileService().findById(profileId)
-	    	    .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + profileId));
+		Profile profile = getProfileService().findById(profileId).get();
+	    	    //.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + profileId));
 
 		profile.setName(profileDetails.getName());
 		profile.setSecond_name(profileDetails.getSecond_name());
