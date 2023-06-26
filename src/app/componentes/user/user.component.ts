@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalUserComponent } from '../modal-user/modal-user.component';
+import { RolesService } from 'src/app/servicios/roles.service';
 import { UserService } from 'src/app/servicios/users.service';
+import { ModalUserComponent } from '../modal-user/modal-user.component';
+
 
 @Component({
   selector: 'app-user',
@@ -8,7 +10,7 @@ import { UserService } from 'src/app/servicios/users.service';
 })
 export class UserComponent implements OnInit{
 
-  @ViewChild(ModalUserComponent) modal: any
+  @ViewChild(ModalUserComponent,) modal: any
   id: number = 0;
   titulo: string;
   usuarios: any[];
@@ -16,8 +18,9 @@ export class UserComponent implements OnInit{
   habilitados: any[];
   roles: any[];
   mensaje: string = "";
-  @Input() eventoDelHijo: string = ""
-    constructor(private service: UserService){
+  @Input() eventoDelHijo: string = "";
+
+    constructor(private service: UserService, private rolesService: RolesService){
     this.titulo = "Tipos de Usuarios"
     this.usuarios = [];
     this.claves = [];
@@ -32,33 +35,30 @@ export class UserComponent implements OnInit{
         if(!dato){
           this.mensaje = "Se ha eliminado usuario correctamente"
           this.ngOnInit();
-        }else
+        }else{
           this.mensaje = "El registro no se ha borrado"
-      })
+        }
+      });
     }
   }
 
   realizarComunicacion(event: any){
-    this.mensaje = ""
+    this.mensaje = "";
     if(event.salida === "OK")
     this.ngOnInit();
   }
 
   ngOnInit(): void {
-    this.usuarios = [];
-    this.claves = [];
-    this.habilitados = [];
-    this.roles = [];
-    this.service.getDatos("http://localhost:8080/once/usersPaginado?page=0&size=2&sort=id,asc").
-    subscribe((datos: any)=>{
-      this.usuarios = datos._embedded.users
-    })
+    this.usuarios=[];
+    this.service.getDatos("http://localhost:8080/once/users")
+      .subscribe((datos: any) => {
+        this.usuarios = datos?._embedded.users;
+      });
   }
-
+  
   modificar(usuario: any){
     this.mensaje = "";
     let ruta = usuario._links.self.href
     this.modal.id= parseInt(ruta.substring(ruta.lastIndexOf("/") +1))
   }
-
 }

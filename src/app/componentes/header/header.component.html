@@ -1,5 +1,8 @@
-<header>
+<header class="mb-5">
 <div><h1>La Poyeria</h1></div>
-   <!--<app-login></app-login>-->
-  <app-nav></app-nav>  
+<!-- 
+  <app-nav *ngIf="logado"></app-nav>
+  <app-login></app-login> 
+-->
+<app-nav *ngIf="!logado"></app-nav>  
 </header>

@@ -1,4 +1,28 @@
-<div class="modalConectando oculto" id="modalConectando">
+<div *ngIf="!logado" class="d-flex justify-content-end align-items-center">
+    <button mat-button (click)="onPress()"> INGRESAR </button>
+    <button mat-button routerLink="resgiter()"> REGISTRARSE (llamado de pagina pendiente)</button>
+</div>
+
+<div *ngIf="logado" class="d-flex justify-content-end align-items-center">
+    <button mat-button> Bienvenido/a {{user}} </button>
+    <button mat-button (click)="closeSession()"> SALIR </button>
+</div>
+<div *ngIf="logado" class="d-flex justify-content-end align-items-center">
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Usuario</mat-label><br>
+            <textarea matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label><br>
+            <textarea matInput placeholder="Contraseña" [(ngModel)]="inputPassword" name="inputPassword" id="inputP"></textarea>
+        </mat-form-field>
+
+
+    </form>
+</div>
+<!-- <<div class="modalConectando oculto" id="modalConectando">
     <div class="contenedorModal mx-auto mt-5">
         <div class="align-items-center">
             <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div>
@@ -32,7 +56,7 @@
 </div>
 
 <div>
-    <button class="button-success" type="button" (click)="getFees()">get fees</button>
+    <button class="button-success" type="button" (click)="getDocumentsTypes()">document Types</button>
 </div>
 <div>
     <button class="button-success" type="button" (click)="errorDeToken()">meter token falso</button>
@@ -87,4 +111,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

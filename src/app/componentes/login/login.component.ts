@@ -1,4 +1,7 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, isStandalone } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { DocumentTypeService } from 'src/app/servicios/document-type.service';
@@ -6,10 +9,9 @@ import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  
 })
-
-
 
 export class LoginComponent {
 
@@ -96,13 +98,13 @@ export class LoginComponent {
     sessionStorage.clear();
     this.logado = false;
   }
-  
+
   limpiarFormulario() {
     this.inputUser = "";
     this.inputPassword = "";
   }
 
-  colorearBotonLoginAlPulsar() {
+  onPress() {//colorearBotonLoginAlPulsar
     this.limpiarFormulario();
     let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
     if (btnLogin.classList.contains('collapsed')) {
@@ -119,9 +121,9 @@ export class LoginComponent {
     this.keyMessage = mensaje;
   }
 
-  getFees() {
+  getDocumentsTypes() {
     const token = sessionStorage.getItem('token');
-    console.log("Sacando Fees con token: " + token);
+    console.log("Sacando documents types con token: " + token);
     this.documentType.getDatos("http://localhost:8080/once/documentsTypes")
       .subscribe({
         next: (response: any) => {
@@ -136,7 +138,7 @@ export class LoginComponent {
         }
       });
   }
-  
+
   errorDeToken() {
     sessionStorage.setItem('token', 'error de token');
     console.log("token: " + sessionStorage.getItem('token'));

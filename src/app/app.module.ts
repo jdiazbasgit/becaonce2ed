@@ -35,6 +35,10 @@ import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
 import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -73,8 +77,12 @@ import { HomeComponent } from './componentes/home/home.component';
    //MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserModule,
     AppRoutingModule,
+    MatRadioModule
 
     
   ],

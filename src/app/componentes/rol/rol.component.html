@@ -10,19 +10,19 @@
 
         <tr *ngFor="let rol of roles">
             <td class="text-center">{{rol.rol}}</td>
-            <td>
-                <a href="#" (click)="modificar(rol)" data-bs-toggle="modal" data-bs-target="#myModal">
+            <td class="text-center">
+                <a href="" (click)="modificar(rol)" data-bs-toggle="modal" data-bs-target="#myModal">
                     <i class="bi bi-pencil-fill"></i>
 
                 </a>
-                <a href="#" (click)="eliminar(rol._links.self.href.substring(rol._links.self.href.lastIndexOf('/')+1))">
+                <a href="" (click)="eliminar(rol._links.self.href.substring(rol._links.self.href.lastIndexOf('/')+1))">
                     <i class="bi bi-trash3-fill"></i>
                 </a>
             </td>
         </tr>
     </table>
     <div class="text-center">
-        <button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal" data-bs-target="#myModal">ALTA</button>
+        <button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal" data-bs-target="#myModal" [disabled]="contador>0">ALTA</button>
     </div>
     <app-modal-rol (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-rol>
 </div>
