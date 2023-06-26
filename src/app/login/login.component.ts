@@ -17,19 +17,23 @@ export class LoginComponent {
   usuario: string = ""
   claveErronea: boolean = false
   mensajeClave: String = ""
-  contadorTemporizadorDeInactividad: number = 180000
+  contadorTemporizadorDeInactividad: number = 300000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
+  collapseLoginAbierto: boolean = false
+  collapseHazteClienteAbierto: boolean = false
 
   constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService, private router: Router) {
-  
+
   }
 
-  ngOnInit(){
+  ngOnInit() {
     //remover despues de hacer pruebas***{
-    this.ModoPruebaMeterTokenValidoYampliarInactividad();
+    //this.ModoPruebaMeterTokenValidoYampliarInactividad();
     //this.router.navigateByUrl("paneladministrador")
+    //this.router.navigateByUrl("cuentas")
     //****}
+    //this.deslogarse()
   }
 
   ngDoCheck() {
@@ -37,10 +41,10 @@ export class LoginComponent {
       this.logado = true
       this.usuario = sessionStorage['user']
     }
-    if (!this.logado && this.router.url != "/landing" && this.router.url != "/haztecliente") {
+    if (!this.logado && this.router.url != "/landing") {
       this.router.navigateByUrl("landing")
     }
-    if (!this.sinActividad && this.logado){
+    if (!this.sinActividad && this.logado) {
       //this.contadorTemporizadorDeInactividad = 8000
       clearTimeout(this.temporizadorDeInactividad)
       this.temporizadorDeInactividad = setTimeout(() => {
@@ -48,7 +52,7 @@ export class LoginComponent {
         this.sinActividad = true
         this.deslogarse()
       }, this.contadorTemporizadorDeInactividad)
-    }    
+    }
   }
 
   logarse() {
@@ -101,13 +105,14 @@ export class LoginComponent {
             cont.innerHTML = "Bienvenido"
             cont.classList.add('bg-success')
             console.log(datos.token)
+            this.router.navigateByUrl("cuentas")
             delay = 1000
           }
           setTimeout(() => {
             modalConectando.classList.add('oculto')
-          //body.classList.remove("bloqueado");
-          body.removeAttribute("style")
-          }, delay);   
+            //body.classList.remove("bloqueado");
+            body.removeAttribute("style")
+          }, delay);
 
         }
         )
@@ -132,59 +137,108 @@ export class LoginComponent {
     this.inputUsuario = ""
     this.inputPassword = ""
   }
-  colorearBotonLoginAlPulsar() {
-    this.limpiarFormulario()
-    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin');
-    if (btnLogin.classList.contains('collapsed')) {
-      btnLogin.classList.remove('pulsado');
-    }
-    else {
-      btnLogin.classList.add('pulsado');
-      this.claveErronea = false
-    }
-  }
   mensajeClaveErronea(mensaje: String) {
     this.claveErronea = true
     this.mensajeClave = mensaje
   }
 
-  getFees() {
-    console.log("Sacando Fees con token: " + sessionStorage['token'])
-    this.feeService.getDatos("http://localhost:8080/once/fees")
-    .subscribe({
-      
-      next: (response) => {
-        console.log("status ok:"+response.status)
-        console.log(response)
-        response._embedded.fees.forEach((element: any) => {
-          console.log(element.current)
-        });
-      }, 
-      error: (error:any) =>{
-        console.log("status ko:"+error.status)
-      }
-    })
-      // .subscribe((datos: any) => {
-      //   console.log(datos)
-      //   datos._embedded.fees.forEach((element: any) => {
-      //     console.log(element.current)
-      //   });
-      // })
+  colorearBotonLoginHazteSwap(){
+    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin')
+    let btnHazteCliente = this.elementRef.nativeElement.querySelector('.btnHazteCliente')
+    if (this.collapseHazteClienteAbierto && !this.collapseLoginAbierto){
+      btnLogin.setAttribute('data-bs-target', '.zonaColapsable')
+      btnHazteCliente.setAttribute('data-bs-target', '#zonaColapsableHazteCliente')
+    }
+    if (!this.collapseHazteClienteAbierto && this.collapseLoginAbierto){
+      btnHazteCliente.setAttribute('data-bs-target', '.zonaColapsable')
+      btnLogin.setAttribute('data-bs-target', '#zonaColapsableLogin')
+    }
+    if (!this.collapseHazteClienteAbierto && !this.collapseLoginAbierto){
+      btnHazteCliente.setAttribute('data-bs-target', '#zonaColapsableHazteCliente')
+      btnLogin.setAttribute('data-bs-target', '#zonaColapsableLogin')
+    }
   }
 
-  meterTokenfalso() {
-    sessionStorage['token'] = "EsteEsUnTokenFalso"
-    console.log("token: " + sessionStorage['token'])
+  colorearBotonLoginAlPulsar() {
+    this.limpiarFormulario()
+    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin')
+    let btnHazteCliente = this.elementRef.nativeElement.querySelector('.btnHazteCliente') 
+    setTimeout(() => {
+      if (btnLogin.classList.contains('collapsed')) {
+        btnLogin.classList.remove('pulsado')
+        this.collapseLoginAbierto = false
+      }
+      else {
+        btnLogin.classList.add('pulsado')
+        this.collapseLoginAbierto = true
+        this.collapseHazteClienteAbierto = false
+        btnHazteCliente.classList.remove('pulsado')
+        this.claveErronea = false
+      }
+      this.colorearBotonLoginHazteSwap()
+    }, 0)
+    
   }
-  ModoPruebaMeterTokenValidoYampliarInactividad() {    
+  colorearBotonHazteClienteAlPulsar() {
+    //this.limpiarFormulario()
+    let btnLogin = this.elementRef.nativeElement.querySelector('.btnLogin')
+    let btnHazteCliente = this.elementRef.nativeElement.querySelector('.btnHazteCliente')    
+    setTimeout(() => {
+      if (btnHazteCliente.classList.contains('collapsed')) {
+        btnHazteCliente.classList.remove('pulsado')
+        this.collapseHazteClienteAbierto = false
+      }
+      else {
+        btnHazteCliente.classList.add('pulsado')
+        this.collapseHazteClienteAbierto = true
+        btnLogin.classList.remove('pulsado')
+        this.collapseLoginAbierto = false
+        //this.claveErronea = false
+      }
+      this.colorearBotonLoginHazteSwap()
+    }, 0)
+  
+  }
+
+  ModoPruebaMeterTokenValidoYampliarInactividad() {
     this.contadorTemporizadorDeInactividad += 10000000
     sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
-    sessionStorage['user'] = "PEPE"
-    sessionStorage['rol'] = "ROLE_ADMIN"
-    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: "+this.contadorTemporizadorDeInactividad+"ms"+
-    "\ntoken: " + sessionStorage['token']+
-    "\nuser: " + sessionStorage['user']+
-    "\nrol: " + sessionStorage['rol']
+    sessionStorage['user'] = "BOTIN"
+    sessionStorage['rol'] = "ROLE_USER"
+    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.contadorTemporizadorDeInactividad + "ms" +
+      "\ntoken: " + sessionStorage['token'] +
+      "\nuser: " + sessionStorage['user'] +
+      "\nrol: " + sessionStorage['rol']
     )
   }
+
+  // getFees() {
+  //   console.log("Sacando Fees con token: " + sessionStorage['token'])
+  //   this.feeService.getDatos("http://localhost:8080/once/fees")
+  //     .subscribe({
+
+  //       next: (response) => {
+  //         console.log("status ok:" + response.status)
+  //         console.log(response)
+  //         response._embedded.fees.forEach((element: any) => {
+  //           console.log(element.current)
+  //         });
+  //       },
+  //       error: (error: any) => {
+  //         console.log("status ko:" + error.status)
+  //       }
+  //     })
+  //   .subscribe((datos: any) => {
+  //     console.log(datos)
+  //     datos._embedded.fees.forEach((element: any) => {
+  //       console.log(element.current)
+  //     });
+  //   })
+  // }
+
+  // meterTokenfalso() {
+  //   sessionStorage['token'] = "EsteEsUnTokenFalso"
+  //   console.log("token: " + sessionStorage['token'])
+  // }
+
 }
