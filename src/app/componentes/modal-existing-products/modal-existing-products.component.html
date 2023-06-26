@@ -17,7 +17,7 @@
             </div>
             <div class="input-group mb-2">
                 <span class="input-group-text spw-3" id="basic-addon1">Precio de venta</span>
-                <input type="decimal" class="form-control text-right" aria-label="Euro precio de venta (con coma y dos decimales)" [(ngModel)]="price" [value]="price">
+                <input type="decimal" class="form-control text-right" aria-label="Euro precio de venta (con coma y dos decimales)" [(ngModel)]="price" [value]="price" (input)="stockChange(price, stock)">
                 <span class="input-group-text">€</span>
             </div>
             <div class="input-group mb-2">
@@ -33,9 +33,8 @@
             </div>
             <div class="modal-footer">
             <div class="d-grid gap-2 d-md-block">
-                <!--<button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal" (click)="closeModal()">Cerrar</button>-->
-                <button class="btn btn-secondary m-3" type="button" (click)="closeModal()">Cerrar</button>
-                <button class="btn btn-primary" type="button" (click)="saveData()">Aceptar</button>
+                <button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal" (click)="closeModal();">Cerrar</button>
+                <button class="btn btn-primary" type="button" (click)="saveData();">Guardar</button>
             </div>
             </div>
       </div>

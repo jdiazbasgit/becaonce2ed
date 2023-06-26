@@ -1,6 +1,6 @@
 
 <!-- The Modal -->
-<div class="modal" id="myModal" (hidden.bs.modal)="resetFields()">
+<div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
@@ -11,7 +11,7 @@
 
             <!-- Modal body -->
             <div class="modal-body text-center">
-                <img src="{{ photo }}" class="m-3"><br>
+                <img [src]="getImage(image)" [alt]="name" class="rounded mb-3 img-size" id="setImage"><br>
                 <label for="name">Nombre:</label><input type="text" name="nombre" [(ngModel)]="name" value="{{ name }}"><br>
                 <label for="lastname">Apellido:</label><input type="text" name="apellido" [(ngModel)]="lastname" value="{{ lastname }}"><br>
                 <label for="identification">DNI/NIF/NIE:</label><input type="text" name="identificacion" [(ngModel)]="identification" value="{{ identification }}"><br>
@@ -20,14 +20,14 @@
                 <label for="email">Email:</label><input type="text" name="email" [(ngModel)]="email" value="{{ email }}"><br>
                 <label for="phone">Teléfono:</label><input type="text" name="telefono" [(ngModel)]="phone" value="{{ phone }}"><br>
                 <label for="creditcard">Tarjeta credito:</label><input type="text" name="tarjetacredito" [(ngModel)]="creditcard" value="{{ creditcard }}"><br>
-                <button type="button" class="button" (click)="grabar()">GRABAR</button>
+                <!--<button type="button" class="button" (click)="grabar()">GRABAR</button>-->
             </div>
             <div class="text-center">
                 <h1>{{ mensaje }}</h1>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()" aria-label="Close">Cerrar</button>
+                <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()" aria-label="Close">Cerrar</button>-->
             </div>
 
         </div>

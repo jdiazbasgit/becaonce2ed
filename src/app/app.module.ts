@@ -27,7 +27,6 @@ import { UserComponent } from './componentes/user/user.component';
 import { ModalDocumentTypesComponent } from './componentes/modal-document-types/modal-document-types.component';
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
-import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -60,8 +59,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     MatSlideToggleModule,
     MatTableModule,
-    MatPaginatorModule,
-    MatDialogModule
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
