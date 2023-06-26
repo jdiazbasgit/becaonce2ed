@@ -1,5 +1,5 @@
 import { Component, ElementRef, isStandalone } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { LoginService } from 'src/app/servicios/login.service';
 
 export class LoginComponent {
 
+  passwordFormControl = new FormControl('',[Validators.required, Validators.required])//verificar
   logado: boolean = false;
   inputUser: string = "";
   inputPassword: string = "";
@@ -28,6 +29,7 @@ export class LoginComponent {
   constructor(private elementRef: ElementRef, private loginService: LoginService, private documentType: DocumentTypeService, private router: Router) {
 
   }
+
 
   ngDoCheck() {
     if (sessionStorage.getItem('token') && !this.logado) {
