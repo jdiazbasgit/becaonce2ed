@@ -19,13 +19,14 @@ import { UserService } from '../servicios/user.service';
 
 
 export class HazteClienteComponent  implements OnInit{
+  [x: string]: any;
   name: string;
   secondName: string;
   identification: string;
   phone: string;
   image:Array<number>
   email: string;
-  identificationType: string;
+  identificationType: number;
   user: string;
   password:string
   identificationTypes:Array<any>
@@ -51,7 +52,7 @@ export class HazteClienteComponent  implements OnInit{
     this.usuarioBaseDatos = ""
     this.clave = ""
     this.user=""
-    this.identificationType=""
+    this.identificationType=0
     this.image=[]
     this.password=""
     this.identificationTypes=[]
@@ -104,6 +105,8 @@ export class HazteClienteComponent  implements OnInit{
           }
         });
       });
+
+     
 
     this.profilServices.getDatos(this.urlUsers)
       .subscribe((datos: any) => {
