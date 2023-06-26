@@ -5,31 +5,11 @@
     <table class="table table-stripped table-bordered">
         <tr>
             <th class="text-center">USUARIOS</th>
-            <th class="text-center">ENABLED</th>
-            <th class="text-center">ROL</th>
             <th class="text-center">ACCIONES</th>
         </tr>
 
         <tr *ngFor="let usuario of usuarios">
             <td class="text-center">{{usuario.user}}</td>
-            <td class="text-center">{{usuario.enabled}}</td>
-            <!-- <select {(ngModel)}="rol" class="text-center" >
-                <option value="0">Selecciona...</option>
-                <option *ngFor="let fun of roles" value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/') +1)}}"></option>
-            </select> -->
-            
-            <td class="text-center">
-                <div *ngFor="let enabled of enabledArray; let i=index" class="form-check form.switch">
-                    <label class="form-check-label" for="myswitch">DESACTIVAR</label>
-                    <input class="form-check-input" type="checkbox" id="mySwitch{{i}}" name="darkmode" [(ngModel)]="enabledArray[i]" checked>
-                    <label class="form-check-label" for="myswitch">ACTIVAR</label>
-                </div>
-            </td>
-            <td class="text-center">
-                <select >
-                    <option *ngFor="let fun of roles" value="{{fun._links.self.href.substring(fun._links.self.href.lastIndexOf('/')+1)}}">{{fun.rol}}</option>
-                </select>
-              </td>
             <td class="text-center">
                 <a href="#" (click)="modificar(usuario)" data-bs-toggle="modal" data-bs-target="#myModal">
                     <i class="bi bi-pencil-fill"></i> </a>
