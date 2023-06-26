@@ -20,7 +20,7 @@ export class ProyectosService {
   delete(url:string):Observable<any>{
     return this.httpClient.delete(url);
   }
-  patch(url:string,user:UserNameBean):Observable<any>{
+  patch(url:string,user:any):Observable<any>{
     return this.httpClient.patch(url,user);
   }
 

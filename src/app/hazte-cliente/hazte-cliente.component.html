@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Hazte Cliente</h1>
-  <form class="needs-validation" novalidate (submit)="guardaDatos()">
+  <form class="needs-validation">
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="nombre">Nombre:</label>
@@ -59,7 +59,7 @@
           <label for="usuario">Usuario</label>
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupPrepend2">@</span>
+              <span class="input-group-text" id="inputGroupPrepend2">👥</span>
             </div>
             <input type="text" class="form-control" id="usuario" [(ngModel)]="user" [ngModelOptions]="{standalone: true}"
             required>
@@ -75,6 +75,10 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Guardar</button>
+    
+    <button class="btn btn-primary">Guardar</button>  <button class="btn btn-primary" (click)=" comprobarDatos()" >Comprobar</button>
+    <h1>{{mensajeEmail}}</h1>
+    <h1>{{mensajePhone}}</h1>
+    <h1>{{mensajeUser}}</h1>
   </form>
 </div>
