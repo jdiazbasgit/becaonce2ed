@@ -63,9 +63,7 @@ public class ProfileService {
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		for (Integer id : ids){
-			getProfilesCRUDRepository().deleteById(id);
-		}
+		for (Integer id : ids){getProfilesCRUDRepository().deleteById(id);}
 	}
 
 	public void deleteAll() {
