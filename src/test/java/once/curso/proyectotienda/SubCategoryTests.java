@@ -44,15 +44,19 @@ public class SubCategoryTests {
 		SubCategory subCategories = new SubCategory();
 		
 		subCategories.setDescription("pruebas");
-		subCategories.setCategory(getCategoryService().findById(2).get());
-		
 		getSubcategoryService().save(subCategories);
-		getSubcategoryService().deleteById(subCategories.getId());
-		
+		SubCategory subcategoryRecuperado = getSubcategoryService().findById(subCategories.getId()).get();
+		getSubcategoryService().delete(subcategoryRecuperado);
 		
 		assertFalse(getSubcategoryService().existsById(subCategories.getId()));
-		
-		
+		/* {
+			Category category = new Category();
+			category.setDescription("pruebac");
+			getCategoryService().save(category);
+			Category categoryRecuperado = getCategoryService().findById(category.getId()).get();
+			getCategoryService().delete(categoryRecuperado);
+
+			assertFalse(getCategoryService().existsById(category.getId()));*/
 	}
 	
 	public void findAllById() {
