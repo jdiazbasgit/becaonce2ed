@@ -3,6 +3,8 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -96,7 +98,7 @@ public class TransactionRestController {
 		return getPagedResourcesAssembler().toModel(transaction, getTransactionModelAssembler());
 				
 	}
-
+	
 	@PostMapping(value = "/transactions")
 	public boolean save(@RequestBody Transaction transaction) {
 		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
@@ -115,4 +117,9 @@ public class TransactionRestController {
 	public boolean existsById(@PathVariable int id) {
 		return getTransactionService().existsById(id);	
 	}
+	
+	
+	
+	
+	
 }

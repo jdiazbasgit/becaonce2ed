@@ -21,6 +21,7 @@ import lombok.Data;
 @Table (name="transactions")
 public class Transaction extends RepresentationModel<Transaction> {
 	
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
@@ -38,7 +39,6 @@ public class Transaction extends RepresentationModel<Transaction> {
 	@JoinColumn (name="currents_accounts_id")
 	private CurrentAccount currentAccount;
 
-			
-	
+		
 
 }
