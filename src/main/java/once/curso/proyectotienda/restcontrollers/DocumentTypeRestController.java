@@ -46,25 +46,24 @@ public class DocumentTypeRestController {
 	public CollectionModel<DocumentType> findAll() {
 		Iterable<DocumentType> documentTypes = getDocumentTypeService().findAll();
 		documentTypes.forEach(d -> {
-			d.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getId()))
-					.withSelfRel());
-
+			d.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getId())).withSelfRel());
 		});
 		return CollectionModel.of(documentTypes);
 	}
 
+	
+	
 	@GetMapping(value = "/documentsTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<DocumentType> findById(@PathVariable int id) {
 		DocumentType documentType = getDocumentTypeService().findById(id).get();
-		documentType.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getId()))
-				.withSelfRel());
+		documentType.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getId())).withSelfRel());
 
 		return EntityModel.of(documentType);
 	}
 
+	
+	
 	@GetMapping("/documentsTypesPaginado")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<DocumentType>> findAllPaginado(@RequestParam int size, @RequestParam int page,
@@ -84,6 +83,9 @@ public class DocumentTypeRestController {
 
 		return getPagedResourcesAssembler().toModel(documentType, getDocumentTypeModelAssembler());
 	}
+	/*
+	 http://localhost:8080/once/documentsTypesPaginado?size=2&page=0&sort=id,asc
+	*/
 
 	@PostMapping("/documentsTypes")
 	@CrossOrigin(origins = "*")
@@ -98,9 +100,21 @@ public class DocumentTypeRestController {
 		return getDocumentTypeService().existsById(id);
 	}
 
+	
+	
+	
+	
+	
 	@PostMapping("/documentsTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existById(@PathVariable int id) {
 		return getDocumentTypeService().existsById(id);
 	}
+	
+	@GetMapping("/documentsTypes/count")
+	@CrossOrigin(origins = "*")
+	public long getDocumentTypeCount() {
+		return documentTypeService.count();
+    }
+
 }

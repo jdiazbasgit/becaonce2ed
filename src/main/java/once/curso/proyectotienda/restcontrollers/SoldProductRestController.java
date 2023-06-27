@@ -24,87 +24,97 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.SoldProduct;
-import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.model.SoldProductModelAssembler;
 import once.curso.proyectotienda.services.SoldProductService;
 
-@RestController
-@RequestMapping("/once")
 @Data
+@RequestMapping("/once")
+@RestController
 public class SoldProductRestController {
 
-	
 	@Autowired
-	private SoldProductModelAssembler soldProductModelAssembler;
+	private SoldProductService soldProductService;
 
 	@Autowired
 	private  PagedResourcesAssembler<SoldProduct> pagedResourcesAssembler;
 	
 	@Autowired
-	private SoldProductService soldProductService;
+	private SoldProductModelAssembler soldProductModelAssembler;
 
-	@PostMapping("/soldProducts/create")
+	@GetMapping("/soldProducts")
+	@CrossOrigin(origins = "*")
+	public CollectionModel<SoldProduct> findAll() {
+		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
+		soldProduct.forEach(s -> {
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getProfile().getId())).withRel("profile"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(s.getExistingProduct().getId())).withRel("existingProduct"));
+			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SoldProductRestController.class).findById(s.getId())).withSelfRel());
+		});
+		return CollectionModel.of(soldProduct);
+	}
+
+	@GetMapping(value = "/soldProducts/{id}")
+	@CrossOrigin(origins = "*")
+	public EntityModel<SoldProduct> findById(@PathVariable int id) {
+		SoldProduct soldProducts = getSoldProductService().findById(id).get();
+		soldProducts.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(soldProducts.getProfile().getId())).withRel("profile"));
+		soldProducts.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(soldProducts.getExistingProduct().getId())).withRel("existingProduct"));
+		soldProducts.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SoldProductRestController.class).findById(soldProducts.getId())).withSelfRel());
+
+		return EntityModel.of(soldProducts);
+	}
+	
+	@GetMapping("/soldProductsPaginado")
+	@CrossOrigin(origins = "*")
+	public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page,
+			@RequestParam String sort) {
+		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+		Sort orden = Sort.by("a");
+		String campo = stringTokenizer.nextToken();
+		String tipoOrden = stringTokenizer.nextToken();
+
+		if (tipoOrden.equals("asc"))
+			orden = Sort.by(campo).ascending();
+		else
+			orden = Sort.by(campo).descending();
+
+		Pageable pageable = PageRequest.of(page, size, orden);
+		Page<SoldProduct> soldProduct = getSoldProductService().findAll(pageable);
+
+		return getPagedResourcesAssembler().toModel(soldProduct, getSoldProductModelAssembler());
+	}
+	/*
+	 http://localhost:8080/once/soldProductsPaginado?size=2&page=0&sort=id,asc
+	*/
+
+	@PostMapping("/soldProducts")
 	@CrossOrigin(origins ="*")
 	public SoldProduct save(@RequestBody SoldProduct soldProduct) {
 		return getSoldProductService().save(soldProduct);
 	}
 	
-	@GetMapping("/soldProducts")
-	@CrossOrigin(origins ="*")
-	public Iterable<SoldProduct> findAll(){
-		return getSoldProductService().findAll();
-	}
-	
-	@GetMapping("/soldProducts/all")
-	@CrossOrigin(origins ="*")
-	public CollectionModel<SoldProduct> getSoldProduct() {
-		Iterable<SoldProduct> soldProduct = getSoldProductService().findAll();
-		soldProduct.forEach(s->{
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(s.getExistingProduct().getId())).withRel("soldproduct"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getId())).withSelfRel());
-		 });
-		 return CollectionModel.of(soldProduct);
-	}	
-	
-	@GetMapping("/soldProducts/{id}")
-	@CrossOrigin(origins ="*")
-	public EntityModel<SoldProduct> findById(@PathVariable int id) {
-		SoldProduct soldProduct = getSoldProductService().findById(id).get();
-		soldProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(soldProduct.getExistingProduct().getId())).withRel("soldproduct"));
-		soldProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(soldProduct.getId())).withSelfRel());
-		 return EntityModel.of(soldProduct);
+	@DeleteMapping("/soldProducts/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		try {
+			getSoldProductService().deleteById(id);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	@DeleteMapping("/soldProducts/delete/{id}")
-	@CrossOrigin(origins ="*")
-	public void deleteById(@PathVariable int id) {
-		getSoldProductService().deleteById(id);
+ 	@PostMapping("/soldProducts/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getSoldProductService().existsById(id);
 	}
+
+	@GetMapping("/soldProducts/count")
+	@CrossOrigin(origins = "*")
+	public long getSoldProductCount() {
+		return soldProductService.count();
+    }
 	
-	@GetMapping("/soldProductsPaginado")
-	@CrossOrigin(origins ="*")
-	public PagedModel<EntityModel<SoldProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-		   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-		  Sort orden=Sort.by("a");
-	   String campo=stringTokenizer.nextToken();
-	   String tipoOrden= stringTokenizer.nextToken();
-	   
-	   if(tipoOrden.equals("asc"))
-		   orden=Sort.by(campo).ascending();
-	   else 
-		   orden=Sort.by(campo).descending();
-		   Pageable pageable=PageRequest.of(page,size,orden);
-		   Page<SoldProduct> soldProduct=getSoldProductService().findAll(pageable);
-		   
-		   return getPagedResourcesAssembler().toModel(soldProduct,getSoldProductModelAssembler());
-	   }
 }
-
-/*http://localhost:8080/api/v1/soldProductsPaginado?size=2&page=0&sort=id,asc*/
-
-
-
-
-
-
-
