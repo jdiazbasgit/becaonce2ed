@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.RepresentationModel;
 
 import lombok.Data;
@@ -19,5 +18,6 @@ public class DocumentType extends RepresentationModel<DocumentType> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String description;
 }

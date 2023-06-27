@@ -46,24 +46,24 @@ public class ConfigurationRestController {
 	public CollectionModel<Configuration> findAll() {
 		Iterable<Configuration> configurations = getConfigurationService().findAll();
 		configurations.forEach(c -> {
-			c.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class).findById(c.getId()))
-					.withSelfRel());
+			c.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class).findById(c.getId())).withSelfRel());
 		});
 		return CollectionModel.of(configurations);
 	}
 
+	
+	
 	@GetMapping(value = "/configurations/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<Configuration> findById(@PathVariable int id) {
 		Configuration configurations = getConfigurationService().findById(id).get();
-		configurations.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class).findById(configurations.getId()))
-				.withSelfRel());
+		configurations.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ConfigurationRestController.class).findById(configurations.getId())).withSelfRel());
 
 		return EntityModel.of(configurations);
 	}
 
+	
+	
 	@GetMapping("/configurationsPaginado")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<Configuration>> findAllPaginado(@RequestParam int size, @RequestParam int page,
@@ -83,6 +83,9 @@ public class ConfigurationRestController {
 
 		return getPagedResourcesAssembler().toModel(configuration, getConfigurationModelAssembler());
 	}
+	/*
+	 http://localhost:8080/once/configurationsPaginado?size=2&page=0&sort=id,asc
+	*/
 
 	@PostMapping("/configurations")
 	@CrossOrigin(origins = "*")
