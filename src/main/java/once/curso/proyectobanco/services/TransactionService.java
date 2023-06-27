@@ -1,5 +1,6 @@
 package once.curso.proyectobanco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -46,6 +47,12 @@ public class TransactionService {
 		return getTransactionCRUDRepository().findById(id);
 	}
 
+	public List<Transaction> getTransactionsByCurrentAccount(int number){
+		return getTransactionCRUDRepository().getTransactionsByCurrentAccount(number);
+		
+	}
+		
+	
 	public boolean existsById(Integer id) {
 		return getTransactionCRUDRepository().existsById(id);
 	}

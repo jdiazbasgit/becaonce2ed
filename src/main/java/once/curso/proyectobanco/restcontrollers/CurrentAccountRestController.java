@@ -59,7 +59,6 @@ public class CurrentAccountRestController {
 	}
 	
 	@PatchMapping(value = "/currentsAccounts")
-	
 	public List<CurrentAccount> getCurrentAccountsByUser( @RequestBody UserName  userName){
 	return getCurrentAccountService().getCurrentAccountsByUser(userName.getUserName());	
 	}
