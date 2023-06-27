@@ -148,7 +148,7 @@ public class CategoryTest {
 		getCategoryService().saveAll(categories);
 
 		long cantidad = getCategoryService().count();
-		assertEquals(5, cantidad);
+		assertEquals(12, cantidad);
 
 		categories.forEach(category -> getCategoryService().deleteById(category.getId()));
 	}
@@ -180,7 +180,7 @@ public class CategoryTest {
 		getCategoryService().saveAll(categories);
 
 		List<Category> allCategories = (List<Category>) getCategoryService().findAll();
-		assertEquals(4, allCategories.size());
+		assertEquals(11, allCategories.size());
 		assertTrue(allCategories.contains(category1));
 		assertTrue(allCategories.contains(category2));
 

@@ -66,7 +66,7 @@ public class SubCategoryRestController {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId()))
-				.withRel("subcategory"));
+				.withRel("category"));
 		subCategory.add(WebMvcLinkBuilder
 				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId()))
 				.withSelfRel());
@@ -93,7 +93,7 @@ public class SubCategoryRestController {
 				orden = Sort.by(campo).descending();
 		}
 		if (size == null)
-			size = 10;
+			size = (int) getSubcategoryService().count();
 		if (page == null)
 			page = 0;
 		Pageable pageable = PageRequest.of(page, size, orden);
