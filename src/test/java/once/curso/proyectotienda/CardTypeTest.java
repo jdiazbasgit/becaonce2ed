@@ -44,7 +44,7 @@ public class CardTypeTest {
 	@Order(2)
 	public void probarSaveFindDelete() {
 		CardType cardType = new CardType();
-		cardType.setDescription("pruebac");
+		cardType.setDescription("prueba A");
 		getCardTypeService().save(cardType);
 		CardType cardTypeRecuperado = getCardTypeService().findById(cardType.getId()).get();
 		getCardTypeService().delete(cardTypeRecuperado);
@@ -59,11 +59,11 @@ public class CardTypeTest {
 		Long cantidadAlEmpezar = getCardTypeService().count();
 		List<CardType> cardTypes = new ArrayList<CardType>();
 		CardType cardTypePrueba1 = new CardType();
-		cardTypePrueba1.setDescription("pruebaA");
+		cardTypePrueba1.setDescription("prueba A");
 		cardTypes.add(cardTypePrueba1);
 
 		CardType cardTypePrueba2 = new CardType();
-		cardTypePrueba2.setDescription("pruebaB");
+		cardTypePrueba2.setDescription("prueba B");
 		cardTypes.add(cardTypePrueba2);
 
 		getCardTypeService().saveAll(cardTypes);
@@ -84,13 +84,13 @@ public class CardTypeTest {
 	public void probarFindByIdAndDeleteById() {
 		List<CardType> cardTypes = new ArrayList<CardType>();
 		CardType cardTypePrueba1 = new CardType();
-		cardTypePrueba1.setDescription("pruebaA");
+		cardTypePrueba1.setDescription("prueba A");
 		cardTypes.add(cardTypePrueba1);
 		cardTypeService.saveAll(cardTypes);
 
 		Optional<CardType> resultado = cardTypeService.findById(cardTypePrueba1.getId());
 		assertTrue(resultado.isPresent());
-		assertTrue(resultado.get().getDescription().equals("pruebaA"));
+		assertTrue(resultado.get().getDescription().equals("prueba B"));
 
 		cardTypeService.deleteById(cardTypePrueba1.getId());
 		Optional<CardType> resultadoDespues = cardTypeService.findById(cardTypePrueba1.getId());
@@ -123,7 +123,7 @@ public class CardTypeTest {
 	public void probarExistById() {
 		List<CardType> cardTypes = new ArrayList<CardType>();
 		CardType cardTypePrueba1 = new CardType();
-		cardTypePrueba1.setDescription("pruebaA");
+		cardTypePrueba1.setDescription("prueba A");
 		cardTypes.add(cardTypePrueba1);
 		cardTypeService.saveAll(cardTypes);
 
@@ -137,7 +137,7 @@ public class CardTypeTest {
 	public void probarFindAll() {
 		List<CardType> cardTypes = new ArrayList<>();
 		CardType cardType1 = new CardType();
-		cardType1.setDescription("PruebaA");
+		cardType1.setDescription("Prueba A");
 		cardTypes.add(cardType1);
 		CardType cardType2 = new CardType();
 		cardType2.setDescription("PruebaB");
