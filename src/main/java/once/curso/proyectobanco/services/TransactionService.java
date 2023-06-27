@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectobanco.beans.CurrentAccountBean;
+import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.repositories.TransactionCRUDRepository;
 
@@ -36,7 +38,7 @@ public class TransactionService {
 		return getTransactionCRUDRepository().findById(id);
 	}
 
-	public List<Transaction> getTransactionsByCurrentAccount(int number){
+	public List<Transaction> getTransactionsByCurrentAccount(CurrentAccount number){
 		return getTransactionCRUDRepository().getTransactionsByCurrentAccount(number);
 		
 	}

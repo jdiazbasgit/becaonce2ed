@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.beans.CurrentAccountBean;
+import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.models.TransactionModelAssembler;
 import once.curso.proyectobanco.services.TransactionService;
@@ -72,8 +74,8 @@ public class TransactionRestController {
 	 * return CollectionModel.of(transaction); }
 	 */
 	@PatchMapping(value = "/transactions")
-	public List<Transaction> getTransactionsByCurrentAccount(@RequestBody Transaction transaction) {
-		return getTransactionService().getTransactionsByCurrentAccount(transaction.getCurrentAccount().getId());
+	public List<Transaction> getTransactionsByCurrentAccount(@RequestBody CurrentAccount cuenta) {
+		return getTransactionService().getTransactionsByCurrentAccount(cuenta);
 	}
 
 	@GetMapping(value = "/transactions")
