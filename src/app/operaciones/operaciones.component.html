@@ -1,24 +1,36 @@
 <div class="container">
-    <div class="text-center">
-      <h2>Ingresos o Retiros</h2>
-  
-      <div class="form-group">
-        <label for="monto">Importe:</label>
-        <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
+  <div class="text-center">
+    <h2>Ingresos o Retiros</h2>
+
+    <div class="form-group">
+      <label for="monto">Importe:</label>
+      <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
+    </div>
+
+    <div class="form-group">
+      <label for="concepto">Concepto:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <select [(ngModel)]="description" 
+              name="description">
+              <option value="0">Selecciona Concepto...</option>
+              <option
+                value="description1._links.self.href.substring(description1._links-self.href.lastIndexOf('/')+1)"
+                *ngFor="let description1 of descriptions">{{description1.description}}</option>
+            </select>
+          </span>
+        </div>
       </div>
-  
-      <div class="form-group">
-        <label for="concepto">Concepto:</label>
-        <input type="text" class="form-control" id="concepto" [(ngModel)]="concepto" placeholder="Ingrese el concepto" />
-      </div>
-  
-      <div class="btn-group">
-        <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
-        <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
-      </div>
-  
-      <p>Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{ ultimoMovimiento?.fecha | date: 'dd/MM/yyyy' }}</p>
-      <p>Saldo actual: {{ saldo }}</p>
     </div>
   </div>
-  
+
+  <div class="btn-group">
+    <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
+    <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
+  </div>
+
+  <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{ ultimoMovimiento?.fecha |
+    date: 'dd/MM/yyyy' }}</p>
+  <p class="text-center">Saldo actual: {{ saldo }}</p>
+</div>

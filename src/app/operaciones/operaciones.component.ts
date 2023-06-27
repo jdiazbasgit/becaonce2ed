@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
+import { DescriptionService } from '../servicios/description.service';
 
 @Component({
   selector: 'app-operaciones',
@@ -7,12 +8,23 @@ import { ProyectosService } from '../servicios/proyectos.service';
   styleUrls: ['./operaciones.component.css']
 })
 export class OperacionesComponent {
+  urlDescription="http://localhost:8080/once/descriptions"
+  description:string=""
+  descriptions:Array<any>=[]
   monto: number = 0;
   saldo: number = 0;
   concepto: string = ''; //  propiedad para almacenar el concepto del movimiento
   ultimoMovimiento: { tipo: string, concepto: string, fecha: Date } | null = null; //  propiedad para almacenar el último movimiento
 
-  constructor(private service: ProyectosService) {}
+  constructor(private service: ProyectosService, private descriptionService:DescriptionService) {}
+
+  ngOnInit(){
+    this.descriptionService.getDatos(this.urlDescription).subscribe((datos:any)=>{
+      this.descriptions= datos._embedded.descriptions
+      console.log ("conceptos:" + this.description)
+
+    })
+  }
 
   realizarMovimiento(tipo: string) {
     let currentDate = new Date();
