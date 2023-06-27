@@ -25,6 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests().antMatchers("/login").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/documentsTypes/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/documentsTypes").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/documentsTypesPaginado").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/cardTypes/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/cardTypes").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/usersPaginado").permitAll();
@@ -32,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests().antMatchers("/once/roles").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/configurations/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/configurations").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/configurationsPaginado").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/users").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/roles").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/usersPaginado").permitAll();
@@ -39,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests().antMatchers("/once/categories").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/subcategories/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/subcategories").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/soldProducts/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/soldProducts").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/soldProductsPaginado").permitAll();
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
 		http.cors();

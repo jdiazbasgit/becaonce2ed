@@ -14,17 +14,13 @@ public class DocumentTypeModelAssembler implements SimpleRepresentationModelAsse
 
 	@Override
 	public void addLinks(EntityModel<DocumentType> documentType) {
-		documentType.add(WebMvcLinkBuilder.linkTo(
-				WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getContent().getId()))
-				.withSelfRel());
+		documentType.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(documentType.getContent().getId())).withSelfRel());
 	}
 
 	@Override
 	public void addLinks(CollectionModel<EntityModel<DocumentType>> documentType) {
 		documentType.forEach(d -> {
-			d.add(WebMvcLinkBuilder.linkTo(
-					WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getContent().getId()))
-					.withSelfRel());
+			d.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(d.getContent().getId())).withSelfRel());
 		});
 	}
 

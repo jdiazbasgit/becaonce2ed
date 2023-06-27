@@ -37,4 +37,5 @@ public class SoldProduct extends RepresentationModel<SoldProduct> {
 	@JoinColumn(name = "profiles_id")
 	private Profile profile;
 
+	private boolean basket;
 }
