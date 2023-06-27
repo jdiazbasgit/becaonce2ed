@@ -12,3 +12,17 @@ toggleMenu(): void {
   this.menuVisible = !this.menuVisible;
 }
 }
+
+function highlightActiveButton(activeButtonId: string) {
+  const buttons = document.querySelectorAll('.nav-link button');
+
+  buttons.forEach(button => {
+    button.classList.remove('active');
+  });
+
+  const activeButton = document.getElementById(activeButtonId);
+  if (activeButton) {
+    activeButton.classList.add('active');
+  } 
+}
+
