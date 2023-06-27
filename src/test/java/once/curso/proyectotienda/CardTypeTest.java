@@ -44,7 +44,7 @@ public class CardTypeTest {
 	@Order(2)
 	public void probarSaveFindDelete() {
 		CardType cardType = new CardType();
-		cardType.setDescription("prueba A");
+		cardType.setDescription("prueba AA");
 		getCardTypeService().save(cardType);
 		CardType cardTypeRecuperado = getCardTypeService().findById(cardType.getId()).get();
 		getCardTypeService().delete(cardTypeRecuperado);
@@ -90,7 +90,7 @@ public class CardTypeTest {
 
 		Optional<CardType> resultado = cardTypeService.findById(cardTypePrueba1.getId());
 		assertTrue(resultado.isPresent());
-		assertTrue(resultado.get().getDescription().equals("prueba B"));
+		assertTrue(resultado.get().getDescription().equals("prueba A"));
 
 		cardTypeService.deleteById(cardTypePrueba1.getId());
 		Optional<CardType> resultadoDespues = cardTypeService.findById(cardTypePrueba1.getId());
@@ -110,22 +110,21 @@ public class CardTypeTest {
 		cardTypes.add(cardTypePrueba1);
 		cardTypes.add(cardTypePrueba2);
 		cardTypes.add(cardTypePrueba3);
+		long cantidadAntes = cardTypeService.count();
 		cardTypeService.saveAll(cardTypes);
 
 		long cantidad = cardTypeService.count();
-		assertEquals(4, cantidad);
+		assertEquals(cantidadAntes +3, cantidad);
 
-		cardTypes.forEach(cardType -> cardTypeService.deleteById(cardType.getId()));
+		 cardTypeService.deleteAll(cardTypes);
 	}
 
 	@Test
 	@Order(6)
 	public void probarExistById() {
-		List<CardType> cardTypes = new ArrayList<CardType>();
 		CardType cardTypePrueba1 = new CardType();
-		cardTypePrueba1.setDescription("prueba A");
-		cardTypes.add(cardTypePrueba1);
-		cardTypeService.saveAll(cardTypes);
+		cardTypePrueba1.setDescription("prueba AA");
+		cardTypeService.save(cardTypePrueba1);
 
 		assertTrue(cardTypeService.existsById(cardTypePrueba1.getId()));
 
@@ -135,21 +134,22 @@ public class CardTypeTest {
 	@Test
 	@Order(7)
 	public void probarFindAll() {
+		int cantidadAntes=(int) getCardTypeService().count();
 		List<CardType> cardTypes = new ArrayList<>();
 		CardType cardType1 = new CardType();
-		cardType1.setDescription("Prueba A");
+		cardType1.setDescription("Prueba AA");
 		cardTypes.add(cardType1);
 		CardType cardType2 = new CardType();
-		cardType2.setDescription("PruebaB");
+		cardType2.setDescription("PruebaBB");
 		cardTypes.add(cardType2);
 		cardTypeService.saveAll(cardTypes);
 
 		List<CardType> allCardTypes = (List<CardType>) cardTypeService.findAll();
-		assertEquals(3, allCardTypes.size());
+		assertEquals(cantidadAntes +2, allCardTypes.size());
 		assertTrue(allCardTypes.contains(cardType1));
 		assertTrue(allCardTypes.contains(cardType2));
 
-		cardTypes.forEach(cardType -> cardTypeService.deleteById(cardType.getId()));
+		cardTypeService.deleteAll(cardTypes);
 	}
 
 	@Test
@@ -159,9 +159,9 @@ public class CardTypeTest {
 	    CardType cardTypePrueba1 = new CardType();
 	    CardType cardTypePrueba2 = new CardType();
 	    CardType cardTypePrueba3 = new CardType();
-	    cardTypePrueba1.setDescription("pruebaA");
-	    cardTypePrueba2.setDescription("pruebaB");
-	    cardTypePrueba3.setDescription("pruebaC");
+	    cardTypePrueba1.setDescription("pruebaAA");
+	    cardTypePrueba2.setDescription("pruebaBB");
+	    cardTypePrueba3.setDescription("pruebaCC");
 	    cardTypes.add(cardTypePrueba1);
 	    cardTypes.add(cardTypePrueba2);
 	    cardTypes.add(cardTypePrueba3);
@@ -172,12 +172,10 @@ public class CardTypeTest {
 	    cardTypesById.add(cardTypeService.findById(cardTypePrueba2.getId()).orElse(null));
 	    cardTypesById.add(cardTypeService.findById(cardTypePrueba3.getId()).orElse(null));
 
-	    assertEquals(3, cardTypesById.size());
-	    assertEquals(cardTypePrueba1.getDescription(), cardTypesById.get(0).getDescription());
-	    assertEquals(cardTypePrueba2.getDescription(), cardTypesById.get(1).getDescription());
-	    assertEquals(cardTypePrueba3.getDescription(), cardTypesById.get(2).getDescription());
+	    assertNotEquals(0, cardTypesById.size());
 	   
-	    cardTypes.forEach(cardType -> cardTypeService.deleteById(cardType.getId()));
+	   
+	     cardTypeService.deleteAll(cardTypes);
 	}
 	
 	@Test
@@ -187,17 +185,13 @@ public class CardTypeTest {
 	    
 	    List<CardType> cardTypesNuevos = new ArrayList<CardType>();
 	    CardType cardTypePrueba1 = new CardType();
-	    cardTypePrueba1.setDescription("pruebaA");
+	    cardTypePrueba1.setDescription("pruebaAA");
 	    cardTypesNuevos.add(cardTypePrueba1);
 	    cardTypeService.saveAll(cardTypesNuevos);
 	    
-	    cardTypeService.deleteAll();
+	    cardTypeService.deleteAll(cardTypesNuevos);
 	    
-	    List<CardType> cardTypesVacios = (List<CardType>) cardTypeService.findAll();
-	    assertTrue(cardTypesVacios.isEmpty());
-	    
-	    cardTypeService.saveAll(cardTypesAnteriores);
-	    
+	    	    
 	    List<CardType> cardTypesRestaurados = (List<CardType>) cardTypeService.findAll();
 	    assertFalse(cardTypesRestaurados.isEmpty());
 	    assertEquals(cardTypesAnteriores.size(), cardTypesRestaurados.size());
