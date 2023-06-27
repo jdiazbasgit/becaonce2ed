@@ -3,7 +3,6 @@ package once.curso.proyectotienda;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +30,12 @@ public class ConfigurationTest {
 	@Test
 	public void findAll() {
 		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
-		assertNotEquals(configurations.size(), 0);
+		assertNotEquals(0, configurations.size());
 	}
 
 	@Order(2)
 	@Test
-	public void SaveAll() {
+	public void saveAll() {
 		Long cantidadAlEmpezar = getConfigurationService().count();
 
 		List<Configuration> configurations = new ArrayList<Configuration>();
@@ -46,7 +45,8 @@ public class ConfigurationTest {
 
 		getConfigurationService().saveAll(configurations);
 		assertEquals(getConfigurationService().count(), cantidadAlEmpezar + 1);
-
+		
+		getConfigurationService().delete(configurationPrueba1);
 	}
 
 	@Order(3)
