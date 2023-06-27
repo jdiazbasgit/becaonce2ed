@@ -72,7 +72,7 @@ public class TransactionRestController {
 	 * return CollectionModel.of(transaction); }
 	 */
 	@PatchMapping(value = "/transactions")
-	public List<Transaction> getTransactionsByCurrentAccount(Transaction transaction) {
+	public List<Transaction> getTransactionsByCurrentAccount(@RequestBody Transaction transaction) {
 		return getTransactionService().getTransactionsByCurrentAccount(transaction.getCurrentAccount().getId());
 	}
 
