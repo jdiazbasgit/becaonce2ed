@@ -79,7 +79,7 @@ export class ModalProfilesComponent {
         this.image = this.imageContent.toString();
       }
 
-      const profile = new ProfileBean(this.id, this.image, this.first_name, this.last_name, this.identification, this.credit_card, this.email, this.city, this.country, this.phone, this.address, this.postal_code, this.user_id, this.documentstype_id, this.cardtype_id);
+      const profile = new ProfileBean(this.id, this.image || '', this.first_name, this.last_name, this.identification, this.credit_card, this.email, this.city, this.country, this.phone, this.address, this.postal_code, this.user_id, this.documentstype_id, this.cardtype_id);
 
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {

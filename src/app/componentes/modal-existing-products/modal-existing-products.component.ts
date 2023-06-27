@@ -20,8 +20,10 @@ export class ModalExistingProductsComponent {
 
   imageContent: string = "";
 
-  @Output() eventoExistingProduct = new EventEmitter();
+  categories: any[] = [];
+  subcategories: any[] = [];
 
+  @Output() eventoExistingProduct = new EventEmitter();
   constructor(private service: ExistingProductService) { }
 
   getImage(imageBytes: string | null): string {
@@ -77,7 +79,7 @@ export class ModalExistingProductsComponent {
       const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.');
       this.price = priceValue.toString();
 
-      const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory || 'http://localhost:8080/once/subcategory/6'); //De momento con el numero 6
+      const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory);
 
       this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
         .subscribe((dato: boolean) => {
@@ -119,5 +121,21 @@ export class ModalExistingProductsComponent {
 
   closeModal(): void {
     this.eventoExistingProduct.emit({ salida: "OK" });
+  }
+
+  getDataCategory(id:string) {
+    this.service.getDatos("http://localhost:8080/once/category/"+id)
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.categories = response._embedded.profiles;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
+        }
+      })
   }
 }
