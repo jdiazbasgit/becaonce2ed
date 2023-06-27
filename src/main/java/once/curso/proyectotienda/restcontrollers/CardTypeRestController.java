@@ -49,7 +49,7 @@ public class CardTypeRestController {
 		return getCardTypeService().save(cardType);
 	}
 
-	@GetMapping("/cardTypes{id}")
+	@GetMapping("/cardTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<CardType> findById(@PathVariable int id) {
 		CardType cardType = getCardTypeService().findById(id).get();
