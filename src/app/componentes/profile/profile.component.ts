@@ -85,7 +85,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((dato: boolean) => {
         if (dato) {
           this.message = 'Perfil eliminado correctamente.';
-          this.ngOnInit();
+          this.getData();
         }
         else
           this.message ='Perfil no se ha eliminado';
