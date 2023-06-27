@@ -65,10 +65,10 @@ public class SubCategoryRestController {
 	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
 		subCategory.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId()))
+				.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(subCategory.getCategory().getId()))
 				.withRel("category"));
 		subCategory.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId()))
+				.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(subCategory.getId()))
 				.withSelfRel());
 		return EntityModel.of(subCategory);
 	}
