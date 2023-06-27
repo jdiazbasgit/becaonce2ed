@@ -43,6 +43,7 @@ export class OperacionesComponent {
           this.actualizarUltimoMovimiento(tipo, this.concepto, currentDate); // Actualizar el último movimiento con el tipo, concepto y fecha
           this.monto = 0;
           this.concepto = ''; // Restablecer el concepto a un valor vacío
+          this.description='';
         } else {
           console.log("La grabación no se ha realizado")
         }

@@ -12,25 +12,25 @@
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
-            <select [(ngModel)]="description" 
-              name="description">
+            <select [(ngModel)]="description" name="description">
               <option value="0">Selecciona Concepto...</option>
-              <option
-                value="description1._links.self.href.substring(description1._links-self.href.lastIndexOf('/')+1)"
+              <option value="description1._links.self.href.substring(description1._links-self.href.lastIndexOf('/')+1)"
                 *ngFor="let description1 of descriptions">{{description1.description}}</option>
             </select>
           </span>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="btn-group">
-    <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
-    <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
-  </div>
 
-  <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{ ultimoMovimiento?.fecha |
-    date: 'dd/MM/yyyy' }}</p>
-  <p class="text-center">Saldo actual: {{ saldo }}</p>
+    <div class="btn-group">
+      <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
+      <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
+    </div>
+
+    <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{
+      ultimoMovimiento?.fecha |
+      date: 'dd/MM/yyyy' }}</p>
+    <p class="text-center">Saldo actual: {{ saldo }}</p>
+  </div>
 </div>
