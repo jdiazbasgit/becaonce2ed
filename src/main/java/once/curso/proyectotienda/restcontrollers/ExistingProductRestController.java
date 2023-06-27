@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectotienda.entities.ExistingProduct;
-import once.curso.proyectotienda.entities.SubCategory;
 import once.curso.proyectotienda.model.ExistingProductModelAssembler;
 import once.curso.proyectotienda.services.ExistingProductService;
 
@@ -76,19 +75,7 @@ public class ExistingProductRestController {
 		return CollectionModel.of(existingProduct);
 	}
 
-	/* R READ A PRODUCT */
-	/*@GetMapping("/products/{id}")
-	@CrossOrigin(origins ="*")
-	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
-		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
-		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class)
-				.findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
-		existingProduct.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(existingProduct.getId()))
-				.withSelfRel());
-		return EntityModel.of(existingProduct);
-	}*/
-	
+	/* R READ A PRODUCT */	
 	@GetMapping("/products/{id}")
 	@CrossOrigin(origins ="*")
 	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
