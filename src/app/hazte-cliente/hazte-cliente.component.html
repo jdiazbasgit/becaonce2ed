@@ -1,51 +1,84 @@
 <div class="container">
-  <h1 style="text-align: center;">Hazte Cliente</h1>
-  <ng-container>
-    <div class="d-flex justify-content-center align-items-center formulario-container">
-      <form (submit)="guardaDatos()" class="text-center">
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" [(ngModel)]="name" required [ngModelOptions]="{standalone: true}" class="form-control">
+  <h1>Hazte Cliente</h1>
+  <form class="needs-validation">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="name" required
+          [ngModelOptions]="{standalone: true}">
+        <div class="valid-tooltip">
+
         </div>
-        
-        <div class="form-group">
-          <label for="apellidos">Apellidos:</label>
-          <input type="text" id="apellidos" [(ngModel)]="secondName" required [ngModelOptions]="{standalone: true}" class="form-control">
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" class="form-control" id="apellidos" [(ngModel)]="secondName" required
+          [ngModelOptions]="{standalone: true}">
+        <div class="valid-tooltip">
         </div>
-        
-        <div class="form-group">
-          <label for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" [(ngModel)]="phone" required [ngModelOptions]="{standalone: true}" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" [(ngModel)]="email" required [ngModelOptions]="{standalone: true}" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="identificationType">Tipo de Documento:</label>
-          <select [(ngModel)]="identificationType" [ngModelOptions]="{standalone: true}" name="identificationType" class="form-control">
-            <option value="0">Seleccione Documento....</option>
-            <option value="{{ identificationType._links.self.href.substring(identificationType._links.self.href.lastIndexOf('/')+1) }}" *ngFor="let identificationType of identificationTypes">{{identificationType.description}}</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label for="documentodeidentidad">Nº Documento:</label>
-          <input type="text" id="documentodeidentidad" [(ngModel)]="identification" required [ngModelOptions]="{standalone: true}" class="form-control">
-        </div>
-        
-        <div class="form-group">
-          <label for="usuario">Usuario:</label>
-          <input type="text" id="usuario" [(ngModel)]="user" required [ngModelOptions]="{standalone: true}" class="form-control">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </form>
+      </div>
     </div>
-  </ng-container>
- 
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="telefono">Telefono:</label>
+        <input type="text" class="form-control" id="telefono" [(ngModel)]="phone" required
+          [ngModelOptions]="{standalone: true}">
+        <div class="valid-tooltip">
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="documentodeidentidad">Documento de Identidad</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><select [(ngModel)]="identificationType"
+                [ngModelOptions]="{standalone: true}" name="identificationType">
+                <option value="0">Tipo de Documento</option>
+                <option
+                  value="identificationType._links.self.href.substring(identificationType._links.self.href.lastIndexOf('/')+1)"
+                  *ngFor="let identificationType of identificationTypes">{{identificationType.description}}</option>
+              </select></span>
+          </div>
+          <input type="text" class="form-control" id="documentodeidentidad" placeholder="Número de Documento"
+            [(ngModel)]="identification" required [ngModelOptions]="{standalone: true}" required>
+          <div class="invalid-tooltip">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div class="col-md-4 mb-3">
+          <label for="email">Email:</label>
+          <input type="text" id="email" class="form-control" [(ngModel)]="email" required
+            [ngModelOptions]="{standalone: true}">
+          <div class="invalid-tooltip">
 
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="usuario">Usuario</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">👥</span>
+            </div>
+            <input type="text" class="form-control" id="usuario" [(ngModel)]="user" [ngModelOptions]="{standalone: true}"
+            required>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="contraseña">Contraseña</label>
+          <input type="text" class="form-control" id="password" [(ngModel)]="password"
+            [ngModelOptions]="{standalone: true}" required>
+          <div class="invalid-tooltip">
 
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" (click)="guardaDatos()">Guardar</button>  <button class="btn btn-primary" (click)=" comprobarDatos()" >Comprobar</button>
+    <h1>{{mensajeEmail}}</h1>
+    <h1>{{mensajePhone}}</h1>
+    <h1>{{mensajeUser}}</h1>
+  </form>
 </div>

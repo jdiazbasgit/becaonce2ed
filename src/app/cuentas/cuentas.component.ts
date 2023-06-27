@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import UserNameBean from '../beans/UserNameBean';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuentas',
@@ -14,7 +15,7 @@ export class CuentasComponent {
   cuentas: any
 
 
-  constructor(private service:ProyectosService){
+  constructor(private service:ProyectosService, private router:Router){
 
   }
 
@@ -29,6 +30,11 @@ export class CuentasComponent {
       }
     })
     
+  }
+
+  elegirCuenta(cuenta:number){
+    sessionStorage['cuenta'] = cuenta
+    this.router.navigateByUrl("detalles")
   }
 
 }

@@ -28,6 +28,9 @@ export class LoginComponent {
   }
 
   ngOnInit() {
+    if (this.router.url == "/") {
+      this.router.navigateByUrl("landing")
+    }
     //remover despues de hacer pruebas***{
     //this.ModoPruebaMeterTokenValidoYampliarInactividad();
     //this.router.navigateByUrl("paneladministrador")
