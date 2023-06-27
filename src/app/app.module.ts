@@ -84,6 +84,8 @@ import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-
     FormsModule,
     HttpClientModule,
     
+    
+    
 
   ],
   providers: [],

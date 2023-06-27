@@ -20,7 +20,6 @@ import ProfileUserDtoStringBean from '../beans/ProfileUserDtoStringBean';
 
 
 export class HazteClienteComponent implements OnInit {
-
   name: string;
   secondName: string;
   identification: string;
@@ -44,6 +43,8 @@ export class HazteClienteComponent implements OnInit {
   mensajePhone: string;
   mensajeUser: string;
   mensaje: string
+  passwordVisible: boolean = false;
+
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
@@ -66,6 +67,7 @@ export class HazteClienteComponent implements OnInit {
     this.mensajePhone = ""
     this.mensajeUser = ""
     this.mensaje = ""
+    
   }
 
   ngOnInit() {
@@ -75,7 +77,7 @@ export class HazteClienteComponent implements OnInit {
 
 
     })
-    this.comprobarDatos();
+ 
   }
 
 
@@ -93,12 +95,23 @@ export class HazteClienteComponent implements OnInit {
       this.mensajePhone = "El Telefono ya Existe"
       if(datos.user)
       this.mensajeUser = "El Usuario ya Existe"
-
-
     })
-
   
   }
+  togglePasswordVisibility() {
+    const passwordField = document.getElementById("password") as HTMLInputElement;
+  
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+    } else {
+      passwordField.type = "password";
+    }
+  
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+
+ 
 
   guardaDatos() {
 
