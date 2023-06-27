@@ -10,6 +10,7 @@ export class MovimientosComponent implements OnInit {
   operaciones: any[] = [];
   cuentasCorrientes: any[] = [];
   urlTransaction: string = "http://localhost:8080/once/transactions";
+  urlCuentaCorriente:string="http://localhost:8080/once/currentsAccounts"
 
   constructor(private proyectosService: ProyectosService) {}
 
@@ -27,7 +28,7 @@ export class MovimientosComponent implements OnInit {
   }
 
   obtenerCuentasCorrientes() {
-    this.proyectosService.getDatos(this.urlTransaction).subscribe(
+    this.proyectosService.getDatos(this.urlCuentaCorriente).subscribe(
       (cuentas: any) => {
         this.cuentasCorrientes = cuentas._embedded.currentAccounts;
         this.vincularMovimientosCuentasCorrientes();
@@ -40,5 +41,11 @@ export class MovimientosComponent implements OnInit {
       const cuentaCorriente = this.cuentasCorrientes.find((cuenta: any) => cuenta.id === movimiento.cuentaCorrienteId);
       movimiento.cuentaCorriente = cuentaCorriente;
     });
+  }
+
+  filtrarMovimientosCuentaSeleccionada(){
+   const cuentaSeleccionada = sessionStorage['cuenta'] 
+   
+
   }
 }
