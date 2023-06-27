@@ -1,9 +1,9 @@
 class ProfileBean{
   id: string
-  first_name: string;
+  name: string;
   image: string;
   identification: string;
-  last_name: string;
+  second_name: string;
   credit_card: string;
   email: string;
   city: string;
@@ -11,15 +11,18 @@ class ProfileBean{
   phone: string;
   address: string;
   postal_code: string;
-  users_id: string;
-  documentstype_id: string;
-  cardtype_id: string;
+  Users_id: string;
+  Document_Types_Id: string;
+  Card_Types_Id: string;
+  users:string;
+  user: string;
+  /*psw: string; ,user:string, psw:string*/
 
-  constructor(id:string, image:string, first_name:string, last_name:string, identification:string, credit_card:string, email:string, city:string, country:string, phone:string, address:string, postal_code:string, users_id:string, documentstype_id:string, cardtype_id:string ){
+  constructor(id:string, image:string, first_name:string, last_name:string, identification:string, credit_card:string, email:string, city:string, country:string, phone:string, address:string, postal_code:string, users_id:string, documentstype_id:string, cardtype_id:string, user:string, users:string){
     this.id=id;
-    this.first_name=first_name;
+    this.name=first_name;
     this.image=image;
-    this.last_name=last_name;
+    this.second_name=last_name;
     this.identification=identification;
     this.credit_card=credit_card;
     this.email=email;
@@ -28,9 +31,12 @@ class ProfileBean{
     this.phone=phone;
     this.address=address;
     this.postal_code=postal_code;
-    this.users_id=users_id;
-    this.documentstype_id=documentstype_id;
-    this.cardtype_id=cardtype_id;
+    this.Users_id=users_id;
+    this.Document_Types_Id=documentstype_id;
+    this.Card_Types_Id=cardtype_id;
+    this.user=user;
+    this.users=users;
+    /*this.psw=psw;*/
   }
 }
 export default ProfileBean;
