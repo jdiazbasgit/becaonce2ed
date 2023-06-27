@@ -47,11 +47,6 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	
-	
-	
-	
-	
-	
 	/* C CREATE A PROFILE */
 	@PostMapping("/profiles")
 	@CrossOrigin(origins = "*")

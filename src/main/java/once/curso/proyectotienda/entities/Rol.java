@@ -21,8 +21,4 @@ public class Rol extends RepresentationModel<Rol> {
 	
 	private String rol;
 	
-	@Override
-    public String toString() {
-        return "Rol{" + "id=" + id + ", rol=" + rol + '}';
-    }
 }

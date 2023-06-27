@@ -34,82 +34,92 @@ public class SubCategoryRestController {
 
 	@Autowired
 	private SubCategoryModelAssembler subCategoryModelAssembler;
-@Autowired
-	private  PagedResourcesAssembler<SubCategory> pagedResourcesAssembler;
-	
-	
+	@Autowired
+	private PagedResourcesAssembler<SubCategory> pagedResourcesAssembler;
+
 	@Autowired
 	private SubCategoryService subcategoryService;
-	
 
-	@GetMapping("/subcategory")
-	@CrossOrigin(origins ="*")
-	public Iterable<SubCategory> findAll(){
-		return getSubcategoryService().findAll();
-	}
-	
-	@GetMapping("/subcategoryHateoas")
-	@CrossOrigin(origins ="*")
-	public CollectionModel<SubCategory> getSubCategory() {
-		Iterable<SubCategory> subCategory = getSubcategoryService().findAll();
-		subCategory.forEach(s->{
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(s.getCategory().getId())).withRel("subcategory"));
-			 s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(s.getId())).withSelfRel());
-		 });
-		 return CollectionModel.of(subCategory);
-	}	
-	
-	@GetMapping("/subcategory/{id}")
-	@CrossOrigin(origins ="*")
+	/*
+	 * @GetMapping("/subcategory")
+	 * 
+	 * @CrossOrigin(origins ="*") public Iterable<SubCategory> findAll(){ return
+	 * getSubcategoryService().findAll(); }
+	 */
+
+	/*
+	 * @GetMapping("/subcategories")
+	 * 
+	 * @CrossOrigin(origins ="*") public CollectionModel<SubCategory>
+	 * getSubCategory() { Iterable<SubCategory> subCategory =
+	 * getSubcategoryService().findAll(); subCategory.forEach(s->{
+	 * s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.
+	 * class).findById(s.getCategory().getId())).withRel("subcategory"));
+	 * s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.
+	 * class).findById(s.getId())).withSelfRel()); }); return
+	 * CollectionModel.of(subCategory); }
+	 */
+
+	@GetMapping("/subcategories/{id}")
+	@CrossOrigin(origins = "*")
 	public EntityModel<SubCategory> findById(@PathVariable int id) {
 		SubCategory subCategory = getSubcategoryService().findById(id).get();
-		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId())).withRel("subcategory"));
-		subCategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId())).withSelfRel());
-		 return EntityModel.of(subCategory);
+		subCategory.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(subCategory.getCategory().getId()))
+				.withRel("subcategory"));
+		subCategory.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(subCategory.getId()))
+				.withSelfRel());
+		return EntityModel.of(subCategory);
 	}
-	
-	@GetMapping("/subcategoryPaginado")
-	@CrossOrigin(origins ="*")
-	public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam int size, @RequestParam int page, @RequestParam String sort){
-	   StringTokenizer stringTokenizer =new StringTokenizer(sort,",");
-	   Sort orden=Sort.by("a");
-	   String campo=stringTokenizer.nextToken();
-	   String tipoOrden= stringTokenizer.nextToken();
-	   
-	   if(tipoOrden.equals("asc"))
-		   orden=Sort.by(campo).ascending();
-	   else 
-		   orden=Sort.by(campo).descending();
-	   
-	   Pageable pageable=PageRequest.of(page,size,orden);
-	   Page<SubCategory> subcategory=getSubcategoryService().findAll(pageable);
-	   
-	   return getPagedResourcesAssembler().toModel(subcategory,getSubCategoryModelAssembler());
+
+	@GetMapping("/subcategories")
+	@CrossOrigin(origins = "*")
+	public PagedModel<EntityModel<SubCategory>> findAllPaginado(@RequestParam(required = false) Integer size,
+			@RequestParam(required = false) Integer page, @RequestParam(required = false) String sort) {
+		Sort orden = null;
+		String campo;
+		String tipoOrden;
+		orden = Sort.by("description");
+		if (sort != null) {
+			StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
+			
+			campo = stringTokenizer.nextToken();
+			tipoOrden = stringTokenizer.nextToken();
+
+			if (tipoOrden.equals("asc"))
+				orden = Sort.by(campo).ascending();
+			else
+				orden = Sort.by(campo).descending();
+		}
+		if (size == null)
+			size = 10;
+		if (page == null)
+			page = 0;
+		Pageable pageable = PageRequest.of(page, size, orden);
+		Page<SubCategory> subcategory = getSubcategoryService().findAll(pageable);
+
+		return getPagedResourcesAssembler().toModel(subcategory, getSubCategoryModelAssembler());
 	}
-	
-	@PostMapping("/subcategory")
+
+	@PostMapping("/subcategories")
 	@CrossOrigin(origins = "*")
 	public boolean save(@RequestBody SubCategory subCategory) {
-		 	
+
 		return existById(getSubcategoryService().save(subCategory).getId());
 	}
 
-	@DeleteMapping("/subcategory/{id}")
+	@DeleteMapping("/subcategories/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean deleteById(@PathVariable int id) {
 		getSubcategoryService().deleteById(id);
 		return getSubcategoryService().existsById(id);
 	}
-	
-	@PostMapping("/subcategory/{id}")
+
+	@PostMapping("/subcategories/{id}")
 	@CrossOrigin(origins = "*")
 	public boolean existById(@PathVariable int id) {
 		return getSubcategoryService().existsById(id);
 	}
-	
-	
-	
-	
-	
-	
+
 }
