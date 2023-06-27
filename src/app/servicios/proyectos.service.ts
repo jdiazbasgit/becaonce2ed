@@ -23,5 +23,6 @@ export class ProyectosService {
   patch(url:string,user:any):Observable<any>{
     return this.httpClient.patch(url,user);
   }
+  
 
 }

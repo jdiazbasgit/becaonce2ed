@@ -32,7 +32,7 @@ export class HazteClienteComponent implements OnInit {
   password: string
   identificationTypes: Array<any>
   urlIdentificationTypes = "http://localhost:8080/once/identificationsTypes"
-  urlProfile = "http://localhost:8080/once/profiles"
+  urlProfile = "http://localhost:8080/once/profiles/save"
   urlRol = "http://localhost:8080/once/roles"
   urlUsers = "http://localhost:8080/once/users"
   urlComprobar="http://localhost:8080/once/profiles/comprobar"
@@ -97,56 +97,13 @@ export class HazteClienteComponent implements OnInit {
 
     })
 
-    /* this.profilServices.getDatos( this.urlProfile)
-       .subscribe((datos: any) => {
-         console.log(datos);
-         console.log(datos._embedded.profiles.length);
- 
-         datos._embedded.profiles.forEach((profile: any) => {
-           console.log(profile.email);
-           console.log(profile);
-           this.emailBaseDeDatos = profile.email;
-           this.telefonoBaseDatos = profile.phone;
-           console.log(this.telefonoBaseDatos);
- 
-           if (this.emailBaseDeDatos == this.email) {
-             console.log("El email ya existe");    
-               return 
-           }
-     
-           if (this.telefonoBaseDatos == this.phone) {
-             console.log("El número ya existe");
-             return 
-           }
-         });
-       });
- 
-      
- 
-     this.profilServices.getDatos(this.urlUsers)
-       .subscribe((datos: any) => {
-         console.log(datos);
-         console.log(datos._embedded.users);
- 
-         datos._embedded.users.forEach((users: any) => {
-           this.usuarioBaseDatos = users.user;
-           console.log(this.usuarioBaseDatos +" este es el cliente");
-           this.clave = users.password;
- 
-           if (this.usuarioBaseDatos == this.user) {
-             
-           }
-         });
-       });*/
-
-
-
+  
   }
 
   guardaDatos() {
 
 
-    this.profilServices.saveOrUpdate(this.urlProfile,
+    this.profilServices.patch(this.urlProfile,
       new ProfileBeans(this.name, this.secondName, this.identification, this.phone, this.email, this.identificationType, this.user, this.image, this.password))
       .subscribe((dato: boolean) => {
         if (dato) {
