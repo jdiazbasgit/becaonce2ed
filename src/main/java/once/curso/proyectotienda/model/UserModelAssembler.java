@@ -12,18 +12,19 @@ import once.curso.proyectotienda.restcontrollers.UserRestController;
 @Component
 public class UserModelAssembler implements SimpleRepresentationModelAssembler<User> {
 
-	@Override
 	public void addLinks(EntityModel<User> user) {
 		user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
 				.findById(user.getContent().getId())).withSelfRel());
+		user.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+				.findById(user.getContent().getRol().getId())).withRel("rol"));
 	}
 
-	@Override
 	public void addLinks(CollectionModel<EntityModel<User>> user) {
 		user.forEach(u->{
 			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
 					.findById(u.getContent().getId())).withSelfRel());
+			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
+					.findById(u.getContent().getRol().getId())).withRel("rol"));
 		});
 	}
-
 }

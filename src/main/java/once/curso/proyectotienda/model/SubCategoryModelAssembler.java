@@ -7,6 +7,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import once.curso.proyectotienda.entities.SubCategory;
+import once.curso.proyectotienda.restcontrollers.CategoryRestController;
 import once.curso.proyectotienda.restcontrollers.SubCategoryRestController;
 
 @Component
@@ -15,13 +16,17 @@ public class SubCategoryModelAssembler implements SimpleRepresentationModelAssem
 	public void addLinks(EntityModel<SubCategory> subcategory) {
 		subcategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController. class)
 				.findById(subcategory.getContent().getId())).withSelfRel());
-	}
+subcategory.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(subcategory.getContent().getCategory().getId())).withRel("category"));
+
+
+}
 
 @Override
 public void addLinks(CollectionModel<EntityModel<SubCategory>> subcategory) {
 	subcategory.forEach(s ->{
 		s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController. class)
 				.findById(s.getContent().getId())).withSelfRel());
+		s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class).findById(s.getContent().getCategory().getId())).withRel("category"));
 		
 	});
 	

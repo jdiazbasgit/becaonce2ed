@@ -18,12 +18,12 @@ public class RolService {
 	@Autowired
 	private RolCRUDRepository rolesCRUDRepository;
 
-	public <S extends Rol> S save(S entity) {
+	public Rol save(Rol entity) {
 		// orden 5, prueba hecha
 		return getRolesCRUDRepository().save(entity);
 	}
 
-	public <S extends Rol> Iterable<S> saveAll(Iterable<S> entities) {
+	public Iterable<Rol> saveAll(Iterable<Rol> entities) {
 		// orden 6
 		return getRolesCRUDRepository().saveAll(entities);
 	}
@@ -31,12 +31,6 @@ public class RolService {
 	public Optional<Rol> findById(Integer id) {
 		// orden 1, prueba hecha
 		return getRolesCRUDRepository().findById(id);
-	}
-
-	// NEW
-	public Optional<Rol> findByRol(String rol) {
-		// orden 4, prueba hecha
-		return getRolesCRUDRepository().findByRol(rol);
 	}
 
 	public boolean existsById(Integer id) {

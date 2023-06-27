@@ -76,10 +76,14 @@ public class ProfileRestController {
 	@CrossOrigin(origins = "*")
 	public EntityModel<Profile> findById(@PathVariable int id) {
 		Profile profile = getProfileService().findById(id).get();
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
-		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
+		profile.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getUsers().getId())).withRel("user"));
+		profile.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(profile.getUsers().getId())).withRel("cardTypes"));
+		profile.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
+		profile.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
 	}
 
