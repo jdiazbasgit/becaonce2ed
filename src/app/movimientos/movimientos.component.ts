@@ -42,4 +42,10 @@ export class MovimientosComponent implements OnInit {
       movimiento.cuentaCorriente = cuentaCorriente;
     });
   }
+
+  filtrarMovimientosCuentaSeleccionada(){
+   const cuentaSeleccionada = sessionStorage['cuenta'] 
+   
+
+  }
 }
