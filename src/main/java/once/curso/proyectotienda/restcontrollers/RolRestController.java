@@ -99,4 +99,10 @@ public class RolRestController {
 	public boolean existById(@PathVariable int id) {
 		return getRolService().existsById(id);
 	}
+	
+	@GetMapping("roles/count")
+	@CrossOrigin(origins = "*")
+	public long getRolesCount(){
+		return getRolService().count();
+	}
 }

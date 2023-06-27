@@ -48,11 +48,12 @@ public class UserRestController {
 	public CollectionModel<User> dameUser() {
 		Iterable<User> users = getUserService().findAll();
 		users.forEach(u -> {
+			
+			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
+					.withSelfRel());
 			u.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getRol().getId()))
 					.withRel("rol"));
-			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
-					.withSelfRel());
 		});
 		return CollectionModel.of(users);
 	}
