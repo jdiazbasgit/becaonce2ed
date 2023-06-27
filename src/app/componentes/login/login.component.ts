@@ -25,7 +25,7 @@ export class LoginComponent {
   counterAfkTimer: number = 30000;//contadortemporizador de inactividad
   afkTimer: any;//temporizadorDeInactividad notActive incorrectKey keyMessage
   notActive: boolean = false;//sin actividad
-
+  hide=true;
   constructor(private elementRef: ElementRef, private loginService: LoginService, private documentType: DocumentTypeService, private router: Router) {
 
   }

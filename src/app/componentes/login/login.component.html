@@ -1,26 +1,29 @@
-<div *ngIf="!logado" class="d-flex justify-content-end align-items-center">
+<!-- <div *ngIf="!logado" class="d-flex justify-content-end align-items-center">
     <button mat-button (click)="onPress()"> INGRESAR </button>
     <button mat-button routerLink="resgiter()"> REGISTRARSE (llamado de pagina pendiente)</button>
-</div>
+</div> -->
 
 <div *ngIf="logado" class="d-flex justify-content-end align-items-center">
     <button mat-button> Bienvenido/a {{user}} </button>
     <button mat-button (click)="closeSession()"> SALIR </button>
 </div>
-<div *ngIf="logado" class="d-flex justify-content-end align-items-center">
+<div *ngIf="!logado" class="d-flex justify-content-end align-items-center">
     <form class="example-form">
         <mat-form-field class="example-full-width">
             <mat-label>Usuario</mat-label><br>
-            <textarea matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU"></textarea>
+            <input matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU">
             <mat-error *ngIf="passwordFormControl.hasError('required')">
                 please enter a valid Contraseña (verificar si aun funciona)
             </mat-error>
-        </mat-form-field>
+        </mat-form-field><br><br>
 
         <mat-form-field class="example-full-width">
-            <mat-label>Contraseña</mat-label><br>
-            <textarea matInput placeholder="Contraseña" [(ngModel)]="inputPassword" name="inputPassword" id="inputP"></textarea>
-        </mat-form-field>
+            <mat-label>Password</mat-label><br>
+            <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [(ngModel)]="inputPassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
 
 
     </form>
