@@ -32,22 +32,15 @@ import once.curso.proyectotienda.services.CardTypeService;
 @RequestMapping("/once")
 public class CardTypeRestController {
 
+	
+	@Autowired
+	private CardTypeService cardTypeService;
+	
 	@Autowired
 	private CardTypeModelAssembler cardTypeModelAssembler;
 
 	@Autowired
 	private PagedResourcesAssembler<CardType> pagedResourcesAssembler;
-
-	@Autowired
-	private CardTypeService cardTypeService;
-
-
-	@PostMapping("/cardTypes")
-	@CrossOrigin(origins ="*")
-
-	public CardType save(@RequestBody CardType cardType) {
-		return getCardTypeService().save(cardType);
-	}
 
 	@GetMapping("/cardTypes/{id}")
 	@CrossOrigin(origins = "*")
@@ -91,10 +84,24 @@ public class CardTypeRestController {
 		return getPagedResourcesAssembler().toModel(cardType, getCardTypeModelAssembler());
 	}
 
+	@PostMapping("/cardTypes")
+	@CrossOrigin(origins = "*")
+
+	public boolean save(@RequestBody CardType cardType) {
+		return existById(getCardTypeService().save(cardType).getId());
+	}
+
+	@PostMapping("/cardTypes/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getCardTypeService().existsById(id);
+	}
+
 	@DeleteMapping("/cardTypes/{id}")
 	@CrossOrigin(origins = "*")
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getCardTypeService().deleteById(id);
+		return getCardTypeService().existsById(id);
 	}
 
 }

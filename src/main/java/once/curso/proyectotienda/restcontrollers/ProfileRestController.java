@@ -47,11 +47,6 @@ public class ProfileRestController {
 	private final ProfileService profileService;
 	
 	
-	
-	
-	
-	
-	
 	/* C CREATE A PROFILE */
 	@PostMapping("/profiles")
 	@CrossOrigin(origins = "*")
@@ -91,7 +86,7 @@ public class ProfileRestController {
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class)
 				.findById(profile.getUsers().getId())).withRel("cardTypes"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class)
-				.findById(profile.getDocumentstype().getId())).withRel("docomentTypes"));
+				.findById(profile.getDocumentstype().getId())).withRel("documentTypes"));
 		profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class)
 				.findById(profile.getId())).withSelfRel());
 		 return EntityModel.of(profile);
@@ -99,11 +94,11 @@ public class ProfileRestController {
 
 		
 	/* U UPDATE A PROFILE */
-	@PutMapping("/profiles/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
-	//@GetMapping("/profiles/update/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	@PutMapping("/profiles/{id}") //SPRING BOOT 
+	//@GetMapping("/profiles/update/{id}") //Junit text
 	@CrossOrigin(origins = "*")
-	public ResponseEntity<Profile> updateProfile(@PathVariable(value = "id") int profileId, @RequestBody Profile profileDetails) 
-			throws ResourceNotFoundException {
+	public ResponseEntity<Profile> updateProfile(@PathVariable(value = "id") int profileId, 
+			@RequestBody Profile profileDetails) throws ResourceNotFoundException {
 		Profile profile = getProfileService().findById(profileId).get();
 	    	    //.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + profileId));
 
@@ -121,6 +116,7 @@ public class ProfileRestController {
 		profile.setUsers(profileDetails.getUsers());
 		profile.setCardstypes(profileDetails.getCardstypes());
 		profile.setDocumentstype(profileDetails.getDocumentstype());
+		
 	    final Profile updateProfile = getProfileService().save(profile);
 	    return ResponseEntity.ok(updateProfile);
 	}

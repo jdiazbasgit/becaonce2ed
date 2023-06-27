@@ -18,7 +18,6 @@ public class DocumentTypeService {
 	@Autowired
 	private DocumentTypeCRUDRepository documentTypeCRUDRepository;
 
-
 	public Iterable<DocumentType> getDocumentType(){
 		return getDocumentTypeCRUDRepository().findAll();
 	}
@@ -27,7 +26,7 @@ public class DocumentTypeService {
 		return getDocumentTypeCRUDRepository().save(entity);
 	}
 
-	public  Iterable<DocumentType> saveAll(Iterable<DocumentType> entities) {
+	public Iterable<DocumentType> saveAll(Iterable<DocumentType> entities) {
 		return getDocumentTypeCRUDRepository().saveAll(entities);
 	}
 
@@ -41,17 +40,14 @@ public class DocumentTypeService {
 
 	public Iterable<DocumentType> findAll() {
 		return getDocumentTypeCRUDRepository().findAll();
-		
 	}
 
 	public Page<DocumentType> findAll(Pageable pageable){
 		return getDocumentTypeCRUDRepository().findAll(pageable);
 	}
 	
-	
 	public Iterable<DocumentType> findAllById(Iterable<Integer> ids) {
 		return getDocumentTypeCRUDRepository().findAllById(ids);
-
 	}
 
 	public long count() {
@@ -77,4 +73,5 @@ public class DocumentTypeService {
 	public void deleteAll() {
 		getDocumentTypeCRUDRepository().deleteAll();
 	}
+
 }

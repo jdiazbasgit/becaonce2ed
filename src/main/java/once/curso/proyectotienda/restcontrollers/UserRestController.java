@@ -48,11 +48,12 @@ public class UserRestController {
 	public CollectionModel<User> dameUser() {
 		Iterable<User> users = getUserService().findAll();
 		users.forEach(u -> {
+			
+			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
+					.withSelfRel());
 			u.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(RolRestController.class).findById(u.getRol().getId()))
 					.withRel("rol"));
-			u.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(u.getId()))
-					.withSelfRel());
 		});
 		return CollectionModel.of(users);
 	}
@@ -75,29 +76,16 @@ public class UserRestController {
 		return getUserService().findAll();
 	}
 
-	@PostMapping("/users")
-	@CrossOrigin(origins = "*")
-	public User save(@RequestBody User user) {
-		return getUserService().save(user);
-	}
-
 	@PutMapping("/users")
 	@CrossOrigin(origins = "*")
 	public List<User> saveAll(@RequestBody List<User> users) {
 		return (List<User>) getUserService().saveAll(users);
 	}
 
-	@DeleteMapping("/user/{id}")
-	@CrossOrigin(origins = "*")
-	public void deleteById(@PathVariable int id) {
-		getUserService().deleteById(id);
-	}
-
 	@GetMapping("/usersPaginado")
 	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<User>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {
-
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
 		Sort orden = Sort.by("a");
 		String campo = stringTokenizer.nextToken();
@@ -113,5 +101,24 @@ public class UserRestController {
 		Page<User> user = getUserService().findAll(pageable);
 
 		return getPagedResourcesAssembler().toModel(user, getUserModelAssembler());
+	}
+
+	@PostMapping("/users")
+	@CrossOrigin(origins = "*")
+	public boolean save(@RequestBody User user) {
+		return existById(getUserService().save(user).getId());
+	}
+
+	@DeleteMapping("/user/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean deleteById(@PathVariable int id) {
+		getUserService().deleteById(id);
+		return getUserService().existsById(id);
+	}
+
+	@PostMapping("users/{id}")
+	@CrossOrigin(origins = "*")
+	public boolean existById(@PathVariable int id) {
+		return getUserService().existsById(id);
 	}
 }

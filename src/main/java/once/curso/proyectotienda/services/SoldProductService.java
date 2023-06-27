@@ -34,10 +34,6 @@ public class SoldProductService {
 		return getSoldProductCRUDRepository().findById(id);
 	}
 	
-	public Page<SoldProduct> findAll(Pageable pageable){
-		return getSoldProductCRUDRepository().findAll(pageable);
-		}
-
 	public boolean existsById(Integer id) {
 		return getSoldProductCRUDRepository().existsById(id);
 	}
@@ -45,6 +41,10 @@ public class SoldProductService {
 	public Iterable<SoldProduct> findAll() {
 		return getSoldProductCRUDRepository().findAll();
 	}
+
+	public Page<SoldProduct> findAll(Pageable pageable){
+		return getSoldProductCRUDRepository().findAll(pageable);
+		}
 
 	public Iterable<SoldProduct> findAllById(Iterable<Integer> ids) {
 		return getSoldProductCRUDRepository().findAllById(ids);
