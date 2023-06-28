@@ -9,41 +9,47 @@ import { NavigationEnd, Router } from '@angular/router';
 export class NavbarComponent {
 menuVisible: boolean = false;
 
+constructor(private router: Router) {}
+
 toggleMenu(): void {
   this.menuVisible = !this.menuVisible;
 }
+
+isRouteActive(route: string): boolean {
+  return this.router.isActive(route, true);
+}
 }
 
-function highlightActiveButton(activeButtonId: string) {
-  const buttons = document.querySelectorAll('.nav-link button');
+// function highlightActiveButton(activeButtonId: string) {
+//   const buttons = document.querySelectorAll('.nav-link button');
 
-  buttons.forEach(button => {
-    button.classList.remove('active');
-  });
+//   buttons.forEach(button => {
+//     button.classList.remove('active');
+//   });
 
-  const activeButton = document.getElementById(activeButtonId);
-  if (activeButton) {
-    activeButton.classList.add('active');
-  } 
-}
+//   const activeButton = document.getElementById(activeButtonId);
+//   if (activeButton) {
+//     activeButton.classList.add('active');
+//   } 
+// }
 
-@Directive({
-  selector: '[highlightActiveButton]'
-})
-export class HighlightActiveButtonDirective implements OnInit {
-  constructor(private router: Router, private el: ElementRef, private renderer: Renderer2) {}
+// @Directive({
+//   selector: '[highlightActiveButton]'
+// })
+// export class HighlightActiveButtonDirective implements OnInit {
+//   constructor(private router: Router, private el: ElementRef, private renderer: Renderer2) {}
 
-    ngOnInit() {
-      this.router.events.subscribe(event => {
-        if (event instanceof NavigationEnd) {
-          const currentRoute = this.router.url.slice(1);
+//     ngOnInit() {
+//       this.router.events.subscribe(event => {
+//         if (event instanceof NavigationEnd) {
+//           const currentRoute = this.router.url.slice(1);
 
-          if (currentRoute === this.el.nativeElement.id) {
-            this.renderer.addClass(this.el.nativeElement, 'active');
-          } else {
-            this.renderer.removeClass(this.el.nativeElement, 'active');
-          } 
-        }
-      });
-    }
-  }
+//           if (currentRoute === this.el.nativeElement.id) {
+//             this.renderer.addClass(this.el.nativeElement, 'active');
+//           } else {
+//             this.renderer.removeClass(this.el.nativeElement, 'active');
+//           } 
+//         }
+//       });
+//     }
+//   }

@@ -4,7 +4,6 @@
     font-weight: bold;
 }
 
-.nav.active {
-    background-color: azure;
-    color: black;
+.router-link-active{
+    background-color: darkgreen;   
 }
