@@ -32,8 +32,8 @@ export class OperacionesComponent {
     let jsonParaEnviar = {
       "date": currentDate.toISOString(),
       "current": tipo === 'Ingreso' ? this.monto : -this.monto, // Determinar el signo del monto según el tipo de movimiento
-      "description": "descriptions/1",
-      "currentAccount": "currentAccounts/1",
+      "description": "description/"+ this.description,
+      "currentAccount": "currentAccounts/"+ sessionStorage['idCuenta'],
     }
 
     this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
