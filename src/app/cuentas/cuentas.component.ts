@@ -32,8 +32,9 @@ export class CuentasComponent {
     
   }
 
-  elegirCuenta(cuenta:number){
+  elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
+    sessionStorage['idCuenta'] = id
     this.router.navigateByUrl("detalles")
   }
 
