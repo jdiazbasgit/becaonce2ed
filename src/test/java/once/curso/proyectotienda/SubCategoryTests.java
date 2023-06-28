@@ -13,9 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectotienda.entities.Category;
 import once.curso.proyectotienda.entities.SubCategory;
-import once.curso.proyectotienda.services.CardTypeService;
 import once.curso.proyectotienda.services.CategoryService;
 import once.curso.proyectotienda.services.SubCategoryService;
 
