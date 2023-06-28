@@ -13,3 +13,4 @@ class CurrentAccountBean {
         this.user = user
     }
 }
+export default CurrentAccountBean;
