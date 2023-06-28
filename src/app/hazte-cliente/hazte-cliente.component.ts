@@ -9,6 +9,10 @@ import { RolService } from '../servicios/rol.service';
 import UserBeans from '../beans/UserBeans';
 import { UserService } from '../servicios/user.service';
 import ProfileUserDtoStringBean from '../beans/ProfileUserDtoStringBean';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -16,11 +20,14 @@ import ProfileUserDtoStringBean from '../beans/ProfileUserDtoStringBean';
   selector: 'app-hazte-cliente',
   templateUrl: './hazte-cliente.component.html',
   styleUrls: ['./hazte-cliente.component.css']
+ 
+  
 })
 
 
-export class HazteClienteComponent implements OnInit {
-
+export class HazteClienteComponent implements OnInit { 
+  standalone: true = true; 
+  hide = true;
   name: string;
   secondName: string;
   identification: string;
@@ -44,6 +51,8 @@ export class HazteClienteComponent implements OnInit {
   mensajePhone: string;
   mensajeUser: string;
   mensaje: string
+  passwordVisible: boolean = false;
+
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
@@ -66,6 +75,7 @@ export class HazteClienteComponent implements OnInit {
     this.mensajePhone = ""
     this.mensajeUser = ""
     this.mensaje = ""
+    
   }
 
   ngOnInit() {
@@ -75,7 +85,7 @@ export class HazteClienteComponent implements OnInit {
 
 
     })
-    this.comprobarDatos();
+ 
   }
 
 
@@ -93,12 +103,30 @@ export class HazteClienteComponent implements OnInit {
       this.mensajePhone = "El Telefono ya Existe"
       if(datos.user)
       this.mensajeUser = "El Usuario ya Existe"
-
-
     })
-
   
   }
+  togglePasswordVisibility() {
+  
+  
+    this.passwordVisible = !this.passwordVisible;
+  }
+  cargarImagen(event: any) {
+    const file: File = event.target.files[0];
+  
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageBytes = new Uint8Array(e.target.result);
+        this.image = Array.from(imageBytes);
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  }
+
+
+
+ 
 
   guardaDatos() {
 
