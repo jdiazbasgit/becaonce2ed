@@ -50,7 +50,7 @@ export class MovimientosComponent implements OnInit {
     this.proyectosService.patch(this.urlTransaction, new CurrentAccountBean(cuentaSeleccionada, null, null, null, null)).subscribe(
       (cuentas: any) => {
         console.log(cuentas)
-        this.operaciones = cuentas._embedded.transactions;
+        this.operaciones = cuentas;
       }
     )
 
