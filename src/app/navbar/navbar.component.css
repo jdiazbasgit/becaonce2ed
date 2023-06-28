@@ -3,3 +3,7 @@
     color: azure;
     font-weight: bold;
 }
+
+.router-link-active{
+    background-color: darkgreen;   
+}
