@@ -33,7 +33,7 @@ export class OperacionesComponent {
       "date": currentDate.toISOString(),
       "current": tipo === 'Ingreso' ? this.monto : -this.monto, // Determinar el signo del monto según el tipo de movimiento
       "description": "description/"+ this.description,
-      "currentAccount": "currentAccounts/1",
+      "currentAccount": "currentAccounts/"+ sessionStorage['idCuenta'],
     }
 
     this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
