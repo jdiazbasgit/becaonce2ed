@@ -1,5 +1,8 @@
 package once.curso.proyectobanco.dtos;
 
+import lombok.Data;
+
+@Data
 public class ProfileIdentificationTypeDto {
 	
 	
