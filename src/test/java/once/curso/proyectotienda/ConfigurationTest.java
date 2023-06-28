@@ -28,28 +28,64 @@ public class ConfigurationTest {
 
 	@Order(1)
 	@Test
-	public void findAll() {
+	public void testFindAll() {
 		List<Configuration> configurations = (List<Configuration>) getConfigurationService().findAll();
 		assertNotEquals(0, configurations.size());
 	}
 
 	@Order(2)
 	@Test
-	public void saveAll() {
-		Long cantidadAlEmpezar = getConfigurationService().count();
+	public void testSaveFindDeleteId() {
+		Long contadorRegistro = getConfigurationService().count();
 
-		List<Configuration> configurations = new ArrayList<Configuration>();
-		Configuration configurationPrueba1 = new Configuration();
-		configurationPrueba1.setStockAlarm(1234);
-		configurations.add(configurationPrueba1);
+		Configuration configurationNuevo = new Configuration();
+		configurationNuevo.setStockAlarm(1111);
+		contadorRegistro++;
 
-		getConfigurationService().saveAll(configurations);
-		assertEquals(getConfigurationService().count(), cantidadAlEmpezar + 1);
+		getConfigurationService().save(configurationNuevo);
+		assertEquals(contadorRegistro, getConfigurationService().count());
 		
-		getConfigurationService().delete(configurationPrueba1);
+		Configuration configurationRecuperado = getConfigurationService().findById(configurationNuevo.getId()).get();
+		contadorRegistro--;
+		getConfigurationService().delete(configurationRecuperado);
+		assertEquals(contadorRegistro, getConfigurationService().count());
+
 	}
 
 	@Order(3)
+	@Test
+	public void testSaveAll() {
+		Long contadorRegistro = getConfigurationService().count();
+
+		List<Configuration> configurations = new ArrayList<Configuration>();
+
+		Configuration configurationNuevo1 = new Configuration();
+		configurationNuevo1.setStockAlarm(2222);
+		configurations.add(configurationNuevo1);
+		contadorRegistro++;
+
+		Configuration configurationNuevo2 = new Configuration();
+		configurationNuevo2.setStockAlarm(3333);
+		configurations.add(configurationNuevo2);
+		contadorRegistro++;
+
+		getConfigurationService().saveAll(configurations);
+		assertEquals(contadorRegistro, getConfigurationService().count());
+		
+		List<Integer> numeros = new ArrayList<Integer>();
+		
+		numeros.add(configurationNuevo1.getId());
+		contadorRegistro--;
+		
+		numeros.add(configurationNuevo2.getId());
+		contadorRegistro--;
+
+		getConfigurationService().deleteAllById(numeros);
+		
+		assertEquals(contadorRegistro, getConfigurationService().count());
+	}
+
+	@Order(4)
 	@Test
 	public void deleteByIDConfiguration() {
 		/*
@@ -86,7 +122,7 @@ public class ConfigurationTest {
 	 * assertNotEquals(getConfigurationService().count(), cantidadAlEmpezar + 0); }
 	 */
 
-	@Order(4)
+	@Order(5)
 	@Test
 	public void DelAllConfiguration() {
 		/*
@@ -95,7 +131,7 @@ public class ConfigurationTest {
 		 */
 	}
 
-	@Order(5)
+	@Order(6)
 	@Test
 	public void existsById() {
 		 //int numID = 229;
@@ -107,7 +143,7 @@ public class ConfigurationTest {
 
 	}
 
-	@Order(6)
+	@Order(7)
 	@Test
 	public void findAllById() {
 
@@ -121,7 +157,7 @@ public class ConfigurationTest {
 
 	}
 
-	@Order(7)
+	@Order(8)
 	@Test
 	public void count() {
 
@@ -145,7 +181,7 @@ public class ConfigurationTest {
 
 	}
 
-	@Order(8)
+	@Order(9)
 	@Test
 	public void findById() {
 
