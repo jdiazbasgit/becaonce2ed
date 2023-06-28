@@ -14,7 +14,7 @@
           <span class="input-group-text">
             <select [(ngModel)]="description" name="description">
               <option value="0">Selecciona Concepto...</option>
-              <option value="description1._links.self.href.substring(description1._links-self.href.lastIndexOf('/')+1)"
+              <option value="{{description1._links.self.href.substring(description1._links.self.href.lastIndexOf('/')+1)}}"
                 *ngFor="let description1 of descriptions">{{description1.description}}</option>
             </select>
           </span>

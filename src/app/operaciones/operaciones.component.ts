@@ -32,7 +32,7 @@ export class OperacionesComponent {
     let jsonParaEnviar = {
       "date": currentDate.toISOString(),
       "current": tipo === 'Ingreso' ? this.monto : -this.monto, // Determinar el signo del monto según el tipo de movimiento
-      "description": "descriptions/1",
+      "description": "description/"+ this.description,
       "currentAccount": "currentAccounts/1",
     }
 
