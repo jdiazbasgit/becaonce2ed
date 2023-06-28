@@ -36,13 +36,16 @@ public class Profile extends RepresentationModel<Profile>{
 	
 	@ManyToOne
 	@JoinColumn (name="Users_id")
-	private User Users;
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn (name="Card_Types_Id")
-	private CardType cardstypes;
+	private CardType cardtType;
 	
 	@ManyToOne
 	@JoinColumn (name="Document_Types_Id")
-	private DocumentType documentstype;
+	private DocumentType documentType;
 }
+
+
+

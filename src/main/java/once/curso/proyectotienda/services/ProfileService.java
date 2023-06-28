@@ -2,18 +2,39 @@ package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectotienda.dtos.ProfileDto;
 import once.curso.proyectotienda.entities.Profile;
+import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
+import once.curso.proyectotienda.repositories.DocumentTypeCRUDRepository;
 import once.curso.proyectotienda.repositories.ProfileCRUDRepository;
+import once.curso.proyectotienda.repositories.RolCRUDRepository;
+import once.curso.proyectotienda.repositories.UserCRUDRepository;
 
 @Service
 @Data
 public class ProfileService {
+	@Autowired
+	private UserCRUDRepository userCRUDRepository;
+
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+
+	@Autowired
+	private CardTypeCRUDRepository cardTypeCRUDRepository;
+
+	@Autowired
+	private DocumentTypeCRUDRepository documentTypeCRUDRepository;
+	
 	@Autowired
 	private ProfileCRUDRepository profilesCRUDRepository;
 	
@@ -68,5 +89,38 @@ public class ProfileService {
 
 	public void deleteAll() {
 		getProfilesCRUDRepository().deleteAll();
+	}
+	
+	@Transactional
+	public Profile crearProfile(ProfileDto profileDto  ) {
+			Profile profileNew = new Profile();
+			
+			profileNew.setName(profileDto.getName());
+			profileNew.setSecond_name(profileDto.getSecondName());
+			profileNew.setIdentification(profileDto.getIdentification());
+			profileNew.setCredit_card(profileDto.getCreditCard());
+			profileNew.setAddress(profileDto.getAddress());
+			profileNew.setPostal_code(profileDto.getPostalCode());
+			profileNew.setCountry(profileDto.getCountry());
+			profileNew.setEmail(profileDto.getEmail());
+			profileNew.setCity(profileDto.getCity());
+			profileNew.setPhone(profileDto.getPhone());
+			profileNew.setImage(profileDto.getImage());
+			
+			profileNew.setCardtType((getCardTypeCRUDRepository().findById(profileDto.getCardtType()).get()));
+			profileNew.setDocumentType((getDocumentTypeCRUDRepository().findById(profileDto.getDocumentType()).get()));
+
+			//profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(profileDto.getIdentificationType()).get()));
+						
+			 User userNuevo = new User();
+			    userNuevo.setUser(profileDto.getUser());
+			    userNuevo.setEnabled(false);
+			    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
+			    userNuevo.setRol(getRolCRUDRepository().findById(25).get()); //ES ROLE_ADMIN
+
+			    profileNew.setUser(getUserCRUDRepository().save(userNuevo));
+			    Profile p = getProfilesCRUDRepository().save(profileNew);
+
+			    return p;
 	}
 }

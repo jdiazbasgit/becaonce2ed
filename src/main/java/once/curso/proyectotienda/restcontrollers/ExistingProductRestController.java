@@ -90,10 +90,10 @@ public class ExistingProductRestController {
 		return EntityModel.of(existingProduct);
 	}
 
-	/* U UPDATE A PRODUCT */
-	@PutMapping("/products/{id}") //SPRING BOOT APP 
+	/* U UPDATE A PRODUCT ESTO ES PARA JBDC*/
+	//@PutMapping("/products/{id}") //SPRING BOOT APP 
 	// @GetMapping("/products/{id}") //Junit text
-	@CrossOrigin(origins ="*")
+	/*@CrossOrigin(origins ="*")
 	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
 			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId).get();
@@ -107,7 +107,7 @@ public class ExistingProductRestController {
 
 		final ExistingProduct updateExistingProduct = getExistingProductService().save(existingProduct);
 		return ResponseEntity.ok(updateExistingProduct);
-	}
+	}*/
 
 	/* D DELETE A PRODUCT */
 	@DeleteMapping("/products/{id}") //SPRING BOOT APP
