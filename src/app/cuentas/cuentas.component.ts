@@ -13,6 +13,7 @@ export class CuentasComponent {
   usuario: string = ""
   url: string = "http://localhost:8080/once/"
   cuentas: any
+  saldo: number[] = []
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -27,8 +28,12 @@ export class CuentasComponent {
       next: (cuentas) => {
         console.log(cuentas)
         this.cuentas = cuentas
+        cuentas.forEach(c => {
+          this.service.getDatos(this.url+"saldo/"+c.number)
+        });
       }
     })
+    
     
   }
 
