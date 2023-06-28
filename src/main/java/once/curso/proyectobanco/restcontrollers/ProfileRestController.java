@@ -130,7 +130,7 @@ public class ProfileRestController {
 		return getProfileService().existsById(id);
 	}
 	
-	@PatchMapping("/profile")
+	@PatchMapping("/profiles/save")
 	public Profile crearProfile(@RequestBody ProfileDto profileDto) {
 		
 		    return getProfileService().crearProfile(profileDto);
