@@ -16,7 +16,6 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -127,8 +126,8 @@ public class ProfileRestController {
 	}*/
 		
 	/* D DELETE A PROFILES */
-	@DeleteMapping("/profiles/{id}") //FUNCIONA Junit text pero NO FUNCIONA SPRING BOOT APP 
-	//@GetMapping("/profiles/delete/{id}") //NO FUNCIONA Junit text pero FUNCIONA SPRING BOOT APP
+	@DeleteMapping("/profiles/{id}") //SPRING BOOT
+	//@GetMapping("/profiles/delete/{id}") //Junit text
 	@CrossOrigin(origins = "*")
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int profileId) 
 			throws ResourceNotFoundException {
@@ -169,25 +168,24 @@ public class ProfileRestController {
 	
 	@PatchMapping("/profiles/comprobar")
 	public ProfileUserDto getProfileUserDto(@RequestBody ProfileUserDtoString profileUserDtoString ) {
-		return getProfileService().getProfileUserDto(profileUserDtoString.getUser(),profileUserDtoString.getPhone(), profileUserDtoString.getEmail());
+		return getProfileService().getProfileUserDto(profileUserDtoString.getIdentification(),profileUserDtoString.getUser(),profileUserDtoString.getPhone(),profileUserDtoString.getEmail(), profileUserDtoString.getCreditcard());
 	}
-
 	
-	@PostMapping("/profiles")
+	/*@PostMapping("/profiles")
 	public boolean save(@RequestBody Profile profile) {
 		return getProfileService().existsById(getProfileService().save(profile).getId());
-	}
+	}*/
 	
 	@PutMapping("/profiles")
 	public List <Profile> saveAll(@RequestBody List<Profile> profiles) {
 		return (List<Profile>) getProfileService().saveAll(profiles);
 	}
 
-	@DeleteMapping("/profiles/{id}")
+	/*@DeleteMapping("/profiles/{id}")
 	public boolean deleteById(@PathVariable int id) {
 		getProfileService().deleteById(id);
 		return getProfileService().existsById(id);
-	}
+	}*/
 	
 	@PostMapping("/profiles/{id}")
 	public boolean existsById(@PathVariable int id) {

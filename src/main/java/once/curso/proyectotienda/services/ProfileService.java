@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.Data;
 import once.curso.proyectotienda.dtos.ProfileDto;
+import once.curso.proyectotienda.dtos.ProfileUserDto;
 import once.curso.proyectotienda.entities.Profile;
 import once.curso.proyectotienda.entities.User;
 import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
@@ -91,6 +92,10 @@ public class ProfileService {
 		getProfilesCRUDRepository().deleteAll();
 	}
 	
+	public ProfileUserDto getProfileUserDto(String identification, String user,String phone,String email, String creditcard) {
+		return getProfilesCRUDRepository().getProfileUserDto(identification, user, phone, email, creditcard);
+	}
+	
 	@Transactional
 	public Profile crearProfile(ProfileDto profileDto  ) {
 			Profile profileNew = new Profile();
@@ -109,8 +114,6 @@ public class ProfileService {
 			
 			profileNew.setCardtType((getCardTypeCRUDRepository().findById(profileDto.getCardtType()).get()));
 			profileNew.setDocumentType((getDocumentTypeCRUDRepository().findById(profileDto.getDocumentType()).get()));
-
-			//profileNew.setIdentificationType((getIdentificationTypeCRUDRepository().findById(profileDto.getIdentificationType()).get()));
 						
 			 User userNuevo = new User();
 			    userNuevo.setUser(profileDto.getUser());
