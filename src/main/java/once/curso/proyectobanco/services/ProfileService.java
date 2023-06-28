@@ -29,11 +29,7 @@ import once.curso.proyectobanco.repositories.UserCRUDRepository;
 @Data
 public class ProfileService {
 	
-	@Autowired
-	private EntityManager entityManager;
-	
-	@Autowired
-	private DataSource dataSource;
+
 
 	@Autowired
 	private ProfileCRUDRepository profileCRUDRepository;
