@@ -22,7 +22,7 @@
 
     <div class="my-4 p-5 border-bottom shadow">
         <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
-        <div *ngFor="let cuenta of cuentas" class="mt-4 border-bottom ms-5" role="button" (click)="elegirCuenta(cuenta.number)">
+        <div *ngFor="let cuenta of cuentas" class="mt-4 border-bottom ms-5" role="button" (click)="elegirCuenta(cuenta.number, cuenta.id)">
             <div class="d-flex justify-content-between texto-resaltado">
                 <h5>
                     <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
