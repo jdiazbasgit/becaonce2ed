@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.dtos.ProfileDto;
+import once.curso.proyectobanco.dtos.ProfileIdentificationTypeDto;
 import once.curso.proyectobanco.dtos.ProfileUserDto;
 import once.curso.proyectobanco.dtos.ProfileUserDtoString;
 import once.curso.proyectobanco.entities.Profile;
@@ -105,10 +106,13 @@ public class ProfileRestController {
 	
 	@PatchMapping("/profiles/comprobar")
 	public ProfileUserDto getProfileUserDto(@RequestBody ProfileUserDtoString profileUserDtoString ) {
-		return getProfileService().getProfileUserDto(profileUserDtoString.getUser(),profileUserDtoString.getPhone(), profileUserDtoString.getEmail());
+		return getProfileService().getProfileUserDto(profileUserDtoString.getUser(),profileUserDtoString.getPhone(), profileUserDtoString.getEmail(),profileUserDtoString.getIdentification());
 	}
-
 	
+	
+	
+
+
 	@PostMapping("/profiles")
 	public boolean save(@RequestBody Profile profile) {
 		return getProfileService().existsById(getProfileService().save(profile).getId());

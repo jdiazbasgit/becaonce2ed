@@ -8,5 +8,6 @@ public class ProfileUserDtoString {
 	private String email;
 	private String phone;
 	private String user;
+	private String identification;
 
 }

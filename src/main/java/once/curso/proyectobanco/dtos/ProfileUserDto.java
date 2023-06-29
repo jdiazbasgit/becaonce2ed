@@ -8,5 +8,6 @@ public class ProfileUserDto {
 	private boolean email;
 	private boolean phone;
 	private boolean user;
+	private boolean identification;
 
 }

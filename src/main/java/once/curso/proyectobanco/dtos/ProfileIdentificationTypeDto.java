@@ -8,4 +8,5 @@ public class ProfileIdentificationTypeDto {
 	
 	private int identificationType;
 	private String identification;
+
 }

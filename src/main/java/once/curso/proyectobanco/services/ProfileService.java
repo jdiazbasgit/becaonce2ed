@@ -95,11 +95,13 @@ public class ProfileService {
 		getProfileCRUDRepository().deleteAll();
 	}
 	
-	public ProfileUserDto getProfileUserDto(String user,String phone,String email) {
+	public ProfileUserDto getProfileUserDto(String user,String phone,String email, String identification) {
 		
-		return getProfileCRUDRepository().getProfileUserDto(user, phone, email);
+		return getProfileCRUDRepository().getProfileUserDto(user, phone, email,identification);
 		
 	}
+	
+
 
 	@Transactional
 	public Profile crearProfile(ProfileDto profileDto  ) {
@@ -125,5 +127,7 @@ public class ProfileService {
 		
 
 	}
+
+
 
 }
