@@ -16,6 +16,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -176,7 +177,7 @@ public class ProfileRestController {
 		return getProfileService().existsById(getProfileService().save(profile).getId());
 	}*/
 	
-	@PutMapping("/profiles")
+	@PutMapping("/profiles")@CrossOrigin(origins = "*")
 	public List <Profile> saveAll(@RequestBody List<Profile> profiles) {
 		return (List<Profile>) getProfileService().saveAll(profiles);
 	}
@@ -188,6 +189,7 @@ public class ProfileRestController {
 	}*/
 	
 	@PostMapping("/profiles/{id}")
+	@CrossOrigin(origins = "*")
 	public boolean existsById(@PathVariable int id) {
 		return getProfileService().existsById(id);
 	}
@@ -204,9 +206,7 @@ public class ProfileRestController {
 	
 	
 
-	/*FRONT
-	 * -clave --> email, user, phone, dni
-	 * 
+	/*
 	 * BACK
 	 * -restcontrolador --> pach 
 	 * -service --> profileUserDto 
