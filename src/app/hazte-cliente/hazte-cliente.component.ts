@@ -50,8 +50,12 @@ export class HazteClienteComponent implements OnInit {
   mensajeEmail: string;
   mensajePhone: string;
   mensajeUser: string;
+  mensajeIdentification:string
+  mensajeCampos:string
   mensaje: string
   passwordVisible: boolean = false;
+  activo:boolean=true
+
 
 
 
@@ -74,9 +78,12 @@ export class HazteClienteComponent implements OnInit {
     this.mensajeEmail = ""
     this.mensajePhone = ""
     this.mensajeUser = ""
+    this.mensajeIdentification=""
+    this.mensajeCampos=""
     this.mensaje = ""
     
   }
+
 
   ngOnInit() {
     this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos: any) => {
@@ -90,20 +97,32 @@ export class HazteClienteComponent implements OnInit {
 
 
   comprobarDatos() {
-    this.usuarioBaseDatos = '';
-    this.clave = '';
-    this.emailBaseDeDatos = '';
-    this.telefonoBaseDatos = '';
+    this.mensajeEmail = '';
+    this.mensajePhone = '';
+    this.mensajeUser = '';
+    this.mensajeIdentification = '';
+    this.mensajeCampos=""
+    this.activo=true;
 
 
-    this.rolservice.patch(this.urlComprobar,new ProfileUserDtoStringBean(this.email,this.phone,this.user)).subscribe((datos: any) => {
+    this.rolservice.patch(this.urlComprobar,new ProfileUserDtoStringBean(this.email,this.phone,this.user,this.identification)).subscribe((datos: any) => {
       if(datos.email)
       this.mensajeEmail = "Email ya Existe"
       if(datos.phone)
       this.mensajePhone = "El Telefono ya Existe"
       if(datos.user)
       this.mensajeUser = "El Usuario ya Existe"
+      if(datos.identification)
+      this.mensajeIdentification= "La Identificacion ya Existe"
+      if(!datos.email && !datos.phone && !datos.user && !datos.identification && this.name!=="" && this.secondName!=="" && this.password!==""){
+      this.activo=false
+
+      }else{
+        this.mensajeCampos="rellene todos los campos"
+      }
+      
     })
+   
   
   }
   togglePasswordVisibility() {
