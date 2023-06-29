@@ -35,7 +35,7 @@ import once.curso.proyectotienda.services.SubCategoryService;
 @SpringBootTest   
 @Data
 @TestMethodOrder(value = OrderAnnotation.class)
-public class CategoryTest {
+ class CategoryTest {
 
 	@Autowired
 	private CategoryCRUDRepository categoryCRUDRepository;
