@@ -140,6 +140,7 @@ public class ProfileRestController {
 		return response;
 	}
 	
+	
 	/* TOTAL PROFILES */
 	@GetMapping("/profiles/count")
 	@CrossOrigin(origins = "*")
@@ -156,22 +157,21 @@ public class ProfileRestController {
 	   String tipoOrden= stringTokenizer.nextToken();
 	   
 	   if(tipoOrden.equals("asc"))
-			   orden=Sort.by(campo).ascending();
-		   else 
-			   orden=Sort.by(campo).descending();
-		   
-		   Pageable pageable=PageRequest.of(page,size,orden);
-		   Page<Profile> profile=getProfileService().findAll(pageable);
-		   
-		   return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
+		   orden=Sort.by(campo).ascending();
+	   else 
+		   orden=Sort.by(campo).descending();
+	   Pageable pageable=PageRequest.of(page,size,orden);
+	   Page<Profile> profile=getProfileService().findAll(pageable);
+	   
+	   return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
 	 }
 	
-	@PatchMapping("/profiles/comprobar")
+	/*@PatchMapping("/profiles/comprobar")
 	public ProfileUserDto getProfileUserDto(@RequestBody ProfileUserDtoString profileUserDtoString ) {
 		return getProfileService().getProfileUserDto(profileUserDtoString.getIdentification(),profileUserDtoString.getUser(),profileUserDtoString.getPhone(),profileUserDtoString.getEmail(), profileUserDtoString.getCreditcard());
 	}
 	
-	/*@PostMapping("/profiles")
+	@PostMapping("/profiles")
 	public boolean save(@RequestBody Profile profile) {
 		return getProfileService().existsById(getProfileService().save(profile).getId());
 	}*/
@@ -187,18 +187,34 @@ public class ProfileRestController {
 		return getProfileService().existsById(id);
 	}*/
 	
-	@PostMapping("/profiles/{id}")
+	/*@PostMapping("/profiles/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getProfileService().existsById(id);
-	}
+	}*/
 	
-	@PatchMapping("/profiles/save")
+	/* PatchMapping es una anotación en Spring Framework que se utiliza para mapear una solicitud PATCH HTTP a un método de controlador en tu aplicación.
+	 * El método anotado con @PatchMapping manejará las solicitudes PATCH que coincidan con la URL especificada en la anotación. Puedes definir la URL 
+	 * utilizando una cadena de texto o una expresión de plantilla, similar a otras anotaciones de mapeo como @GetMapping o @PostMapping.
+	 * Aquí tienes un ejemplo de cómo se puede usar @PatchMapping en un controlador de Spring: */
+	@PatchMapping("/profiles/{id}")
+	@CrossOrigin(origins = "*")
 	public Profile crearProfile(@RequestBody ProfileDto profileDto) {		
 		 return getProfileService().crearProfile(profileDto);
 	}
+	
+	
 
-	/*
-	 http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc
+	/*FRONT
+	 * -clave --> email, user, phone, dni
+	 * 
+	 * BACK
+	 * -restcontrolador --> pach 
+	 * -service --> profileUserDto 
+	 * -CRUD --> getProfileUserDto
+	 * 
+	 * rescontroller -> servicios ->  crud -> dto
+	 * 
+	 * http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc
 	*/
 
 }
