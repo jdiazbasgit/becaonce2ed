@@ -187,12 +187,12 @@ public class ProfileRestController {
 		return getProfileService().existsById(id);
 	}*/
 	
-	/*@PostMapping("/profiles/{id}")
+	@PostMapping("/profiles/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getProfileService().existsById(id);
-	}*/
+	}
 	
-	/* PatchMapping es una anotación en Spring Framework que se utiliza para mapear una solicitud PATCH HTTP a un método de controlador en tu aplicación.
+	/* PatchMapping es una anotación en Spring Framework que se utiliza para mapear una solicitud PATCH HTTP a un método de controlador en la aplicación.
 	 * El método anotado con @PatchMapping manejará las solicitudes PATCH que coincidan con la URL especificada en la anotación. Puedes definir la URL 
 	 * utilizando una cadena de texto o una expresión de plantilla, similar a otras anotaciones de mapeo como @GetMapping o @PostMapping.
 	 * Aquí tienes un ejemplo de cómo se puede usar @PatchMapping en un controlador de Spring: */
