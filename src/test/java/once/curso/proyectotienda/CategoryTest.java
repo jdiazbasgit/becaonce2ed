@@ -32,7 +32,7 @@ import once.curso.proyectotienda.services.CategoryService;
 import once.curso.proyectotienda.services.ExistingProductService;
 import once.curso.proyectotienda.services.SubCategoryService;
 
-@SpringBootTest
+@SpringBootTest   
 @Data
 @TestMethodOrder(value = OrderAnnotation.class)
 public class CategoryTest {
@@ -72,7 +72,7 @@ public class CategoryTest {
 	@Order(1)
 	public void findAll() {
 		List<Category> category = (List<Category>) getCategoryService().findAll();
-		assertNotEquals(category.size(), 0);
+		assertNotEquals(0,category.size());
 	}
 
 	@Test

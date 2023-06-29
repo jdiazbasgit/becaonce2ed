@@ -25,7 +25,7 @@ import once.curso.proyectotienda.services.CardTypeService;
 @SpringBootTest
 @Data
 @TestMethodOrder(value = OrderAnnotation.class)
-public class CardTypeTest {
+ class CardTypeTest {
 
 	@Autowired
 	private CardTypeCRUDRepository cardTypeCRUDRepository;
