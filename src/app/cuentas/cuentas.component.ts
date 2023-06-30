@@ -14,6 +14,7 @@ export class CuentasComponent {
   url: string = "http://localhost:8080/once/"
   cuentas: any
   saldo: number[] = []
+  saldoTotal: number = 0
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -28,9 +29,15 @@ export class CuentasComponent {
       next: (cuentas) => {
         console.log(cuentas)
         this.cuentas = cuentas
-        cuentas.forEach(c => {
-          this.service.getDatos(this.url+"saldo/"+c.number)
-        });
+        cuentas.forEach((c:any, index:number) => {
+          this.service.getDatos(this.url+"saldo/"+c.number).subscribe({
+            next: (cuenta) => {
+              this.saldo[index] = cuenta
+              console.log(cuenta)
+              this.saldoTotal = this.saldoTotal + cuenta
+            }
+          })
+        })
       }
     })
     
