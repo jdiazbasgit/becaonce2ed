@@ -112,7 +112,7 @@ public class ProfileService {
 			profileNew.setPhone(profileDto.getPhone());
 			profileNew.setImage(profileDto.getImage());
 			
-			profileNew.setCardType((getCardTypeCRUDRepository().findById(profileDto.getCardTypes()).get()));
+			profileNew.setCardType((getCardTypeCRUDRepository().findById(profileDto.getCardType()).get()));
 			profileNew.setDocumentType((getDocumentTypeCRUDRepository().findById(profileDto.getDocumentType()).get()));
 						
 			 User userNuevo = new User();

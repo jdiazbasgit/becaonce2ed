@@ -15,12 +15,12 @@ public class ProfileDto {
 	private String city;
 	private String phone;
 	private byte[] image;
-	private int cardTypes;
+	private int cardType;
 	private int documentType;
 	private String user;
 	private String password;
 	
-	public ProfileDto(String name, String secondName, String identification, String creditCard, String address,
+	public ProfileDto(String name, String secondName, String identification, String creditCard, String address, 
 			String postalCode, String country, String email, String city, String phone, byte[] image, int cardTypes,
 			int documentType, String user, String password) {
 		super();
@@ -35,7 +35,7 @@ public class ProfileDto {
 		this.city = city;
 		this.phone = phone;
 		this.image = image;
-		this.cardTypes = cardTypes;
+		this.cardType = cardTypes;
 		this.documentType = documentType;
 		this.user = user;
 		this.password = password;
