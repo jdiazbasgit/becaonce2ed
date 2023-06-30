@@ -8,15 +8,15 @@
 
       <div class="modal-body text-center">
         <div class="mb-3">
-          <img [src]="getImage(image)" [alt]="first_name" class="rounded mb-3 img-size" id="setImage"><br>
+          <img [src]="getImage(image)" [alt]="firstname" class="rounded mb-3 img-size" id="setImage"><br>
           <label for="file-input" class="text-primary text-decoration-none">Cambiar foto del perfil</label>
           <input type="file" (change)="fileUpload($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
         </div>
 
         <div class="input-group mb-2">
           <span class="input-group-text spw-3">Nombre y apellido</span>
-          <input type="text" aria-label="Nombre" aria-describedby="Nombre" class="form-control" [(ngModel)]="first_name" [value]="first_name">
-          <input type="text" aria-label="Apellido" aria-describedby="Apellido" class="form-control" [(ngModel)]="last_name" [value]="last_name">
+          <input type="text" aria-label="Nombre" aria-describedby="Nombre" class="form-control" [(ngModel)]="firstname" [value]="firstname">
+          <input type="text" aria-label="Apellido" aria-describedby="Apellido" class="form-control" [(ngModel)]="lastname" [value]="lastname">
         </div>
         <div class="input-group mb-2">
           <span class="input-group-text spw-3">DNI/NIF/NIE</span>
@@ -44,19 +44,19 @@
         </div>
         <div class="input-group mb-2">
           <span class="input-group-text spw-3">Tarjeta credito</span>
-          <input type="text" class="form-control" aria-label="Tarjeta credito" aria-describedby="Tarjeta credito" [(ngModel)]="credit_card" [value]="credit_card">
+          <input type="text" class="form-control" aria-label="Tarjeta credito" aria-describedby="Tarjeta credito" [(ngModel)]="creditcard" [value]="creditcard">
         </div>
         <div class="mb-2">
           <p></p>
         </div>
-        <div class="input-group mb-2">
+        <!--<div class="input-group mb-2">
           <span class="input-group-text spw-3">Usauario</span>
           <input type="text" class="form-control" aria-label="Usuario" aria-describedby="Usuario" [(ngModel)]="users.user" [value]="users.user">
         </div>
         <div class="input-group mb-2">
           <span class="input-group-text spw-3">Contraseña</span>
           <input type="password" class="form-control" aria-label="Contraseña" aria-describedby="Contraseña" [(ngModel)]="users.password" [value]="users.password">
-        </div>
+        </div>-->
       </div>
       <div class="text-center">
         <p>{{ message }}</p>

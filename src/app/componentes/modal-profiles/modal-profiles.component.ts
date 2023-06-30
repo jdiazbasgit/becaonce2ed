@@ -12,24 +12,22 @@ import { ProfileService } from 'src/app/servicios/profile.service';
 export class ModalProfilesComponent {
   id: string = "";
   image: string = '';
-  first_name: string = "";
-  last_name: string = "";
+  firstname: string = "";
+  lastname: string = "";
   identification: string = "";
-  credit_card: string = "";
+  creditcard: string = "";
   email: string = "";
   city: string = "";
   country: string = "";
   phone: string = "";
   address: string = "";
-  postal_code: string = "";
+  postalcode: string = "";
 
   user_id: string = '';
-  documentstype_id: string = '';
-  cardtype_id: string = '';
+  documenttype: string = '';
+  cardtype: string = '';
   user: string = "";
   psw: string = "";
-
-  users: any ='';
 
   message: string = "";
 
@@ -85,7 +83,7 @@ export class ModalProfilesComponent {
         this.image = this.imageContent.toString();
       }
 
-      const profile = new ProfileBean(this.id, this.image || '', this.first_name, this.last_name, this.identification, this.credit_card, this.email, this.city, this.country, this.phone, this.address, this.postal_code, this.user_id, this.documentstype_id, this.cardtype_id, this.user, this.users);
+      const profile = new ProfileBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype);
 
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
@@ -104,38 +102,35 @@ export class ModalProfilesComponent {
       this.id = id;
       this.image = data.image;
       this.identification = data.identification;
-      this.first_name = data.name;
-      this.last_name = data.second_name;
+      this.firstname = data.name;
+      this.lastname = data.secondName;
       this.address = data.address;
-      this.postal_code = data.postal_code;
-      this.credit_card = data.credit_card;
+      this.postalcode = data.postalCode;
+      this.creditcard = data.creditCard;
       this.email = data.email;
       this.city = data.city;
       this.country = data.country;
       this.phone = data.phone;
-      this.user_id = data._links.user;
-      this.documentstype_id = data._links.docomentTypes;
-      this.cardtype_id = data._links.cardTypes;
-      this.user = data._links.self;
-      this.users = data.users;
+      this.user = data._links.user.href;
+      this.documenttype = data._links.docomentTypes;
+      this.cardtype = data._links.cardTypes;
+
     } else {
       this.id = '';
       this.image = '';
       this.identification = '';
-      this.first_name = '';
-      this.last_name = '';
-      this.credit_card = '';
+      this.firstname = '';
+      this.lastname = '';
+      this.creditcard = '';
       this.address = '';
-      this.postal_code = '';
+      this.postalcode = '';
       this.email = '';
       this.city = '';
       this.country = '';
       this.phone = '';
-      this.user_id = '';
-      this.documentstype_id = '';
-      this.cardtype_id = '';
       this.user = '';
-      this.users = '';
+      this.documenttype = '';
+      this.cardtype = '';
     }
   }
 

@@ -58,11 +58,11 @@ export class ProfileComponent implements OnInit {
     if (this.modal) {
       this.modal.image = '';
       this.modal.identification = '';
-      this.modal.first_name = '';
-      this.modal.last_name = '';
-      this.modal.credit_card = '';
+      this.modal.firstname = '';
+      this.modal.lastname = '';
+      this.modal.creditcard = '';
       this.modal.address = '';
-      this.modal.postal_code = '';
+      this.modal.postalcode = '';
       this.modal.country = '';
       this.modal.email = '';
       this.modal.city = '';
