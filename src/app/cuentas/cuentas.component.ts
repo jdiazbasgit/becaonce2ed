@@ -13,6 +13,7 @@ export class CuentasComponent {
   usuario: string = ""
   url: string = "http://localhost:8080/once/"
   cuentas: any
+  nenuVisible: boolean = false;
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -39,6 +40,7 @@ export class CuentasComponent {
   }
 
   menuOpcionesNavbar() {
+   this.nenuVisible = !this.nenuVisible;
     
   }
 }
