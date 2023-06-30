@@ -38,4 +38,7 @@ export class CuentasComponent {
     this.router.navigateByUrl("detalles")
   }
 
+  menuOpcionesNavbar() {
+    
+  }
 }

@@ -35,6 +35,7 @@ import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-awards-fine.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -85,6 +86,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
  
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -94,9 +96,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
    MatInputModule,
     MatButtonModule,
      MatIconModule
-    
-    
-    
 
   ],
   providers: [],
