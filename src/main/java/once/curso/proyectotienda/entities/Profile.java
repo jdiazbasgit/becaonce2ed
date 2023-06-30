@@ -21,11 +21,11 @@ public class Profile extends RepresentationModel<Profile>{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String name;
-	private String second_name;
+	private String secondName;
 	private String identification;
-	private String credit_card;
+	private String creditCard;
 	private String address;
-	private String postal_code;
+	private String postalCode;
 	private String country;
 	private String email;
 	private String city;
@@ -40,7 +40,7 @@ public class Profile extends RepresentationModel<Profile>{
 	
 	@ManyToOne
 	@JoinColumn (name="Card_Types_Id")
-	private CardType cardtType;
+	private CardType cardType;
 	
 	@ManyToOne
 	@JoinColumn (name="Document_Types_Id")

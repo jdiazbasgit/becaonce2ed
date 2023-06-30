@@ -15,26 +15,30 @@ public class ProfileDto {
 	private String city;
 	private String phone;
 	private byte[] image;
-	private int cardtType;
+	private int cardTypes;
 	private int documentType;
 	private String user;
 	private String password;
 	
-	public ProfileDto(String name, String secondName, String identification, String creditcard, String address, String postalcode, String country, String city, String email, String phone, byte[] image, String user, String password) {
+	public ProfileDto(String name, String secondName, String identification, String creditCard, String address,
+			String postalCode, String country, String email, String city, String phone, byte[] image, int cardTypes,
+			int documentType, String user, String password) {
 		super();
 		this.name = name;
 		this.secondName = secondName;
 		this.identification = identification;
+		this.creditCard = creditCard;
+		this.address = address;
+		this.postalCode = postalCode;
+		this.country = country;
 		this.email = email;
+		this.city = city;
 		this.phone = phone;
 		this.image = image;
-		this.identification = identification;
-		this.creditCard = creditcard;
-		this.address = address;
-		this.postalCode = postalcode;
-		this.country = country;
-		this.city = city;
+		this.cardTypes = cardTypes;
+		this.documentType = documentType;
 		this.user = user;
 		this.password = password;
-	}    
+	}
+	
 }

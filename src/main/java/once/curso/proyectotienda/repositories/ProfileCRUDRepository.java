@@ -18,7 +18,7 @@ public interface ProfileCRUDRepository extends PagingAndSortingRepository<Profil
 		p.getIdentification().equals(identification)).findFirst().isPresent());
 		
 		profileUserDto.setCreditcard(profiles.stream().filter(p-> 
-		p.getCredit_card().equals(creditcard)).findFirst().isPresent());
+		p.getCreditCard().equals(creditcard)).findFirst().isPresent());
 		
 		profileUserDto.setEmail(profiles.stream().filter(p-> 
 			p.getEmail().equals(email)).findFirst().isPresent());

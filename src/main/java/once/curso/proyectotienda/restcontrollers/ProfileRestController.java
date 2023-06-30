@@ -69,7 +69,7 @@ public class ProfileRestController {
 					 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(p.getUser().getId()))
 					 .withRel("user"));
 			 p.add(WebMvcLinkBuilder
-					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(p.getCardtType().getId()))
+					 .linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(p.getCardType().getId()))
 					 .withRel("cardTypes"));
 			 p.add(WebMvcLinkBuilder
 					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(p.getDocumentType().getId()))
@@ -198,7 +198,7 @@ public class ProfileRestController {
 	 * El método anotado con @PatchMapping manejará las solicitudes PATCH que coincidan con la URL especificada en la anotación. Puedes definir la URL 
 	 * utilizando una cadena de texto o una expresión de plantilla, similar a otras anotaciones de mapeo como @GetMapping o @PostMapping.
 	 * Aquí tienes un ejemplo de cómo se puede usar @PatchMapping en un controlador de Spring: */
-	@PatchMapping("/profiles/{id}")
+	@PatchMapping("/profiles")
 	@CrossOrigin(origins = "*")
 	public Profile crearProfile(@RequestBody ProfileDto profileDto) {		
 		 return getProfileService().crearProfile(profileDto);
@@ -206,13 +206,23 @@ public class ProfileRestController {
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * BACK
 	 * -restcontrolador --> pach 
 	 * -service --> profileUserDto 
 	 * -CRUD --> getProfileUserDto
 	 * 
-	 * rescontroller -> servicios ->  crud -> dto
+	 * ProfileResController -> ProfileService ->  ProfileCRUDRepository -> ProfileDto, ProfileUserDto, Profile
 	 * 
 	 * http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc
 	*/
