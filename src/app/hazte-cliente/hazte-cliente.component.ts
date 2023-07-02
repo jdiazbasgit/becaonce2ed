@@ -27,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 
 
 export class HazteClienteComponent implements OnInit {
+  previsualizacion: Array<number>
   standalone: true = true;
   hide = true;
   name: string;
@@ -34,7 +35,7 @@ export class HazteClienteComponent implements OnInit {
   identification: string;
   phone: string;
   image: Array<number>
-  imageString:string
+  imageString: string
   email: string;
   identificationType: number;
   user: string;
@@ -54,16 +55,18 @@ export class HazteClienteComponent implements OnInit {
   mensajeUser: string;
   mensajeIdentification: string
   mensajeCampos: string
-  mensajeImage:string
+  mensajeImage: string
   mensaje: string
   passwordVisible: boolean = false;
   activo: boolean = true
+  previsualizacionURL: string = "s";
 
 
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
     private rolservice: RolService, private userService: UserService) {
+    this.previsualizacion = []
     this.name = "";
     this.secondName = "";
     this.identification = "";
@@ -76,7 +79,7 @@ export class HazteClienteComponent implements OnInit {
     this.user = ""
     this.identificationType = 0
     this.image = []
-    this.imageString=""
+    this.imageString = ""
     this.password = ""
     this.identificationTypes = []
     this.mensajeEmail = ""
@@ -84,7 +87,7 @@ export class HazteClienteComponent implements OnInit {
     this.mensajeUser = ""
     this.mensajeIdentification = ""
     this.mensajeCampos = ""
-    this.mensajeImage=""
+    this.mensajeImage = ""
     this.mensaje = ""
 
   }
@@ -109,56 +112,59 @@ export class HazteClienteComponent implements OnInit {
       reader.onload = (e: any) => {
         const imageBytes = new Uint8Array(e.target.result);
         this.image = Array.from(imageBytes);
-      };
+        this.previsualizacion= this.image;
+
+        const blob = new Blob([imageBytes], { type: file.type });
+      this.previsualizacionURL = URL.createObjectURL(blob);
+    };
       reader.readAsArrayBuffer(file);
     }
   }
 
-  comprobarDatos():any {
+  comprobarDatos(): any {
     this.mensajeEmail = '';
     this.mensajePhone = '';
     this.mensajeUser = '';
     this.mensajeIdentification = '';
     this.mensajeCampos = ""
-    this.mensajeImage=""
+    this.mensajeImage = ""
     this.activo = false;
 
-    if (this.imageString==="" || this.identificationType===0 || this.email === "" || this.phone === "" || this.user === "" || this.identification === "" || this.name === "" || this.secondName === "" || this.password === "") 
-    {
-      
+    if (this.imageString === "" || this.identificationType === 0 || this.email === "" || this.phone === "" || this.user === "" || this.identification === "" || this.name === "" || this.secondName === "" || this.password === "") {
+
       this.activo = true
 
       this.mensajeCampos = "rellene todos los campos"
 
-     return
+      return
     }
-    let extension:string =this.imageString.substring(this.imageString.lastIndexOf('.')+1)
-    if(extension!=='jpg' && extension!=='jpeg' && extension!=='gif' && extension!=='png'){
-      this.mensajeImage="el formato de la imagen no es valido"
-      this.activo=true
+    let extension: string = this.imageString.substring(this.imageString.lastIndexOf('.') + 1)
+    if (extension !== 'jpg' && extension !== 'jpeg' && extension !== 'gif' && extension !== 'png') {
+      this.mensajeImage = "el formato de la imagen no es valido"
+      this.activo = true
       return
     }
 
-      this.rolservice.patch(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
-        if (datos.email) {
-          this.mensajeEmail = "Email ya Existe"
-          this.activo = true
-        }
+    this.rolservice.patch(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
+      if (datos.email) {
+        this.mensajeEmail = "Email ya Existe"
+        this.activo = true
+      }
 
-        if (datos.phone) {
-          this.mensajePhone = "El Telefono ya Existe"
-          this.activo = true
-        }
-        if (datos.user) {
-          this.mensajeUser = "El Usuario ya Existe"
-          this.activo = true
-        }
-        if (datos.identification) {
-          this.activo = true
-          this.mensajeIdentification = "La Identificacion ya Existe"
-        }
-      })
-    
+      if (datos.phone) {
+        this.mensajePhone = "El Telefono ya Existe"
+        this.activo = true
+      }
+      if (datos.user) {
+        this.mensajeUser = "El Usuario ya Existe"
+        this.activo = true
+      }
+      if (datos.identification) {
+        this.activo = true
+        this.mensajeIdentification = "La Identificacion ya Existe"
+      }
+    })
+
   }
   togglePasswordVisibility() {
 
