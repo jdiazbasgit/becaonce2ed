@@ -8,11 +8,11 @@
         <tr>
             <td>
                 <div class="mt-4 ms-5">
-                   <h2>Saldo total disponible:</h2>
+                    <h2>Saldo total disponible:</h2>
                 </div>
                 <div class="ms-5">
                     <h5>SALDO TOTAL</h5>
-                 </div>
+                </div>
             </td>
             <td>
                 <img src="assets/boveda.png" class="w-50 float-end">
@@ -22,9 +22,8 @@
 
     <div class="my-4 p-5 border-bottom shadow">
         <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
-        <div *ngFor="let cuenta of cuentas" class="mt-4 border-bottom ms-5" role="button" 
-        (click)="elegirCuenta(cuenta.number, cuenta.id); menuOpcionesNavbar()">
-            <div class="d-flex justify-content-between texto-resaltado">
+        <div *ngFor="let cuenta of cuentas" class="mt-4 border-bottom ms-5" role="button"
+            (click)="elegirCuenta(cuenta.number, cuenta.id)"><div class="d-flex justify-content-between texto-resaltado">
                 <h5>
                     <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
                             width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
@@ -38,6 +37,7 @@
                         </svg>{{cuenta.number}}
                     </p>
                 </h5>
+
                 <div>
                     SALDO DE LA CUENTA
                 </div>
@@ -48,7 +48,4 @@
         </div>
 
     </div>
-
-
-
 </div>

@@ -38,9 +38,4 @@ export class CuentasComponent {
     sessionStorage['idCuenta'] = id
     this.router.navigateByUrl("detalles")
   }
-
-  menuOpcionesNavbar() {
-   this.nenuVisible = !this.nenuVisible;
-    
-  }
 }
