@@ -39,6 +39,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { GeneradorCuentasComponent } from './generador-cuentas/generador-cuentas.component';
 
 
 
@@ -81,6 +82,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
+    GeneradorCuentasComponent,
  
  
   ],

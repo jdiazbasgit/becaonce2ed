@@ -6,6 +6,21 @@
       <label for="monto">Importe:</label>
       <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
     </div>
+    <div class="form-group">
+      <label for="origen">Cuenta de Origen:</label>
+      <select [(ngModel)]="cuentaOrigen" name="origen">
+        <option value="0">Selecciona Cuenta de Origen...</option>
+        <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="destino">Cuenta de Destino:</label>
+      <select [(ngModel)]="cuentaDestino" name="destino">
+        <option value="0">Selecciona Cuenta de Destino...</option>
+        <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
+      </select>
+    </div>
 
     <div class="form-group">
       <label for="concepto">Concepto:</label>
@@ -21,11 +36,13 @@
         </div>
       </div>
     </div>
+    
 
 
     <div class="btn-group">
       <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
       <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
+      <button class="btn btn-success" (click)="realizarTransferencia()">Transferir</button>
     </div>
 
     <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{
