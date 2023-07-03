@@ -22,7 +22,7 @@ public class ProfileDto {
 	
 	public ProfileDto(String name, String secondName, String identification, String creditCard, String address, 
 			String postalCode, String country, String email, String city, String phone, byte[] image, int cardTypes,
-			int documentType, String user, String password) {
+			int documentTypes, String user, String password) {
 		super();
 		this.name = name;
 		this.secondName = secondName;
@@ -36,7 +36,7 @@ public class ProfileDto {
 		this.phone = phone;
 		this.image = image;
 		this.cardType = cardTypes;
-		this.documentType = documentType;
+		this.documentType = documentTypes;
 		this.user = user;
 		this.password = password;
 	}

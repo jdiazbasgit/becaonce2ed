@@ -11,7 +11,7 @@ import once.curso.proyectotienda.restcontrollers.ExistingProductRestController;
 
 @Component
 public class ExistingProductModelAssembler implements SimpleRepresentationModelAssembler<ExistingProduct>{
-@Override
+	@Override
 	public void addLinks(EntityModel<ExistingProduct> existingProduct) {
 		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController. class)
 				.findById(existingProduct.getContent().getId())).withSelfRel());

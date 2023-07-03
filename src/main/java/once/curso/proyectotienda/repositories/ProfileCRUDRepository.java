@@ -14,24 +14,9 @@ public interface ProfileCRUDRepository extends PagingAndSortingRepository<Profil
 		ProfileUserDto profileUserDto = new ProfileUserDto();
 		List<Profile> profiles =(List<Profile>) findAll();
 		
-		profileUserDto.setIdentification(profiles.stream().filter(p->p.getIdentification().equals(identification)).findFirst().isPresent());
-		profileUserDto.setCreditcard(profiles.stream().filter(p->p.getCredit_card().equals(creditcard)).findFirst().isPresent());
-		profileUserDto.setEmail(profiles.stream().filter(p->p.getEmail().equals(email)).findFirst().isPresent());
-		profileUserDto.setPhone(profiles.stream().filter(p->p.getPhone().equals(phone)).findFirst().isPresent());
-		profileUserDto.setUser(profiles.stream().filter(p->p.getUser().getUser().equals(user)).findFirst().isPresent());
-		return profileUserDto;
-	}
-	
-default ProfileUserDto getProfileUserDto(String user,String phone,String email, String identification) {
+		profileUserDto.setIdentification(profiles.stream().filter(p-> 
+		p.getIdentification().equals(identification)).findFirst().isPresent());
 		
-<<<<<<< HEAD
-		ProfileUserDto profileUserDto = new ProfileUserDto();
-		List<Profile> profiles =(List<Profile>) findAll();
-		profileUserDto.setEmail(profiles.stream().filter(p-> p.getEmail().equals(email)).findFirst().isPresent());
-		profileUserDto.setPhone(profiles.stream().filter(p-> p.getPhone().equals(phone)).findFirst().isPresent());
-		profileUserDto.setUser(profiles.stream().filter(p-> p.getUser().getUser().equals(user)).findFirst().isPresent());
-		profileUserDto.setIdentification(profiles.stream().filter(p-> p.getIdentification().equals(identification)).findFirst().isPresent());
-=======
 		profileUserDto.setCreditcard(profiles.stream().filter(p-> 
 		p.getCreditCard().equals(creditcard)).findFirst().isPresent());
 		
@@ -43,7 +28,6 @@ default ProfileUserDto getProfileUserDto(String user,String phone,String email, 
 		
 		profileUserDto.setUser(profiles.stream().filter(p-> 
 			p.getUser().getUser().equals(user)).findFirst().isPresent());
->>>>>>> ecaeb43feb8c2a88f63eca25dfc32f7623780e60
 		
 		return profileUserDto;
 	}
