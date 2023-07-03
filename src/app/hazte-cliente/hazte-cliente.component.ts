@@ -9,10 +9,11 @@ import { RolService } from '../servicios/rol.service';
 import UserBeans from '../beans/UserBeans';
 import { UserService } from '../servicios/user.service';
 import ProfileUserDtoStringBean from '../beans/ProfileUserDtoStringBean';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -20,19 +21,21 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   selector: 'app-hazte-cliente',
   templateUrl: './hazte-cliente.component.html',
   styleUrls: ['./hazte-cliente.component.css']
- 
-  
+
+
 })
 
 
-export class HazteClienteComponent implements OnInit { 
-  standalone: true = true; 
+export class HazteClienteComponent implements OnInit {
+  previsualizacion: Array<number>
+  standalone: true = true;
   hide = true;
   name: string;
   secondName: string;
   identification: string;
   phone: string;
   image: Array<number>
+  imageString: string
   email: string;
   identificationType: number;
   user: string;
@@ -42,7 +45,7 @@ export class HazteClienteComponent implements OnInit {
   urlProfile = "http://localhost:8080/once/profiles/save"
   urlRol = "http://localhost:8080/once/roles"
   urlUsers = "http://localhost:8080/once/users"
-  urlComprobar="http://localhost:8080/once/profiles/comprobar"
+  urlComprobar = "http://localhost:8080/once/profiles/comprobar"
   emailBaseDeDatos: string
   telefonoBaseDatos: string
   usuarioBaseDatos: string
@@ -50,13 +53,21 @@ export class HazteClienteComponent implements OnInit {
   mensajeEmail: string;
   mensajePhone: string;
   mensajeUser: string;
+  mensajeIdentification: string
+  mensajeCampos: string
+  mensajeImage: string
+  mensajeImage2:string
   mensaje: string
   passwordVisible: boolean = false;
+  activo: boolean = true
+  previsualizacionURL: string = "s";
+
 
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
     private rolservice: RolService, private userService: UserService) {
+    this.previsualizacion = []
     this.name = "";
     this.secondName = "";
     this.identification = "";
@@ -69,14 +80,20 @@ export class HazteClienteComponent implements OnInit {
     this.user = ""
     this.identificationType = 0
     this.image = []
+    this.imageString = ""
     this.password = ""
     this.identificationTypes = []
     this.mensajeEmail = ""
     this.mensajePhone = ""
     this.mensajeUser = ""
+    this.mensajeIdentification = ""
+    this.mensajeCampos = ""
+    this.mensajeImage = ""
+    this.mensajeImage2=""
     this.mensaje = ""
-    
+
   }
+
 
   ngOnInit() {
     this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos: any) => {
@@ -85,48 +102,86 @@ export class HazteClienteComponent implements OnInit {
 
 
     })
- 
+
   }
 
 
-  comprobarDatos() {
-    this.usuarioBaseDatos = '';
-    this.clave = '';
-    this.emailBaseDeDatos = '';
-    this.telefonoBaseDatos = '';
-
-
-    this.rolservice.patch(this.urlComprobar,new ProfileUserDtoStringBean(this.email,this.phone,this.user)).subscribe((datos: any) => {
-      if(datos.email)
-      this.mensajeEmail = "Email ya Existe"
-      if(datos.phone)
-      this.mensajePhone = "El Telefono ya Existe"
-      if(datos.user)
-      this.mensajeUser = "El Usuario ya Existe"
-    })
-  
-  }
-  togglePasswordVisibility() {
-  
-  
-    this.passwordVisible = !this.passwordVisible;
-  }
   cargarImagen(event: any) {
+   
     const file: File = event.target.files[0];
-  
+
     if (file) {
+      if (file.size > 65535 ) {
+       this.mensajeImage2='El tamaño de la imagen excede los bytes .';
+        return;
+      }
+  
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const imageBytes = new Uint8Array(e.target.result);
         this.image = Array.from(imageBytes);
-      };
+        this.previsualizacion= this.image;
+
+        const blob = new Blob([imageBytes], { type: file.type });
+      this.previsualizacionURL = URL.createObjectURL(blob);
+    };
       reader.readAsArrayBuffer(file);
     }
   }
 
+  comprobarDatos(): any {
+    this.mensajeEmail = '';
+    this.mensajePhone = '';
+    this.mensajeUser = '';
+    this.mensajeIdentification = '';
+    this.mensajeCampos = ""
+    this.mensajeImage = ""
+    this.mensajeImage2=""
+    this.previsualizacion=[]
+    this.image=[]
+    this.activo = false;
+
+    if (this.imageString === "" || this.identificationType === 0 || this.email === "" || this.phone === "" || this.user === "" || this.identification === "" || this.name === "" || this.secondName === "" || this.password === "") {
+
+      this.activo = true
+
+      this.mensajeCampos = "rellene todos los campos"
+
+      return
+    }
+    let extension: string = this.imageString.substring(this.imageString.lastIndexOf('.') + 1)
+    if (extension !== 'jpg' && extension !== 'jpeg' && extension !== 'gif' && extension !== 'png') {
+      this.mensajeImage = "el formato de la imagen no es valido"
+      this.activo = true
+      return
+    }
+
+    this.rolservice.patch(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
+      if (datos.email) {
+        this.mensajeEmail = "Email ya Existe"
+        this.activo = true
+      }
+
+      if (datos.phone) {
+        this.mensajePhone = "El Telefono ya Existe"
+        this.activo = true
+      }
+      if (datos.user) {
+        this.mensajeUser = "El Usuario ya Existe"
+        this.activo = true
+      }
+      if (datos.identification) {
+        this.activo = true
+        this.mensajeIdentification = "La Identificacion ya Existe"
+      }
+    })
+
+  }
+  togglePasswordVisibility() {
 
 
- 
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   guardaDatos() {
 
@@ -138,6 +193,7 @@ export class HazteClienteComponent implements OnInit {
           this.mensaje = "Grabacion realizada correctamente";
         } else {
           this.mensaje = "La grabación no se ha realizado";
+          this.name=""
         }
       });
   }

@@ -1,0 +1,41 @@
+.texto-primario{
+    color: white;
+}
+.texto-secundario{
+    background:rgb(39, 160, 76);
+}
+.texto-resaltado{
+    color: green;
+}
+.fondo-primario{
+    background:rgb(222, 253, 232);
+}
+.fondo-secundario{
+    background:rgb(39, 160, 76);
+}
+.fondo-resaltado{
+    color: green;
+}
+
+
+  
+  .porcentage {
+    font-family: Arial, sans-serif;
+    font-size: 150px;
+    font-weight: bold;
+    color: #ffffff;
+   
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+  }
+  #number {
+    font-size: 48px;
+    color: #ffffff;
+  }
+  #letra {
+    font-size: 25px;
+    color:green;
+  }

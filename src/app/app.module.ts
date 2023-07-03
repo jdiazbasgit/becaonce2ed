@@ -42,6 +42,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
 
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -80,10 +81,8 @@ import { ProductosAsociadosComponent } from './productos-asociados/productos-aso
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
+    ProductosAsociadosComponent
 
-    PanelAdministradorComponent,
-    ModalAwardsFineComponent,
-    ProductosAsociadosComponent,
  
  
   ],
@@ -97,7 +96,11 @@ import { ProductosAsociadosComponent } from './productos-asociados/productos-aso
    MatFormFieldModule, 
    MatInputModule,
     MatButtonModule,
-     MatIconModule
+     MatIconModule,
+     MatCardModule
+    
+    
+    
 
   ],
   providers: [],
