@@ -76,7 +76,13 @@ export class ModalProfilesComponent {
 
   saveData() {
     if(this.identification.trim()==''){
-      //this.message = 'Por favor, introduzca descripción.';
+      this.message = 'Por favor, introduzca identificación.';
+    } else if (this.creditcard.trim()==''){
+      this.message = 'Por favor, introduzca el número de la tarjeta de credito.';
+    } else if (this.email.trim()==''){
+      this.message = 'Por favor, introduzca el correo electrónico.';
+    } else if (this.phone.trim()==''){
+      this.message = 'Por favor, introduzca el número de teléfono.';
     } else {
 
       if (this.imageContent) {
