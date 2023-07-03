@@ -13,7 +13,7 @@ export class ProyectosService {
   }
 
   saveOrUpdate(url:string, objeto:any):Observable<any>{
-    console.log("objeto:"+objeto)
+    console.log("objeto:"+JSON.stringify(objeto))
     return this.httpClient.post(url,objeto)
   }
 

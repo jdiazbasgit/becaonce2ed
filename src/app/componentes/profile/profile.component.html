@@ -1,69 +1,43 @@
-<div class="container mt-3">
-  <div class="mat-elevation-z8">
-    <h2>Lista de perfiles</h2>
-    <button type="button" class="btn btn-primary d-md-block me-2 mt-2 mb-2 rounded-0" >Añadir nuevo usuario</button>
-    <!--<input type="text" [(ngModel)]="searchText" (input)="filterData()" placeholder="Buscar por descripción" class="w-100">-->
+  <div class="container mt-3">
+    <h1 class="text-center mb-5">{{ title }}</h1>
 
-    <!--<table mat-table [dataSource]="dataSource" class="w-100">
-      <ng-container matColumnDef="position" >
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element" > {{element.position}} </td>
-      </ng-container>
+      <table class="table table-stripped table-bordered w-100">
+        <th> Foto </th>
+        <th> Identificación </th>
+        <th> Nombre </th>
+        <th> Apellido </th>
+        <th> Dirección </th>
+        <th> C. Postal </th>
+        <th> Provincia </th>
+        <th> País </th>
+        <th> Email </th>
+        <th> Teléfono </th>
+        <th> Tarjeta crédito </th>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+        <tr *ngFor="let element of elements">
+          <td><img [src]="getImage(element.image)" alt="{{ element.name + ' ' + element.last_name }}"></td>
+          <td> {{ element.identification }} </td>
+          <td> {{ element.name }} </td>
+          <td> {{ element.second_name }} </td>
+          <td> {{ element.address }} </td>
+          <td> {{ element.postal_code }} </td>
+          <td> {{ element.city }} </td>
+          <td> {{ element.country }} </td>
+          <td> {{ element.email }} </td>
+          <td> {{ element.phone }} </td>
+          <td> {{ element.credit_card }} </td>
 
-      <ng-container matColumnDef="photo">
-        <th mat-header-cell *matHeaderCellDef> Foto </th>
-        <td mat-cell *matCellDef="let element"> {{element.photo}} </td>
-      </ng-container>
+          <td>
+            <a href="" (click)="abrirModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)" data-bs-toggle="modal" data-bs-target="#myModalProfile" ><i class="bi bi-pencil-fill"></i></a>
+            <a href="" class="wbtn" (click)="eliminar(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
+          </td>
+        </tr>
+      </table>
 
-      <ng-container matColumnDef="lastname">
-        <th mat-header-cell *matHeaderCellDef> Apellido </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
-      </ng-container>
+      <div class="w-100 text-center">
+        <div class="text-primary mb-3" role="alert">{{ message }}</div>
+        <button type="button" class="btn btn-primary" (click)="abrirModal('','')" data-bs-toggle="modal" data-bs-target="#myModalProfile">Añadir nuevo producto</button>
+      </div>
 
-      <ng-container matColumnDef="identification">
-        <th mat-header-cell *matHeaderCellDef> Identificación </th>
-        <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="creditcard">
-        <th mat-header-cell *matHeaderCellDef> Tarjeta crédito </th>
-        <td mat-cell *matCellDef="let element"> {{element.creditcard}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="province">
-        <th mat-header-cell *matHeaderCellDef> Provincia </th>
-        <td mat-cell *matCellDef="let element"> {{element.province}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="nuser">
-        <th mat-header-cell *matHeaderCellDef> Nº. Usuario </th>
-        <td mat-cell *matCellDef="let element"> {{element.nuser}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="ncreditcard">
-        <th mat-header-cell *matHeaderCellDef> Nº Tarjeta Crédito </th>
-        <td mat-cell *matCellDef="let element"> {{element.ncreditcard}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="ndocument">
-        <th mat-header-cell *matHeaderCellDef> Nº Documento </th>
-        <td mat-cell *matCellDef="let element"> {{element.ndocument}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>-->
-
-    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>-->
-  </div>
-  </div>
+      <app-modal-profiles #modal (eventoProfiles)="refreshData($event)"></app-modal-profiles>
+    </div>

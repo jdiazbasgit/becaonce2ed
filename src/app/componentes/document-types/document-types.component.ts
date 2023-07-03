@@ -7,8 +7,8 @@ import { ModalDocumentTypesComponent } from '../../componentes/modal-document-ty
   templateUrl: './document-types.component.html',
   styleUrls: ['./document-types.component.css']
 })
-export class DocumentTypesComponent implements OnInit {
 
+export class DocumentTypesComponent implements OnInit {
   @ViewChild(ModalDocumentTypesComponent) modal: any
   id: number = 0
   titulo: string;
