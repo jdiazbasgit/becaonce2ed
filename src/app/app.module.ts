@@ -67,13 +67,11 @@ import { ModalExistingProductsComponent } from './componentes/modal-existing-pro
     ModalCategoryComponent,
     ModalSubcategoryComponent,
     ModalConfigurationComponent,
-    ModalDocumentTypesComponent,
     ModalRolComponent,
     ModalUserComponent,
     ModalLoginComponent,
     HomeComponent,
     //EjemploComponent,
-    ModalDocumentTypesComponent,
     ModalExistingProductsComponent,
     ModalProfilesComponent
 

@@ -14,12 +14,8 @@ import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { HomeComponent } from './componentes/home/home.component';
 
 const routes: Routes = [
-<<<<<<< HEAD
   {path: '', component: HomeComponent },
   {path: 'login', component: LoginComponent },
-=======
-  //{path: 'login', component: LoginComponent },
->>>>>>> feature/front/proyectos-tienda-dlg
   {path: 'product', component: ProductComponent },
   {path: 'profile', component: ProfileComponent },
   {path: 'offer', component: OfferComponent },
