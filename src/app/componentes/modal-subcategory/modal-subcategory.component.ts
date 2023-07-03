@@ -36,6 +36,7 @@ export class ModalSubcategoryComponent implements DoCheck {
   }
   ngDoCheck(): void {
 
+    console.log("id de entrada:"+this.id)
     if (this.id === 0) {
       this.subtitulo = "ALTA"
       //this.categoria = "0"
@@ -51,7 +52,7 @@ export class ModalSubcategoryComponent implements DoCheck {
           .subscribe((datos: any) => {
             this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
             this.subcategoryPlaceHolder = datos.description;
-            this.descripcion = datos.descripcion
+            this.descripcion = datos.description
 
 
             console.log("categoria " + this.categoria)
