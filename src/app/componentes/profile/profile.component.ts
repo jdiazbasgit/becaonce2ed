@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   modal: ModalProfilesComponent | undefined
 
   title = "Lista de perfiles";
-  columns: string[] = ['name', 'second_name', 'identification', 'credit_card', 'address', 'postal_code', 'country', 'email', 'city', 'phone', 'image'];
+  columns: string[] = ['name', 'secondName', 'identification', 'creditCard', 'address', 'postalCode', 'country', 'email', 'city', 'phone', 'image'];
   elements: any[] = [];
   message: string = "";
 
