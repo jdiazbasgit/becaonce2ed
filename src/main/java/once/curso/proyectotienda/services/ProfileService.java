@@ -101,18 +101,18 @@ public class ProfileService {
 			Profile profileNew = new Profile();
 			
 			profileNew.setName(profileDto.getName());
-			profileNew.setSecond_name(profileDto.getSecondName());
+			profileNew.setSecondName(profileDto.getSecondName());
 			profileNew.setIdentification(profileDto.getIdentification());
-			profileNew.setCredit_card(profileDto.getCreditCard());
+			profileNew.setCreditCard(profileDto.getCreditCard());
 			profileNew.setAddress(profileDto.getAddress());
-			profileNew.setPostal_code(profileDto.getPostalCode());
+			profileNew.setPostalCode(profileDto.getPostalCode());
 			profileNew.setCountry(profileDto.getCountry());
 			profileNew.setEmail(profileDto.getEmail());
 			profileNew.setCity(profileDto.getCity());
 			profileNew.setPhone(profileDto.getPhone());
 			profileNew.setImage(profileDto.getImage());
 			
-			profileNew.setCardtType((getCardTypeCRUDRepository().findById(profileDto.getCardtType()).get()));
+			profileNew.setCardType((getCardTypeCRUDRepository().findById(profileDto.getCardType()).get()));
 			profileNew.setDocumentType((getDocumentTypeCRUDRepository().findById(profileDto.getDocumentType()).get()));
 						
 			 User userNuevo = new User();
