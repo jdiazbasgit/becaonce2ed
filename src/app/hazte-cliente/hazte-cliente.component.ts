@@ -56,6 +56,7 @@ export class HazteClienteComponent implements OnInit {
   mensajeIdentification: string
   mensajeCampos: string
   mensajeImage: string
+  mensajeImage2:string
   mensaje: string
   passwordVisible: boolean = false;
   activo: boolean = true
@@ -88,6 +89,7 @@ export class HazteClienteComponent implements OnInit {
     this.mensajeIdentification = ""
     this.mensajeCampos = ""
     this.mensajeImage = ""
+    this.mensajeImage2=""
     this.mensaje = ""
 
   }
@@ -105,9 +107,15 @@ export class HazteClienteComponent implements OnInit {
 
 
   cargarImagen(event: any) {
+   
     const file: File = event.target.files[0];
 
     if (file) {
+      if (file.size > 65535 ) {
+       this.mensajeImage2='El tamaño de la imagen excede los bytes .';
+        return;
+      }
+  
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const imageBytes = new Uint8Array(e.target.result);
@@ -128,6 +136,9 @@ export class HazteClienteComponent implements OnInit {
     this.mensajeIdentification = '';
     this.mensajeCampos = ""
     this.mensajeImage = ""
+    this.mensajeImage2=""
+    this.previsualizacion=[]
+    this.image=[]
     this.activo = false;
 
     if (this.imageString === "" || this.identificationType === 0 || this.email === "" || this.phone === "" || this.user === "" || this.identification === "" || this.name === "" || this.secondName === "" || this.password === "") {
@@ -182,6 +193,7 @@ export class HazteClienteComponent implements OnInit {
           this.mensaje = "Grabacion realizada correctamente";
         } else {
           this.mensaje = "La grabación no se ha realizado";
+          this.name=""
         }
       });
   }
