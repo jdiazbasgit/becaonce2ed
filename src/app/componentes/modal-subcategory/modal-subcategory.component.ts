@@ -8,7 +8,7 @@ import { SubcategoryService } from 'src/app/servicios/subcategories.service';
   styleUrls: ['./modal-subcategory.component.css']
 })
 export class ModalSubcategoryComponent implements DoCheck {
-  id: number = 0
+   id: number = 0
   descripcion: string
   mensaje: string = "";
   fin: boolean = false
