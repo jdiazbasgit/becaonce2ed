@@ -80,7 +80,7 @@ import { ModalExistingProductsComponent } from './componentes/modal-existing-pro
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-   //MatToolbarModule,
+    //MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
