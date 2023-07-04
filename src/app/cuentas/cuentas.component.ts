@@ -28,7 +28,7 @@ export class CuentasComponent {
       next: (cuentas) => {
         console.log(cuentas)
         this.cuentas = cuentas
-        cuentas.forEach(c => {
+        cuentas.forEach((c: { number: string; }) => {
           this.service.getDatos(this.url+"saldo/"+c.number)
         });
       }
