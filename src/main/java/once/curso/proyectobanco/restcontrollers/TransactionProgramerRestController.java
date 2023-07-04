@@ -59,7 +59,7 @@ public class TransactionProgramerRestController {
 		transactionProgramer.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CurrentAccountRestController.class)
 				.findById(transactionProgramer.getCurrentAccount().getId())).withRel("currentAccount"));
 		transactionProgramer.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TimingTypeRestController.class)
-				.findById(transactionProgramer.getCurrentAccount().getId())).withRel("timingType"));
+				.findById(transactionProgramer.getTimingType().getId())).withRel("timingType"));
 		return EntityModel.of(transactionProgramer);
 	}
 
