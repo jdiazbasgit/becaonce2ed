@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import lombok.Data;
 
-import once.curso.proyectobanco.beans.CurrentAccountBean;
 import once.curso.proyectobanco.entities.CurrentAccount;
 
 import once.curso.proyectobanco.dtos.TransactionDto;
