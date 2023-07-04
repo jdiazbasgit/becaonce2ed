@@ -20,7 +20,7 @@ export class ModalSubcategoryComponent implements DoCheck {
   @Output() eventoAComunicar = new EventEmitter();
   antiguoId: number = this.id
   subtitulo: string = ""
-
+subcategoriasCargadas:boolean=false
 
 
   constructor(private service: SubcategoryService) {
@@ -32,32 +32,29 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.service.getDatos("http://localhost:8080/once/categories")
       .subscribe((datos: any) => {
         this.categorias = datos._embedded.categories
+        this.subcategoriasCargadas = true
       });
   }
   ngDoCheck(): void {
 
-    console.log("id de entrada:"+this.id)
-    if (this.id === 0) {
-      this.subtitulo = "ALTA"
-      //this.categoria = "0"
-    } else {
-      this.subtitulo = "MODIFICACION"
+    if (this.subcategoriasCargadas) { // Verificar si todas las subcategorías están cargadas
+      console.log("id de entrada:" + this.id);
+      if (this.id === 0) {
+        this.subtitulo = "ALTA";
+      } else {
+        this.subtitulo = "MODIFICACION";
 
-
-      if (this.id !== this.antiguoId && this.id > 0) {
-        this.antiguoId = this.id
-
-        console.log("id entrada: " + this.id);
-        this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
-          .subscribe((datos: any) => {
-            this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
-            this.subcategoryPlaceHolder = datos.description;
-            this.descripcion = datos.description
-
-
-            console.log("categoria " + this.categoria)
-          });
-
+        if (this.id !== this.antiguoId && this.id > 0) {
+          this.antiguoId = this.id;
+          console.log("id entrada: " + this.id);
+          this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
+            .subscribe((datos: any) => {
+              this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
+              this.subcategoryPlaceHolder = datos.description;
+              this.descripcion = datos.description;
+              console.log("categoria " + this.categoria);
+            });
+        }
       }
     }
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { SubcategoryService } from "src/app/servicios/subcategories.service";
 import { ModalSubcategoryComponent } from "../modal-subcategory/modal-subcategory.component";
+import SubcategoryBean from "src/app/beans/SubcategoryBean";
+
 
 
 @Component({
@@ -13,7 +15,7 @@ export class SubcategoryComponent implements OnInit {
   @ViewChild(ModalSubcategoryComponent) modal: any
   id: number = 0
   titulo: string;
-  subcategories: any[];
+  subcategories: Array<SubcategoryBean>;
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: SubcategoryService) {
@@ -44,18 +46,23 @@ export class SubcategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.subcategories = []
     this.service.getDatos("http://localhost:8080/once/subcategories")
       .subscribe((datos: any) => {
-        this.subcategories = datos._embedded.subCategories;
+          datos._embedded.subCategories.forEach((s:any) => {
+            this.service.getDatos(s._links.category.href).subscribe((c:any)=>{
+              let subcategoryBean = new SubcategoryBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.description,c.description)
+              this.subcategories.push(subcategoryBean)
+            })
+          });
+ 
       })
   }
 
-  modificar(subcategory: any) {
+  modificar(id: number) {
     this.mensaje = ""
-    let ruta = subcategory._links.self.href
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf("/") + 1))
+    //let ruta = subcategory._links.self.href
+    this.modal.id = id
     // console.log(this.id )
 
   }
