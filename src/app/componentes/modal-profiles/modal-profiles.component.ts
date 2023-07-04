@@ -91,6 +91,8 @@ export class ModalProfilesComponent {
 
       const profile = new ProfileBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype);
 
+      console.log("salida="+JSON.stringify(profile));
+
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
@@ -118,8 +120,8 @@ export class ModalProfilesComponent {
       this.country = data.country;
       this.phone = data.phone;
       this.user = data._links.user.href;
-      this.documenttype = data._links.docomentTypes;
-      this.cardtype = data._links.cardTypes;
+      this.documenttype = data._links.documentTypes.href;
+      this.cardtype = data._links.cardTypes.href;
 
     } else {
       this.id = '';
