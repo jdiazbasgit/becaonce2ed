@@ -13,25 +13,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.TransactionsAwardsFine;
-import once.curso.proyectobanco.services.AwardsFinesTypeServices;
+import once.curso.proyectobanco.entities.TransactionAwardFine;
+import once.curso.proyectobanco.services.AwardFineTypeService;
 import once.curso.proyectobanco.services.TransactionService;
-import once.curso.proyectobanco.services.TransactionsAwardsFineService;
+import once.curso.proyectobanco.services.TransactionAwardFineService;
 
 @Data
 @SpringBootTest
 class TransactinsAwardsFineTests {
 
 	@Autowired
-	private TransactionsAwardsFineService transactionsAwardsFineService;
+	private TransactionAwardFineService transactionsAwardsFineService;
 	@Autowired
-	private AwardsFinesTypeServices awardsFineTypeServices;
+	private AwardFineTypeService awardsFineTypeServices;
 	@Autowired
 	private TransactionService transactionService;
 
 	@Test
 	public void saveTransactionsAwardsFine() {
-		TransactionsAwardsFine transactionsAwardsFine = new TransactionsAwardsFine();
+		TransactionAwardFine transactionsAwardsFine = new TransactionAwardFine();
 		transactionsAwardsFine.setAwardFineType(getAwardsFineTypeServices().findById(1).get());
 		transactionsAwardsFine.setTransaction(getTransactionService().findById(1).get());
 		getTransactionsAwardsFineService().save(transactionsAwardsFine);
@@ -42,7 +42,7 @@ class TransactinsAwardsFineTests {
 
 	@Test
 	public void findAll() {
-		List<TransactionsAwardsFine> transactionsAwardsFine = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()
+		List<TransactionAwardFine> transactionsAwardsFine = (List<TransactionAwardFine>) getTransactionsAwardsFineService()
 				.findAll();
 		assertNotEquals(transactionsAwardsFine.size(), 0);
 
@@ -51,14 +51,14 @@ class TransactinsAwardsFineTests {
 	@Test
 	public void saveAllTransactionsAwardsFine() {
 		long cantidad = getTransactionsAwardsFineService().count();
-		List<TransactionsAwardsFine> transactinsAwardsFines = new ArrayList<>();
+		List<TransactionAwardFine> transactinsAwardsFines = new ArrayList<>();
 
-		TransactionsAwardsFine transactionawardsFine1 = new TransactionsAwardsFine();
+		TransactionAwardFine transactionawardsFine1 = new TransactionAwardFine();
 		transactionawardsFine1.setAwardFineType(awardsFineTypeServices.findById(2).get());
 		transactionawardsFine1.setTransaction(transactionService.findById(2).get());
 		transactinsAwardsFines.add(transactionawardsFine1);
 
-		TransactionsAwardsFine transactionsAwardsFine2 = new TransactionsAwardsFine();
+		TransactionAwardFine transactionsAwardsFine2 = new TransactionAwardFine();
 		transactionsAwardsFine2.setAwardFineType(awardsFineTypeServices.findById(3).get());
 		transactionsAwardsFine2.setTransaction(transactionService.findById(3).get());
 		transactinsAwardsFines.add(transactionsAwardsFine2);
@@ -78,11 +78,11 @@ class TransactinsAwardsFineTests {
 
 	@Test
 	public void findAllById() {
-		List<TransactionsAwardsFine> datosCompletos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService().findAll();
+		List<TransactionAwardFine> datosCompletos = (List<TransactionAwardFine>) getTransactionsAwardsFineService().findAll();
 	
 		List<Integer> idsCompletos = new ArrayList<Integer>();
 		datosCompletos.forEach(dc -> idsCompletos.add(dc.getId()));
-		List<TransactionsAwardsFine> datosNuevos = (List<TransactionsAwardsFine>) getTransactionsAwardsFineService()
+		List<TransactionAwardFine> datosNuevos = (List<TransactionAwardFine>) getTransactionsAwardsFineService()
 				.findAllById(idsCompletos);
 		assertEquals(datosCompletos.size(),datosNuevos.size());
 

@@ -46,9 +46,9 @@ public class JWTAuthorizationFilter implements Filter {
 			}
 			else {
 				
-
+				//System.out.println("autenticado:"+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
 				SecurityContextHolder.clearContext();
-				System.out.println("autenticado:"+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

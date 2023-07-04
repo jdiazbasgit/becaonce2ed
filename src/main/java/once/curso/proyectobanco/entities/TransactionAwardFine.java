@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "transactions_awards_fines")
-public class TransactionsAwardsFine extends RepresentationModel<TransactionsAwardsFine> {
+public class TransactionAwardFine extends RepresentationModel<TransactionAwardFine> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,5 +27,5 @@ public class TransactionsAwardsFine extends RepresentationModel<TransactionsAwar
 
 	@ManyToOne
 	@JoinColumn(name = "awards_fines_types_id")
-	private AwardsFinesType awardFineType;
+	private AwardFineType awardFineType;
 }

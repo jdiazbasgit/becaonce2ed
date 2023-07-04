@@ -24,40 +24,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardsFine;
+import once.curso.proyectobanco.entities.AwardFine;
 
-import once.curso.proyectobanco.models.AwardsFineModelAssembler;
-import once.curso.proyectobanco.services.AwardsFinesServices;
+import once.curso.proyectobanco.models.AwardFineModelAssembler;
+import once.curso.proyectobanco.services.AwardFineService;
 
 @RestController
 @RequestMapping("/once")
 @Data
 @CrossOrigin(origins = "*")
-public class AwardFineRestControllers {
+public class AwardFineRestController {
 
 	@Autowired
-	private AwardsFineModelAssembler awardsFineModelAssembler;
+	private AwardFineModelAssembler awardsFineModelAssembler;
 
 	@Autowired
-	private PagedResourcesAssembler<AwardsFine> pagedResourcesAssembler;
+	private PagedResourcesAssembler<AwardFine> pagedResourcesAssembler;
 
 	@Autowired
-	private AwardsFinesServices awardFineServices;
+	private AwardFineService awardFineServices;
 
 	@GetMapping(value = "/awardsFines/{id}")
 	@CrossOrigin(origins = "*")
 	
-	public EntityModel<AwardsFine> findById(@PathVariable int id) {
-		AwardsFine awardsFine = getAwardFineServices().findById(id).get();
+	public EntityModel<AwardFine> findById(@PathVariable int id) {
+		AwardFine awardsFine = getAwardFineServices().findById(id).get();
 
 		awardsFine.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestControllers.class).findById(awardsFine.getId()))
+				.linkTo(WebMvcLinkBuilder.methodOn(AwardFineRestController.class).findById(awardsFine.getId()))
 				.withSelfRel());
 		
-		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestController.class)
 				.findById(awardsFine.getAwardFineType().getId())).withRel("awardFineType"));
 		
-		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardsFinesConfigurationRestControllers.class)
+		awardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineConfigurationRestController.class)
 				.findById(awardsFine.getAwardFineConfiguration().getId())).withRel("awardFineConfiguration"));
 
 		return EntityModel.of(awardsFine);
@@ -84,7 +84,7 @@ public class AwardFineRestControllers {
 	@GetMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 
-	public PagedModel<EntityModel<AwardsFine>> findAll(@RequestParam(defaultValue = "0") int size,
+	public PagedModel<EntityModel<AwardFine>> findAll(@RequestParam(defaultValue = "0") int size,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) String sort) {
 		if (size == 0) {
 			size = (int) getAwardFineServices().count();
@@ -105,7 +105,7 @@ public class AwardFineRestControllers {
 
 		}
 		Pageable pageable = PageRequest.of(page, size, orden);
-		Page<AwardsFine> awardFine = getAwardFineServices().findAll(pageable);
+		Page<AwardFine> awardFine = getAwardFineServices().findAll(pageable);
 
 		return getPagedResourcesAssembler().toModel(awardFine, getAwardsFineModelAssembler());
 	}
@@ -113,7 +113,7 @@ public class AwardFineRestControllers {
 	@PostMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 	
-	public boolean save(@RequestBody AwardsFine awardFine) {
+	public boolean save(@RequestBody AwardFine awardFine) {
 		return getAwardFineServices().existsById(getAwardFineServices().save(awardFine).getId());
 
 	}
@@ -121,14 +121,15 @@ public class AwardFineRestControllers {
 	@PutMapping(value = "/awardsFines")
 	@CrossOrigin(origins = "*")
 	
-	public List<AwardsFine> saveAll(@RequestBody List<AwardsFine> awardFine) {
-		return (List<AwardsFine>) getAwardFineServices().saveAll(awardFine);
+	public List<AwardFine> saveAll(@RequestBody List<AwardFine> awardFine) {
+		return (List<AwardFine>) getAwardFineServices().saveAll(awardFine);
 	}
 
 	@DeleteMapping(value = "/awardsFines/{id}")
 
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getAwardFineServices().deleteById(id);
+		return getAwardFineServices().existsById(id);
 
 	}
 	
