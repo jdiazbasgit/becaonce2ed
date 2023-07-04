@@ -1,8 +1,8 @@
-class Transaction {
-    id: number = 0;
-    current: number = 0;
+class TransactionBean {
+    id: number;
+    current: number;
     date: any;
-    description: string = "";
+    description: string;
     currentAccount: any;
 
     constructor(id: number, current: number, date: Date, description: string, currentAccount: string) {
@@ -13,4 +13,4 @@ class Transaction {
         this.currentAccount = currentAccount;
     }
 }
-export default Transaction;
+export default TransactionBean;
