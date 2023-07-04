@@ -49,5 +49,4 @@ export class CuentasComponent {
     sessionStorage['idCuenta'] = id
     this.router.navigateByUrl("detalles")
   }
-
 }

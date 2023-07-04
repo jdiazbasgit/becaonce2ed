@@ -2,11 +2,13 @@
     email:string
     phone:string
     user:string
+    identification:string
 
-    constructor(email:string , phone:string , user: string){
+    constructor(email:string , phone:string , user: string , identification :string){
         this.email=email
         this.phone=phone
         this.user=user
+        this.identification= identification
     }
 
  }
