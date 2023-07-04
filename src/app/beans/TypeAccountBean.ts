@@ -1,6 +1,6 @@
-class TypeAccount{
-    id: number = 0
-    description: string=""
+class TypeAccountBean{
+    id: number;
+    description: string;
 
     constructor (id: number, description: string){
         this.id= id;
@@ -8,4 +8,4 @@ class TypeAccount{
 
     }
 }
-export default TypeAccount;
+export default TypeAccountBean;
