@@ -96,7 +96,7 @@ public class ProfileService {
 		return getProfilesCRUDRepository().getProfileUserDto(identification, user, phone, email, creditcard);
 	}
 	
-	@Transactional
+	@Transactional //con spring solo esto, si otra programa tiene que poner try catch. Contola la transaccionabilidad
 	public Profile crearProfile(ProfileDto profileDto  ) {
 			Profile profileNew = new Profile();
 			
@@ -121,8 +121,9 @@ public class ProfileService {
 			    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
 			    userNuevo.setRol(getRolCRUDRepository().findById(25).get()); //ES ROLE_ADMIN
 
-			    profileNew.setUser(getUserCRUDRepository().save(userNuevo));
-			    Profile p = getProfilesCRUDRepository().save(profileNew);
+			    /* ROLLBACK */
+			    profileNew.setUser(getUserCRUDRepository().save(userNuevo)); /* GRABA USER*/
+			    Profile p = getProfilesCRUDRepository().save(profileNew); /* NO GRABA PROFILE*/
 
 			    return p;
 	}
