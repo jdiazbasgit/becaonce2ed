@@ -3,6 +3,8 @@ package once.curso.proyectobanco.restcontrollers;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.beans.CurrentAccountBean;
+import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.models.TransactionModelAssembler;
 import once.curso.proyectobanco.services.TransactionService;
@@ -72,8 +76,8 @@ public class TransactionRestController {
 	 * return CollectionModel.of(transaction); }
 	 */
 	@PatchMapping(value = "/transactions")
-	public List<Transaction> getTransactionsByCurrentAccount(@RequestBody Transaction transaction) {
-		return getTransactionService().getTransactionsByCurrentAccount(transaction.getCurrentAccount().getId());
+	public List<Transaction> getTransactionsByCurrentAccount(@RequestBody CurrentAccount cuenta) {
+		return getTransactionService().getTransactionsByCurrentAccount(cuenta);
 	}
 
 	@GetMapping(value = "/transactions")
@@ -99,7 +103,7 @@ public class TransactionRestController {
 		return getPagedResourcesAssembler().toModel(transaction, getTransactionModelAssembler());
 
 	}
-
+	
 	@PostMapping(value = "/transactions")
 	public boolean save(@RequestBody Transaction transaction) {
 		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
@@ -119,4 +123,9 @@ public class TransactionRestController {
 	public boolean existsById(@PathVariable int id) {
 		return getTransactionService().existsById(id);
 	}
+	
+	
+	
+	
+	
 }

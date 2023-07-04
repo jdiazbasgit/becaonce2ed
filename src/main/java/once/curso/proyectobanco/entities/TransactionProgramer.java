@@ -18,27 +18,31 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name="transactions")
-public class Transaction extends RepresentationModel<Transaction> {
-	
-	
+@Table (name="transactions_programers")
+public class TransactionProgramer extends RepresentationModel<TransactionProgramer> {
 	@Id
-	@GeneratedValue (strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@Temporal(TemporalType.DATE)
-	private Calendar date;
-	
 	private double current;
 	
-	@ManyToOne
-	@JoinColumn (name="descriptions_id")
-	private Description description;
+	@Temporal(TemporalType.DATE)
+	private Calendar dateStart;
 	
 	@ManyToOne
 	@JoinColumn (name="currents_accounts_id")
 	private CurrentAccount currentAccount;
+	
+	@ManyToOne
+	@JoinColumn(name="descriptions_id")
+	private Description description;
+	
+	@ManyToOne
+	@JoinColumn( name="timings_types_id")
+	private TimingType timingType;
 
+	
+	}
+	
+	
 		
 
-}
