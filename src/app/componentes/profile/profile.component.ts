@@ -27,10 +27,6 @@ export class ProfileComponent implements OnInit {
     this.getData();
   }
 
-  refreshData(event: any){
-    this.getData();
-  }
-
   getData() {
     this.service.getDatos("http://localhost:8080/once/profiles")
       .subscribe({
@@ -54,7 +50,7 @@ export class ProfileComponent implements OnInit {
     return 'assets/placeholder-image-profile.jpg';
   }
 
-  abrirModal(id: string, element?: any) {
+  openModal(id: string, element?: any, action?: string) {
     if (this.modal) {
       this.modal.image = '';
       this.modal.identification = '';
@@ -68,19 +64,20 @@ export class ProfileComponent implements OnInit {
       this.modal.city = '';
       this.modal.phone = '';
       this.modal.image = '';
+      this.modal.message = '';
 
-      //this.modal.message = ''
-
-      if (element !== undefined && element !== null && element !== '') {
-        this.modal.openModal(id, element);
+      if (action === 'edit') {
+        if (element !== undefined && element !== null && element !== '') {
+          this.modal.openModal(id, element, 'edit');
+        }
       } else {
-        this.modal.openModal('','');
+        this.modal.openModal('', '', 'add');
       }
     }
   }
 
-  eliminar(id: string) {
-    if (confirm("¿Esta seguro de eliminar el producto?")) {
+  delProfile(id: string) {
+    if (confirm("¿Esta seguro de eliminar el perfil?")) {
       this.service.delete("http://localhost:8080/once/profiles/" + id)
       .subscribe((dato: boolean) => {
         if (dato) {
@@ -90,6 +87,12 @@ export class ProfileComponent implements OnInit {
         else
           this.message ='Perfil no se ha eliminado';
       })
+    }
+  }
+
+  handleEventoProfile(event: any) {
+    if (event.salida === "OK") {
+      this.getData();
     }
   }
 }

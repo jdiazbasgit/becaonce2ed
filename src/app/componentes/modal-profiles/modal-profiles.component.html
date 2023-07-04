@@ -27,6 +27,10 @@
           <input type="text" class="form-control" aria-label="Dirección" aria-describedby="Dirección" [(ngModel)]="address" [value]="address">
         </div>
         <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Codigo Postal</span>
+          <input type="text" class="form-control" aria-label="Codigo Postal" aria-describedby="Codigo Postal" [(ngModel)]="postalcode" [value]="postalcode">
+        </div>
+        <div class="input-group mb-2">
           <span class="input-group-text spw-3">Provincia</span>
           <input type="text" class="form-control" aria-label="Provincia" aria-describedby="Provincia" [(ngModel)]="city" [value]="city">
         </div>
@@ -49,14 +53,16 @@
         <div class="mb-2">
           <p></p>
         </div>
-        <!--<div class="input-group mb-2">
-          <span class="input-group-text spw-3">Usauario</span>
-          <input type="text" class="form-control" aria-label="Usuario" aria-describedby="Usuario" [(ngModel)]="users.user" [value]="users.user">
+        <div class="border-top mt-4">
+          <div class="input-group mb-2 pt-3">
+            <span class="input-group-text spw-3">Usauario</span>
+            <input type="text" class="form-control" aria-label="Usuario" aria-describedby="Usuario" [(ngModel)]="username" [value]="username">
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text spw-3">Contraseña</span>
+            <input type="password" class="form-control" aria-label="Contraseña" aria-describedby="Contraseña" [(ngModel)]="password" [value]="password">
+          </div>
         </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text spw-3">Contraseña</span>
-          <input type="password" class="form-control" aria-label="Contraseña" aria-describedby="Contraseña" [(ngModel)]="users.password" [value]="users.password">
-        </div>-->
       </div>
       <div class="text-center">
         <p>{{ message }}</p>

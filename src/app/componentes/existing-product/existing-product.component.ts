@@ -86,7 +86,7 @@ export class ExistingProductComponent implements OnInit {
       .subscribe((dato: boolean) => {
         if (dato) {
           this.message = 'Producto eliminado correctamente.'
-          this.ngOnInit()
+          this.getData();
         }
         else
           this.message ='Producto no se ha eliminado'

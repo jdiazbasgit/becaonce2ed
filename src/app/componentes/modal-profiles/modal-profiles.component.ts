@@ -26,8 +26,10 @@ export class ModalProfilesComponent {
   user_id: string = '';
   documenttype: string = '';
   cardtype: string = '';
-  user: string = "";
-  psw: string = "";
+  user: string = '';
+
+  username: string = '';
+  password: string = '';
 
   message: string = "";
 
@@ -91,13 +93,10 @@ export class ModalProfilesComponent {
 
       const profile = new ProfileBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype);
 
-      console.log("salida="+JSON.stringify(profile));
-
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.message = '¡El perfil ha sido guardado correctamente!';
-            //this.eventoExistingProduct.emit({ salida: "OK" });
+            this.message = '¡El perfil ha sido guardado correctamente!';            
           } else {
             this.message = 'Error al guardar el perfil.';
           }
@@ -105,7 +104,7 @@ export class ModalProfilesComponent {
       }
   }
 
-  openModal(id: string, data: any) {
+  openModal(id: string, data: any, action: string) {
     if (data !== '') {
       this.id = id;
       this.image = data.image;
@@ -122,27 +121,51 @@ export class ModalProfilesComponent {
       this.user = data._links.user.href;
       this.documenttype = data._links.documentTypes.href;
       this.cardtype = data._links.cardTypes.href;
-
     } else {
-      this.id = '';
-      this.image = '';
-      this.identification = '';
-      this.firstname = '';
-      this.lastname = '';
-      this.creditcard = '';
-      this.address = '';
-      this.postalcode = '';
-      this.email = '';
-      this.city = '';
-      this.country = '';
-      this.phone = '';
-      this.user = '';
-      this.documenttype = '';
-      this.cardtype = '';
+      this.clearAll();
     }
+
+    if(action==='edit'){
+      const userId = this.user.substring(this.user.lastIndexOf('/') + 1);
+
+      this.service.getDatos("http://localhost:8080/once/users/"+userId)
+      .subscribe({
+        next: (rsp: any) => {
+          this.username = rsp.user;
+          this.password = rsp.password;
+
+      },error: (error: any) => {
+        console.error('Error al obtener los datos: ', error);
+      }});
+    }
+    
+    this.message = '';
   }
 
-  closeModal(): void {
+  closeModal() {
     this.eventoProfile.emit({ salida: "OK" });
+    this.clearAll();
+  }
+
+  clearAll(){
+    Object.assign(this, {
+      id: '',
+      image: '',
+      identification: '',
+      firstname: '',
+      lastname: '',
+      creditcard: '',
+      address: '',
+      postalcode: '',
+      email: '',
+      city: '',
+      country: '',
+      phone: '',
+      user: '',
+      documenttype: '',
+      cardtype: '',
+      username: '',
+      password: ''
+    });
   }
 }
