@@ -10,20 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardsFinesType;
-import once.curso.proyectobanco.services.AwardsFinesTypeServices;
+import once.curso.proyectobanco.entities.AwardFineType;
+import once.curso.proyectobanco.services.AwardFineTypeService;
 
 @SpringBootTest
 @Data
 public class AwardFineTypeTest {
 
 	@Autowired
-	private AwardsFinesTypeServices awardsFinesTypeServices;
+	private AwardFineTypeService awardFineTypeServices;
 
 
 	@Test
 	public void fidAll() {
-		List<AwardsFinesType> awardsFinesTypes = (List<AwardsFinesType>) getAwardsFinesTypeServices().findAll();
+		List<AwardFineType> awardsFinesTypes = (List<AwardFineType>) getAwardFineTypeServices().findAll();
 		assertNotEquals(awardsFinesTypes.size(), 0);
 			
 	}
@@ -31,12 +31,12 @@ public class AwardFineTypeTest {
 	@Test
 	public void probarSave() {
 		
-		AwardsFinesType awardFineType = new AwardsFinesType();
+		AwardFineType awardFineType = new AwardFineType();
 		awardFineType.setDescription("prueba");
-		getAwardsFinesTypeServices().save(awardFineType);
-		AwardsFinesType awardsFinesTypeRecuperado = getAwardsFinesTypeServices().findById(awardFineType.getId()).get();
+		getAwardFineTypeServices().save(awardFineType);
+		AwardFineType awardsFinesTypeRecuperado = getAwardFineTypeServices().findById(awardFineType.getId()).get();
 		
-		assertTrue(getAwardsFinesTypeServices().findById(awardFineType.getId()).isPresent());
+		assertTrue(getAwardFineTypeServices().findById(awardFineType.getId()).isPresent());
 	}
 	
 	

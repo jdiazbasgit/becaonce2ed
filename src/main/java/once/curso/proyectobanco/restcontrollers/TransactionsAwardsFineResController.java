@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.TransactionsAwardsFine;
-import once.curso.proyectobanco.models.TransactionsAwardsFineAssember;
-import once.curso.proyectobanco.services.TransactionsAwardsFineService;
+import once.curso.proyectobanco.entities.TransactionAwardFine;
+import once.curso.proyectobanco.models.TransactionAwardsFineAssember;
+import once.curso.proyectobanco.services.TransactionAwardFineService;
 
 @Data
 @RestController
@@ -34,18 +34,18 @@ import once.curso.proyectobanco.services.TransactionsAwardsFineService;
 public class TransactionsAwardsFineResController {
 	
 	@Autowired
-	private  TransactionsAwardsFineAssember  transactionsAwardsFineAssember;
+	private  TransactionAwardsFineAssember  transactionsAwardsFineAssember;
 	
 	@Autowired
-	private PagedResourcesAssembler<TransactionsAwardsFine> pagedResourcesAssembler ;
+	private PagedResourcesAssembler<TransactionAwardFine> pagedResourcesAssembler ;
 	
 	@Autowired
-	private TransactionsAwardsFineService transactionsAwardsFineService;
+	private TransactionAwardFineService transactionsAwardsFineService;
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/transactionsAwardsFines")
 	
-	public PagedModel<EntityModel<TransactionsAwardsFine>> findAll( @RequestParam(defaultValue = "0")int size, @RequestParam(defaultValue = "0")int page,
+	public PagedModel<EntityModel<TransactionAwardFine>> findAll( @RequestParam(defaultValue = "0")int size, @RequestParam(defaultValue = "0")int page,
 			@RequestParam(required = false)String sort){
 		if(size==0) {
 			size=(int) getTransactionsAwardsFineService().count();
@@ -67,7 +67,7 @@ public class TransactionsAwardsFineResController {
 		}
 		
 		Pageable pageable=PageRequest.of(page,size,orden);
-		Page<TransactionsAwardsFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll(pageable);
+		Page<TransactionAwardFine> transactionsAwardsFine = getTransactionsAwardsFineService().findAll(pageable);
 	
 	
 		return getPagedResourcesAssembler().toModel(transactionsAwardsFine,getTransactionsAwardsFineAssember());
@@ -76,12 +76,12 @@ public class TransactionsAwardsFineResController {
 	@CrossOrigin(origins = "*")
 	@GetMapping(value="/transactionsAwardsFines/{id}")
 	
-	public EntityModel<TransactionsAwardsFine> findById(@PathVariable Integer id){
-		 TransactionsAwardsFine transactionsAwardsFine =getTransactionsAwardsFineService().findById(id).get();
+	public EntityModel<TransactionAwardFine> findById(@PathVariable Integer id){
+		 TransactionAwardFine transactionsAwardsFine =getTransactionsAwardsFineService().findById(id).get();
 		 transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionRestController.class)
 				  .findById(transactionsAwardsFine.getTransaction().getId())).withRel("transaction"));
-		transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
-				  .findById(transactionsAwardsFine.getAwardFineType().getId())).withRel("awardsFineType"));
+		transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestController.class)
+				  .findById(transactionsAwardsFine.getAwardFineType().getId())).withRel("awardFineType"));
 		 transactionsAwardsFine.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TransactionsAwardsFineResController.class)
 				.findById(transactionsAwardsFine.getId())).withSelfRel());
 			
@@ -91,7 +91,7 @@ public class TransactionsAwardsFineResController {
 	@CrossOrigin(origins = "*")
 	@PostMapping("/transactionsAwardsFines")
 		
-	public TransactionsAwardsFine save(@RequestBody TransactionsAwardsFine transactionsAwardsFine) {
+	public TransactionAwardFine save(@RequestBody TransactionAwardFine transactionsAwardsFine) {
 		return getTransactionsAwardsFineService().save(transactionsAwardsFine);
 	
 	}
@@ -99,8 +99,8 @@ public class TransactionsAwardsFineResController {
 	
 	@CrossOrigin(origins = "*")
 	@PutMapping(value="/transactionsAwardsFines")
-	public List<TransactionsAwardsFine> saveAll(@RequestBody List<TransactionsAwardsFine> transactionsAwardsFines){
-		return (List<TransactionsAwardsFine>)getTransactionsAwardsFineService().saveAll(transactionsAwardsFines);
+	public List<TransactionAwardFine> saveAll(@RequestBody List<TransactionAwardFine> transactionsAwardsFines){
+		return (List<TransactionAwardFine>)getTransactionsAwardsFineService().saveAll(transactionsAwardsFines);
 	}
 	
 	

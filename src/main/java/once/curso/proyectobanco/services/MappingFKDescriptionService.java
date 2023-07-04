@@ -36,5 +36,9 @@ public class MappingFKDescriptionService {
 	public long count() {
 		return getMappingFKDescriptionCRUDRepository().count();
 	}
+	
+	public int getSaldo(int numeroCuenta) {
+		return getMappingFKDescriptionCRUDRepository().getSaldo(numeroCuenta);
+	}
 
 }

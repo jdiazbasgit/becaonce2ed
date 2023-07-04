@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardsFinesConfiguration;
-import once.curso.proyectobanco.services.AwardsFinesConfigurationServices;
+import once.curso.proyectobanco.entities.AwardFineConfiguration;
+import once.curso.proyectobanco.services.AwardFineConfigurationService;
 import once.curso.proyectobanco.services.DescriptionService;
 
 @SpringBootTest
@@ -18,14 +18,14 @@ import once.curso.proyectobanco.services.DescriptionService;
 public class AwardFineConfigurationTest {
 
 	@Autowired
-	private AwardsFinesConfigurationServices awardsFinesConfigurationServices;
+	private AwardFineConfigurationService awardsFinesConfigurationServices;
 	
 	@Autowired
 	private DescriptionService descriptionService;
 	
 	@Test
 	public void findAll() {
-		List<AwardsFinesConfiguration> awardsFinesConfigurations = (List<AwardsFinesConfiguration>) getAwardsFinesConfigurationServices().findAll();
+		List<AwardFineConfiguration> awardsFinesConfigurations = (List<AwardFineConfiguration>) getAwardsFinesConfigurationServices().findAll();
 		assertNotEquals(awardsFinesConfigurations.size(), 0);
 	}
 
