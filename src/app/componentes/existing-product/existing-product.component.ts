@@ -63,7 +63,7 @@ export class ExistingProductComponent implements OnInit {
     return formattedEuro;
   }
 
-  abrirModal(id: string, element?: any) {
+  openModal(id: string, element?: any, action?: string) {
     if (this.modal) {
       this.modal.image = ''
       this.modal.description = ''
@@ -72,10 +72,12 @@ export class ExistingProductComponent implements OnInit {
       this.modal.total = '0'
       this.modal.message=''
 
-      if (element !== undefined && element !== null && element !== '') {
-        this.modal.openModal(id, element)
+      if (action === 'edit') {
+        if (element !== undefined && element !== null && element !== '') {
+          this.modal.openModal(id, element, 'edit');
+        }
       } else {
-        this.modal.openModal('','')
+        this.modal.openModal('', '', 'add');
       }
     }
   }

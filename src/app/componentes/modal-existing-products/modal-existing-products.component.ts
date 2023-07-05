@@ -16,6 +16,7 @@ export class ModalExistingProductsComponent {
   stock: string = "";
   total: string = "0";
   subcategory: string = '';
+
   message: string = "";
 
   imageContent: string = "";
@@ -99,7 +100,35 @@ export class ModalExistingProductsComponent {
       }
   }
 
-  openModal(id: string, data: any) {
+  getCategories(){
+    this.service.getDatos("http://localhost:8080/once/categories")
+    .subscribe({
+      next: (response: any) => {
+        if (response._embedded) {
+          this.categories = response._embedded.categories;
+        } else {
+          console.error('La propiedad _embedded no existe en el JSON.')
+        }
+    },error: (error: any) => {
+      console.error('Error al obtener los datos: ', error);
+    }});
+  }
+
+  getSubCategories(){
+    this.service.getDatos("http://localhost:8080/once/subcategories")
+    .subscribe({
+      next: (response: any) => {
+        if (response._embedded) {
+          this.subcategories = response._embedded.subCategories;
+        } else {
+          console.error('La propiedad _embedded no existe en el JSON.')
+        }
+    },error: (error: any) => {
+      console.error('Error al obtener los datos: ', error);
+    }});
+  }
+
+  openModal(id: string, data: any, action: string) {
     if (data !== '') {
       this.id = id;
       this.image = data.image;
@@ -107,15 +136,26 @@ export class ModalExistingProductsComponent {
       this.price = data.price.toString().replace(/\./g, ',');
       this.stock = data.stock;
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock);
-      this.subcategory = data._links.subcategory.href;
+
+      const subcategoryId = data._links.subcategory.href.substring(data._links.subcategory.href.lastIndexOf('/') + 1);
+
+      /*if(action==='edit'){
+        const subcategoryId = this.subcategory.substring(this.subcategory.lastIndexOf('/') + 1);
+
+        this.service.getDatos("http://localhost:8080/once/subcategories/"+subcategoryId)
+        .subscribe({
+          next: (rsp: any) => {
+            this.subcategory = rsp.description;
+
+        },error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
+        }});
+      }*/
+
+      this.getSubCategories();
+      this.getCategories();
     } else {
-      this.id = '';
-      this.image = null;
-      this.description = '';
-      this.price = '';
-      this.stock = '';
-      this.total = '0';
-      this.subcategory = '';
+      this.clearAll();
     }
   }
 
@@ -137,5 +177,17 @@ export class ModalExistingProductsComponent {
           console.error('Error al obtener los datos: ', error);
         }
       })
+  }
+
+  clearAll(){
+    Object.assign(this, {
+      id: '',
+      image: null,
+      description:'',
+      price: '',
+      stock: '',
+      total: '0',
+      subcategoryhref: ''
+    });
   }
 }
