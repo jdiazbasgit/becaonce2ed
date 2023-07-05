@@ -14,6 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 
@@ -66,7 +68,7 @@ export class HazteClienteComponent implements OnInit {
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
-    private rolservice: RolService, private userService: UserService) {
+    private rolservice: RolService, private userService: UserService,private route: ActivatedRoute) {
     this.previsualizacion = []
     this.name = "";
     this.secondName = "";
@@ -94,15 +96,16 @@ export class HazteClienteComponent implements OnInit {
 
   }
 
+  
+
 
   ngOnInit() {
+
     this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos: any) => {
       this.identificationTypes = datos._embedded.identificationTypes
       console.log("identificadores : " + this.identificationTypes)
-
-
     })
-
+    
   }
 
 

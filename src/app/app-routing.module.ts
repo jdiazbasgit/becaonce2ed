@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:`productos`, component:ProductosComponent},
   {path:`paneladministrador`, component:PanelAdministradorComponent},
   {path:`haztecliente`, component:HazteClienteComponent}
+  
 ];
 
 @NgModule({
