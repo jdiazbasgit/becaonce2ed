@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
-import  CurrentAccountBean  from '../beans/CurrentAccountBean';
-
+import CurrentAccountBean from '../beans/currentAccountBean';
 @Component({
   selector: 'app-movimientos',
   templateUrl: './movimientos.component.html',
