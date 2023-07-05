@@ -22,6 +22,12 @@ export class SubcategoryComponent implements OnInit {
     this.titulo = "TIPOS DE SUBCATEGORIAS"
     this.subcategories = [];
   }
+  alta(){
+    this.mensaje = ""
+    //let ruta = subcategory._links.self.href
+    this.modal.id = 0
+    this.modal.ngOnInit()
+  }
 
   eliminar(id: any) {
     if (confirm("¿Esta seguro de borrar esta subcategoria?")) {
@@ -63,6 +69,7 @@ export class SubcategoryComponent implements OnInit {
     this.mensaje = ""
     //let ruta = subcategory._links.self.href
     this.modal.id = id
+    this.modal.ngOnInit()
     // console.log(this.id )
 
   }

@@ -7,7 +7,7 @@ import { SubcategoryService } from 'src/app/servicios/subcategories.service';
   templateUrl: './modal-subcategory.component.html',
   styleUrls: ['./modal-subcategory.component.css']
 })
-export class ModalSubcategoryComponent implements DoCheck {
+export class ModalSubcategoryComponent  {
   id: number = 0
   descripcion: string
   mensaje: string = "";
@@ -29,43 +29,33 @@ subcategoriasCargadas:boolean=false
     this.categorias = []
   }
   ngOnInit(): void {
+    if(this.id===0){
+      this.subtitulo = "ALTA";
+      this.subcategory="";
+      this.subcategoryPlaceHolder="";
+      this.categoria="0";
     this.service.getDatos("http://localhost:8080/once/categories")
       .subscribe((datos: any) => {
         this.categorias = datos._embedded.categories
         this.subcategoriasCargadas = true
       });
-  }
-  ngDoCheck(): void {
-
-    if (this.subcategoriasCargadas) { // Verificar si todas las subcategorías están cargadas
-      console.log("id de entrada:" + this.id);
-      if (this.id === 0) {
-        this.subtitulo = "ALTA";
-      } else {
+    }
+      else{
         this.subtitulo = "MODIFICACION";
-
-        if (this.id !== this.antiguoId && this.id > 0) {
-          this.antiguoId = this.id;
-          console.log("id entrada: " + this.id);
-          this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
+      this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
             .subscribe((datos: any) => {
               this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
               this.subcategoryPlaceHolder = datos.description;
               this.descripcion = datos.description;
               console.log("categoria " + this.categoria);
             });
-        }
-      }
-    }
+          }
   }
-
+ 
   realizarComunicacion() {
-    this.id = 0;
-    this.subcategory = "";
-    this.subcategoryPlaceHolder = "";
-    this.fin = false;
+  
     this.eventoAComunicar.emit({ salida: "OK" });
-    this.mensaje = "";
+  
   }
 
   grabar() {
@@ -81,6 +71,7 @@ subcategoriasCargadas:boolean=false
             this.mensaje = "La grabación no se ha realizado";
           }
         });
+        this.realizarComunicacion()
     } else {
       this.mensaje = "Debes introducir un valor";
     }
