@@ -25,6 +25,7 @@ import lombok.Data;
 import once.curso.proyectobanco.entities.Configuration;
 import once.curso.proyectobanco.models.ConfigurationModelAssember;
 import once.curso.proyectobanco.services.ConfigurationService;
+import once.curso.proyectobanco.threads.BancoThread;
 
 @RestController
 @Data
@@ -38,6 +39,10 @@ public class ConfigurationRestController {
 	
 	@Autowired
 	private  PagedResourcesAssembler<Configuration> pagedResourcesAssemble;
+	
+	ConfigurationRestController(){
+		
+	}
 	
 	
 	@CrossOrigin(origins = "*")
@@ -98,10 +103,9 @@ public class ConfigurationRestController {
 	}
 	
 	@CrossOrigin(origins = "*")
-	@PostMapping(value="/configurations/{id}")
-	public boolean existsById(@PathVariable Integer id) {
-		return getConfigurationService().existsById(id);
-	}
-	
+	@GetMapping(value="/arrancar")
+	public void existsById() {
+		new BancoThread(getConfigurationService()).start();
 
-}
+
+}}
