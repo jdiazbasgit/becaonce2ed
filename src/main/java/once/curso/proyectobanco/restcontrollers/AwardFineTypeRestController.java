@@ -24,33 +24,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
-import once.curso.proyectobanco.entities.AwardsFinesType;
-import once.curso.proyectobanco.models.AwardsFinesTypeModelAssembler;
-import once.curso.proyectobanco.services.AwardsFinesTypeServices;
+import once.curso.proyectobanco.entities.AwardFineType;
+import once.curso.proyectobanco.models.AwardFineTypeModelAssembler;
+import once.curso.proyectobanco.services.AwardFineTypeService;
 
 @RestController
 @RequestMapping("/once")
 @Data
 @CrossOrigin(origins = "*")
-public class AwardFineTypeRestControllers {
+public class AwardFineTypeRestController {
 	
 	@Autowired
-	private AwardsFinesTypeModelAssembler awardsFinesTypeModelAssembler;
+	private AwardFineTypeModelAssembler awardsFinesTypeModelAssembler;
 	
 	@Autowired
-	private PagedResourcesAssembler<AwardsFinesType> PagedResourcesAssembler;
+	private PagedResourcesAssembler<AwardFineType> PagedResourcesAssembler;
 
 	@Autowired
-	private AwardsFinesTypeServices awardFineTypeServices;
+	private AwardFineTypeService awardFineTypeServices;
 
 	@GetMapping(value = "/awardsFinesTypes/{id}")
 	@CrossOrigin(origins = "*")
 	
-	public EntityModel<AwardsFinesType> findById(@PathVariable int id) {
-		AwardsFinesType awardsFinesType = getAwardFineTypeServices().findById(id).get();
+	public EntityModel<AwardFineType> findById(@PathVariable int id) {
+		AwardFineType awardsFinesType = getAwardFineTypeServices().findById(id).get();
 
 			awardsFinesType
-					.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestControllers.class)
+					.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(AwardFineTypeRestController.class)
 							.findById(awardsFinesType.getId())).withSelfRel());
 		
 		return EntityModel.of(awardsFinesType);
@@ -59,7 +59,7 @@ public class AwardFineTypeRestControllers {
 	@GetMapping(value = "/awardsFinesTypes")
 	@CrossOrigin(origins = "*")
 	
-	public PagedModel<EntityModel<AwardsFinesType>> findAll(@RequestParam(defaultValue = "0") int size, @RequestParam(defaultValue = "0")int page,
+	public PagedModel<EntityModel<AwardFineType>> findAll(@RequestParam(defaultValue = "0") int size, @RequestParam(defaultValue = "0")int page,
 			@RequestParam(required = false)String sort){
 		if(size==0) {
 			size=(int) getAwardFineTypeServices().count();
@@ -80,7 +80,7 @@ public class AwardFineTypeRestControllers {
 			
 		}
 		Pageable pageable=PageRequest.of(page, size, orden);
-		Page<AwardsFinesType> awardsFinesType = getAwardFineTypeServices().findAll(pageable);
+		Page<AwardFineType> awardsFinesType = getAwardFineTypeServices().findAll(pageable);
 		
 		return getPagedResourcesAssembler().toModel(awardsFinesType, getAwardsFinesTypeModelAssembler());
 	}
@@ -88,25 +88,26 @@ public class AwardFineTypeRestControllers {
 	@PostMapping(value = "/awardsFinesTypes")
 	@CrossOrigin(origins = "*")
 	
-	public boolean save(@RequestBody AwardsFinesType awardFineType) {
+	public boolean save(@RequestBody AwardFineType awardFineType) {
 		return getAwardFineTypeServices().existsById(getAwardFineTypeServices().save(awardFineType).getId());	
 		}
 
 	@PutMapping(value = "/awardsFinesTypes")
 	@CrossOrigin(origins = "*")
 	
-	public List<AwardsFinesType> saveAll(@RequestBody List<AwardsFinesType> awardFineTypes) {
-		return (List<AwardsFinesType>) getAwardFineTypeServices().saveAll(awardFineTypes);
+	public List<AwardFineType> saveAll(@RequestBody List<AwardFineType> awardFineTypes) {
+		return (List<AwardFineType>) getAwardFineTypeServices().saveAll(awardFineTypes);
 	}
 
-	@DeleteMapping(value = "/awrdsFinesTypes")
+	@DeleteMapping(value = "/awardsFinesTypes/{id}")
 	@CrossOrigin(origins = "*")
 
-	public void deleteById(@PathVariable int id) {
+	public boolean deleteById(@PathVariable int id) {
 		getAwardFineTypeServices().deleteById(id);
+		return getAwardFineTypeServices().existsById(id);
 	}
 	
-	@PostMapping("/awrdsFinesTypes/{id}")
+	@PostMapping("/awardsFinesTypes/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getAwardFineTypeServices().existsById(id);
 	}

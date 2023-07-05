@@ -1,26 +1,22 @@
 package once.curso.proyectobanco.entities;
 
+import org.springframework.hateoas.RepresentationModel;
+import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.springframework.hateoas.RepresentationModel;
-
+import javax.persistence.Id;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
 @Entity
-@Table(name = "awards_fines_configurations")
-public class AwardsFinesConfiguration extends RepresentationModel <AwardsFinesConfiguration>{
-
+@Table(name = "awards_fines_types") 
+public class AwardFineType extends RepresentationModel<AwardFineType> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String current;
+	@Column(length = 45)
 	private String description;
-
 }

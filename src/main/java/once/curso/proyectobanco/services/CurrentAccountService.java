@@ -1,5 +1,6 @@
 package once.curso.proyectobanco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,9 @@ public class CurrentAccountService {
 		return getCurrentAccountCRUDRepository().findAllById(ids);
 	}
 
+	public List<CurrentAccount> getCurrentAccountsByUser(String userName){
+		return getCurrentAccountCRUDRepository().getCurrentAccountsByUser(userName);
+	}
 	public long count() {
 		return getCurrentAccountCRUDRepository().count();
 	}
