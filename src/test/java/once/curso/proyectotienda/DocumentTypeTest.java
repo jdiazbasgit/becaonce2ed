@@ -82,7 +82,7 @@ public class DocumentTypeTest {
 
 		assertNotNull(getDocumentTypeService().findById(documentTypeId));
 	}
-
+   
 	/*@Test
 	public void count() {
 

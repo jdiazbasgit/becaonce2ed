@@ -41,11 +41,11 @@ public class ProfileTests {
 	public void AddProfile() {
 		Profile profile = new Profile();
 		profile.setName("David");
-		profile.setSecond_name("Lira");
+		profile.setSecondName("Lira");
 		profile.setIdentification("51234567L");
-		profile.setCredit_card("4024007197782433");
+		profile.setCreditCard("4024007197782433");
 		profile.setAddress("Calle Illescas, 110");
-		profile.setPostal_code("28047");
+		profile.setPostalCode("28047");
 		profile.setCountry("Madrid");
 		profile.setEmail("homer@gmail.com");
 		profile.setCity("Madrid");
@@ -71,11 +71,11 @@ public class ProfileTests {
 		if (p.isPresent()) {
 			Profile profile = p.get();
 			profile.setName("Sandra");
-			profile.setSecond_name("Lira");
+			profile.setSecondName("Lira");
 			profile.setIdentification("513334567L");
-			profile.setCredit_card("4024333197782433");
+			profile.setCreditCard("4024333197782433");
 			profile.setAddress("Calle Illescas, 114");
-			profile.setPostal_code("28047");
+			profile.setPostalCode("28047");
 			profile.setCountry("Madrid");
 			profile.setEmail("homer@gmail.com");
 			profile.setCity("Madrid");
