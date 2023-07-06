@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./detalles-cuenta.component.css']
 })
 export class DetallesCuentaComponent {
+  
+  cuentaElegida:string
 
+  constructor(){
+    this.cuentaElegida=""
+  }
+
+  ngOnInit(){
+    this.cuentaElegida= sessionStorage['cuenta']
+    console.log(this.cuentaElegida)
+  }
 }
