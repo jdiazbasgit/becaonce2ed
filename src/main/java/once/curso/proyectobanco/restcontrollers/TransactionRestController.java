@@ -124,8 +124,10 @@ public class TransactionRestController {
 		return getTransactionService().existsById(id);
 	}
 	
-	
-	
+	@GetMapping("/balance/{accountNumber}")
+	public double getBalance (@PathVariable int accountNumber) {
+		return getTransactionService().getBalance(accountNumber);
+	}
 	
 	
 }
