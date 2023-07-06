@@ -40,7 +40,7 @@ export class ModalProfilesComponent {
 
   constructor(private service: ProfileService) {}
 
-  getImage(imageBytes: string | null): string {
+  getImageProfile(imageBytes: string | null): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes;
@@ -55,7 +55,7 @@ export class ModalProfilesComponent {
     }
   }
 
-  fileUpload(event: any) {
+  fileUploadProfile(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -65,9 +65,9 @@ export class ModalProfilesComponent {
 
         if (base64Match && base64Match.length > 1) {
           this.imageContent = base64Match[1];
-          const imgElement = document.querySelector('#setImage') as HTMLImageElement;
+          const imgElement = document.querySelector('#setImageProfile') as HTMLImageElement;
           if (imgElement) {
-            imgElement.src = this.getImage(this.imageContent);
+            imgElement.src = this.getImageProfile(this.imageContent);
           }
         }
       };

@@ -28,9 +28,13 @@ export class ModalExistingProductsComponent {
   subcategoria: string ='';
 
   @Output() eventoExistingProduct = new EventEmitter();
-  constructor(private service: ExistingProductService) { }
 
-  getImage(imageBytes: string | null): string {
+  constructor(private service: ExistingProductService) { 
+    this.getSubCategories();
+    this.getCategories();
+  }
+
+  getImageProduct(imageBytes: string | null): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes;
@@ -45,7 +49,7 @@ export class ModalExistingProductsComponent {
     }
   }
 
-  fileUpload(event: any) {
+  fileUploadProduct(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -55,9 +59,9 @@ export class ModalExistingProductsComponent {
 
         if (base64Match && base64Match.length > 1) {
           this.imageContent = base64Match[1];
-          const imgElement = document.querySelector('#setImage') as HTMLImageElement;
+          const imgElement = document.querySelector('#setImageProduct') as HTMLImageElement;
           if (imgElement) {
-            imgElement.src = this.getImage(this.imageContent);
+            imgElement.src = this.getImageProduct(this.imageContent);
           }
         }
       };
@@ -132,38 +136,40 @@ export class ModalExistingProductsComponent {
     }});
   }
 
+  getHref(href: string){
+    if (href!==''){
+      this.service.getDatos(href)
+      .subscribe({
+        next: (rsp: any) => {
+          this.categoria = rsp.description;
+      },error: (error: any) => {
+        console.error('Error al obtener los datos: ', error);
+      }});
+    }
+  }
+
   openModal(id: string, data: any, action: string) {
-    if (data !== '') {
+    if (data !== '' && data._links && data._links.self && data._links.self.href) {
+      //const href = data._links.self.href;
       this.id = id;
       this.image = data.image;
       this.description = data.description;
       this.price = data.price.toString().replace(/\./g, ',');
       this.stock = data.stock;
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock);
-
-      this.getSubCategories();
-      this.getCategories();
+      this.subcategory = data._links.subcategory.href;
 
       /*if(action==='edit'){*/
 
-        const subcategoryId = data._links.subcategory.href.substring(data._links.subcategory.href.lastIndexOf('/') + 1);
-        this.service.getDatos("http://localhost:8080/once/subcategories/"+subcategoryId)
+        this.service.getDatos(this.subcategory)
         .subscribe({
           next: (rsp: any) => {
             this.subcategoria = rsp.description;
+            this.getHref(rsp._links.category.href);
         },error: (error: any) => {
           console.error('Error al obtener los datos: ', error);
         }});
-
-        const categoryId = data._links.category.href.substring(data._links.category.href.lastIndexOf('/') + 1);
-
-        this.service.getDatos("http://localhost:8080/once/categories/"+categoryId)
-        .subscribe({
-          next: (rsp: any) => {
-            this.categoria = rsp.description;
-        },error: (error: any) => {
-          console.error('Error al obtener los datos: ', error);
-        }});
+        
       /*}*/
 
 
@@ -200,7 +206,8 @@ export class ModalExistingProductsComponent {
       price: '',
       stock: '',
       total: '0',
-      subcategoryhref: ''
+      categoria: '',
+      subcategoria:''
     });
   }
 }

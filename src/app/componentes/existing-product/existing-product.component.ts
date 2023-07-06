@@ -47,7 +47,7 @@ export class ExistingProductComponent implements OnInit {
       })
   }
 
-  getImage(imageBytes: string): string {
+  getImageProduct(imageBytes: string): string {
     if (imageBytes) {
       return 'data:image/jpeg;base64,' + imageBytes
     }
@@ -65,12 +65,15 @@ export class ExistingProductComponent implements OnInit {
 
   openModal(id: string, element?: any, action?: string) {
     if (this.modal) {
-      this.modal.image = ''
-      this.modal.description = ''
-      this.modal.price = ''
-      this.modal.stock = ''
-      this.modal.total = '0'
-      this.modal.message=''
+      this.modal.image = '';
+      this.modal.description = '';
+      this.modal.price = '';
+      this.modal.stock = '';
+      this.modal.total = '0';
+      this.modal.subcategory='';
+      this.modal.message='';
+      this.modal.categoria = '';
+      this.modal.subcategoria = '';
 
       if (action === 'edit') {
         if (element !== undefined && element !== null && element !== '') {

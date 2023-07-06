@@ -8,7 +8,7 @@
       <th> Acciones </th>
 
       <tr *ngFor="let element of elements">
-        <td><img [src]="getImage(element.image)" alt="{{ element.description }}"></td>
+        <td><img [src]="getImageProduct(element.image)" alt="{{ element.description }}"></td>
         <td> {{ element.description }} </td>
         <td> {{ getFormatterEuro(element.price) }} </td>
         <td> {{ element.stock }} </td>
