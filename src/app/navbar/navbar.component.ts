@@ -8,17 +8,32 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-menuVisible: boolean = false;
+// menuVisible: boolean = false;
+cuentaElegida: boolean = false
 
-constructor(private router: Router) {}
+// constructor(private router: Router) {}
 
-toggleMenu(): void {
-  this.menuVisible = !this.menuVisible;
+ngDoCheck(){
+  if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida){
+    this.cuentaElegida = true
+  }
 }
 
-isRouteActive(route: string): boolean {
-  return this.router.isActive(route, true);
+deselegirCuenta(){
+  sessionStorage.removeItem('cuenta')
+  this.cuentaElegida = false
 }
+
+
+
+
+// toggleMenu(): void {
+//   this.menuVisible = !this.menuVisible;
+// }
+
+// isRouteActive(route: string): boolean {
+//   return this.router.isActive(route, true);
+// }
 }
 
 // function highlightActiveButton(activeButtonId: string) {
