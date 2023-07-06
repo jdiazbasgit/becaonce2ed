@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import once.curso.proyectotienda.entities.ExistingProduct;
 
@@ -17,6 +18,6 @@ public interface ExistingProductCRUDRepository extends PagingAndSortingRepositor
 	public List<ExistingProduct> getExistingProductByCategory(int categoryId);
 	
 	
-	@Query("from ExstingProduct as s where s.category.subcategory.id=:subCategoryId")
-	public List<ExistingProduct> getExistingProductsBySubcategory(int subcategoryId);
+	 @Query(" from ExistingProduct e where e.subcategory.category.id = :categoryId AND e.subcategory.id = :subcategoryId")
+	public List<ExistingProduct> getExistingProductByCategoryAndSubcategory(@Param("categoryId")int categoryId,@Param("subcategoryId")int subCategoryId);
 }

@@ -75,5 +75,8 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().getExistingProductByCategory(categoryId);
 	}
 	
-	//public List<ExistingProduct> getExistingProductsBySubcategory(int subcategoryId);
+	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(int categoryId,int subCategoryId){
+		return getExistingProductsCRUDRepository().getExistingProductByCategoryAndSubcategory(categoryId, subCategoryId);
+	}
+		
 }
