@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import once.curso.proyectotienda.entities.CardType;
 import once.curso.proyectotienda.restcontrollers.CardTypeRestController;
+
 @Component
 public class CardTypeModelAssembler implements SimpleRepresentationModelAssembler<CardType> {
 
@@ -24,11 +25,12 @@ public class CardTypeModelAssembler implements SimpleRepresentationModelAssemble
 	public void addLinks(CollectionModel<EntityModel<CardType>> cardType) {
 
 		cardType.forEach(c -> {
-			c.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(c.getContent().getId()))
-					.withSelfRel());
+			if (c.getContent() != null)
+				c.add(WebMvcLinkBuilder.linkTo(
+						WebMvcLinkBuilder.methodOn(CardTypeRestController.class).findById(c.getContent().getId()))
+						.withSelfRel());
 
 		});
-	}
 
+	}
 }

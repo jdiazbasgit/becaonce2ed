@@ -2,6 +2,7 @@ package once.curso.proyectotienda;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -32,21 +33,21 @@ public class SubCategoryTests {
 	public void findAll() {
 
 		List<SubCategory> subCategories = (List<SubCategory>) getSubcategoryService().findAll();
-		assertEquals(subCategories.size(), 0);
+		assertNotEquals(subCategories.size(), 0);
 	}
 	
 	@Order(2)
 	@Test
 	public void probarSaveFindDelete() {
 		
-		SubCategory subCategories = new SubCategory();
-		
-		subCategories.setDescription("pruebas");
-		getSubcategoryService().save(subCategories);
-		SubCategory subcategoryRecuperado = getSubcategoryService().findById(subCategories.getId()).get();
-		getSubcategoryService().delete(subcategoryRecuperado);
-		
-		assertFalse(getSubcategoryService().existsById(subCategories.getId()));
+		SubCategory subCategory = new SubCategory();
+		subCategory.setDescription("pruebabababa");
+		subCategory.setCategory(getCategoryService().findById(398).get());
+		getSubcategoryService().save(subCategory);
+		//SubCategory subcategoryRecuperado = getSubcategoryService().findById(subCategory.getId()).get();
+		//getSubcategoryService().delete(subcategoryRecuperado);
+		getSubcategoryService().deleteById(subCategory.getId());		
+		assertFalse(getSubcategoryService().existsById(subCategory.getId()));
 		/* {
 			Category category = new Category();
 			category.setDescription("pruebac");
@@ -87,18 +88,19 @@ public class SubCategoryTests {
 		
 		SubCategory prueba1 = new SubCategory();
 		prueba1.setDescription("prueba 1");
+		prueba1.setCategory(getCategoryService().findById(398).get());
 		subCategories.add(prueba1);
-		subcategoryService.save(prueba1);
-		
+				
 		SubCategory prueba2 = new SubCategory();
 		prueba2.setDescription("prueba 2");
-		prueba2.setCategory(getCategoryService().findById(3).get());
+		prueba2.setCategory(getCategoryService().findById(398).get());
 		subCategories.add(prueba2);
-		subcategoryService.save(prueba2);
+		long cantidadAntes = subcategoryService.count();
+		subcategoryService.saveAll(subCategories);
 		
 		
 		long cantidad = subcategoryService.count();
-		assertEquals(4, cantidad);
+		assertEquals(cantidadAntes +2, cantidad);
 		
 		subCategories.forEach(subCategory -> subcategoryService.deleteById(subCategory.getId()));
 	}
