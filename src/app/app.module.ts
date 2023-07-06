@@ -41,6 +41,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { ModalExistingProductsComponent } from './componentes/modal-existing-pro
     MatInputModule,
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     MatRadioModule
   ],
   providers: [],

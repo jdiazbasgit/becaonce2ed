@@ -4,21 +4,24 @@
     <table class="table table-stripped table-bordered">
         <tr>
             <th class="text-center">DESCRIPCION</th>
-            <th class="text-center">ACIONES</th>           
+            <th class="text-center">CATEGORIA</th>  
+            <th class="text-center">ACIONES</th>   
+                    
         </tr>
-        <tr *ngFor="let subcategory of subcategories">
-            <td class="text-center">{{subcategory.description}}</td>
+        <tr *ngFor="let subcategoryBean of subcategories">
+            <td class="text-center">{{subcategoryBean.description}}</td>
+            <td class="text-center">{{subcategoryBean.category}}</td>
             <td class="text-center">
-                <a href="#" (click)="modificar(subcategory)" data-bs-toggle="modal" data-bs-target="#myModal"><i
+                <a href="#" (click)="modificar(subcategoryBean.id)" data-bs-toggle="modal" data-bs-target="#myModal"><i
                         class="bi bi-pencil-fill"></i>
                 </a>
-                <a href="#" (click)="eliminar(subcategory._links.self.href.substring(subcategory._links.self.href.lastIndexOf('/')+1))">
+                <a  (click)="eliminar(subcategoryBean.id)">
                     <i class="bi bi-trash3-fill"></i>
                 </a>
             </td>
         </tr>
     </table>
     <div class="text-center"><button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
-            data-bs-target="#myModal">ALTA</button></div>
+            data-bs-target="#myModal" (click)="alta()">ALTA</button></div>
     <app-modal-subcategory (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-subcategory>
 </div>
