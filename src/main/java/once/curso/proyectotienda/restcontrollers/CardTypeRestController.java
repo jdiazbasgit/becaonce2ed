@@ -42,8 +42,6 @@ public class CardTypeRestController {
 	@Autowired
 	private PagedResourcesAssembler<CardType> pagedResourcesAssembler;
 
-	
-
 	@GetMapping("/cardTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<CardType> findById(@PathVariable int id) {
