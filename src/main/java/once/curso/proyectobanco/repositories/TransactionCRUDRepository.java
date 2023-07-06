@@ -15,5 +15,8 @@ public interface TransactionCRUDRepository extends PagingAndSortingRepository<Tr
 
 	@Query("FROM Transaction t WHERE t.currentAccount.number = :#{#numberCurrentAccount.number}")
 	public List<Transaction> getTransactionsByCurrentAccount(@Param("numberCurrentAccount") CurrentAccount numberCurrentAccount);
+	
+	@Query("SELECT SUM(t.current) FROM Transaction t WHERE t.currentAccount.number = :accountNumber")
+	public int getBalance(int accountNumber);
 
 }
