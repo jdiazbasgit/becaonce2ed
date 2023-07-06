@@ -1,6 +1,7 @@
 package once.curso.proyectotienda.restcontrollers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -147,6 +148,11 @@ public class ExistingProductRestController {
 	@CrossOrigin(origins ="*")
 	public long getExistingProductCount() {
 		return existingProductService.count();
+	}
+	
+	@GetMapping("/existingProducts/{categoryId}")
+	public List<ExistingProduct> getExistingProductByCategory(@PathVariable int categoryId){
+		return getExistingProductService().getExistingProductByCategory(categoryId);
 	}
 }
 
