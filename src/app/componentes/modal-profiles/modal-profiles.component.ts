@@ -26,8 +26,10 @@ export class ModalProfilesComponent {
   user_id: string = '';
   documenttype: string = '';
   cardtype: string = '';
-  user: string = "";
-  psw: string = "";
+  user: string = '';
+
+  username: string = '';
+  password: string = '';
 
   message: string = "";
 
@@ -38,7 +40,7 @@ export class ModalProfilesComponent {
 
   constructor(private service: ProfileService) {}
 
-  getImage(imageBytes: string | null): string {
+  getImageProfile(imageBytes: string | null): string {
     if (imageBytes) {
       this.image = imageBytes.toString()
       return 'data:image/jpeg;base64,' + imageBytes;
@@ -53,7 +55,7 @@ export class ModalProfilesComponent {
     }
   }
 
-  fileUpload(event: any) {
+  fileUploadProfile(event: any) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -63,9 +65,9 @@ export class ModalProfilesComponent {
 
         if (base64Match && base64Match.length > 1) {
           this.imageContent = base64Match[1];
-          const imgElement = document.querySelector('#setImage') as HTMLImageElement;
+          const imgElement = document.querySelector('#setImageProfile') as HTMLImageElement;
           if (imgElement) {
-            imgElement.src = this.getImage(this.imageContent);
+            imgElement.src = this.getImageProfile(this.imageContent);
           }
         }
       };
@@ -76,7 +78,13 @@ export class ModalProfilesComponent {
 
   saveData() {
     if(this.identification.trim()==''){
-      //this.message = 'Por favor, introduzca descripción.';
+      this.message = 'Por favor, introduzca identificación.';
+    } else if (this.creditcard.trim()==''){
+      this.message = 'Por favor, introduzca el número de la tarjeta de credito.';
+    } else if (this.email.trim()==''){
+      this.message = 'Por favor, introduzca el correo electrónico.';
+    } else if (this.phone.trim()==''){
+      this.message = 'Por favor, introduzca el número de teléfono.';
     } else {
 
       if (this.imageContent) {
@@ -88,8 +96,7 @@ export class ModalProfilesComponent {
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.message = '¡El perfil ha sido guardado correctamente!';
-            //this.eventoExistingProduct.emit({ salida: "OK" });
+            this.message = '¡El perfil ha sido guardado correctamente!';            
           } else {
             this.message = 'Error al guardar el perfil.';
           }
@@ -97,7 +104,7 @@ export class ModalProfilesComponent {
       }
   }
 
-  openModal(id: string, data: any) {
+  openModal(id: string, data: any, action: string) {
     if (data !== '') {
       this.id = id;
       this.image = data.image;
@@ -112,29 +119,53 @@ export class ModalProfilesComponent {
       this.country = data.country;
       this.phone = data.phone;
       this.user = data._links.user.href;
-      this.documenttype = data._links.docomentTypes;
-      this.cardtype = data._links.cardTypes;
-
+      this.documenttype = data._links.documentTypes.href;
+      this.cardtype = data._links.cardTypes.href;
     } else {
-      this.id = '';
-      this.image = '';
-      this.identification = '';
-      this.firstname = '';
-      this.lastname = '';
-      this.creditcard = '';
-      this.address = '';
-      this.postalcode = '';
-      this.email = '';
-      this.city = '';
-      this.country = '';
-      this.phone = '';
-      this.user = '';
-      this.documenttype = '';
-      this.cardtype = '';
+      this.clearAll();
     }
+
+    if(action==='edit'){
+      const userId = this.user.substring(this.user.lastIndexOf('/') + 1);
+
+      this.service.getDatos("http://localhost:8080/once/users/"+userId)
+      .subscribe({
+        next: (rsp: any) => {
+          this.username = rsp.user;
+          this.password = rsp.password;
+
+      },error: (error: any) => {
+        console.error('Error al obtener los datos: ', error);
+      }});
+    }
+    
+    this.message = '';
   }
 
-  closeModal(): void {
+  closeModal() {
     this.eventoProfile.emit({ salida: "OK" });
+    this.clearAll();
+  }
+
+  clearAll(){
+    Object.assign(this, {
+      id: '',
+      image: '',
+      identification: '',
+      firstname: '',
+      lastname: '',
+      creditcard: '',
+      address: '',
+      postalcode: '',
+      email: '',
+      city: '',
+      country: '',
+      phone: '',
+      user: '',
+      documenttype: '',
+      cardtype: '',
+      username: '',
+      password: ''
+    });
   }
 }

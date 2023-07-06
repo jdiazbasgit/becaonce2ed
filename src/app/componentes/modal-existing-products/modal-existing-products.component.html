@@ -7,43 +7,34 @@
       </div>
       <div class="modal-body text-center">
         <div class="mb-3">
-          <img [src]="getImage(image)" [alt]="description" class="rounded mb-3 img-size" id="setImage"><br>
+          <img [src]="getImageProduct(image)" [alt]="description" class="rounded mb-3 img-size" id="setImageProduct"><br>
           <label for="file-input" class="text-primary text-decoration-none">Cambiar foto del producto</label>
-          <input type="file" (change)="fileUpload($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
+          <input type="file" (change)="fileUploadProduct($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
         </div>
-        <div class="input-group mb-2">
-          <span class="input-group-text spw-3">Categoria</span>
-          <select class="form-control form-select" aria-label="Default select example"
-            *ngFor="let category of categories" [value]="category.value">
-            <option selected></option>
-          </select>
 
+        <div class="input-group mb-2">
           <div class="input-group mb-2">
-            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+            <label class="input-group-text spw-3" for="inputGroupSelect01">Categoria</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>{{categoria}}</option>
+              <option *ngFor="let category of categories" [value]="category.description">{{category.description}}</option>
+            </select>
           </div>
-
-
         </div>
+
         <div class="input-group mb-2">
-          <span class="input-group-text spw-3">Subcategoria</span>
-          <select class="form-control form-select" aria-label="Default select example"
-            *ngFor="let subcategory of subcategories" [value]="subcategory.value">
-            <option selected></option>
-          </select>
+          <div class="input-group mb-2">
+            <label class="input-group-text spw-3" for="inputGroupSelect01">Subcategoria</label>
+            <select class="form-select" id="inputGroupSelect01">
+              <option selected>{{subcategoria}}</option>
+              <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.description}}</option>
+            </select>
+          </div>
         </div>
 
         <div class="input-group mb-2">
           <span class="input-group-text spw-3">Descripción</span>
-          <input type="text" class="form-control" aria-label="Descripción" aria-describedby="Descripción"
-            [(ngModel)]="description" [value]="description">
+          <textarea class="form-control overflow-y: auto" aria-label="Descripción" aria-describedby="Descripción" [(ngModel)]="description" [value]="description"></textarea>
         </div>
 
         <div class="input-group mb-2">

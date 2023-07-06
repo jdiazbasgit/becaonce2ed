@@ -47,7 +47,7 @@ export class ExistingProductComponent implements OnInit {
       })
   }
 
-  getImage(imageBytes: string): string {
+  getImageProduct(imageBytes: string): string {
     if (imageBytes) {
       return 'data:image/jpeg;base64,' + imageBytes
     }
@@ -63,19 +63,24 @@ export class ExistingProductComponent implements OnInit {
     return formattedEuro;
   }
 
-  abrirModal(id: string, element?: any) {
+  openModal(id: string, element?: any, action?: string) {
     if (this.modal) {
-      this.modal.image = ''
-      this.modal.description = ''
-      this.modal.price = ''
-      this.modal.stock = ''
-      this.modal.total = '0'
-      this.modal.message=''
+      this.modal.image = '';
+      this.modal.description = '';
+      this.modal.price = '';
+      this.modal.stock = '';
+      this.modal.total = '0';
+      this.modal.subcategory='';
+      this.modal.message='';
+      this.modal.categoria = '';
+      this.modal.subcategoria = '';
 
-      if (element !== undefined && element !== null && element !== '') {
-        this.modal.openModal(id, element)
+      if (action === 'edit') {
+        if (element !== undefined && element !== null && element !== '') {
+          this.modal.openModal(id, element, 'edit');
+        }
       } else {
-        this.modal.openModal('','')
+        this.modal.openModal('', '', 'add');
       }
     }
   }
@@ -86,7 +91,7 @@ export class ExistingProductComponent implements OnInit {
       .subscribe((dato: boolean) => {
         if (dato) {
           this.message = 'Producto eliminado correctamente.'
-          this.ngOnInit()
+          this.getData();
         }
         else
           this.message ='Producto no se ha eliminado'
