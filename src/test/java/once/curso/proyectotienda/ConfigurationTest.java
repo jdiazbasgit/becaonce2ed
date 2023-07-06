@@ -101,8 +101,8 @@ public class ConfigurationTest {
 		numeros.add(configurationNuevo2.getId());
 		contadorRegistro--;
 
-		Iterable<Configuration> configurationRecuperado = getConfigurationService().findAllById(numeros);
-		assertEquals(numeros.size(), configurationRecuperado().count()); //TestFindAll
+		List<Configuration> configurationRecuperado = (List<Configuration>) getConfigurationService().findAllById(numeros);
+		assertEquals(numeros.size(), configurationRecuperado.size()); //TestFindAll
 		contadorRegistro--;
 		
 		getConfigurationService().deleteAllById(numeros);
