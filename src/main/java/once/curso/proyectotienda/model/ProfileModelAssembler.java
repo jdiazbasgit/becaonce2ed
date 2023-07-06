@@ -17,7 +17,7 @@ import once.curso.proyectotienda.restcontrollers.UserRestController;
 public class ProfileModelAssembler implements SimpleRepresentationModelAssembler<Profile>{
 @Override
 	public void addLinks(EntityModel<Profile> profile) {
-	profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController. class)
+	profile.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class)
 				.findById(profile.getContent().getId())).withSelfRel());
 	profile.add(WebMvcLinkBuilder
 			 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(profile.getContent().getUser().getId()))
@@ -33,7 +33,7 @@ public class ProfileModelAssembler implements SimpleRepresentationModelAssembler
 @Override
 public void addLinks(CollectionModel<EntityModel<Profile>> profile) {
 	profile.forEach(p ->{
-		p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController. class)
+		p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(CategoryRestController.class)
 				.findById(p.getContent().getId())).withSelfRel());
 		 p.add(WebMvcLinkBuilder
 				 .linkTo(WebMvcLinkBuilder.methodOn(UserRestController.class).findById(p.getContent().getUser().getId()))

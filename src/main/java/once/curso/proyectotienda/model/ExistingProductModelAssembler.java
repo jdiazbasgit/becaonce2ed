@@ -13,7 +13,7 @@ import once.curso.proyectotienda.restcontrollers.ExistingProductRestController;
 public class ExistingProductModelAssembler implements SimpleRepresentationModelAssembler<ExistingProduct>{
 	@Override
 	public void addLinks(EntityModel<ExistingProduct> existingProduct) {
-		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController. class)
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
 				.findById(existingProduct.getContent().getId())).withSelfRel());
 	}
 
@@ -21,7 +21,7 @@ public class ExistingProductModelAssembler implements SimpleRepresentationModelA
 	public void addLinks(CollectionModel<EntityModel<ExistingProduct>> existingProduct) {
 		existingProduct.forEach(e ->{
 			e.add(WebMvcLinkBuilder.linkTo(
-					WebMvcLinkBuilder.methodOn(ExistingProductRestController. class)
+					WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
 					.findById(e.getContent().getId()))
 					.withSelfRel());
 			
