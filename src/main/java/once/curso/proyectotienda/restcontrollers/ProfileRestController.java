@@ -70,7 +70,7 @@ public class ProfileRestController {
 					 .withRel("cardTypes"));
 			 p.add(WebMvcLinkBuilder
 					 .linkTo(WebMvcLinkBuilder.methodOn(DocumentTypeRestController.class).findById(p.getDocumentType().getId()))
-					 .withRel("docomentTypes"));
+					 .withRel("documentTypes"));
 			 p.add(WebMvcLinkBuilder
 					 .linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(p.getId()))
 					 .withSelfRel());
