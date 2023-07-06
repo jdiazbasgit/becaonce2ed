@@ -116,7 +116,7 @@ public class ExistingProductRestController {
 	public PagedModel<EntityModel<ExistingProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
-		Sort orden = Sort.by("a");
+		Sort orden = null;
 		String campo = stringTokenizer.nextToken();
 		String tipoOrden = stringTokenizer.nextToken();
 
