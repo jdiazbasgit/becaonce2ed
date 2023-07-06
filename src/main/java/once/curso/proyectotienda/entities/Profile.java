@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.springframework.hateoas.RepresentationModel;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 @Entity
@@ -39,7 +39,7 @@ public class Profile extends RepresentationModel<Profile>{
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn (name="Card_Types_Id")
+	@JoinColumn (name="card_types_Id")
 	private CardType cardType;
 	
 	@ManyToOne
