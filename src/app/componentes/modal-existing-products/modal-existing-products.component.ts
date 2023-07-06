@@ -11,18 +11,21 @@ import ExistingProductBean from '../../beans/ExistingProductBean';
 export class ModalExistingProductsComponent {
   id: string = "";
   image: string | null = null;
-  description: string = "";
-  price: string = "";
-  stock: string = "";
-  total: string = "0";
+  description: string = '';
+  price: string = '';
+  stock: string = '';
+  total: string = '0';
   subcategory: string = '';
 
-  message: string = "";
+  message: string = '';
 
-  imageContent: string = "";
+  imageContent: string = '';
 
   categories: any[] = [];
   subcategories: any[] = [];
+
+  categoria: string ='';
+  subcategoria: string ='';
 
   @Output() eventoExistingProduct = new EventEmitter();
   constructor(private service: ExistingProductService) { }
@@ -120,6 +123,7 @@ export class ModalExistingProductsComponent {
       next: (response: any) => {
         if (response._embedded) {
           this.subcategories = response._embedded.subCategories;
+
         } else {
           console.error('La propiedad _embedded no existe en el JSON.')
         }
@@ -137,23 +141,32 @@ export class ModalExistingProductsComponent {
       this.stock = data.stock;
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock);
 
-      const subcategoryId = data._links.subcategory.href.substring(data._links.subcategory.href.lastIndexOf('/') + 1);
+      this.getSubCategories();
+      this.getCategories();
 
-      /*if(action==='edit'){
-        const subcategoryId = this.subcategory.substring(this.subcategory.lastIndexOf('/') + 1);
+      /*if(action==='edit'){*/
 
+        const subcategoryId = data._links.subcategory.href.substring(data._links.subcategory.href.lastIndexOf('/') + 1);
         this.service.getDatos("http://localhost:8080/once/subcategories/"+subcategoryId)
         .subscribe({
           next: (rsp: any) => {
-            this.subcategory = rsp.description;
-
+            this.subcategoria = rsp.description;
         },error: (error: any) => {
           console.error('Error al obtener los datos: ', error);
         }});
-      }*/
 
-      this.getSubCategories();
-      this.getCategories();
+        const categoryId = data._links.category.href.substring(data._links.category.href.lastIndexOf('/') + 1);
+
+        this.service.getDatos("http://localhost:8080/once/categories/"+categoryId)
+        .subscribe({
+          next: (rsp: any) => {
+            this.categoria = rsp.description;
+        },error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
+        }});
+      /*}*/
+
+
     } else {
       this.clearAll();
     }
