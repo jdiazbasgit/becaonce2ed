@@ -12,20 +12,20 @@
         <mat-form-field class="example-full-width">
             <mat-label>Usuario</mat-label><br>
             <input matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU">
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-                please enter a valid Contraseña (verificar si aun funciona)
-            </mat-error>
+            
         </mat-form-field><br><br>
 
         <mat-form-field class="example-full-width">
             <mat-label>Password</mat-label><br>
             <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [(ngModel)]="inputPassword">
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+                please enter a valid Contraseña (verificar si aun funciona)
+            </mat-error>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
-
-
+    
     </form>
 </div>
 <!-- <<div class="modalConectando oculto" id="modalConectando">
