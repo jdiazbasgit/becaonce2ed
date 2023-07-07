@@ -10,18 +10,24 @@ import { NgClass } from '@angular/common';
 export class NavbarComponent {
 // menuVisible: boolean = false;
 cuentaElegida: boolean = false
+cuenta: string = ""
 
-// constructor(private router: Router) {}
+constructor(private elementRef: ElementRef) {}
 
 ngDoCheck(){
   if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida){
     this.cuentaElegida = true
+    this.cuenta = sessionStorage['cuenta']
+    this.elementRef.nativeElement.querySelector('#navId').classList.remove("justify-content-start")
+    this.elementRef.nativeElement.querySelector('#navId').classList.add("justify-content-around")
   }
 }
 
 deselegirCuenta(){
   sessionStorage.removeItem('cuenta')
   this.cuentaElegida = false
+  this.elementRef.nativeElement.querySelector('#navId').classList.remove("justify-content-around")
+  this.elementRef.nativeElement.querySelector('#navId').classList.add("justify-content-start")
 }
 
 

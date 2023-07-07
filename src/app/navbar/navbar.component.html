@@ -1,18 +1,21 @@
 <div class="mx-5 fondo-secundario">
   <div class="mt-3">
-    <ul class="nav nav-pills justify-content-start p-2" role="tablist">
-      <li class="nav-item me-5 p-2">
+    <ul class="nav justify-content-start align-items-center flex-nowrap" role="tablist" id="navId">
+      <li class="nav-item me-5">
         <a class="nav-link" routerLink="cuentas" (click)="deselegirCuenta()">Mi Área</a>
       </li>
       <ng-container *ngIf="cuentaElegida">
-        <li class="nav-item ms-5 p-2">
+        <li class="nav-item ms-5">
           <a class="nav-link active" data-bs-toggle="pill" routerLink="detalles">Detalles</a>
         </li>
-        <li class="nav-item p-2">
+        <li class="nav-item">
           <a class="nav-link" data-bs-toggle="pill" routerLink="movimientos">Movimientos</a>
         </li>
-        <li class="nav-item p-2">
+        <li class="nav-item">
           <a class="nav-link" data-bs-toggle="pill" routerLink="operaciones">Operar</a>
+        </li>
+        <li class="nav-item ms-5">
+          <span class="">Cuenta: {{cuenta}}</span>
         </li>
       </ng-container>
     </ul>
