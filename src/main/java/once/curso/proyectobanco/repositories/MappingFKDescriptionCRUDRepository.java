@@ -14,7 +14,7 @@ public interface MappingFKDescriptionCRUDRepository extends CrudRepository<Mappi
 	
 
 	//Pruebas
-	@Query("SELECT SUM(t.current) FROM Transaction t WHERE t.currentAccount.number = :numeroCuenta")
-	public int getSaldo(int numeroCuenta);
+	//@Query("SELECT SUM(t.current) FROM Transaction t WHERE t.currentAccount.number = :numeroCuenta")
+	//public int getSaldo(int numeroCuenta);
 	
 }
