@@ -1,10 +1,23 @@
-import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-productos-asociados',
-  templateUrl: './productos-asociados.component.html',
-  styleUrls: ['./productos-asociados.component.css']
-})
-export class ProductosAsociadosComponent {
+import { ProductosAsociadosComponent } from './productos-asociados.component';
 
-}
+describe('ProductosAsociadosComponent', () => {
+  let component: ProductosAsociadosComponent;
+  let fixture: ComponentFixture<ProductosAsociadosComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ ProductosAsociadosComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(ProductosAsociadosComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
