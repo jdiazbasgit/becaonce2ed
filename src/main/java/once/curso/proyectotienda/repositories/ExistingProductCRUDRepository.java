@@ -19,5 +19,5 @@ public interface ExistingProductCRUDRepository extends PagingAndSortingRepositor
 	
 	
 	 @Query(" from ExistingProduct e where e.subcategory.category.id = :categoryId AND e.subcategory.id = :subcategoryId")
-	public List<ExistingProduct> getExistingProductByCategoryAndSubcategory(@Param("categoryId")int categoryId,@Param("subcategoryId")int subCategoryId);
+	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(@Param("categoryId")int categoryId,@Param("subcategoryId")int subCategoryId);
 }
