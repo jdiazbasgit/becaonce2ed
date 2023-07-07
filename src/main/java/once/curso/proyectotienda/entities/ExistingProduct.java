@@ -22,7 +22,6 @@ public class ExistingProduct extends RepresentationModel<ExistingProduct> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description;
-	
 	private Double price;
 	
 	@Lob

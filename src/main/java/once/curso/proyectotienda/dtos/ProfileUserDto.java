@@ -3,8 +3,7 @@ package once.curso.proyectotienda.dtos;
 import lombok.Data;
 
 @Data
-public class ProfileUserDto {
-	
+public class ProfileUserDto {	
 	private boolean identification;
 	private boolean creditcard;
 	private boolean email;
