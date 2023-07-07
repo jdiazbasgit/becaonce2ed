@@ -30,9 +30,4 @@ public class MappingFKDescriptionRestController {
 		return getMappingFKDescriptionService().findAll();
 	}
 	
-	@GetMapping("/saldo/{numeroCuenta}")
-	public double getSaldo (@PathVariable int numeroCuenta) {
-		return getMappingFKDescriptionService().getSaldo(numeroCuenta);
-	}
-	
 }

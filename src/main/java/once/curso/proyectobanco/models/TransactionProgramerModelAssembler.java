@@ -30,7 +30,7 @@ public class TransactionProgramerModelAssembler implements SimpleRepresentationM
 				.withRel("description"));
 		
 		transactionProgramer.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(TimingTypeRestController.class).
-				findById(transactionProgramer.getContent().getId())).withRel("timingType"));
+				findById(transactionProgramer.getContent().getTimingType().getId())).withRel("timingType"));
 		
 	}
 
