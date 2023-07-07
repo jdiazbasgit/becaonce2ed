@@ -17,13 +17,13 @@ export class LoginComponent {
   usuario: string = ""
   claveErronea: boolean = false
   mensajeClave: String = ""
-  contadorTemporizadorDeInactividad: number = 300000
+  contadorTemporizadorDeInactividad: number = 600000
   temporizadorDeInactividad: any
   sinActividad: boolean = false
   collapseLoginAbierto: boolean = false
   collapseHazteClienteAbierto: boolean = false
 
-  constructor(private http: ProyectosService, private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService, private router: Router) {
+  constructor(private elementRef: ElementRef, private loginService: LoginService, private feeService: FeeService, private router: Router) {
 
   }
 
