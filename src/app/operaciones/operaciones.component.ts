@@ -93,8 +93,3 @@ export class OperacionesComponent {
     this.ultimoMovimiento = { tipo, concepto, fecha }; // Actualizar la propiedad del último movimiento con el tipo, concepto y fecha
   }
 }
-
-
-
-
-

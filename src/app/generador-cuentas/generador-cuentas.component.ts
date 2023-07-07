@@ -14,9 +14,18 @@ export class GeneradorCuentasComponent implements OnInit {
   cuentas: Cuenta[] = [];
 
   constructor() {}
-
+  asignarNumeroCuenta(datosCliente: any): string {
+    const numeroCuenta = this.generarNumeroCuentaAleatorio();
+    const nuevaCuenta: Cuenta = {
+      id: this.cuentas.length + 1,
+      numero: numeroCuenta
+    };
+    this.cuentas.push(nuevaCuenta);
+    return numeroCuenta;
+  }
+  
   ngOnInit() {
-    this.generarCuentasAleatorias(5); // Genera 5 cuentas aleatorias
+    this.generarCuentasAleatorias(0); 
   }
 
   generarCuentasAleatorias(cantidad: number) {
