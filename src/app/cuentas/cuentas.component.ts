@@ -30,17 +30,16 @@ export class CuentasComponent {
         console.log(cuentas)
         this.cuentas = cuentas
         cuentas.forEach((c:any, index:number) => {
-          this.service.getDatos(this.url+"saldo/"+c.number).subscribe({
-            next: (cuenta) => {
-              this.saldo[index] = cuenta
-              console.log(cuenta)
-              this.saldoTotal = this.saldoTotal + cuenta
+          this.service.getDatos(this.url+"balance/"+c.number).subscribe({
+            next: (saldo) => {
+              this.saldo[index] = saldo
+              console.log(saldo)
+              this.saldoTotal = this.saldoTotal + saldo
             }
           })
         })
       }
-    })
-    
+    })    
     
   }
 

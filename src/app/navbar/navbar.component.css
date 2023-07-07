@@ -1,9 +1,11 @@
-.btn.active {
-    background-color: chartreuse;
-    color: azure;
-    font-weight: bold;
+.active {
+    background-color: white;
+    color: green;
 }
-
-.router-link-active{
-    background-color:forestgreen;
+.nav-link{
+    text-decoration: none;
+    color: gold;
+}
+li{
+    color: white;
 }
