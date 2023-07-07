@@ -16,7 +16,7 @@
           <div class="input-group mb-2">
             <label class="input-group-text spw-3" for="inputGroupSelect01">Categoria</label>
             <select class="form-select" id="inputGroupSelect01">
-              <option selected>{{categoria}}</option>
+              <option selected>{{categoriaInput}}</option>
               <option *ngFor="let category of categories" [value]="category.description">{{category.description}}</option>
             </select>
           </div>
@@ -25,8 +25,8 @@
         <div class="input-group mb-2">
           <div class="input-group mb-2">
             <label class="input-group-text spw-3" for="inputGroupSelect01">Subcategoria</label>
-            <select class="form-select" id="inputGroupSelect01">
-              <option selected>{{subcategoria}}</option>
+            <select class="form-select" id="inputGroupSelect01" [(ngModel)]="subcategory">
+              <option value="0">Selecciona subcategoria..</option>
               <option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.description}}</option>
             </select>
           </div>

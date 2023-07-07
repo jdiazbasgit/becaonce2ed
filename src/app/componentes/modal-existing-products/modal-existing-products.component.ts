@@ -24,12 +24,12 @@ export class ModalExistingProductsComponent {
   categories: any[] = [];
   subcategories: any[] = [];
 
-  categoria: string ='';
-  subcategoria: string ='';
+  categoriaInput: string ='';
+  subcategoriaInput: string ='';
 
   @Output() eventoExistingProduct = new EventEmitter();
 
-  constructor(private service: ExistingProductService) { 
+  constructor(private service: ExistingProductService) {
     this.getSubCategories();
     this.getCategories();
   }
@@ -87,6 +87,10 @@ export class ModalExistingProductsComponent {
       const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.');
       this.price = priceValue.toString();
 
+      if(this.subcategory=='undefined'){
+        this.subcategory='0';
+      }
+
       const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory);
 
       this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
@@ -141,7 +145,7 @@ export class ModalExistingProductsComponent {
       this.service.getDatos(href)
       .subscribe({
         next: (rsp: any) => {
-          this.categoria = rsp.description;
+          this.categoriaInput = rsp.description;
       },error: (error: any) => {
         console.error('Error al obtener los datos: ', error);
       }});
@@ -164,12 +168,12 @@ export class ModalExistingProductsComponent {
         this.service.getDatos(this.subcategory)
         .subscribe({
           next: (rsp: any) => {
-            this.subcategoria = rsp.description;
+            this.subcategoriaInput = rsp.description;
             this.getHref(rsp._links.category.href);
         },error: (error: any) => {
           console.error('Error al obtener los datos: ', error);
         }});
-        
+
       /*}*/
 
 
@@ -206,8 +210,9 @@ export class ModalExistingProductsComponent {
       price: '',
       stock: '',
       total: '0',
-      categoria: '',
-      subcategoria:''
+      subcategory: '0',
+      categoriaInput: '',
+      subcategoriaInput:''
     });
   }
 }

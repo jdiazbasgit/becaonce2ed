@@ -70,13 +70,16 @@ export class ExistingProductComponent implements OnInit {
       this.modal.price = '';
       this.modal.stock = '';
       this.modal.total = '0';
-      this.modal.subcategory='';
+
+      this.modal.subcategory='0';
+
       this.modal.message='';
-      this.modal.categoria = '';
-      this.modal.subcategoria = '';
+
+      this.modal.categoriaInput = '';
+      this.modal.subcategoriaInput = '';
 
       if (action === 'edit') {
-        if (element !== undefined && element !== null && element !== '') {
+        if (element !== 'undefined' && element !== null && element !== '') {
           this.modal.openModal(id, element, 'edit');
         }
       } else {
