@@ -53,8 +53,16 @@ public class ExistingProductRestController {
 	/* C CREATE A PRODUCT */
 	@PostMapping("/products")
 	@CrossOrigin(origins ="*")
-	public ExistingProduct createExistingProduct(@RequestBody ExistingProduct newExistingProduct) {
-		return getExistingProductService().save(newExistingProduct);
+	public EntityModel<ExistingProduct> createExistingProduct(@RequestBody ExistingProduct existingProduct) {
+		ExistingProduct existingProduct1 = getExistingProductService().save(existingProduct);
+		existingProduct.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
+				.findById(existingProduct1.getSubcategory().getId())).withRel("subcategory"));
+		existingProduct.add(WebMvcLinkBuilder
+				.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+				.findById(existingProduct1.getId()))
+				.withSelfRel());
+		return EntityModel.of(existingProduct1);
 	}
 
 	/* R READ ALL PRODUCTS */
@@ -149,107 +157,3 @@ public class ExistingProductRestController {
 		return existingProductService.count();
 	}
 }
-
-/*
- * @GetMapping("/products/{id}") public Optional<ExistingProduct>
- * getExistingProductById(@PathVariable int id) { Optional<ExistingProduct> p =
- * getExistingProductService().findById(id); if (!p.isPresent()) {
- * System.err.println("El producto id " + id + " no existe."); return
- * Optional.empty(); } return getExistingProductService().findById(id); }
- */
-
-/*
- * @DeleteMapping("/products/delete/{id}") public void deleteById(@PathVariable
- * int id) { getExistingProductService().deleteById(id); }
- */
-
-/*
- * @GetMapping("/get/{id}") public @ResponseBody ResponseEntity<String>
- * getExistingProductById(@PathVariable String id) { return new
- * ResponseEntity<String>("GET response ID: " + id, HttpStatus.OK); }
- */
-
-/*
- * @PutMapping("/products/update/{id}") public Optional<ExistingProduct>
- * updateById(@PathVariable int id, @Validated @RequestBody ExistingProduct
- * existingProduct) { Optional<ExistingProduct> p =
- * existingProductService.findById(id);
- * 
- * if (!p.isPresent()) { System.err.println("El producto id " + id +
- * " no existe."); return Optional.empty(); }
- * 
- * //p.get().setDescription(ExistingProduct.getDescription()); return
- * getExistingProductService().findById(id); }
- */
-
-/*
- * @DeleteMapping("/products/delete/{id}") public Map<String, Boolean>
- * deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
- * throws ResourceNotFoundException { ExistingProduct existingProduct =
- * existingProductService.findById(existingProductId) .orElseThrow(() -> new
- * ResourceNotFoundException("No se ha encontrado el producto :: " +
- * existingProductId));
- * 
- * existingProductService.deleteById(existingProductId); Map<String, Boolean>
- * response = new HashMap<>(); response.put("deleted", Boolean.TRUE); return
- * response; }
- */
-
-/* D DELETE ALL PRODUCTS */
-/*
- * @GetMapping("/products/deleteall") public Object deleteAll() { return
- * "Se ha eliminado todas las filas correctamente!!"; }
- */
-
-/*
- * @RequestMapping({ "/productList" }) public String listProductHandler(Model
- * model, //
- * 
- * @RequestParam(value = "name", defaultValue = "") String likeName,
- * 
- * @RequestParam(value = "page", defaultValue = "1") int page) { final int
- * maxResult = 5; final int maxNavigationPage = 10;
- * 
- * PaginationResult<ProductInfo> result = productDAO.queryProducts(page, //
- * maxResult, maxNavigationPage, likeName);
- * 
- * model.addAttribute("paginationProducts", result); return "productList"; }
- */
-
-/*
- * @GetMapping("/products") List<ExistingProducts> all() { return
- * getExistingproductsCRUDRepository().findAll(); }
- * 
- * @PostMapping("/products") ExistingProducts newExistingProducts(@RequestBody
- * ExistingProducts newExistingProducts) { return
- * existingproductsCRUDRepository.save(newExistingProducts); }
- */
-
-/*
- * @PutMapping("/products/{id}") ExistingProducts
- * replaceExistingProducts(@RequestBody ExistingProducts
- * newExistingProducts, @PathVariable Long id) {
- * 
- * return existingproductsCRUDRepository.findById(id) .map(existingproducts -> {
- * existingproducts.setName(newEmployee.getName());
- * existingproducts.setRole(newEmployee.getRole()); return
- * repository.save(existingproducts); }) .orElseGet(() -> {
- * newExistingProducts.setId(id); return repository.save(newExistingProducts);
- * }); }
- */
-
-/*
- * @GetMapping(
- * "/products/update/{id}/{description}/{price}/{stock}/{subcategoriesid}")
- * public ResponseEntity<ExistingProduct>
- * updateExistingProductPartially(@PathVariable int id, @PathVariable String
- * description, @PathVariable double price, @PathVariable int
- * stock, @PathVariable SubCategory subcategoriesid) { ExistingProduct
- * existingProduct = existingProductService.findById(id) .orElseThrow(() -> new
- * ResourceNotFoundException("No se ha encontrado id:: " + id));
- * existingProduct.setDescription(description); existingProduct.setPrice(price);
- * existingProduct.setStock(stock);
- * existingProduct.setSubcategories(subcategoriesid);
- * existingProductService.save(existingProduct); return
- * ResponseEntity.ok(existingProduct); }
- */
