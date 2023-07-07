@@ -6,7 +6,13 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { DocumentTypeService } from 'src/app/servicios/document-type.service';
 import { LoginService } from 'src/app/servicios/login.service';
+import { ModalLoginComponent } from '../modal-login/modal-login.component';
+import { MatDialog } from '@angular/material/dialog';
 
+export interface DialogData{
+  name: string;
+  animal: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +20,7 @@ import { LoginService } from 'src/app/servicios/login.service';
 })
 
 export class LoginComponent {
+  name: any;
 
   passwordFormControl = new FormControl('',[Validators.required, Validators.required])//verificar
   logado: boolean = false;
@@ -26,10 +33,18 @@ export class LoginComponent {
   afkTimer: any;//temporizadorDeInactividad notActive incorrectKey keyMessage
   notActive: boolean = false;//sin actividad
   hide=true;
-  constructor(private elementRef: ElementRef, private loginService: LoginService, private documentType: DocumentTypeService, private router: Router) {
-
+  constructor(public dialog: MatDialog, private elementRef: ElementRef, private loginService: LoginService, private documentType: DocumentTypeService, private router: Router) {
+    
   }
 
+  openDialog():void {
+    const dialogRef = this.dialog.open(ModalLoginComponent,{
+      data:{name:this.name},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   ngDoCheck() {
     if (sessionStorage.getItem('token') && !this.logado) {

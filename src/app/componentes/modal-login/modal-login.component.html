@@ -1,1 +1,38 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div mat-dialog-content class="mat-dialog-content center-content">
+  <h1 mat-dialog-title>Bienvenido</h1>
 
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label class="text-center">Usuario</mat-label>
+      <input matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU" required /><br>
+    </mat-form-field>
+
+    <br>
+    <br>
+
+    <mat-form-field>
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide? 'password':'text'" required />
+      <button mat-icon-button matSuffix (click)="hide=!hide" [attr.aria-label]="'Hide password'"
+        [attr.arria-label]="hide">
+        <mat-icon>{{hide? 'visibility_off': 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Aceptar</button>
+  </div>
+
+  <div>
+    <p>
+      <button mat-button color="primary">¿Olvidaste tu contraseña?</button>
+    </p>
+    <p mat-text-color="background">¿No tienes cuenta?
+      <button mat-button color="primary">¡Registrate!</button>
+    </p>
+  </div>
+</div>
