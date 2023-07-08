@@ -8,7 +8,6 @@ import { DetallesCuentaComponent } from './detalles-cuenta/detalles-cuenta.compo
 import { ProductosComponent } from './productos/productos.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
-import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
 
 const routes: Routes = [
   {path:`landing`, component:LandingComponent},
@@ -19,7 +18,6 @@ const routes: Routes = [
   {path:`productos`, component:ProductosComponent},
   {path:`paneladministrador`, component:PanelAdministradorComponent},
   {path:`haztecliente`, component:HazteClienteComponent},
-  {path: 'productos-asociados', component:ProductosAsociadosComponent},
 ];
 
 @NgModule({
