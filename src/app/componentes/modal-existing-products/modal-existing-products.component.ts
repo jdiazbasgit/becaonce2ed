@@ -8,7 +8,7 @@ import ExistingProductBean from '../../beans/ExistingProductBean';
   styleUrls: ['./modal-existing-products.component.css']
 })
 
-export class ModalExistingProductsComponent {
+export class ModalExistingProductsComponent{
   id: string = "";
   image: string | null = null;
   description: string = '';
@@ -29,10 +29,7 @@ export class ModalExistingProductsComponent {
 
   @Output() eventoExistingProduct = new EventEmitter();
 
-  constructor(private service: ExistingProductService) {
-    this.getSubCategories();
-    this.getCategories();
-  }
+  constructor(private service: ExistingProductService) {}
 
   getImageProduct(imageBytes: string | null): string {
     if (imageBytes) {
@@ -76,130 +73,129 @@ export class ModalExistingProductsComponent {
   }
 
   saveData() {
-    if(this.description.trim()==''){
+    if (this.description.trim() == '') {
       this.message = 'Por favor, introduzca descripción.';
     } else {
-
       if (this.imageContent) {
         this.image = this.imageContent.toString();
       }
-
+  
       const priceValue = this.price.replace(/[^\d,]/g, '').replace(',', '.');
       this.price = priceValue.toString();
+  
+      const selectedSubcategory = this.subcategories.find(subcategory => subcategory.description === this.subcategoriaInput);
 
-      if(this.subcategory=='undefined'){
-        this.subcategory='0';
+      if (selectedSubcategory) {
+        this.subcategory = "http://localhost:8080/once/categories/" + selectedSubcategory._links.self.href.split('/').pop();
+  
+        const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory);
+  
+        this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
+          .subscribe((dato: boolean) => {
+            if (dato) {
+              this.message = '¡El producto ha sido guardado correctamente!';
+              this.eventoExistingProduct.emit({ actualizar: "OK" });
+            } else {
+              this.message = 'Error al guardar el producto.';
+            }
+          });
+      } else {
+        console.error('No se encontró la subcategoría seleccionada.');
       }
-
-      const existingProduct = new ExistingProductBean(this.id, this.image || '', this.description, this.price, this.stock, this.subcategory);
-
-      this.service.saveOrUpdate('http://localhost:8080/once/products/', existingProduct)
-        .subscribe((dato: boolean) => {
-          if (dato) {
-            /*this.id = '';
-            this.image = null;
-            this.message = '';
-            this.description = '';
-            this.price = '';
-            this.stock = '';*/
-            this.message = '¡El producto ha sido guardado correctamente!';
-            //this.eventoExistingProduct.emit({ salida: "OK" });
-          } else {
-            this.message = 'Error al guardar el producto.';
-          }
-        });
-      }
-  }
-
-  getCategories(){
-    this.service.getDatos("http://localhost:8080/once/categories")
-    .subscribe({
-      next: (response: any) => {
-        if (response._embedded) {
-          this.categories = response._embedded.categories;
-        } else {
-          console.error('La propiedad _embedded no existe en el JSON.')
-        }
-    },error: (error: any) => {
-      console.error('Error al obtener los datos: ', error);
-    }});
-  }
-
-  getSubCategories(){
-    this.service.getDatos("http://localhost:8080/once/subcategories")
-    .subscribe({
-      next: (response: any) => {
-        if (response._embedded) {
-          this.subcategories = response._embedded.subCategories;
-
-        } else {
-          console.error('La propiedad _embedded no existe en el JSON.')
-        }
-    },error: (error: any) => {
-      console.error('Error al obtener los datos: ', error);
-    }});
-  }
-
-  getHref(href: string){
-    if (href!==''){
-      this.service.getDatos(href)
-      .subscribe({
-        next: (rsp: any) => {
-          this.categoriaInput = rsp.description;
-      },error: (error: any) => {
-        console.error('Error al obtener los datos: ', error);
-      }});
     }
   }
 
-  openModal(id: string, data: any, action: string) {
+  onCategoryChange() {
+    const selectedCategory = this.categories.find(category => category.description === this.categoriaInput);
+  
+    if (selectedCategory) {
+      const categoryId = selectedCategory._links.self.href.split('/').pop();
+      this.getSubCategories(categoryId);
+    }
+  }
+
+  getSubCategoriesByCategory(categoryId: string) {
+    const categoryUrl = 'http://localhost:8080/once/categories/' + categoryId;
+    this.service.getDatos(categoryUrl).subscribe({
+      next: (response: any) => {
+        if (response._embedded && response._embedded.subCategories) {
+          this.subcategories = response._embedded.subCategories;
+        } else {
+          console.error('No se encontraron subcategorías para la categoría seleccionada.');
+        }
+      },
+      error: (error: any) => {
+        console.error('Error al obtener las subcategorías: ', error);
+      }
+    });
+  }
+
+  getSubCategories(categoryId: string) {
+    this.service.getDatos("http://localhost:8080/once/subcategories")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            const subcategorias = response._embedded.subCategories;
+  
+            this.subcategories = subcategorias.filter((subcategory: any) => {
+              const subcategoryId = subcategory._links.category.href.split('/').pop();
+              return subcategoryId === categoryId;
+            });
+
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON de subcategorías.');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos de subcategorías: ', error);
+        }
+      });
+  }
+  
+  openModal(id: string, data: any) {
+    this.getCategories('');
     if (data !== '' && data._links && data._links.self && data._links.self.href) {
-      //const href = data._links.self.href;
       this.id = id;
       this.image = data.image;
       this.description = data.description;
       this.price = data.price.toString().replace(/\./g, ',');
       this.stock = data.stock;
       this.total = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(data.price * data.stock);
-      this.subcategory = data._links.subcategory.href;
 
-      /*if(action==='edit'){*/
-
-        this.service.getDatos(this.subcategory)
-        .subscribe({
-          next: (rsp: any) => {
-            this.subcategoriaInput = rsp.description;
-            this.getHref(rsp._links.category.href);
-        },error: (error: any) => {
-          console.error('Error al obtener los datos: ', error);
-        }});
-
-      /*}*/
-
+      this.service.getDatos(data._links.subcategory.href)
+      .subscribe({
+        next: (rsp: any) => {
+          const categoryId = rsp._links.category.href.split('/').pop();
+          this.getSubCategories(categoryId);
+          this.subcategoriaInput=rsp.description
+          this.getCategories(categoryId);
+      },error: (error: any) => {
+        console.error('Error al obtener los datos: ', error);
+      }});
 
     } else {
       this.clearAll();
     }
   }
 
-  closeModal(): void {
-    this.eventoExistingProduct.emit({ salida: "OK" });
+  closeModalProduct() {
+    this.clearAll();
   }
 
-  getDataCategory(id:string) {
-    this.service.getDatos("http://localhost:8080/once/category/"+id)
+  getCategories(id:string) {
+    this.service.getDatos("http://localhost:8080/once/categories/"+id)
       .subscribe({
         next: (response: any) => {
           if (response._embedded) {
-            this.categories = response._embedded.profiles;
+            this.categories = response._embedded.categories;
           } else {
-            console.error('La propiedad _embedded no existe en el JSON.');
+            this.categoriaInput = response.description;
           }
         },
         error: (error: any) => {
-          console.error('Error al obtener los datos: ', error);
+          console.error('Error al obtener los datos de categorías: ', error);
         }
-      })
+      });
   }
 
   clearAll(){
@@ -212,7 +208,8 @@ export class ModalExistingProductsComponent {
       total: '0',
       subcategory: '0',
       categoriaInput: '',
-      subcategoriaInput:''
+      subcategoriaInput:'',
+      subcategories:[]
     });
   }
 }

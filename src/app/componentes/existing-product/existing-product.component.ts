@@ -13,22 +13,18 @@ export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
   modal: ModalExistingProductsComponent | undefined
 
-  title = "Lista de productos"
-  columns: string[] = ['image', 'description', 'price', 'stock', 'actions']
-  elements: any[] = []
-  message: string | undefined
+  title = "Lista de productos";
+  columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
+  elements: any[] = [];
+  message: string | undefined;
 
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator
+  paginator!: MatPaginator;
 
   constructor(private service: ExistingProductService) {}
 
   ngOnInit() {
-    this.getData()
-  }
-
-  refreshData(event: any){
-    this.getData()
+    this.getData();
   }
 
   getData() {
@@ -63,7 +59,7 @@ export class ExistingProductComponent implements OnInit {
     return formattedEuro;
   }
 
-  openModal(id: string, element?: any, action?: string) {
+  openModal(id: string, element?: any) {
     if (this.modal) {
       this.modal.image = '';
       this.modal.description = '';
@@ -78,27 +74,29 @@ export class ExistingProductComponent implements OnInit {
       this.modal.categoriaInput = '';
       this.modal.subcategoriaInput = '';
 
-      if (action === 'edit') {
-        if (element !== 'undefined' && element !== null && element !== '') {
-          this.modal.openModal(id, element, 'edit');
-        }
-      } else {
-        this.modal.openModal('', '', 'add');
-      }
+      this.modal.subcategories = [];
+
+      this.modal.openModal(id, element);
     }
   }
 
-  eliminar(id: string) {
+  delProduct(id: string) {
     if (confirm("¿Esta seguro de eliminar el producto?")) {
       this.service.delete("http://localhost:8080/once/products/" + id)
       .subscribe((dato: boolean) => {
         if (dato) {
-          this.message = 'Producto eliminado correctamente.'
+          this.message = 'Producto eliminado correctamente.';
           this.getData();
+        } else {
+          this.message ='Producto no se ha eliminado';
         }
-        else
-          this.message ='Producto no se ha eliminado'
       })
+    }
+  }
+
+  handleEventoProduct(event: any) {
+    if (event.actualizar === "OK") {
+      this.getData();
     }
   }
 }
