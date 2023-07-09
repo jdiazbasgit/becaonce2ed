@@ -81,10 +81,9 @@ import { MatCardModule } from '@angular/material/card';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
-    ProductosAsociadosComponent
+    ProductosAsociadosComponent,
+    FormsModule
 
-  
- 
   ],
   imports: [
     CommonModule,

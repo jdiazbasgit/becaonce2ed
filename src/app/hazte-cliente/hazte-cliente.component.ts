@@ -68,7 +68,7 @@ export class HazteClienteComponent implements OnInit {
 
 
   constructor(private profilServices: ProfileService, private identificationTypeServices: IdentificationTypeService,
-    private rolservice: RolService, private userService: UserService,private route: ActivatedRoute) {
+    private rolservice: RolService) {
     this.previsualizacion = []
     this.name = "";
     this.secondName = "";
