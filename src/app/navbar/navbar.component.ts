@@ -18,12 +18,14 @@ ngDoCheck(){
   if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida){
     this.cuentaElegida = true
     this.cuenta = sessionStorage['cuenta']
+    this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
   }
 }
 
 deselegirCuenta(){
   sessionStorage.removeItem('cuenta')
   this.cuentaElegida = false
+  this.elementRef.nativeElement.querySelector("#home").classList.add("seleccionado")
 }
 
 
