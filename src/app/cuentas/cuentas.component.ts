@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import UserNameBean from '../beans/UserNameBean';
 import { Router } from '@angular/router';
@@ -55,8 +55,7 @@ export class CuentasComponent {
           })
         })
       }
-    })    
-    
+    })
   }
 
   yaTieneCuentas(){
