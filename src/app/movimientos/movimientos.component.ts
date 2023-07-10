@@ -19,40 +19,6 @@ export class MovimientosComponent implements OnInit {
     this.filtrarMovimientosCuentaSeleccionada();
   }
 
-  obtenerMovimientos() {
-    this.proyectosService.getDatos(this.urlTransaction).subscribe(
-      (datos: any) => {
-        this.operaciones = datos._embedded.transactions;
-        this.obtenerCuentasCorrientes();
-      }
-    );
-  }
-
-  obtenerConceptoCuentaCorriente(){
-    this.proyectosService.getDatos(this.urlTransaction).subscribe(
-      (conceptos:any)=>{
-        this.concepto=conceptos._embedded.currentAccounts.description
-      }
-    )
-  }
-
-  obtenerCuentasCorrientes() {
-    this.proyectosService.getDatos(this.urlCuentaCorriente).subscribe(
-      (cuentas: any) => {
-        this.cuentasCorrientes = cuentas._embedded.currentAccounts;
-        this.vincularMovimientosCuentasCorrientes();
-      }
-    );
-  }
-
-
-
-  vincularMovimientosCuentasCorrientes() {
-    this.operaciones.forEach((movimiento: any) => {
-      const cuentaCorriente = this.cuentasCorrientes.find((cuenta: any) => cuenta.id === movimiento.cuentaCorrienteId);
-      movimiento.cuentaCorriente = cuentaCorriente;
-    });
-  }
 
   filtrarMovimientosCuentaSeleccionada() {
 
