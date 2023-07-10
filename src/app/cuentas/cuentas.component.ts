@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import UserNameBean from '../beans/UserNameBean';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-cuentas',
@@ -25,7 +26,21 @@ export class CuentasComponent {
   ngOnInit(){
     this.usuario = sessionStorage['user']
     console.log(this.usuario)
-    this.service.patch(this.url+"currentsAccounts",new UserNameBean(this.usuario)).subscribe({
+    this.service.patch(this.url+"currentsAccounts",new UserNameBean(this.usuario))
+    .pipe(
+      catchError(error => {
+        console.log(error)
+        console.log(sessionStorage['token'])
+        if (error.status === 401 || error.status === 403) {
+
+          sessionStorage.clear()
+          console.log("no autorizado")
+          this.router.navigateByUrl('/landing')
+        }
+        return ""
+      })
+    )
+    .subscribe({
       next: (cuentas) => {
         console.log(cuentas)
         this.cuentas = cuentas
