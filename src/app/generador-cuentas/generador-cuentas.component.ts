@@ -25,7 +25,7 @@ export class GeneradorCuentasComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.generarCuentasAleatorias(0); 
+    this.generarCuentasAleatorias(1); 
   }
 
   generarCuentasAleatorias(cantidad: number) {
