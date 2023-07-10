@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 
 interface Product {
   image: string;
@@ -15,44 +16,34 @@ interface Product {
 })
 
 export class ProductComponent  {
-  public elementsProduct: string | undefined;
-  htmlContent: string = '';
+  constructor(private service: ExistingProductService) {}
 
-  products: Product[] = [
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 1',
-      description: 'Bies Bryghus Beer',
-      price: 19.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 2',
-      description: 'Bies Bryghus Beer',
-      price: 24.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
+  products: Product[] | undefined;
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  getImageProduct(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes
     }
-  ];
+    return 'assets/placeholder-image.jpg'
+  }
+
+  getData() {
+    this.service.getDatos("http://localhost:8080/once/products")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.products = response._embedded.existingProducts;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.')
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error)
+        }
+      })
+  }
 }
