@@ -40,6 +40,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+
+
 import { MatCardModule } from '@angular/material/card';
 
 
@@ -79,10 +81,10 @@ import { MatCardModule } from '@angular/material/card';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
-    ProductosAsociadosComponent,
-    FormsModule
-
-    ModalAwardsFineComponent, 
+ 
+   
+  
+ 
   ],
   imports: [
     CommonModule,
@@ -97,11 +99,12 @@ import { MatCardModule } from '@angular/material/card';
      MatIconModule,
      MatCardModule
     
-    
-    
+      
 
   ],
-  providers: [],
+  
+  providers: [
+     ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

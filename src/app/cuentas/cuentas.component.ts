@@ -13,7 +13,7 @@ export class CuentasComponent {
 
   usuario: string = ""
   url: string = "http://localhost:8080/once/"
-  cuentas: any
+  cuentas: any[] = []
   saldo: number[] = []
   saldoTotal: number = 0
 
@@ -26,6 +26,7 @@ export class CuentasComponent {
   ngOnInit(){
     this.usuario = sessionStorage['user']
     console.log(this.usuario)
+    console.log(this.cuentas)
     this.service.patch(this.url+"currentsAccounts",new UserNameBean(this.usuario))
     .pipe(
       catchError(error => {
@@ -58,9 +59,17 @@ export class CuentasComponent {
     
   }
 
+  yaTieneCuentas(){
+    if(this.cuentas.length !== 0)
+    return true
+    else
+    return false
+  }
+
   elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
     this.router.navigateByUrl("detalles")
+    window.scrollTo(0,0)
   }
 }

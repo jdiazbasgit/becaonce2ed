@@ -1,0 +1,8 @@
+.lineaCuenta{
+    background: white;
+    transition: .5s;
+}
+.lineaCuenta:hover{
+    background:rgb(222, 253, 232);
+    transition: .5s;
+}

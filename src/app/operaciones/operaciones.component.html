@@ -7,18 +7,20 @@
       <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
     </div>
     <div class="form-group">
-      <label for="origen">Cuenta de Origen:</label>
-      <select [(ngModel)]="cuentaOrigen" name="origen">
+      <label for="origen">Cuenta de Origen: {{obtenerCuentaElegida()}}</label>
+      <!-- <select [(ngModel)]="cuentaOrigen" name="origen">
         <option value="0">Selecciona Cuenta de Origen...</option>
         <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
-      </select>
+      </select> -->
     </div>
 
     <div class="form-group">
       <label for="destino">Cuenta de Destino:</label>
       <select [(ngModel)]="cuentaDestino" name="destino">
         <option value="0">Selecciona Cuenta de Destino...</option>
-        <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
+        <ng-container *ngFor="let cuenta of cuentas">
+          <option *ngIf="cuenta.number != obtenerCuentaElegida()" [value]="cuenta.id">{{ cuenta.number }}</option>
+        </ng-container>
       </select>
     </div>
 
@@ -28,15 +30,16 @@
         <div class="input-group-prepend">
           <span class="input-group-text">
             <select [(ngModel)]="description" name="description">
-              <option value="0">Selecciona Concepto...</option>
-              <option value="{{description1._links.self.href.substring(description1._links.self.href.lastIndexOf('/')+1)}}"
+              <option value="0" selected>Selecciona Concepto...</option>
+              <option
+                value="{{description1._links.self.href.substring(description1._links.self.href.lastIndexOf('/')+1)}}"
                 *ngFor="let description1 of descriptions">{{description1.description}}</option>
             </select>
           </span>
         </div>
       </div>
     </div>
-    
+
 
 
     <div class="btn-group">
