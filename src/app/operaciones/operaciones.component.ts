@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import { DescriptionService } from '../servicios/description.service';
-import { GeneradorCuentasComponent } from '../generador-cuentas/generador-cuentas.component';
+import UserNameBean from '../beans/UserNameBean';
+import { catchError } from 'rxjs';
+
 
 interface Cuenta {
   id: number;
-  numero: string;
+  number: string;
 }
 
 @Component({
@@ -13,12 +15,13 @@ interface Cuenta {
   templateUrl: './operaciones.component.html',
   styleUrls: ['./operaciones.component.css']
 })
-export class OperacionesComponent {
+export class OperacionesComponent implements OnInit{
   urlDescription="http://localhost:8080/once/descriptions"
   description:string=""
   descriptions:Array<any>=[]
   monto: number = 0;
   saldo: number = 0;
+  url: string = "http://localhost:8080/once/"
   concepto: string = ''; //  propiedad para almacenar el concepto del movimiento
   ultimoMovimiento: { tipo: string, concepto: string, fecha: Date } | null = null; //  propiedad para almacenar el último movimiento
   
@@ -32,13 +35,41 @@ export class OperacionesComponent {
     this.descriptionService.getDatos(this.urlDescription).subscribe((datos:any)=>{
       this.descriptions= datos._embedded.descriptions
       console.log ("conceptos:" + this.description)
+      this.obtenerCuentas()
 
-      const generadorCuentasComponent = new GeneradorCuentasComponent();
-      generadorCuentasComponent.generarCuentasAleatorias(5); // Genera 5 cuentas aleatorias
+      
   
-      this.cuentas = generadorCuentasComponent.cuentas;
+      
 
     })
+  }
+  obtenerCuentaElegida(){
+    return sessionStorage['cuenta']
+  }
+
+  obtenerCuentas(){
+    this.service.patch(this.url+"currentsAccounts",new UserNameBean(sessionStorage['user']))
+    .pipe(
+      catchError(error => {
+        console.log(error)
+        console.log(sessionStorage['token'])
+        if (error.status === 401 || error.status === 403) {
+
+          sessionStorage.clear()
+          console.log("no autorizado")
+          //this.router.navigateByUrl('/landing')
+        }
+        return ""
+      })
+    )
+    .subscribe({
+      next: (cuentas) => {
+        console.log(cuentas)
+        this.cuentas = cuentas
+        
+      }
+    })    
+   
   }
 
   realizarMovimiento(tipo: string) {
@@ -93,8 +124,3 @@ export class OperacionesComponent {
     this.ultimoMovimiento = { tipo, concepto, fecha }; // Actualizar la propiedad del último movimiento con el tipo, concepto y fecha
   }
 }
-
-
-
-
-
