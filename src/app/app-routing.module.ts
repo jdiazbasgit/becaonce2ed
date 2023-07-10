@@ -8,6 +8,10 @@ import { DetallesCuentaComponent } from './detalles-cuenta/detalles-cuenta.compo
 import { ProductosComponent } from './productos/productos.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
+<<<<<<< HEAD
+=======
+// import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
+>>>>>>> feature/front/proyectos-banco-mrg
 
 const routes: Routes = [
   {path:`landing`, component:LandingComponent},
@@ -17,7 +21,11 @@ const routes: Routes = [
   {path:`detalles`, component:DetallesCuentaComponent},
   {path:`productos`, component:ProductosComponent},
   {path:`paneladministrador`, component:PanelAdministradorComponent},
-  {path:`haztecliente`, component:HazteClienteComponent}
+  {path:`haztecliente`, component:HazteClienteComponent},
+<<<<<<< HEAD
+=======
+  // {path: 'productos-asociados', component:ProductosAsociadosComponent},
+>>>>>>> feature/front/proyectos-banco-mrg
 ];
 
 @NgModule({

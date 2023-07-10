@@ -40,8 +40,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
+<<<<<<< HEAD
+=======
+// import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
 
+>>>>>>> feature/front/proyectos-banco-mrg
 import { MatCardModule } from '@angular/material/card';
 
 
@@ -80,11 +83,15 @@ import { MatCardModule } from '@angular/material/card';
     ModalConfigurationComponent,
     HazteClienteComponent,
     PanelAdministradorComponent,
+<<<<<<< HEAD
+    ModalAwardsFineComponent, 
+=======
     ModalAwardsFineComponent,
-    ProductosAsociadosComponent
+    // ProductosAsociadosComponent
 
   
  
+>>>>>>> feature/front/proyectos-banco-mrg
   ],
   imports: [
     CommonModule,
