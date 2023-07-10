@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import { DescriptionService } from '../servicios/description.service';
-import { GeneradorCuentasComponent } from '../generador-cuentas/generador-cuentas.component';
+
 
 interface Cuenta {
   id: number;
@@ -33,10 +33,9 @@ export class OperacionesComponent {
       this.descriptions= datos._embedded.descriptions
       console.log ("conceptos:" + this.description)
 
-      const generadorCuentasComponent = new GeneradorCuentasComponent();
-      generadorCuentasComponent.generarCuentasAleatorias(5); // Genera 5 cuentas aleatorias
+      
   
-      this.cuentas = generadorCuentasComponent.cuentas;
+      
 
     })
   }

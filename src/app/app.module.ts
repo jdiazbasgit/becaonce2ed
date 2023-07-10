@@ -41,7 +41,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-import { GeneradorCuentasComponent } from './generador-cuentas/generador-cuentas.component';
 
 import { MatCardModule } from '@angular/material/card';
 
@@ -83,7 +82,7 @@ import { MatCardModule } from '@angular/material/card';
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
  
-    GeneradorCuentasComponent
+   
   
  
   ],
@@ -105,8 +104,7 @@ import { MatCardModule } from '@angular/material/card';
   ],
   
   providers: [
-    GeneradorCuentasComponent
-  ],
+     ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
