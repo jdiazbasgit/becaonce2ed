@@ -159,8 +159,8 @@ public class ExistingProductRestController {
 	}
 
 	@GetMapping("/existingProducts/{categoryId}/{subcategoryId}")
-	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(@PathVariable int categoryId,@PathVariable int subCategoryId) {
-		return getExistingProductService().getExistingProductByCategoryAndSubCategory(categoryId,subCategoryId);
+	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(@PathVariable int categoryId,@PathVariable int subcategoryId) {
+		return getExistingProductService().getExistingProductByCategoryAndSubCategory(categoryId,subcategoryId);
 	}
 
 }
