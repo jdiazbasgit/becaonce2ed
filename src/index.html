@@ -6,59 +6,8 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <style>
-    .loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .progress {
-      width: 300px;
-      height: 20px;
-      background-color: #f2f2f2;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      color: #fff;
-      background-color: #007bff;
-    }
-  </style>
 </head>
 <body>
   <app-root></app-root>
-
-  <div class="loading">
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100">
-        0%
-      </div>
-    </div>
-    <p>Cargando...</p>
-  </div>
-
-  <script>
-    var progressBar = document.querySelector('.progress-bar');
-    var progress = 0;
-    var interval = setInterval(function() {
-      progress += 10;
-      if (progress > 100) {
-        progress = 100;
-        clearInterval(interval);
-        setTimeout(function() {
-          var loadingOverlay = document.querySelector('.loading');
-          loadingOverlay.style.display = 'none';
-        }, 500);
-      }
-      progressBar.style.width = progress + '%';
-      progressBar.innerText = progress + '%';
-    }, 500);
-  </script>
 </body>
 </html>
-

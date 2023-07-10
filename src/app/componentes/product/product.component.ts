@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 
 interface Product {
   image: string;
-  title: string;
   description: string;
   price: number;
-  symbol: string;
+  _links: any;
+}
+
+interface Category {
+  description: string;
+  _links: any;
 }
 
 @Component({
@@ -14,45 +19,64 @@ interface Product {
   styleUrls: ['./product.component.css']
 })
 
-export class ProductComponent  {
-  public elementsProduct: string | undefined;
-  htmlContent: string = '';
+export class ProductComponent{
+  constructor(private service: ExistingProductService) {}
 
-  products: Product[] = [
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 1',
-      description: 'Bies Bryghus Beer',
-      price: 19.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 2',
-      description: 'Bies Bryghus Beer',
-      price: 24.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
-    },
-    {
-      image: 'https://images.byflou.com/13/3/images/products/0/0/bies-bryghus-oel-bies-bryghus-oel-anno-1841-3628185.gif',
-      title: 'Cerveza del Bies Bryghus 3',
-      description: 'Bies Bryghus Beer',
-      price: 14.99,
-      symbol: "€"
+  products: Product[] | undefined;
+  categories: Category[] | undefined;
+
+  ngOnInit() {
+    this.getData();
+  }
+
+  addToCart(id:string) {
+    /* LUIS FERNANDO TIENES QUE HACER TU */
+    alert(id);
+  }
+
+  getImageProduct(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes
     }
-  ];
+    return 'assets/placeholder-image.jpg'
+  }
+
+  getCategory(category: string) {
+    alert(category)
+  }
+
+  getData() {
+    this.service.getDatos("http://localhost:8080/once/products")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.products = response._embedded.existingProducts;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.')
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error)
+        }
+      })
+
+      this.service.getDatos("http://localhost:8080/once/categories")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.categories = response._embedded.categories;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.')
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error)
+        }
+      })
+  }
+
+  numberFormat(amount: number | bigint){
+    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
+  }
+  
 }

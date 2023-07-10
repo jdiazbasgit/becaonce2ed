@@ -19,7 +19,7 @@ export class SubcategoryComponent implements OnInit {
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: SubcategoryService) {
-    this.titulo = "TIPOS DE SUBCATEGORIAS"
+    this.titulo = "SUBCATEGORIAS"
     this.subcategories = [];
   }
   alta(){

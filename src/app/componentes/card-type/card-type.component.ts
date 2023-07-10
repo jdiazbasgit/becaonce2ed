@@ -15,7 +15,7 @@ export class CardTypeComponent implements OnInit{
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: CardTypeService) {
-    this.titulo = "TARJETAS DESCRIPCIONES"
+    this.titulo = "TIPOS DE MEDIO DE PAGO"
     this.tarjetas = [];
   }
 

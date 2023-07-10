@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: CategoryService) {
-    this.titulo = "TIPOS DE CATEGORIAS"
+    this.titulo = "CATEGORIAS"
     this.categories = [];
   }
 
