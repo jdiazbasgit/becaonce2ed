@@ -27,6 +27,7 @@ export class NavbarComponent {
     this.cuentaElegida = false
     this.elementRef.nativeElement.querySelector("#home").classList.add("seleccionado")
   }
+  
 }
 
 
