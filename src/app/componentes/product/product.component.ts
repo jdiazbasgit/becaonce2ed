@@ -6,7 +6,6 @@ interface Product {
   title: string;
   description: string;
   price: number;
-  symbol: string;
 }
 
 @Component({
