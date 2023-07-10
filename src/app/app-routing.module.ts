@@ -8,7 +8,9 @@ import { DetallesCuentaComponent } from './detalles-cuenta/detalles-cuenta.compo
 import { ProductosComponent } from './productos/productos.component';
 import { PanelAdministradorComponent } from './panel-administrador/panel-administrador.component';
 import { HazteClienteComponent } from './hazte-cliente/hazte-cliente.component';
+
 // import { ProductosAsociadosComponent } from './productos-asociados/productos-asociados.component';
+
 
 const routes: Routes = [
   {path:`landing`, component:LandingComponent},
