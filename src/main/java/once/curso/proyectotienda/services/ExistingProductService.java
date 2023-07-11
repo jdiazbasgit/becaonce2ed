@@ -1,5 +1,6 @@
 package once.curso.proyectotienda.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +70,13 @@ public class ExistingProductService {
 	public void deleteAll() {
 		getExistingProductsCRUDRepository().deleteAll();
 	}
+	
+	public List<ExistingProduct> getExistingProductByCategory(int categoryId){
+		return getExistingProductsCRUDRepository().getExistingProductByCategory(categoryId);
+	}
+	
+	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(int categoryId,int subcategoryId){
+		return getExistingProductsCRUDRepository().getExistingProductByCategoryAndSubCategory(categoryId, subcategoryId);
+	}
+		
 }

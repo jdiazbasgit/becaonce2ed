@@ -42,8 +42,6 @@ public class CardTypeRestController {
 	@Autowired
 	private PagedResourcesAssembler<CardType> pagedResourcesAssembler;
 
-	
-
 	@GetMapping("/cardTypes/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<CardType> findById(@PathVariable int id) {
@@ -71,7 +69,7 @@ public class CardTypeRestController {
 	public PagedModel<EntityModel<CardType>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
-		Sort orden = Sort.by("a");
+		Sort orden = null;
 		String campo = stringTokenizer.nextToken();
 		String tipoOrden = stringTokenizer.nextToken();
 

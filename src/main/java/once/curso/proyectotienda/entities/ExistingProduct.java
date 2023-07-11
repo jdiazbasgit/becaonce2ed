@@ -1,7 +1,6 @@
 package once.curso.proyectotienda.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +22,6 @@ public class ExistingProduct extends RepresentationModel<ExistingProduct> {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String description;
-	
 	private Double price;
 	
 	@Lob
@@ -31,7 +29,7 @@ public class ExistingProduct extends RepresentationModel<ExistingProduct> {
 	
 	private int stock;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="subcategories_id")
 	private SubCategory subcategory;
 }

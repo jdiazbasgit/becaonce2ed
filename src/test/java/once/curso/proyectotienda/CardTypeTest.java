@@ -1,6 +1,5 @@
 package once.curso.proyectotienda;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -25,7 +24,7 @@ import once.curso.proyectotienda.services.CardTypeService;
 @SpringBootTest
 @Data
 @TestMethodOrder(value = OrderAnnotation.class)
-public class CardTypeTest {
+ class CardTypeTest {
 
 	@Autowired
 	private CardTypeCRUDRepository cardTypeCRUDRepository;

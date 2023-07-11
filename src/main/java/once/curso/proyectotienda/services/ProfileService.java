@@ -2,18 +2,40 @@ package once.curso.proyectotienda.services;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.Data;
+import once.curso.proyectotienda.dtos.ProfileDto;
+import once.curso.proyectotienda.dtos.ProfileUserDto;
 import once.curso.proyectotienda.entities.Profile;
+import once.curso.proyectotienda.entities.User;
+import once.curso.proyectotienda.repositories.CardTypeCRUDRepository;
+import once.curso.proyectotienda.repositories.DocumentTypeCRUDRepository;
 import once.curso.proyectotienda.repositories.ProfileCRUDRepository;
+import once.curso.proyectotienda.repositories.RolCRUDRepository;
+import once.curso.proyectotienda.repositories.UserCRUDRepository;
 
 @Service
 @Data
 public class ProfileService {
+	@Autowired
+	private UserCRUDRepository userCRUDRepository;
+
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+
+	@Autowired
+	private CardTypeCRUDRepository cardTypeCRUDRepository;
+
+	@Autowired
+	private DocumentTypeCRUDRepository documentTypeCRUDRepository;
+	
 	@Autowired
 	private ProfileCRUDRepository profilesCRUDRepository;
 	
@@ -63,12 +85,46 @@ public class ProfileService {
 	}
 
 	public void deleteAllById(Iterable<? extends Integer> ids) {
-		for (Integer id : ids){
-			getProfilesCRUDRepository().deleteById(id);
-		}
+		for (Integer id : ids){getProfilesCRUDRepository().deleteById(id);}
 	}
 
 	public void deleteAll() {
 		getProfilesCRUDRepository().deleteAll();
+	}
+	
+	public ProfileUserDto getProfileUserDto(String identification, String user,String phone,String email, String creditcard) {
+		return getProfilesCRUDRepository().getProfileUserDto(identification, user, phone, email, creditcard);
+	}
+	
+	@Transactional //con spring solo esto, si otra programa tiene que poner try catch. Contola la transaccionabilidad
+	public Profile crearProfile(ProfileDto profileDto  ) {
+			Profile profileNew = new Profile();
+			
+			profileNew.setName(profileDto.getName());
+			profileNew.setSecondName(profileDto.getSecondName());
+			profileNew.setIdentification(profileDto.getIdentification());
+			profileNew.setCreditCard(profileDto.getCreditCard());
+			profileNew.setAddress(profileDto.getAddress());
+			profileNew.setPostalCode(profileDto.getPostalCode());
+			profileNew.setCountry(profileDto.getCountry());
+			profileNew.setEmail(profileDto.getEmail());
+			profileNew.setCity(profileDto.getCity());
+			profileNew.setPhone(profileDto.getPhone());
+			profileNew.setImage(profileDto.getImage());
+			
+			profileNew.setCardType((getCardTypeCRUDRepository().findById(profileDto.getCardType()).get()));
+			profileNew.setDocumentType((getDocumentTypeCRUDRepository().findById(profileDto.getDocumentType()).get()));
+						
+			 User userNuevo = new User();
+			    userNuevo.setUser(profileDto.getUser());
+			    userNuevo.setEnabled(false);
+			    userNuevo.setPassword(new BCryptPasswordEncoder(5).encode(profileDto.getPassword()));
+			    userNuevo.setRol(getRolCRUDRepository().findById(25).get()); //ES ROLE_ADMIN
+
+			    /* ROLLBACK */
+			    profileNew.setUser(getUserCRUDRepository().save(userNuevo)); /* GRABA USER*/
+			    Profile p = getProfilesCRUDRepository().save(profileNew); /* NO GRABA PROFILE*/
+
+			    return p;
 	}
 }
