@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 
 interface Product {
@@ -26,7 +26,7 @@ interface Category {
 
 export class ProductComponent{
   titleSubcategory: string = 'PORTATILES';
-  constructor(private service: ExistingProductService) {}
+  constructor(private service: ExistingProductService,private renderer: Renderer2) {}
 
   products: Product[] | undefined;
   categories: Category[] | undefined;
@@ -77,12 +77,13 @@ export class ProductComponent{
 
   getSubcategory(subcategory: Subcategory){
     this.titleSubcategory = subcategory.description;
-    alert(subcategory._links.self.href.split('/').pop());
+    const categoryId = subcategory._links.category.href.split('/').pop();
 
-    this.service.getDatos("http://localhost:8080/once/products")
+    this.service.getDatos("http://localhost:8080/once/existingProducts/"+categoryId)
     .subscribe({
       next: (response: any) => {
-        if (response._embedded) {
+        if (response) {
+          this.products = [];
           this.products = response._embedded.existingProducts;
         } else {
           console.error('La propiedad _embedded no existe en el JSON.')
