@@ -68,7 +68,6 @@ export class CuentasComponent {
   elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
-    this.router.navigateByUrl("detalles")
     window.scrollTo(0,0)
   }
 }

@@ -16,7 +16,7 @@
         <div class="my-4 p-5 border-bottom shadow">
             <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
             <div *ngFor="let cuenta of cuentas, let i = index" class="mt-4 border-bottom ms-5 lineaCuenta" role="button"
-                (click)="elegirCuenta(cuenta.number, cuenta.id)">
+                (click)="elegirCuenta(cuenta.number, cuenta.id)" routerLink="/detalles">
                 <div class="d-flex justify-content-between texto-resaltado p-2">
                     <h5>
                         <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"

@@ -16,7 +16,7 @@
           </span></a>
       </li>    
       <li *ngIf="comprobarRolAdmin() && comprobarRuta()=='/cuentas' || comprobarRuta()=='/paneladministrador'" class="nav-item ms-auto">
-        <a class="nav-link" routerLink="paneladministrador" id="admin" (click)="abrirPanelAdmin()">
+        <a class="nav-link" routerLink="paneladministrador" id="admin">
           <span class="texto-resaltado">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-edit pb-1 mx-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -28,7 +28,7 @@
            </svg>Panel Administración
           </span></a>
       </li>  
-      <ng-container *ngIf="comprobarRuta() != '/paneladministrador' && comprobarRuta() !='/cuentas'">        
+      <ng-container *ngIf="mostrarCuenta">        
         <li class="nav-item ms-5 px-3">
           <a class="nav-link" routerLink="detalles" id="detalles">Detalles</a>
         </li>
