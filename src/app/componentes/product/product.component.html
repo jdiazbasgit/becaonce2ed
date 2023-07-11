@@ -1,21 +1,23 @@
 <div class="container mb-3">
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <ul class="nav justify-content-center">
-        <li class="nav-item p-1 m-2 px-3 cursor-pointer btn-hover" *ngFor="let category of categories" (click)="getCategory(category._links.self.href.split('/').pop())">
+    <div class="col-md">
+      <ul class="nav justify-content-center border-bottom">
+        <li class="nav-item p-1 m-2 px-3 cursor-pointer btn-hover" *ngFor="let category of categories" (click)="getCategory(category)">
           {{ category.description }}
         </li>
       </ul>
 
       <ul class="nav justify-content-center">
-        
+        <li class="nav-item p-1 m-2 px-3 cursor-pointer btn-hover" *ngFor="let subcategory of subcategories" (click)="getSubcategory(subcategory)">
+          {{ subcategory.description }}
+        </li>
       </ul>
     </div>
   </div>
 </div>
 
 <section class="bg-light pt-3 pb-5">
-  <div class="d-block text-center display-6">ELECTRÓNICA</div>
+  <div class="d-block text-center display-6">{{ titleSubcategory }}</div>
   <div class="container justify-content-center">
     <div class="row mt-3 p-2">
       <h4 class="text-uppercase border-bottom mb-2">Resultados</h4>
@@ -26,12 +28,12 @@
           <div class="card overflow-hidden mb-3 p-3 border-0">
             <img [src]="getImageProduct(product.image)" alt="{{ product.description }}" class="card-img-top">
             <div class="card-body d-flex flex-column h-100">
-              <div class="card-title mt-1 mb-4 h-100">{{ product.description }}</div> 
+              <div class="card-title mt-1 mb-4 h-100">{{ product.description }}</div>
               <div class="d-block text-center mt-3 mb-4 mt-auto">
                 <small class="text-dark mt-1 fs-4 font-weight-bold h3 text-bold">{{ numberFormat(product.price) }}</small>
               </div>
               <div class="text-center mt-auto">
-                <button type="button" class="btn btn-primary" (click)="addToCart(product._links.self.href.split('/').pop())">Agregar al carrito</button>
+                <button type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar al carrito</button>
               </div>
             </div>
           </div>

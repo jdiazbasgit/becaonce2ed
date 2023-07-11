@@ -8,6 +8,11 @@ interface Product {
   _links: any;
 }
 
+interface Subcategory {
+  description: string;
+  _links: any;
+}
+
 interface Category {
   description: string;
   _links: any;
@@ -20,18 +25,19 @@ interface Category {
 })
 
 export class ProductComponent{
+  titleSubcategory: string = 'PORTATILES';
   constructor(private service: ExistingProductService) {}
 
   products: Product[] | undefined;
   categories: Category[] | undefined;
+  subcategories: Subcategory[] = [];
 
   ngOnInit() {
     this.getData();
   }
 
-  addToCart(id:string) {
-    /* LUIS FERNANDO TIENES QUE HACER TU */
-    alert(id);
+  addToCart(product:Product) {
+    alert(product);
   }
 
   getImageProduct(imageBytes: string): string {
@@ -41,8 +47,51 @@ export class ProductComponent{
     return 'assets/placeholder-image.jpg'
   }
 
-  getCategory(category: string) {
-    alert(category)
+  getCategory(category: Category) {
+    const categoryId = category._links.self.href.split('/').pop();
+    this.service.getDatos("http://localhost:8080/once/subcategories")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            const subcategorias = response._embedded.subCategories;
+            this.subcategories = [];
+            subcategorias.forEach((subcategory: any) => {
+              const subcategoryId = subcategory._links.category.href.split('/').pop();
+              if (subcategoryId === categoryId) {
+                const subcategoryObject: Subcategory = {
+                  description: subcategory.description.toUpperCase(),
+                  _links: subcategory._links
+                };
+                this.subcategories.push(subcategoryObject);
+              }
+            });
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
+        }
+      });
+  }
+
+  getSubcategory(subcategory: Subcategory){
+    this.titleSubcategory = subcategory.description;
+    alert(subcategory._links.self.href.split('/').pop());
+
+    this.service.getDatos("http://localhost:8080/once/products")
+    .subscribe({
+      next: (response: any) => {
+        if (response._embedded) {
+          this.products = response._embedded.existingProducts;
+        } else {
+          console.error('La propiedad _embedded no existe en el JSON.')
+        }
+      },
+      error: (error: any) => {
+        console.error('Error al obtener los datos: ', error)
+      }
+    })
   }
 
   getData() {
@@ -78,5 +127,4 @@ export class ProductComponent{
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
   }
-  
 }
