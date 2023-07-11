@@ -38,7 +38,7 @@ public class ExistingProductRestController {
 
 	@Autowired
 	private ExistingProductModelAssembler existingProductModelAssembler;
-	
+
 	@Autowired
 	private PagedResourcesAssembler<ExistingProduct> pagedResourcesAssembler;
 
@@ -64,16 +64,17 @@ public class ExistingProductRestController {
 				.findById(existingProduct1.getId()))
 				.withSelfRel());
 		return EntityModel.of(existingProduct1);
+
 	}
 
 	/* R READ ALL PRODUCTS */
 	@GetMapping("/products")
-	@CrossOrigin(origins ="*")
+	@CrossOrigin(origins = "*")
 	public CollectionModel<ExistingProduct> getExistingProducts() {
 		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
 		existingProduct.forEach(u -> {
-			u.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
+			u.add(WebMvcLinkBuilder.linkTo(
+					WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
 					.withRel("subcategory"));
 			u.add(WebMvcLinkBuilder
 					.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
@@ -82,44 +83,47 @@ public class ExistingProductRestController {
 		return CollectionModel.of(existingProduct);
 	}
 
-	/* R READ A PRODUCT */	
+	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
-	@CrossOrigin(origins ="*")
+	@CrossOrigin(origins = "*")
 	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
 		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
-		existingProduct.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
+		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
 				.findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
-		existingProduct.add(WebMvcLinkBuilder
-				.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
-				.findById(existingProduct.getId()))
+		existingProduct.add(WebMvcLinkBuilder.linkTo(
+				WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(existingProduct.getId()))
 				.withSelfRel());
 		return EntityModel.of(existingProduct);
 	}
 
-	/* U UPDATE A PRODUCT ESTO ES PARA JBDC*/
-	//@PutMapping("/products/{id}") //SPRING BOOT APP 
+	/* U UPDATE A PRODUCT ESTO ES PARA JBDC */
+	// @PutMapping("/products/{id}") //SPRING BOOT APP
 	// @GetMapping("/products/{id}") //Junit text
-	/*@CrossOrigin(origins ="*")
-	public ResponseEntity<ExistingProduct> updateExistingProduct(@PathVariable(value = "id") int existingProductId,
-			@RequestBody ExistingProduct existingProductDetails) throws ResourceNotFoundException {
-		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId).get();
-				//.orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
-
-		existingProduct.setDescription(existingProductDetails.getDescription());
-		existingProduct.setPrice(existingProductDetails.getPrice());
-		existingProduct.setImage(existingProductDetails.getImage());
-		existingProduct.setStock(existingProductDetails.getStock());
-		existingProduct.setSubcategory(existingProductDetails.getSubcategory());
-
-		final ExistingProduct updateExistingProduct = getExistingProductService().save(existingProduct);
-		return ResponseEntity.ok(updateExistingProduct);
-	}*/
+	/*
+	 * @CrossOrigin(origins ="*") public ResponseEntity<ExistingProduct>
+	 * updateExistingProduct(@PathVariable(value = "id") int existingProductId,
+	 * 
+	 * @RequestBody ExistingProduct existingProductDetails) throws
+	 * ResourceNotFoundException { ExistingProduct existingProduct =
+	 * getExistingProductService().findById(existingProductId).get();
+	 * //.orElseThrow(() -> new
+	 * ResourceNotFoundException("No se ha encontrado id :: " + existingProductId));
+	 * 
+	 * existingProduct.setDescription(existingProductDetails.getDescription());
+	 * existingProduct.setPrice(existingProductDetails.getPrice());
+	 * existingProduct.setImage(existingProductDetails.getImage());
+	 * existingProduct.setStock(existingProductDetails.getStock());
+	 * existingProduct.setSubcategory(existingProductDetails.getSubcategory());
+	 * 
+	 * final ExistingProduct updateExistingProduct =
+	 * getExistingProductService().save(existingProduct); return
+	 * ResponseEntity.ok(updateExistingProduct); }
+	 */
 
 	/* D DELETE A PRODUCT */
-	@DeleteMapping("/products/{id}") //SPRING BOOT APP
-	@CrossOrigin(origins ="*")
-	//@GetMapping("/products/delete/{id}") //Junit text
+	@DeleteMapping("/products/{id}") // SPRING BOOT APP
+	@CrossOrigin(origins = "*")
+	// @GetMapping("/products/delete/{id}") //Junit text
 	public Map<String, Boolean> deleteExistingProduct(@PathVariable(value = "id") int existingProductId)
 			throws ResourceNotFoundException {
 		ExistingProduct existingProduct = getExistingProductService().findById(existingProductId)
@@ -132,7 +136,7 @@ public class ExistingProductRestController {
 	}
 
 	@GetMapping("/productsPaginado")
-	@CrossOrigin(origins ="*")
+	@CrossOrigin(origins = "*")
 	public PagedModel<EntityModel<ExistingProduct>> findAllPaginado(@RequestParam int size, @RequestParam int page,
 			@RequestParam String sort) {
 		StringTokenizer stringTokenizer = new StringTokenizer(sort, ",");
@@ -153,13 +157,19 @@ public class ExistingProductRestController {
 
 	/* TOTAL PRODUCTS */
 	@GetMapping("/products/count")
-	@CrossOrigin(origins ="*")
+	@CrossOrigin(origins = "*")
 	public long getExistingProductCount() {
 		return existingProductService.count();
 	}
-	
+
 	@GetMapping("/existingProducts/{categoryId}")
-	public List<ExistingProduct> getExistingProductByCategory(@PathVariable int categoryId){
+	public List<ExistingProduct> getExistingProductByCategory(@PathVariable int categoryId) {
 		return getExistingProductService().getExistingProductByCategory(categoryId);
 	}
+
+	@GetMapping("/existingProducts/{categoryId}/{subcategoryId}")
+	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(@PathVariable int categoryId,@PathVariable int subcategoryId) {
+		return getExistingProductService().getExistingProductByCategoryAndSubCategory(categoryId,subcategoryId);
+	}
+
 }
