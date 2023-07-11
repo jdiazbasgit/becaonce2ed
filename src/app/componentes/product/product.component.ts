@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 
 interface Product {
@@ -25,8 +25,8 @@ interface Category {
 })
 
 export class ProductComponent{
-  titleSubcategory: string = 'PORTATILES';
-  constructor(private service: ExistingProductService,private renderer: Renderer2) {}
+  titleSubcategory: string = 'PORTÁTILES';
+  constructor(private service: ExistingProductService) {}
 
   products: Product[] | undefined;
   categories: Category[] | undefined;
@@ -78,8 +78,8 @@ export class ProductComponent{
   getSubcategory(subcategory: Subcategory){
     this.titleSubcategory = subcategory.description;
     const categoryId = subcategory._links.category.href.split('/').pop();
-
-    this.service.getDatos("http://localhost:8080/once/existingProducts/"+categoryId)
+    const subcategoryId = subcategory._links.self.href.split('/').pop();
+    this.service.getDatos("http://localhost:8080/once/products/"+categoryId+'/'+subcategoryId)
     .subscribe({
       next: (response: any) => {
         if (response) {
