@@ -71,10 +71,4 @@ export class CuentasComponent {
     this.router.navigateByUrl("detalles")
     window.scrollTo(0,0)
   }
-
-  comprobarRolAdmin(){
-    if(sessionStorage['rol'] == "ROLE_ADMIN")
-    return true
-    return false
-  }
 }
