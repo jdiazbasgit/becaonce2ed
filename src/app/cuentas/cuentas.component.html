@@ -4,10 +4,7 @@
         <h1>Bienvenido {{usuario}} a tu Área personal</h1>
         <p>Consulta tu saldo total o elige una cuenta para ver más detalles, operar o consultar movimientos</p>
         <ng-container *ngIf="comprobarRolAdmin()">
-            <button data-bs-toggle="collapse" data-bs-target="#demo">Collapsible</button>
-            <div id="demo" class="collapse">
-                <app-panel-administrador class="container"></app-panel-administrador>
-            </div>
+            <button type="button" class="btn btn-success">Acceso al panel de Administración</button>
         </ng-container>
     </div>
     <ng-container *ngIf="yaTieneCuentas()">

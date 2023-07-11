@@ -26,6 +26,18 @@ export class NavbarComponent {
     sessionStorage.removeItem('cuenta')
     this.cuentaElegida = false
     this.elementRef.nativeElement.querySelector("#home").classList.add("seleccionado")
+    this.elementRef.nativeElement.querySelector("#admin").classList.remove("seleccionado")
+  }
+
+  abrirPanelAdmin(){
+    this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
+    this.elementRef.nativeElement.querySelector("#admin").classList.add("seleccionado")
+  }
+
+  comprobarRolAdmin(){
+    if(sessionStorage['rol'] == "ROLE_ADMIN")
+    return true
+    return false
   }
   
 }
