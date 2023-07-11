@@ -1,1 +1,38 @@
-<p>detalles-cuenta works!</p>
+
+  
+
+
+
+
+<div class="container fondo-primario">
+  <h1 style="text-align: center;">DATELLES DE LA  CUENTA </h1><br>         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>NOMBRE DE CUENTA </th>
+        <th>NUMERO DE CUENTA </th>
+        <th>CON UN INTERÉS</th>
+        <th>SU SALDO ACTUAL</th>
+        <th>FECHA DE CREACION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ description }}</td>
+        <td>{{ cuentaElegida }}</td>
+        <td>{{ interes }}</td>
+        <td>{{ saldoCuenta }}</td>
+        <td>{{ cuentaCreacion | date:'dd/MM/yyyy' }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
