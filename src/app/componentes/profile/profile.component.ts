@@ -83,15 +83,15 @@ export class ProfileComponent implements OnInit {
         if (dato) {
           this.message = 'Perfil eliminado correctamente.';
           this.getData();
-        }
-        else
+        } else {
           this.message ='Perfil no se ha eliminado';
-      })
+        }
+      });
     }
   }
 
   handleEventoProfile(event: any) {
-    if (event.salida === "OK") {
+    if (event.actualizar === "OK") {
       this.getData();
     }
   }

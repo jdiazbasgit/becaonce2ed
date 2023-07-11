@@ -96,7 +96,8 @@ export class ModalProfilesComponent {
       this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.message = '¡El perfil ha sido guardado correctamente!';            
+            this.message = '¡El perfil ha sido guardado correctamente!'; 
+            this.eventoProfile.emit({ actualizar: "OK" });           
           } else {
             this.message = 'Error al guardar el perfil.';
           }
@@ -143,7 +144,6 @@ export class ModalProfilesComponent {
   }
 
   closeModal() {
-    this.eventoProfile.emit({ salida: "OK" });
     this.clearAll();
   }
 
