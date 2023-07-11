@@ -130,6 +130,12 @@ public class ExistingProductRestController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
+	@GetMapping("/products/subcategory/{description}")
+	@CrossOrigin(origins ="*")
+	public List<ExistingProduct> getProductBySubcategory(@PathVariable String description ) {
+		return getExistingProductService().getProductBySubcategory(description);
+	}
 
 	@GetMapping("/productsPaginado")
 	@CrossOrigin(origins ="*")
@@ -162,4 +168,7 @@ public class ExistingProductRestController {
 	public List<ExistingProduct> getExistingProductByCategory(@PathVariable int categoryId){
 		return getExistingProductService().getExistingProductByCategory(categoryId);
 	}
+	
+	
+	
 }
