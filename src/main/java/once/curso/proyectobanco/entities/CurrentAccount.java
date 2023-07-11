@@ -26,6 +26,7 @@ public class CurrentAccount extends RepresentationModel<CurrentAccount> {
 	private int id;
 	private int number;
 	
+	
 	@Column (name="creation_date")
 	@Temporal (TemporalType.DATE)
 	private Calendar creationDate;
