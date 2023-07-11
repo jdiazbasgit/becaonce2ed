@@ -84,7 +84,7 @@ public class SoldProductRestController {
 		return getPagedResourcesAssembler().toModel(soldProduct, getSoldProductModelAssembler());
 	}
 	/*
-	 http://localhost:8080/once/soldProductsPaginado?size=2&page=0&sort=id,asc
+	http://localhost:8080/once/soldProductsPaginado?size=2&page=0&sort=id,asc
 	*/
 
 	@PostMapping("/soldProducts")
