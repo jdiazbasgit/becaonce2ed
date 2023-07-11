@@ -1,10 +1,12 @@
 <div class="container">
-    <div>
-        
-    </div>
-</div><br>
+  <app-product></app-product>
 
-<div class="d-flex justify-content-center align-items-center">
-    
-    <a class="btn btn-light btn-lg" role="button" routerLink="darseAlta">let's go!</a>
+    <div *ngIf="getSessionStorage()!=null && getSessionStorage()!=''">
+        <app-product></app-product>
+    </div>
+    <div *ngIf="getSessionStorage()==null ||  getSessionStorage()==''">
+        <app-login></app-login>
+    </div>
 </div>
+
+

@@ -6,7 +6,7 @@ class ExistingProductBean {
   image: string;
   subcategory: string;
 
-  constructor(id: string, image: string, description: string, price: string, stock: string, subcategory: string ) {
+  constructor(id: string, image: string, description: string, price: string, stock: string, subcategory: string) {
     this.id = id;
     this.image = image;
     this.description = description;

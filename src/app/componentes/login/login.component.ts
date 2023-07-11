@@ -34,7 +34,7 @@ export class LoginComponent {
       this.logado = true;
       this.user = sessionStorage.getItem('user') ?? '';
     }
-    if (!this.logado && this.router.url !== "/home") {
+    if (sessionStorage.getItem('token')!="" && this.router.url !== "/home") {
       this.router.navigateByUrl("home");
     }
     if (!this.notActive && this.logado) {

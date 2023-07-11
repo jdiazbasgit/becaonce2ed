@@ -13,22 +13,18 @@ export class ExistingProductComponent implements OnInit {
   @ViewChild(ModalExistingProductsComponent, { static: false })
   modal: ModalExistingProductsComponent | undefined
 
-  title = "Lista de productos"
-  columns: string[] = ['image', 'description', 'price', 'stock', 'actions']
-  elements: any[] = []
-  message: string | undefined
+  title = "Lista de productos";
+  columns: string[] = ['image', 'description', 'price', 'stock', 'actions'];
+  elements: any[] = [];
+  message: string | undefined;
 
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator
+  paginator!: MatPaginator;
 
   constructor(private service: ExistingProductService) {}
 
   ngOnInit() {
-    this.getData()
-  }
-
-  refreshData(event: any){
-    this.getData()
+    this.getData();
   }
 
   getData() {
@@ -47,7 +43,7 @@ export class ExistingProductComponent implements OnInit {
       })
   }
 
-  getImage(imageBytes: string): string {
+  getImageProduct(imageBytes: string): string {
     if (imageBytes) {
       return 'data:image/jpeg;base64,' + imageBytes
     }
@@ -63,34 +59,44 @@ export class ExistingProductComponent implements OnInit {
     return formattedEuro;
   }
 
-  abrirModal(id: string, element?: any) {
+  openModal(id: string, element?: any) {
     if (this.modal) {
-      this.modal.image = ''
-      this.modal.description = ''
-      this.modal.price = ''
-      this.modal.stock = ''
-      this.modal.total = '0'
-      this.modal.message=''
+      this.modal.image = '';
+      this.modal.description = '';
+      this.modal.price = '';
+      this.modal.stock = '';
+      this.modal.total = '0';
 
-      if (element !== undefined && element !== null && element !== '') {
-        this.modal.openModal(id, element)
-      } else {
-        this.modal.openModal('','')
-      }
+      this.modal.subcategory='0';
+
+      this.modal.message='';
+
+      this.modal.categoriaInput = '';
+      this.modal.subcategoriaInput = '';
+
+      this.modal.subcategories = [];
+
+      this.modal.openModal(id, element);
     }
   }
 
-  eliminar(id: string) {
+  delProduct(id: string) {
     if (confirm("¿Esta seguro de eliminar el producto?")) {
       this.service.delete("http://localhost:8080/once/products/" + id)
       .subscribe((dato: boolean) => {
         if (dato) {
-          this.message = 'Producto eliminado correctamente.'
-          this.ngOnInit()
+          this.message = 'Producto eliminado correctamente.';
+          this.getData();
+        } else {
+          this.message ='Producto no se ha eliminado';
         }
-        else
-          this.message ='Producto no se ha eliminado'
       })
+    }
+  }
+
+  handleEventoProduct(event: any) {
+    if (event.actualizar === "OK") {
+      this.getData();
     }
   }
 }
