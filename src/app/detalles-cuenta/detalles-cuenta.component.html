@@ -1,11 +1,35 @@
-<div>
-  <h2>Detalles de la cuenta</h2>
-  <p>Cuenta elegida: {{ cuentaElegida }}</p>
-  <p>Saldo de la cuenta: {{ saldoCuenta }}</p>
-  <p>Interés: {{ interes }}</p>
-  <p>Descripción: {{ description }}</p>
-  <p>Fecha de creación: {{ cuentaCreacion}}</p>
+
+  
+
+
+
+
+<div class="container fondo-primario">
+  <h1 style="text-align: center;">DATELLES DE LA  CUENTA </h1><br>         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>NOMBRE DE CUENTA </th>
+        <th>NUMERO DE CUENTA </th>
+        <th>CON UN INTERÉS</th>
+        <th>SU SALDO ACTUAL</th>
+        <th>FECHA DE CREACION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ description }}</td>
+        <td>{{ cuentaElegida }}</td>
+        <td>{{ interes }}</td>
+        <td>{{ saldoCuenta }}</td>
+        <td>{{ cuentaCreacion | date:'dd/MM/yyyy' }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
 </div>
+
+
 
 
 
