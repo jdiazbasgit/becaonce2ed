@@ -22,7 +22,7 @@ public class ExistingProductService {
 		return getExistingProductsCRUDRepository().save(entity);
 	}
 
-	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) { //*
+	public Iterable<ExistingProduct> saveAll(Iterable<ExistingProduct> entities) {
 		return getExistingProductsCRUDRepository().saveAll(entities);
 	}
 
