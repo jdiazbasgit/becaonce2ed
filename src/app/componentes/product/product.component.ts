@@ -75,6 +75,12 @@ export class ProductComponent{
       });
   }
 
+  /*
+      PREGUNTA CON EL PROFE
+      http://localhost:8080/once/products/
+      http://localhost:8080/once/existingProducts/568
+  */
+
   getSubcategory(subcategory: Subcategory){
     this.titleSubcategory = subcategory.description;
     const categoryId = subcategory._links.category.href.split('/').pop();
