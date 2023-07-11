@@ -89,9 +89,15 @@ public class SoldProductRestController {
 
 	@PostMapping("/soldProducts")
 	@CrossOrigin(origins ="*")
-	public SoldProduct save(@RequestBody SoldProduct soldProduct) {
-		return getSoldProductService().save(soldProduct);
+	public EntityModel<SoldProduct> createSoldProducts(@RequestBody SoldProduct soldProduct) {
+		SoldProduct soldProduct1 = getSoldProductService().save(soldProduct);
+		soldProduct1.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(soldProduct1.getProfile().getId())).withRel("profile"));
+		soldProduct1.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(soldProduct1.getExistingProduct().getId())).withRel("existingProduct"));
+		soldProduct1.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SoldProductRestController.class).findById(soldProduct1.getId())).withSelfRel());
+
+		return EntityModel.of(soldProduct1);
 	}
+
 	
 	@DeleteMapping("/soldProducts/{id}")
 	@CrossOrigin(origins = "*")
