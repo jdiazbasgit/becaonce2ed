@@ -14,14 +14,22 @@ import javax.persistence.TemporalType;
 
 import org.springframework.hateoas.RepresentationModel;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table (name="transactions")
 public class Transaction extends RepresentationModel<Transaction> {
 	
 	
+	
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	private int id;
