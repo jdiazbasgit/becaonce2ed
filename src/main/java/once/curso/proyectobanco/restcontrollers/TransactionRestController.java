@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.beans.CurrentAccountBean;
+import once.curso.proyectobanco.dtos.TransactionDto;
 import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.models.TransactionModelAssembler;
@@ -105,8 +106,9 @@ public class TransactionRestController {
 	}
 	
 	@PostMapping(value = "/transactions")
-	public boolean save(@RequestBody Transaction transaction) {
-		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
+	public boolean save(@RequestBody TransactionDto transactionDto) {
+		 getTransactionService().realizarTransaccion(transactionDto);
+		 return true;
 	}
 
 	@PutMapping(value = "/transactions")

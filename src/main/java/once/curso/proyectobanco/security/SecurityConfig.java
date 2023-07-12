@@ -23,8 +23,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeHttpRequests().antMatchers("/profiles/save").permitAll();
 		http.authorizeHttpRequests().antMatchers("/haztecliente").permitAll();
 		http.authorizeHttpRequests().antMatchers("/login").permitAll();
-		http.authorizeHttpRequests().antMatchers("/once/*").permitAll();
-		http.authorizeHttpRequests().antMatchers("/once/*/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/typesAccounts").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/arrancar").permitAll();
+		//http.authorizeHttpRequests().antMatchers("/once/*").permitAll();
+		//http.authorizeHttpRequests().antMatchers("/once/*/*").permitAll();
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
 		http.cors();
