@@ -69,43 +69,43 @@ export class LoginComponent {
     //   }, this.counterAfkTimer);
     // }
   }
-  logarse() {
-    let dialogRef = this.openDialog();
+  // logarse() {
+  //   let dialogRef = this.openDialog();
 
-    this.loginService.identificar("http://localhost:8080/login",
-      this.inputUser, this.inputPassword)
-      .pipe(
-        catchError(error => {
-          console.log(error);
-          if (error.status === 0 || error.status === 404) {
-            this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
-          }
-          dialogRef.close();
-          return "";
-        })
-      )
-      .subscribe((datos: any) => {
-        console.log(datos)
-        if (datos.token == null) {
-          this.inputUser = "";
-          this.inputPassword = "";
-          this.elementRef.nativeElement.querySelector('#inputP').blur();
-          this.elementRef.nativeElement.querySelector('#inputU').blur();
-          this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
-        }
-        if (datos.token != null) {
-          console.log("acceso correcto");
-          let userM = this.inputUser;
-          let passM = this.inputPassword;
-          sessionStorage.setItem('user', datos.user);
-          console.log(userM + passM);
-          sessionStorage.setItem('token', datos.token);
-          //this.notActive = false;
-          console.log(datos.token);
-        }
-        dialogRef.close();
-      });
-  }
+  //   this.loginService.identificar("http://localhost:8080/login",
+  //     this.inputUser, this.inputPassword)
+  //     .pipe(
+  //       catchError(error => {
+  //         console.log(error);
+  //         if (error.status === 0 || error.status === 404) {
+  //           this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
+  //         }
+  //         dialogRef.close();
+  //         return "";
+  //       })
+  //     )
+  //     .subscribe((datos: any) => {
+  //       console.log(datos)
+  //       if (datos.token == null) {
+  //         this.inputUser = "";
+  //         this.inputPassword = "";
+  //         this.elementRef.nativeElement.querySelector('#inputP').blur();
+  //         this.elementRef.nativeElement.querySelector('#inputU').blur();
+  //         this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
+  //       }
+  //       if (datos.token != null) {
+  //         console.log("acceso correcto");
+  //         let userM = this.inputUser;
+  //         let passM = this.inputPassword;
+  //         sessionStorage.setItem('user', datos.user);
+  //         console.log(userM + passM);
+  //         sessionStorage.setItem('token', datos.token);
+  //         //this.notActive = false;
+  //         console.log(datos.token);
+  //       }
+  //       dialogRef.close();
+  //     });
+  // }
 
   closeSession() {
     sessionStorage.removeItem('user');
@@ -113,33 +113,33 @@ export class LoginComponent {
     this.logado = false;
   }
 
-  mensajeClaveErronea(mensaje: String) {
-    this.incorrectKey = true;
-    this.keyMessage = mensaje;
-  }
+  // mensajeClaveErronea(mensaje: String) {
+  //   this.incorrectKey = true;
+  //   this.keyMessage = mensaje;
+  // }
 
-  getDocumentsTypes() {
-    const token = sessionStorage.getItem('token');
-    console.log("Sacando documents types con token: " + token);
-    this.documentType.getDatos("http://localhost:8080/once/documentsTypes")
-      .subscribe({
-        next: (response: any) => {
-          console.log("status ok:" + response.status);
-          console.log(response);
-          response._embedded.fees.forEach((element: any) => {
-            console.log(element.current);
-          });
-        },
-        error: (error: any) => {
-          console.log("status ko:" + error.status);
-        }
-      });
-  }
+  // getDocumentsTypes() {
+  //   const token = sessionStorage.getItem('token');
+  //   console.log("Sacando documents types con token: " + token);
+  //   this.documentType.getDatos("http://localhost:8080/once/documentsTypes")
+  //     .subscribe({
+  //       next: (response: any) => {
+  //         console.log("status ok:" + response.status);
+  //         console.log(response);
+  //         response._embedded.fees.forEach((element: any) => {
+  //           console.log(element.current);
+  //         });
+  //       },
+  //       error: (error: any) => {
+  //         console.log("status ko:" + error.status);
+  //       }
+  //     });
+  // }
 
-  errorDeToken() {
-    sessionStorage.setItem('token', 'error de token');
-    console.log("token: " + sessionStorage.getItem('token'));
-  }
+  // errorDeToken() {
+  //   sessionStorage.setItem('token', 'error de token');
+  //   console.log("token: " + sessionStorage.getItem('token'));
+  // }
 
 }
 // if (datos.token != null && datos.user != null && datos.roles != null && datos.roles.length > 0) {

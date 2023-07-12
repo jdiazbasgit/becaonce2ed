@@ -23,8 +23,8 @@
 
 
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Cerrar</button>
-    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Aceptar</button>
+    <button mat-button (click)="closeDialog()">Cerrar</button>
+    <button mat-button (click)="logarse()" cdkFocusInitial>Aceptar</button>
   </div>
 
   <div>
@@ -32,7 +32,7 @@
       <button mat-button color="primary">¿Olvidaste tu contraseña?</button>
     </p>
     <p mat-text-color="background">¿No tienes cuenta?
-      <button mat-button color="primary">¡Registrate!</button>
+      <button mat-button color="primary"> <mat-icon>person_add</mat-icon> </button>
     </p>
   </div>
 </div>
