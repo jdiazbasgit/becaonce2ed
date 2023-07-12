@@ -17,7 +17,7 @@
             <label class="input-group-text spw-3" for="inputGroupSelect01">Categoria</label>
             <select class="form-select" id="inputGroupSelect01" [(ngModel)]="categoriaInput" (change)="onCategoryChange()">
               <option value="">Selecciona categoría..</option>
-              <option *ngFor="let category of categories" [value]="category.description">{{category.description}}</option>
+              <option *ngFor="let category of categories" [value]="category.description">{{ category.description }}</option>
             </select>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <label class="input-group-text spw-3" for="inputGroupSelect02">Subcategoria</label>
             <select class="form-select" id="inputGroupSelect02" [(ngModel)]="subcategoriaInput">
               <option value="">Selecciona subcategoria..</option>
-              <option *ngFor="let subcategory of subcategories" [value]="subcategory.description" [attr.data-id]="subcategory._links.self.href.split('/').pop()">{{subcategory.description}}</option>
+              <option *ngFor="let subcategory of subcategories" [value]="subcategory.description" [attr.data-id]="subcategory._links.self.href.split('/').pop()">{{ subcategory.description }}</option>
             </select>
           </div>
         </div>
