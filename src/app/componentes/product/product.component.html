@@ -3,13 +3,13 @@
     <div class="col-md">
       <ul class="nav justify-content-center border-bottom">
         <li class="nav-item p-1 m-2 px-3 cursor-pointer btn-hover" *ngFor="let category of categories" (click)="getCategory(category)">
-          {{ category.description }}
+          {{ category.description.toUpperCase() }}
         </li>
       </ul>
 
-      <ul class="nav justify-content-center">
+      <ul class="nav justify-content-center mh-50">
         <li class="nav-item p-1 m-2 px-3 cursor-pointer btn-hover" *ngFor="let subcategory of subcategories" (click)="getSubcategory(subcategory)">
-          {{ subcategory.description }}
+          {{ subcategory.description.toUpperCase() }}
         </li>
       </ul>
     </div>

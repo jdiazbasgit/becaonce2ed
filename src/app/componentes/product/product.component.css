@@ -7,7 +7,7 @@
     overflow: hidden;
     transition: 0.3s;
 }
-  
+
 .btn-hover::after {
     content: "";
     position: absolute;
@@ -19,8 +19,11 @@
     transform: scaleX(0);
     transition: transform 0.3s;
 }
-  
+
 .btn-hover:hover::after {
     transform: scaleX(1);
 }
-  
+
+.mh-50{
+  min-height: 48px;
+}

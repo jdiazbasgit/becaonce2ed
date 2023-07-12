@@ -59,7 +59,7 @@ export class ProductComponent{
               const subcategoryId = subcategory._links.category.href.split('/').pop();
               if (subcategoryId === categoryId) {
                 const subcategoryObject: Subcategory = {
-                  description: subcategory.description.toUpperCase(),
+                  description: subcategory.description,
                   _links: subcategory._links
                 };
                 this.subcategories.push(subcategoryObject);
