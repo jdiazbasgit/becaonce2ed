@@ -1,25 +1,26 @@
 <div class="container">
   <div class="mb-5 p-5 border-bottom texto-secundario shadow min-vh-100">
     <h1 class="pb-3">
-      <p>Panel de Administración 
+      <p>Panel de Administración
         <span data-bs-toggle="collapse" data-bs-target="#help" role="button">
-          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="16" height="16"
+            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
             <path d="M12 17l0 .01"></path>
             <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4"></path>
-         </svg>
+          </svg>
         </span>
-        </p>
-        <div id="help" class="collapse">
-          <h6>Desde aquí puede editar, crear y eliminar registros de la base de datos. Su uso está restringido a adminstradores del servicio. Consulte el manual para más información.</h6>
-        </div>
+      </p>
+      <div id="help" class="collapse">
+        <h6>Desde aquí puede editar, crear y eliminar registros de la base de datos. Su uso está restringido a
+          adminstradores del servicio. Consulte el manual para más información.</h6>
+      </div>
     </h1>
-    
-  
-  
-    
-    
+
+
+
     <select class="form-select" aria-label="Default select example" #select (change)="consultarTabla(select.value)">
       <option selected>Seleccione una tabla...</option>
       <option value="awardsFines">AwardsFine</option>
@@ -39,18 +40,17 @@
       <option value="typesAccounts">TypeAccount</option>
       <option value="users">User</option>
     </select>
+
     <!-- <h2>{{ tablaAConsultar }} </h2> -->
     <!-- <h2>{{ linksForaneosTabla[0] }} </h2>
     <h2>{{ linksForaneosTabla[1] }}</h2>
     <h2>{{ linksForaneosTabla[2] }}</h2>
     <h2>{{linksForaneosTabla.length}}</h2> -->
     <!-- <button type="button" (click)="activarTabla()">activarTabla</button> -->
-  
-    
+
     <div *ngIf="mostrarLoading">
       <div class="mx-auto mt-5">
         <div class="align-items-center">
-          <!-- <div class="p-2 mx-1 justify-content-center">Estableciendo conexión segura</div> -->
           <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
             <strong>Loading...</strong>
             <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
@@ -58,81 +58,66 @@
         </div>
       </div>
     </div>
+
+    <div  id="bloque">
+      <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover mt-3">
+        <thead>
+          <tr>
+            <th [ngClass]="{'d-none':cabecera == 'id'}" class="bg-success text-white" scope="col"
+              *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
+            <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">
+              <div *ngIf="dato.length - mappingNombres.length -1 >= x, else foraneas">
+                {{lineaDato}}
+              </div>
   
-  
-  
-    <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover mt-3">
-      <thead>
-        <tr>
-          <th [ngClass]="{'d-none':cabecera == 'id'}" class="bg-success text-white" scope="col"
-            *ngFor="let cabecera of cabecerasTabla">{{cabecera}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let dato of datosBrutos, let i = index" [id]="'lineaDato'+i">
-          <td [ngClass]="{'d-none':x == 0}" *ngFor="let lineaDato of dato, let x = index">
-            <div *ngIf="dato.length - mappingNombres.length -1 >= x, else foraneas">
-              {{lineaDato}}
-            </div>
-  
-            <ng-template #foraneas>
-              <select class="form-select" aria-label="Default select example" disabled>
-                <!-- jsonForaneas[linksForaneosTabla[0]][0][0][0] = 1
-                jsonForaneas[linksForaneosTabla[0]][0][0][1] = NIF
-                jsonForaneas[linksForaneosTabla[0]][0][1][1] = CIF
-                <option value="0">{{jsonForaneas[linksForaneosTabla[1]][0][1][1]}}</option>
-                <option value="0">{{jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]][0]}}</option> -->
-                <ng-container
-                  *ngFor="let opcionSelec of jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]][0], let j = index">
-                  <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
-                    <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+              <ng-template #foraneas>
+                <select class="form-select" aria-label="Default select example" disabled>
+                  <!-- jsonForaneas[linksForaneosTabla[0]][0][0][0] = 1
+                  jsonForaneas[linksForaneosTabla[0]][0][0][1] = NIF
+                  jsonForaneas[linksForaneosTabla[0]][0][1][1] = CIF
+                  <option value="0">{{jsonForaneas[linksForaneosTabla[1]][0][1][1]}}</option>
+                  <option value="0">{{jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]][0]}}</option> -->
+                  <ng-container
+                    *ngFor="let opcionSelec of jsonForaneas[linksForaneosTabla[x - dato.length + linksForaneosTabla.length]][0], let j = index">
+                    <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
+                      <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                    </ng-container>
+                    <ng-template #restoOptions>
+                      <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
+                    </ng-template>
                   </ng-container>
-                  <ng-template #restoOptions>
-                    <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                  </ng-template>
-                </ng-container>
   
-              </select>
-            </ng-template>
-  
-            <!-- <ng-template #foraneas>
-              <select class="form-select" aria-label="Default select example" disabled>
-                <ng-container *ngFor="let opcionSelec of selectsIdyDescr[x - dato.length + linksForaneosTabla.length]">
-                  <ng-container *ngIf="dato[x] == opcionSelec[0], else restoOptions">
-                    <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                  </ng-container>
-                  <ng-template #restoOptions>
-                    <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                  </ng-template>
-                </ng-container>
-              </select>
-            </ng-template> -->
-  
-  
-          </td>
-          <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button'
-              class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop" (click)="cargarDatosDeLinea(i,false)">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-              <path d="M16 5l3 3"></path>
-            </svg></td>
-          <td width="10px" class="text-danger"><svg xmlns="http://www.w3.org/2000/svg" role='button'
-              class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" (click)="borrarLinea(i)">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M4 7h16"></path>
-              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-              <path d="M10 12l4 4m0 -4l-4 4"></path>
-            </svg></td>
-      </tbody>
-    </table>
-  
+                </select>
+              </ng-template>
+            </td>
+            <td width="10px" class="text-success"><svg xmlns="http://www.w3.org/2000/svg" role='button'
+                class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" (click)="cargarDatosDeLinea(i,false)">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                <path d="M16 5l3 3"></path>
+              </svg></td>
+            <td width="10px" class="text-danger"><svg xmlns="http://www.w3.org/2000/svg" role='button'
+                class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" (click)="borrarLinea(i)">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 7h16"></path>
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                <path d="M10 12l4 4m0 -4l-4 4"></path>
+              </svg></td>
+        </tbody>
+      </table>
+    </div>    
+
     <!-- Button trigger modal -->
-    <button *ngIf="mostrarGrabador" type="button" class="btn btn-success" data-bs-toggle="modal"
+    <button *ngIf="mostrarGrabador" type="button" class="btn btn-success mt-4" data-bs-toggle="modal"
       data-bs-target="#staticBackdrop" (click)="cargarDatosDeLinea(0,true)">
       Nuevo<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-plus ms-1" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -144,7 +129,7 @@
         <path d="M9 14l6 0"></path>
       </svg>
     </button>
-  
+
     <!-- Modal -->
     <div *ngIf="mostrarTabla" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
       tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="false">
@@ -168,12 +153,11 @@
                       <input type="text" class="form-control d-none" value="0" [id]="'input'+i" disabled>
                     </div>
                     <ng-template #resto>
-                      <!-- <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i"> -->
                       <div
                         *ngIf="cabecerasTabla.length - linksForaneosTabla.length -1 >= i && !nuevaEntrada, else foraneasInp">
                         <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
                       </div>
-  
+
                       <ng-template #foraneasInp>
                         <ng-container *ngIf="cabecerasTabla.length - linksForaneosTabla.length -1 < i && !nuevaEntrada">
                           <select class="form-select" aria-label="Default select example" [id]="'input'+i">
@@ -189,12 +173,12 @@
                           </select>
                         </ng-container>
                       </ng-template>
-  
+
                       <div
                         *ngIf="cabecerasTabla.length - linksForaneosTabla.length -1 >= i && nuevaEntrada, else foraneasInpEnBlanco">
                         <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
                       </div>
-  
+
                       <ng-template #foraneasInpEnBlanco>
                         <ng-container *ngIf="cabecerasTabla.length - linksForaneosTabla.length -1 < i && nuevaEntrada">
                           <select class="form-select" aria-label="Default select example" [id]="'input'+i">
@@ -211,48 +195,6 @@
                           </select>
                         </ng-container>
                       </ng-template>
-  
-  
-                      <!-- <ng-template #foraneasInp>
-                        <ng-container *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 < i && !nuevaEntrada">
-                          <select class="form-select" aria-label="Default select example" [id]="'input'+i">
-                            <h2>cabeceras: {{cabecerasTabla.length}}, selects: {{selectsIdyDescr.length}}, ronda: {{i}},
-                              valor: {{datosDeUnaSolaLinea[i]}}</h2>
-                            <ng-container
-                              *ngFor="let opcionSelec of selectsIdyDescr[i - datosDeUnaSolaLinea.length + selectsIdyDescr.length]">
-                              <ng-container *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInp">
-                                <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                              </ng-container>
-                              <ng-template #restoOptionsInp>
-                                <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                              </ng-template>
-                            </ng-container>
-                          </select>
-                        </ng-container>
-                      </ng-template> -->
-  
-                      <!-- <div
-                        *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 >= i && nuevaEntrada, else foraneasInpEnBlanco">
-                        <input type="text" class="form-control" value="{{datosDeUnaSolaLinea[i]}}" [id]="'input'+i">
-                      </div> -->
-  
-                      <!-- <ng-template #foraneasInpEnBlanco>
-                        <ng-container *ngIf="cabecerasTabla.length - selectsIdyDescr.length -1 < i && nuevaEntrada">
-                          <select class="form-select" aria-label="Default select example" [id]="'input'+i">
-                            <ng-container
-                              *ngFor="let opcionSelec of selectsIdyDescr[i - cabecerasTabla.length + selectsIdyDescr.length]">
-                              <ng-container
-                                *ngIf="datosDeUnaSolaLinea[i] == opcionSelec[0], else restoOptionsInpEnBlanco">
-                                <option selected value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                              </ng-container>
-                              <ng-template #restoOptionsInpEnBlanco>
-                                <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
-                              </ng-template>
-                            </ng-container>
-                          </select>
-                        </ng-container>
-                      </ng-template> -->
-  
                     </ng-template>
                   </ng-template>
                 </div>
@@ -270,5 +212,4 @@
       </div>
     </div>
   </div>
- 
 </div>
