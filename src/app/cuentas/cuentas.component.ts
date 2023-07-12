@@ -61,20 +61,35 @@ export class CuentasComponent {
   yaTieneCuentas(){
     if(this.cuentas.length !== 0)
     return true
-    else
     return false
   }
 
   elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
-    this.router.navigateByUrl("detalles")
     window.scrollTo(0,0)
   }
 
-  comprobarRolAdmin(){
-    if(sessionStorage['rol'] == "ROLE_ADMIN")
-    return true
-    return false
+  getFees() {
+    this.service.getDatos(this.url+"fees")
+      .subscribe({
+        next: (fees) => {
+          console.log(fees)
+          fees._embedded.fees.forEach((element: any) => {
+            console.log(element.current)
+          });
+        }
+      })
+  }
+  getTypesAccounts() {
+    this.service.getDatos(this.url+"typesAccounts")
+      .subscribe({
+        next: (typesAccounts) => {
+          console.log(typesAccounts)
+          typesAccounts._embedded.typeAccounts.forEach((element: any) => {
+            console.log(element.description)
+          });
+        }
+      })
   }
 }
