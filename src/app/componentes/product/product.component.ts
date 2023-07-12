@@ -25,12 +25,17 @@ interface Category {
 })
 
 export class ProductComponent{
-  titleSubcategory: string = 'PORTÁTILES';
+  titleSubcategory: string = 'Catálogo de productos';
   constructor(private service: ExistingProductService) {}
 
   products: Product[] | undefined;
   categories: Category[] | undefined;
   subcategories: Subcategory[] = [];
+
+  navVisible: boolean = false;
+  currentPage = 1;
+  pageSize = 12;
+  totalItems = 0;
 
   ngOnInit() {
     this.getData();
@@ -75,40 +80,48 @@ export class ProductComponent{
       });
   }
 
-  getSubcategory(subcategory: Subcategory){
+  getSubcategory(subcategory: Subcategory) {
+    this.navVisible = false;
     this.titleSubcategory = subcategory.description;
     const categoryId = subcategory._links.category.href.split('/').pop();
     const subcategoryId = subcategory._links.self.href.split('/').pop();
-    this.service.getDatos("http://localhost:8080/once/products/"+categoryId+'/'+subcategoryId)
-    .subscribe({
-      next: (response: any) => {
-        if (response) {
-          this.products = [];
-          this.products = response._embedded.existingProducts;
-        } else {
-          console.error('La propiedad _embedded no existe en el JSON.')
+  
+    this.currentPage = 1;
+  
+    this.service.getDatos(`http://localhost:8080/once/products/${categoryId}/${subcategoryId}`)
+      .subscribe({
+        next: (response: any) => {
+          if (response) {
+            this.products = [];
+            this.products = response._embedded.existingProducts;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.');
+          }
+        },
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
         }
-      },
-      error: (error: any) => {
-        console.error('Error al obtener los datos: ', error)
-      }
-    })
+      });
   }
 
   getData() {
-    this.service.getDatos("http://localhost:8080/once/products")
+    this.clearAll();
+    const url = `http://localhost:8080/once/productsPaginado?size=${this.pageSize}&page=${this.currentPage - 1}&sort=id,asc`;
+    this.service.getDatos(url)
       .subscribe({
         next: (response: any) => {
           if (response._embedded) {
             this.products = response._embedded.existingProducts;
+            this.totalItems = response.page.totalElements;
+            this.navVisible = true;
           } else {
-            console.error('La propiedad _embedded no existe en el JSON.')
+            console.error('La propiedad _embedded no existe en el JSON.');
           }
         },
         error: (error: any) => {
-          console.error('Error al obtener los datos: ', error)
+          console.error('Error al obtener los datos: ', error);
         }
-      })
+      });
 
       this.service.getDatos("http://localhost:8080/once/categories")
       .subscribe({
@@ -124,8 +137,46 @@ export class ProductComponent{
         }
       })
   }
-
+  
+  
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.getData();
+  }
+  
+  goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getData();
+    }
+  }
+  
+  goToNextPage() {
+    const lastPage = this.getLastPage();
+    if (this.currentPage < lastPage) {
+      this.currentPage++;
+      this.getData();
+    }
+  }
+  
+  getLastPage(): number {
+    return Math.ceil(this.totalItems / this.pageSize);
+  }
+
+  getPageNumbers(): number[] {
+    const lastPage = this.getLastPage();
+    return Array.from({ length: lastPage } /*console.log(Array.from('foo')); output: Array ["f", "o", "o"] */, (_, index) => index + 1 /* console.log(Array.from([1, 2, 3], x => x + 1)); output: Array [2, 3, 4] */);
+  }
+
+  clearAll(){
+    Object.assign(this, {
+      navVisible: false,
+      products: [],
+      titleSubcategory: 'Todos los productos'
+    });
   }
 }
