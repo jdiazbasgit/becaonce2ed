@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -71,29 +72,29 @@ public class ExistingProductRestController {
 	@GetMapping("/products")
 	@CrossOrigin(origins = "*")
 	public CollectionModel<ExistingProduct> getExistingProducts() {
-		Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
-		existingProduct.forEach(u -> {
-			u.add(WebMvcLinkBuilder.linkTo(
-					WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
-					.withRel("subcategory"));
-			u.add(WebMvcLinkBuilder
-					.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
-					.withSelfRel());
-		});
-		return CollectionModel.of(existingProduct);
+	    Iterable<ExistingProduct> existingProduct = getExistingProductService().findAll();
+	    existingProduct.forEach(u -> {
+	        u.add(WebMvcLinkBuilder.linkTo(
+	                WebMvcLinkBuilder.methodOn(SubCategoryRestController.class).findById(u.getSubcategory().getId()))
+	                .withRel("subcategory"));
+	        u.add(WebMvcLinkBuilder
+	                .linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(u.getId()))
+	                .withSelfRel());
+	    });
+	    return CollectionModel.of(existingProduct);
 	}
 
 	/* R READ A PRODUCT */
 	@GetMapping("/products/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<ExistingProduct> findById(@PathVariable int id) {
-		ExistingProduct existingProduct = getExistingProductService().findById(id).get();
-		existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
-				.findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
-		existingProduct.add(WebMvcLinkBuilder.linkTo(
-				WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(existingProduct.getId()))
-				.withSelfRel());
-		return EntityModel.of(existingProduct);
+	    ExistingProduct existingProduct = getExistingProductService().findById(id).get();
+	    existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
+	            .findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
+	    existingProduct.add(WebMvcLinkBuilder.linkTo(
+	            WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(existingProduct.getId()))
+	            .withSelfRel());
+	    return EntityModel.of(existingProduct);
 	}
 
 	/* U UPDATE A PRODUCT ESTO ES PARA JBDC */
@@ -163,13 +164,52 @@ public class ExistingProductRestController {
 		return existingProductService.count();
 	}
 
-	@GetMapping("/existingProducts/{categoryId}")
+	/*@GetMapping("/existingProducts/{categoryId}")
+	@CrossOrigin(origins = "*")
 	public List<ExistingProduct> getExistingProductByCategory(@PathVariable int categoryId) {
 		return getExistingProductService().getExistingProductByCategory(categoryId);
+	}*/
+	
+	@GetMapping("/existingProducts/{categoryId}")
+	@CrossOrigin(origins = "*")
+	public CollectionModel<EntityModel<ExistingProduct>> getExistingProductByCategory(@PathVariable int categoryId) {
+	    List<ExistingProduct> existingProducts = getExistingProductService().getExistingProductByCategory(categoryId);
+
+	    List<EntityModel<ExistingProduct>> existingProductModels = existingProducts.stream()
+	            .map(existingProduct -> {
+	                existingProduct.add(WebMvcLinkBuilder
+	                        .linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+	                                .findById(existingProduct.getId())).withSelfRel());
+	                existingProduct.add(WebMvcLinkBuilder
+	                        .linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
+	                                .findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
+	                return EntityModel.of(existingProduct);
+	            })
+	            .collect(Collectors.toList());
+
+	    return CollectionModel.of(existingProductModels,
+	            WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+	                    .getExistingProductByCategory(categoryId)).withSelfRel());
 	}
 
+
 	@GetMapping("/products/{categoryId}/{subcategoryId}")
-	public List<ExistingProduct> getExistingProductByCategoryAndSubCategory(@PathVariable int categoryId,@PathVariable int subcategoryId) {
-		return getExistingProductService().getExistingProductByCategoryAndSubCategory(categoryId,subcategoryId);
+	@CrossOrigin(origins = "*")
+	public CollectionModel<EntityModel<ExistingProduct>> getExistingProductByCategoryAndSubCategory(@PathVariable int categoryId, @PathVariable int subcategoryId) {
+	    List<ExistingProduct> existingProducts = getExistingProductService().getExistingProductByCategoryAndSubCategory(categoryId, subcategoryId);
+
+	    List<EntityModel<ExistingProduct>> existingProductModels = existingProducts.stream()
+	            .map(existingProduct -> {
+	                existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+	                                .findById(existingProduct.getId())).withSelfRel());
+	                existingProduct.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SubCategoryRestController.class)
+	                                .findById(existingProduct.getSubcategory().getId())).withRel("subcategory"));
+	                return EntityModel.of(existingProduct);
+	            })
+	            .collect(Collectors.toList());
+
+	    return CollectionModel.of(existingProductModels,
+	            WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+	                    .getExistingProductByCategoryAndSubCategory(categoryId, subcategoryId)).withSelfRel());
 	}
 }
