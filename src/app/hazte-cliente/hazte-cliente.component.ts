@@ -193,6 +193,7 @@ export class HazteClienteComponent implements OnInit {
       new ProfileBeans(this.name, this.secondName, this.identification, this.phone, this.email, this.identificationType, this.user, this.image, this.password))
       .subscribe((dato: boolean) => {
         if (dato) {
+          
           this.mensaje = "Grabacion realizada correctamente";
           this.name=""
           this.secondName=""
@@ -204,6 +205,7 @@ export class HazteClienteComponent implements OnInit {
           this.image=[0]
           this.previsualizacion=[0]
           this.password=""
+          this.mensaje =""
         } else {
           this.mensaje = "La grabación no se ha realizado";
       
