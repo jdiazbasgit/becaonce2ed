@@ -114,7 +114,7 @@ export class HazteClienteComponent implements OnInit {
     const file: File = event.target.files[0];
 
     if (file) {
-      if (file.size > 65535 ) {
+      if (file.size > 95535 ) {
        this.mensajeImage2='El tamaño de la imagen excede los bytes .';
         return;
       }
