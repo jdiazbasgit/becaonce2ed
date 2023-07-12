@@ -31,7 +31,6 @@
                             </svg>{{cuenta.number}}
                         </p>
                     </h5>
-
                     <div>
                         SALDO DE LA CUENTA:
                         {{saldo[i]}}€
@@ -46,5 +45,17 @@
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
         <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
+        <select class="form-select">
+            <option value="null" selected>Elige las comisiones</option>
+            <option *ngFor="let fee of fees"
+                [value]="fee._links.self.href.substring(fee._links.self.href.lastIndexOf('/')+1)">{{fee.current}}
+            </option>
+        </select>
+        <select class="form-select">
+            <option value="null" selected>Elige el tipo de cuenta</option>
+            <option *ngFor="let typesAccount of typesAccounts"
+                [value]="typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1)">{{typesAccount.description}}
+            </option>
+        </select>
     </div>
 </div>

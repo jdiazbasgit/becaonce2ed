@@ -101,7 +101,7 @@ export class HazteClienteComponent implements OnInit {
 
   ngOnInit() {
 
-    this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos: any) => {
+    this.identificationTypeServices.getDatosSinHeader(this.urlIdentificationTypes).subscribe((datos: any) => {
       this.identificationTypes = datos._embedded.identificationTypes
       console.log("identificadores : " + this.identificationTypes)
     })
