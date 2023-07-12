@@ -10,16 +10,6 @@ a:hover{
     background-color: rgb(222, 253, 232);
     transition: .5s;
 }
-.active {
-    box-shadow: 0px 8px 0px rgb(255, 255, 255), 0px 16px 0px rgb(39, 160, 76);;
-    color: green;
-    transform: translateY(5px);
-    transition: .5s;
-}
-.active:hover {
-    background-color: white;
-    transition: .5s;
-}
 .seleccionado {
     box-shadow: 0px 8px 0px rgb(255, 255, 255), 0px 16px 0px rgb(39, 160, 76);;
     color: green;

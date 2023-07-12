@@ -61,7 +61,6 @@ export class CuentasComponent {
   yaTieneCuentas(){
     if(this.cuentas.length !== 0)
     return true
-    else
     return false
   }
 
@@ -69,5 +68,28 @@ export class CuentasComponent {
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
     window.scrollTo(0,0)
+  }
+
+  getFees() {
+    this.service.getDatos(this.url+"fees")
+      .subscribe({
+        next: (fees) => {
+          console.log(fees)
+          fees._embedded.fees.forEach((element: any) => {
+            console.log(element.current)
+          });
+        }
+      })
+  }
+  getTypesAccounts() {
+    this.service.getDatos(this.url+"typesAccounts")
+      .subscribe({
+        next: (typesAccounts) => {
+          console.log(typesAccounts)
+          typesAccounts._embedded.typeAccounts.forEach((element: any) => {
+            console.log(element.description)
+          });
+        }
+      })
   }
 }

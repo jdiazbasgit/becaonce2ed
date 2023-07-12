@@ -3,6 +3,8 @@
     <div class="mb-4 p-5 border-bottom texto-secundario shadow">
         <h1>Bienvenido {{usuario}} a tu Área personal</h1>
         <p>Consulta tu saldo total o elige una cuenta para ver más detalles, operar o consultar movimientos</p>
+        <button (click)="getFees()"></button>
+        <button (click)="getTypesAccounts()"></button>
     </div>
     <ng-container *ngIf="yaTieneCuentas()">
         <div class="my-4 border-bottom fondo-primario texto-resaltado shadow d-flex">
