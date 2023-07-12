@@ -29,6 +29,9 @@ export class ProyectosService {
     headers.set('Authorization', sessionStorage['token']);
     return this.httpClient.patch(url,user, {headers:{'Authorization': sessionStorage['token']}});
   }
+  getDatosSinHeader(url: string): Observable<any> {
+    return this.httpClient.get(url)
+  }
   
 
 }

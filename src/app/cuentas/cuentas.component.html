@@ -3,9 +3,6 @@
     <div class="mb-4 p-5 border-bottom texto-secundario shadow">
         <h1>Bienvenido {{usuario}} a tu Área personal</h1>
         <p>Consulta tu saldo total o elige una cuenta para ver más detalles, operar o consultar movimientos</p>
-        <ng-container *ngIf="comprobarRolAdmin()">
-            <button type="button" class="btn btn-success">Acceso al panel de Administración</button>
-        </ng-container>
     </div>
     <ng-container *ngIf="yaTieneCuentas()">
         <div class="my-4 border-bottom fondo-primario texto-resaltado shadow d-flex">
@@ -19,7 +16,7 @@
         <div class="my-4 p-5 border-bottom shadow">
             <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
             <div *ngFor="let cuenta of cuentas, let i = index" class="mt-4 border-bottom ms-5 lineaCuenta" role="button"
-                (click)="elegirCuenta(cuenta.number, cuenta.id)">
+                (click)="elegirCuenta(cuenta.number, cuenta.id)" routerLink="/detalles">
                 <div class="d-flex justify-content-between texto-resaltado p-2">
                     <h5>
                         <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
@@ -34,7 +31,6 @@
                             </svg>{{cuenta.number}}
                         </p>
                     </h5>
-
                     <div>
                         SALDO DE LA CUENTA:
                         {{saldo[i]}}€
@@ -49,7 +45,17 @@
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
         <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
-
-
+        <select class="form-select">
+            <option value="null" selected>Elige las comisiones</option>
+            <option *ngFor="let fee of fees"
+                [value]="fee._links.self.href.substring(fee._links.self.href.lastIndexOf('/')+1)">{{fee.current}}
+            </option>
+        </select>
+        <select class="form-select">
+            <option value="null" selected>Elige el tipo de cuenta</option>
+            <option *ngFor="let typesAccount of typesAccounts"
+                [value]="typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1)">{{typesAccount.description}}
+            </option>
+        </select>
     </div>
 </div>
