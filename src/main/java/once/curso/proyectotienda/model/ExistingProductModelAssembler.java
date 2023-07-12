@@ -20,15 +20,9 @@ public class ExistingProductModelAssembler implements SimpleRepresentationModelA
 	@Override
 	public void addLinks(CollectionModel<EntityModel<ExistingProduct>> existingProduct) {
 		existingProduct.forEach(e ->{
-			e.add(WebMvcLinkBuilder.linkTo(
-					WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
-					.findById(e.getContent().getId()))
-					.withSelfRel());
-			
+			e.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class)
+					.findById(e.getContent().getId())).withSelfRel());
 		});
-		
 	}
-
 }
-
 
