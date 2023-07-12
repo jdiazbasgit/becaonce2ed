@@ -159,7 +159,7 @@ export class HazteClienteComponent implements OnInit {
       return
     }
 
-    this.rolservice.patch(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
+    this.rolservice.patchSinHeader(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
       if (datos.email) {
         this.mensajeEmail = "Email ya Existe"
         this.activo = true
@@ -189,7 +189,7 @@ export class HazteClienteComponent implements OnInit {
   guardaDatos() {
 
 
-    this.profilServices.patch(this.urlProfile,
+    this.profilServices.patchSinHeader(this.urlProfile,
       new ProfileBeans(this.name, this.secondName, this.identification, this.phone, this.email, this.identificationType, this.user, this.image, this.password))
       .subscribe((dato: boolean) => {
         if (dato) {
