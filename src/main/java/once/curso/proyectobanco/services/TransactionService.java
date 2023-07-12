@@ -109,7 +109,7 @@ public class TransactionService {
 		transaction.setCurrentAccount(
 				getCurrentAccountCRUDRepository().findById(transactionDto.getCurrentAccountId()).get());
 
-		return verConcepto(transactionDto);
+		return transaction;
 	}
 
 }
