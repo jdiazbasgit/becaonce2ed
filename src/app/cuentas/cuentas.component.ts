@@ -16,6 +16,8 @@ export class CuentasComponent {
   cuentas: any[] = []
   saldo: number[] = []
   saldoTotal: number = 0
+  fees: any[] = []
+  typesAccounts: any[] = []
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -24,6 +26,9 @@ export class CuentasComponent {
 
 
   ngOnInit(){
+    this.getFees()
+    this.getTypesAccounts()
+    
     this.usuario = sessionStorage['user']
     console.log(this.usuario)
     console.log(this.cuentas)
@@ -75,6 +80,7 @@ export class CuentasComponent {
       .subscribe({
         next: (fees) => {
           console.log(fees)
+          this.fees = fees
           fees._embedded.fees.forEach((element: any) => {
             console.log(element.current)
           });
@@ -86,6 +92,7 @@ export class CuentasComponent {
       .subscribe({
         next: (typesAccounts) => {
           console.log(typesAccounts)
+          this.typesAccounts = typesAccounts
           typesAccounts._embedded.typeAccounts.forEach((element: any) => {
             console.log(element.description)
           });
