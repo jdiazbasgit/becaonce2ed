@@ -40,7 +40,6 @@ public class SoldProductsTest {
 		
 		List<SoldProduct> soldProducts = (List<SoldProduct>) getSoldProductService().findAll();
 		assertNotEquals(0, soldProducts.size()); // TestFindId
-		
 	}
 
 	@Order(2)
@@ -53,8 +52,7 @@ public class SoldProductsTest {
 		SoldProduct soldProductPrueba = new SoldProduct();
 		soldProductPrueba.setQuantity(1);
 		soldProductPrueba.setExistingProduct(existingProductRel);
-		soldProductPrueba.setPrice(10);
-//		soldProductPrueba.setPrice((int)(existingProductRel.getPrice()*soldProductPrueba.getQuantity()));
+		soldProductPrueba.setPrice((int)(existingProductRel.getPrice()*soldProductPrueba.getQuantity()));
 		soldProductPrueba.setDate(new Date());
 		soldProductPrueba.setProfile(profileRel);
 		soldProductPrueba.setBasket(true);
@@ -65,8 +63,7 @@ public class SoldProductsTest {
 		System.out.println("numero: "+numero);
 		assertTrue(getSoldProductService().existsById(numero)); //TestExists
 		
-//		getSoldProductService().delete(soldProductPrueba);
-
+		getSoldProductService().delete(soldProductPrueba);
 	}
 
 	@Order(3)
@@ -81,8 +78,7 @@ public class SoldProductsTest {
 		SoldProduct soldProductNuevo = new SoldProduct();
 		soldProductNuevo.setQuantity(2);
 		soldProductNuevo.setExistingProduct(existingProductRel);
-		soldProductNuevo.setPrice(10);
-//		soldProductNuevo.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo.getQuantity()));
+		soldProductNuevo.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo.getQuantity()));
 		soldProductNuevo.setDate(new Date());
 		soldProductNuevo.setProfile(profileRel);
 		soldProductNuevo.setBasket(true);
@@ -97,7 +93,6 @@ public class SoldProductsTest {
 
 		getSoldProductService().delete(soldProductRecuperado);
 		assertEquals(contadorRegistro, getSoldProductService().count()); //TestDelete
-
 	}
 
 	@Order(4)
@@ -114,8 +109,7 @@ public class SoldProductsTest {
 		SoldProduct soldProductNuevo1 = new SoldProduct();
 		soldProductNuevo1.setQuantity(3);
 		soldProductNuevo1.setExistingProduct(existingProductRel);
-		soldProductNuevo1.setPrice(10);
-//		soldProductNuevo1.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo1.getQuantity()));
+		soldProductNuevo1.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo1.getQuantity()));
 		soldProductNuevo1.setDate(new Date());
 		soldProductNuevo1.setProfile(profileRel);
 		soldProductNuevo1.setBasket(true);
@@ -126,8 +120,7 @@ public class SoldProductsTest {
 		SoldProduct soldProductNuevo2 = new SoldProduct();
 		soldProductNuevo2.setQuantity(4);
 		soldProductNuevo2.setExistingProduct(existingProductRel);
-		soldProductNuevo2.setPrice(10);
-//		soldProductNuevo2.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo2.getQuantity()));
+		soldProductNuevo2.setPrice((int)(existingProductRel.getPrice()*soldProductNuevo2.getQuantity()));
 		soldProductNuevo2.setDate(new Date());
 		soldProductNuevo2.setProfile(profileRel);
 		soldProductNuevo2.setBasket(true);
@@ -152,8 +145,6 @@ public class SoldProductsTest {
 		getSoldProductService().deleteAllById(numeros);
 		
 		assertEquals(contadorRegistro, getSoldProductService().count()); //TestDeleteAll
-		
 	}
-
 
 }
