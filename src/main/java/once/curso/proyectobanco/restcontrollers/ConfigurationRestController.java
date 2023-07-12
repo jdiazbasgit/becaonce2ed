@@ -104,8 +104,9 @@ public class ConfigurationRestController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping(value="/arrancar")
-	public void existsById() {
+	public boolean existsById() {
 		new BancoThread(getConfigurationService()).start();
+		return true;
 
 
 }}

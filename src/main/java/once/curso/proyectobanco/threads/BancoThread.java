@@ -23,16 +23,25 @@ public class BancoThread extends Thread {
 	@Override
 	public void run() {
 		List<Configuration> configuraciones=(List<Configuration>) getConfigurationService().findAll();
-		//int tiempo=60000;
 		int tiempo=configuraciones.get(0).getLiveTime();
 		long tiempoActual=System.currentTimeMillis();
-		System.out.println(tiempo);
 		while(true) {
 			if(System.currentTimeMillis()>=tiempoActual+tiempo) {
-				System.out.println("Ha pasado un día");
 				tiempoActual=System.currentTimeMillis();
+				comprobarTransaccionesautomaticas();
+				comprobarPremiosMultas();
 			}
 		}
+	}
+
+
+	private void comprobarPremiosMultas() {
+	}
+
+
+	private void comprobarTransaccionesautomaticas() {
+
+		
 	}
 
 
