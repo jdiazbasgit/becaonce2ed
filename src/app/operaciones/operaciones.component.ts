@@ -18,14 +18,14 @@ interface Cuenta {
 })
 export class OperacionesComponent implements OnInit {
   urlDescription = "http://localhost:8080/once/descriptions"
-  description: string = ""
+  description: number = 0
   descriptions: Array<any> = []
   monto: number = 0;
   saldo: number = 0;
   url: string = "http://localhost:8080/once/"
   concepto: string = ''; //  propiedad para almacenar el concepto del movimiento
   ultimoMovimiento: { tipo: string, concepto: string, fecha: Date } | null = null; //  propiedad para almacenar el último movimiento
-
+  mensaje: string = ""
   cuentas: Cuenta[] = [];
 
   cuentaOrigen: number = 0; // Declaración de cuenta de origen
@@ -84,7 +84,7 @@ export class OperacionesComponent implements OnInit {
           this.actualizarUltimoMovimiento(tipo, this.concepto, currentDate); // Actualizar el último movimiento con el tipo, concepto y fecha
           this.monto = 0;
           this.concepto = ''; // Restablecer el concepto a un valor vacío
-          this.description = '';
+          this.description = 0;
         } else {
           console.log("La grabación no se ha realizado")
         }
@@ -93,53 +93,33 @@ export class OperacionesComponent implements OnInit {
 
   realizarTransferencia() {
     let currentDate = new Date();
-  
-    // let jsonParaEnviar = {
-    //   "date": currentDate.toISOString(),
-    //   "current": -this.monto, // El monto se resta de la cuenta actual para realizar la transferencia
-    //   "description": "description/" + this.description,
-    //   "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
-    // };
-  
-    let jsonParaRestar = {
-      "date": currentDate.toISOString(),
-      "current": -this.monto, // El monto se resta de la cuenta actual para realizar la transferencia
-      "description": "description/" + this.description,
-      "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
-    };
-  
-    let jsonParaSumar = {
+    this.mensaje = ""
+    if (this.monto == 0 || this.description == 0 || this.cuentaDestino == 0) {
+      this.mensaje = "Debe seleccionar todos los campos"
+      return
+    }
+
+    let jsonParaTransferir = {
+      "id": 0,
       "date": currentDate.toISOString(),
       "current": this.monto,
-      "description": "description/" + this.description,
-      "currentAccount": "currentAccounts/" + sessionStorage["idCuentaDestino"],
+      "description": this.description,
+      "currentAccountOrigen": sessionStorage['idCuenta'],
+      "currentAccountDestino": this.cuentaDestino,
     };
-  
-    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaRestar)
-    .subscribe((restarExitoso: boolean) => {
-        if (restarExitoso) {
-            // Si se restó el monto de la cuenta seleccionada, realizar la solicitud para sumarlo en la cuenta destino
-            this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaSumar)
-                .subscribe((sumarExitoso: boolean) => {
-                    if (sumarExitoso) {
-                        console.log('Transferencia realizada correctamente');
-                        this.actualizarUltimoMovimiento('Transferencia', this.concepto, currentDate);
-                        this.monto = 0;
-                        this.concepto = '';
-                        this.description = '';
-                    } else {
-                        console.log('Error al sumar el monto en la cuenta destino');
-                    }
-                }, errorSumar => {
-                    console.log('Error al realizar la transferencia: ', errorSumar);
-                });
-        } else {
-            console.log('Error al restar el monto de la cuenta seleccionada');
-        }
-    }, errorRestar => {
-        console.log('Error al realizar la transferencia: ', errorRestar);
-    });
-}
+
+
+    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaTransferir)
+      .subscribe((restarExitoso: boolean) => {
+        this.mensaje = "Tranferencia realizada correctamente";
+        this.monto = 0
+        this.description = 0
+        this.cuentaDestino = 0
+
+      }, errorRestar => {
+        this.mensaje = 'Error al realizar la transferencia: ';
+      });
+  }
   private actualizarUltimoMovimiento(tipo: string, concepto: string, fecha: Date) {
     this.ultimoMovimiento = { tipo, concepto, fecha }; // Actualizar la propiedad del último movimiento con el tipo, concepto y fecha
   }
