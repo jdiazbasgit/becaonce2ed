@@ -62,7 +62,7 @@ export class HazteClienteComponent implements OnInit {
   mensaje: string
   passwordVisible: boolean = false;
   activo: boolean = true
-  previsualizacionURL: string = "s";
+  previsualizacionURL: string = "";
 
 
 
