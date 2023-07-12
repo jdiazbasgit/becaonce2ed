@@ -11,9 +11,10 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
+    "@angular/cdk": "^15.2.9",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
-    "@angular/core": "^15.2.9",
+    "@angular/core": "^15.2.0",
     "@angular/forms": "^15.2.0",
     "@angular/material": "^15.2.9",
     "@angular/platform-browser": "^15.2.0",
@@ -27,7 +28,7 @@
     "material-icons": "^1.13.7",
     "ngx-bootstrap": "^10.2.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.5.0",
+    "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
