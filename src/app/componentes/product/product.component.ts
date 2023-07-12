@@ -169,7 +169,7 @@ export class ProductComponent{
 
   getPageNumbers(): number[] {
     const lastPage = this.getLastPage();
-    return Array.from({ length: lastPage } /*console.log(Array.from('foo')); output: Array ["f", "o", "o"] */, (_, index) => index + 1 /* console.log(Array.from([1, 2, 3], x => x + 1)); output: Array [2, 3, 4] */);
+    return Array.from({ length: lastPage } /*ejemplo console.log(Array.from('foo')); output: Array ["f", "o", "o"] */, (_, index) => index + 1 /*ejemplo console.log(Array.from([1, 2, 3], x => x + 1)); output: Array [2, 3, 4] */);
   }
 
   clearAll(){
