@@ -3,6 +3,9 @@
     <div class="mb-4 p-5 border-bottom texto-secundario shadow">
         <h1>Bienvenido {{usuario}} a tu Área personal</h1>
         <p>Consulta tu saldo total o elige una cuenta para ver más detalles, operar o consultar movimientos</p>
+        <ng-container *ngIf="comprobarRolAdmin()">
+            <button type="button" class="btn btn-success">Acceso al panel de Administración</button>
+        </ng-container>
     </div>
     <ng-container *ngIf="yaTieneCuentas()">
         <div class="my-4 border-bottom fondo-primario texto-resaltado shadow d-flex">
@@ -10,7 +13,7 @@
                 <h2>Saldo total disponible:</h2>
                 <h5 class="ms-5 pt-2">{{saldoTotal}}€</h5>
             </div>
-            
+
             <img src="assets/boveda.png" class="w-25 float-end">
         </div>
         <div class="my-4 p-5 border-bottom shadow">
@@ -31,7 +34,7 @@
                             </svg>{{cuenta.number}}
                         </p>
                     </h5>
-    
+
                     <div>
                         SALDO DE LA CUENTA:
                         {{saldo[i]}}€
@@ -46,7 +49,7 @@
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
         <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
-        
+
 
     </div>
 </div>

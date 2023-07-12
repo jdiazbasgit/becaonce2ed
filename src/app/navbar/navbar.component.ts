@@ -8,24 +8,39 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-// menuVisible: boolean = false;
-cuentaElegida: boolean = false
-cuenta: string = ""
+  // menuVisible: boolean = false;
+  cuentaElegida: boolean = false
+  cuenta: string = ""
 
-constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
-ngDoCheck(){
-  if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida){
-    this.cuentaElegida = true
-    this.cuenta = sessionStorage['cuenta']
+  ngDoCheck() {
+    if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida) {
+      this.cuentaElegida = true
+      this.cuenta = sessionStorage['cuenta']
+      this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
+    }
   }
-}
 
-deselegirCuenta(){
-  sessionStorage.removeItem('cuenta')
-  this.cuentaElegida = false
-}
+  deselegirCuenta() {
+    sessionStorage.removeItem('cuenta')
+    this.cuentaElegida = false
+    this.elementRef.nativeElement.querySelector("#home").classList.add("seleccionado")
+    this.elementRef.nativeElement.querySelector("#admin").classList.remove("seleccionado")
+  }
 
+  abrirPanelAdmin(){
+    this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
+    this.elementRef.nativeElement.querySelector("#admin").classList.add("seleccionado")
+  }
+
+  comprobarRolAdmin(){
+    if(sessionStorage['rol'] == "ROLE_ADMIN")
+    return true
+    return false
+  }
+  
+}
 
 
 
@@ -36,7 +51,7 @@ deselegirCuenta(){
 // isRouteActive(route: string): boolean {
 //   return this.router.isActive(route, true);
 // }
-}
+
 
 // function highlightActiveButton(activeButtonId: string) {
 //   const buttons = document.querySelectorAll('.nav-link button');
@@ -48,7 +63,7 @@ deselegirCuenta(){
 //   const activeButton = document.getElementById(activeButtonId);
 //   if (activeButton) {
 //     activeButton.classList.add('active');
-//   } 
+//   }
 // }
 
 // @Directive({
@@ -66,7 +81,7 @@ deselegirCuenta(){
 //             this.renderer.addClass(this.el.nativeElement, 'active');
 //           } else {
 //             this.renderer.removeClass(this.el.nativeElement, 'active');
-//           } 
+//           }
 //         }
 //       });
 //     }
