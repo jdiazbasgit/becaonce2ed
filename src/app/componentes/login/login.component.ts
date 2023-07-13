@@ -1,4 +1,4 @@
-import { Component, ElementRef, isStandalone } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, isStandalone } from '@angular/core';
 import { FormControl, FormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,8 +20,8 @@ export interface DialogData {
 })
 
 export class LoginComponent {
-  name: any;
 
+  
   logado: boolean = false;
   inputUser: string = "";
   inputPassword: string = "";
@@ -40,83 +40,15 @@ export class LoginComponent {
     private router: Router
   ) { }
 
-  openDialog(): MatDialogRef<ModalLoginComponent> {
-    return this.dialog.open(ModalLoginComponent, {
-      data: { name: this.name },
-    });
-
-
-    // this.dialog.open(ModalLoginComponent,{
-    //   width:'60%',
-    //   height:'400px'
-    // })
+  openDialog() {
+    this.dialog.open(ModalLoginComponent);
   }
-
-  ngDoCheck() {
-    if (sessionStorage.getItem('token') && !this.logado) {
-      this.logado = true;
-      this.user = sessionStorage.getItem('user') ?? '';
-    }
-    if (!this.logado && this.router.url !== "/home") {
-      this.router.navigateByUrl("home");
-    }
-    // if (!this.notActive && this.logado) {
-    //   clearTimeout(this.afkTimer);
-    //   this.afkTimer = setTimeout(() => {
-    //     console.log("Cerrado por inactividad!!");
-    //     this.notActive = true;
-    //     this.closeSession();
-    //   }, this.counterAfkTimer);
-    // }
-  }
-  // logarse() {
-  //   let dialogRef = this.openDialog();
-
-  //   this.loginService.identificar("http://localhost:8080/login",
-  //     this.inputUser, this.inputPassword)
-  //     .pipe(
-  //       catchError(error => {
-  //         console.log(error);
-  //         if (error.status === 0 || error.status === 404) {
-  //           this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
-  //         }
-  //         dialogRef.close();
-  //         return "";
-  //       })
-  //     )
-  //     .subscribe((datos: any) => {
-  //       console.log(datos)
-  //       if (datos.token == null) {
-  //         this.inputUser = "";
-  //         this.inputPassword = "";
-  //         this.elementRef.nativeElement.querySelector('#inputP').blur();
-  //         this.elementRef.nativeElement.querySelector('#inputU').blur();
-  //         this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
-  //       }
-  //       if (datos.token != null) {
-  //         console.log("acceso correcto");
-  //         let userM = this.inputUser;
-  //         let passM = this.inputPassword;
-  //         sessionStorage.setItem('user', datos.user);
-  //         console.log(userM + passM);
-  //         sessionStorage.setItem('token', datos.token);
-  //         //this.notActive = false;
-  //         console.log(datos.token);
-  //       }
-  //       dialogRef.close();
-  //     });
-  // }
-
+  
   closeSession() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
     this.logado = false;
   }
-
-  // mensajeClaveErronea(mensaje: String) {
-  //   this.incorrectKey = true;
-  //   this.keyMessage = mensaje;
-  // }
 
   // getDocumentsTypes() {
   //   const token = sessionStorage.getItem('token');
@@ -136,44 +68,4 @@ export class LoginComponent {
   //     });
   // }
 
-  // errorDeToken() {
-  //   sessionStorage.setItem('token', 'error de token');
-  //   console.log("token: " + sessionStorage.getItem('token'));
-  // }
-
 }
-// if (datos.token != null && datos.user != null && datos.roles != null && datos.roles.length > 0) {
-//   console.log("Acceso correcto");
-
-//   const userM = this.inputUsuario;
-//   const passM = this.inputPassword;
-
-//   sessionStorage.setItem('user', datos.user);
-//   console.log(userM + passM);
-//   sessionStorage.setItem('token', datos.token);
-//   sessionStorage.setItem('rol', datos.roles[0].rol);
-
-//   this.sinActividad = false;
-
-//   const cont = this.elementRef.nativeElement.querySelector('.contenido');
-//   if (cont) {
-//     cont.innerHTML = "Bienvenido";
-//     cont.classList.add('bg-success');
-//   }
-
-//   console.log(datos.token);
-
-//   this.router.navigateByUrl("cuentas");
-
-//   // Delay opcional (no está claro para qué se utiliza)
-//   const delay = 1000;
-// } else {
-//   this.limpiarFormulario();
-//   const inputP = this.elementRef.nativeElement.querySelector('#inputP');
-//   const inputU = this.elementRef.nativeElement.querySelector('#inputU');
-//   if (inputP && inputU) {
-//     inputP.blur();
-//     inputU.blur();
-//   }
-//   this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
-// }

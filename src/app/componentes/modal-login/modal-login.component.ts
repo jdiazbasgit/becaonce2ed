@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject } from '@angular/core';
+import { Component, ElementRef, Output, Inject, Input, EventEmitter } from '@angular/core';
 import { DialogData } from '../login/login.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { LoginService } from 'src/app/servicios/login.service';
@@ -12,23 +12,25 @@ import { Router } from '@angular/router';
 export class ModalLoginComponent {
   hide = true;
   logado = false;
-  user: string ="";
+  user: string = "";
   inputUser: string = "";
   inputPassword: string = "";
   incorrectKey: boolean = false;
   keyMessage: String = "";
-  sinActividad: boolean = false,
+  sinActividad: boolean = false;
+  InactivityTimer: any;
+  timeout: number = 6000000;
+  isLoading = false;
+  notActive: boolean = false;
   constructor(
-    public dialogRef: MatDialogRef<ModalLoginComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private dialogRef: MatDialogRef<ModalLoginComponent>,
     private loginService: LoginService,
     private dialog: MatDialog,
     private elementRef: ElementRef,
     private router: Router
-    
-  ){}
 
-  isLoading=false;
+  ) { }
+
   closeDialog(): void {
     this.dialogRef.close();
   }
@@ -40,44 +42,56 @@ export class ModalLoginComponent {
     if (!this.logado && this.router.url !== "/home") {
       this.router.navigateByUrl("home");
     }
-    if(!this.sinActividad && this.logado){
+    if (!this.sinActividad && this.logado) {
+      clearTimeout(this.InactivityTimer)
+      this.InactivityTimer = setTimeout(() => {
+        console.log("ssalida de sesion por inactividad")
+        this.sinActividad = true;
+        this.closeSession()
+      }, this.timeout);
     }
-    
   }
-  logarse() {
 
-    this.loginService.identificar("http://localhost:8080/login",
-      this.inputUser, this.inputPassword)
-      .pipe(
-        catchError(error => {
-          console.log(error);
-          if (error.status === 0 || error.status === 404) {
-            this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
+  handleLogin() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.loginService.identificar("http://localhost:8080/login",
+        this.inputUser, this.inputPassword)
+        .pipe(
+          catchError(error => {
+            console.log(error);
+            if (error.status === 0 || error.status === 404) {
+              this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
+            }
+            return "";
+          })
+        )
+        .subscribe((datos: any) => {
+          console.log(datos)
+          if (datos.token == null) {
+            this.inputUser = "";
+            this.inputPassword = "";
+            this.elementRef.nativeElement.querySelector('#inputP').blur();
+            this.elementRef.nativeElement.querySelector('#inputU').blur();
+            this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
           }
-          return "";
+          if (datos.token != null) {
+            console.log("inicio de sesion correcto")
+            let userM = this.inputUser;
+            let passM = this.inputPassword;
+            sessionStorage.setItem('user', datos.user);
+            console.log(userM + passM);
+            sessionStorage.setItem('token', datos.token);
+            sessionStorage.setItem('rol', datos.roles[0].rol)
+            this.notActive = false;
+            console.log(datos.token);
+            this.isLoading = false;
+            this.closeDialog();
+          }
         })
-      )
-      .subscribe((datos: any) => {
-        console.log(datos)
-        if (datos.token == null) {
-          this.inputUser = "";
-          this.inputPassword = "";
-          this.elementRef.nativeElement.querySelector('#inputP').blur();
-          this.elementRef.nativeElement.querySelector('#inputU').blur();
-          this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
-        }
-        if (datos.token != null) {
-          console.log("acceso correcto");
-          let userM = this.inputUser;
-          let passM = this.inputPassword;
-          sessionStorage.setItem('user', datos.user);
-          console.log(userM + passM);
-          sessionStorage.setItem('token', datos.token);
-          //this.notActive = false;
-          console.log(datos.token);
-        }
-      });
+    }, 1000);
   }
+
   closeSession() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
@@ -88,5 +102,5 @@ export class ModalLoginComponent {
     this.incorrectKey = true;
     this.keyMessage = mensaje;
   }
-  
+
 }
