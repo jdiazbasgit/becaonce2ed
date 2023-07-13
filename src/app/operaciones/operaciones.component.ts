@@ -109,7 +109,7 @@ export class OperacionesComponent implements OnInit {
     };
 
 
-    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaTransferir)
+    this.service.saveOrUpdate("http://localhost:8080/once/transactionsbidirectional", jsonParaTransferir)
       .subscribe((restarExitoso: boolean) => {
         this.mensaje = "Tranferencia realizada correctamente";
         this.monto = 0
