@@ -21,7 +21,7 @@ public class EjemploSumaTest {
 	
 	@Autowired
 	private ExistingProductCRUDRepository existingProductCRUDRepository;
-
+/*
 	@Test
 	public void probarSuma() {
 		double suma= 0;
@@ -30,5 +30,5 @@ public class EjemploSumaTest {
 		assertTrue(true);
 		
 	}
-	
+*/
 }
