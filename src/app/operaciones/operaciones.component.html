@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="text-center">
+    <h2>Ingresos o Retiros</h2>
+
+    <div class="form-group">
+      <label for="monto">Importe:</label>
+      <input type="number" class="form-control" id="monto" [(ngModel)]="monto" placeholder="Ingrese el monto" />
+    </div>
+    <div class="form-group">
+      <label for="origen">Cuenta de Origen: {{obtenerCuentaElegida()}}</label>
+      <!-- <select [(ngModel)]="cuentaOrigen" name="origen">
+        <option value="0">Selecciona Cuenta de Origen...</option>
+        <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
+      </select> -->
+    </div>
+
+    <div class="form-group">
+      <label for="destino">Cuenta de Destino:</label>
+      <select [(ngModel)]="cuentaDestino" name="destino">
+        <option value="0">Selecciona Cuenta de Destino...</option>
+        <ng-container *ngFor="let cuenta of cuentas">
+          <option *ngIf="cuenta.number != obtenerCuentaElegida()" [value]="cuenta.id">{{ cuenta.number }}</option>
+        </ng-container>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="concepto">Concepto:</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <select [(ngModel)]="description" name="description">
+              <option value="0" selected>Selecciona Concepto...</option>
+              <option
+                value="{{description1._links.self.href.substring(description1._links.self.href.lastIndexOf('/')+1)}}"
+                *ngFor="let description1 of descriptions">{{description1.description}}</option>
+            </select>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <h1>{{mensaje}}</h1>
+
+    <div class="btn-group">
+      <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
+      <button class="btn btn-success" (click)="realizarMovimiento('Retiro')">Retirar</button>
+      <button class="btn btn-success" (click)="realizarTransferencia()">Transferir</button>
+    </div>
+
+    <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{
+      ultimoMovimiento?.fecha |
+      date: 'dd/MM/yyyy' }}</p>
+    <p class="text-center">Saldo actual: {{ saldo }}</p>
+  </div>
+</div>

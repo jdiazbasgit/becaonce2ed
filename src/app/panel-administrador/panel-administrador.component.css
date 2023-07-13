@@ -1,0 +1,7 @@
+th{
+    min-width: 150px;
+}
+#bloque{    
+    display: block;
+    overflow: auto
+}

@@ -1,0 +1,102 @@
+<div class="container fondo-primario mt-5">
+  <br>
+  <div class="container text-center">
+    <h1>Hazte Cliente</h1>
+    <form class="align-items-center needs-validation">
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="name" name="name" required>
+          <div class="valid-tooltip"></div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="apellidos">Apellidos:</label>
+          <input type="text" class="form-control" id="apellidos" [(ngModel)]="secondName" name="secondName" required>
+          <div class="valid-tooltip"></div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <label for="telefono">Telefono:</label>
+          <input type="text" class="form-control" id="telefono" [(ngModel)]="phone" name="phone" required>
+          <div class="valid-tooltip"></div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="documentodeidentidad">Documento de Identidad</label>
+          <div class="input-group">
+            <select class="custom-select" [(ngModel)]="identificationType" name="identificationType">
+              <option value="0">Tipo de Documento</option>
+              <option *ngFor="let identificationType1 of identificationTypes"
+                [value]="identificationType1._links.self.href.substring(identificationType1._links.self.href.lastIndexOf('/')+1)">
+                {{identificationType1.description}}
+              </option>
+            </select>
+            <input type="text" class="form-control" id="documentodeidentidad" placeholder="Número de Documento"
+              [(ngModel)]="identification" name="identification" required>
+            <div class="invalid-tooltip"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <label for="email">Email:</label>
+          <input type="text" id="email" class="form-control" [(ngModel)]="email" name="email" required>
+          <div class="invalid-tooltip"></div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="usuario">Usuario</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend2">👥</span>
+            </div>
+            <input type="text" class="form-control" id="usuario" [(ngModel)]="user" name="user" required>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-3">
+          <label for="image">Foto tamaño Carnet</label>
+          <input class="form-control" (change)="cargarImagen($event)" type="file" name="imagen"
+            [(ngModel)]="imageString"><br>
+          <div *ngIf="previsualizacionURL">
+            <img width="150" class="mb-5 rounded" [src]="previsualizacionURL" alt="">
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="contraseña">Contraseña</label>
+          <div class="input-group">
+            <div>
+              <span class="input-group-text" id="inputGroupPrepend2">
+                <button mat-icon-button matSuffix (click)="togglePasswordVisibility()"
+                  [attr.aria-label]="'Mostrar Contraseña'" [attr.aria-pressed]="passwordVisible">
+                  <mat-icon>{{passwordVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </span>
+            </div>
+            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="password" name="password"
+              [(ngModel)]="password" required>
+            <div class="invalid-tooltip"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="d-flex justify-content-center text-center">
+          <button class="btn btn-secondary mx-2" (click)="guardaDatos()" [disabled]="activo">Guardar</button>
+          <button class="btn btn-secondary mx-2" (click)="comprobarDatos()">Comprobar</button>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="message-box">
+          <h1 class="message mat-display-1">{{mensajeEmail}}</h1>
+          <h1 class="message mat-display-1">{{mensajePhone}}</h1>
+          <h1 class="message mat-display-1">{{mensajeUser}}</h1>
+          <h1 class="message mat-display-1">{{mensajeIdentification}}</h1>
+          <h1 class="message mat-display-1">{{mensajeCampos}}</h1>
+          <h1 class="message mat-display-1">{{mensajeImage}}</h1>
+          <h1 class="message mat-display-1">{{mensajeImage2}}</h1>
+          <h1 class="message mat-display-1">{{mensaje}}</h1>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
