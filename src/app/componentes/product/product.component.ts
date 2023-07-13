@@ -43,9 +43,6 @@ export class ProductComponent{
 
   addToCart(product:Product) {
     alert(product);
-
-
-
   }
 
   getImageProduct(imageBytes: string): string {
@@ -140,7 +137,6 @@ export class ProductComponent{
         }
       })
   }
-
 
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);

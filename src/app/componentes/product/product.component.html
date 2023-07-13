@@ -36,26 +36,26 @@
                 <small class="text-dark mt-1 fs-4 font-weight-bold h3 text-bold">{{ numberFormat(product.price) }}</small>
               </div>
               <div class="text-center mt-auto">
-                <button type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar al carrito</button>
+                <button type="button" class="btn btn-primary" (click)="addToCart(product)" aria-label="Agregar al carrito">Agregar al carrito</button>
               </div>
             </div>
           </div>
       </div>
     </div>
 
-    <nav aria-label="Page navigation" [hidden]="!navVisible">
+    <nav aria-label="Paginación" [hidden]="!navVisible">
       <ul class="pagination justify-content-center">
         <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link cursor-pointer" (click)="goToPreviousPage()">Previous</a>
+          <a class="page-link cursor-pointer" (click)="goToPreviousPage()" title="Página anterior" aria-label="Anterior">Anterior</a>
         </li>
         <li class="page-item" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
-          <a class="page-link cursor-pointer" (click)="goToPage(page)">{{ page }}</a>
+          <a class="page-link cursor-pointer" (click)="goToPage(page)" title="Ir a página {{ page }}">{{ page }}</a>
         </li>
         <li class="page-item" [class.disabled]="currentPage === getLastPage()">
-          <a class="page-link cursor-pointer" (click)="goToNextPage()">Next</a>
+          <a class="page-link cursor-pointer" (click)="goToNextPage()" title="Página siguiente" aria-label="Siguiente">Siguiente</a>
         </li>
       </ul>
-    </nav>    
+    </nav>   
     
   </div>
 </section>
