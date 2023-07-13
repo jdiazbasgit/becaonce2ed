@@ -17,6 +17,7 @@ export class ModalLoginComponent {
   inputPassword: string = "";
   incorrectKey: boolean = false;
   keyMessage: String = "";
+  sinActividad: boolean = false,
   constructor(
     public dialogRef: MatDialogRef<ModalLoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -32,12 +33,14 @@ export class ModalLoginComponent {
     this.dialogRef.close();
   }
   ngDoCheck() {
-    if (sessionStorage.getItem('token') && !this.logado) {
+    if (sessionStorage.getItem('token') != null && !this.logado == false) {
       this.logado = true;
       this.user = sessionStorage.getItem('user') ?? '';
     }
     if (!this.logado && this.router.url !== "/home") {
       this.router.navigateByUrl("home");
+    }
+    if(!this.sinActividad && this.logado){
     }
     
   }
