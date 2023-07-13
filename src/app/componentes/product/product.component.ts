@@ -43,6 +43,9 @@ export class ProductComponent{
 
   addToCart(product:Product) {
     alert(product);
+
+
+
   }
 
   getImageProduct(imageBytes: string): string {
@@ -85,9 +88,9 @@ export class ProductComponent{
     this.titleSubcategory = subcategory.description;
     const categoryId = subcategory._links.category.href.split('/').pop();
     const subcategoryId = subcategory._links.self.href.split('/').pop();
-  
+
     this.currentPage = 1;
-  
+
     this.service.getDatos(`http://localhost:8080/once/products/${categoryId}/${subcategoryId}`)
       .subscribe({
         next: (response: any) => {
@@ -137,8 +140,8 @@ export class ProductComponent{
         }
       })
   }
-  
-  
+
+
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
   }
@@ -147,14 +150,14 @@ export class ProductComponent{
     this.currentPage = page;
     this.getData();
   }
-  
+
   goToPreviousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
       this.getData();
     }
   }
-  
+
   goToNextPage() {
     const lastPage = this.getLastPage();
     if (this.currentPage < lastPage) {
@@ -162,7 +165,7 @@ export class ProductComponent{
       this.getData();
     }
   }
-  
+
   getLastPage(): number {
     return Math.ceil(this.totalItems / this.pageSize);
   }
