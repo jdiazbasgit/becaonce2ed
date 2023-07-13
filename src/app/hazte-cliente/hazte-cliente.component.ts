@@ -205,7 +205,7 @@ export class HazteClienteComponent implements OnInit {
           this.image=[0]
           this.previsualizacion=[0]
           this.password=""
-          this.mensaje =""
+          
         } else {
           this.mensaje = "La grabación no se ha realizado";
       
