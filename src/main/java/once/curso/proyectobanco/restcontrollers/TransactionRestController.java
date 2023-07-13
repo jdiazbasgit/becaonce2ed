@@ -106,9 +106,8 @@ public class TransactionRestController {
 	}
 	
 	@PostMapping(value = "/transactions")
-	public boolean save(@RequestBody TransactionDto transactionDto) {
-		 getTransactionService().realizarTransaccion(transactionDto);
-		 return true;
+	public boolean save(@RequestBody Transaction transaction) {
+		return getTransactionService().existsById(getTransactionService().save(transaction).getId());
 	}
 
 	@PutMapping(value = "/transactions")
@@ -129,6 +128,12 @@ public class TransactionRestController {
 	@GetMapping("/balance/{accountNumber}")
 	public double getBalance (@PathVariable int accountNumber) {
 		return getTransactionService().getBalance(accountNumber);
+	}
+	
+	@PostMapping(value = "/transactionsbidirectional")
+	public boolean saveTransactionBidirectional(@RequestBody TransactionDto transactionDto) {
+		 getTransactionService().realizarTransaccion(transactionDto);
+		 return true;
 	}
 	
 	
