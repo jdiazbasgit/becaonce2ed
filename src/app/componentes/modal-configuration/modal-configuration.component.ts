@@ -4,8 +4,7 @@ import ConfigurationBean from '../../beans/ConfigurationBean';
 
 @Component({
   selector: 'app-modal-configuration',
-  templateUrl: './modal-configuration.component.html',
-  styleUrls: ['./modal-configuration.component.css']
+  templateUrl: './modal-configuration.component.html'
 })
 export class ModalConfigurationComponent implements DoCheck {
 

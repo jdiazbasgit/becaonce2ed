@@ -1,0 +1,32 @@
+<!--The Modal-->
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--Modal Header-->
+            <div class="modal-header justify-content-center">
+                <h4 class="modal-title">AÑADIR CESTA</h4>
+            </div>
+
+            <!-- Modal Body-->
+            <div class="modal-body text-center">
+                <div>{{ productPlaceHolder }}</div>
+                <div>Precio por unidad: {{ pricePlaceHolder }}€</div>
+                <label for="quantity">Cantidad: </label>
+                <input type="number" name="quantity" [(ngModel)]="quantity" value="{{quantityPlaceHolder}}"><br>
+                <button type="button" class="button" (click)="aniadir()">AÑADIR</button>
+            </div>
+
+            <!-- Modal Estado-->
+            <div class="text-center">
+                <h1>{{mensaje}}</h1>
+            </div>
+
+            <!--Modal Footer-->
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

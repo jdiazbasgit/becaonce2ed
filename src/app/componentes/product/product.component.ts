@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
+import { ModalSoldProductComponent } from '../modal-sold-product/modal-sold-product.component';
 
 interface Product {
   image: string;
@@ -24,23 +25,37 @@ interface Category {
   styleUrls: ['./product.component.css']
 })
 
-export class ProductComponent{
-  titleSubcategory: string = 'PORTÁTILES';
+export class ProductComponent implements OnInit{
+  titleSubcategory: string = ' ';
   constructor(private service: ExistingProductService) {}
 
   products: Product[] | undefined;
   categories: Category[] | undefined;
   subcategories: Subcategory[] = [];
 
+  id: number = 0;
+  @ViewChild(ModalSoldProductComponent) modal: any;
+  
+  realizarComunicacion(event: any){
+    this.ngOnInit();
+  }
+
   ngOnInit() {
     this.getData();
   }
 
+  agregar(product: Product){
+    let ruta = product._links.self.href
+    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1))
+  }
+
+/*
   addToCart(product:Product) {
     alert(product);
   }
+*/
 
-  getImageProduct(imageBytes: string): string {
+getImageProduct(imageBytes: string): string {
     if (imageBytes) {
       return 'data:image/jpeg;base64,' + imageBytes
     }

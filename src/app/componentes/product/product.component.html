@@ -33,8 +33,12 @@
                 <small class="text-dark mt-1 fs-4 font-weight-bold h3 text-bold">{{ numberFormat(product.price) }}</small>
               </div>
               <div class="text-center mt-auto">
+                <!--
                 <button type="button" class="btn btn-primary" (click)="addToCart(product)">Agregar al carrito</button>
+                -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" (click)="agregar(product)">Agregar al carrito</button>
               </div>
+              <app-modal-sold-product (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-sold-product>
             </div>
           </div>
       </div>

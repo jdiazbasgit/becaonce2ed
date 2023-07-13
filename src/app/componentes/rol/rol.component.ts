@@ -8,7 +8,7 @@ import { RolesService } from 'src/app/servicios/roles.service';
 })
 export class RolComponent implements OnInit{
 
-  @ViewChild(ModalRolComponent) modal: any
+  @ViewChild(ModalRolComponent) modal: any;
   id : number = 0;
   titulo: string;
   roles: any[];

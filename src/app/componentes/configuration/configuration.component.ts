@@ -4,8 +4,7 @@ import { ModalConfigurationComponent } from '../modal-configuration/modal-config
 
 @Component({
   selector: 'app-configuration',
-  templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.css']
+  templateUrl: './configuration.component.html'
 })
 
 export class ConfigurationComponent implements OnInit {

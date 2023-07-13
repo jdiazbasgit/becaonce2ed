@@ -42,6 +42,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
 import { RouterModule } from '@angular/router';
+import { ModalSoldProductComponent } from './componentes/modal-sold-product/modal-sold-product.component';
 
 
 @NgModule({
@@ -74,8 +75,8 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     //EjemploComponent,
     ModalExistingProductsComponent,
-    ModalProfilesComponent
-
+    ModalProfilesComponent,
+    ModalSoldProductComponent
   ],
   imports:[
     FormsModule,
