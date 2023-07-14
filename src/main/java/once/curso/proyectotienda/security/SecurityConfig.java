@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
-		http.cors();
+		http.cors().disable();
 		http.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	@Override
