@@ -87,13 +87,12 @@ export class SignupComponent {
       if (this.imageContent) {
         this.image = this.imageContent.toString();
       }
+      const profile = new SignupBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype, this.username,this.password);
 
-      const profile = new SignupBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype);
-
-      this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
+      this.service.saveOrUpdate('http://localhost:8080/once/profiles/save/', profile)
         .subscribe((dato: boolean) => {
           if (dato) {
-            this.message = '¡El perfil ha sido guardado correctamente!';        
+            this.message = '¡El perfil ha sido guardado correctamente!';
           } else {
             this.message = 'Error al guardar el perfil.';
           }
@@ -135,7 +134,7 @@ export class SignupComponent {
         console.error('Error al obtener los datos: ', error);
       }});
     }
-    
+
     this.message = '';
   }
 
