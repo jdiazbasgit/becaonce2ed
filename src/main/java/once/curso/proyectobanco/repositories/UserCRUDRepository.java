@@ -13,7 +13,7 @@ public interface UserCRUDRepository extends PagingAndSortingRepository<User, Int
 
 	@Query("from User as u where u.user=:username")
 	public User loadUserByUsername(String username);
-
-
+	
+	
 	
 }

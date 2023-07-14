@@ -20,10 +20,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		http.authorizeHttpRequests().antMatchers("/once/profiles/save").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/profiles/comprobar").permitAll();
+		http.authorizeHttpRequests().antMatchers("/haztecliente").permitAll();
 		http.authorizeHttpRequests().antMatchers("/login").permitAll();
-		http.authorizeHttpRequests().antMatchers("/once/*").permitAll();
-		http.authorizeHttpRequests().antMatchers("/once/*/*").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/identificationsTypes").permitAll();
+		http.authorizeHttpRequests().antMatchers("/once/arrancar").permitAll();
+		//http.authorizeHttpRequests().antMatchers("/once/*").permitAll();
+		//http.authorizeHttpRequests().antMatchers("/once/*/*").permitAll();
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
 		http.cors();

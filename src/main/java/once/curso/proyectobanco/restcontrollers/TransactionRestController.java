@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.beans.CurrentAccountBean;
+import once.curso.proyectobanco.dtos.TransactionDto;
 import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.entities.Transaction;
 import once.curso.proyectobanco.models.TransactionModelAssembler;
@@ -127,6 +128,12 @@ public class TransactionRestController {
 	@GetMapping("/balance/{accountNumber}")
 	public double getBalance (@PathVariable int accountNumber) {
 		return getTransactionService().getBalance(accountNumber);
+	}
+	
+	@PostMapping(value = "/transactionsbidirectional")
+	public boolean saveTransactionBidirectional(@RequestBody TransactionDto transactionDto) {
+		 getTransactionService().realizarTransaccion(transactionDto);
+		 return true;
 	}
 	
 	

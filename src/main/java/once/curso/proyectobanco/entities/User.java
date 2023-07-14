@@ -30,4 +30,8 @@ public class User extends RepresentationModel<User>{
 	@JoinColumn(name = "roles_id")
 	private Rol rol;
 
+	
+	
+	
+
 }
