@@ -1,6 +1,5 @@
 import { Component, Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -8,50 +7,18 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  // menuVisible: boolean = false;
-  cuentaElegida: boolean = false
-  cuenta: string = ""
+menuVisible: boolean = false;
 
-  constructor(private elementRef: ElementRef) { }
+constructor(private router: Router) {}
 
-  ngDoCheck() {
-    if (sessionStorage['cuenta'] != undefined && !this.cuentaElegida) {
-      this.cuentaElegida = true
-      this.cuenta = sessionStorage['cuenta']
-      this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
-    }
-  }
-
-  deselegirCuenta() {
-    sessionStorage.removeItem('cuenta')
-    this.cuentaElegida = false
-    this.elementRef.nativeElement.querySelector("#home").classList.add("seleccionado")
-    this.elementRef.nativeElement.querySelector("#admin").classList.remove("seleccionado")
-  }
-
-  abrirPanelAdmin(){
-    this.elementRef.nativeElement.querySelector("#home").classList.remove("seleccionado")
-    this.elementRef.nativeElement.querySelector("#admin").classList.add("seleccionado")
-  }
-
-  comprobarRolAdmin(){
-    if(sessionStorage['rol'] == "ROLE_ADMIN")
-    return true
-    return false
-  }
-  
+toggleMenu(): void {
+  this.menuVisible = !this.menuVisible;
 }
 
-
-
-// toggleMenu(): void {
-//   this.menuVisible = !this.menuVisible;
-// }
-
-// isRouteActive(route: string): boolean {
-//   return this.router.isActive(route, true);
-// }
-
+isRouteActive(route: string): boolean {
+  return this.router.isActive(route, true);
+}
+}
 
 // function highlightActiveButton(activeButtonId: string) {
 //   const buttons = document.querySelectorAll('.nav-link button');
@@ -63,7 +30,7 @@ export class NavbarComponent {
 //   const activeButton = document.getElementById(activeButtonId);
 //   if (activeButton) {
 //     activeButton.classList.add('active');
-//   }
+//   } 
 // }
 
 // @Directive({
@@ -81,7 +48,7 @@ export class NavbarComponent {
 //             this.renderer.addClass(this.el.nativeElement, 'active');
 //           } else {
 //             this.renderer.removeClass(this.el.nativeElement, 'active');
-//           }
+//           } 
 //         }
 //       });
 //     }
