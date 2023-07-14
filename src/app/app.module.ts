@@ -43,6 +43,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { MatCardModule } from '@angular/material/card';
+import { DatosClienteComponent } from './datos-cliente/datos-cliente.component';
+import { ModificarDatosClienteComponent } from './modificar-datos-cliente/modificar-datos-cliente.component';
 
 
 
@@ -81,6 +83,8 @@ import { MatCardModule } from '@angular/material/card';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
+    DatosClienteComponent,
+    ModificarDatosClienteComponent,
  
    
   
