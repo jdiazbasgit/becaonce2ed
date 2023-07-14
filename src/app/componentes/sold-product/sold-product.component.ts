@@ -28,7 +28,8 @@ export class SoldProductComponent implements OnInit {
       .subscribe((datos: any) => {
         datos._embedded.soldProducts.forEach((s:any) => {
           this.service.getDatos(s._links.existingProduct.href).subscribe((e:any) => {
-            let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,e.description,e.price,s.date,"usuario",s.basket)
+//            let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,e.description,e.price,s.date,"usuario",s.basket)
+            let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,s._links.existingProduct.href,e.price,s.date,"usuario",s.basket)
             this.cestas.push(soldProductBean)
           })
         });
@@ -37,9 +38,11 @@ export class SoldProductComponent implements OnInit {
 
   modificar(cesta: any) {
     this.mensaje = "";
-    console.log("ruta: "+cesta._links.self.href)
-    let ruta = cesta._links.existingProduct.href;
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1));
+//    let ruta = cesta._links.existingProduct.href;
+    let ruta = cesta.existingProduct;
+    console.log("ruta: "+ruta)
+//    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1));
+    this.modal.id = cesta.id;
     this.modal.existingProduct = ruta;
     this.modal.price = cesta.price;
     this.modal.profile = "http://localhost:8080/once/profiles/9"   // profile falso

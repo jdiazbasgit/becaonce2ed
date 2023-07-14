@@ -50,7 +50,9 @@ export class ProductComponent implements OnInit{
 
   agregar(product: Product){
     let ruta = product._links.self.href;
-    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1));
+    console.log("ruta: "+ruta)
+//    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1));
+    this.modal.id = 0;
     this.modal.existingProduct = ruta;
     this.modal.price = product.price;
     this.modal.profile = "http://localhost:8080/once/profiles/9"   // profile falso

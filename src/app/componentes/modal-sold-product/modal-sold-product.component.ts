@@ -61,8 +61,9 @@ export class ModalSoldProductComponent implements DoCheck{
 
   aniadir(){
     this.fin = false;
+    console.log("id-sold-product: "+this.id);
     if (this.quantity !== 0) {
-      this.service.saveOrUpdate("http://localhost:8080/once/soldProducts", new SoldProductBean(0, this.quantity, this.existingProduct, this.price*this.quantity, this.date, this.profile, this.basket))
+      this.service.saveOrUpdate("http://localhost:8080/once/soldProducts", new SoldProductBean(this.id, this.quantity, this.existingProduct, this.price*this.quantity, this.date, this.profile, this.basket))
       .subscribe((dato: boolean) => {
         if (dato) {
           this.mensaje = "Grabacion realizada correctamente"

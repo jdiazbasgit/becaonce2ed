@@ -12,6 +12,7 @@ import { RolComponent } from './componentes/rol/rol.component';
 import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'tipoDocumentos', component: DocumentTypesComponent },
   {path: 'tipoTarjetas', component: CardTypeComponent },
   {path: 'usuarios', component: UserComponent },
-  {path: 'home', component: HomeComponent }
+  {path: 'home', component: HomeComponent },
+  {path: 'cesta', component: SoldProductComponent }
 ];
 
 @NgModule({
