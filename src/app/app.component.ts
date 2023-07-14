@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 
@@ -7,11 +8,12 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-  constructor(private router:Router){}
+  constructor(private http:HttpClient ){}
 
   ngOnInit(): void {
-    //this.router.navigateByUrl("landing")
+    this.http.get("http://localhost:8080/once/arrancar").subscribe((dato:any)=>{
+    console.log(dato)
+    })
   }
   title = 'BankInsert';
 }
