@@ -1,34 +1,50 @@
-<nav class="navbar navbar-expand-sm bg-success navbar-success mt-5">
-  <div class="container">
-    <a class="navbar-brand" style="color: gold; margin-right: 20px;" href="#" role="button" (click)="toggleMenu()"
-      routerLink="cuentas">Mi Área
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check-fill"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-      </svg>
-    </a>
-  </div>
-  <div class="container-fluid justify-content-center" id="navbarOptions"
-    [style.display]="menuVisible ? 'block' : 'none'">
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['detalles']" [ngClass]="{ 'router-link-active': isRouteActive('detalles') }">
-          <button id="detalles" type="button" class="btn btn-outline-light">Estado de la Cuenta</button></a>
+<div class="container p-2 px- mt-5">
+  <div class="p-1 texto-secundario shadow barraNav">
+    <ul class="nav justify-content-center align-items-center flex-nowrap px-3" role="tablist" id="navId">
+      <li class="nav-item me-auto">
+        <a class="nav-link" routerLink="cuentas" id="home">
+          <span class="texto-resaltado">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home pb-1 mx-1" width="24"
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+            </svg>Mi Área
+          </span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['movimientos']" [ngClass]="{ 'router-link-active': isRouteActive('movimientos') }">
-          <button id="movimientos" type="button" class="btn btn-outline-light">Movimientos</button></a>
+      <li *ngIf="comprobarRolAdmin() && comprobarRuta()=='/cuentas' || comprobarRuta()=='/paneladministrador'"
+        class="nav-item ms-auto">
+        <a class="nav-link" routerLink="paneladministrador" id="admin">
+          <span class="texto-resaltado">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-edit pb-1 mx-1"
+              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3"></path>
+              <path d="M4 6v6c0 1.657 3.582 3 8 3c.478 0 .947 -.016 1.402 -.046"></path>
+              <path d="M20 12v-6"></path>
+              <path d="M4 12v6c0 1.526 3.04 2.786 6.972 2.975"></path>
+              <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z"></path>
+            </svg>Panel Administración
+          </span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['operaciones']" [ngClass]="{ 'router-link-active': isRouteActive('operaciones') }">
-          <button id="operaciones" type="button" class="btn btn-outline-light">Operaciones</button></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['productos']" [ngClass]="{ 'router-link-active': isRouteActive('productos') }">
-          <button id="productos" type="button" class="btn btn-outline-light">Productos Asociados</button></a>
-      </li>
+      <ng-container *ngIf="mostrarCuenta">
+        <li class="nav-item ms-5 px-3">
+          <a class="nav-link" routerLink="detalles" id="detalles">Detalles</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" routerLink="movimientos" id="movimientos">Movimientos</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" routerLink="operaciones" id="operaciones">Operar</a>
+        </li>
+        <li class="nav-item ms-auto pe-3 texto-resaltado">
+          <span class="">Cuenta: {{cuenta}}</span>
+        </li>
+      </ng-container>
     </ul>
   </div>
-</nav>
+  <div class="mb-1 p-1 border-bottom fondo-secundario texto-secundario shadow"></div>
+  </nav>

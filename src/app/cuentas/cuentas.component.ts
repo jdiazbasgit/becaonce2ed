@@ -16,6 +16,8 @@ export class CuentasComponent {
   cuentas: any[] = []
   saldo: number[] = []
   saldoTotal: number = 0
+  fees: any[] = []
+  typesAccounts: any[] = []
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -24,6 +26,9 @@ export class CuentasComponent {
 
 
   ngOnInit(){
+    this.getFees()
+    this.getTypesAccounts()
+    
     this.usuario = sessionStorage['user']
     console.log(this.usuario)
     console.log(this.cuentas)
@@ -61,20 +66,38 @@ export class CuentasComponent {
   yaTieneCuentas(){
     if(this.cuentas.length !== 0)
     return true
-    else
     return false
   }
 
   elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
-    this.router.navigateByUrl("detalles")
     window.scrollTo(0,0)
   }
 
-  comprobarRolAdmin(){
-    if(sessionStorage['rol'] == "ROLE_ADMIN")
-    return true
-    return false
+  getFees() {
+    this.service.getDatos(this.url+"fees")
+      .subscribe({
+        next: (fees) => {
+          console.log(fees)
+          this.fees = fees._embedded.fees
+          fees._embedded.fees.forEach((element: any) => {
+            console.log(element.current)
+
+          });
+        }
+      })
+  }
+  getTypesAccounts() {
+    this.service.getDatos(this.url+"typesAccounts")
+      .subscribe({
+        next: (typesAccounts) => {
+          console.log(typesAccounts)
+          this.typesAccounts = typesAccounts._embedded.typeAccounts
+          typesAccounts._embedded.typeAccounts.forEach((element: any) => {
+            console.log(element.description)
+          });
+        }
+      })
   }
 }

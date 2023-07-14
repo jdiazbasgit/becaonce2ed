@@ -19,6 +19,10 @@ const routes: Routes = [
   {path:`detalles`, component:DetallesCuentaComponent},
   {path:`productos`, component:ProductosComponent},
   {path:`paneladministrador`, component:PanelAdministradorComponent},
+
+
+  
+
   {path:`haztecliente`, component:HazteClienteComponent},
 
 ];

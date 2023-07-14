@@ -24,10 +24,16 @@ export class ProyectosService {
     headers.set('Authorization', sessionStorage['token']);
     return this.httpClient.delete(url, {headers:{'Authorization': sessionStorage['token']}});
   }
-  patch(url:string,user:any):Observable<any>{
+  patch(url:string,objeto:any):Observable<any>{
     const headers = new HttpHeaders();
     headers.set('Authorization', sessionStorage['token']);
-    return this.httpClient.patch(url,user, {headers:{'Authorization': sessionStorage['token']}});
+    return this.httpClient.patch(url,objeto, {headers:{'Authorization': sessionStorage['token']}});
+  }
+  getDatosSinHeader(url: string): Observable<any> {
+    return this.httpClient.get(url)
+  }
+  patchSinHeader(url:string,user:any):Observable<any>{
+    return this.httpClient.patch(url,user)
   }
   
 

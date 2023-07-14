@@ -43,6 +43,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 import { MatCardModule } from '@angular/material/card';
+import { UserService } from './servicios/user.service';
 
 
 
@@ -106,6 +107,7 @@ import { MatCardModule } from '@angular/material/card';
   ],
   
   providers: [
+
      ],
   bootstrap: [AppComponent]
 })
