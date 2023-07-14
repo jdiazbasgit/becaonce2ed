@@ -69,6 +69,11 @@ export class OperacionesComponent implements OnInit {
 
   realizarMovimiento(tipo: string) {
     let currentDate = new Date();
+    this.mensaje = ""
+    if (this.monto == 0 || this.description == 0 || this.cuentaDestino == 0) {
+      this.mensaje = "Debe seleccionar todos los campos"
+      return
+    }
 
     let jsonParaEnviar = {
       "date": currentDate.toISOString(),
