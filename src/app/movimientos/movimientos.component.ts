@@ -29,6 +29,8 @@ export class MovimientosComponent implements OnInit {
       (cuentas: any) => {
         console.log(cuentas);
         this.operaciones = cuentas;
+        this.operaciones.sort((a, b) => b.fecha - a.fecha); // Ordenar por fecha de forma descendente
+        this.operaciones.reverse(); // Invertir el orden para que sea de más reciente a más antiguo
         this.totalPages = Math.ceil(this.operaciones.length / this.itemsPerPage);
       }
     );
