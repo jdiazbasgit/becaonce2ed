@@ -1,0 +1,79 @@
+<div class="modal" id="myModalProfile">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-left">
+        <h5 class="modal-title ">Datos de perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body text-center">
+        <div class="mb-3">
+          <img [src]="getImageProfile(image)" [alt]="firstname" class="rounded mb-3 img-size" id="setImageProfile"><br>
+          <label for="file-input" class="text-primary text-decoration-none">Cambiar foto del perfil</label>
+          <input type="file" (change)="fileUploadProfile($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Nombre y apellido</span>
+          <input type="text" aria-label="Nombre" aria-describedby="Nombre" class="form-control" [(ngModel)]="firstname" [value]="firstname">
+          <input type="text" aria-label="Apellido" aria-describedby="Apellido" class="form-control" [(ngModel)]="lastname" [value]="lastname">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">DNI/NIF/NIE</span>
+          <input type="text" class="form-control" aria-label="Identificacion" aria-describedby="Identificacion" [(ngModel)]="identification" [value]="identification">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Dirección</span>
+          <input type="text" class="form-control" aria-label="Dirección" aria-describedby="Dirección" [(ngModel)]="address" [value]="address">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Codigo Postal</span>
+          <input type="text" class="form-control" aria-label="Codigo Postal" aria-describedby="Codigo Postal" [(ngModel)]="postalcode" [value]="postalcode">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Provincia</span>
+          <input type="text" class="form-control" aria-label="Provincia" aria-describedby="Provincia" [(ngModel)]="city" [value]="city">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">País</span>
+          <input type="text" class="form-control" aria-label="Pais" aria-describedby="Pais" [(ngModel)]="country" [value]="country">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Email</span>
+          <input type="text" class="form-control" aria-label="Email" aria-describedby="Email" [(ngModel)]="email" [value]="email">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Teléfono</span>
+          <input type="text" class="form-control" aria-label="Telefono" aria-describedby="Telefono" [(ngModel)]="phone" [value]="phone">
+        </div>
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Tarjeta credito</span>
+          <input type="text" class="form-control" aria-label="Tarjeta credito" aria-describedby="Tarjeta credito" [(ngModel)]="creditcard" [value]="creditcard">
+        </div>
+        <div class="mb-2">
+          <p></p>
+        </div>
+        <div class="border-top mt-4">
+          <div class="input-group mb-2 pt-3">
+            <span class="input-group-text spw-3">Usauario</span>
+            <input type="text" class="form-control" aria-label="Usuario" aria-describedby="Usuario" [(ngModel)]="username" [value]="username">
+          </div>
+          <div class="input-group mb-2">
+            <span class="input-group-text spw-3">Contraseña</span>
+            <input type="password" class="form-control" aria-label="Contraseña" aria-describedby="Contraseña" [(ngModel)]="password" [value]="password">
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal"
+            (click)="closeModal();">Cerrar</button>
+          <button class="btn btn-primary" type="button" (click)="saveData();">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

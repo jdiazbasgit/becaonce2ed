@@ -14,8 +14,8 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
 import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
+//import { EjemploComponent } from './ejemplo/ejemplo.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { CategoryComponent } from './componentes/category/category.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
@@ -30,7 +30,6 @@ import { ModalCategoryComponent } from './componentes/modal-category/modal-categ
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
 //import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
 import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
@@ -43,6 +42,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgIf } from '@angular/common';
+
+import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
+import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -60,7 +64,7 @@ import { NgIf } from '@angular/common';
     UserComponent,
     RolComponent,
     SoldProductComponent,
-    ExistingProductComponent, 
+    ExistingProductComponent,
     CardTypeComponent,
     ConfigurationComponent,
     ModalCardTypesComponent,
@@ -68,17 +72,20 @@ import { NgIf } from '@angular/common';
     ModalCategoryComponent,
     ModalSubcategoryComponent,
     ModalConfigurationComponent,
-    ModalDocumentTypesComponent,
     ModalRolComponent,
     ModalUserComponent,
     ModalLoginComponent,
-    HomeComponent
+    HomeComponent,
+    //EjemploComponent,
+    ModalExistingProductsComponent,
+    ModalProfilesComponent
+
   ],
   imports:[
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-   //MatToolbarModule,
+    //MatToolbarModule,
     MatTableModule,
     MatIconModule,
     MatPaginatorModule,
@@ -90,9 +97,8 @@ import { NgIf } from '@angular/common';
     MatProgressBarModule,
     MatDialogModule,
     NgIf,
+    RouterModule,
     MatRadioModule
-
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

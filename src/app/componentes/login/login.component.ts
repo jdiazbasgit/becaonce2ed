@@ -43,29 +43,14 @@ export class LoginComponent {
   openDialog() {
     this.dialog.open(ModalLoginComponent);
   }
-  
+
+ 
   closeSession() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
     this.logado = false;
   }
 
-  // getDocumentsTypes() {
-  //   const token = sessionStorage.getItem('token');
-  //   console.log("Sacando documents types con token: " + token);
-  //   this.documentType.getDatos("http://localhost:8080/once/documentsTypes")
-  //     .subscribe({
-  //       next: (response: any) => {
-  //         console.log("status ok:" + response.status);
-  //         console.log(response);
-  //         response._embedded.fees.forEach((element: any) => {
-  //           console.log(element.current);
-  //         });
-  //       },
-  //       error: (error: any) => {
-  //         console.log("status ko:" + error.status);
-  //       }
-  //     });
-  // }
+  
 
 }

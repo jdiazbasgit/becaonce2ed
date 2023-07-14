@@ -7,7 +7,7 @@ import { SubcategoryService } from 'src/app/servicios/subcategories.service';
   templateUrl: './modal-subcategory.component.html',
   styleUrls: ['./modal-subcategory.component.css']
 })
-export class ModalSubcategoryComponent implements DoCheck {
+export class ModalSubcategoryComponent  {
   id: number = 0
   descripcion: string
   mensaje: string = "";
@@ -20,7 +20,7 @@ export class ModalSubcategoryComponent implements DoCheck {
   @Output() eventoAComunicar = new EventEmitter();
   antiguoId: number = this.id
   subtitulo: string = ""
-
+subcategoriasCargadas:boolean=false
 
 
   constructor(private service: SubcategoryService) {
@@ -29,41 +29,33 @@ export class ModalSubcategoryComponent implements DoCheck {
     this.categorias = []
   }
   ngOnInit(): void {
+    if(this.id===0){
+      this.subtitulo = "ALTA";
+      this.subcategory="";
+      this.subcategoryPlaceHolder="";
+      this.categoria="0";
     this.service.getDatos("http://localhost:8080/once/categories")
       .subscribe((datos: any) => {
         this.categorias = datos._embedded.categories
+        this.subcategoriasCargadas = true
       });
-  }
-  ngDoCheck(): void {
-
-    if (this.id === 0) {
-      this.subtitulo = "ALTA"
-      this.categoria = "0"
-    } else {
-      this.subtitulo = "MODIFICACION"
     }
-
-    if (this.id !== this.antiguoId && this.id > 0) {
-      this.antiguoId = this.id
-
-      console.log("id entrada: " + this.id);
+      else{
+        this.subtitulo = "MODIFICACION";
       this.service.getDatos("http://localhost:8080/once/subcategories/" + this.id)
-        .subscribe((datos: any) => {
-          this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
-          this.subcategoryPlaceHolder = datos.description;
-          console.log("categoria " + this.categoria)
-        });
-
-    }
+            .subscribe((datos: any) => {
+              this.categoria = datos._links.category.href.substring(datos._links.category.href.lastIndexOf('/') + 1);
+              this.subcategoryPlaceHolder = datos.description;
+              this.descripcion = datos.description;
+              console.log("categoria " + this.categoria);
+            });
+          }
   }
-
+ 
   realizarComunicacion() {
-    this.id = 0;
-    this.subcategory = "";
-    this.subcategoryPlaceHolder = "";
-    this.fin = false;
+  
     this.eventoAComunicar.emit({ salida: "OK" });
-    this.mensaje ="";
+  
   }
 
   grabar() {
@@ -79,6 +71,7 @@ export class ModalSubcategoryComponent implements DoCheck {
             this.mensaje = "La grabación no se ha realizado";
           }
         });
+        this.realizarComunicacion()
     } else {
       this.mensaje = "Debes introducir un valor";
     }

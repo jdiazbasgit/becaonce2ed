@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProyectosService } from './proyectos.service';
 
@@ -6,17 +6,9 @@ import { ProyectosService } from './proyectos.service';
   providedIn: 'root'
 })
 
-export class ExistingproductService extends ProyectosService {
-
+export class ExistingProductService extends ProyectosService {
   constructor(private http: HttpClient) {
     super(http);
   }
-
-  url='https://localhost:8080/';
-
-  findAllExistingProducts() {
-    return this.http.request('GET', `${this.url}products`);
-  }
-
-
 }
+

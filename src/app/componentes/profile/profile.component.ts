@@ -1,123 +1,98 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ModalProfilesComponent } from '../modal-profiles/modal-profiles.component';
+import { ProfileService } from '../../servicios/profile.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'photo', 'lastname', 'identification', 'creditcard', 'email', 'province', 'nuser', 'ncreditcard', 'ndocument'];
-  //dataSource = new MatTableDataSource<PeriodicElement>();
+
+export class ProfileComponent implements OnInit {
+  @ViewChild(ModalProfilesComponent, { static: false })
+  modal: ModalProfilesComponent | undefined
+
+  title = "Lista de perfiles";
+  columns: string[] = ['name', 'secondName', 'identification', 'creditCard', 'address', 'postalCode', 'country', 'email', 'city', 'phone', 'image'];
+  elements: any[] = [];
+  message: string = "";
 
   @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  paginator!: MatPaginator
 
-  constructor(private http: HttpClient) {}
+  constructor(private service: ProfileService) {}
 
-  ngAfterViewInit() {
-    //this.dataSource.paginator = this.paginator;
-    //this.getData();
+  ngOnInit() {
+    this.getData();
   }
-}
-  /*getData() {
-    const jwtToken = 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoxLCJyb2wiOiJBRE1JTklTVFJBRE9SIiwibGlua3MiOltdfV0sImlhdCI6MTY4NTgyNTc1OX0.vmIdUJmsUW8gy7RfSlZiARNhDwpyU8lWnNVIpKFTuMxvZ-iOmyqHSfceTMo5RrrzsZr_e-C3TKebVG9RBNxWOA'; //localStorage.getItem('token');
-    console.log("Sacando profile con token: " + jwtToken)
 
-    if (jwtToken) {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${jwtToken}`
-      });
-
-      this.http.get<any>('http://localhost:5000/v1/profiles', { headers }).subscribe(
-        response => {
-          console.log(response);
-          this.dataSource.data = response._embedded.profiles;
+  getData() {
+    this.service.getDatos("http://localhost:8080/once/profiles")
+      .subscribe({
+        next: (response: any) => {
+          if (response._embedded) {
+            this.elements = response._embedded.profiles;
+          } else {
+            console.error('La propiedad _embedded no existe en el JSON.');
+          }
         },
-        error => {
-          console.error('Error al obtener los datos:', error);
+        error: (error: any) => {
+          console.error('Error al obtener los datos: ', error);
         }
-      );
+      })
+  }
+
+  getImage(imageBytes: string): string {
+    if (imageBytes) {
+      return 'data:image/jpeg;base64,' + imageBytes;
+    }
+    return 'assets/placeholder-image-profile.jpg';
+  }
+
+  openModal(id: string, element?: any, action?: string) {
+    if (this.modal) {
+      this.modal.image = '';
+      this.modal.identification = '';
+      this.modal.firstname = '';
+      this.modal.lastname = '';
+      this.modal.creditcard = '';
+      this.modal.address = '';
+      this.modal.postalcode = '';
+      this.modal.country = '';
+      this.modal.email = '';
+      this.modal.city = '';
+      this.modal.phone = '';
+      this.modal.image = '';
+      this.modal.message = '';
+
+      if (action === 'edit') {
+        if (element !== undefined && element !== null && element !== '') {
+          this.modal.openModal(id, element, 'edit');
+        }
+      } else {
+        this.modal.openModal('', '', 'add');
+      }
+    }
+  }
+
+  delProfile(id: string) {
+    if (confirm("¿Esta seguro de eliminar el perfil?")) {
+      this.service.delete("http://localhost:8080/once/profiles/" + id)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          this.message = 'Perfil eliminado correctamente.';
+          this.getData();
+        } else {
+          this.message ='Perfil no se ha eliminado';
+        }
+      });
+    }
+  }
+
+  handleEventoProfile(event: any) {
+    if (event.actualizar === "OK") {
+      this.getData();
     }
   }
 }
-
-export interface PeriodicElement {
-  position: number;
-  name: string;
-  photo: string;
-  lastname: string;
-  identification: string;
-  creditcard: string;
-  email: string;
-  province: string;
-  nuser: number;
-  ncreditcard: number;
-  ndocument: number;
-}*/
-
-
-
-
-
-/*import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-
-@Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
-})
-export class ProfileComponent implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'photo', 'lastname', 'identification', 'creditcard', 'email', 'province', 'nuser', 'ncreditcard', 'ndocument'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-}
-
-export interface PeriodicElement {
-  position: number;
-  name: string;
-  photo: string;
-  lastname: string;
-  identification: string;
-  creditcard: string;
-  email: string;
-  province: string;
-  nuser: number;
-  ncreditcard: number;
-  ndocument: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'David', photo: '', lastname: '', identification: '', creditcard: '', email: '', province: 'Madrid', nuser: 0, ncreditcard: 0, ndocument: 0},
-  {position: 2, name: 'David', photo: '', lastname: '', identification: '', creditcard: '', email: '', province: 'Madrid', nuser: 0, ncreditcard: 0, ndocument: 0},
-  {position: 1, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email:'', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 2, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email:'', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 3, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email:'', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 4, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email:'', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 5, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 6, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 7, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 8, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 9, name: 'David', lastname:'', photo: '',  identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 10, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 11, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 12, name: 'David', lastname:'', photo: ' x', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 13, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 14, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 15, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 16, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 17, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 18, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 19, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1},
-  {position: 20, name: 'David', lastname:'', photo: '', identification:'', creditcard:'', email: '', province: 'Madrid', nuser:1, ncreditcard:1, ndocument:1}
-];*/

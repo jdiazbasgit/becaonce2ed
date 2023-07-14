@@ -1,0 +1,70 @@
+<div class="modal" id="myModalProduct">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-left">
+        <h5 class="modal-title">Datos del producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="mb-3">
+          <img [src]="getImageProduct(image)" [alt]="description" class="rounded mb-3 img-size" id="setImageProduct"><br>
+          <label for="file-input" class="text-primary text-decoration-none">Cambiar foto del producto</label>
+          <input type="file" (change)="fileUploadProduct($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
+        </div>
+
+        <div class="input-group mb-2">
+          <div class="input-group mb-2">
+            <label class="input-group-text spw-3" for="inputGroupSelect01">Categoria</label>
+            <select class="form-select" id="inputGroupSelect01" [(ngModel)]="categoriaInput" (change)="onCategoryChange()">
+              <option value="">Selecciona categoría..</option>
+              <option *ngFor="let category of categories" [value]="category.description">{{ category.description }}</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="input-group mb-2">
+          <div class="input-group mb-2">
+            <label class="input-group-text spw-3" for="inputGroupSelect02">Subcategoria</label>
+            <select class="form-select" id="inputGroupSelect02" [(ngModel)]="subcategoriaInput">
+              <option value="">Selecciona subcategoria..</option>
+              <option *ngFor="let subcategory of subcategories" [value]="subcategory.description" [attr.data-id]="subcategory._links.self.href.split('/').pop()">{{ subcategory.description }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Descripción</span>
+          <textarea class="form-control overflow-y: auto" aria-label="Descripción" aria-describedby="Descripción" [(ngModel)]="description" [value]="description"></textarea>
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Precio de venta</span>
+          <input type="decimal" class="form-control text-right"
+            aria-label="Euro precio de venta (con coma y dos decimales)" [(ngModel)]="price" [value]="price"
+            (input)="stockChange(price, stock)">
+          <span class="input-group-text">€</span>
+        </div>
+
+        <div class="input-group mb-2">
+          <span class="input-group-text spw-3">Existencias</span>
+          <input type="number" class="form-control" aria-label="Existencias" aria-describedby="Existencias"
+            [(ngModel)]="stock" [value]="stock" (input)="stockChange(price, stock)">
+        </div>
+
+        <div class="mb-3 mt-3">
+          <p class="fw-bold h4 d-block text-end" style="color:#4e4e4e">Total {{ total }}</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <p>{{ message }}</p>
+      </div>
+      <div class="modal-footer">
+        <div class="d-grid gap-2 d-md-block">
+          <button class="btn btn-secondary m-3" type="button" data-bs-dismiss="modal"
+            (click)="closeModalProduct();">Cerrar</button>
+          <button class="btn btn-primary" type="button" (click)="saveData();">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

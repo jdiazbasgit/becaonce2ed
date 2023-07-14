@@ -7,8 +7,8 @@ import { ModalDocumentTypesComponent } from '../../componentes/modal-document-ty
   templateUrl: './document-types.component.html',
   styleUrls: ['./document-types.component.css']
 })
-export class DocumentTypesComponent implements OnInit {
 
+export class DocumentTypesComponent implements OnInit {
   @ViewChild(ModalDocumentTypesComponent) modal: any
   id: number = 0
   titulo: string;
@@ -16,7 +16,7 @@ export class DocumentTypesComponent implements OnInit {
   mensaje: string = ""
   @Input() eventoDelHijo: string = ""
   constructor(private service: DocumentTypeService) {
-    this.titulo = "DOCUMENTOS DESCRIPCIONES"
+    this.titulo = "TIPO DE DOCUMENTOS"
     this.descripciones = [];
   }
 

@@ -2,13 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <!-- Modal Header -->
+            
+        
             <div class="modal-header justify-content-center"> 
                 <h4 class="modal-title ">{{subtitulo}} TIPO DE SUBCATEGORIA</h4>
 
             </div>
 
-            <!-- Modal body -->
+           
+
             <div class="modal-body text-center">
                 <label for="descripcion">Subcategoria:<input type="text" name="descripcion"
                     [(ngModel)]="descripcion" value="{{subcategoryPlaceHolder}}"></label><br>
@@ -24,7 +26,9 @@
             <div class="text-center">
                 <h1 >{{mensaje}}</h1>
             </div>
-            <!-- Modal footer -->
+           
+           
+            
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="realizarComunicacion()">Cerrar</button>
             </div>
