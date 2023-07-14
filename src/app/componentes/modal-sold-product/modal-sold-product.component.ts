@@ -1,4 +1,4 @@
-import { Component, DoCheck } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Output } from '@angular/core';
 import SoldProductBean from 'src/app/beans/SoldProductBean';
 import { SoldProductService } from 'src/app/servicios/soldProduct.service';
 
@@ -23,6 +23,8 @@ export class ModalSoldProductComponent implements DoCheck{
   mensaje: string = "";
   fin: boolean = false;
   
+  @Output() eventoAComunicar=new EventEmitter();
+
   constructor (private service: SoldProductService){
     this.quantity = 0;
     this.existingProduct = "";
@@ -34,8 +36,7 @@ export class ModalSoldProductComponent implements DoCheck{
 
   ngDoCheck(): void {
     if(this.id !== 0 && !this.fin){
-      console.log("id entrada:" + this.id)
-      this.service.getDatos("http://localhost:8080/once/products/" + this.id)
+      this.service.getDatos(this.existingProduct)
       .subscribe((datos: any)=> {
         this.fin = true;
         this.productPlaceHolder = datos.description;
@@ -45,9 +46,17 @@ export class ModalSoldProductComponent implements DoCheck{
   }
 
   realizarComunicacion(){
+    this.id = 0;
     this.quantity = 0;
+    this.existingProduct = "";
+    this.price = 0;
+    this.date = new Date("1900-01-01")
+    this.profile = "";
+    this.basket = false;
+
     this.mensaje="";
     this.fin=false;
+    this.eventoAComunicar.emit({salida:"OK"})
   }
 
   aniadir(){
@@ -57,7 +66,12 @@ export class ModalSoldProductComponent implements DoCheck{
       .subscribe((dato: boolean) => {
         if (dato) {
           this.mensaje = "Grabacion realizada correctamente"
-          this.quantity = 0
+          this.quantity = 0;
+          this.existingProduct = "";
+          this.price = 0;
+          this.date = new Date("1900-01-01")
+          this.profile = "";
+          this.basket = false;
         }
         else
           this.mensaje = "La grabación no se ha realizado"

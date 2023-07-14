@@ -20,12 +20,26 @@
       </tr>
     </table>
 
-    <!--<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label=""></mat-paginator>-->
-
     <div class="w-100 text-center">
       <div class="text-primary mb-3" role="alert">{{ message }}</div>
       <button type="button" class="btn btn-primary" (click)="openModal('','')" data-bs-toggle="modal" data-bs-target="#myModalProduct">Añadir nuevo producto</button>
     </div>
+
+    <!--<nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>-->
 
     <app-modal-existing-products (eventoExistingProduct)="handleEventoProduct($event)"></app-modal-existing-products>
   </div>
