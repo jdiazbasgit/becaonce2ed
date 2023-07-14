@@ -12,9 +12,11 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,10 +26,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+import once.curso.proyectobanco.dtos.ProfileDto;
+import once.curso.proyectobanco.dtos.ProfileIdentificationTypeDto;
+import once.curso.proyectobanco.dtos.ProfileUserDto;
+import once.curso.proyectobanco.dtos.ProfileUserDtoString;
 import once.curso.proyectobanco.entities.Profile;
-
+import once.curso.proyectobanco.entities.User;
 import once.curso.proyectobanco.models.ProfileModelAssembler;
-
+import once.curso.proyectobanco.repositories.IdentificationTypeCRUDRepository;
+import once.curso.proyectobanco.repositories.ProfileCRUDRepository;
+import once.curso.proyectobanco.repositories.RolCRUDRepository;
+import once.curso.proyectobanco.repositories.UserCRUDRepository;
 import once.curso.proyectobanco.services.ProfileService;
 
 @RestController
@@ -44,6 +53,18 @@ public class ProfileRestController {
 	
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private ProfileCRUDRepository profileCRUDRepository;
+
+	@Autowired
+	private UserCRUDRepository userCRUDRepository;
+	
+	@Autowired
+	private RolCRUDRepository rolCRUDRepository;
+	
+	@Autowired
+	private IdentificationTypeCRUDRepository identificationTypeCRUDRepository;
 
 	@GetMapping("/profiles/{id}")
 	public EntityModel<Profile> findById(@PathVariable Integer id) {
@@ -82,8 +103,16 @@ public class ProfileRestController {
 		 
 		 return getPagedResourcesAssembler().toModel(profile,getProfileModelAssembler());
 	}
-
 	
+	@PatchMapping("/profiles/comprobar")
+	public ProfileUserDto getProfileUserDto(@RequestBody ProfileUserDtoString profileUserDtoString ) {
+		return getProfileService().getProfileUserDto(profileUserDtoString.getUser(),profileUserDtoString.getPhone(), profileUserDtoString.getEmail(),profileUserDtoString.getIdentification());
+	}
+	
+	
+	
+
+
 	@PostMapping("/profiles")
 	public boolean save(@RequestBody Profile profile) {
 		return getProfileService().existsById(getProfileService().save(profile).getId());
@@ -104,4 +133,15 @@ public class ProfileRestController {
 	public boolean existsById(@PathVariable int id) {
 		return getProfileService().existsById(id);
 	}
+	
+	@PatchMapping("/profiles/save")
+	public Profile crearProfile(@RequestBody ProfileDto profileDto) {
+		
+		    return getProfileService().crearProfile(profileDto);
+		
+	}
+	
+	
+	
+	
 }

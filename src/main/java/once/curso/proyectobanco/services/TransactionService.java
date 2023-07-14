@@ -3,17 +3,14 @@ package once.curso.proyectobanco.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Data;
 
-import once.curso.proyectobanco.beans.CurrentAccountBean;
 import once.curso.proyectobanco.entities.CurrentAccount;
 
 import once.curso.proyectobanco.dtos.TransactionDto;
@@ -37,10 +34,6 @@ public class TransactionService {
 	@Autowired
 	private TransactionCRUDRepository transactionCRUDRepository;
 
-	public void dameTransaccion() {
-		Iterable<Transaction> transaccion = getTransactionCRUDRepository().findAll();
-	}
-
 	public <S extends Transaction> S save(S entity) {
 		return getTransactionCRUDRepository().save(entity);
 	}
@@ -55,6 +48,20 @@ public class TransactionService {
 
 	public List<Transaction> getTransactionsByCurrentAccount(CurrentAccount number) {
 		return getTransactionCRUDRepository().getTransactionsByCurrentAccount(number);
+	}
+
+	@Transactional
+	public void realizarTransaccion(TransactionDto transactionDto) {
+		getTransactionCRUDRepository()
+				.save(new Transaction(0, transactionDto.getDate(), transactionDto.getCurrent() * -1,
+						getDescriptionCRUDRepository().findById(transactionDto.getDescription()).get(),
+						getCurrentAccountCRUDRepository().findById(transactionDto.getCurrentAccountOrigen()).get()));
+		
+		
+		getTransactionCRUDRepository()
+		.save(new Transaction(0, transactionDto.getDate(), transactionDto.getCurrent(),
+				getDescriptionCRUDRepository().findById(transactionDto.getDescription()).get(),
+				getCurrentAccountCRUDRepository().findById(transactionDto.getCurrentAccountDestino()).get()));
 	}
 
 	public boolean existsById(Integer id) {
@@ -101,17 +108,6 @@ public class TransactionService {
 		return getTransactionCRUDRepository().getBalance(accountNumber);
 	}
 
-	@Transactional
-	public Transaction verConcepto(TransactionDto transactionDto) {
-		Transaction transaction = new Transaction();
-		transaction.setId(transaction.getId());
-		transaction.setDate(transaction.getDate());
-		transaction.setCurrent(transaction.getCurrent());
-		transaction.setDescription(getDescriptionCRUDRepository().findById(transactionDto.getDescriptionId()).get());
-		transaction.setCurrentAccount(
-				getCurrentAccountCRUDRepository().findById(transactionDto.getCurrentAccountId()).get());
-
-		return verConcepto(transactionDto);
-	}
+	
 
 }

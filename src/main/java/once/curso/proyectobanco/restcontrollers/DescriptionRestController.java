@@ -45,7 +45,7 @@ public class DescriptionRestController {
 	@Autowired 
 	private DescriptionModelAssembler descriptionModelAssembler;
 	
-	@GetMapping(value =" /descriptions/{id}")
+	@GetMapping(value ="/descriptions/{id}")
 	public EntityModel<Description> findById(@PathVariable int id) {
 		Description description= getDescriptionService().findById(id).get();
 		description.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(DescriptionRestController.class)
