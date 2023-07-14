@@ -80,9 +80,10 @@ export class CuentasComponent {
       .subscribe({
         next: (fees) => {
           console.log(fees)
-          this.fees = fees
+          this.fees = fees._embedded.fees
           fees._embedded.fees.forEach((element: any) => {
             console.log(element.current)
+
           });
         }
       })
@@ -92,7 +93,7 @@ export class CuentasComponent {
       .subscribe({
         next: (typesAccounts) => {
           console.log(typesAccounts)
-          this.typesAccounts = typesAccounts
+          this.typesAccounts = typesAccounts._embedded.typeAccounts
           typesAccounts._embedded.typeAccounts.forEach((element: any) => {
             console.log(element.description)
           });
