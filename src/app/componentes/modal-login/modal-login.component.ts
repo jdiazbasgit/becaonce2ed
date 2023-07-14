@@ -3,7 +3,7 @@ import { DialogData } from '../login/login.component';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { LoginService } from 'src/app/servicios/login.service';
 import { catchError } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'app-modal-login',
@@ -31,9 +31,6 @@ export class ModalLoginComponent {
 
   ) { }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
   ngDoCheck() {
     if (sessionStorage.getItem('token') != null && !this.logado == false) {
       this.logado = true;
@@ -45,10 +42,20 @@ export class ModalLoginComponent {
     if (!this.sinActividad && this.logado) {
       clearTimeout(this.InactivityTimer)
       this.InactivityTimer = setTimeout(() => {
-        console.log("ssalida de sesion por inactividad")
+        console.log("salida de sesion por inactividad")
         this.sinActividad = true;
         this.closeSession()
       }, this.timeout);
+    }
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
+    const userrole = sessionStorage.getItem('rol');
+    if(this.user === 'adimn'){
+      return true;
+    }else{
+      this.router.navigateByUrl('/home');
+      return false;
     }
   }
 
@@ -103,4 +110,7 @@ export class ModalLoginComponent {
     this.keyMessage = mensaje;
   }
 
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
