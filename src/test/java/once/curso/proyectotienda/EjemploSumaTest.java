@@ -21,14 +21,13 @@ public class EjemploSumaTest {
 	
 	@Autowired
 	private ExistingProductCRUDRepository existingProductCRUDRepository;
-/*
-	@Test
-	public void probarSuma() {
-		double suma= 0;
-//		suma = getExistingProductCRUDRepository().countExistingProductByCategory(568);
-		System.out.println(suma);
-		assertTrue(true);
-		
-	}
-*/
+
+//	@Test
+//	public void probarSuma() {
+//		double suma=getExistingProductCRUDRepository().countExistingProductByCategory(568);
+//		System.out.println(suma);
+//		assertTrue(true);
+//		
+//	}
+	
 }
