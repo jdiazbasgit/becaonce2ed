@@ -49,13 +49,29 @@ export class ProductComponent implements OnInit{
   }
 
   agregar(product: Product){
-    let ruta = product._links.self.href;
-    console.log("ruta: "+ruta)
-//    this.modal.id = parseInt(ruta.substring(ruta.lastIndexOf('/') + 1));
-    this.modal.id = 0;
-    this.modal.existingProduct = ruta;
+    console.log(" ")
+
+    let rutaExistingProduct = product._links.self.href;
+    console.log("product.ts - rutaExistingProduct: "+rutaExistingProduct);
+
+    this.modal.id = 0; // SIEMPRE CERO, es para añadir (save, no update) nuevo registro en la tabla soldProduct
+    console.log("product.ts - modal.id: "+this.modal.id);
+
+    this.modal.quantity = 0; // EN PRINCIPIO SIEMPRE CERO, es para que ponga la cantidad preferida
+    console.log("product.ts - modal.quantity: "+this.modal.quantity);
+
+    //    this.modal.existingProduct = rutaExistingProduct
+    this.modal.existingProduct = product._links.self.href;
+    console.log("product.ts - modal.existingProduct: "+this.modal.existingProduct);
+
     this.modal.price = product.price;
-    this.modal.profile = "http://localhost:8080/once/profiles/9"   // profile falso
+    console.log("product.ts - modal.price: "+this.modal.price);
+
+    this.modal.profile = "http://localhost:8080/once/profiles/9";   // profile falso
+    console.log("product.ts - modal.profile (FALSO): "+this.modal.profile);
+
+    //this.modal.fin = false;
+    //console.log("product.ts - modal.fin: "+this.modal.fin);
   }
 
 getImageProduct(imageBytes: string): string {

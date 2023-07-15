@@ -11,19 +11,22 @@
             <th class="text-center">FECHA</th>
             <th class="text-center">ACCIONES</th>
         </tr>
-        <tr *ngFor="let soldProductBean of cestas">
-            <td class="text-center">{{soldProductBean.existingProduct}}</td>
-            <td class="text-center">{{soldProductBean.price}}</td>
+        <tr *ngFor="let soldProductBean of cestas; let i=index">
+            <td class="text-center">{{detalleExistingProducts[i].nomProduct}}</td>
+            <td class="text-center">{{detalleExistingProducts[i].priceUnitario}}</td>
             <td class="text-center">{{soldProductBean.quantity}}</td>
-            <td class="text-center">{{soldProductBean.price*soldProductBean.quantity}}</td>
+            <td class="text-center">{{detalleExistingProducts[i].priceUnitario*soldProductBean.quantity}}</td>
             <td class="text-center">{{soldProductBean.basket}}</td>
             <td class="text-center">{{soldProductBean.date}}</td>
             <td class="text-center">
                 <a href="#" (click)="modificar(soldProductBean)" data-bs-toggle="modal" data-bs-target="#myModal"><i
                         class="bi bi-pencil-fill"></i>
                 </a>
-                <a (click)="eliminar(soldProductBean._links.self.href.substring(soldProductBean._links.self.href.lastIndexOf('/')+1))">
+                <a href="#" (click)="eliminar(soldProductBean._links.self.href.substring(soldProductBean._links.self.href.lastIndexOf('/')+1))">
                     <i class="bi bi-trash3-fill"></i>
+                </a>
+                <a href="#" (click)="comprar(soldProductBean)">
+                    <i class="bi bi-credit-card-fill"></i>
                 </a>
             </td>
         </tr>

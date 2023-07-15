@@ -5,16 +5,16 @@
 
             <!--Modal Header-->
             <div class="modal-header justify-content-center">
-                <h4 class="modal-title">AÑADIR CESTA</h4>
+                <h4 class="modal-title">{{botonAccion}} CESTA</h4>
             </div>
 
             <!-- Modal Body-->
             <div class="modal-body text-center">
                 <div>{{ productPlaceHolder }}</div>
-                <div>Precio por unidad: {{ pricePlaceHolder }}€</div>
+                <div>Precio por unidad: {{ priceUnitarioPlaceHolder }}</div>
                 <label for="quantity">Cantidad: </label>
-                <input type="number" name="quantity" [(ngModel)]="quantity" value="{{quantityPlaceHolder}}"><br>
-                <button type="button" class="button" (click)="aniadir()">AÑADIR</button>
+                <input type="number" name="quantity" [(ngModel)]="quantity" value="{{quantityPlaceHolder}}"><br><br>
+                <button type="button" class="button" (click)="saveOrUpdateSoldProduct()">{{botonAccion}}</button>
             </div>
 
             <!-- Modal Estado-->
