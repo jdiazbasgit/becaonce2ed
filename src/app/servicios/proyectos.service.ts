@@ -22,9 +22,7 @@ export class ProyectosService {
   }
 
   ifExist(url:string):Observable<any>{
-  
     return this.httpClient.post(url,"");
-
   }
 
   patchSinHeader(url:string,user:any):Observable<any>{

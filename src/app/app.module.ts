@@ -41,6 +41,7 @@ import { RouterModule } from '@angular/router';
 import { ModalSoldProductComponent } from './componentes/modal-sold-product/modal-sold-product.component';
 import { SignupComponent } from './componentes/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminPanelComponent } from './componentes/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ModalExistingProductsComponent,
     ModalProfilesComponent,
     ModalSoldProductComponent,
-    SignupComponent
+    SignupComponent,
+    AdminPanelComponent
   ],
   imports:[
     FormsModule,
