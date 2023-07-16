@@ -22,6 +22,7 @@ public class EjemploSumaTest {
 	@Autowired
 	private ExistingProductCRUDRepository existingProductCRUDRepository;
 
+
 //	@Test
 //	public void probarSuma() {
 //		double suma=getExistingProductCRUDRepository().countExistingProductByCategory(568);
