@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { SignupService } from 'src/app/servicios/signup.service';
-import  SignupBean from '../../beans/ProfileBean';
+import SignupBean from '../../beans/SignupBean';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
 export class SignupComponent {
+  signupForm!: FormGroup;
+  submittedSignup: boolean = false;
 
   id: string = "";
   image: string = '';
@@ -22,20 +26,19 @@ export class SignupComponent {
   address: string = "";
   postalcode: string = "";
 
-  user_id: string = '';
   documenttype: string = '';
   cardtype: string = '';
-  user: string = '';
 
+  /* CREAR LOGIN */
   username: string = '';
   password: string = '';
   showPassword: boolean = false;
 
-  message: string = "";
-
   imageContent: string = "";
 
-  constructor(private service: SignupService) {}
+  responseAlert: string | null = null;
+
+  constructor(private service: SignupService, private fb: FormBuilder) { }
 
   getImageSignup(imageBytes: string | null): string {
     if (imageBytes) {
@@ -74,76 +77,61 @@ export class SignupComponent {
   }
 
   saveData() {
-    if(this.identification.trim()==''){
-      this.message = 'Por favor, introduzca identificación.';
-    } else if (this.creditcard.trim()==''){
-      this.message = 'Por favor, introduzca el número de la tarjeta de credito.';
-    } else if (this.email.trim()==''){
-      this.message = 'Por favor, introduzca el correo electrónico.';
-    } else if (this.phone.trim()==''){
-      this.message = 'Por favor, introduzca el número de teléfono.';
-    } else {
-
-      if (this.imageContent) {
-        this.image = this.imageContent.toString();
-      }
-
-      const profile = new SignupBean(this.id, this.image || '', this.firstname, this.lastname, this.identification, this.creditcard, this.email, this.city, this.country, this.phone, this.address, this.postalcode, this.user, this.documenttype, this.cardtype);
-
-      this.service.saveOrUpdate('http://localhost:8080/once/profiles/', profile)
-        .subscribe((dato: boolean) => {
-          if (dato) {
-            this.message = '¡El perfil ha sido guardado correctamente!';        
-          } else {
-            this.message = 'Error al guardar el perfil.';
-          }
-        });
-      }
-  }
-
-  openModal(id: string, data: any, action: string) {
-    if (data !== '') {
-      this.id = id;
-      this.image = data.image;
-      this.identification = data.identification;
-      this.firstname = data.name;
-      this.lastname = data.secondName;
-      this.address = data.address;
-      this.postalcode = data.postalCode;
-      this.creditcard = data.creditCard;
-      this.email = data.email;
-      this.city = data.city;
-      this.country = data.country;
-      this.phone = data.phone;
-      this.user = data._links.user.href;
-      this.documenttype = data._links.documentTypes.href;
-      this.cardtype = data._links.cardTypes.href;
-    } else {
-      this.clearAll();
+    this.submittedSignup = true;
+    if (this.signupForm.invalid) {
+      return;
     }
 
-    if(action==='edit'){
-      const userId = this.user.substring(this.user.lastIndexOf('/') + 1);
-
-      this.service.getDatos("http://localhost:8080/once/users/"+userId)
-      .subscribe({
-        next: (rsp: any) => {
-          this.username = rsp.user;
-          this.password = rsp.password;
-
-      },error: (error: any) => {
-        console.error('Error al obtener los datos: ', error);
-      }});
+    if (this.imageContent) {
+      this.image = this.imageContent.toString();
     }
     
-    this.message = '';
+    this.documenttype = '613';
+    this.cardtype = '374';
+
+    const formValue = this.signupForm.value;
+    const signup = new SignupBean(this.id, this.image || '', formValue.firstname, formValue.lastname, formValue.identification, formValue.creditcard, formValue.email, formValue.city, formValue.country, formValue.phone, formValue.address, formValue.postalcode, this.documenttype, this.cardtype, formValue.username, formValue.password);
+
+    this.service.patchSinHeader('http://localhost:8080/once/profiles/save', signup)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          this.responseAlert = "correcto";
+        } else {
+          this.responseAlert = "incorrecto";
+        }
+      });
+
+    this.signupForm.reset();
+    this.submittedSignup = false;
   }
 
-  passwordVisibility(): void {
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    /* Obligatorio todos los campos */
+    this.signupForm = this.fb.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      identification: ['', Validators.required],
+      address: ['', Validators.required],
+      postalcode: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      creditcard: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
+    });
+  }
+
+  passwordVisibility() {
     this.showPassword = !this.showPassword;
   }
 
-  clearAll(){
+  clearAll() {
     Object.assign(this, {
       id: '',
       image: '',
