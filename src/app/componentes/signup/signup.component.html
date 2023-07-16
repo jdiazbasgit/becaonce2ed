@@ -1,95 +1,164 @@
 <div class="container mb-3">
-    <div class="text-center bg-light p-3">
-        <div class="row justify-content-center mb-3">
-            <h1 class="text-center">Crear tu cuenta</h1>
-        </div>
+    <div *ngIf="responseAlert === 'correcto'" class="alert alert-success" role="alert">
+        ¡Los datos se enviaron correctamente!
+    </div>
+    <div *ngIf="responseAlert === 'incorrecto'" class="alert alert-danger" role="alert">
+        ¡Hubo un error al enviar los datos!
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="saveData()" novalidate class="needs-validation">
+        <div class="text-center bg-light p-3">
+            <div class="row justify-content-center mb-3">
+                <h1 class="text-center">Nuevo cliente</h1>
+            </div>
 
-        <div class="mb-3">
-            <div class="row align-items-center">
-                <div class="col text-end">
-                    <img [src]="getImageSignup(image)" [alt]="firstname" class="rounded mb-3 img-size" id="setImageProfile">
-                    <input type="file" (change)="fileUploadSignup($event)" class="d-none" id="file-input" accept=".jpg, .png, .gif">
+            <div class="mb-3">
+                <div class="row align-items-center">
+                    <div class="col text-end">
+                        <img [src]="getImageSignup(image)" [alt]="firstname" class="rounded mb-3 img-size"
+                            id="setImageProfile">
+                        <input type="file" (change)="fileUploadSignup($event)" class="d-none" id="file-input"
+                            accept=".jpg, .png, .gif">
+                    </div>
+                    <div class="col text-start">
+                        <label for="file-input" class="text-decoration-none cursor-pointer link-primary"
+                            aria-label="Cargar una foto">Cargar una foto</label>
+                    </div>
                 </div>
-                <div class="col text-start">
-                    <label for="file-input" class="text-decoration-none cursor-pointer link-primary" aria-label="Cargar una foto">Cargar una foto</label>
+            </div>
+
+            <div class="container text-center">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="text-start">
+                            <h4 class="m-0 p-0">Datos personales</h4>
+                            <p class="mb-3 border-bottom pb-2">Introduce tus datos personales</p>
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Nombre y apellido">Nombre y apellido</span>
+                            <input type="text" aria-label="Nombre" class="form-control" formControlName="firstname"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['firstname'].invalid">
+                            <input type="text" aria-label="Apellido" class="form-control" formControlName="lastname"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['lastname'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['firstname'].invalid" class="invalid-feedback">
+                            Nombre es requerido.
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['lastname'].invalid" class="invalid-feedback">
+                            Apellido es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="DNI/CIF">NIF/CIF</span>
+                            <input type="text" class="form-control" aria-label="Identificación"
+                                formControlName="identification" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['identification'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['identification'].invalid"
+                            class="invalid-feedback">
+                            NIF/CIF es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Dirección">Dirección</span>
+                            <input type="text" class="form-control" aria-label="Dirección" formControlName="address"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['address'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['address'].invalid" class="invalid-feedback">
+                            Dirección es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Código Postal">Código Postal</span>
+                            <input type="text" class="form-control" aria-label="Código Postal"
+                                formControlName="postalcode" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['postalcode'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['postalcode'].invalid" class="invalid-feedback">
+                            Código postal es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Provincia">Provincia</span>
+                            <input type="text" class="form-control" aria-label="Provincia" formControlName="city"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['city'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['city'].invalid" class="invalid-feedback">
+                            Provincia es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="País">País</span>
+                            <input type="text" class="form-control" aria-label="País" formControlName="country" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['country'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['country'].invalid" class="invalid-feedback">
+                            País es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Email">Email</span>
+                            <input type="text" class="form-control" aria-label="Email" formControlName="email" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['email'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['email'].invalid" class="invalid-feedback">
+                            País es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Teléfono">Teléfono</span>
+                            <input type="text" class="form-control" aria-label="Teléfono" formControlName="phone"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['phone'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['phone'].invalid" class="invalid-feedback">
+                            Teléfono es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Tarjeta crédito">Tarjeta crédito</span>
+                            <input type="text" class="form-control" aria-label="Tarjeta crédito"
+                                formControlName="creditcard" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['creditcard'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['creditcard'].invalid" class="invalid-feedback">
+                            Tarjeta de Credito es requerido.
+                        </div>
+                    </div>
+
+                    <div class="col border-start">
+                        <div class="text-start">
+                            <h4 class="m-0 p-0">Datos de acceso</h4>
+                            <p class="mb-3 border-bottom pb-2">La contraseña debe tener entre 8 y 16 caracteres</p>
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Usuario">Usuario</span>
+                            <input type="text" class="form-control" aria-label="Usuario" formControlName="username"
+                                required [class.is-invalid]="submittedSignup && signupForm.controls['username'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['username'].invalid" class="invalid-feedback">
+                            Usuario es requerido.
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text spw-3" title="Contraseña">Contraseña</span>
+                            <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control"
+                                aria-label="Contraseña" formControlName="password" required
+                                [class.is-invalid]="submittedSignup && signupForm.controls['password'].invalid">
+                        </div>
+                        <div *ngIf="submittedSignup && signupForm.controls['password'].invalid" class="invalid-feedback">
+                            Contraseña es requerida.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="container text-center">
-            <div class="row">
-                <div class="col">
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Nombre y apellido">Nombre y apellido</span>
-                        <input type="text" aria-label="Nombre" class="form-control" [(ngModel)]="firstname" [value]="firstname">
-                        <input type="text" aria-label="Apellido" class="form-control" [(ngModel)]="lastname" [value]="lastname">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="DNI/NIF/NIE">DNI/NIF/NIE</span>
-                        <input type="text" class="form-control" aria-label="Identificación" [(ngModel)]="identification" [value]="identification">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Dirección">Dirección</span>
-                        <input type="text" class="form-control" aria-label="Dirección" [(ngModel)]="address" [value]="address">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Código Postal">Código Postal</span>
-                        <input type="text" class="form-control" aria-label="Código Postal" [(ngModel)]="postalcode" [value]="postalcode">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Provincia">Provincia</span>
-                        <input type="text" class="form-control" aria-label="Provincia" [(ngModel)]="city" [value]="city">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="País">País</span>
-                        <input type="text" class="form-control" aria-label="País" [(ngModel)]="country" [value]="country">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Email">Email</span>
-                        <input type="text" class="form-control" aria-label="Email" [(ngModel)]="email" [value]="email">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Teléfono">Teléfono</span>
-                        <input type="text" class="form-control" aria-label="Teléfono" [(ngModel)]="phone" [value]="phone">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Tarjeta crédito">Tarjeta crédito</span>
-                        <input type="text" class="form-control" aria-label="Tarjeta crédito" [(ngModel)]="creditcard" [value]="creditcard">
-                    </div>
-                </div>
-                <div class="col border-start">
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Usuario">Usuario</span>
-                        <input type="text" class="form-control" aria-label="Usuario" [(ngModel)]="username" [value]="username">
-                    </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text spw-3" title="Contraseña">Contraseña</span>
-                        <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" aria-label="Contraseña" [(ngModel)]="password" [value]="password">
-                        <button class="btn btn-primary" type="button" (click)="passwordVisibility()" title="{{ showPassword ? 'Mostrar contraseña' : 'Ocultar contraseña' }}">
-                            <span *ngIf="showPassword" class="bi bi-eye"></span>
-                            <span *ngIf="!showPassword" class="bi bi-eye-slash"></span>
-                        </button>
-                    </div>
-                </div>
+        <div class="d-block text-center mt-4">
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary" type="submit">Registrarse</button>
             </div>
         </div>
-    </div>
-
-    <div class="text-center ">
-        <p>{{ message }}</p>
-    </div>
-
-    <div class="d-block text-center mt-4">
-        <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-primary" type="button" (click)="saveData();" title="Crear cuenta">Crear cuenta</button>
-        </div>
-    </div>
+    </form>
 </div>

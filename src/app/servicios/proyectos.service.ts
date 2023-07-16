@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -25,6 +25,10 @@ export class ProyectosService {
   
     return this.httpClient.post(url,"");
 
+  }
+
+  patchSinHeader(url:string,user:any):Observable<any>{
+    return this.httpClient.patch(url,user)
   }
 
 }

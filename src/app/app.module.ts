@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './componentes/login/login.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
 import { ProductComponent } from './componentes/product/product.component';
-import { OfferComponent } from './componentes/offer/offer.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -40,6 +39,7 @@ import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profi
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from './componentes/signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,6 @@ import { SignupComponent } from './componentes/signup/signup.component';
     LoginComponent,
     ProfileComponent,
     ProductComponent,
-    OfferComponent,
     FooterComponent,
     CategoryComponent,
     SubcategoryComponent,
@@ -85,7 +84,8 @@ import { SignupComponent } from './componentes/signup/signup.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

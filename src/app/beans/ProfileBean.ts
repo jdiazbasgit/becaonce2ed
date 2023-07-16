@@ -15,10 +15,7 @@ class ProfileBean{
   documentType: string;
   cardType: string;
 
-  users:string;
-  password: string;
-
-  constructor(id:string, image:string, first_name:string, last_name:string, identification:string, creditCard:string, email:string, city:string, country:string, phone:string, address:string, postalCode:string, user:string, documentTypes:string, cardTypes:string, users:string, password:string){
+  constructor(id:string, image:string, first_name:string, last_name:string, identification:string, creditCard:string, email:string, city:string, country:string, phone:string, address:string, postalCode:string, user:string, documentTypes:string, cardTypes:string){
     this.id=id;
     this.name=first_name;
     this.image=image;
@@ -34,8 +31,6 @@ class ProfileBean{
     this.user=user;
     this.documentType=documentTypes;
     this.cardType=cardTypes;
-    this.users=users;
-    this.password=password;
   }
 }
 export default ProfileBean;

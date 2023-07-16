@@ -29,7 +29,7 @@
     <div class="row p-2">
       <div class="col-md-3 d-flex align-items-stretch" *ngFor="let product of products">
           <div class="card overflow-hidden mb-3 p-3 border-0">
-            <img [src]="getImageProduct(product.image)" alt="{{ product.description }}" class="card-img-top">
+            <img [src]="getImageProduct(product.image)" alt="{{ product.description }}" class="card-img-top" >
             <div class="card-body d-flex flex-column h-100">
               <div class="card-title mt-1 mb-4 h-100">{{ product.description }}</div>
               <div class="d-block text-center mt-3 mb-4 mt-auto">
