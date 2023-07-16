@@ -29,7 +29,7 @@
     <div class="row p-2">
       <div class="col-md-3 d-flex align-items-stretch" *ngFor="let product of products">
           <div class="card overflow-hidden mb-3 p-3 border-0">
-            <img [src]="getImageProduct(product.image)" alt="{{ product.description }}" class="card-img-top">
+            <img [src]="getImageProduct(product.image)" alt="{{ product.description }}" class="card-img-top" >
             <div class="card-body d-flex flex-column h-100">
               <div class="card-title mt-1 mb-4 h-100">{{ product.description }}</div>
               <div class="d-block text-center mt-3 mb-4 mt-auto">
@@ -47,19 +47,19 @@
       </div>
     </div>
 
-    <nav aria-label="Page navigation" [hidden]="!navVisible">
+    <nav aria-label="Paginación" [hidden]="!navVisible">
       <ul class="pagination justify-content-center">
         <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link cursor-pointer" (click)="goToPreviousPage()">Previous</a>
+          <a class="page-link cursor-pointer" (click)="goToPreviousPage()" title="Página anterior" aria-label="Anterior">Anterior</a>
         </li>
         <li class="page-item" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
-          <a class="page-link cursor-pointer" (click)="goToPage(page)">{{ page }}</a>
+          <a class="page-link cursor-pointer" (click)="goToPage(page)" title="Ir a página {{ page }}">{{ page }}</a>
         </li>
         <li class="page-item" [class.disabled]="currentPage === getLastPage()">
-          <a class="page-link cursor-pointer" (click)="goToNextPage()">Next</a>
+          <a class="page-link cursor-pointer" (click)="goToNextPage()" title="Página siguiente" aria-label="Siguiente">Siguiente</a>
         </li>
       </ul>
-    </nav>    
+    </nav>   
     
   </div>
 </section>

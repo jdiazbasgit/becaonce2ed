@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { ExistingProductService } from 'src/app/servicios/existingproduct.service';
 import { ModalExistingProductsComponent } from '../modal-existing-products/modal-existing-products.component';
 
@@ -18,8 +17,10 @@ export class ExistingProductComponent implements OnInit {
   elements: any[] = [];
   message: string | undefined;
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  navVisible: boolean = false;
+  currentPage = 1;
+  pageSize = 6;
+  totalItems = 0;
 
   constructor(private service: ExistingProductService) {}
 
@@ -28,11 +29,14 @@ export class ExistingProductComponent implements OnInit {
   }
 
   getData() {
-    this.service.getDatos("http://localhost:8080/once/products")
-      .subscribe({
-        next: (response: any) => {
+    const url = `http://localhost:8080/once/productsPaginado?size=${this.pageSize}&page=${this.currentPage - 1}&sort=id,asc`;
+    this.service.getDatos(url)
+    .subscribe({
+      next: (response: any) => {
           if (response._embedded) {
             this.elements = response._embedded.existingProducts;
+            this.totalItems = response.page.totalElements;
+            this.navVisible = true;
           } else {
             console.error('La propiedad _embedded no existe en el JSON.')
           }
@@ -92,6 +96,35 @@ export class ExistingProductComponent implements OnInit {
         }
       })
     }
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.getData();
+  }
+
+  goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getData();
+    }
+  }
+
+  goToNextPage() {
+    const lastPage = this.getLastPage();
+    if (this.currentPage < lastPage) {
+      this.currentPage++;
+      this.getData();
+    }
+  }
+
+  getLastPage(): number {
+    return Math.ceil(this.totalItems / this.pageSize);
+  }
+
+  getPageNumbers(): number[] {
+    const lastPage = this.getLastPage();
+    return Array.from({ length: lastPage } /*ejemplo console.log(Array.from('foo')); output: Array ["f", "o", "o"] */, (_, index) => index + 1 /*ejemplo console.log(Array.from([1, 2, 3], x => x + 1)); output: Array [2, 3, 4] */);
   }
 
   handleEventoProduct(event: any) {

@@ -1,45 +1,51 @@
 <div class="container mt-3 p-3">
   <h1 class="text-center mb-5">{{ title }}</h1>
-    <table class="table table-stripped table-bordered w-100">
-      <th> Imagen </th>
-      <th> Descripción </th>
-      <th> Precio de venta </th>
-      <th> Existencias </th>
-      <th> Acciones </th>
+  <table class="table table-stripped table-bordered w-100">
+    <th> Imagen </th>
+    <th> Descripción </th>
+    <th> Precio de venta </th>
+    <th> Existencias </th>
+    <th> Acciones </th>
 
-      <tr *ngFor="let element of elements">
-        <td><img [src]="getImageProduct(element.image)" alt="{{ element.description }}"></td>
-        <td> {{ element.description }} </td>
-        <td> {{ getFormatterEuro(element.price) }} </td>
-        <td> {{ element.stock }} </td>
+    <tr *ngFor="let element of elements">
+      <td><img [src]="getImageProduct(element.image)" alt="{{ element.description }}"></td>
+      <td> {{ element.description }} </td>
+      <td> {{ getFormatterEuro(element.price) }} </td>
+      <td> {{ element.stock }} </td>
 
-        <td>
-          <a (click)="openModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)" data-bs-toggle="modal" data-bs-target="#myModalProduct"><i class="bi bi-pencil-fill"></i></a>
-          <a class="wbtn" (click)="delProduct(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"><i class="bi bi-trash3-fill"></i></a>
-        </td>
-      </tr>
-    </table>
+      <td>
+        <a (click)="openModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)"
+          data-bs-toggle="modal" data-bs-target="#myModalProduct"
+          aria-label="Abrir el modal para modificar los datos del producto"><i class="bi bi-pencil-fill"></i></a>
+        <a class="wbtn"
+          (click)="delProduct(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1))"
+          aria-label="Eliminar el producto"><i class="bi bi-trash3-fill"></i></a>
+      </td>
+    </tr>
+  </table>
 
-    <div class="w-100 text-center">
-      <div class="text-primary mb-3" role="alert">{{ message }}</div>
-      <button type="button" class="btn btn-primary" (click)="openModal('','')" data-bs-toggle="modal" data-bs-target="#myModalProduct">Añadir nuevo producto</button>
-    </div>
+  <nav aria-label="Paginación" [hidden]="!navVisible">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link cursor-pointer" (click)="goToPreviousPage()" title="Página anterior"
+          aria-label="Anterior">Anterior</a>
+      </li>
+      <li class="page-item" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage">
+        <a class="page-link cursor-pointer" (click)="goToPage(page)" title="Ir a página {{ page }}">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === getLastPage()">
+        <a class="page-link cursor-pointer" (click)="goToNextPage()" title="Página siguiente"
+          aria-label="Siguiente">Siguiente</a>
+      </li>
+    </ul>
+  </nav>
 
-    <!--<nav aria-label="...">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active" aria-current="page">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>-->
-
-    <app-modal-existing-products (eventoExistingProduct)="handleEventoProduct($event)"></app-modal-existing-products>
+  <div class="w-100 text-center" aria-label="Abrir el modal para añadir el producto">
+    <div class="text-primary mb-3" role="alert">{{ message }}</div>
+    <button type="button" class="btn btn-primary" (click)="openModal('','')" data-bs-toggle="modal"
+      data-bs-target="#myModalProduct" title="Añadir nuevo producto">Añadir nuevo producto</button>
   </div>
+
+
+  <app-modal-existing-products (eventoExistingProduct)="handleEventoProduct($event)"></app-modal-existing-products>
+</div>

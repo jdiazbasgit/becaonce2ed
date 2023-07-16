@@ -95,4 +95,8 @@ export class ProfileComponent implements OnInit {
       this.getData();
     }
   }
+
+  printProfile(){
+    window.print();
+  }
 }

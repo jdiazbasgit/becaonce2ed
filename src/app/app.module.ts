@@ -8,14 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './componentes/login/login.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
 import { ProductComponent } from './componentes/product/product.component';
-import { OfferComponent } from './componentes/offer/offer.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DocumentTypesComponent } from './componentes/document-types/document-types.component';
-//import { EjemploComponent } from './ejemplo/ejemplo.component';
 import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { CategoryComponent } from './componentes/category/category.component';
 import { ConfigurationComponent } from './componentes/configuration/configuration.component';
@@ -29,21 +27,20 @@ import { ModalCardTypesComponent } from './componentes/modal-card-types/modal-ca
 import { ModalCategoryComponent } from './componentes/modal-category/modal-category.component';
 import { ModalSubcategoryComponent } from './componentes/modal-subcategory/modal-subcategory.component';
 import { ModalConfigurationComponent } from './componentes/modal-configuration/modal-configuration.component';
-//import { MatToolbarModule } from '@angular/material/toolbar';
 import { ModalRolComponent } from './componentes/modal-rol/modal-rol.component';
 import { ModalUserComponent } from './componentes/modal-user/modal-user.component';
 import { ModalLoginComponent } from './componentes/modal-login/modal-login.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatRadioModule} from '@angular/material/radio';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
 import { RouterModule } from '@angular/router';
 import { ModalSoldProductComponent } from './componentes/modal-sold-product/modal-sold-product.component';
-
+import { SignupComponent } from './componentes/signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -53,7 +50,6 @@ import { ModalSoldProductComponent } from './componentes/modal-sold-product/moda
     LoginComponent,
     ProfileComponent,
     ProductComponent,
-    OfferComponent,
     FooterComponent,
     CategoryComponent,
     SubcategoryComponent,
@@ -73,16 +69,15 @@ import { ModalSoldProductComponent } from './componentes/modal-sold-product/moda
     ModalUserComponent,
     ModalLoginComponent,
     HomeComponent,
-    //EjemploComponent,
     ModalExistingProductsComponent,
     ModalProfilesComponent,
-    ModalSoldProductComponent
+    ModalSoldProductComponent,
+    SignupComponent
   ],
   imports:[
     FormsModule,
     HttpClientModule,
     MatSlideToggleModule,
-    //MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
@@ -91,11 +86,11 @@ import { ModalSoldProductComponent } from './componentes/modal-sold-product/moda
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 
 export class AppModule {}
-//export class TuModuloModule { }
