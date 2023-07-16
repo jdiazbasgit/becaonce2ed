@@ -16,6 +16,8 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +39,7 @@ import once.curso.proyectotienda.services.ProfileService;
 @RestController
 @Data
 @RequestMapping("/once")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProfileRestController {
 	
 	@Autowired
@@ -196,12 +199,11 @@ public class ProfileRestController {
 	 * utilizando una cadena de texto o una expresión de plantilla, similar a otras anotaciones de mapeo como @GetMapping o @PostMapping.
 	 * Aquí tienes un ejemplo de cómo se puede usar @PatchMapping en un controlador de Spring: */
 	@PatchMapping("/profiles/save")
-	@CrossOrigin(origins = "*")
-	public Profile crearProfile(@RequestBody ProfileDto profileDto) {		
-		 return getProfileService().crearProfile(profileDto);
-	}
-	
-	
+	public Profile crearProfile(@RequestBody ProfileDto profileDto) {	
+		System.out.println(profileDto);
+	    return getProfileService().crearProfile(profileDto);
+	}	
+}	
 	
 	
 	
@@ -212,13 +214,12 @@ public class ProfileRestController {
 	
 	/*
 	 * BACK
-	 * -restcontrolador --> pach 
+	 * -restcontrolador --> patch 
 	 * -service --> profileUserDto 
 	 * -CRUD --> getProfileUserDto
 	 * 
-	 * ProfileResController -> ProfileService ->  ProfileCRUDRepository -> ProfileDto, ProfileUserDto, Profile
+	 * ProfileResController -> ProfileService ->  ProfileCRUDRepository -> Profile (ProfileDto, ProfileUserDto)
 	 * 
 	 * http://localhost:8080/api/v1/profilesPaginado?size=2&page=0&sort=id,asc
 	*/
 
-}
