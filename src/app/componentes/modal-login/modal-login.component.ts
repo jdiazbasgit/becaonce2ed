@@ -125,9 +125,9 @@ export class ModalLoginComponent {
 
   ModoPruebaMeterTokenValidoYampliarInactividad() {
     this.timeout += 10000000
-    sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
-    sessionStorage['user'] = "BOTIN"
-    sessionStorage['rol'] = "ROLE_USER"
+    sessionStorage['token'] = "Bearer $2a$05$YE2o5B5Qm7tJvpmZTvK0yOYwhmqvQEg/ucKwciNrFf0wMewHPwBg6"
+    sessionStorage['user'] = "Dios"
+    sessionStorage['rol'] = "ROLE_ADMIN"
     console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.timeout + "ms" +
       "\ntoken: " + sessionStorage['token'] +
       "\nuser: " + sessionStorage['user'] +
