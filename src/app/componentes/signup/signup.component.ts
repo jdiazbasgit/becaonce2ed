@@ -85,17 +85,18 @@ export class SignupComponent {
     if (this.imageContent) {
       this.image = this.imageContent.toString();
     }
-    
+
     this.documenttype = '613';
     this.cardtype = '374';
 
     const formValue = this.signupForm.value;
     const signup = new SignupBean(this.id, this.image || '', formValue.firstname, formValue.lastname, formValue.identification, formValue.creditcard, formValue.email, formValue.city, formValue.country, formValue.phone, formValue.address, formValue.postalcode, this.documenttype, this.cardtype, formValue.username, formValue.password);
 
-    this.service.patchSinHeader('http://localhost:8080/once/profiles/save', signup)
+    this.service.patch('http://localhost:8080/once/profiles/save', signup)
       .subscribe((dato: boolean) => {
         if (dato) {
           this.responseAlert = "correcto";
+          this.clearAll();
         } else {
           this.responseAlert = "incorrecto";
         }
