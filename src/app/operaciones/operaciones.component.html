@@ -8,10 +8,6 @@
     </div>
     <div class="form-group">
       <label for="origen">Cuenta de Origen: {{obtenerCuentaElegida()}}</label>
-      <!-- <select [(ngModel)]="cuentaOrigen" name="origen">
-        <option value="0">Selecciona Cuenta de Origen...</option>
-        <option *ngFor="let cuenta of cuentas" [value]="cuenta.id">{{ cuenta.numero }}</option>
-      </select> -->
     </div>
 
     <div class="form-group">
@@ -19,13 +15,12 @@
       <select [(ngModel)]="cuentaDestino" name="destino">
         <option value="0">Selecciona Cuenta de Destino...</option>
         <ng-container *ngFor="let cuenta of cuentas">
-          <option *ngIf="cuenta.number != obtenerCuentaElegida()" [value]="cuenta.id">{{ cuenta.number }}</option>
+          <option *ngIf="cuenta.number !== obtenerCuentaElegida()" [value]="cuenta.id">{{ cuenta.number }}</option>
         </ng-container>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="concepto">Concepto:</label>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">
@@ -40,7 +35,7 @@
       </div>
     </div>
 
-    <h1>{{mensaje}}</h1>
+    <h1 class="text-danger">{{mensaje}}</h1>
 
     <div class="btn-group">
       <button class="btn btn-success" (click)="realizarMovimiento('Ingreso')">Ingresar</button>
@@ -49,8 +44,10 @@
     </div>
 
     <p class="text-center">Último movimiento: {{ ultimoMovimiento?.tipo }} - {{ ultimoMovimiento?.concepto }} - {{
-      ultimoMovimiento?.fecha |
-      date: 'dd/MM/yyyy' }}</p>
-    <p class="text-center">Saldo actual: {{ saldo }}</p>
+      ultimoMovimiento?.fecha | date: 'dd/MM/yyyy' }}</p>
+    <p class="text-center">Importe seleccionado: {{ monto }}</p>
+    <p class="text-center">Concepto seleccionado: {{ obtenerNombreConcepto() }}</p>
+
+    <p class="text-center">Saldo actual de la cuenta: {{ saldo }}</p>
   </div>
 </div>
