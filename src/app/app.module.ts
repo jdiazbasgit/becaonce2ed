@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavComponent } from './componentes/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -98,7 +99,8 @@ import { RouterModule } from '@angular/router';
     MatDialogModule,
     NgIf,
     RouterModule,
-    MatRadioModule
+    MatRadioModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

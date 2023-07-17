@@ -10,6 +10,8 @@ import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/ro
   templateUrl: './modal-login.component.html'
 })
 export class ModalLoginComponent {
+  @Output() registerclicked: EventEmitter<void> = new EventEmitter<any>();
+  isBlurred : boolean = false;
   hide = true;
   logado = false;
   user: string = "";
@@ -31,6 +33,10 @@ export class ModalLoginComponent {
 
   ) { }
 
+  handlerRegisterClick(): void{
+    this.registerclicked.emit();
+  }
+
   ngDoCheck() {
     if (sessionStorage.getItem('token') != null && !this.logado == false) {
       this.logado = true;
@@ -48,6 +54,8 @@ export class ModalLoginComponent {
       }, this.timeout);
     }
   }
+
+
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
     const userrole = sessionStorage.getItem('rol');
@@ -78,8 +86,7 @@ export class ModalLoginComponent {
           if (datos.token == null) {
             this.inputUser = "";
             this.inputPassword = "";
-            this.elementRef.nativeElement.querySelector('#inputP').blur();
-            this.elementRef.nativeElement.querySelector('#inputU').blur();
+            this.isBlurred = true;
             this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
           }
           if (datos.token != null) {
@@ -102,6 +109,7 @@ export class ModalLoginComponent {
   closeSession() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('rol');
     this.logado = false;
   }
 
@@ -112,5 +120,17 @@ export class ModalLoginComponent {
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  ModoPruebaMeterTokenValidoYampliarInactividad() {
+    this.timeout += 10000000
+    sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
+    sessionStorage['user'] = "BOTIN"
+    sessionStorage['rol'] = "ROLE_USER"
+    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.timeout + "ms" +
+      "\ntoken: " + sessionStorage['token'] +
+      "\nuser: " + sessionStorage['user'] +
+      "\nrol: " + sessionStorage['rol']
+    )
   }
 }

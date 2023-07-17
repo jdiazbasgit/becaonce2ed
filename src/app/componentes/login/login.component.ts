@@ -44,13 +44,9 @@ export class LoginComponent {
     this.dialog.open(ModalLoginComponent);
   }
 
- 
   closeSession() {
     sessionStorage.removeItem('user');
     sessionStorage.removeItem('token');
     this.logado = false;
   }
-
-  
-
 }
