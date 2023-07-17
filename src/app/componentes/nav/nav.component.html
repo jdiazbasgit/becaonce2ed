@@ -1,37 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
- 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <ul class="navbar-nav w-100 d-flex justify-content-between">
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="home">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="usuarios">Usuarios</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="roles">Roles</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="categorias">Categorias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="subcategorias">Subcategorias</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="product">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="conf">Configuración</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="tipoDocumentos">Documentos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="tipoTarjetas">Medios de pago</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" routerLink="cesta">Mi cesta</a>
-      </li>
-    </ul>
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="home">Inicio</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="bi bi-person"></i> Inicio de sesión
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <i class="bi bi-basket"></i> Mi cesta
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
+
