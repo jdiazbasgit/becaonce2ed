@@ -13,9 +13,9 @@
         </tr>
         <tr *ngFor="let soldProductBean of cestas; let i=index">
             <td class="text-center">{{soldProductBean.description}}</td>
-            <td class="text-center">{{soldProductBean.priceUnitario}}</td>
+            <td class="text-center">{{numberFormat(soldProductBean.priceUnitario)}}</td>
             <td class="text-center">{{soldProductBean.quantity}}</td>
-            <td class="text-center">{{soldProductBean.priceTotal}}</td>
+            <td class="text-center">{{numberFormat(soldProductBean.priceTotal)}}</td>
             <td class="text-center">{{soldProductBean.estado}}</td>
             <td class="text-center">{{soldProductBean.fecha}}</td>
             <td class="text-center">

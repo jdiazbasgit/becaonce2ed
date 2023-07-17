@@ -182,4 +182,9 @@ export class SoldProductComponent implements OnInit {
       this.ngOnInit();
   }
 
+  numberFormat(amount: number | bigint){
+    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
+  }
+
+
 }
