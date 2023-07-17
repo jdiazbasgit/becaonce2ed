@@ -122,6 +122,7 @@ export class CuentasComponent {
     .subscribe({
       next: (response) => {
         console.log(response)
+        this.ngOnInit()
         // this.cuentas = cuentas
         // cuentas.forEach((c:any, index:number) => {
         //   this.service.getDatos(this.url+"balance/"+c.number).subscribe({

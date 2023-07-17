@@ -44,16 +44,18 @@
     </ng-container>
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
-        <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
+        <h2 class="mb-5">Crea tu cuenta en segundos:</h2>
         <div class="p-5 d-flex me-5">
             <img src="assets/cajero.png" class="cajero float-start">
             <div class="mx-5 justify-content-end">
                 <h2>Nuestros expertos financieros recomiendan:</h2>                
-                <div class="bloqueCrearCuenta mt-2 pt-2">
-                    <div *ngFor="let typesAccount of typesAccounts" class="shadow p-2 m-2">
-                      <h2 class="fondo-primario texto-resaltad text-center">{{typesAccount.description}}</h2>
-                      <h4>ytr</h4>
-                      <p class="CrearCuentaDescripcion">Pinnipeds, commonly known as seals</p>
+                <div class="bloqueCrearCuenta mt-4 pt-2">
+                    <div *ngFor="let typesAccount of typesAccounts" class="shadow bg-white texto-secundario p-2 m-2">
+                      <h2 class="text-center">{{typesAccount.description}}</h2>
+                      <h4 class="mx-2 p-2">Disfruta de las ventajas del banco online con la {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h4>
+                      <p class="text-end ms-auto w-75 px-5">Consulta condiciones con tu gestor. No tenemos una columna con detalles que poner aquí y por eso todas son iguales. Work in progress!
+                        
+                      </p>
                       <button class="btn btn-success" (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">Lo quiero!</button>
                     </div>
                 </div>  
