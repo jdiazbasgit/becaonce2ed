@@ -62,7 +62,7 @@ export class HazteClienteComponent implements OnInit {
   mensaje: string
   passwordVisible: boolean = false;
   activo: boolean = true
-  previsualizacionURL: string = "s";
+  previsualizacionURL: string = "";
 
 
 
@@ -101,7 +101,7 @@ export class HazteClienteComponent implements OnInit {
 
   ngOnInit() {
 
-    this.identificationTypeServices.getDatos(this.urlIdentificationTypes).subscribe((datos: any) => {
+    this.identificationTypeServices.getDatosSinHeader(this.urlIdentificationTypes).subscribe((datos: any) => {
       this.identificationTypes = datos._embedded.identificationTypes
       console.log("identificadores : " + this.identificationTypes)
     })
@@ -114,7 +114,7 @@ export class HazteClienteComponent implements OnInit {
     const file: File = event.target.files[0];
 
     if (file) {
-      if (file.size > 65535 ) {
+      if (file.size > 1000000 ) {
        this.mensajeImage2='El tamaño de la imagen excede los bytes .';
         return;
       }
@@ -124,11 +124,13 @@ export class HazteClienteComponent implements OnInit {
         const imageBytes = new Uint8Array(e.target.result);
         this.image = Array.from(imageBytes);
         this.previsualizacion= this.image;
+        this.image= event.target.files[0];
 
         const blob = new Blob([imageBytes], { type: file.type });
       this.previsualizacionURL = URL.createObjectURL(blob);
     };
       reader.readAsArrayBuffer(file);
+    
     }
   }
 
@@ -159,7 +161,7 @@ export class HazteClienteComponent implements OnInit {
       return
     }
 
-    this.rolservice.patch(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
+    this.rolservice.patchSinHeader(this.urlComprobar, new ProfileUserDtoStringBean(this.email, this.phone, this.user, this.identification)).subscribe((datos: any) => {
       if (datos.email) {
         this.mensajeEmail = "Email ya Existe"
         this.activo = true
@@ -189,10 +191,11 @@ export class HazteClienteComponent implements OnInit {
   guardaDatos() {
 
 
-    this.profilServices.patch(this.urlProfile,
+    this.profilServices.patchSinHeader(this.urlProfile,
       new ProfileBeans(this.name, this.secondName, this.identification, this.phone, this.email, this.identificationType, this.user, this.image, this.password))
       .subscribe((dato: boolean) => {
         if (dato) {
+          
           this.mensaje = "Grabacion realizada correctamente";
           this.name=""
           this.secondName=""
@@ -204,6 +207,7 @@ export class HazteClienteComponent implements OnInit {
           this.image=[0]
           this.previsualizacion=[0]
           this.password=""
+          
         } else {
           this.mensaje = "La grabación no se ha realizado";
       

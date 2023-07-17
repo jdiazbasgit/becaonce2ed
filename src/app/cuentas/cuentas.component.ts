@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ProyectosService } from '../servicios/proyectos.service';
 import UserNameBean from '../beans/UserNameBean';
 import { Router } from '@angular/router';
@@ -13,9 +13,11 @@ export class CuentasComponent {
 
   usuario: string = ""
   url: string = "http://localhost:8080/once/"
-  cuentas: any
+  cuentas: any[] = []
   saldo: number[] = []
   saldoTotal: number = 0
+  fees: any[] = []
+  typesAccounts: any[] = []
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -24,8 +26,12 @@ export class CuentasComponent {
 
 
   ngOnInit(){
+    this.getFees()
+    this.getTypesAccounts()
+    
     this.usuario = sessionStorage['user']
     console.log(this.usuario)
+    console.log(this.cuentas)
     this.service.patch(this.url+"currentsAccounts",new UserNameBean(this.usuario))
     .pipe(
       catchError(error => {
@@ -54,13 +60,44 @@ export class CuentasComponent {
           })
         })
       }
-    })    
-    
+    })
+  }
+
+  yaTieneCuentas(){
+    if(this.cuentas.length !== 0)
+    return true
+    return false
   }
 
   elegirCuenta(cuenta:number, id:number){
     sessionStorage['cuenta'] = cuenta
     sessionStorage['idCuenta'] = id
-    this.router.navigateByUrl("detalles")
+    window.scrollTo(0,0)
+  }
+
+  getFees() {
+    this.service.getDatos(this.url+"fees")
+      .subscribe({
+        next: (fees) => {
+          console.log(fees)
+          this.fees = fees._embedded.fees
+          fees._embedded.fees.forEach((element: any) => {
+            console.log(element.current)
+
+          });
+        }
+      })
+  }
+  getTypesAccounts() {
+    this.service.getDatos(this.url+"typesAccounts")
+      .subscribe({
+        next: (typesAccounts) => {
+          console.log(typesAccounts)
+          this.typesAccounts = typesAccounts._embedded.typeAccounts
+          typesAccounts._embedded.typeAccounts.forEach((element: any) => {
+            console.log(element.description)
+          });
+        }
+      })
   }
 }

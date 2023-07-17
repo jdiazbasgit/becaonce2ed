@@ -1,54 +1,61 @@
 <div class="container">
 
-    <div class="my-4 p-5 border-bottom texto-secundario shadow">
-        <h1>Bienvenido {{usuario}}</h1>
-        <p>Lorem ipsum...</p>
+    <div class="mb-4 p-5 border-bottom texto-secundario shadow">
+        <h1>Bienvenido {{usuario}} a tu Área personal</h1>
+        <p>Consulta tu saldo total o elige una cuenta para ver más detalles, operar o consultar movimientos</p>
     </div>
-    <table class="my-4 border-bottom fondo-primario texto-resaltado shadow">
-        <tr>
-            <td>
-                <div class="mt-4 ms-5">
-                    <h2>Saldo total disponible:</h2>
-                </div>
-                <div class="ms-5">
-                    <h5>SALDO TOTAL
-                        {{saldoTotal}}
-                    </h5>
-                 </div>
-            </td>
-            <td>
-                <img src="assets/boveda.png" class="w-50 float-end">
-            </td>
-        </tr>
-    </table>
-
-    <div class="my-4 p-5 border-bottom shadow">
-        <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
-        <div *ngFor="let cuenta of cuentas, let i = index" class="mt-4 border-bottom ms-5" role="button" (click)="elegirCuenta(cuenta.number, cuenta.id)">
-            <div class="d-flex justify-content-between texto-resaltado">
-                <h5>
-                    <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
-                            width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                            <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
-                            <path d="M3 6l0 13"></path>
-                            <path d="M12 6l0 13"></path>
-                            <path d="M21 6l0 13"></path>
-                        </svg>{{cuenta.number}}
-                    </p>
-                </h5>
-
-                <div>
-                    SALDO DE LA CUENTA
-                    {{saldo[i]}}
-                </div>
+    <ng-container *ngIf="yaTieneCuentas()">
+        <div class="my-4 border-bottom fondo-primario texto-resaltado shadow d-flex">
+            <div class="mt-4 ms-5 flex-fill justify-content-end">
+                <h2>Saldo total disponible:</h2>
+                <h5 class="ms-5 pt-2">{{saldoTotal}}€</h5>
             </div>
-            <div class="d-flex justify-content-between texto-secundario mb-3">
-                <h6 class="ms-4">{{cuenta.typeAccount.description}}</h6>
+
+            <img src="assets/boveda.png" class="w-25 float-end">
+        </div>
+        <div class="my-4 p-5 border-bottom shadow">
+            <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
+            <div *ngFor="let cuenta of cuentas, let i = index" class="mt-4 border-bottom ms-5 lineaCuenta" role="button"
+                (click)="elegirCuenta(cuenta.number, cuenta.id)" routerLink="/detalles">
+                <div class="d-flex justify-content-between texto-resaltado p-2">
+                    <h5>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book mx-2 mb-1"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                <path d="M3 6l0 13"></path>
+                                <path d="M12 6l0 13"></path>
+                                <path d="M21 6l0 13"></path>
+                            </svg>{{cuenta.number}}
+                        </p>
+                    </h5>
+                    <div>
+                        SALDO DE LA CUENTA:
+                        {{saldo[i]}}€
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between texto-secundario mb-3">
+                    <h6 class="ms-4">{{cuenta.typeAccount.description}}</h6>
+                </div>
             </div>
         </div>
+    </ng-container>
 
+    <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
+        <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
+        <select class="form-select">
+            <option value="null" selected>Elige las comisiones</option>
+            <option *ngFor="let fee of fees"
+                [value]="fee._links.self.href.substring(fee._links.self.href.lastIndexOf('/')+1)">{{fee.current}}
+            </option>
+        </select>
+        <select class="form-select">
+            <option value="null" selected>Elige el tipo de cuenta</option>
+            <option *ngFor="let typesAccount of typesAccounts"
+                [value]="typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1)">{{typesAccount.description}}
+            </option>
+        </select>
     </div>
 </div>

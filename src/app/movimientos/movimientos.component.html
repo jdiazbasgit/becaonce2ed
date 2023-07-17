@@ -6,10 +6,17 @@
       <th>Concepto</th>
       <th>Importe</th>
     </tr>
-    <tr *ngFor="let operacion of operaciones">
-      <td>{{ operacion.date }}</td>
-      <td>{{ operacion.current.description }}</td>
+    <tr *ngFor="let operacion of getPaginatedMovimientos()">
+      <td>{{ operacion.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ operacion.description.description }}</td>
       <td>{{ operacion.current }}</td>
     </tr>
   </table>
+</div>
+
+<div class="pagination-container d-flex justify-content-between align-items-center">
+  
+  <button [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)" class="btn btn-success mx-auto">Anterior</button>
+  <span class="page-number">{{currentPage}} / {{totalPages}}</span>
+  <button [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)"class="btn btn-success mx-auto">Siguiente</button>
 </div>
