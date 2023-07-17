@@ -13,6 +13,7 @@ import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
 import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
 import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
+import { SignupComponent } from './componentes/signup/signup.component';
 
 const routes: Routes = [
   {path: '', component: ProductComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'usuarios', component: UserComponent },
   {path: 'home', component: ProductComponent },
   {path: 'cesta', component: SoldProductComponent },
-  {path: 'productosexistentes', component: ExistingProductComponent }
+  {path: 'productosexistentes', component: ExistingProductComponent },
+  {path: 'signup', component: SignupComponent }
 ];
 
 @NgModule({

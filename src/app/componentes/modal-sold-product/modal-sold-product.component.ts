@@ -127,4 +127,8 @@ export class ModalSoldProductComponent implements DoCheck{
     else this.mensaje = "Debes introducir un valor";
   }
 
+  numberFormat(amount: number | bigint){
+    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
+  }
+
 }
