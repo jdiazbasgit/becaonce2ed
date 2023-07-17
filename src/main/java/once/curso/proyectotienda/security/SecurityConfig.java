@@ -31,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeHttpRequests().antMatchers("/once/profiles/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/profiles").permitAll();
+		http.authorizeHttpRequests().antMatchers("/profiles/save").permitAll();
+		http.authorizeHttpRequests().antMatchers("/profiles/save/*").permitAll();
+		
 		http.authorizeHttpRequests().antMatchers("/once/profilesPaginado").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/products/*").permitAll();
 		http.authorizeHttpRequests().antMatchers("/once/products").permitAll();
@@ -60,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeHttpRequests().anyRequest().authenticated();
 		http.csrf().disable();
-		http.cors();
+		http.cors().disable();
 		http.addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 	@Override

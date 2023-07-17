@@ -40,5 +40,4 @@ public class ProfileDto {
 		this.user = user;
 		this.password = password;
 	}
-	
 }
