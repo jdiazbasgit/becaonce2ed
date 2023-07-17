@@ -124,11 +124,13 @@ export class HazteClienteComponent implements OnInit {
         const imageBytes = new Uint8Array(e.target.result);
         this.image = Array.from(imageBytes);
         this.previsualizacion= this.image;
+        this.image= event.target.files[0];
 
         const blob = new Blob([imageBytes], { type: file.type });
       this.previsualizacionURL = URL.createObjectURL(blob);
     };
       reader.readAsArrayBuffer(file);
+    
     }
   }
 
