@@ -11,7 +11,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   identificar(url: string, user: string, pwd: string): Observable<any>{
-    const loginData = new Login(user, pwd);
-    return this.http.post(url, loginData);
+    return this.http.post(url, new Login(user, pwd));
   }
 }

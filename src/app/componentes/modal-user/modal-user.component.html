@@ -13,11 +13,15 @@
                 <label for="usuario">Usuario: </label>
                 <input type="text" name="usuario" [(ngModel)]="usuario" value="{{usuarioPlaceHolder}}"><br><br>
 
-                <label for="contraseña">Contraseña: </label>
-                <input type="text" name="contraseña" [(ngModel)]="password" value="{{passwordPlaceHolder}}"><br><br>
 
-                <label for="habilitar">Habilitar: </label>
-                <input type="text" name="habilitar" [(ngModel)]="enabled" value="{{enabledPlaceHolder}}"><br><br>
+                <section class="example-section">
+                    <label class="example-margin">Align:</label>
+                    <mat-radio-group [(ngModel)]="enabledRadioButton">
+                      <mat-radio-button class="example-margin" value="after">True</mat-radio-button>
+                      <mat-radio-button class="example-margin" value="before">False</mat-radio-button>
+                    </mat-radio-group>
+                  </section><br>
+
 
                 <label for="rol">Roles: </label>
                 <select [(ngModel)]="rol">
