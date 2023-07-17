@@ -48,13 +48,13 @@ export class ProductComponent implements OnInit{
     this.getData();
   }
 
-  agregar(profile: string, product: Product){
+  agregar(profileFalso: string, product: Product){
     this.modal.id = 0; // SIEMPRE CERO, es para añadir (save, no update) nuevo registro en la tabla soldProduct
     this.modal.quantity = 0; // EN PRINCIPIO SIEMPRE CERO, es para que ponga la cantidad preferida
     this.modal.existingProduct = product._links.self.href;
     this.modal.price = product.price;
     this.modal.date = new Date("1900-01-01");
-    this.modal.profile = profile; // FALSO
+    this.modal.profile = profileFalso; // FALSO
     this.modal.basket = false;
     //this.modal.fin = false;
 
