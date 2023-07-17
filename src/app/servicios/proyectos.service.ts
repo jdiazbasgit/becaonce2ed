@@ -26,9 +26,8 @@ export class ProyectosService {
     // return this.httpClient.post(url, { headers: { 'Authorization': sessionStorage['token'] } });
     const headers = new HttpHeaders();
     const token = sessionStorage.getItem('token');
-    if (token != null)
-      headers.set('Authorization', token);
-    return this.httpClient.post(url, { headers });
+    //if (token != null)
+    return this.httpClient.post(url, objeto, { headers: { 'Authorization': sessionStorage['token'] } });
   }
 
   delete(url: string): Observable<any> {
