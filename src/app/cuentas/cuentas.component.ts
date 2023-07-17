@@ -100,4 +100,40 @@ export class CuentasComponent {
         }
       })
   }
+
+  crearCuenta(idTypoCuenta:number){
+    let jsonParaEnviar = {      
+      "user": sessionStorage['user'],
+      "typeAccount": idTypoCuenta
+    }
+    this.service.saveOrUpdate(this.url+"currentsAccountsCreate",jsonParaEnviar)
+    .pipe(
+      catchError(error => {
+        console.log(error)
+        console.log(sessionStorage['token'])
+        if (error.status === 401 || error.status === 403) {
+          sessionStorage.clear()
+          console.log("no autorizado")
+          this.router.navigateByUrl('/landing')
+        }
+        return ""
+      })
+    )
+    .subscribe({
+      next: (response) => {
+        console.log(response)
+        this.ngOnInit()
+        // this.cuentas = cuentas
+        // cuentas.forEach((c:any, index:number) => {
+        //   this.service.getDatos(this.url+"balance/"+c.number).subscribe({
+        //     next: (saldo) => {
+        //       this.saldo[index] = saldo
+        //       console.log(saldo)
+        //       this.saldoTotal = this.saldoTotal + saldo
+        //     }
+        //   })
+        // })
+      }
+    })
+  }
 }
