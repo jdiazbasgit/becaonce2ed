@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { LoginService } from 'src/app/servicios/login.service';
 import { catchError } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-modal-login',
@@ -25,7 +26,7 @@ export class ModalLoginComponent {
   isLoading = false;
   notActive: boolean = false;
   constructor(
-    private dialogRef: MatDialogRef<ModalLoginComponent>,
+    private dialogRef: MatDialogRef<NavComponent>,
     private loginService: LoginService,
     private dialog: MatDialog,
     private elementRef: ElementRef,
