@@ -11,7 +11,7 @@
             <th class="text-center">FECHA DE PAGO</th>
             <th class="text-center">ACCIONES</th>
         </tr>
-        <tr *ngFor="let soldProductBean of cestas; let i=index">
+        <tr *ngFor="let soldProductBean of cestas">
             <td class="text-center">{{soldProductBean.description}}</td>
             <td class="text-center">{{numberFormat(soldProductBean.priceUnitario)}}</td>
             <td class="text-center">{{soldProductBean.quantity}}</td>

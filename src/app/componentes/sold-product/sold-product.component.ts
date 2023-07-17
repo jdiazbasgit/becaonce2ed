@@ -26,12 +26,16 @@ export class SoldProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    /*
     console.log(" ");
     console.log(" - ngOnInit() de sold-product.ts");
+    */
     this.cestas = [];
     this.service.getDatos("http://localhost:8080/once/soldProducts")
     .subscribe((datos: any) => {
       if (datos._embedded) {
+        let cestaPushed: any[] = [];
         datos._embedded.soldProducts.forEach((s:any) => {
           this.service.getDatos(s._links.existingProduct.href)
           .subscribe((e:any) => {
@@ -44,6 +48,7 @@ export class SoldProductComponent implements OnInit {
             let date = new Date(soldProductBean.date);
             let profile = soldProductBean.profile;
             let basket = soldProductBean.basket;
+            //let description = e.description + " (" + id + ")";
             let description = e.description;
             let priceUnitario = e.price;
             let priceTotal = priceUnitario*quantity;
@@ -51,10 +56,13 @@ export class SoldProductComponent implements OnInit {
             let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
 
             let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
-            this.cestas.push(detalleExistingProduct);
-          })
+
+            cestaPushed.push(detalleExistingProduct);
+            cestaPushed.sort((a, b) => a.id - b.id);
+          });
         });
-      } else console.log("Datos de la cesta esta vacio");
+        this.cestas = cestaPushed;
+      };
     })
   }
 
@@ -83,7 +91,6 @@ export class SoldProductComponent implements OnInit {
   }
 
   eliminar(id: number) {
-    console.log("id: "+id);
     if (confirm("¿Esta seguro de borrar el producto de cesta?")) {
       this.service.delete("http://localhost:8080/once/soldProducts/" + id)
         .subscribe((dato: boolean) => {
@@ -126,8 +133,7 @@ export class SoldProductComponent implements OnInit {
       */
 
       if (cesta.quantity<=e.stock) {
-        console.log("Ubicacion del paso de PREGUNTAR")
-        if (confirm("¿Esta seguro de comprar la cesta seleccionada?")) {
+        if (confirm("¿Esta seguro de comprar el producto seleccionado?")) {
 
           // DESCONTAR CANTIDAD DE STOCK
 
@@ -185,6 +191,5 @@ export class SoldProductComponent implements OnInit {
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
   }
-
 
 }
