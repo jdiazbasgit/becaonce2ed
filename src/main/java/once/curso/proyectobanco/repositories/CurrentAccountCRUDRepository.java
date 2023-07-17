@@ -11,4 +11,7 @@ public interface CurrentAccountCRUDRepository extends PagingAndSortingRepository
 	@Query("from CurrentAccount as ca where ca.user.user=:userName")
 	public List<CurrentAccount> getCurrentAccountsByUser(String userName);
 	
+	@Query("SELECT c.number FROM CurrentAccount c WHERE c.id = (SELECT MAX(cc.id) FROM CurrentAccount cc)")
+	public String getLastCurrentAccount();
+	
 }
