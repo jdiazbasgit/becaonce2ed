@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavComponent } from './componentes/nav/nav.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,8 +34,13 @@ import { ModalLoginComponent } from './componentes/modal-login/modal-login.compo
 import { HomeComponent } from './componentes/home/home.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatIconModule} from '@angular/material/icon';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgIf } from '@angular/common';
+
 import { ModalProfilesComponent } from './componentes/modal-profiles/modal-profiles.component';
 import { ModalExistingProductsComponent } from './componentes/modal-existing-products/modal-existing-products.component';
 import { RouterModule } from '@angular/router';
@@ -81,15 +87,20 @@ import { AdminPanelComponent } from './componentes/admin-panel/admin-panel.compo
     HttpClientModule,
     MatSlideToggleModule,
     MatTableModule,
+    MatIconModule,
     MatPaginatorModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserModule,
     AppRoutingModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    NgIf,
     RouterModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

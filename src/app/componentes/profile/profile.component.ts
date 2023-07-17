@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { ModalProfilesComponent } from '../modal-profiles/modal-profiles.component';
 import { ProfileService } from '../../servicios/profile.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { ModalLoginComponent } from '../modal-login/modal-login.component';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +13,8 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ProfileComponent implements OnInit {
   @ViewChild(ModalProfilesComponent, { static: false })
   modal: ModalProfilesComponent | undefined
+  @ViewChild(ModalLoginComponent, { static: false })
+  modalLogin: ModalLoginComponent | undefined
 
   title = "Lista de perfiles";
   columns: string[] = ['name', 'secondName', 'identification', 'creditCard', 'address', 'postalCode', 'country', 'email', 'city', 'phone', 'image'];
@@ -74,6 +77,10 @@ export class ProfileComponent implements OnInit {
         this.modal.openModal('', '', 'add');
       }
     }
+  }
+
+  handlerRegisterClick(): void{
+    this.openModal('','','add');
   }
 
   delProfile(id: string) {

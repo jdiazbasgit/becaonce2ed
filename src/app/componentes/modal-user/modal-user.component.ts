@@ -7,6 +7,11 @@ import { UserService } from 'src/app/servicios/users.service';
   templateUrl: './modal-user.component.html'
 })
 export class ModalUserComponent implements DoCheck{
+  //radiobutton Angular Material
+  checked = false;
+  indeterminate = false;
+  enabledRadioButton: 'before' | 'after' = 'after';
+  disabled = false;
   
   id : number = 0;
   usuario: string;

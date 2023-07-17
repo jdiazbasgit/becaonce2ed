@@ -21,7 +21,7 @@ export class UserComponent implements OnInit{
   @Input() eventoDelHijo: string = "";
 
     constructor(private service: UserService, private rolesService: RolesService){
-    this.titulo = "Tipos de Usuarios"
+    this.titulo = "Usuarios"
     this.usuarios = [];
     this.claves = [];
     this.habilitados = [];
