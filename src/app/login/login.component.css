@@ -13,7 +13,7 @@
     align-items: center;
     margin-left: 30px;
     user-select: none;
-    /* cursor: none; */
+    cursor: grab;
 }
 
 .logoCabecera h4 {
