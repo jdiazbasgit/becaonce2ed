@@ -16,16 +16,46 @@
 <div>
 
 </div>
-<div class="cabecera texto-primario fondo-secundario">
-    <div class="logoCabecera" routerLink="landing">
-        <span>
-            <h1>B</h1>
-            <h4>ANK</h4>
-            <h1>I</h1>
-            <h4>NSERT</h4>
-        </span>
+<div class="cabecera texto-primario fondo-secundario">    
+    <div class="logoCabecera">
+        <span class="letrero">
+            <table>
+                <tr>
+                    <td class="tdLetraB">
+                        <h1><span class="letraB">B</span></h1>
+                    </td>
+                    <td class="tdLetraA">
+                        <h4><span class="letraA">A</span></h4>
+                    </td>
+                    <td class="tdLetraN">
+                        <h4><span class="letraN">N</span></h4>
+                    </td>
+                    <td class="tdLetraK">
+                        <h4><span class="letraK">K</span></h4>
+                    </td>
+                    <td class="tdLetraI">
+                        <h1><span class="letraI">I</span></h1>
+                    </td>
+                    <td class="tdLetraN2">
+                        <h4><span class="letraN2">N</span></h4>
+                    </td>
+                    <td class="tdLetraS">
+                        <h4><span class="letraS">S</span></h4>
+                    </td>
+                    <td class="tdLetraE">
+                        <h4><span class="letraE">E</span></h4>
+                    </td>
+                    <td class="tdLetraR">
+                        <h4><span class="letraR">R</span></h4>
+                    </td>
+                    <td class="tdLetraT">
+                        <h4><span class="letraT">T</span></h4>
+                    </td>
+                </tr>
+            </table>
+        </span>              
     </div>
-    <div class="tiempoCabecera texto-resaltado">
+    <!-- <div class="tiempoCabecera texto-resaltado">
         <button type="button" class="btn texto-primario fondo-secundario" data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             15/05/2023 01:54
@@ -48,12 +78,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div>
-        <button class="button-success" type="button" (click)="getFees()">get fees</button>
-    </div>
-    <div>
-        <button class="button-success" type="button" (click)="meterTokenfalso()">meter token falso</button>
     </div> -->
     <div *ngIf="!logado" class="fondoBtnLogin">
         <button class="btnHazteCliente" type="button" data-bs-toggle="collapse"
