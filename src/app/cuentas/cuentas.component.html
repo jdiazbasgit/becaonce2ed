@@ -8,7 +8,7 @@
         <div class="my-4 border-bottom fondo-primario texto-resaltado shadow d-flex">
             <div class="mt-4 ms-5 flex-fill justify-content-end">
                 <h2>Saldo total disponible:</h2>
-                <h5 class="ms-5 pt-2">{{saldoTotal}}€</h5>
+                <h5 class="ms-5 pt-4">Atesoras en nuestras arcas un total de {{saldoTotal | currency:'EUR':''}}€</h5>
             </div>
 
             <img src="assets/boveda.png" class="w-25 float-end">
@@ -33,7 +33,7 @@
                     </h5>
                     <div>
                         SALDO DE LA CUENTA:
-                        {{saldo[i]}}€
+                        {{saldo[i] | currency:'EUR':''}}€
                     </div>
                 </div>
                 <div class="d-flex justify-content-between texto-secundario mb-3">
@@ -44,18 +44,22 @@
     </ng-container>
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
-        <h2 class="texto-secundario mb-3">Crea tu cuenta en segundos:</h2>
-        <select class="form-select">
-            <option value="null" selected>Elige las comisiones</option>
-            <option *ngFor="let fee of fees"
-                [value]="fee._links.self.href.substring(fee._links.self.href.lastIndexOf('/')+1)">{{fee.current}}
-            </option>
-        </select>
-        <select class="form-select">
-            <option value="null" selected>Elige el tipo de cuenta</option>
-            <option *ngFor="let typesAccount of typesAccounts"
-                [value]="typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1)">{{typesAccount.description}}
-            </option>
-        </select>
+        <h2 class="mb-5">Crea tu cuenta en segundos:</h2>
+        <div class="p-5 d-flex me-5">
+            <img src="assets/cajero.png" class="cajero float-start">
+            <div class="mx-5 justify-content-end">
+                <h2>Nuestros expertos financieros recomiendan:</h2>                
+                <div class="bloqueCrearCuenta mt-4 pt-2">
+                    <div *ngFor="let typesAccount of typesAccounts" class="shadow bg-white texto-secundario p-2 m-2">
+                      <h2 class="text-center">{{typesAccount.description}}</h2>
+                      <h4 class="mx-2 p-2">Disfruta de las ventajas del banco online con la {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h4>
+                      <p class="text-end ms-auto w-75 px-5">Consulta condiciones con tu gestor. No tenemos una columna con detalles que poner aquí y por eso todas son iguales. Work in progress!
+                        
+                      </p>
+                      <button class="btn btn-success" (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">Lo quiero!</button>
+                    </div>
+                </div>  
+            </div>                      
+        </div>
     </div>
 </div>

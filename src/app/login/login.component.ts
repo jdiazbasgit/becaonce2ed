@@ -34,6 +34,12 @@ export class LoginComponent {
     //this.router.navigateByUrl("cuentas")
     //****}
     //this.deslogarse()
+
+    // const cursor = document.querySelector(".logoalternativo")
+    // window.addEventListener("mousemove",function(e){
+    //   cursor?.setAttribute("style", "left:"+ (e.x-100)+"px; top:"+ (e.y-100)+"px")
+    // })
+   
   }
 
   ngDoCheck() {
@@ -43,7 +49,7 @@ export class LoginComponent {
     }
     if (!this.logado && this.router.url != "/landing") {
       this.router.navigateByUrl("landing")
-    }
+    }    
     if (!this.sinActividad && this.logado) {
       clearTimeout(this.temporizadorDeInactividad)
       this.temporizadorDeInactividad = setTimeout(() => {

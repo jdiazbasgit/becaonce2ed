@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -36,14 +36,11 @@ import { PanelAdministradorComponent } from './panel-administrador/panel-adminis
 import { ModalAwardsFineComponent } from './componentes/modal-awards-fine/modal-awards-fine.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { UserService } from './servicios/user.service';
 
 
 
@@ -82,10 +79,6 @@ import { UserService } from './servicios/user.service';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
- 
-   
-  
- 
   ],
   imports: [
     CommonModule,
@@ -94,19 +87,17 @@ import { UserService } from './servicios/user.service';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-   MatFormFieldModule, 
-   MatInputModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
-     MatIconModule,
-     MatCardModule
-    
-      
-
+    MatIconModule,
+    MatCardModule
   ],
-  
-  providers: [
 
-     ],
-  bootstrap: [AppComponent]
+  providers: [
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

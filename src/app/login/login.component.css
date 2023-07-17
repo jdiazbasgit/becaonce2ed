@@ -7,27 +7,539 @@
     /* color: white; */
 }
 
-.logoCabecera span {
+.logoCabecera .letrero {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 30px;
     user-select: none;
-    cursor: pointer;
+    /* cursor: none; */
 }
 
 .logoCabecera h4 {
     font-size: 1.8em;
     font-weight: 900;
-    text-decoration: underline;
+    margin: auto;
+    margin-left: -2px;
+    margin-top: -5px;
+    /* text-decoration: underline; */
 }
 
 .logoCabecera h1 {
-    font-size: 2.8em;
+    font-size: 3.0em;
     font-weight: 700;
     text-decoration: none;
 }
 
+.letraA, .letraN, .letraK, .letraI, .letraS, .letraR {
+    opacity: 0;
+    animation: aparecer ease 1.4s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.letraB, .letraN2, .letraE, .letraT {
+    opacity: 0;
+    animation: aparecer ease 1.2s;
+    animation-delay: 2.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+ 
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}
+
+/* LETRAS DEL LOGO*/
+table{
+    border-collapse: collapse;
+}
+.letrero td {
+    position: relative;
+    width: 23px;
+    /* height: 50px; */
+    text-align: center;
+}
+
+.letraB {
+    display: block;
+}
+.letraB:hover {
+    color: transparent;
+}
+.tdLetraB:hover .letraB {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraB:hover:before {
+    content: "⠨⠃";
+    display: block;
+    position: absolute;
+    margin-top: 17px;
+    margin-left: 0px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraB:not(:hover):after {
+    content: "⠨⠃";
+    display: block;
+    position: absolute;
+    margin-top: -48.5px;
+    margin-left: 0px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraB:not(:hover) .letraB {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+
+.letraA {
+    display: block;    
+}
+.letraA:hover {
+    color: transparent;
+}
+.tdLetraA:hover .letraA {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraA:hover:before {
+    content: "⠨⠁";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraA:not(:hover):after {
+    content: "⠨⠁";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraA:not(:hover) .letraA {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraN {
+    display: block;
+}
+.letraN:hover {
+    color: transparent;
+}
+.tdLetraN:hover .letraN {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraN:hover:before {
+    content: "⠨⠝";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraN:not(:hover):after {
+    content: "⠨⠝";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraN:not(:hover) .letraN {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraK {
+    display: block;
+}
+.letraK:hover {
+    color: transparent;
+}
+.tdLetraK:hover .letraK {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraK:hover:before {
+    content: "⠨⠅";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraK:not(:hover):after {
+    content: "⠨⠅";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -8px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraK:not(:hover) .letraK {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraI {
+    display: block;
+}
+.letraI:hover {
+    color: transparent;
+}
+.tdLetraI:hover .letraI {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraI:hover:before {
+    content: "⠨⠊";
+    display: block;
+    position: absolute;
+    margin-top: 17px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraI:not(:hover):after {
+    content: "⠨⠊";
+    display: block;
+    position: absolute;
+    margin-top: -48.5px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraI:not(:hover) .letraI {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraN2 {
+    display: block;
+}
+.letraN2:hover {
+    color: transparent;
+}
+.tdLetraN2:hover .letraN2 {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraN2:hover:before {
+    content: "⠨⠝";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraN2:not(:hover):after {
+    content: "⠨⠝";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraN2:not(:hover) .letraN2 {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraS {
+    display: block;
+}
+.letraS:hover {
+    color: transparent;
+}
+.tdLetraS:hover .letraS {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraS:hover:before {
+    content: "⠨⠎";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraS:not(:hover):after {
+    content: "⠨⠎";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -10px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraS:not(:hover) .letraS {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraE {
+    display: block;
+}
+.letraE:hover {
+    color: transparent;
+}
+.tdLetraE:hover .letraE {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraE:hover:before {
+    content: "⠨⠑";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraE:not(:hover):after {
+    content: "⠨⠑";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraE:not(:hover) .letraE {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraR {
+    display: block;
+}
+.letraR:hover {
+    color: transparent;
+}
+.tdLetraR:hover .letraR {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraR:hover:before {
+    content: "⠨⠗";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraR:not(:hover):after {
+    content: "⠨⠗";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraR:not(:hover) .letraR {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+.letraT {
+    display: block;
+}
+.letraT:hover {
+    color: transparent;
+}
+.tdLetraT:hover .letraT {
+    color: transparent;
+    transition: color .3s forwards ease;
+}
+.tdLetraT:hover:before {
+    content: "⠨⠞";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .5s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+.tdLetraT:not(:hover):after {
+    content: "⠨⠞";
+    display: block;
+    position: absolute;
+    margin-top: -31.5px;
+    margin-left: -11px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    animation-name: aparecer;
+    animation-duration: .3s;
+    animation-delay: 2s;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+.tdLetraT:not(:hover) .letraT {
+    color: currentColor;
+    transition: color 1s 2s ease;
+}
+
+/* h4:not(:hover):after{
+   display: block;
+   content: '';
+   width: 100%;
+   height: 2px;
+   background: white;
+   position: absolute;
+   left: 0;
+   margin-top: -1px;
+   opacity: 0;
+   animation-name: aparecer;
+   animation-duration: 1s;
+   animation-delay: 2s;
+   animation-direction: normal;
+   animation-timing-function: ease-in-out;
+   animation-fill-mode: forwards;
+} */
+
+
+
+/*-------------------------------*/
+
+  
 .tiempoCabecera {
     display: flex;
     justify-content: center;
