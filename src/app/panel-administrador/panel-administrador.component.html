@@ -23,7 +23,12 @@
 
     <select class="form-select" aria-label="Default select example" #select (change)="consultarTabla(select.value)">
       <option selected>Seleccione una tabla...</option>
-      <option value="awardsFines">AwardsFine</option>
+      <ng-container *ngFor="let tabla of listadoTablas">
+        <option value="{{tabla}}">{{tabla}}</option>
+      </ng-container>
+      
+
+      <!-- <option value="awardsFines">AwardsFine</option>
       <option value="awardsFinesConfigurations">AwardsFinesConfiguration</option>
       <option value="awardsFinesTypes">AwardFinesType</option>
       <option value="configurations">Configuration</option>
@@ -36,9 +41,9 @@
       <option value="timingsTypes">TimingsTypes</option>
       <option value="transactions">Transaction</option>
       <option value="transactionsAwardsFines">TransactionsAwardsFine</option>
-      <option value="transactionsProgramers">transactionsProgramer</option>
+      <option value="transactionsProgramers">TransactionsProgramer</option>
       <option value="typesAccounts">TypeAccount</option>
-      <option value="users">User</option>
+      <option value="users">User</option> -->
     </select>
 
     <!-- <h2>{{ tablaAConsultar }} </h2> -->

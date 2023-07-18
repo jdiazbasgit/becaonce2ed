@@ -29,13 +29,27 @@ export class PanelAdministradorComponent {
   jsonForaneas: { [key: string]: any } = {}
   //grupoIdyDescripciones: string[] = []
   mostrarLoading: boolean = false
+  listadoTablas: string[] = []
 
 
-  constructor(private service: ProyectosService, private elementRef: ElementRef) {
+  constructor(private service: ProyectosService, private elementRef: ElementRef) { }
 
+  ngOnInit(){
+    this.obtenerTablas()
   }
+
   activarTabla() {
     this.mostrarTabla = true
+  }
+
+  obtenerTablas() {
+    this.listadoTablas = []
+    this.service.getDatos(this.url+"obtenerTablas")
+    .subscribe({
+      next: (response) => {
+        this.listadoTablas = response
+      }
+    })
   }
 
 
