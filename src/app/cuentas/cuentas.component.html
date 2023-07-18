@@ -14,7 +14,7 @@
             <img src="assets/boveda.png" class="w-25 float-end">
         </div>
         <div class="my-4 p-5 border-bottom shadow">
-            <h2 class="texto-secundario mb-3">Tus cuentas:</h2>
+            <h2 class="texto-secundario mb-3" id="tusCuentas">Tus cuentas:</h2>
             <div *ngFor="let cuenta of cuentas, let i = index" class="mt-4 border-bottom ms-5 lineaCuenta" role="button"
                 (click)="elegirCuenta(cuenta.number, cuenta.id)" routerLink="/detalles">
                 <div class="d-flex justify-content-between texto-resaltado p-2">
@@ -48,18 +48,33 @@
         <div class="p-5 d-flex me-5">
             <img src="assets/cajero.png" class="cajero float-start">
             <div class="mx-5 justify-content-end">
-                <h2>Nuestros expertos financieros recomiendan:</h2>                
-                <div class="bloqueCrearCuenta mt-4 pt-2">
-                    <div *ngFor="let typesAccount of typesAccounts" class="shadow bg-white texto-secundario p-2 m-2">
-                      <h2 class="text-center">{{typesAccount.description}}</h2>
-                      <h4 class="mx-2 p-2">Disfruta de las ventajas del banco online con la {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h4>
-                      <p class="text-end ms-auto w-75 px-5">Consulta condiciones con tu gestor. No tenemos una columna con detalles que poner aquí y por eso todas son iguales. Work in progress!
-                        
-                      </p>
-                      <button class="btn btn-success" (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">Lo quiero!</button>
+                <h3 class="mb-4">Nuestros expertos financieros recomiendan:</h3>
+                <div *ngIf="mostrarLoading, else bloqueCuentas">
+                    <div class="mx-auto mt-5 bg-white">
+                        <div class="align-items-center">
+                            <div class="align-items-center d-flex justify-content-center">
+                                <img src="assets/loadingBraille.gif" class="w-25">
+                            </div>
+                            <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
+                                <strong>Loading...</strong>
+                                <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>  
-            </div>                      
+                </div>
+                <ng-template #bloqueCuentas class="bloqueCrearCuenta mt-4 pt-2">
+                    <div *ngFor="let typesAccount of typesAccounts"
+                        class="shadow texto-secundario pt-2 px-2 m-2 cuentaFlayer">
+                        <h4 class="text-center">{{typesAccount.description}}</h4>
+                        <h6 class="mx-2 p-2">Disfruta de las ventajas del banco online con la
+                            {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h6>
+                        <h3 class="text-center"
+                            (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">
+                            La quiero ya!</h3>
+                        <p class="text-end px-1">Consulta condiciones con tu gestor</p>
+                    </div>
+                </ng-template>
+            </div>
         </div>
     </div>
 </div>
