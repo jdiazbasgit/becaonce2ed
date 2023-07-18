@@ -5,17 +5,16 @@
     <button mat-raised-button>{{user}} perfil de usuario</button>
     <button mat-raised-button (click)="closeSession()"> <mat-icon>exit_to_app</mat-icon></button>
 </div> -->
-<div >
-    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <!--<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>-->
     <!-- <div mat-dialog-content class="mat-dialog-content center-content"> -->
-    <div class="container my-5 text-canter">
-        <!-- <h1 mat-dialog-title>Bienvenido</h1> -->
-        <h1>Bienvenido</h1>
-        <br><br>
+<div class="container mb-3">
+    <div class="text-center bg-light p-3 rounded">
+        <div class="row justify-content-center mb-3">
+            <h1 class="text-center">Bienvenido</h1>
+        </div>
 
-        <!-- <div mat-dialog-content> -->
-        <div>
-            <mat-form-field>
+        <div class="mx-auto" style="width:300px;">
+            <mat-form-field class="w-100">
                 <mat-label class="text-center">Usuario</mat-label>
                 <input matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU"
                     [disabled]="isBlurred" required /><br>
@@ -24,7 +23,7 @@
             <br>
             <br>
 
-            <mat-form-field>
+            <mat-form-field class="w-100">
                 <mat-label>Contraseña</mat-label>
                 <input matInput [type]="hide? 'password':'text'" [(ngModel)]="inputPassword" [disabled]="isBlurred"
                     required />
@@ -46,9 +45,15 @@
         <br><br>
 
         <div>
-            <p mat-text-color="background">¿No tienes cuenta?
-                <button mat-button color="primary" (click)="handlerRegisterClick()" > <mat-icon>person_add</mat-icon> </button>
-            </p>
+           
+            <div class="text-center">
+                <p mat-text-color="background">¿No tienes cuenta?
+                    <button mat-button color="primary" routerLink="signup">
+                        <i class="bi bi-person-plus"></i> Registrarse
+                    </button>
+                </p>
+                
+            </div>
         </div>
     </div>
 </div>
