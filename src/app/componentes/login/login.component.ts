@@ -3,6 +3,7 @@ import { catchError } from 'rxjs';
 import { LoginService } from 'src/app/servicios/login.service';
 import LoginBean from 'src/app/beans/LoginBean';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 export interface DialogData {
   name: string;
@@ -30,7 +31,7 @@ export class LoginComponent {
   hide = true;
   registerclicked: string = "";
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private loginService: LoginService, private router: Router) {}
 
   ngDoCheck() {
     if (sessionStorage.getItem('token') != null && !this.logado == false) {
@@ -93,6 +94,7 @@ export class LoginComponent {
             console.log(datos.token);
             this.isLoading = false;
             //this.closeDialog();
+            this.authService.iniciarSesion()
           }
         })
     }, 1000);
