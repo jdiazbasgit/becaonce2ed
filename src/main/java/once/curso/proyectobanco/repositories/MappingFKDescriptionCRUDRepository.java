@@ -7,14 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import once.curso.proyectobanco.entities.MappingFKDescription;
-import once.curso.proyectobanco.entities.Transaction;
 
 @Repository
 public interface MappingFKDescriptionCRUDRepository extends CrudRepository<MappingFKDescription, Integer> {
 	
 
-	//Pruebas
-	//@Query("SELECT SUM(t.current) FROM Transaction t WHERE t.currentAccount.number = :numeroCuenta")
-	//public int getSaldo(int numeroCuenta);
+	@Query(value = "SELECT table_name FROM information_schema.tables WHERE table_schema = 'BANCO' AND table_type = 'BASE TABLE'", nativeQuery = true)
+	public List<String> getTables();
 	
 }
