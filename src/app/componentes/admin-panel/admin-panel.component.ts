@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent {
+getSessionStorage():any{
+  return sessionStorage;
+}
 
 }

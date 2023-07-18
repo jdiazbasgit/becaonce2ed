@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-end align-items-center" *ngIf="!logado">
-    <button mat-raised-button (click)="openDialog()"><mat-icon>person</mat-icon></button>
+    <button mat-flat-button color="mat-primary" class="mat-icon-white" (click)="openDialog()">Inicio de sesión<mat-icon>person</mat-icon></button>
 </div>
 <div class="d-flex justify-content-end align-items-center" *ngIf="logado">
     <button mat-raised-button>{{user}} perfil de usuario</button>

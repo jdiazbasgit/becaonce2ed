@@ -19,6 +19,7 @@
         <mat-icon>{{hide? 'visibility_off': 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
+    <div class="error-message" *ngIf="incorrectKey">{{keyMessage}}</div>
   </div>
 
 

@@ -13,10 +13,12 @@ import { CardTypeComponent } from './componentes/card-type/card-type.component';
 import { ProfileComponent } from './componentes/profile/profile.component';
 import { SoldProductComponent } from './componentes/sold-product/sold-product.component';
 import { ExistingProductComponent } from './componentes/existing-product/existing-product.component';
+import { AdminPanelComponent } from './componentes/admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {path: '', component: ProductComponent },
   {path: 'login', component: LoginComponent },
+  {path: 'admin', component: AdminPanelComponent },
   {path: 'product', component: ProductComponent },
   {path: 'profile', component: ProfileComponent },
   {path: 'conf', component:ConfigurationComponent },
