@@ -49,7 +49,10 @@ export class LoginComponent {
     }
     if (!this.logado && this.router.url != "/landing") {
       this.router.navigateByUrl("landing")
-    }    
+    }
+    if (sessionStorage['rol'] != "ROLE_ADMIN" && this.router.url == "/paneladministrador") {
+      this.router.navigateByUrl("cuentas")
+    } 
     if (!this.sinActividad && this.logado) {
       clearTimeout(this.temporizadorDeInactividad)
       this.temporizadorDeInactividad = setTimeout(() => {
