@@ -1,5 +1,6 @@
 package once.curso.proyectotienda.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,10 @@ public class SoldProductService {
 
 	public void deleteAll() {
 		getSoldProductCRUDRepository().deleteAll();
+	}
+
+	public List<SoldProduct> findAllbyName(String user) {
+		return getSoldProductCRUDRepository().findAllbyName(user);
 	}
 
 }

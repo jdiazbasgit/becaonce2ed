@@ -1,5 +1,6 @@
 package once.curso.proyectotienda.restcontrollers;
 
+import java.util.List;
 import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,6 +43,13 @@ public class SoldProductRestController {
 	@Autowired
 	private SoldProductModelAssembler soldProductModelAssembler;
 
+	@PatchMapping("/soldProducts/{user}")
+	@CrossOrigin(origins = "*")
+	public List<SoldProduct> findAll(@PathVariable String user) {
+		List<SoldProduct> soldProduct = getSoldProductService().findAllbyName(user);
+		return soldProduct;
+	}
+
 	@GetMapping("/soldProducts")
 	@CrossOrigin(origins = "*")
 	public CollectionModel<SoldProduct> findAll() {
@@ -52,7 +61,7 @@ public class SoldProductRestController {
 		});
 		return CollectionModel.of(soldProduct);
 	}
-
+	
 	@GetMapping(value = "/soldProducts/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<SoldProduct> findById(@PathVariable int id) {
