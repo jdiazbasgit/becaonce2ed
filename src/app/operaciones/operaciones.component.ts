@@ -72,50 +72,31 @@ export class OperacionesComponent implements OnInit {
   realizarMovimiento(tipo: string) {
     let currentDate = new Date();
     this.mensaje = "";
-  
-    if (this.monto <= 0 || this.description <= 0) {
-      this.mensaje = "Saldo";
+    if (this.monto == 0 || this.description == 0) {
+      this.mensaje = "Debe seleccionar todos los campos";
       return;
     }
-  
-    console.log("Cuenta seleccionada: " + sessionStorage['cuenta']);
-    console.log("Monto a " + tipo.toLowerCase() + ": " + this.monto);
-    console.log("Saldo actual: " + this.saldo);
-  
-    this.service.getDatos("http://localhost:8080/once/balance/" + sessionStorage['cuenta'])
-      .subscribe((datos: any) => {
-        this.saldo = datos.balance;
-        console.log("Nuevo saldo actual: " + this.saldo);
-  
-        if (tipo.toLowerCase() === 'retiro' && this.monto > this.saldo) {
-          this.mensaje = "Saldo insuficiente para realizar el retiro.";
-          console.log("Saldo insuficiente para el retiro.");
-          return;
+
+    let jsonParaEnviar = {
+      "date": currentDate.toISOString(),
+      "current": tipo === 'Ingreso' ? this.monto : -this.monto,
+      "description": "description/" + this.description,
+      "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
+    };
+
+    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
+      .subscribe((dato: boolean) => {
+        if (dato) {
+          console.log("Grabación realizada correctamente");
+          this.actualizarUltimoMovimiento(tipo, this.obtenerNombreConcepto(), currentDate);
+          this.monto = 0;
+          this.concepto = '';
+          this.description = 0;
+        } else {
+          console.log("La grabación no se ha realizado");
         }
-  
-        let jsonParaEnviar = {
-          "date": currentDate.toISOString(),
-          "current": tipo === 'Ingreso' ? this.monto : -this.monto,
-          "description": "description/" + this.description,
-          "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
-        };
-  
-        console.log("Realizando movimiento...");
-        this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
-          .subscribe((dato: boolean) => {
-            if (dato) {
-              console.log("Grabación realizada correctamente");
-              this.actualizarUltimoMovimiento(tipo, this.obtenerNombreConcepto(), currentDate);
-              this.monto = 0;
-              this.concepto = '';
-              this.description = 0;
-            } else {
-              console.log("La grabación no se ha realizado");
-            }
-          });
       });
   }
-  
 
   realizarTransferencia() {
     let currentDate = new Date();
@@ -158,7 +139,6 @@ export class OperacionesComponent implements OnInit {
     return conceptoSeleccionado ? conceptoSeleccionado.description : '';
 
   }
-
 
 
 }
