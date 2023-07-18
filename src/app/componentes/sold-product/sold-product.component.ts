@@ -57,7 +57,8 @@ export class SoldProductComponent implements OnInit {
           console.table(filteredSoldProduct); //borrar linea
           console.log("sold-product.ts - ngOnInit() - filteredSoldProduct.length: "+filteredSoldProduct.length); //borrar linea
           
-          filteredSoldProduct.forEach((s:any) => {
+  //        filteredSoldProduct.forEach((s:any) => {
+          datos._embedded.soldProducts.forEach((s:any) => {
             this.service.getDatos(s._links.existingProduct.href)
             .subscribe((e:any) => {
 
