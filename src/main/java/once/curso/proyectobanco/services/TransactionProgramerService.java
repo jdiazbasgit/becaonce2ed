@@ -1,5 +1,6 @@
 package once.curso.proyectobanco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,4 +89,27 @@ public class TransactionProgramerService {
 		return getTransactionProgramerCRUDRepository().findAll(pageable);
 	}
 
+	public List<TransactionProgramer> getTransactionsByCurrentAccount(int id) {
+		
+		return getTransactionProgramerCRUDRepository(). getTransactionsByCurrentAccount(id);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

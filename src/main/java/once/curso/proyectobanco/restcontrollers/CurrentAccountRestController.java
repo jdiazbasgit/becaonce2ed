@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
 import once.curso.proyectobanco.beans.UserName;
+import once.curso.proyectobanco.dtos.CurrentAccountCreateDto;
 import once.curso.proyectobanco.entities.CurrentAccount;
 import once.curso.proyectobanco.models.CurrentAccountModelAssembler;
 import once.curso.proyectobanco.services.CurrentAccountService;
@@ -58,11 +59,7 @@ public class CurrentAccountRestController {
         return EntityModel.of(currentAccount);
 	}
 	
-	@PatchMapping(value = "/currentsAccounts")
-	public List<CurrentAccount> getCurrentAccountsByUser( @RequestBody UserName  userName){
-	return getCurrentAccountService().getCurrentAccountsByUser(userName.getUserName());	
-	}
-        
+	        
 	@GetMapping(value = "/currentsAccounts")
     public PagedModel<EntityModel<CurrentAccount>> findAll(@RequestParam (defaultValue="0")int size,@RequestParam (defaultValue="0")int page,@RequestParam (required=false)String sort){
 //    	StringTokenizer stringTokenizer = new StringTokenizer(sort,",");
@@ -145,5 +142,15 @@ public class CurrentAccountRestController {
 	@PostMapping("/currentsAccounts/{id}")
 	public boolean existsById(@PathVariable int id) {
 		return getCurrentAccountService().existsById(id);
+	}
+	
+	@PatchMapping(value = "/currentsAccounts")
+	public List<CurrentAccount> getCurrentAccountsByUser( @RequestBody UserName  userName){
+	return getCurrentAccountService().getCurrentAccountsByUser(userName.getUserName());	
+	}
+	
+	@PostMapping(value = "/currentsAccountsCreate")
+	public boolean createCurrentAccount(@RequestBody CurrentAccountCreateDto  currentAccountCreateDto){
+		return getCurrentAccountService().createCurrentAccount(currentAccountCreateDto);
 	}
 }
