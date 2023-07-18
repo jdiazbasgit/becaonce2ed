@@ -20,7 +20,7 @@ import LoginBean from 'src/app/beans/LoginBean';
 })
 export class ModalLoginComponent {
   @Output() registerclicked: EventEmitter<void> = new EventEmitter<any>();
-  isBlurred : boolean = false;
+  //isBlurred : boolean = false;
   hide = true;
   logado = false;
   user: string = "";
@@ -28,11 +28,11 @@ export class ModalLoginComponent {
   inputPassword: string = "";
   incorrectKey: boolean = false;
   keyMessage: String = "";
-  sinActividad: boolean = false;
-  InactivityTimer: any;
-  timeout: number = 6000000;
-  isLoading = false;
-  notActive: boolean = false;
+  //sinActividad: boolean = false;
+  //InactivityTimer: any;
+  //timeout: number = 6000000;
+  //isLoading = false;
+  //notActive: boolean = false;
   constructor(
     private dialogRef: MatDialogRef<NavComponent>,
     private loginService: LoginService,
@@ -44,73 +44,73 @@ export class ModalLoginComponent {
 
   
 
-  ngDoCheck() {
-    if (sessionStorage.getItem('token') != null && !this.logado == false) {
-      this.logado = true;
-      this.user = sessionStorage.getItem('user') ?? '';
-    }
-    if (!this.logado && this.router.url !== "/home") {
-      this.router.navigateByUrl("home");
-    }
-    if (!this.sinActividad && this.logado) {
-      clearTimeout(this.InactivityTimer)
-      this.InactivityTimer = setTimeout(() => {
-        console.log("salida de sesion por inactividad")
-        this.sinActividad = true;
-        this.closeSession()
-      }, this.timeout);
-    }
-  }
+  // ngDoCheck() {
+  //   if (sessionStorage.getItem('token') != null && !this.logado == false) {
+  //     this.logado = true;
+  //     this.user = sessionStorage.getItem('user') ?? '';
+  //   }
+  //   if (!this.logado && this.router.url !== "/home") {
+  //     this.router.navigateByUrl("home");
+  //   }
+  //   if (!this.sinActividad && this.logado) {
+  //     clearTimeout(this.InactivityTimer)
+  //     this.InactivityTimer = setTimeout(() => {
+  //       console.log("salida de sesion por inactividad")
+  //       this.sinActividad = true;
+  //       this.closeSession()
+  //     }, this.timeout);
+  //   }
+  // }
 
-  handleLogin() {
-    const user = this.inputUser;
-    const pwd = this.inputPassword;
-    const loginData = new LoginBean(user, pwd);
-    this.isLoading = true;
-    setTimeout(() => {
-      this.loginService.identificar("http://localhost:8080/login",
-        loginData.usuario, loginData.clave)
-        .pipe(
-          catchError(error => {
-            console.log(error);
-            if (error.status === 0 || error.status === 404) {
-              this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
-            }
-            return "";
-          })
-        )
-        .subscribe((datos: any) => {
-          console.log(datos)
-          if (datos.token == null) {
-            this.inputUser = "";
-            this.inputPassword = "";
-            this.isBlurred = true;
-            this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
-            return;
-          }
-          else {
-           // if(datos.rol[0].rol === "ROLE_ADMIN"){
-              sessionStorage.setItem("rol",datos.roles[0].rol);
-            //} else {
+  // handleLogin() {
+  //   const user = this.inputUser;
+  //   const pwd = this.inputPassword;
+  //   const loginData = new LoginBean(user, pwd);
+  //   this.isLoading = true;
+  //   setTimeout(() => {
+  //     this.loginService.identificar("http://localhost:8080/login",
+  //       loginData.usuario, loginData.clave)
+  //       .pipe(
+  //         catchError(error => {
+  //           console.log(error);
+  //           if (error.status === 0 || error.status === 404) {
+  //             this.mensajeClaveErronea("No ha sido posible establecer la conexión. Intentelo más tarde");
+  //           }
+  //           return "";
+  //         })
+  //       )
+  //       .subscribe((datos: any) => {
+  //         console.log(datos)
+  //         if (datos.token == null) {
+  //           this.inputUser = "";
+  //           this.inputPassword = "";
+  //           this.isBlurred = true;
+  //           this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
+  //           return;
+  //         }
+  //         else {
+  //          // if(datos.rol[0].rol === "ROLE_ADMIN"){
+  //             sessionStorage.setItem("rol",datos.roles[0].rol);
+  //           //} else {
 
-           // }
+  //          // }
             
             
-            console.log("inicio de sesion correcto con rol:"+sessionStorage.getItem("rol"))
-            let userM = this.inputUser;
-            let passM = this.inputPassword;
-            sessionStorage.setItem('user', datos.user);
-            console.log(userM + passM);
-            sessionStorage.setItem('token', datos.token);
-           // sessionStorage.setItem('rol', datos.roles[0].rol)
-            this.notActive = false;
-            console.log(datos.token);
-            this.isLoading = false;
-            this.closeDialog();
-          }
-        })
-    }, 1000);
-  }
+  //           console.log("inicio de sesion correcto con rol:"+sessionStorage.getItem("rol"))
+  //           let userM = this.inputUser;
+  //           let passM = this.inputPassword;
+  //           sessionStorage.setItem('user', datos.user);
+  //           console.log(userM + passM);
+  //           sessionStorage.setItem('token', datos.token);
+  //          // sessionStorage.setItem('rol', datos.roles[0].rol)
+  //           this.notActive = false;
+  //           console.log(datos.token);
+  //           this.isLoading = false;
+  //           this.closeDialog();
+  //         }
+  //       })
+  //   }, 1000);
+  // }
 
   closeSession() {
     sessionStorage.removeItem('user');
