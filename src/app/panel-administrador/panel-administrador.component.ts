@@ -50,103 +50,106 @@ export class PanelAdministradorComponent {
     this.mostrarLoading = true
     this.selectsIdyDescr = []
     this.jsonForaneas = {}
+    setTimeout(() => {
+      
     this.service.getDatos(this.url + nombre)
-      .subscribe({
-        next: (response) => {
-          let tablas = Object.keys(response._embedded)
-          let cabeceras = Object.keys(response._embedded[tablas[0]][0])
-          let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length
-          let links = Object.keys(response._embedded[tablas[0]][0]._links)
-          let unaVuelta: boolean = true
-          for (let index = 0; index < tamanoDatos; index++) {
-            let linkself = response._embedded[tablas[0]][index]._links.self.href
-            let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
-            let filaDatos: any = []
-            filaDatos.push(id)
-            cabeceras.forEach(cabecera => {
-              if (cabecera !== "_links")
-                filaDatos.push(response._embedded[tablas[0]][index][cabecera])
-            })
-            links.forEach(linkForaneo => {
-              if (linkForaneo !== "self") {
-                let hrefLink = response._embedded[tablas[0]][index]._links[linkForaneo].href
-                let idLink = parseInt(hrefLink.substring(hrefLink.lastIndexOf("/") + 1))
-                filaDatos.push(idLink)
-                if (unaVuelta) {
-                  let enPartes = hrefLink.split("/");                  
-                  if (enPartes[enPartes.length - 2] !== nombre)
-                    this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
-                }
+    .subscribe({
+      next: (response) => {
+        let tablas = Object.keys(response._embedded)
+        let cabeceras = Object.keys(response._embedded[tablas[0]][0])
+        let tamanoDatos = Object.keys(response._embedded[tablas[0]]).length
+        let links = Object.keys(response._embedded[tablas[0]][0]._links)
+        let unaVuelta: boolean = true
+        for (let index = 0; index < tamanoDatos; index++) {
+          let linkself = response._embedded[tablas[0]][index]._links.self.href
+          let id = parseInt(linkself.substring(linkself.lastIndexOf("/") + 1))
+          let filaDatos: any = []
+          filaDatos.push(id)
+          cabeceras.forEach(cabecera => {
+            if (cabecera !== "_links")
+              filaDatos.push(response._embedded[tablas[0]][index][cabecera])
+          })
+          links.forEach(linkForaneo => {
+            if (linkForaneo !== "self") {
+              let hrefLink = response._embedded[tablas[0]][index]._links[linkForaneo].href
+              let idLink = parseInt(hrefLink.substring(hrefLink.lastIndexOf("/") + 1))
+              filaDatos.push(idLink)
+              if (unaVuelta) {
+                let enPartes = hrefLink.split("/");                  
+                if (enPartes[enPartes.length - 2] !== nombre)
+                  this.linksForaneosTabla.push(enPartes[enPartes.length - 2])
               }
-            })
-            unaVuelta = false
-            this.datosBrutos.push(filaDatos)
-          }
-          cabeceras.unshift("id")
-          cabeceras.splice(cabeceras.length - 1)
-          this.propiedadesLocales = cabeceras
-          this.linksForaneos = links
-          links.forEach((link: string) => {
-            if (link !== "self") {
-              cabeceras.push(link)
-              this.mappingNombres.push(link)
             }
           })
-          this.cabecerasTabla = cabeceras
-          if (this.mappingNombres.length >= 1) {
-            this.service.getDatos(this.url + "mappingFKDescriptions")
-              .subscribe({
-                next: (mapping) => {
-                  let i: number = 0
-                  let observablesMapping: Observable<any>[] = []
-                  mapping.forEach((mapped: any) => {
-                    if (this.linksForaneosTabla.includes(mapped.table)) {
-                      this.jsonForaneas[mapped.table] = []
-                      i++
-
-                      console.log(this.linksForaneosTabla)
-                      let observable = this.service.getDatos(this.url + mapped.table)
-                      observablesMapping.push(
-                        observable.pipe(
-                          map((tablaForaneaCompleta) => {
-                            let entradaIdyDescricion: string[] = [];
-                            let grupoIdyDescripciones: any = [];
-                            let embeddedNext = Object.keys(tablaForaneaCompleta._embedded);
-  
-                            tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
-                              let lineaId = fila._links.self.href
-                              let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
-                              entradaIdyDescricion.push(numeroId)
-                              entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
-                              grupoIdyDescripciones.push(entradaIdyDescricion)
-                              entradaIdyDescricion = []
-                            });
-  
-                            this.jsonForaneas[mapped.table] = [grupoIdyDescripciones];
-                          })
-                        )
-                      )                      
-                    }
-                  })
-                  forkJoin(observablesMapping).subscribe(() => {
-                  console.log(this.jsonForaneas);
-                  this.mostrarTabla = true
-                  this.mostrarGrabador = true
-                  this.mostrarLoading = false
-                })
-                }
-              })
-          }
-          else{
-            this.mostrarTabla = true
-            this.mostrarGrabador = true
-            this.mostrarLoading = false
-          }          
-        },
-        error: (error: any) => {
-          console.log("status ko:" + error.status)
+          unaVuelta = false
+          this.datosBrutos.push(filaDatos)
         }
-      })
+        cabeceras.unshift("id")
+        cabeceras.splice(cabeceras.length - 1)
+        this.propiedadesLocales = cabeceras
+        this.linksForaneos = links
+        links.forEach((link: string) => {
+          if (link !== "self") {
+            cabeceras.push(link)
+            this.mappingNombres.push(link)
+          }
+        })
+        this.cabecerasTabla = cabeceras
+        if (this.mappingNombres.length >= 1) {
+          this.service.getDatos(this.url + "mappingFKDescriptions")
+            .subscribe({
+              next: (mapping) => {
+                let i: number = 0
+                let observablesMapping: Observable<any>[] = []
+                mapping.forEach((mapped: any) => {
+                  if (this.linksForaneosTabla.includes(mapped.table)) {
+                    this.jsonForaneas[mapped.table] = []
+                    i++
+
+                    console.log(this.linksForaneosTabla)
+                    let observable = this.service.getDatos(this.url + mapped.table)
+                    observablesMapping.push(
+                      observable.pipe(
+                        map((tablaForaneaCompleta) => {
+                          let entradaIdyDescricion: string[] = [];
+                          let grupoIdyDescripciones: any = [];
+                          let embeddedNext = Object.keys(tablaForaneaCompleta._embedded);
+
+                          tablaForaneaCompleta._embedded[embeddedNext[0]].forEach((fila: any) => {
+                            let lineaId = fila._links.self.href
+                            let numeroId: string = lineaId.substring(lineaId.lastIndexOf("/") + 1)
+                            entradaIdyDescricion.push(numeroId)
+                            entradaIdyDescricion.push(fila[(mapped.description).toLowerCase()])
+                            grupoIdyDescripciones.push(entradaIdyDescricion)
+                            entradaIdyDescricion = []
+                          });
+
+                          this.jsonForaneas[mapped.table] = [grupoIdyDescripciones];
+                        })
+                      )
+                    )                      
+                  }
+                })
+                forkJoin(observablesMapping).subscribe(() => {
+                console.log(this.jsonForaneas);
+                this.mostrarTabla = true
+                this.mostrarGrabador = true
+                this.mostrarLoading = false
+              })
+              }
+            })
+        }
+        else{
+          this.mostrarTabla = true
+          this.mostrarGrabador = true
+          this.mostrarLoading = false
+        }          
+      },
+      error: (error: any) => {
+        console.log("status ko:" + error.status)
+      }
+    })
+    }, 2000);
   }
 
 

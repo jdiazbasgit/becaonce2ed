@@ -51,6 +51,9 @@
     <div *ngIf="mostrarLoading">
       <div class="mx-auto mt-5">
         <div class="align-items-center">
+          <div class="align-items-center d-flex justify-content-center">
+            <img src="assets/loadingBraille.gif" class="w-25">
+          </div>
           <div class="p-2 mt-3 align-items-center d-flex justify-content-center">
             <strong>Loading...</strong>
             <div class="spinner-border m-2" role="status" aria-hidden="true"></div>
@@ -59,7 +62,7 @@
       </div>
     </div>
 
-    <div  id="bloque">
+    <div id="bloque">
       <table *ngIf="mostrarTabla" class="table table-success table-striped table-hover mt-3">
         <thead>
           <tr>
@@ -73,7 +76,7 @@
               <div *ngIf="dato.length - mappingNombres.length -1 >= x, else foraneas">
                 {{lineaDato}}
               </div>
-  
+
               <ng-template #foraneas>
                 <select class="form-select" aria-label="Default select example" disabled>
                   <!-- jsonForaneas[linksForaneosTabla[0]][0][0][0] = 1
@@ -90,7 +93,7 @@
                       <option value={{opcionSelec[0]}}>{{opcionSelec[1]}}</option>
                     </ng-template>
                   </ng-container>
-  
+
                 </select>
               </ng-template>
             </td>
@@ -105,7 +108,8 @@
               </svg></td>
             <td width="10px" class="text-danger"><svg xmlns="http://www.w3.org/2000/svg" role='button'
                 class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" (click)="borrarLinea(i)">
+                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                (click)="borrarLinea(i)">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M4 7h16"></path>
                 <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
@@ -114,7 +118,7 @@
               </svg></td>
         </tbody>
       </table>
-    </div>    
+    </div>
 
     <!-- Button trigger modal -->
     <button *ngIf="mostrarGrabador" type="button" class="btn btn-success mt-4" data-bs-toggle="modal"
