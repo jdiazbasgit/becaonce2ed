@@ -20,6 +20,7 @@ export class OperacionesComponent implements OnInit {
   description: number = 0;
   descriptions: Array<any> = [];
   monto: number = 0;
+  monto1: number = 0;
   saldo: number = 0;
   url: string = "http://localhost:8080/once/";
   concepto: string = '';
@@ -28,6 +29,8 @@ export class OperacionesComponent implements OnInit {
   cuentas: Cuenta[] = [];
   cuentaOrigen: number = 0;
   cuentaDestino: number = 0;
+
+
 
   constructor(private service: ProyectosService, private descriptionService: DescriptionService, private http: HttpClient) { }
 
@@ -69,31 +72,50 @@ export class OperacionesComponent implements OnInit {
   realizarMovimiento(tipo: string) {
     let currentDate = new Date();
     this.mensaje = "";
-    if (this.monto == 0 || this.description == 0) {
-      this.mensaje = "Debe seleccionar todos los campos";
+  
+    if (this.monto <= 0 || this.description <= 0) {
+      this.mensaje = "Saldo";
       return;
     }
-
-    let jsonParaEnviar = {
-      "date": currentDate.toISOString(),
-      "current": tipo === 'Ingreso' ? this.monto : -this.monto,
-      "description": "description/" + this.description,
-      "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
-    };
-
-    this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
-      .subscribe((dato: boolean) => {
-        if (dato) {
-          console.log("Grabación realizada correctamente");
-          this.actualizarUltimoMovimiento(tipo, this.obtenerNombreConcepto(), currentDate);
-          this.monto = 0;
-          this.concepto = '';
-          this.description = 0;
-        } else {
-          console.log("La grabación no se ha realizado");
+  
+    console.log("Cuenta seleccionada: " + sessionStorage['cuenta']);
+    console.log("Monto a " + tipo.toLowerCase() + ": " + this.monto);
+    console.log("Saldo actual: " + this.saldo);
+  
+    this.service.getDatos("http://localhost:8080/once/balance/" + sessionStorage['cuenta'])
+      .subscribe((datos: any) => {
+        this.saldo = datos.balance;
+        console.log("Nuevo saldo actual: " + this.saldo);
+  
+        if (tipo.toLowerCase() === 'retiro' && this.monto > this.saldo) {
+          this.mensaje = "Saldo insuficiente para realizar el retiro.";
+          console.log("Saldo insuficiente para el retiro.");
+          return;
         }
+  
+        let jsonParaEnviar = {
+          "date": currentDate.toISOString(),
+          "current": tipo === 'Ingreso' ? this.monto : -this.monto,
+          "description": "description/" + this.description,
+          "currentAccount": "currentAccounts/" + sessionStorage['idCuenta'],
+        };
+  
+        console.log("Realizando movimiento...");
+        this.service.saveOrUpdate("http://localhost:8080/once/transactions", jsonParaEnviar)
+          .subscribe((dato: boolean) => {
+            if (dato) {
+              console.log("Grabación realizada correctamente");
+              this.actualizarUltimoMovimiento(tipo, this.obtenerNombreConcepto(), currentDate);
+              this.monto = 0;
+              this.concepto = '';
+              this.description = 0;
+            } else {
+              console.log("La grabación no se ha realizado");
+            }
+          });
       });
   }
+  
 
   realizarTransferencia() {
     let currentDate = new Date();
@@ -125,10 +147,18 @@ export class OperacionesComponent implements OnInit {
 
   private actualizarUltimoMovimiento(tipo: string, concepto: string, fecha: Date) {
     this.ultimoMovimiento = { tipo, concepto, fecha };
+    this.service.getDatos(this.url + "balance/" + sessionStorage['cuenta']).subscribe((datos: any) => {
+      console.log(datos + "monto");
+      this.monto1 = datos;
+    })
   }
 
   obtenerNombreConcepto() {
     const conceptoSeleccionado = this.descriptions.find(description => description._links.self.href.substring(description._links.self.href.lastIndexOf('/') + 1) === this.description);
     return conceptoSeleccionado ? conceptoSeleccionado.description : '';
+
   }
+
+
+
 }
