@@ -27,40 +27,63 @@ export class SoldProductComponent implements OnInit {
 
   ngOnInit(): void {
 
+
     /*
     console.log(" ");
     console.log(" - ngOnInit() de sold-product.ts");
     */
+
+
+    
+
+    let profileConectadoFALSO = "http://localhost:8080/once/profiles/9";
+    console.log("sold-product.ts - ngOnInit() - profileConectadoFALSO: "+profileConectadoFALSO); //borrar linea
+
     this.cestas = [];
-    this.service.getDatos("http://localhost:8080/once/soldProducts")
+
+//    this.service.getDatos("http://localhost:8080/once/soldProducts/")
+    this.service.getDatos("http://localhost:8080/once/soldProducts/"+sessionStorage.getItem('user'))
     .subscribe((datos: any) => {
       if (datos._embedded) {
         let cestaPushed: any[] = [];
-        datos._embedded.soldProducts.forEach((s:any) => {
-          this.service.getDatos(s._links.existingProduct.href)
-          .subscribe((e:any) => {
-            let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,s._links.existingProduct.href,s.price,s.date,s._links.profile.href,s.basket);
 
-            let id = soldProductBean.id;
-            let quantity = soldProductBean.quantity;
-            let existingProduct = soldProductBean.existingProduct;
-            let price = soldProductBean.price;
-            let date = new Date(soldProductBean.date);
-            let profile = soldProductBean.profile;
-            let basket = soldProductBean.basket;
-            //let description = e.description + " (" + id + ")";
-            let description = e.description;
-            let priceUnitario = e.price;
-            let priceTotal = priceUnitario*quantity;
-            let estado = basket ? "Pagado" : "Cesta";
-            let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
+        console.table(datos._embedded); //borrar linea
+        console.log("sold-product.ts - ngOnInit() - datos._embedded.soldProducts.length: "+datos._embedded.soldProducts.length); //borrar linea
 
-            let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
+        let FilterSoldProducts: any[] = datos._embedded.soldProducts;
 
-            cestaPushed.push(detalleExistingProduct);
-            cestaPushed.sort((a, b) => a.id - b.id);
+        const filteredSoldProduct = FilterSoldProducts.filter(soldProducts => soldProducts._links.profile.href === profileConectadoFALSO);
+        if (filteredSoldProduct) {
+          console.table(filteredSoldProduct); //borrar linea
+          console.log("sold-product.ts - ngOnInit() - filteredSoldProduct.length: "+filteredSoldProduct.length); //borrar linea
+          
+          filteredSoldProduct.forEach((s:any) => {
+            this.service.getDatos(s._links.existingProduct.href)
+            .subscribe((e:any) => {
+
+              let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,s._links.existingProduct.href,s.price,s.date,s._links.profile.href,s.basket);
+
+              let id = soldProductBean.id;
+              let quantity = soldProductBean.quantity;
+              let existingProduct = soldProductBean.existingProduct;
+              let price = soldProductBean.price;
+              let date = new Date(soldProductBean.date);
+              let profile = soldProductBean.profile;
+              let basket = soldProductBean.basket;
+              //let description = e.description + " (" + id + ")";
+              let description = e.description;
+              let priceUnitario = e.price;
+              let priceTotal = priceUnitario*quantity;
+              let estado = basket ? "Pagado" : "Cesta";
+              let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
+  
+              let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
+  
+              cestaPushed.push(detalleExistingProduct);
+              cestaPushed.sort((a, b) => a.id - b.id);
+            });
           });
-        });
+        }
         this.cestas = cestaPushed;
       };
     })

@@ -9,7 +9,7 @@ import { SoldProductService } from 'src/app/servicios/soldProduct.service';
 export class ModalSoldProductComponent implements DoCheck{
 
   id: number;
-  quantity: number;
+  quantity: number=0;
   existingProduct: string;
   price: number;
   date: Date;
@@ -118,7 +118,7 @@ export class ModalSoldProductComponent implements DoCheck{
             .subscribe((dato: boolean) => {
               if (dato) {
                 this.mensaje = "Grabacion realizada correctamente";
-                this.id = 0;
+                //this.id = 0;
                 this.quantity = 0;
                 this.existingProduct = "";
                 this.price = 0;
