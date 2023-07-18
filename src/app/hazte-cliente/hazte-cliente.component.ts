@@ -109,30 +109,27 @@ export class HazteClienteComponent implements OnInit {
   }
 
 
-  cargarImagen(event: any) {
-   
-    const file: File = event.target.files[0];
+ cargarImagen(event: any) {
+  const file: File = event.target.files[0];
 
-    if (file) {
-      if (file.size > 1000000 ) {
-       this.mensajeImage2='El tamaño de la imagen excede los bytes .';
-        return;
-      }
-  
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const imageBytes = new Uint8Array(e.target.result);
-        this.image = Array.from(imageBytes);
-        this.previsualizacion= this.image;
-        this.image= event.target.files[0];
+  if (file) {
+    if (file.size > 1000000) {
+      this.mensajeImage2 = 'El tamaño de la imagen excede los bytes.';
+      return;
+    }
 
-        const blob = new Blob([imageBytes], { type: file.type });
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const imageBytes = new Uint8Array(e.target.result);
+      this.image = Array.from(imageBytes);
+      this.previsualizacion = this.image;
+
+      const blob = new Blob([imageBytes], { type: file.type });
       this.previsualizacionURL = URL.createObjectURL(blob);
     };
-      reader.readAsArrayBuffer(file);
-    
-    }
+    reader.readAsArrayBuffer(file);
   }
+}
 
   comprobarDatos(): any {
     this.mensajeEmail = '';
@@ -192,7 +189,7 @@ export class HazteClienteComponent implements OnInit {
 
 
     this.profilServices.patchSinHeader(this.urlProfile,
-      new ProfileBeans(this.name, this.secondName, this.identification, this.phone, this.email, this.identificationType, this.user, this.image, this.password))
+      new ProfileBeans(this.name, this.secondName, this.identification, this.email, this.phone, this.image, this.identificationType, this.user,  this.password))
       .subscribe((dato: boolean) => {
         if (dato) {
           
@@ -206,6 +203,7 @@ export class HazteClienteComponent implements OnInit {
           this.user=""
           this.image=[0]
           this.previsualizacion=[0]
+          this.imageString=""
           this.password=""
           
         } else {
