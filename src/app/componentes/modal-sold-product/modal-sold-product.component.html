@@ -13,7 +13,7 @@
                 <div>{{ productPlaceHolder }}</div><br>
                 <div>Precio unitario: {{ numberFormat(priceUnitarioPlaceHolder) }}</div><br>
                 <label for="quantity">Cantidad:&nbsp;&nbsp;</label>
-                <input type="number" name="quantity" [(ngModel)]="quantity" value="{{quantityPlaceHolder}}"><br><br>
+                <input type="number" name="quantity" [(ngModel)]="quantity"><br><br>
                 <button type="button" class="button" (click)="saveOrUpdateSoldProduct()">{{botonAccion}}</button>
             </div>
 
