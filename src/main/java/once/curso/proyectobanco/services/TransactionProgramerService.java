@@ -91,7 +91,7 @@ public class TransactionProgramerService {
 
 	public List<TransactionProgramer> getTransactionsByCurrentAccount(int id) {
 		
-		return getTransactionProgramerCRUDRepository(). getTransactionsByCurrentAccount(int id);
+		return getTransactionProgramerCRUDRepository(). getTransactionsByCurrentAccount(id);
 	}
 
 	
