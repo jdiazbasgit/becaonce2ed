@@ -32,9 +32,9 @@ public class LoginRestController {
 	@CrossOrigin(origins = "*")
 	public UserDto verLogin(@RequestBody Login login) {
 		UserDto userDto= new UserDto();
-		login= new Login();
-		login.setUsuario("PEPE");
-		login.setClave("1234");
+		//Login login= new Login();
+		/*login.setUsuario("PEPE");
+		login.setClave("1234");*/
 		User user=getUserDetailLoginService().getUser(login.getUsuario());
 		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder(5);
 		
