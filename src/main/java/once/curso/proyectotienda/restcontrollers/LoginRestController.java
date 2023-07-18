@@ -32,9 +32,9 @@ public class LoginRestController {
 	@CrossOrigin(origins = "*")
 	public UserDto verLogin(@RequestBody Login login) {
 		UserDto userDto= new UserDto();
-		//login= new Login();
-		//login.setUsuario("PEPE");
-		//login.setClave("1234");
+		//Login login= new Login();
+		/*login.setUsuario("PEPE");
+		login.setClave("1234");*/
 		User user=getUserDetailLoginService().getUser(login.getUsuario());
 		BCryptPasswordEncoder encoder= new BCryptPasswordEncoder(5);
 		
@@ -54,7 +54,7 @@ public class LoginRestController {
 		String securityKey="onceBanco";
 		String token=Jwts.builder().setId(securityKey).setSubject(user).claim("roles", roles)
 				.setIssuedAt(new Date(System.currentTimeMillis()))
-				//.setExpiration(new Date(System.currentTimeMillis()+60000))
+				.setExpiration(new Date(System.currentTimeMillis()+60000))
 				.signWith(SignatureAlgorithm.HS512, securityKey.getBytes()).compact();
 				
 		return "Bearer "+token;
