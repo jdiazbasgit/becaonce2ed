@@ -25,6 +25,11 @@
   background-color: rgba(250, 255, 251, 0.1);
 }
 
+.table-container .negative-amount {
+  color: red;
+}
+
+
 .table-container tr:nth-child(odd) {
   background-color: transparent;
 }
