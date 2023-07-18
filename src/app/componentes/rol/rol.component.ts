@@ -13,10 +13,10 @@ export class RolComponent implements OnInit{
   titulo: string;
   roles: any[];
   mensaje: string = "";
-  contador: number=0;
+  contador: number=4;
   @Input() eventoDelHijo: string = ""
   constructor(private service: RolesService){
-    this.titulo = "Tipos de Roles"
+    this.titulo = "TIPOS DE ROLES"
     this.roles = [];
   }
 

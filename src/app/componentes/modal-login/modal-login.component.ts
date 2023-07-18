@@ -4,10 +4,19 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dial
 import { LoginService } from 'src/app/servicios/login.service';
 import { catchError } from 'rxjs';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+import { NavComponent } from '../nav/nav.component';
+import LoginBean from 'src/app/beans/LoginBean';
 
 @Component({
   selector: 'app-modal-login',
-  templateUrl: './modal-login.component.html'
+  templateUrl: './modal-login.component.html',
+  styles: [`
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+  `]
 })
 export class ModalLoginComponent {
   @Output() registerclicked: EventEmitter<void> = new EventEmitter<any>();
@@ -25,7 +34,7 @@ export class ModalLoginComponent {
   isLoading = false;
   notActive: boolean = false;
   constructor(
-    private dialogRef: MatDialogRef<ModalLoginComponent>,
+    private dialogRef: MatDialogRef<NavComponent>,
     private loginService: LoginService,
     private dialog: MatDialog,
     private elementRef: ElementRef,
@@ -33,9 +42,7 @@ export class ModalLoginComponent {
 
   ) { }
 
-  handlerRegisterClick(): void{
-    this.registerclicked.emit();
-  }
+  
 
   ngDoCheck() {
     if (sessionStorage.getItem('token') != null && !this.logado == false) {
@@ -55,23 +62,14 @@ export class ModalLoginComponent {
     }
   }
 
-
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
-    const userrole = sessionStorage.getItem('rol');
-    if(this.user === 'adimn'){
-      return true;
-    }else{
-      this.router.navigateByUrl('/home');
-      return false;
-    }
-  }
-
   handleLogin() {
+    const user = this.inputUser;
+    const pwd = this.inputPassword;
+    const loginData = new LoginBean(user, pwd);
     this.isLoading = true;
     setTimeout(() => {
       this.loginService.identificar("http://localhost:8080/login",
-        this.inputUser, this.inputPassword)
+        loginData.usuario, loginData.clave)
         .pipe(
           catchError(error => {
             console.log(error);
@@ -88,15 +86,23 @@ export class ModalLoginComponent {
             this.inputPassword = "";
             this.isBlurred = true;
             this.mensajeClaveErronea("El Usuario o la Clave introducidos no son correctos");
+            return;
           }
-          if (datos.token != null) {
-            console.log("inicio de sesion correcto")
+          else {
+           // if(datos.rol[0].rol === "ROLE_ADMIN"){
+              sessionStorage.setItem("rol",datos.roles[0].rol);
+            //} else {
+
+           // }
+            
+            
+            console.log("inicio de sesion correcto con rol:"+sessionStorage.getItem("rol"))
             let userM = this.inputUser;
             let passM = this.inputPassword;
             sessionStorage.setItem('user', datos.user);
             console.log(userM + passM);
             sessionStorage.setItem('token', datos.token);
-            sessionStorage.setItem('rol', datos.roles[0].rol)
+           // sessionStorage.setItem('rol', datos.roles[0].rol)
             this.notActive = false;
             console.log(datos.token);
             this.isLoading = false;
@@ -122,15 +128,27 @@ export class ModalLoginComponent {
     this.dialogRef.close();
   }
 
-  ModoPruebaMeterTokenValidoYampliarInactividad() {
-    this.timeout += 10000000
-    sessionStorage['token'] = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJvbmNlQmFuY28iLCJzdWIiOiJQRVBFIiwicm9sZXMiOlt7ImlkIjoyLCJyb2wiOiJST0xFX1VTRVIiLCJsaW5rcyI6W119XSwiaWF0IjoxNjg2MTc3NjkzfQ.bx3WrdovUG-Mn1pl2yp8K996E3e2JvSnjIoN3MBGddCaQK-JCIv5vAE5QOmXqyiI3cuyp3wsZAE2hbAqq-j9KQ"
-    sessionStorage['user'] = "BOTIN"
-    sessionStorage['rol'] = "ROLE_USER"
-    console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.timeout + "ms" +
-      "\ntoken: " + sessionStorage['token'] +
-      "\nuser: " + sessionStorage['user'] +
-      "\nrol: " + sessionStorage['rol']
-    )
+  // ModoPruebaMeterTokenValidoYampliarInactividad() {
+  //   this.timeout += 10000000
+  //   sessionStorage['token'] = "Bearer $2a$05$YE2o5B5Qm7tJvpmZTvK0yOYwhmqvQEg/ucKwciNrFf0wMewHPwBg6"
+  //   sessionStorage['user'] = "Dios"
+  //   sessionStorage['rol'] = "ROLE_ADMIN"
+  //   console.log("**Modo pruebas, cargando sesión en ngOnInit de Login.ts**\nTiempo de inactividad ampliado a: " + this.timeout + "ms" +
+  //     "\ntoken: " + sessionStorage['token'] +
+  //     "\nuser: " + sessionStorage['user'] +
+  //     "\nrol: " + sessionStorage['rol']
+  //   )
+  // }
+  handlerRegisterClick(): void{
+    this.registerclicked.emit();
   }
+  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
+  //   const userrole = sessionStorage.getItem('rol');
+  //   if(this.user === 'adimn'){
+  //     return true;
+  //   }else{
+  //     this.router.navigateByUrl('/home');
+  //     return false;
+  //   }
+  // }
 }
