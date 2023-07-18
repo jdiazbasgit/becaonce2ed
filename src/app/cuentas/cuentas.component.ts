@@ -18,6 +18,7 @@ export class CuentasComponent {
   saldoTotal: number = 0
   fees: any[] = []
   typesAccounts: any[] = []
+  mostrarLoading: boolean = false
 
 
   constructor(private service:ProyectosService, private router:Router){
@@ -26,6 +27,7 @@ export class CuentasComponent {
 
 
   ngOnInit(){
+    this.saldoTotal = 0
     this.getFees()
     this.getTypesAccounts()
     
@@ -102,11 +104,13 @@ export class CuentasComponent {
   }
 
   crearCuenta(idTypoCuenta:number){
+    this.mostrarLoading = true
     let jsonParaEnviar = {      
       "user": sessionStorage['user'],
       "typeAccount": idTypoCuenta
     }
-    this.service.saveOrUpdate(this.url+"currentsAccountsCreate",jsonParaEnviar)
+    setTimeout(() => {
+      this.service.saveOrUpdate(this.url+"currentsAccountsCreate",jsonParaEnviar)
     .pipe(
       catchError(error => {
         console.log(error)
@@ -116,24 +120,19 @@ export class CuentasComponent {
           console.log("no autorizado")
           this.router.navigateByUrl('/landing')
         }
+        this.mostrarLoading = false
         return ""
       })
     )
     .subscribe({
       next: (response) => {
         console.log(response)
+        document.querySelector("#tusCuentas")?.scrollIntoView();
+        this.mostrarLoading = false
         this.ngOnInit()
-        // this.cuentas = cuentas
-        // cuentas.forEach((c:any, index:number) => {
-        //   this.service.getDatos(this.url+"balance/"+c.number).subscribe({
-        //     next: (saldo) => {
-        //       this.saldo[index] = saldo
-        //       console.log(saldo)
-        //       this.saldoTotal = this.saldoTotal + saldo
-        //     }
-        //   })
-        // })
       }
     })
+    }, 3000);
+    
   }
 }
