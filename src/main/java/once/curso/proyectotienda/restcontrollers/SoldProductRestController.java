@@ -43,13 +43,39 @@ public class SoldProductRestController {
 	@Autowired
 	private SoldProductModelAssembler soldProductModelAssembler;
 
+	/* Profe JAVIER */
+
 	@PatchMapping("/soldProducts/{user}")
 	@CrossOrigin(origins = "*")
 	public List<SoldProduct> findAll(@PathVariable String user) {
 		List<SoldProduct> soldProduct = getSoldProductService().findAllbyName(user);
 		return soldProduct;
 	}
+	
 
+	/* He hecho dos diguientes pruebas, no funcionan */
+
+	/*
+	@GetMapping("/soldProducts/filter/{user}")
+	@CrossOrigin(origins = "*")
+	public List<SoldProduct> findAll(@PathVariable String user) {
+		System.out.println("user: "+user);
+		List<SoldProduct> soldProduct = getSoldProductService().findAllbyName(user);
+		return soldProduct;
+	}
+    */
+
+	/*
+	@PatchMapping("/soldProducts")
+	@CrossOrigin(origins = "*")
+	public List<SoldProduct> findAll(@RequestBody String user) {
+		System.out.println("user: "+user);
+		List<SoldProduct> soldProduct = getSoldProductService().findAllbyName(user);
+		return soldProduct;
+	}
+	*/
+
+	
 	@GetMapping("/soldProducts")
 	@CrossOrigin(origins = "*")
 	public CollectionModel<SoldProduct> findAll() {
@@ -61,7 +87,7 @@ public class SoldProductRestController {
 		});
 		return CollectionModel.of(soldProduct);
 	}
-	
+
 	@GetMapping(value = "/soldProducts/{id}")
 	@CrossOrigin(origins = "*")
 	public EntityModel<SoldProduct> findById(@PathVariable int id) {
