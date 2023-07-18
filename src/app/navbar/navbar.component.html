@@ -9,29 +9,32 @@
         <a class="nav-link" routerLink="cuentas" id="home">
           <span class="texto-resaltado">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home pb-1 mx-1" width="24"
-              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-              stroke-linecap="round" stroke-linejoin="round">
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
               <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
               <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
             </svg>Mi Área
           </span></a>
-      </li>    
-      <li *ngIf="comprobarRolAdmin() && comprobarRuta()=='/cuentas' || comprobarRuta()=='/paneladministrador'" class="nav-item ms-auto">
+      </li>
+      <li *ngIf="comprobarRolAdmin() && comprobarRuta()=='/cuentas' || comprobarRuta()=='/paneladministrador'"
+        class="nav-item ms-auto">
         <a class="nav-link" routerLink="paneladministrador" id="admin">
           <span class="texto-resaltado">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-edit pb-1 mx-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-edit pb-1 mx-1"
+              width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+              stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3"></path>
               <path d="M4 6v6c0 1.657 3.582 3 8 3c.478 0 .947 -.016 1.402 -.046"></path>
               <path d="M20 12v-6"></path>
               <path d="M4 12v6c0 1.526 3.04 2.786 6.972 2.975"></path>
               <path d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z"></path>
-           </svg>Panel Administración
+            </svg>Panel Administración
           </span></a>
-      </li>  
-      <ng-container *ngIf="mostrarCuenta">        
+      </li>
+      <ng-container *ngIf="mostrarCuenta">
         <li class="nav-item ms-5 px-3">
           <a class="nav-link" routerLink="detalles" id="detalles">Detalles</a>
         </li>
@@ -47,5 +50,5 @@
       </ng-container>
     </ul>
   </div>
-  <div class="mb-1 p-1 border-bottom fondo-secundario texto-secundario shadow"></div>  
+  <div class="mb-1 p-1 border-bottom fondo-secundario texto-secundario shadow"></div>
 </div>

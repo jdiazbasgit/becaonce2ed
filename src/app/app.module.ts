@@ -46,6 +46,7 @@ import { MatCardModule } from '@angular/material/card';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,6 +80,14 @@ import { MatCardModule } from '@angular/material/card';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
+<<<<<<< HEAD
+=======
+   
+ 
+   
+  
+ 
+>>>>>>> feature/front/proyectos-banco-mrg
   ],
   imports: [
     CommonModule,

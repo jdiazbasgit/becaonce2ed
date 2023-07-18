@@ -1,3 +1,4 @@
+
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+
   mostrarCuenta: boolean = false
   cuenta: string = ""
 
@@ -73,3 +75,4 @@ export class NavbarComponent {
   }
 
 }
+

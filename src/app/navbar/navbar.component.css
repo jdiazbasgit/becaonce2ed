@@ -21,7 +21,6 @@ a:hover{
     transition: .5s;
 }
 
-.barraNav{
-    font-size: 1.1em;
-    font-weight: 500;
+.router-link-active{
+    background-color: darkgreen;   
 }
