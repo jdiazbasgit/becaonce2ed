@@ -26,11 +26,15 @@ export class MovimientosComponent implements OnInit {
   filtrarMovimientosCuentaSeleccionada() {
     const cuentaSeleccionada = sessionStorage['cuenta'];
     this.proyectosService.patch(this.urlTransaction, new CurrentAccountBean(cuentaSeleccionada, null, null, null, null)).subscribe(
-      (cuentas: any) => {
-        console.log(cuentas);
-        this.operaciones = cuentas;
-        this.operaciones.sort((a, b) => b.fecha - a.fecha); // Ordenar por fecha de forma descendente
-        this.operaciones.reverse(); // Invertir el orden para que sea de más reciente a más antiguo
+      (movimientos: any) => {
+        console.log(this.getPaginatedMovimientos);
+        this.operaciones = movimientos;
+        this.operaciones.sort((a, b) => {
+          if(a.fecha.getMilliSeconds() >= b.fecha.getMilliSeconds())
+          return 1;
+          else return -1;
+        })
+       // this.operaciones.reverse();
         this.totalPages = Math.ceil(this.operaciones.length / this.itemsPerPage);
       }
     );
