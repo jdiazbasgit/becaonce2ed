@@ -30,11 +30,10 @@ export class MovimientosComponent implements OnInit {
         console.log(this.getPaginatedMovimientos);
         this.operaciones = movimientos;
         this.operaciones.sort((a, b) => {
-          if(a.fecha.getMilliSeconds() >= b.fecha.getMilliSeconds())
-          return 1;
-          else return -1;
+          if(a.date>= b.date)
+          return -1;
+          else return 1;
         })
-       // this.operaciones.reverse();
         this.totalPages = Math.ceil(this.operaciones.length / this.itemsPerPage);
       }
     );
