@@ -5,16 +5,18 @@
     <table class="table table-stripped table-bordered">
         <tr>
             <th class="text-center">USUARIOS</th>
+            <th class="text-center">ROLES</th>
             <th class="text-center">ACCIONES</th>
         </tr>
 
-        <tr *ngFor="let usuario of usuarios">
-            <td class="text-center">{{usuario.user}}</td>
+        <tr *ngFor="let userBean of usuarios">
+            <td class="text-center">{{userBean.user}}</td>
+            <td class="text-center">{{userBean.rol}}</td>
             <td class="text-center">
-                <a href="#" (click)="modificar(usuario)" data-bs-toggle="modal" data-bs-target="#myModal">
+                <a href="#" (click)="modificar(userBean.id)" data-bs-toggle="modal" data-bs-target="#myModal">
                     <i class="bi bi-pencil-fill"></i> </a>
                 <a href="#"
-                    (click)="eliminar(usuario._links.self.href.substring(usuario._links.self.href.lastIndexOf('/')+1))">
+                    (click)="eliminar(userBean.id)">
                     <i class="bi bi-trash3-fill"></i> </a>
             </td>
         </tr>
@@ -22,8 +24,8 @@
     </table>
 
     <div class="text-center">
-        <button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
-            data-bs-target="#myModal">ALTA</button>
+        <!-- <button type="button" class="btn btn-primary justify-content-center" data-bs-toggle="modal"
+            data-bs-target="#myModal">ALTA</button> -->
         <app-modal-user (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-user>
     </div>
 </div>
