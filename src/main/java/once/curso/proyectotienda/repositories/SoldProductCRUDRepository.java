@@ -17,7 +17,7 @@ public interface SoldProductCRUDRepository extends PagingAndSortingRepository<So
 	public Optional<SoldProduct> findByExistingProduct(ExistingProduct existingProduct);
 	public Optional<SoldProduct> findByProfile(Profile profile);
 
-	@Query("from SoldProduct as s where s.profile.user.user =:user")
+	@Query("from SoldProduct as s where s.profile.user.user = :user")
 	public List<SoldProduct> findAllbyName(String user);
 	
 }
