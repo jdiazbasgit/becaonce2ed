@@ -1,4 +1,4 @@
-<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<!-- <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div mat-dialog-content class="mat-dialog-content center-content">
   <h1 mat-dialog-title>Bienvenido</h1>
 
@@ -19,6 +19,7 @@
         <mat-icon>{{hide? 'visibility_off': 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
+    <div class="error-message" *ngIf="incorrectKey">{{keyMessage}}</div>
   </div>
 
 
@@ -32,4 +33,4 @@
       <button mat-button color="primary" (click)="handlerRegisterClick()" > <mat-icon>person_add</mat-icon> </button>
     </p>
   </div>
-</div>
+</div> -->

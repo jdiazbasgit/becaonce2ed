@@ -1,4 +1,4 @@
-class Login {
+class LoginBean {
     usuario: string = "";
     clave: string = "";
 
@@ -7,4 +7,4 @@ class Login {
         this.clave = pwd;
     }
 }
-export default Login;
+export default LoginBean;
