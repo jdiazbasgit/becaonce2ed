@@ -15,33 +15,42 @@
  .bloqueCrearCuenta p{
     font-weight: 100;
     font-size: small;
+    
  }
  .cuentaFlayer{
-    background:white;
+    background:rgb(222, 253, 232);
+    clip-path: polygon(100% 0, 100% 100%, 87% 100%, 0 100%, 0 0, 14% 0);
     transition: .8s;
+    opacity: 1;
+    scale: 85%;
  }
- .cuentaFlayer:hover{
-    background: rgb(39, 160, 76);
-    color: white;
-    scale: 110%;
-    rotate: -2deg;
-    user-select: none;    
+ .cuentaFlayer:hover{   
+    /* color: white; */
+    scale: 105%;
+    user-select: none;
+    clip-path: polygon(100% 0, 100% 73%, 87% 100%, 0 100%, 0 26%, 14% 0);
+    
  }
  .cuentaFlayer:not(:hover) h3{
     visibility: hidden;
     background: transparent;
+    border: solid transparent 2px;
+    color: transparent;
  }
  .cuentaFlayer h3{
     background: rgb(39, 160, 76);
     color: white;
     padding: 8px;
+    margin-left: 80px;
+    margin-right: 80px;
     cursor: pointer;
     transition: .5s;
-    clip-path: circle(30%);
-    border: solid white 2px;
+    border: solid rgb(222, 253, 232) 2px;
  }
  .cuentaFlayer h3:hover{
     background: white;
     color: rgb(39, 160, 76);
- }
-  
+    border: solid rgb(39, 160, 76) 2px;
+    }
+ 
+ 
