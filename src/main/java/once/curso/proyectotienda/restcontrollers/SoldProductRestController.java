@@ -45,11 +45,18 @@ public class SoldProductRestController {
 
 	/* Profe JAVIER */
 
-	@PatchMapping("/soldProducts/{user}")
+	@GetMapping("/soldProducts/cesta/{user}")
 	@CrossOrigin(origins = "*")
-	public List<SoldProduct> findAll(@PathVariable String user) {
+	public CollectionModel<SoldProduct> findAll(@PathVariable String user) {
 		List<SoldProduct> soldProduct = getSoldProductService().findAllbyName(user);
-		return soldProduct;
+		soldProduct.forEach(s->{
+			s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ProfileRestController.class).findById(s.getProfile().getId())).withRel("profile"));
+			s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ExistingProductRestController.class).findById(s.getExistingProduct().getId())).withRel("existingProduct"));
+			s.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(SoldProductRestController.class).findById(s.getId())).withSelfRel());
+		});
+		
+
+		return CollectionModel.of(soldProduct);
 	}
 	
 
