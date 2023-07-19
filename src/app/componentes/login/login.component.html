@@ -1,7 +1,59 @@
-<div class="d-flex justify-content-end align-items-center" *ngIf="!logado">
-    <button mat-raised-button (click)="openDialog()"><mat-icon>person</mat-icon></button>
+<!-- <div class="d-flex justify-content-end align-items-center" *ngIf="!logado">
+    <button mat-flat-button color="mat-primary" class="mat-icon-white" (click)="openDialog()">Inicio de sesión<mat-icon>person</mat-icon></button>
 </div>
 <div class="d-flex justify-content-end align-items-center" *ngIf="logado">
     <button mat-raised-button>{{user}} perfil de usuario</button>
     <button mat-raised-button (click)="closeSession()"> <mat-icon>exit_to_app</mat-icon></button>
+</div> -->
+    <!--<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>-->
+    <!-- <div mat-dialog-content class="mat-dialog-content center-content"> -->
+<div class="container mb-3">
+    <div class="text-center bg-light p-3 rounded">
+        <div class="row justify-content-center mb-3">
+            <h1 class="text-center">Bienvenido</h1>
+        </div>
+
+        <div class="mx-auto" style="width:300px;">
+            <mat-form-field class="w-100">
+                <mat-label class="text-center">Usuario</mat-label>
+                <input matInput placeholder="Usuario" [(ngModel)]="inputUser" name="inputUser" id="inputU"
+                    [disabled]="isBlurred" required /><br>
+            </mat-form-field>
+
+            <br>
+            <br>
+
+            <mat-form-field class="w-100">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [type]="hide? 'password':'text'" [(ngModel)]="inputPassword" [disabled]="isBlurred"
+                    required />
+                <button mat-icon-button matSuffix (click)="hide=!hide" [attr.aria-label]="'Hide password'"
+                    [attr.arria-label]="hide">
+                    <mat-icon>{{hide? 'visibility_off': 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="error-message" *ngIf="incorrectKey">{{keyMessage}}</div>
+        </div>
+        <br><br>
+
+
+        <!-- <div mat-dialog-actions> -->
+        <div>
+            <!-- <button mat-button (click)="closeDialog()">Cerrar</button> -->
+            <button mat-button (click)="handleLogin()" cdkFocusInitial>Aceptar</button>
+        </div>
+        <br><br>
+
+        <div>
+           
+            <div class="text-center">
+                <p mat-text-color="background">¿No tienes cuenta?
+                    <button mat-button color="primary" routerLink="signup">
+                        <i class="bi bi-person-plus"></i> Registrarse
+                    </button>
+                </p>
+                
+            </div>
+        </div>
+    </div>
 </div>

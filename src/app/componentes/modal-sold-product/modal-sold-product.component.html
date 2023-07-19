@@ -10,10 +10,10 @@
 
             <!-- Modal Body-->
             <div class="modal-body text-center">
-                <div>{{ productPlaceHolder }}</div>
-                <div>Precio por unidad: {{ priceUnitarioPlaceHolder }}</div>
-                <label for="quantity">Cantidad: </label>
-                <input type="number" name="quantity" [(ngModel)]="quantity" value="{{quantityPlaceHolder}}"><br><br>
+                <div>{{ productPlaceHolder }}</div><br>
+                <div>Precio unitario: {{ numberFormat(priceUnitarioPlaceHolder) }}</div><br>
+                <label for="quantity">Cantidad:&nbsp;&nbsp;</label>
+                <input type="number" name="quantity" [(ngModel)]="quantity"><br><br>
                 <button type="button" class="button" (click)="saveOrUpdateSoldProduct()">{{botonAccion}}</button>
             </div>
 
