@@ -44,11 +44,10 @@
     </ng-container>
 
     <div class="my-4 p-5 fondo-primario texto-resaltado shadow">
-        <h2 class="mb-5">Crea tu cuenta en segundos:</h2>
+        <h2 class="mb-3">Crea tu cuenta en segundos:</h2>
         <div class="p-5 d-flex me-5">
             <img src="assets/cajero.png" class="cajero float-start">
-            <div class="mx-5 justify-content-end">
-                <h3 class="mb-4">Nuestros expertos financieros recomiendan:</h3>
+            <div class="mx-5 justify-content-end bg-white p-5">                
                 <div *ngIf="mostrarLoading, else bloqueCuentas">
                     <div class="mx-auto mt-5 bg-white">
                         <div class="align-items-center">
@@ -62,18 +61,23 @@
                         </div>
                     </div>
                 </div>
-                <ng-template #bloqueCuentas class="bloqueCrearCuenta mt-4 pt-2">
+                <ng-template #bloqueCuentas class="bloqueCrearCuenta mt-3 pt-2">
+                    <h3 class="mb-4">Nuestros expertos financieros recomiendan:</h3>
                     <div *ngFor="let typesAccount of typesAccounts"
-                        class="shadow texto-secundario pt-2 px-2 m-2 cuentaFlayer">
-                        <h4 class="text-center">{{typesAccount.description}}</h4>
-                        <h6 class="mx-2 p-2">Disfruta de las ventajas del banco online con la
-                            {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h6>
-                        <h3 class="text-center"
-                            (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">
-                            La quiero ya!</h3>
-                        <p class="text-end px-1">Consulta condiciones con tu gestor</p>
+                        class="shadow texto-secundario pt-2 px-4 mt-4 mb-5 cuentaFlayer border-bottom">
+                        <div>
+                            <h4 class="text-center">{{typesAccount.description}}</h4>
+                            <div class="fondoFlayer">
+                                <h6 class="mx-2 p-2">Disfruta de las ventajas del banco online con la
+                                    {{typesAccount.description.toLowerCase()}} que se adapta a tí y los tuyos.</h6>
+                                <h3 class="text-center"
+                                    (click)="crearCuenta(typesAccount._links.self.href.substring(typesAccount._links.self.href.lastIndexOf('/')+1))">
+                                    La quiero ya!</h3>
+                            </div>                            
+                            <p class="text-start px-1">Consulta condiciones con tu gestor</p>
+                        </div>                        
                     </div>
-                </ng-template>
+                </ng-template>                
             </div>
         </div>
     </div>
