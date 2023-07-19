@@ -8,10 +8,10 @@
     <th> Acciones </th>
 
     <tr *ngFor="let element of elements">
-      <td><img [src]="getImageProduct(element.image)" alt="{{ element.description }}"></td>
-      <td> {{ element.description }} </td>
-      <td> {{ getFormatterEuro(element.price) }} </td>
-      <td> {{ element.stock }} </td>
+      <td style="width:10%;"><img [src]="getImageProduct(element.image)" alt="{{ element.description }}"></td>
+      <td style="width:60%;"> {{ element.description }} </td>
+      <td style="width:10%;"> {{ getFormatterEuro(element.price) }} </td>
+      <td style="width:10%;"> {{ element.stock }} </td>
 
       <td>
         <a (click)="openModal(element._links.self.href.substring(element._links.self.href.lastIndexOf('/')+1), element)"
