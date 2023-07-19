@@ -37,7 +37,7 @@ export class SoldProductComponent implements OnInit {
       // Podemos cambiar el valor de opcion, solo 1 o 2
       // opcion 1: Aun no funciona bien, user usa con sessionStorage.
       // opcion 2: funciona OK con user FALSO --> siempre user = 'Paco' (id=109 y id_profile=9)
-    let opcion = 2;
+    let opcion = 1;
       //    opcion 1, estoy trabajando con la opcion 1 hasta que lo funcione bien.
       //    mientras, deja la opcion 2 para que funcione bien con el mismo user falso (Paco)
       // Deberia dejar la opcion 1, pero no esta arreglado totalmente, de momento deja la opcion 2.
@@ -51,7 +51,7 @@ export class SoldProductComponent implements OnInit {
       console.log("sold-product.ts - ngOnInit() - sessionStorage.getItem('user'): "+sessionStorage.getItem('user')); //borrar linea
       console.log("sold-product.ts - ngOnInit() - sessionStorage.getItem('token'): "+sessionStorage.getItem('token')); //borrar linea
 
-      this.service.getDatos("http://localhost:8080/once/soldProducts/"+sessionStorage.getItem('user'))
+      this.service.getDatos("http://localhost:8080/once/soldProducts/cesta/"+sessionStorage.getItem('user'))
       .subscribe((datos: any) => {
 
         if (datos._embedded) {
