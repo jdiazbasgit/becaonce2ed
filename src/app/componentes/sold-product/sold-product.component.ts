@@ -26,36 +26,129 @@ export class SoldProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.cestas = [];
+
+    
     console.log(" ");
     console.log(" - ngOnInit() de sold-product.ts");
-    this.cestas = [];
-    this.service.getDatos("http://localhost:8080/once/soldProducts")
-    .subscribe((datos: any) => {
-      if (datos._embedded) {
-        datos._embedded.soldProducts.forEach((s:any) => {
-          this.service.getDatos(s._links.existingProduct.href)
-          .subscribe((e:any) => {
-            let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,s._links.existingProduct.href,s.price,s.date,s._links.profile.href,s.basket);
+    
 
-            let id = soldProductBean.id;
-            let quantity = soldProductBean.quantity;
-            let existingProduct = soldProductBean.existingProduct;
-            let price = soldProductBean.price;
-            let date = new Date(soldProductBean.date);
-            let profile = soldProductBean.profile;
-            let basket = soldProductBean.basket;
-            let description = e.description;
-            let priceUnitario = e.price;
-            let priceTotal = priceUnitario*quantity;
-            let estado = basket ? "Pagado" : "Cesta";
-            let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
+      // Podemos cambiar el valor de opcion, solo 1 o 2
+      // opcion 1: Aun no funciona bien, user usa con sessionStorage.
+      // opcion 2: funciona OK con user FALSO --> siempre user = 'Paco' (id=109 y id_profile=9)
+    let opcion = 2;
+      //    opcion 1, estoy trabajando con la opcion 1 hasta que lo funcione bien.
+      //    mientras, deja la opcion 2 para que funcione bien con el mismo user falso (Paco)
+      // Deberia dejar la opcion 1, pero no esta arreglado totalmente, de momento deja la opcion 2.
+      //    Cuando la opcion 1 funciona correctamente, pongamos 1, así -->    let opcion = 1;
+      //    NO BORRAMOS la opcion 2
 
-            let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
-            this.cestas.push(detalleExistingProduct);
-          })
-        });
-      } else console.log("Datos de la cesta esta vacio");
-    })
+
+    if (opcion == 1) { // opscion1: user con sessionStorage, "Deberia asi"
+  
+
+      console.log("sold-product.ts - ngOnInit() - sessionStorage.getItem('user'): "+sessionStorage.getItem('user')); //borrar linea
+      console.log("sold-product.ts - ngOnInit() - sessionStorage.getItem('token'): "+sessionStorage.getItem('token')); //borrar linea
+
+      this.service.getDatos("http://localhost:8080/once/soldProducts/"+sessionStorage.getItem('user'))
+      .subscribe((datos: any) => {
+
+        if (datos._embedded) {
+
+          console.table(datos._embedded); //borrar linea
+          console.log("sold-product.ts - ngOnInit() - datos._embedded.soldProducts.length: "+datos._embedded.soldProducts.length); //borrar linea
+
+          let cestaPushed: any[] = [];
+
+          datos._embedded.soldProducts.forEach((s:any) => {
+            this.service.getDatos(s._links.existingProduct.href)
+            .subscribe((e:any) => {
+              let soldProductBean = new SoldProductBean(parseInt(s._links.self.href.substring(s._links.self.href.lastIndexOf("/")+1)),s.quantity,s._links.existingProduct.href,s.price,s.date,s._links.profile.href,s.basket);
+  
+              let id = soldProductBean.id;
+              let quantity = soldProductBean.quantity;
+              let existingProduct = soldProductBean.existingProduct;
+              let price = soldProductBean.price;
+              let date = new Date(soldProductBean.date);
+              let profile = soldProductBean.profile;
+              let basket = soldProductBean.basket;
+              //let description = e.description + " (" + id + ")";
+              let description = e.description;
+              let priceUnitario = e.price;
+              let priceTotal = priceUnitario*quantity;
+              let estado = basket ? "Pagado" : "Cesta";
+              let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
+  
+              let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
+  
+              cestaPushed.push(detalleExistingProduct);
+              cestaPushed.sort((a, b) => a.id - b.id);
+            });
+          });
+          this.cestas = cestaPushed;
+        };
+      })
+
+
+    } else { // opcion 2: user FALSO. OJO! No es correcto, pero por lo menos funciona bien
+
+      
+      let profileConectadoFALSO = "http://localhost:8080/once/profiles/9";
+      console.log("sold-product.ts - ngOnInit() - profileConectadoFALSO: "+profileConectadoFALSO); //borrar linea
+
+      this.service.getDatos("http://localhost:8080/once/soldProducts/")
+      .subscribe((datos: any) => {
+
+        if (datos._embedded) {
+  
+          console.table(datos._embedded); //borrar linea
+          console.log("sold-product.ts - ngOnInit() - datos._embedded.soldProducts.length: "+datos._embedded.soldProducts.length); //borrar linea
+  
+          let cestaPushed: any[] = [];
+          let FilterSoldProducts: any[] = datos._embedded.soldProducts;
+  
+          const filteredSoldProduct = FilterSoldProducts.filter(soldProducts => soldProducts._links.profile.href === profileConectadoFALSO);
+          if (filteredSoldProduct) {
+
+            console.table(filteredSoldProduct); //borrar linea
+            console.log("sold-product.ts - ngOnInit() - filteredSoldProduct.length: "+filteredSoldProduct.length); //borrar linea
+            
+            filteredSoldProduct.forEach((fs:any) => {
+              this.service.getDatos(fs._links.existingProduct.href)
+              .subscribe((e:any) => {
+  
+                let soldProductBean = new SoldProductBean(parseInt(fs._links.self.href.substring(fs._links.self.href.lastIndexOf("/")+1)),fs.quantity,fs._links.existingProduct.href,fs.price,fs.date,fs._links.profile.href,fs.basket);
+  
+                let id = soldProductBean.id;
+                let quantity = soldProductBean.quantity;
+                let existingProduct = soldProductBean.existingProduct;
+                let price = soldProductBean.price;
+                let date = new Date(soldProductBean.date);
+                let profile = soldProductBean.profile;
+                let basket = soldProductBean.basket;
+                //let description = e.description + " (" + id + ")";
+                let description = e.description;
+                let priceUnitario = e.price;
+                let priceTotal = priceUnitario*quantity;
+                let estado = basket ? "Pagado" : "Cesta";
+                let fecha = basket ? date.toLocaleDateString("en-GB") : " ";
+    
+                let detalleExistingProduct = {id: id, quantity: quantity, existingProduct: existingProduct, price: price, date: date, profile: profile, basket: basket, description: description, priceUnitario: priceUnitario, priceTotal: priceTotal, estado: estado, fecha: fecha};
+    
+                cestaPushed.push(detalleExistingProduct);
+                cestaPushed.sort((a, b) => a.id - b.id);
+              });
+            });
+          }
+          this.cestas = cestaPushed;
+        };
+      })
+
+
+    }
+
+
   }
 
   modificar(cesta: any) {
@@ -83,7 +176,6 @@ export class SoldProductComponent implements OnInit {
   }
 
   eliminar(id: number) {
-    console.log("id: "+id);
     if (confirm("¿Esta seguro de borrar el producto de cesta?")) {
       this.service.delete("http://localhost:8080/once/soldProducts/" + id)
         .subscribe((dato: boolean) => {
@@ -94,7 +186,7 @@ export class SoldProductComponent implements OnInit {
           else
             this.mensaje = "El registro no se ha borrado";
         })
-    }
+    } else this.mensaje = "CANCELADO, no se ha eliminado";
   }
 
   comprar(cesta: any) {
@@ -126,8 +218,7 @@ export class SoldProductComponent implements OnInit {
       */
 
       if (cesta.quantity<=e.stock) {
-        console.log("Ubicacion del paso de PREGUNTAR")
-        if (confirm("¿Esta seguro de comprar la cesta seleccionada?")) {
+        if (confirm("¿Esta seguro de comprar el producto seleccionado?")) {
 
           // DESCONTAR CANTIDAD DE STOCK
 
@@ -185,6 +276,5 @@ export class SoldProductComponent implements OnInit {
   numberFormat(amount: number | bigint){
     return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(amount);
   }
-
 
 }

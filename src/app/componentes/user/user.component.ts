@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { RolesService } from 'src/app/servicios/roles.service';
 import { UserService } from 'src/app/servicios/users.service';
 import { ModalUserComponent } from '../modal-user/modal-user.component';
+import UserBean from 'src/app/beans/UserBean';
 
 
 @Component({
@@ -16,16 +17,21 @@ export class UserComponent implements OnInit{
   usuarios: any[];
   claves: any[];
   habilitados: any[];
-  roles: any[];
+  //roles: any[];
   mensaje: string = "";
   @Input() eventoDelHijo: string = "";
 
     constructor(private service: UserService, private rolesService: RolesService){
-    this.titulo = "Usuarios"
+    this.titulo = "USUARIOS"
     this.usuarios = [];
-    this.claves = [];
-    this.habilitados = [];
-    this.roles = [];
+     this.claves = [];
+     this.habilitados = [];
+    // this.roles = [];
+  }
+
+  alta(){
+    this.modal.id = 0;
+    this.modal.ngOnInit()
   }
 
   eliminar(id: any){
@@ -52,7 +58,12 @@ export class UserComponent implements OnInit{
     this.usuarios=[];
     this.service.getDatos("http://localhost:8080/once/users")
       .subscribe((datos: any) => {
-        this.usuarios = datos?._embedded.users;
+        datos._embedded.users.forEach((u:any)=>{
+          this.service.getDatos(u._links.rol.href).subscribe((r:any)=>{
+            let userBean = new UserBean(parseInt(u._links.self.href.substring(u._links.self.href.lastIndexOf("/")+1)),u.user, u.password, u.enabled, r.rol)
+            this.usuarios.push(userBean)
+          })
+        })
       });
   }
   

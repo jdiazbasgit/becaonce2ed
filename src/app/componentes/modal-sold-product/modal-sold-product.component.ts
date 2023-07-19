@@ -9,7 +9,7 @@ import { SoldProductService } from 'src/app/servicios/soldProduct.service';
 export class ModalSoldProductComponent implements DoCheck{
 
   id: number;
-  quantity: number;
+  quantity: number=0;
   existingProduct: string;
   price: number;
   date: Date;
@@ -51,14 +51,18 @@ export class ModalSoldProductComponent implements DoCheck{
     console.log("modal-sold-product.ts - ngDoCheck() - this.fin: "+this.fin);
     */
 
+//    console.log("id: "+this.id) //borrar linea
+
     if(this.id===0){
       this.botonAccion ="AÑADIR";
     } else {
       this.botonAccion = "MODIFICAR";
     }
 
+//    console.log("fin: "+this.fin) //borrar linea
+//    console.log("existingProduct: "+this.existingProduct) //borrar linea
+
     if (!this.fin) {
-      console.log("modal-sold-product.ts MODIFICACION existingProduct: "+this.existingProduct);
       if (this.existingProduct !== "") {
         this.service.getDatos(this.existingProduct)
         .subscribe((datos: any)=> {
@@ -67,8 +71,8 @@ export class ModalSoldProductComponent implements DoCheck{
           this.priceUnitarioPlaceHolder = datos.price;
           this.fin = true;
         })
-      }
-    } 
+      } //else console.log("no sale valor, paso IF 2") //borrar linea
+    } //else console.log("no sale valor, paso IF 1") //borrar linea
   }
 
   realizarComunicacion(){
@@ -79,6 +83,11 @@ export class ModalSoldProductComponent implements DoCheck{
     this.date = new Date("1900-01-01");
     this.profile = "";
     this.basket = false;
+
+    this.quantityPlaceHolder= 0;
+    this.productPlaceHolder = "";
+    this.priceUnitarioPlaceHolder = 0;
+  
     this.mensaje="";
     this.fin=false;
     this.eventoAComunicar.emit({salida:"OK"});
@@ -109,7 +118,7 @@ export class ModalSoldProductComponent implements DoCheck{
             .subscribe((dato: boolean) => {
               if (dato) {
                 this.mensaje = "Grabacion realizada correctamente";
-                this.id = 0;
+                //this.id = 0;
                 this.quantity = 0;
                 this.existingProduct = "";
                 this.price = 0;

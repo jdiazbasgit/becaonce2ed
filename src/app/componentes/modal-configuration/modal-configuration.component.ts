@@ -20,11 +20,15 @@ export class ModalConfigurationComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
+
+    /*
     if(this.id===0){
       this.tipoAccion ="ALTA"
     } else {
       this.tipoAccion = "MODIFICACIÓN"
     }
+    */
+    this.tipoAccion = "MODIFICACIÓN"
 
     if (this.id !== 0 && !this.fin) {
       console.log("id entrada:" + this.id)
@@ -52,7 +56,7 @@ export class ModalConfigurationComponent implements DoCheck {
         .subscribe((dato: boolean) => {
           if (dato) {
             this.mensaje = "Grabacion realizada correctamente"
-            this.stockAlarm = 0
+            //this.stockAlarm = 0
           }
           else
             this.mensaje = "La grabación no se ha realizado"
