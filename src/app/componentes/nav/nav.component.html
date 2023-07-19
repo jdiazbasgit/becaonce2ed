@@ -1,13 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarNav" *ngIf="logado">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white" (click)="closeSession()">Cerrar sesión</a>
-          </li>
-        </ul>
-      </div>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -16,10 +9,15 @@
         </ul>
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-white" routerLink="login">
+            <a class="nav-link text-white" routerLink="login" *ngIf="getSessionStorage().getItem('token')=='' || getSessionStorage().getItem('token')==null">
               <i class="bi bi-person"></i> Iniciar sesión
             </a>
           </li>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link text-white" (click)="closeSession()" href="#" *ngIf="getSessionStorage().getItem('token')!='' && getSessionStorage().getItem('token')!=null">Cerrar sesión</a>
+            </li>
+          </ul>
           <li class="nav-item">
             <a class="nav-link text-white" routerLink="cesta">
               <i class="bi bi-basket"></i> Mi cesta

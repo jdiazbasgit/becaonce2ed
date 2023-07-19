@@ -18,7 +18,12 @@ export class NavComponent {
     return this.authService.getLogado();
   }
 
+  getSessionStorage():any{
+    return sessionStorage;
+  }
+
   closeSession() {
+    sessionStorage.setItem("token","")
     this.authService.cerrarSesion();
   }
 }

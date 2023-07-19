@@ -35,7 +35,7 @@
               <div class="d-block text-center mt-3 mb-4 mt-auto">
                 <small class="text-dark mt-1 fs-4 font-weight-bold h3 text-bold">{{ numberFormat(product.price) }}</small>
               </div>
-              <div class="text-center mt-auto">
+              <div class="text-center mt-auto" *ngIf="getSessionStorage().getItem('token')!='' && getSessionStorage().getItem('token')!=null">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" (click)="agregar('http://localhost:8080/once/profiles/9',product)">Agregar al carrito</button>
               </div>
               <app-modal-sold-product (eventoAComunicar)="realizarComunicacion($event)" id="{{id}}"></app-modal-sold-product>
@@ -56,7 +56,7 @@
           <a class="page-link cursor-pointer" (click)="goToNextPage()" title="Página siguiente" aria-label="Siguiente">Siguiente</a>
         </li>
       </ul>
-    </nav>   
-    
+    </nav>
+
   </div>
 </section>

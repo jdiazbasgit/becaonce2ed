@@ -39,9 +39,13 @@ export class ProductComponent implements OnInit{
 
   id: number = 0;
   @ViewChild(ModalSoldProductComponent) modal: any;
-  
+
   realizarComunicacion(event: any){
     this.ngOnInit();
+  }
+
+  getSessionStorage():any{
+    return sessionStorage;
   }
 
   ngOnInit() {
