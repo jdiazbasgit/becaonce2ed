@@ -38,8 +38,8 @@
     color: transparent;
  }
  .cuentaFlayer h3{
-    background: rgb(39, 160, 76);
-    color: white;
+    background: white;
+    color: rgb(39, 160, 76);
     padding: 8px;
     margin-left: 80px;
     margin-right: 80px;
@@ -48,8 +48,8 @@
     border: solid rgb(222, 253, 232) 2px;
  }
  .cuentaFlayer h3:hover{
-    background: white;
-    color: rgb(39, 160, 76);
+   background: rgb(39, 160, 76);
+   color: white;
     border: solid rgb(39, 160, 76) 2px;
     }
  
