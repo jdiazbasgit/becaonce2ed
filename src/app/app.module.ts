@@ -80,14 +80,7 @@ import { MatCardModule } from '@angular/material/card';
     HazteClienteComponent,
     PanelAdministradorComponent,
     ModalAwardsFineComponent,
-<<<<<<< HEAD
-=======
-   
- 
-   
-  
- 
->>>>>>> feature/front/proyectos-banco-mrg
+
   ],
   imports: [
     CommonModule,
