@@ -48,30 +48,28 @@ export class ProductComponent implements OnInit{
     this.getData();
   }
 
-  agregar(product: Product){
-    console.log(" ")
-
-    let rutaExistingProduct = product._links.self.href;
-    console.log("product.ts - rutaExistingProduct: "+rutaExistingProduct);
-
+  agregar(profileFalso: string, product: Product){
     this.modal.id = 0; // SIEMPRE CERO, es para añadir (save, no update) nuevo registro en la tabla soldProduct
-    console.log("product.ts - modal.id: "+this.modal.id);
-
     this.modal.quantity = 0; // EN PRINCIPIO SIEMPRE CERO, es para que ponga la cantidad preferida
-    console.log("product.ts - modal.quantity: "+this.modal.quantity);
-
-    //    this.modal.existingProduct = rutaExistingProduct
     this.modal.existingProduct = product._links.self.href;
-    console.log("product.ts - modal.existingProduct: "+this.modal.existingProduct);
-
     this.modal.price = product.price;
-    console.log("product.ts - modal.price: "+this.modal.price);
-
-    this.modal.profile = "http://localhost:8080/once/profiles/9";   // profile falso
-    console.log("product.ts - modal.profile (FALSO): "+this.modal.profile);
-
+    this.modal.date = new Date("1900-01-01");
+    this.modal.profile = profileFalso; // FALSO
+    this.modal.basket = false;
     //this.modal.fin = false;
-    //console.log("product.ts - modal.fin: "+this.modal.fin);
+
+    /*
+    console.log(" ");
+    console.log(" - agregar() de product.ts");
+    console.log("product.ts - agregar() - modal.id: "+this.modal.id);
+    console.log("product.ts - agregar() - modal.quantity: "+this.modal.quantity);
+    console.log("product.ts - agregar() - modal.existingProduct: "+this.modal.existingProduct);
+    console.log("product.ts - agregar() - modal.price: "+this.modal.price);
+    console.log("product.ts - agregar() - modal.date: "+this.modal.date);
+    console.log("product.ts - agregar() - modal.profile: "+this.modal.profile);
+    console.log("product.ts - agregar() - modal.basket: "+this.modal.basket);
+    //console.log("product.ts - agregar() - modal.fin: "+this.modal.fin);
+    */
   }
 
 getImageProduct(imageBytes: string): string {
