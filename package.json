@@ -27,7 +27,6 @@
     "front-proyectos": "file:",
     "jquery": "^3.6.4",
     "material-icons": "^1.13.7",
-    "ngx-bootstrap": "^10.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.5.0",
     "zone.js": "~0.13.3"
