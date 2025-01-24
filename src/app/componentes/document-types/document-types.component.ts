@@ -3,9 +3,10 @@ import { DocumentTypeService } from '../../servicios/document-type.service';
 import { ModalDocumentTypesComponent } from '../../componentes/modal-document-types/modal-document-types.component';
 
 @Component({
-  selector: 'app-document-types',
-  templateUrl: './document-types.component.html',
-  styleUrls: ['./document-types.component.css']
+    selector: 'app-document-types',
+    templateUrl: './document-types.component.html',
+    styleUrls: ['./document-types.component.css'],
+    standalone: false
 })
 
 export class DocumentTypesComponent implements OnInit {

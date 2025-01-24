@@ -6,8 +6,9 @@ import UserBean from 'src/app/beans/UserBean';
 
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html'
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    standalone: false
 })
 export class UserComponent implements OnInit{
 

@@ -8,15 +8,16 @@ import { NavComponent } from '../nav/nav.component';
 import LoginBean from 'src/app/beans/LoginBean';
 
 @Component({
-  selector: 'app-modal-login',
-  templateUrl: './modal-login.component.html',
-  styles: [`
+    selector: 'app-modal-login',
+    templateUrl: './modal-login.component.html',
+    styles: [`
     .error-message {
       color: red;
       font-size: 14px;
       margin-top: 8px;
     }
-  `]
+  `],
+    standalone: false
 })
 export class ModalLoginComponent {
   @Output() registerclicked: EventEmitter<void> = new EventEmitter<any>();

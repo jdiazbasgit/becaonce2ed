@@ -3,9 +3,10 @@ import { CategoryService } from '../../servicios/category.service';
 import { ModalCategoryComponent } from '../modal-category/modal-category.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+    selector: 'app-category',
+    templateUrl: './category.component.html',
+    styleUrls: ['./category.component.css'],
+    standalone: false
 })
 export class CategoryComponent implements OnInit {
 

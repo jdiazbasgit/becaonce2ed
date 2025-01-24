@@ -3,9 +3,10 @@ import SubcategoryBean from '../../beans/SubcategoryBean';
 import { SubcategoryService } from 'src/app/servicios/subcategories.service';
 
 @Component({
-  selector: 'app-modal-subcategory',
-  templateUrl: './modal-subcategory.component.html',
-  styleUrls: ['./modal-subcategory.component.css']
+    selector: 'app-modal-subcategory',
+    templateUrl: './modal-subcategory.component.html',
+    styleUrls: ['./modal-subcategory.component.css'],
+    standalone: false
 })
 export class ModalSubcategoryComponent  {
   id: number = 0

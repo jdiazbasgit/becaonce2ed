@@ -3,9 +3,10 @@ import { ExistingProductService } from '../../servicios/existingproduct.service'
 import ExistingProductBean from '../../beans/ExistingProductBean';
 
 @Component({
-  selector: 'app-modal-existing-products',
-  templateUrl: './modal-existing-products.component.html',
-  styleUrls: ['./modal-existing-products.component.css']
+    selector: 'app-modal-existing-products',
+    templateUrl: './modal-existing-products.component.html',
+    styleUrls: ['./modal-existing-products.component.css'],
+    standalone: false
 })
 
 export class ModalExistingProductsComponent{

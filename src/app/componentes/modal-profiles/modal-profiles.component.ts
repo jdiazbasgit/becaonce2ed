@@ -4,9 +4,10 @@ import { ProfileService } from 'src/app/servicios/profile.service';
 
 
 @Component({
-  selector: 'app-modal-profiles',
-  templateUrl: './modal-profiles.component.html',
-  styleUrls: ['./modal-profiles.component.css']
+    selector: 'app-modal-profiles',
+    templateUrl: './modal-profiles.component.html',
+    styleUrls: ['./modal-profiles.component.css'],
+    standalone: false
 })
 
 export class ModalProfilesComponent {

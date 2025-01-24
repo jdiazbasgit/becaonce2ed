@@ -3,8 +3,9 @@ import UserBean from 'src/app/beans/UserBean';
 import { UserService } from 'src/app/servicios/users.service';
 
 @Component({
-  selector: 'app-modal-user',
-  templateUrl: './modal-user.component.html'
+    selector: 'app-modal-user',
+    templateUrl: './modal-user.component.html',
+    standalone: false
 })
 export class ModalUserComponent implements DoCheck{
   //radiobutton Angular Material

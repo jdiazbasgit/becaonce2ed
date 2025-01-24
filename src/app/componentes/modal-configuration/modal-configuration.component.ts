@@ -3,8 +3,9 @@ import { ConfigurationService } from 'src/app/servicios/configuration.service';
 import ConfigurationBean from '../../beans/ConfigurationBean';
 
 @Component({
-  selector: 'app-modal-configuration',
-  templateUrl: './modal-configuration.component.html'
+    selector: 'app-modal-configuration',
+    templateUrl: './modal-configuration.component.html',
+    standalone: false
 })
 export class ModalConfigurationComponent implements DoCheck {
 

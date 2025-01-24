@@ -3,9 +3,10 @@ import CategoryBean from '../../beans/CategoryBean'
 import { CategoryService } from '../../servicios/category.service';
 
 @Component({
-  selector: 'app-modal-category',
-  templateUrl: './modal-category.component.html',
-  styleUrls: ['./modal-category.component.css']
+    selector: 'app-modal-category',
+    templateUrl: './modal-category.component.html',
+    styleUrls: ['./modal-category.component.css'],
+    standalone: false
 })
 export class ModalCategoryComponent implements DoCheck {
   id: number = 0

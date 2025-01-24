@@ -10,9 +10,9 @@ export interface DialogData {
   animal: string;
 }
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    standalone: false
 })
 
 export class LoginComponent {

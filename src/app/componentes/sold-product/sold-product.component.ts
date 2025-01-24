@@ -5,8 +5,9 @@ import SoldProductBean from 'src/app/beans/SoldProductBean';
 import ExistingProductBean from 'src/app/beans/ExistingProductBean';
 
 @Component({
-  selector: 'app-sold-product',
-  templateUrl: './sold-product.component.html'
+    selector: 'app-sold-product',
+    templateUrl: './sold-product.component.html',
+    standalone: false
 })
 
 export class SoldProductComponent implements OnInit {

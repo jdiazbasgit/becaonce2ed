@@ -3,9 +3,10 @@ import { CardTypeService } from '../../servicios/card-type.service';
 import { ModalCardTypesComponent } from '../../componentes/modal-card-types/modal-card-types.component';
 
 @Component({
-  selector: 'app-card-type',
-  templateUrl: './card-type.component.html',
-  styleUrls: ['./card-type.component.css']
+    selector: 'app-card-type',
+    templateUrl: './card-type.component.html',
+    styleUrls: ['./card-type.component.css'],
+    standalone: false
 })
 export class CardTypeComponent implements OnInit{
   @ViewChild(ModalCardTypesComponent) modal: any

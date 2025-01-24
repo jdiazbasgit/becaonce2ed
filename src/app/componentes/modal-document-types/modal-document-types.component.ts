@@ -3,9 +3,10 @@ import { DocumentTypeService } from '../../servicios/document-type.service';
 import DocumentTypeBean from '../../beans/DocumentTypeBean'
 
 @Component({
-  selector: 'app-modal-document-types',
-  templateUrl: './modal-document-types.component.html',
-  styleUrls: ['./modal-document-types.component.css']
+    selector: 'app-modal-document-types',
+    templateUrl: './modal-document-types.component.html',
+    styleUrls: ['./modal-document-types.component.css'],
+    standalone: false
 })
 export class ModalDocumentTypesComponent implements DoCheck {
 

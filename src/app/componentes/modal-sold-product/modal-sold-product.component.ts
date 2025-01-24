@@ -3,8 +3,9 @@ import SoldProductBean from 'src/app/beans/SoldProductBean';
 import { SoldProductService } from 'src/app/servicios/soldProduct.service';
 
 @Component({
-  selector: 'app-modal-sold-product',
-  templateUrl: './modal-sold-product.component.html'
+    selector: 'app-modal-sold-product',
+    templateUrl: './modal-sold-product.component.html',
+    standalone: false
 })
 export class ModalSoldProductComponent implements DoCheck{
 

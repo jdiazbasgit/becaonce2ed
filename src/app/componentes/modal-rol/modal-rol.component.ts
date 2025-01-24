@@ -3,8 +3,9 @@ import RolBean from 'src/app/beans/RolBean';
 import { RolesService } from 'src/app/servicios/roles.service';
 
 @Component({
-  selector: 'app-modal-rol',
-  templateUrl: './modal-rol.component.html'
+    selector: 'app-modal-rol',
+    templateUrl: './modal-rol.component.html',
+    standalone: false
 })
 export class ModalRolComponent implements DoCheck{
   

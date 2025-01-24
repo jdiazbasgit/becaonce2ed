@@ -3,8 +3,9 @@ import { ConfigurationService } from 'src/app/servicios/configuration.service';
 import { ModalConfigurationComponent } from '../modal-configuration/modal-configuration.component';
 
 @Component({
-  selector: 'app-configuration',
-  templateUrl: './configuration.component.html'
+    selector: 'app-configuration',
+    templateUrl: './configuration.component.html',
+    standalone: false
 })
 
 export class ConfigurationComponent implements OnInit {

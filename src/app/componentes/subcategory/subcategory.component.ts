@@ -6,9 +6,10 @@ import SubcategoryBean from "src/app/beans/SubcategoryBean";
 
 
 @Component({
-  selector: 'app-subcategory',
-  templateUrl: './subcategory.component.html',
-  styleUrls: ['./subcategory.component.css']
+    selector: 'app-subcategory',
+    templateUrl: './subcategory.component.html',
+    styleUrls: ['./subcategory.component.css'],
+    standalone: false
 })
 export class SubcategoryComponent implements OnInit {
 

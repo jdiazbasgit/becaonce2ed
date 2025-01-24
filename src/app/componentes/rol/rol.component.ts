@@ -3,8 +3,9 @@ import { ModalRolComponent } from '../modal-rol/modal-rol.component';
 import { RolesService } from 'src/app/servicios/roles.service';
 
 @Component({
-  selector: 'app-rol',
-  templateUrl: './rol.component.html'
+    selector: 'app-rol',
+    templateUrl: './rol.component.html',
+    standalone: false
 })
 export class RolComponent implements OnInit{
 

@@ -3,9 +3,10 @@ import { CardTypeService } from '../../servicios/card-type.service';
 import CardTypeBean from '../../beans/CardTypeBean';
 
 @Component({
-  selector: 'app-modal-card-types',
-  templateUrl: './modal-card-types.component.html',
-  styleUrls: ['./modal-card-types.component.css']
+    selector: 'app-modal-card-types',
+    templateUrl: './modal-card-types.component.html',
+    styleUrls: ['./modal-card-types.component.css'],
+    standalone: false
 })
 export class ModalCardTypesComponent implements DoCheck {
   id: number = 0
