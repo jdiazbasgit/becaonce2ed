@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ModalLoginComponent } from '../modal-login/modal-login.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
