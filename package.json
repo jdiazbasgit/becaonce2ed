@@ -8,7 +8,6 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
@@ -25,6 +24,7 @@
     "angular-material": "^1.2.5",
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.10.5",
+    "front-proyectos": "file:",
     "jquery": "^3.6.4",
     "material-icons": "^1.13.7",
     "ngx-bootstrap": "^10.2.0",
