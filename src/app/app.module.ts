@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NavComponent } from './componentes/nav/nav.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -49,61 +49,54 @@ import { SignupComponent } from './componentes/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminPanelComponent } from './componentes/admin-panel/admin-panel.component';
 
-@NgModule({
-  declarations: [
-    NavComponent,
-    AppComponent,
-    HeaderComponent,
-    LoginComponent,
-    ProfileComponent,
-    ProductComponent,
-    FooterComponent,
-    CategoryComponent,
-    SubcategoryComponent,
-    DocumentTypesComponent,
-    UserComponent,
-    RolComponent,
-    SoldProductComponent,
-    ExistingProductComponent,
-    CardTypeComponent,
-    ConfigurationComponent,
-    ModalCardTypesComponent,
-    ModalDocumentTypesComponent,
-    ModalCategoryComponent,
-    ModalSubcategoryComponent,
-    ModalConfigurationComponent,
-    ModalRolComponent,
-    ModalUserComponent,
-    ModalLoginComponent,
-    HomeComponent,
-    ModalExistingProductsComponent,
-    ModalProfilesComponent,
-    ModalSoldProductComponent,
-    SignupComponent,
-    AdminPanelComponent
-  ],
-  imports:[
-    FormsModule,
-    HttpClientModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatIconModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    BrowserModule,
-    AppRoutingModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    NgIf,
-    RouterModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        NavComponent,
+        AppComponent,
+        HeaderComponent,
+        LoginComponent,
+        ProfileComponent,
+        ProductComponent,
+        FooterComponent,
+        CategoryComponent,
+        SubcategoryComponent,
+        DocumentTypesComponent,
+        UserComponent,
+        RolComponent,
+        SoldProductComponent,
+        ExistingProductComponent,
+        CardTypeComponent,
+        ConfigurationComponent,
+        ModalCardTypesComponent,
+        ModalDocumentTypesComponent,
+        ModalCategoryComponent,
+        ModalSubcategoryComponent,
+        ModalConfigurationComponent,
+        ModalRolComponent,
+        ModalUserComponent,
+        ModalLoginComponent,
+        HomeComponent,
+        ModalExistingProductsComponent,
+        ModalProfilesComponent,
+        ModalSoldProductComponent,
+        SignupComponent,
+        AdminPanelComponent
+    ],
+    bootstrap: [AppComponent], imports: [FormsModule,
+        MatSlideToggleModule,
+        MatTableModule,
+        MatIconModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserModule,
+        AppRoutingModule,
+        MatProgressBarModule,
+        MatDialogModule,
+        NgIf,
+        RouterModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 
 export class AppModule {}
